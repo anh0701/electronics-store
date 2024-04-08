@@ -13,7 +13,7 @@ class DanhMuc extends Model
         'TenDanhMuc', 'SlugDanhMuc', 'DanhMucCha', 'MoTa', 'TrangThai', 'ThoiGianTao', 'ThoiGianSua'
     ];
     protected $primaryKey = 'MaDanhMuc';
-    protected $table = 'tbl_DanhMuc';
+    protected $table = 'tbl_danhmuc';
 
-    
+
 }
