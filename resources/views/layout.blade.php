@@ -83,11 +83,11 @@
 								@php
 									}else{
 								@endphp
-									<li><a href="{{ route('/TrangKhachHangDangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								@php
 									}
 								@endphp
-								<li><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
+								<!--<li><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>-->
 							</ul>
 						</div>
 					</div>

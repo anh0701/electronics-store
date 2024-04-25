@@ -48,7 +48,6 @@
                     document.getElementById('hinhAnhHienThi').style.display = 'block';
                     document.getElementById('hinhAnhHienThi').src = e.target.result;
                 }
-
                 reader.readAsDataURL(input.files[0]);
             }
         }

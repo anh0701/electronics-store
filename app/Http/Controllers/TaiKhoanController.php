@@ -8,10 +8,11 @@ use App\Models\TaiKhoan;
 use App\Models\PhanQuyen;
 use App\Models\PhanQuyenNguoiDung;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\Hash;
 class TaiKhoanController extends Controller
 {
     public function dangNhap(){
+        // Session::forget('user');
         return view('admin.TaiKhoan.dangNhap');
     }
 
@@ -30,17 +31,12 @@ class TaiKhoanController extends Controller
     public function xuLyDN(Request $request){
         $email = $request->input('email');
         $matkhau = $request->input('matkhau');
-        $user = TaiKhoan::where('Email', $email)->where('MatKhau', $matkhau)->first();
+        $taikhoan = TaiKhoan::where('Email', $email)->first();
 
-        // Nếu thông tin đăng nhập hợp lệ
-        if ($user) {
-            // Thiết lập session cho người dùng
-            $request->session()->put('user', $user->TenTaiKhoan);
-
-            // Chuyển hướng đến trang sau khi đăng nhập thành công
+        if ($taikhoan && password_verify($matkhau, $taikhoan->MatKhau)) {
+            $request->session()->put('user', $taikhoan->TenTaiKhoan);
             return redirect('/trangAdmin');
         } else {
-            // Đăng nhập không thành công, chuyển hướng lại trang đăng nhập với thông báo lỗi
             return redirect()->back()->withErrors([
                 'email' => 'Email hoặc mật khẩu không đúng.',
             ]);
@@ -49,6 +45,45 @@ class TaiKhoanController extends Controller
 
     public function taoTK(){
         return view('admin.TaiKhoan.taoTK');
+    }
+
+    public function xuLyTaoTK(Request $request){
+        $valid = $request->validate([
+            'email' => 'required|email|unique:tbl_taikhoan',
+            'tentaikhoan' => 'required',
+            'sdt' => 'required',
+            'matkhau' => 'required',
+            'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
+        ]);
+    
+        // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
+        if ($request->hasFile('hinhanh')) {
+            $hinhanh = $request->file('hinhanh');
+            $tenHinhAnh = time() . '.' . $hinhanh->getClientOriginalExtension();
+            $duongDan = public_path('uploads/hinhanh');
+            $hinhanh->move($duongDan, $tenHinhAnh);
+            $duongDanHinhAnh = 'uploads/hinhanh/' . $tenHinhAnh;
+        } else {
+            $duongDanHinhAnh = ''; // Nếu không có hình ảnh được tải lên
+        }
+
+        $maTK = 'TKNV' . date('YmdHis');
+        $valid = $request->all();
+        $thoiGianTao = date('Y-m-d H:i:s');
+        $matkhauMoi = bcrypt($request->matkhau);
+        // Tạo tài khoản mới
+        $taiKhoan = new TaiKhoan();
+        $taiKhoan->MaTaiKhoan = $maTK;
+        $taiKhoan->Email = $request->email;
+        $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
+        $taiKhoan->SoDienThoai = $request->sdt;
+        $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->HinhAnh = $duongDanHinhAnh; // Lưu đường dẫn hình ảnh
+        $taiKhoan->ThoiGianTao = $thoiGianTao;
+        $taiKhoan->save();
+    
+        // Điều hướng sau khi tạo tài khoản thành công
+        return redirect('/trangAdmin')->with('success', 'Tài khoản đã được tạo thành công!');
     }
 
     public function show_dashboard(){

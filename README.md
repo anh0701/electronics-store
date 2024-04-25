@@ -19,6 +19,10 @@ php artisan serve
 ```
     git push --set-upstream origin anhnx1
 ```
+6. dang nhap
+```
+    git pull
+```
 
 
 

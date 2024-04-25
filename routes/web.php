@@ -43,6 +43,7 @@ Route::post('xuLyDN', [TaiKhoanController::class, 'xuLyDN']);
 Route::get('/trangAdmin', [TaiKhoanController::class, 'trangAdmin'])->name('trangAdmin')->middleware('DangNhap');
 Route::post('/dangXuat', [TaiKhoanController::class, 'dangXuat'])->name('dangXuat');
 Route::get('taoTK', [TaiKhoanController::class, 'taoTK'])->name('taoTK');
+Route::post('xuLyTaoTK', [TaiKhoanController::class, 'xuLyTaoTK'])->name('xuLyTaoTK');
 
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');    
 Route::get('/TrangLietKeTaiKhoan', [TaiKhoanController::class, 'TrangLietKeTaiKhoan'])->name('/TrangLietKeTaiKhoan');
