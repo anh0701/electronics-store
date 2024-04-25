@@ -11,6 +11,46 @@ use Illuminate\Support\Facades\Redirect;
 
 class TaiKhoanController extends Controller
 {
+    public function dangNhap(){
+        return view('admin.TaiKhoan.dangNhap');
+    }
+
+    public function trangAdmin(){
+        $user = session('user');
+
+        // Trả về view Dashboard và truyền thông tin người dùng vào view
+        return view('trangQuanLy', compact('user'));
+    }
+
+    public function dangXuat(Request $request){
+        $request->session()->forget('user');
+        return redirect('/dangNhap'); // Chuyển hướng về trang đăng nhập
+    }
+
+    public function xuLyDN(Request $request){
+        $email = $request->input('email');
+        $matkhau = $request->input('matkhau');
+        $user = TaiKhoan::where('Email', $email)->where('MatKhau', $matkhau)->first();
+
+        // Nếu thông tin đăng nhập hợp lệ
+        if ($user) {
+            // Thiết lập session cho người dùng
+            $request->session()->put('user', $user->TenTaiKhoan);
+
+            // Chuyển hướng đến trang sau khi đăng nhập thành công
+            return redirect('/trangAdmin');
+        } else {
+            // Đăng nhập không thành công, chuyển hướng lại trang đăng nhập với thông báo lỗi
+            return redirect()->back()->withErrors([
+                'email' => 'Email hoặc mật khẩu không đúng.',
+            ]);
+        }
+    }
+
+    public function taoTK(){
+        return view('admin.TaiKhoan.taoTK');
+    }
+
     public function show_dashboard(){
         return view('admin_layout');
     }
@@ -73,9 +113,4 @@ class TaiKhoanController extends Controller
         }
     }
 
-    public function DangXuat(){
-        Session::put('TenTaiKhoan', null);
-        Session::put('MaTaiKhoan', null);
-        return Redirect::to('/TrangDangNhap');
-    }
 }
