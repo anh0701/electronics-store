@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhieuNhapController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\ThuongHieuController;
@@ -20,6 +21,13 @@ use App\Http\Controllers\HomeController;
 
 // Trang admin
 // Thuong Hieu San Pham
+Route::get('/xemPN', [PhieuNhapController::class, 'trangXemPhieuNhap']);
+Route::get('/xemCTPN/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xem.CT');
+Route::get('/lapPN/', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
+Route::post('/xuLyLapPN', [PhieuNhapController::class, 'luuPN']);
+Route::get('/suaPN/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
+Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySua'])->name('xuLySuaPN');
+
 Route::get('/TrangThemThuongHieu', [ThuongHieuController::class, 'TrangThemThuongHieu'])->name('/TrangThemThuongHieu');
 Route::get('/TrangLietKeThuongHieu', [ThuongHieuController::class, 'TrangLietKeThuongHieu'])->name('/TrangLietKeThuongHieu');
 Route::post('/ThemThuongHieu', [ThuongHieuController::class, 'ThemThuongHieu'])->name('/ThemThuongHieu');
@@ -30,6 +38,12 @@ Route::get('/XoaThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'XoaTh
 Route::post('/SuaThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'SuaThuongHieu'])->name('/SuaThuongHieu');
 
 // TaiKhoan
+Route::get('/dangNhap', [TaiKhoanController::class, 'dangNhap'])->name('dangNhap');
+Route::post('xuLyDN', [TaiKhoanController::class, 'xuLyDN']);
+Route::get('/trangAdmin', [TaiKhoanController::class, 'trangAdmin'])->name('trangAdmin')->middleware('DangNhap');
+Route::post('/dangXuat', [TaiKhoanController::class, 'dangXuat'])->name('dangXuat');
+Route::get('taoTK', [TaiKhoanController::class, 'taoTK'])->name('taoTK');
+
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');    
 Route::get('/TrangLietKeTaiKhoan', [TaiKhoanController::class, 'TrangLietKeTaiKhoan'])->name('/TrangLietKeTaiKhoan');
 Route::get('/XemChiTiet/{MaTaiKhoan}', [TaiKhoanController::class, 'XemChiTiet'])->name('/XemChiTiet');
