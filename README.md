@@ -5,4 +5,8 @@
 ```shell
 php artisan serve
 ```
+3. create branch
+```shell
+    git checkout -b name-branch
+```
 

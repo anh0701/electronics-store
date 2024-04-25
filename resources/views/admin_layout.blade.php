@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
-<title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>Visitors an Admin Panel Category</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="{{ asset('backend/css/font.css') }}" type="text/css"/>
-<link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet"> 
+<link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- calendar -->
@@ -27,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/raphael-min.js') }}"></script>
 <script src="{{ asset('backend/js/morris.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
-<!-- morris JavaScript -->	
+<!-- morris JavaScript -->
 <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>
@@ -137,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer -->
 		  <div class="footer">
         <div class="wthree-copyright">
-          <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+          <p>Visitors an Admin Panel Category</p>
         </div>
 		  </div>
   <!-- / footer -->
@@ -153,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
     function ChangeToSlug(){
         var slug;
-        //Lấy text từ thẻ input title 
+        //Lấy text từ thẻ input title
         slug = document.getElementById("slug").value;
         slug = slug.toLowerCase();
         //Đổi ký tự có dấu thành không dấu
@@ -196,12 +196,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  jQuery(this).closest('.small-graph-box').fadeOut(200);
 		  return false;
 	   });
-	   
+
 	    //CHARTS
 	    function gd(year, day, month) {
 			return new Date(year, month - 1, day).getTime();
 		}
-		
+
 		graphArea2 = Morris.Area({
 			element: 'hero-area',
 			padding: 10,
@@ -224,7 +224,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				{period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
 				{period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
 				{period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-			
+
 			],
 			lineColors:['#eb6f6f','#926383','#eb6f6f'],
 			xkey: 'period',
@@ -235,8 +235,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			hideHover: 'auto',
 			resize: true
 		});
-		
-	   
+
+
 	});
 	</script>
 <!-- calendar -->
@@ -246,7 +246,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			$('#mycalendar').monthly({
 				mode: 'event',
-				
+
 			});
 
 			$('#mycalendar2').monthly({
