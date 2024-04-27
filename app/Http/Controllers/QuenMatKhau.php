@@ -89,10 +89,10 @@ class QuenMatKhau extends Controller
                 return new JsonResponse(['success' => false, 'message' => "Pin Expired"], 400);
             }
 
-            $delete = DB::table('tbl_taikhoan')->where([
-                ['Email', $request->all()['Email']],
-                ['Pin', $request->all()['Pin']],
-            ])->delete();
+//            $delete = DB::table('tbl_taikhoan')->where([
+//                ['Email', $request->all()['Email']],
+//                ['Pin', $request->all()['Pin']],
+//            ])->delete();
 
             return new JsonResponse(
                 [
