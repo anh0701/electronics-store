@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Mail\ResetPassword;
+use App\Mail\DoiMatKhau;
 use App\Models\TaiKhoan;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-class ForgotPasswordController extends Controller
+class QuenMatKhau extends Controller
 {
     //
-    public function forgotPassword(Request $request)
+    public function QuenMatKhau(Request $request)
 {
     $validator = Validator::make($request->all(), [
         'Email' => ['required', 'string', 'Email', 'max:255'],
@@ -45,7 +45,7 @@ class ForgotPasswordController extends Controller
         ]);
 
         if ($password_reset) {
-            Mail::to($request->all()['Email'])->send(new ResetPassword($token));
+            Mail::to($request->all()['Email'])->send(new DoiMatKhau($token));
 
             return new JsonResponse(
                 [
@@ -65,7 +65,7 @@ class ForgotPasswordController extends Controller
         );
     }
 }
-public function verifyPin(Request $request)
+public function XacThucPin(Request $request)
 {
     $validator = Validator::make($request->all(), [
         'Email' => ['required', 'string', 'Email', 'max:255'],

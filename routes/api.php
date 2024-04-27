@@ -19,14 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post(
-    '/forgot-password', 
-    [App\Http\Controllers\ForgotPasswordController::class, 'forgotPassword']
+    '/forgot-password',
+    [App\Http\Controllers\QuenMatKhau::class, 'QuenMatKhau']
 );
 Route::post(
-    '/verify/pin', 
-    [App\Http\Controllers\ForgotPasswordController::class, 'verifyPin']
+    '/verify/pin',
+    [App\Http\Controllers\QuenMatKhau::class, 'XacThucPin']
 );
 Route::post(
-    '/reset-password', 
-    [App\Http\Controllers\ResetPasswordController::class, 'resetPassword']
+    '/reset-password',
+    [App\Http\Controllers\DoiMatKhau::class, 'DoiMatKhau']
 );
