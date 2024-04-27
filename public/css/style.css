@@ -12,8 +12,8 @@ display: flex;
 .sidebar {
 width: 200px;
 height: 100vh;
-background-color: #333; /* Nền đen */
-color: white; /* Chữ trắng */
+background-color: #dddddd; /* Nền đen */
+color: #333; /* Chữ trắng */
 }
 
 .sidebar ul {
@@ -26,8 +26,13 @@ padding: 10px;
 }
 
 .sidebar ul li a {
-color: white;
+color: #333;
+
 text-decoration: none;
+}
+
+.sidebar ul li a:hover{
+  background-color: azure;
 }
 
 .main-content {
@@ -43,8 +48,8 @@ padding: 20px;
 
 /* Định dạng cho nút mở menu dropdown */
 .dropdown .dropbtn {
-  color: white;
-  background-color: #333;
+  color: #333;
+  background-color: #dddddd;
   padding: 0px;
   text-decoration: none;
 }
@@ -53,7 +58,7 @@ padding: 20px;
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #333;
+  background-color: #dddddd;
   min-width: 160px;
   z-index: 1;
 }
@@ -65,15 +70,15 @@ padding: 20px;
 
 /* Định dạng cho các mục trong menu dropdown */
 .dropdown-content a {
-  color: white;
-  padding: 12px 16px;
+  color: #333;
+  padding: 5px 7px;
   text-decoration: none;
   display: block;
 }
 
 /* Định dạng cho các mục khi hover */
 .dropdown-content a:hover {
-  background-color: #555;
+  background-color: #dddddd;
 }
 
 .arrow {
@@ -85,6 +90,9 @@ padding: 20px;
   max-height: 1em; /* Chiều cao tối đa của hình ảnh tương đương với kích thước của dòng chữ */
   max-width: 1em; /* Chiều rộng tối đa của hình ảnh tương đương với kích thước của dòng chữ */
 }
+
+
+/**/
 
 table {
   border-collapse: collapse; /* Gộp viền của các ô lại với nhau */
@@ -108,11 +116,11 @@ td:not(:last-child) {
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9; /* Màu nền xen kẽ cho các hàng */
+  background-color: #dddddd; /* Màu nền xen kẽ cho các hàng */
 }
 
 tr:hover {
-  background-color: #f2f2f2; /* Màu nền khi di chuột qua */
+  background-color: #dddddd; /* Màu nền khi di chuột qua */
 }
 
 .currency {

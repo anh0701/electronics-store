@@ -87,7 +87,13 @@
 								@php
 									}
 								@endphp
-								<!--<li><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>-->
+								@if (session('user'))
+									@php
+										$user = session('user');
+										$tenTK = $user['TenTaiKhoan'];
+									@endphp
+									<li><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
+								@endif
 							</ul>
 						</div>
 					</div>

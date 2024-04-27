@@ -41,7 +41,7 @@ Route::post('/SuaThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'SuaT
 Route::get('/dangNhap', [TaiKhoanController::class, 'dangNhap'])->name('dangNhap');
 Route::post('xuLyDN', [TaiKhoanController::class, 'xuLyDN']);
 Route::get('/trangAdmin', [TaiKhoanController::class, 'trangAdmin'])->name('trangAdmin')->middleware('DangNhap');
-Route::post('/dangXuat', [TaiKhoanController::class, 'dangXuat'])->name('dangXuat');
+Route::get('/dangXuat', [TaiKhoanController::class, 'dangXuat'])->name('dangXuat');
 Route::get('taoTK', [TaiKhoanController::class, 'taoTK'])->name('taoTK');
 Route::post('xuLyTaoTK', [TaiKhoanController::class, 'xuLyTaoTK'])->name('xuLyTaoTK');
 

@@ -3,53 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>Trang quản lý</title>
+    <link rel="stylesheet" href="{{ asset('/css/trangQuanLy.css')}}">
 </head>
 <body>
     <header>
         <div>
             <!-- Hiển thị thông tin người dùng -->
             @if (session('user'))
-                <p>Hello, {{ session('user') }}</p>
-                <form action="{{ route('dangXuat') }}" method="POST">
-                    @csrf
-                    <button type="submit">DangXuat</button>
-                </form>
-            @else
-                <p>Welcome Guest</p>
+                @php
+                    $user = session('user');
+                    $tenTK = $user['TenTaiKhoan'];
+                @endphp  
             @endif
         </div>
-        <nav>
-            <!-- Thêm các liên kết menu -->
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <!-- Thêm các liên kết menu bổ sung -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">Logo</a>
+            </div>
+            <ul class="menu">
+                <li><a href="">Hello, {{ $tenTK }}</a></li>
+                <li><a href="{{ route('trangAdmin') }}">Trang quản lý</a></li>
+                <li><a href="{{ route('dangXuat') }}">Đăng xuất</a></li>
+                <li><a href="#">Lien he</a></li>
             </ul>
         </nav>
     </header>
-
-    <div class="container">
-        <!-- Nội dung chính của trang sẽ được đặt ở đây -->
-        @yield('content')
-    </div>
-
-    <aside>
-        <!-- Thêm các menu bên tay phải -->
-        <div>
-            <h3>Menu</h3>
+    <div class = "container">
+        <div class="menu-left">
             <ul>
-                <li><a href="{{ route('taoTK') }}">TaoTaiKhoanNhanVien</a></li>
-                <li><a href="#">Option 2</a></li>
-                <li><a href="#">Option 3</a></li>
-                <!-- Thêm các mục menu bổ sung -->
+                <li><a href="#">Trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" onclick="toggleDropdown()">Quan ly tai khoan<span class="arrow">  v</span></a>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="{{ route('taoTK') }}">Tao tai khoan</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" onclick="toggleDropdown()">Quan ly tai khoan<span class="arrow">  v</span></a>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="{{ route('taoTK') }}">Tao tai khoan</a>
+                </li>
             </ul>
         </div>
-    </aside>
+        <div class="content">
+            <h1>Chao mung ban den trang ho tro kinh doanh hang dien tu</h1>
+        </div>
+    </div>
+    
+    
 
-    <footer>
-        <!-- Footer của trang web -->
-    </footer>
 </body>
 </html>

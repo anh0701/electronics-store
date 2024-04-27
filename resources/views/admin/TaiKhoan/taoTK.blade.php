@@ -14,6 +14,9 @@
             max-height: 100%; /* Kích thước tối đa của hình ảnh là 100% của chiều cao div */
             object-fit:cover;
         }
+
+        
+
     </style>
 </head>
 <body>
@@ -28,6 +31,13 @@
         <input type="text" id="sdt" name="sdt"><br>
         <label for="matkhau">Mật khẩu:</label><br>
         <input type="text" id="matkhau" name="matkhau"><br>
+        <label for="quyen">Chọn quyền:</label><br>
+        <select id="quyen" name="quyen">
+            <option value="QTV">Quan tri vien</option>
+            <option value="NVBH">Nhan vien ban hang</option>
+            <option value="NVK">Nhan vien kho</option>
+            <option value="NVKT">Nhan vien ke toan</option>
+        </select><br>
         <div id="hinhAnhWrapper">
             <!-- Trường input để chọn hình ảnh -->
             <label for="hinhanh">Chọn hình ảnh:</label><br>

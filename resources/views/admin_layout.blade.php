@@ -56,12 +56,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="{{ asset('backend/images/2.png') }}">
                 <span class="username">
-                  @php
-                    $tenTaiKhoan = Session::get('TenTaiKhoan');
-                    if ($tenTaiKhoan) {
-                      echo $tenTaiKhoan;
-                    }
-                  @endphp
+                @if (session('user'))
+                    <p>Hello, {{ session('user') }}</p>
+                    <form action="{{ route('dangXuat') }}" method="POST">
+                        @csrf
+                        <button type="submit">DangXuat</button>
+                    </form>
+                @else
                 </span>
                 <b class="caret"></b>
             </a>

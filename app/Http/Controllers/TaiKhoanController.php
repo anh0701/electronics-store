@@ -12,19 +12,24 @@ use Illuminate\Support\Facades\Hash;
 class TaiKhoanController extends Controller
 {
     public function dangNhap(){
-        // Session::forget('user');
+        session::forget('user');
         return view('admin.TaiKhoan.dangNhap');
     }
 
     public function trangAdmin(){
         $user = session('user');
-
+        $quyen = $user['Quyen'];
+        if($quyen == ""){
+            return redirect('/');
+        }else{
+            return view('trangQuanLy', compact('user'));
+        }
         // Trả về view Dashboard và truyền thông tin người dùng vào view
-        return view('trangQuanLy', compact('user'));
+        
     }
 
-    public function dangXuat(Request $request){
-        $request->session()->forget('user');
+    public function dangXuat(){
+        session::forget('user');
         return redirect('/dangNhap'); // Chuyển hướng về trang đăng nhập
     }
 
@@ -34,8 +39,20 @@ class TaiKhoanController extends Controller
         $taikhoan = TaiKhoan::where('Email', $email)->first();
 
         if ($taikhoan && password_verify($matkhau, $taikhoan->MatKhau)) {
-            $request->session()->put('user', $taikhoan->TenTaiKhoan);
-            return redirect('/trangAdmin');
+            if($taikhoan->Quyen == ""){
+                $request->session()->put('user', [
+                    'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
+                    'Quyen' => $taikhoan->Quyen,
+                ]);
+                return redirect('/');
+            }
+            else{
+                $request->session()->put('user', [
+                    'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
+                    'Quyen' => $taikhoan->Quyen,
+                ]);
+                return redirect('/trangAdmin');
+            }
         } else {
             return redirect()->back()->withErrors([
                 'email' => 'Email hoặc mật khẩu không đúng.',
@@ -54,6 +71,7 @@ class TaiKhoanController extends Controller
             'sdt' => 'required',
             'matkhau' => 'required',
             'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
+            'quyen' => 'required',
         ]);
     
         // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
@@ -80,6 +98,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->MatKhau = $matkhauMoi;
         $taiKhoan->HinhAnh = $duongDanHinhAnh; // Lưu đường dẫn hình ảnh
         $taiKhoan->ThoiGianTao = $thoiGianTao;
+        $taiKhoan->Quyen = $request->quyen;
         $taiKhoan->save();
     
         // Điều hướng sau khi tạo tài khoản thành công
