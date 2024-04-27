@@ -8,10 +8,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class ResetPasswordController extends Controller
+class DoiMatKhau extends Controller
 {
     //
-    public function resetPassword(Request $request)
+    public function DoiMatKhau(Request $request)
 {
     $validator = Validator::make($request->all(), [
         'Email' => ['required', 'string', 'Email', 'max:255'],
