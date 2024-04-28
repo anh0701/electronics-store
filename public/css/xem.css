@@ -1,0 +1,44 @@
+table {
+    border-collapse: collapse; /* Gộp viền của các ô lại với nhau */
+    width: 100%; /* Chiều rộng của bảng */
+    border: 1px solid #dddddd; /* Viền của bảng */
+    table-layout: auto;
+}
+  
+th, td {
+    padding: 12px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center; /* Căn lề nội dung sang trái */
+}
+  
+th {
+    background-color: #fff000; /* Màu nền cho tiêu đề cột */
+}
+
+td a{
+    text-decoration: none;
+    color: #333;
+}
+
+td a:hover{
+    color: #0000ff;
+}
+
+th:not(:last-child),
+td:not(:last-child) {
+    border-right: 1px solid #dddddd; /* Viền bên phải của các ô, trừ ô cuối cùng */
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd; /* Màu nền xen kẽ cho các hàng */
+}
+  
+tr:hover {
+    background-color: #dddddd; /* Màu nền khi di chuột qua */
+}
+  
+.currency {
+    font-weight: bold;
+    color: #333; /* Màu của đơn vị tiền tệ */
+    line-height: 1; /* Đặt chiều cao dòng bằng với kích thước của chữ */
+    margin-left: 2px; /* Khoảng cách giữa số và đơn vị tiền tệ */
+}

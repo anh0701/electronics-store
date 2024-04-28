@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <h2>Đăng ký</h2>
-        <form action="/xuLyDK" method="POST">
+        <form action="/xu-ly-dang-ky" method="POST">
             @csrf
             <div class="error-message">
                 @if ($errors->any())

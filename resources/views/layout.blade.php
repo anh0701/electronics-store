@@ -82,7 +82,7 @@
 										$tenTK = $user['TenTaiKhoan'];
 									@endphp
 									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-									<li><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
+									<li><a><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
 								@else
 									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								@endif
