@@ -75,24 +75,16 @@
 								<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								{{-- Đăng xuất/ Đăng nhập --}}
-								@php
-									$maTaiKhoan = Session::get('MaTaiKhoan');
-									if($maTaiKhoan != ''){
-								@endphp
-									<li><a href="{{ route('/KhachHangDangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-								@php
-									}else{
-								@endphp
-									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-								@php
-									}
-								@endphp
+								
 								@if (session('user'))
 									@php
 										$user = session('user');
 										$tenTK = $user['TenTaiKhoan'];
 									@endphp
+									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
 									<li><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
+								@else
+									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								@endif
 							</ul>
 						</div>

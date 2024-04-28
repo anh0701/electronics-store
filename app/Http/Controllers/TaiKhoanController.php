@@ -16,6 +16,42 @@ class TaiKhoanController extends Controller
         return view('admin.TaiKhoan.dangNhap');
     }
 
+    public function dangKy(){
+        return view('admin.TaiKhoan.dangKy');
+    }
+
+    public function xuLyDK(Request $request){
+        $messages = [
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'email.email' => 'Địa chỉ email không hợp lệ.',
+            'email.unique' => 'Địa chỉ email đã được sử dụng.',
+            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
+            'matkhau.required' => 'Vui lòng nhập mật khẩu.',
+        ];
+
+        $valid = $request->validate([
+            'email' => 'required|email|unique:tbl_taikhoan',
+            'tentaikhoan' => 'required',
+            'matkhau' => 'required',
+        ], $messages);
+
+        $maTK = 'TKNV' . date('YmdHis');
+        $valid = $request->all();
+        $thoiGianTao = date('Y-m-d H:i:s');
+        $matkhauMoi = bcrypt($request->matkhau);
+        // Tạo tài khoản mới
+        $taiKhoan = new TaiKhoan();
+        $taiKhoan->MaTaiKhoan = $maTK;
+        $taiKhoan->Email = $request->email;
+        $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
+        $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->ThoiGianTao = $thoiGianTao;
+        $taiKhoan->save();
+    
+        // Điều hướng sau khi tạo tài khoản thành công
+        return redirect('/dangNhap')->with('success', 'Tài khoản đăng ký thành công!');
+    }
+
     public function trangAdmin(){
         $user = session('user');
         $quyen = $user['Quyen'];
@@ -34,6 +70,17 @@ class TaiKhoanController extends Controller
     }
 
     public function xuLyDN(Request $request){
+        $messages = [
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'matkhau.required' => 'Vui lòng nhập mật khẩu.',
+        ];
+
+        $valid = $request->validate([
+            'email' => 'required',
+            'matkhau' => 'required',
+        ], $messages);
+
+        $valid = $request->all();
         $email = $request->input('email');
         $matkhau = $request->input('matkhau');
         $taikhoan = TaiKhoan::where('Email', $email)->first();
