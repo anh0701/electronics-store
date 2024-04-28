@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2024 lúc 07:32 PM
+-- Thời gian đã tạo: Th4 28, 2024 lúc 11:27 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -547,22 +547,24 @@ CREATE TABLE `tbl_taikhoan` (
   `MaTaiKhoan` varchar(18) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `TenTaiKhoan` varchar(50) DEFAULT NULL,
-  `SoDienThoai` int(11) NOT NULL,
+  `SoDienThoai` int(11) DEFAULT NULL,
   `MatKhau` varchar(255) NOT NULL,
   `HinhAnh` varchar(50) DEFAULT NULL,
   `BacNguoiDung` varchar(255) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
-  `Quyen` varchar(20) DEFAULT NULL
+  `Quyen` varchar(20) DEFAULT NULL,
+  `PIN` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_taikhoan`
 --
 
-INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `BacNguoiDung`, `ThoiGianTao`, `Quyen`) VALUES
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', 'QTV'),
-('TKNV20240428002621', 'anhnx286a@gmail.com', 'anh', 1, '$2y$12$YDe.Uv8fgREDMIoFzGbc3Ov/ywQh9kIlSmtXbfa0FLL6IDEYMjitq', '', NULL, '2024-04-27 17:26:21', ''),
-('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, '2024-04-27 17:31:10', NULL);
+INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `BacNguoiDung`, `ThoiGianTao`, `Quyen`, `PIN`) VALUES
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', 'QTV', NULL),
+('TKNV20240428002621', 'anhnx286a@gmail.com', 'anh', 1, '$2y$12$YDe.Uv8fgREDMIoFzGbc3Ov/ywQh9kIlSmtXbfa0FLL6IDEYMjitq', '', NULL, '2024-04-27 17:26:21', '', NULL),
+('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, '2024-04-27 17:31:10', NULL, NULL),
+('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, '2024-04-28 09:17:26', NULL, NULL);
 
 -- --------------------------------------------------------
 
