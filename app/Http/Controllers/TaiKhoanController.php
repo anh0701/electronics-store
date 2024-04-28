@@ -19,7 +19,7 @@ class TaiKhoanController extends Controller
     public function trangAdmin(){
         $user = session('user');
         $quyen = $user['Quyen'];
-        if($quyen == ""){
+        if($quyen == "" || $quyen == null){
             return redirect('/');
         }else{
             return view('trangQuanLy', compact('user'));
@@ -73,7 +73,7 @@ class TaiKhoanController extends Controller
             'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
             'quyen' => 'required',
         ]);
-    
+        
         // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
         if ($request->hasFile('hinhanh')) {
             $hinhanh = $request->file('hinhanh');

@@ -33,6 +33,7 @@
         <input type="text" id="matkhau" name="matkhau"><br>
         <label for="quyen">Chọn quyền:</label><br>
         <select id="quyen" name="quyen">
+            <option value="">Khong chon</option>
             <option value="QTV">Quan tri vien</option>
             <option value="NVBH">Nhan vien ban hang</option>
             <option value="NVK">Nhan vien kho</option>
