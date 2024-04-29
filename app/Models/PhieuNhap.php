@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class TaiKhoan extends Model
+class PhieuNhap extends Model
 {
     use HasFactory;
-    
-    protected $table = 'tbl_taikhoan';
+    protected $table = 'test1';
     public $timestamps = false;
 }

@@ -9,4 +9,21 @@ php artisan serve
 ```shell
     git checkout -b name-branch
 ```
+4. pull request
+```
+    git add.
+    git commit -n "..."
+    git push origin
+```
+5. push
+```
+    git push --set-upstream origin anhnx1
+```
+6. dang nhap
+```
+    git pull
+```
+
+
+
 
