@@ -23,7 +23,7 @@ class DoiMatKhau extends Controller
 
         $user = TaiKhoan::where('Email', $request->Email);
         $user->update([
-            'MatKhau' => md5($request->MatKhau)
+            'MatKhau' => bcrypt($request->MatKhau)
         ]);
 
 //    $token = $user->first()->createToken('myapptoken')->plainTextToken;
