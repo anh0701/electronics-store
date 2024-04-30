@@ -15,11 +15,11 @@ class TaiKhoanController extends Controller
 {
     public function dangNhap(){
         session::forget('user');
-        return view('admin.TaiKhoan.dangNhap');
+        return view('auth.dangNhap');
     }
 
     public function dangKy(){
-        return view('admin.TaiKhoan.dangKy');
+        return view('auth.dangKy');
     }
 
     public function xuLyDK(Request $request){
@@ -49,7 +49,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->MatKhau = $matkhauMoi;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->save();
-    
+
         // Điều hướng sau khi tạo tài khoản thành công
         return redirect('/dang-nhap')->with('success', 'Tài khoản đăng ký thành công!');
     }
@@ -63,7 +63,7 @@ class TaiKhoanController extends Controller
             return view('trangQuanLy', compact('user'));
         }
         // Trả về view Dashboard và truyền thông tin người dùng vào view
-        
+
     }
 
     public function dangXuat(){
@@ -127,7 +127,7 @@ class TaiKhoanController extends Controller
             'matkhau' => 'required',
             'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
         ], $messages);
-        
+
         // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
         if ($request->hasFile('hinhanh')) {
             $hinhanh = $request->file('hinhanh');
@@ -154,7 +154,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $request->quyen;
         $taiKhoan->save();
-    
+
         // Điều hướng sau khi tạo tài khoản thành công
         return redirect('/trang-quan-ly')->with('success', 'Tài khoản đã được tạo thành công!');
     }
@@ -227,7 +227,7 @@ class TaiKhoanController extends Controller
     // }
 
     // public function TaoTaiKhoan(Request $request){
-        
+
     // }
 
     // public function TrangDangNhap(){
