@@ -60,19 +60,31 @@
             color:#fff;
             background-color:#333;
         }
+        .error-message{
+            color: red;
+        }
+
     </style>
 </head>
 <body>
     <h1>Sửa tài khoản</h1>
     <form action="/xuLySuaTK" method="post">
-    @csrf <!-- Sử dụng token CSRF protection trong Laravel -->
-
+        @csrf <!-- Sử dụng token CSRF protection trong Laravel -->
+        <div class="error-message">
+            @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
         @foreach ($data as $item)
             <label for="maTK">Mã tài khoản:</label>
             <input type="text" id="maTK" name="maTK" value="{{ $item->MaTaiKhoan }}" readonly class="gray-background"><br>
 
-            <label for="tenTK">Tên tài khoản:</label>
-            <input type="text" id="tenTK" name="tenTK" value="{{ $item->TenTaiKhoan }}" ><br>
+            <label for="tentaikhoan">Tên tài khoản:</label>
+            <input type="text" id="tentaikhoan" name="tentaikhoan" value="{{ $item->TenTaiKhoan }}" ><br>
 
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" value="{{ $item->Email }}"><br>

@@ -67,6 +67,9 @@
             color:#fff;
             background-color:#333;
         }
+        .error-message{
+            color: red;
+        }
 
     </style>
 </head>
@@ -74,6 +77,15 @@
     <h1>Tạo tài khoản mới</h1>
     <form id="formTaoTK" action="/xuLyTaoTK" method="post" enctype="multipart/form-data">
         @csrf
+        <div class="error-message">
+            @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
         <label for="email">Email:</label>
         <input type="text" id="email" name="email">
         <label for="tentaikhoan">Tên tài khoản:</label>

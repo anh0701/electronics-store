@@ -9,7 +9,7 @@ use App\Models\PhanQuyen;
 use App\Models\PhanQuyenNguoiDung;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Validation\Rule;
 
 class TaiKhoanController extends Controller
 {
@@ -28,13 +28,19 @@ class TaiKhoanController extends Controller
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'email.unique' => 'Địa chỉ email đã được sử dụng.',
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
+            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
         ];
-
         $valid = $request->validate([
-            'email' => 'required|email|unique:tbl_taikhoan',
-            'tentaikhoan' => 'required',
-            'matkhau' => 'required',
+            'email' => [
+            'required',
+            'email',
+                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
+            ],
+            'tentaikhoan' => [
+                'required',
+                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
+            ],
         ], $messages);
 
         $maTK = 'TKNV' . date('YmdHis');
@@ -119,11 +125,19 @@ class TaiKhoanController extends Controller
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'email.unique' => 'Địa chỉ email đã được sử dụng.',
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
+            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
         ];
         $valid = $request->validate([
-            'email' => 'required|email|unique:tbl_taikhoan',
-            'tentaikhoan' => 'required',
+            'email' => [
+            'required',
+            'email',
+                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
+            ],
+            'tentaikhoan' => [
+                'required',
+                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
+            ],
             'matkhau' => 'required',
             'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
         ], $messages);
@@ -170,8 +184,30 @@ class TaiKhoanController extends Controller
     }
 
     public function xuLySuaTK(Request $request){
+        $messages = [
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'email.email' => 'Địa chỉ email không hợp lệ.',
+            'email.unique' => 'Địa chỉ email đã được sử dụng.',
+            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
+            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+            'matkhau.required' => 'Vui lòng nhập mật khẩu.',
+        ];
+        $valid = $request->validate([
+            'email' => [
+            'required',
+            'email',
+                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
+            ],
+            'tentaikhoan' => [
+                'required',
+                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
+            ],
+            'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
+        ], $messages);
+        
+        $valid = $request->all();
         $maTK = $request->maTK;
-        $tenTK = $request->tenTK;
+        $tenTK = $request->tentaikhoan;
         $email = $request->email;
         $sdt = $request->sdt;
         $quyen = $request->quyen;
