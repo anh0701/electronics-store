@@ -50,8 +50,10 @@ Route::post('/xuLyTaoTK', [TaiKhoanController::class, 'xuLyTaoTK'])->name('xuLyT
 Route::get('/sua-tai-khoan/{id}', [TaiKhoanController::class, 'suaTK'])->name('suaTK');
 Route::post('/xuLySuaTK', [TaiKhoanController::class, 'xuLySuaTK'])->name('xuLySuaTK');
 Route::get('/xoaTK/{id}', [TaiKhoanController::class, 'xoaTK'])->name('xoaTK');
+Route::post('/doi-mat-khau', [\App\Http\Controllers\DoiMatKhau::class, 'doiMatKhau'])->name('doiMatKhau');
+Route::get('/doi-mat-khau', [\App\Http\Controllers\DoiMatKhau::class, 'index'])->name('indexDMK');
 
-// Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');    
+// Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');
 // Route::get('/TrangLietKeTaiKhoan', [TaiKhoanController::class, 'TrangLietKeTaiKhoan'])->name('/TrangLietKeTaiKhoan');
 // Route::get('/XemChiTiet/{MaTaiKhoan}', [TaiKhoanController::class, 'XemChiTiet'])->name('/XemChiTiet');
 // Route::get('/XoaPQND/{MaPQND}', [TaiKhoanController::class, 'XoaPQND'])->name('/XoaPQND');

@@ -28,5 +28,5 @@ Route::post(
 );
 Route::post(
     '/reset-password',
-    [App\Http\Controllers\DoiMatKhau::class, 'DoiMatKhau']
+    [App\Http\Controllers\DoiMatKhau::class, 'doiMatKhau']
 );

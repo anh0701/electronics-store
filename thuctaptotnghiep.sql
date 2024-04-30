@@ -552,24 +552,25 @@ CREATE TABLE `tbl_taikhoan` (
   `HinhAnh` varchar(50) DEFAULT NULL,
   `BacNguoiDung` varchar(255) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL,
   `Quyen` varchar(20) DEFAULT NULL,
-  `PIN` int(10) DEFAULT NULL
+  `Pin` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_taikhoan`
 --
 
-INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `BacNguoiDung`, `ThoiGianTao`, `Quyen`, `PIN`) VALUES
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', 'QTV', NULL),
-('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, '2024-04-27 17:31:10', NULL, NULL),
-('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, '2024-04-28 09:17:26', NULL, NULL),
-('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, '2024-04-28 15:14:12', NULL, NULL),
-('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', '', NULL, '2024-04-28 15:34:47', 'NVKT', NULL),
-('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, '2024-04-28 16:04:54', 'NVK', NULL),
-('TKNV20240428231632', 'admin3@gmail.com', 'anh', 1, '$2y$12$qsGRaNwf4ELe6FeuQ56OBeZxM5VxRZQmROmjh.9np9mt0YDq2/RTS', '', NULL, '2024-04-28 16:16:32', 'NV', NULL),
-('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, '2024-04-28 17:04:39', NULL, NULL),
-('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, '2024-04-29 02:49:49', NULL, NULL);
+INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `BacNguoiDung`, `ThoiGianTao`,`ThoiGianSua`, `Quyen`, `Pin`) VALUES
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', NULL, 'QTV', NULL),
+('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, '2024-04-27 17:31:10', NULL, NULL, NULL),
+('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, '2024-04-28 09:17:26', NULL, NULL, NULL),
+('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, '2024-04-28 15:14:12', NULL, NULL, NULL),
+('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', '', NULL, '2024-04-28 15:34:47', NULL, 'NVKT', NULL),
+('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, '2024-04-28 16:04:54', NULL, 'NVK', NULL),
+('TKNV20240428231632', 'admin3@gmail.com', 'anh', 1, '$2y$12$qsGRaNwf4ELe6FeuQ56OBeZxM5VxRZQmROmjh.9np9mt0YDq2/RTS', '', NULL, '2024-04-28 16:16:32', NULL, 'NV', NULL),
+('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, '2024-04-28 17:04:39', NULL, NULL, NULL),
+('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, '2024-04-29 02:49:49', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
