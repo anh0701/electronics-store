@@ -52,6 +52,12 @@ Route::post('/xuLySuaTK', [TaiKhoanController::class, 'xuLySuaTK'])->name('xuLyS
 Route::get('/xoaTK/{id}', [TaiKhoanController::class, 'xoaTK'])->name('xoaTK');
 Route::post('/doi-mat-khau', [\App\Http\Controllers\DoiMatKhau::class, 'doiMatKhau'])->name('doiMatKhau');
 Route::get('/doi-mat-khau', [\App\Http\Controllers\DoiMatKhau::class, 'index'])->name('indexDMK');
+Route::post('/dat-lai-mat-khau', [\App\Http\Controllers\DatLaiMatKhau::class, 'datLaiMatKhau'])->name('datLaiMatKhau');
+Route::get('/dat-lai-mat-khau', [\App\Http\Controllers\DatLaiMatKhau::class, 'index'])->name('indexDLMK');
+Route::post('/quen-mat-khau', [\App\Http\Controllers\QuenMatKhau::class, 'quenMatKhau'])->name('quenMatKhau');
+Route::get('/quen-mat-khau', [\App\Http\Controllers\QuenMatKhau::class, 'indexQMK'])->name('indexQMK');
+Route::post('/xac-thuc-pin', [\App\Http\Controllers\QuenMatKhau::class, 'xacThucPin'])->name('xacThucPin');
+Route::get('/xac-thuc-pin', [\App\Http\Controllers\QuenMatKhau::class, 'indexXTPin'])->name('indexXTPin');
 
 // Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');
 // Route::get('/TrangLietKeTaiKhoan', [TaiKhoanController::class, 'TrangLietKeTaiKhoan'])->name('/TrangLietKeTaiKhoan');
