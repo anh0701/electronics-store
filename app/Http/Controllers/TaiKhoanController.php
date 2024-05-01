@@ -13,68 +13,9 @@ use Illuminate\Validation\Rule;
 
 class TaiKhoanController extends Controller
 {
-    public function dangNhap(){
+    public function dangNhap(Request $request){
         session::forget('user');
         return view('auth.dangNhap');
-    }
-
-    public function dangKy(){
-        return view('auth.dangKy');
-    }
-
-    public function xuLyDK(Request $request){
-        $messages = [
-            'email.required' => 'Vui lòng nhập địa chỉ email.',
-            'email.email' => 'Địa chỉ email không hợp lệ.',
-            'email.unique' => 'Địa chỉ email đã được sử dụng.',
-            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
-            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
-            'matkhau.required' => 'Vui lòng nhập mật khẩu.',
-        ];
-        $valid = $request->validate([
-            'email' => [
-            'required',
-            'email',
-                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
-            ],
-            'tentaikhoan' => [
-                'required',
-                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
-            ],
-        ], $messages);
-
-        $maTK = 'TKNV' . date('YmdHis');
-        $valid = $request->all();
-        $thoiGianTao = date('Y-m-d H:i:s');
-        $matkhauMoi = bcrypt($request->matkhau);
-        // Tạo tài khoản mới
-        $taiKhoan = new TaiKhoan();
-        $taiKhoan->MaTaiKhoan = $maTK;
-        $taiKhoan->Email = $request->email;
-        $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
-        $taiKhoan->MatKhau = $matkhauMoi;
-        $taiKhoan->ThoiGianTao = $thoiGianTao;
-        $taiKhoan->save();
-
-        // Điều hướng sau khi tạo tài khoản thành công
-        return redirect('/dang-nhap')->with('success', 'Tài khoản đăng ký thành công!');
-    }
-
-    public function trangAdmin(){
-        $user = session('user');
-        $quyen = $user['Quyen'];
-        if($quyen == "NV" || $quyen == null){
-            return redirect('/');
-        }else{
-            return view('trangQuanLy', compact('user'));
-        }
-        // Trả về view Dashboard và truyền thông tin người dùng vào view
-
-    }
-
-    public function dangXuat(){
-        session::forget('user');
-        return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
     }
 
     public function xuLyDN(Request $request){
@@ -109,11 +50,75 @@ class TaiKhoanController extends Controller
                 return redirect('/trang-quan-ly');
             }
         } else {
-            return redirect()->back()->withErrors([
+            return redirect()->back()->withInput()->withErrors([
                 'email' => 'Email hoặc mật khẩu không đúng.',
             ]);
         }
     }
+
+
+    public function dangKy(){
+        return view('auth.dangKy');
+    }
+
+    public function xuLyDK(Request $request){
+        $messages = [
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'email.email' => 'Địa chỉ email không hợp lệ.',
+            'email.unique' => 'Địa chỉ email đã được sử dụng.',
+            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
+            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+            'matkhau.required' => 'Vui lòng nhập mật khẩu.',
+        ];
+        $valid = $request->validate([
+            'email' => [
+            'required',
+            'email',
+                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
+            ],
+            'tentaikhoan' => [
+                'required',
+                Rule::unique('tbl_taikhoan')->ignore($request->user_id),
+            ],
+        ], $messages);
+
+        if (!$valid) {
+            return redirect()->back()->withInput();
+        }
+
+        $maTK = 'TKNV' . date('YmdHis');
+        $thoiGianTao = date('Y-m-d H:i:s');
+        $matkhauMoi = bcrypt($request->matkhau);
+
+        $taiKhoan = new TaiKhoan();
+        $taiKhoan->MaTaiKhoan = $maTK;
+        $taiKhoan->Email = $request->email;
+        $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
+        $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->ThoiGianTao = $thoiGianTao;
+        $taiKhoan->save();
+
+        return redirect('/dang-nhap')->with('success', 'Tài khoản đăng ký thành công!');
+    }
+
+    public function trangAdmin(){
+        $user = session('user');
+        $quyen = $user['Quyen'];
+        if($quyen == "NV" || $quyen == null){
+            return redirect('/');
+        }else{
+            return view('trangQuanLy', compact('user'));
+        }
+        // Trả về view Dashboard và truyền thông tin người dùng vào view
+
+    }
+
+    public function dangXuat(){
+        session::forget('user');
+        return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
+    }
+
+    
 
     public function taoTK(){
         return view('admin.TaiKhoan.taoTK');
@@ -141,6 +146,10 @@ class TaiKhoanController extends Controller
             'matkhau' => 'required',
             'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
         ], $messages);
+
+        if(!$valid){
+            return redirect()->back()->withInput();
+        }
 
         // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
         if ($request->hasFile('hinhanh')) {
@@ -170,7 +179,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->save();
 
         // Điều hướng sau khi tạo tài khoản thành công
-        return redirect('/trang-quan-ly')->with('success', 'Tài khoản đã được tạo thành công!');
+        return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được tạo thành công!');
     }
 
     public function lietKeTK(){
