@@ -2,43 +2,13 @@
 @section('content')
 <section id="cart_items">
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li><a href="#">Home</a></li>
-              <li class="active">Check out</li>
-            </ol>
-        </div><!--/breadcrums-->
-
-        <div class="step-one">
-            <h2 class="heading">Step1</h2>
-        </div>
-        <div class="checkout-options">
-            <h3>New User</h3>
-            <p>Checkout options</p>
-            <ul class="nav">
-                <li>
-                    <label><input type="checkbox"> Register Account</label>
-                </li>
-                <li>
-                    <label><input type="checkbox"> Guest Checkout</label>
-                </li>
-                <li>
-                    <a href=""><i class="fa fa-times"></i>Cancel</a>
-                </li>
-            </ul>
-        </div><!--/checkout-options-->
-
-        <div class="register-req">
-            <p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-        </div><!--/register-req-->
-
         <div class="shopper-informations">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="shopper-info">
-                        <p>Shopper Information</p>
+                        <p>Thông tin giao hàng</p>
                         <form>
-                            <input type="text" placeholder="Display Name">
+                            <input type="text" placeholder="Tên người nhận">
                             <input type="text" placeholder="User Name">
                             <input type="password" placeholder="Password">
                             <input type="password" placeholder="Confirm password">
@@ -123,14 +93,14 @@
                 <tbody>
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                            <a href=""><img src="{{ asset('frontend/images/home/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600198.jpg') }}" style="width: 100px; height:70px" alt=""></a>
                         </td>
                         <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
+                            <h4><a href="">Sản phẩm B</a></h4>
                             <p>Web ID: 1089772</p>
                         </td>
                         <td class="cart_price">
-                            <p>$59</p>
+                            <p>59.000 đ</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -140,7 +110,7 @@
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
+                            <p class="cart_total_price">59.000 đ</p>
                         </td>
                         <td class="cart_delete">
                             <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -149,14 +119,14 @@
 
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="images/cart/two.png" alt=""></a>
+                            <a href=""><img src="{{ asset('frontend/images/home/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600198.jpg') }}" style="width: 100px; height:70px" alt=""></a>
                         </td>
                         <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
+                            <h4><a href="">Sản phẩm B</a></h4>
                             <p>Web ID: 1089772</p>
                         </td>
                         <td class="cart_price">
-                            <p>$59</p>
+                            <p>59.000 đ</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -166,7 +136,7 @@
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
+                            <p class="cart_total_price">59.000 đ</p>
                         </td>
                         <td class="cart_delete">
                             <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -174,14 +144,14 @@
                     </tr>
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="images/cart/three.png" alt=""></a>
+                            <a href=""><img src="{{ asset('frontend/images/home/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600198.jpg') }}" style="width: 100px; height:70px" alt=""></a>
                         </td>
                         <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
+                            <h4><a href="">Sản phẩm B</a></h4>
                             <p>Web ID: 1089772</p>
                         </td>
                         <td class="cart_price">
-                            <p>$59</p>
+                            <p>59.000 đ</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -191,7 +161,7 @@
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
+                            <p class="cart_total_price">59.000 đ</p>
                         </td>
                         <td class="cart_delete">
                             <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -203,7 +173,7 @@
                             <table class="table table-condensed total-result">
                                 <tr>
                                     <td>Cart Sub Total</td>
-                                    <td>$59</td>
+                                    <td>59.000 đ</td>
                                 </tr>
                                 <tr>
                                     <td>Exo Tax</td>

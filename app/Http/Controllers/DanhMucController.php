@@ -9,23 +9,38 @@ use Illuminate\Support\Facades\Redirect;
 class DanhMucController extends Controller
 {
     public function TrangThemDanhMuc(){
-        $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->where('DanhMucCha', 0)->paginate(10);
+        $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->where('DanhMucCha', 0)->get();
         return view('admin.DanhMuc.ThemDanhMuc')->with(compact('allDanhMuc'));
     }
     
     public function TrangLietKeDanhMuc(){
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(10);
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(15);
         return view('admin.DanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc'));
     }
 
     public function ThemDanhMuc(Request $request){
-        $data = $request->all();
+        $data = $request->validate([
+            'TenDanhMuc' => 'required|unique:tbl_danhmuc|max:50',
+            'SlugDanhMuc' => 'required',
+            'MoTa' => 'required',
+            'TrangThai' => 'required',
+            'DanhMucCha' => 'required',
+        ],
+        [
+            'TenDanhMuc.unique' => 'Trùng tên danh mục với một danh mục khác',
+            'TenDanhMuc.required' => 'Chưa điền tên danh mục',
+            'TenDanhMuc.max' => 'Tên danh mục dài quá 50 ký tự',
+            'SlugDanhMuc.required' => 'Chưa điền slug cho danh mục',
+            'MoTa.required' => 'Chưa điền Mô tả cho danh mục',
+            'TrangThai.required' => 'Chưa điền Trạng thái cho danh mục',
+            'DanhMucCha.required' => 'Chưa chọn cấp độ cho danh mục',
+        ]);
         $danhMuc = new DanhMuc();
         $danhMuc->TenDanhMuc = $data['TenDanhMuc'];
         $danhMuc->SlugDanhMuc = $data['SlugDanhMuc'];
+        $danhMuc->DanhMucCha = $data['DanhMucCha'];
         $danhMuc->MoTa = $data['MoTa'];
         $danhMuc->TrangThai = $data['TrangThai'];
-        $danhMuc->DanhMucCha = $data['DanhMucCha'];
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $danhMuc->ThoiGianTao = now();
         $danhMuc->save();
@@ -50,33 +65,36 @@ class DanhMucController extends Controller
         return view('admin.DanhMuc.SuaDanhMuc', compact('suaDanhMuc', 'danhMuc')); 
     }
 
-    public function SuaDanhMuc(Request $request, $MaDanhMuc){ // Request để lấy yêu cầu dữ liệu
-        // $data = $request->validate([
-        //     'TenDanhMuc' => 'required|max:50',
-        //     'SlugDanhMuc' => 'required|unique:tbl_DanhMuc',
-        //     'HinhAnh' => 'required|',
-        //     'MoTa' => 'required|image|mimes:jpg,png,gif,svg|max:2048
-        //     |dimensions:min_width=100, min_height=100, max_width=2000, max_height=2000',
-        //     'Status' => 'required',
-        // ],[
-        //     'TenDanhMuc.required' => 'Chưa điền tên thương hiệu',
-        //     'SlugDanhMuc.unique' => 'SlugDanhMuc trùng, vui lòng điền thông tin khác',
-        // ]);
-        $data = $request->all();
+    public function SuaDanhMuc(Request $request, $MaDanhMuc){
+        $data = $request->validate([
+            'TenDanhMuc' => 'required|max:50',
+            'SlugDanhMuc' => 'required',
+            'MoTa' => 'required',
+            'TrangThai' => 'required',
+            'DanhMucCha' => 'required',
+        ],
+        [
+            'TenDanhMuc.required' => 'Chưa điền tên danh mục',
+            'TenDanhMuc.max' => 'Tên danh mục dài quá 50 ký tự',
+            'SlugDanhMuc.required' => 'Chưa điền slug cho danh mục',
+            'MoTa.required' => 'Chưa điền Mô tả cho danh mục',
+            'TrangThai.required' => 'Chưa điền Trạng thái cho danh mục',
+            'DanhMucCha.required' => 'Chưa chọn cấp độ cho danh mục',
+        ]);
         $danhMuc = DanhMuc::find($MaDanhMuc);
         $danhMuc->TenDanhMuc = $data['TenDanhMuc'];
         $danhMuc->SlugDanhMuc = $data['SlugDanhMuc'];
+        $danhMuc->DanhMucCha = $data['DanhMucCha'];
         $danhMuc->MoTa = $data['MoTa'];
         $danhMuc->TrangThai = $data['TrangThai'];
-        $danhMuc->DanhMucCha = $data['DanhMucCha'];
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $danhMuc->ThoiGianSua = now();
         $danhMuc->save();
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Cập nhật thương hiệu sản phẩm thành công');
+        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Cập nhật danh mục sản phẩm thành công');
     }
 
     public function XoaDanhMuc($MaDanhMuc){
         $danhMuc = DanhMuc::find($MaDanhMuc)->delete();
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Xóa thương hiệu sản phẩm thành công');
+        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Xóa danh mục sản phẩm thành công');
     }
 }

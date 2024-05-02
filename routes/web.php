@@ -20,14 +20,14 @@ use App\Http\Controllers\HomeController;
 */
 
 // Trang admin
-// Thuong Hieu San Pham
 Route::get('/xemPN', [PhieuNhapController::class, 'trangXemPhieuNhap']);
 Route::get('/xemCTPN/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xem.CT');
-Route::get('/lapPN/', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
+Route::get('/lapPN', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
 Route::post('/xuLyLapPN', [PhieuNhapController::class, 'luuPN']);
 Route::get('/suaPN/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
 Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySua'])->name('xuLySuaPN');
 
+// Thuong Hieu San Pham
 Route::get('/TrangThemThuongHieu', [ThuongHieuController::class, 'TrangThemThuongHieu'])->name('/TrangThemThuongHieu');
 Route::get('/TrangLietKeThuongHieu', [ThuongHieuController::class, 'TrangLietKeThuongHieu'])->name('/TrangLietKeThuongHieu');
 Route::post('/ThemThuongHieu', [ThuongHieuController::class, 'ThemThuongHieu'])->name('/ThemThuongHieu');

@@ -14,7 +14,8 @@
 	<link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet" >
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
     <link rel="shortcut icon" href="{{ asset('frontend/images/ico/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
@@ -49,7 +50,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-
+		
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -67,50 +68,43 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-crosshairs"></i> Đặt hàng</a></li>
+								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								{{-- Đăng xuất/ Đăng nhập --}}								
 								@php
 									$maTaiKhoan = Session::get('MaTaiKhoan');
-									if($maTaiKhoan != ''){}
+									$isAdmin = Session::get('isAdmin');
+									if($maTaiKhoan != ''){
 								@endphp
-
-
-{{--
-{{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
-                    			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								{{-- Đăng xuất/ Đăng nhập --}}
-
-								@if (session('user'))
-									@php
-										$user = session('user');
-										$tenTK = $user['TenTaiKhoan'];
-									@endphp
-									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-user"></i>
-                                            <span>Tài khoản</span>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                                            <li>
-                                                <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Cập nhật thông tin tài khoản</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-									<li><a><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
-								@else
-									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-								@endif
+									<li><a href="{{ route('/KhachHangDangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+								@php
+									}else{
+								@endphp
+									<li><a href="{{ route('/TrangKhachHangDangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								@php
+									}
+								@endphp		
+								{{-- Trang admin --}}	
+								@php
+									if($isAdmin != '' && $isAdmin != '1'){
+								@endphp
+									<li class=""><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
+								@php
+									}else{
+								@endphp
+									<li class="hidden"><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
+								@php
+									}
+								@endphp
+								
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/header-middle-->
-
+	
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -126,24 +120,18 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{ route('/') }}" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-										<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-										<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-										<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-										<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-										<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-										<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-                                    </ul>
-                                </li>
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="blog.html">Blog List</a></li>
 										<li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li>
-								<li><a href="contact-us.html">Contact</a></li>
+								<li class="dropdown"><a href="#">Bài viết<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="blog.html">Blog List</a></li>
+										<li><a href="blog-single.html">Blog Single</a></li>
+                                    </ul>
+                                </li>
 							</ul>
 						</div>
 					</div>
@@ -160,86 +148,34 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-
-	<section id="slider"><!--slider-->
+	
+	<section id="slider">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li>
-						</ol>
-
-						<div class="carousel-inner">
-							<div class="item active">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-{{--									<h2>Free E-Commerce Template</h2>--}}
-{{--									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>--}}
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{ asset('frontend/images/home/girl1.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('frontend/images/home/pricing.png') }}"  class="pricing" alt="" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-{{--									<h2>100% Responsive Design</h2>--}}
-{{--									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>--}}
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{ asset('frontend/images/home/girl2.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('frontend/images/home/pricing.png') }}"  class="pricing" alt="" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-{{--									<h2>Free Ecommerce Template</h2>--}}
-{{--									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>--}}
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{ asset('frontend/images/home/girl3.jpg') }}" class="girl img-responsive" alt="" />
-									<img src="{{ asset('frontend/images/home/pricing.png') }}" class="pricing" alt="" />
-								</div>
-							</div>
-						</div>
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</div>
-				</div>
+				@yield('slider')
 			</div>
 		</div>
-	</section><!--/slider-->
-
+	</section>
+	
 	<section>
 		<div class="container">
 			<div class="row">
 				@yield('content')
+			</div>
 		</div>
 	</section>
-
+	
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+							<h2><span>E</span>-lectronic</h2>
+							<p>Luôn phục vụ mọi lúc mọi nơi</p>
 						</div>
 					</div>
-					<div class="col-sm-7">
+					{{-- <div class="col-sm-7">
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -254,7 +190,6 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -269,12 +204,12 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-
+						
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/home/iframe3.png') }}" alt="" />
+										<img src="{{ asset('frontend/images/home/') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -284,12 +219,12 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-
+						
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/home/iframe4.png') }}" alt="" />
+										<img src="{{ asset('frontend/images/home/') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -299,95 +234,71 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm-3">
+					</div> --}}
+					{{-- <div class="col-sm-3">
 						<div class="address">
 							<img src="{{ asset('frontend/images/home/map.png') }}" alt="" />
 							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>Service</h2>
+							<h2>Liên hệ</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li><a href="#">Trợ giúp khách hàng</a></li>
+								<li><a href="#">Số điện thoại</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
+							<h2>Sản phẩm chính</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
+								<li><a href="#">Laptop</a></li>
+								<li><a href="#">Máy lạnh</a></li>
+								<li><a href="#">Tivi</a></li>
+								<li><a href="#">Quạt</a></li>
+								<li><a href="#">Điều hòa</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>Policies</h2>
+							<h2>Chính sách</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+								<li><a href="#">Chính sách bảo hành</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>About Shopper</h2>
+							<h2>Thông tin về cửa hàng</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
+								<li><a href="#">Thông tin công ty</a></li>
+								<li><a href="#">Địa chỉ</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
-								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
-							</form>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © </p>
-					<p class="pull-right">Designed by <span><a target="_blank" href=""></a></span></p>
+					<p class="pull-left">Thực tập tốt nghiệp</p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="#">Nhóm 59</a></span></p>
 				</div>
 			</div>
 		</div>
-
 	</footer><!--/Footer-->
-
-
 
     <script src="{{ asset('frontend/js/jquery.js') }}"></script>
 	<script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
@@ -395,5 +306,79 @@
 	<script src="{{ asset('frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
+	{{-- Create cart --}}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ThemGioHang').click(function(){
+				var id = $(this).data('id_product');
+				var cart_product_id = $('.cart_product_id_' + id).val();
+				var cart_product_name = $('.cart_product_name_' + id).val();
+				var cart_product_image = $('.cart_product_image_' + id).val();
+				var cart_product_price = $('.cart_product_price_' + id).val();
+				var cart_product_qty = $('.cart_product_qty_' + id).val();
+				var _token = $('input[name="_token"]').val();
+				
+				$.ajax({
+					url: '{{ route('/ThemGioHang') }}',
+					method: 'POST',
+					data:{
+						cart_product_id:cart_product_id, 
+						cart_product_name:cart_product_name,
+						cart_product_image:cart_product_image, 
+						cart_product_price:cart_product_price,
+						cart_product_qty:cart_product_qty, 
+						_token:_token
+					},
+					success:function(data){
+						swal({
+							title: "Đã thêm sản phẩm vào giỏ hàng",
+							text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+							
+							showCancelButton: true,
+							cancelButtonText: "Xem tiếp",
+							confirmButtonClass: "btn-success",
+							confirmButtonText: "Đi đến giỏ hàng",
+							closeOnConfirm: false
+							},
+						function() {
+							window.location.href = "{{ route('/HienThiGioHang') }}";
+						});
+					}
+				});
+			});
+		});
+	</script>
+	{{-- Update cart Item --}}
+	<script type="text/javascript">
+		$(document).on('click', '.updateCartItem', function(){
+			if($(this).hasClass('qtyPlus')){
+				var quantity = $(this).data('qty');
+				new_qty = parseInt(quantity)+1;
+			}
+			if($(this).hasClass('qtyMinus')){
+				var quantity = $(this).data('qty');
+				if(quantity<=1){
+					alert("Item quantity must be 1 or greater!");
+					return false;
+				}
+				new_qty = parseInt(quantity)-1;
+			}
+			var cartid = $(this).data('cartid');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: '{{ route('/ThayDoiSoLuong') }}',
+				method: 'POST',
+				data:{
+					cartid:cartid,
+					qty:new_qty,
+					_token:_token
+				},
+				success:function(data){
+					location.reload();
+				}
+			});
+		});
+	</script>
 </body>
 </html>

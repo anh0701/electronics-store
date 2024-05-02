@@ -13,24 +13,27 @@ class ThuongHieuController extends Controller
     }
 
     public function TrangLietKeThuongHieu(){
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->paginate(5);
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->paginate(10);
         return view('admin.ThuongHieu.LietKeThuongHieu')->with(compact('allThuongHieu'));
     }
 
     public function ThemThuongHieu(Request $request){
         $data = $request->validate([
-            'TenThuongHieu' => 'required|max:50',
-            'SlugThuongHieu' => 'required|unique:tbl_thuonghieu',
-            'HinhAnh' => 'required|',
-            'MoTa' => 'required|image|mimes:jpg,png,gif,svg|max:2048
-            |dimensions:min_width=100, min_height=100, max_width=2000, max_height=2000',
-            'Status' => 'required',
-        ],[
+            'TenThuongHieu' => 'required|unique:tbl_thuonghieu|max:50',
+            'SlugThuongHieu' => 'required',
+            'MoTa' => 'required',
+            'TrangThai' => 'required',
+            'HinhAnh' => 'required',
+        ],
+        [
+            'TenThuongHieu.unique' => 'Trùng tên thương hiệu với một thương hiệu khác',
             'TenThuongHieu.required' => 'Chưa điền tên thương hiệu',
-            'SlugThuongHieu.unique' => 'SlugThuongHieu trùng, vui lòng điền thông tin khác',
-            'MoTa' => 'Mô tả thương hiệu đang trống, vui lòng điền thông tin',
+            'TenThuongHieu.max' => 'Tên thương hiệu dài quá 50 ký tự',
+            'SlugThuongHieu.required' => 'Chưa điền slug cho thương hiệu',
+            'MoTa.required' => 'Chưa điền Mô tả cho thương hiệu',
+            'TrangThai.required' => 'Chưa điền Trạng thái cho thương hiệu',
+            'HinhAnh.required' => 'Chưa chọn hình ảnh cho thương hiệu',
         ]);
-        $data = $request->all();
         $thuongHieu = new ThuongHieu();
         $thuongHieu->TenThuongHieu = $data['TenThuongHieu'];
         $thuongHieu->SlugThuongHieu = $data['SlugThuongHieu'];
@@ -69,19 +72,20 @@ class ThuongHieuController extends Controller
         return view('admin.ThuongHieu.SuaThuongHieu', compact('thuongHieu')); 
     }
 
-    public function SuaThuongHieu(Request $request, $MaThuongHieu){ // Request để lấy yêu cầu dữ liệu
-        $data = $request->validate([
+    public function SuaThuongHieu(Request $request, $MaThuongHieu){
+         $data = $request->validate([
             'TenThuongHieu' => 'required|max:50',
-            'SlugThuongHieu' => 'required|unique:tbl_thuonghieu',
-            'HinhAnh' => 'required|',
-            'MoTa' => 'required|image|mimes:jpg,png,gif,svg|max:2048
-            |dimensions:min_width=100, min_height=100, max_width=2000, max_height=2000',
-            'Status' => 'required',
-        ],[
+            'SlugThuongHieu' => 'required',
+            'MoTa' => 'required',
+            'TrangThai' => 'required',
+        ],
+        [
             'TenThuongHieu.required' => 'Chưa điền tên thương hiệu',
-            'SlugThuongHieu.unique' => 'SlugThuongHieu trùng, vui lòng điền thông tin khác',
+            'TenThuongHieu.max' => 'Tên thương hiệu dài quá 50 ký tự',
+            'SlugThuongHieu.required' => 'Chưa điền slug cho thương hiệu',
+            'MoTa.required' => 'Chưa điền Mô tả cho thương hiệu',
+            'TrangThai.required' => 'Chưa điền Trạng thái cho thương hiệu',
         ]);
-        $data = $request->all();
         $thuongHieu = ThuongHieu::find($MaThuongHieu);
         $thuongHieu->TenThuongHieu = $data['TenThuongHieu'];
         $thuongHieu->SlugThuongHieu = $data['SlugThuongHieu'];

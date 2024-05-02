@@ -6,15 +6,17 @@
             <header class="panel-heading">
                 Thêm danh mục sản phẩm
             </header>
-            <?php
-                $status = Session::get('status');
-                if ($status) {
-                    echo '<span style="margin-left: 5px;font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$status.'</span>';
-                    Session::put('status', null);
-                }
-            ?>
             <div class="panel-body">
                 <div class="position-center">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    </div>
+                @endif
                     <form role="form" action="{{ Route('/ThemDanhMuc') }}" method="POST" >
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -32,7 +34,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Thuộc danh mục</label>
                             <select name="DanhMucCha" class="form-control input-lg m-bot15">
-                                <option value="0" >Không thuộc danh mục nào</option>
+                                <option value="0" >---Không thuộc danh mục nào---</option>
                                 @foreach ($allDanhMuc as $key => $danhMuc)
                                     <option value="{{ $danhMuc->MaDanhMuc }}" >{{ $danhMuc->TenDanhMuc }}</option>
                                 @endforeach
