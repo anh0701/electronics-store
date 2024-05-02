@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
-use App\Models\SanPham;
-use App\Models\DanhMuc;
-use App\Models\ThuongHieu;
-use Illuminate\Support\Facades\Redirect;
 
-class GioHangController extends Controller
+class CartController extends Controller
 {
-
     public function ThemGioHang(Request $request){
         $data = $request->all();
         // khi mỗi sp dc thêm vào giỏ hàng thì tạo 1 $session_id làm vc thic dựa vào $session_id đó

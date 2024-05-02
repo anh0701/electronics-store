@@ -7,88 +7,118 @@ use Session;
 use App\Models\SanPham;
 use App\Models\DanhMuc;
 use App\Models\ThuongHieu;
+use App\Models\TaiKhoan;
+use App\Models\PhanQuyen;
+use App\Models\PhanQuyenNguoiDung;
+
 use Illuminate\Support\Facades\Redirect;
 
-class GioHangController extends Controller
+class HomeController extends Controller
 {
-
-    public function ThemGioHang(Request $request){
-        $data = $request->all();
-        // khi mỗi sp dc thêm vào giỏ hàng thì tạo 1 $session_id làm vc thic dựa vào $session_id đó
-        $session_id = substr(md5(microtime()), rand(0, 26), 5);
-        $cart = Session::get('cart');
-        if($cart == true){
-            $is_avaiable = 0;
-            foreach($cart as $key => $value){
-                if($value['MaSanPham'] == $data['cart_product_id']){
-                    $is_avaiable++;
-                }
-            }
-            if($is_avaiable == 0){
-                $cart[] = array(
-                    'session_id' => $session_id,
-                    'MaSanPham' => $data['cart_product_id'],
-                    'TenSanPham' => $data['cart_product_name'],
-                    'HinhAnh' => $data['cart_product_image'],
-                    'SoLuong' => $data['cart_product_qty'],
-                    'GiaSanPham' => $data['cart_product_price'],
-                );
-                Session::put('cart', $cart);
-            }
-        }else{
-            $cart[] = array(
-                'session_id' => $session_id,
-                'MaSanPham' => $data['cart_product_id'],
-                'TenSanPham' => $data['cart_product_name'],
-                'HinhAnh' => $data['cart_product_image'],
-                'SoLuong' => $data['cart_product_qty'],
-                'GiaSanPham' => $data['cart_product_price'],
-            );
-        }
-        Session::put('cart', $cart);
-        Session::save();
+    public function index(){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('12');
+        return view('pages.home')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
 
-    public function HienThiGioHang(Request $request){
+    public function HienThiThuongHieu($MaThuongHieu){
+        $sanPhamThuocThuongHieu = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
+        where('MaThuongHieu', $MaThuongHieu)->paginate('20');
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        return view('pages.ThuongHieu.HienThiThuongHieu')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocThuongHieu'));
+    }
 
-        // $meta_desc = "Giỏ hàng của bạn";
-        // $meta_keywords = "Giỏ hàng ajax";
-        // $meta_title = "Giỏ hàng ajax";
-        // $url_canonical = $request->url();
-        // $image_og = $url_canonical.'/upload/product/logo.jpg';
+    public function HienThiDanhMucCha($MaDanhMuc){
+        $danhMucCha = $MaDanhMuc;
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        return view('pages.DanhMuc.HienThiDanhMucCha')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'danhMucCha'));
+    }
 
-        return view('pages.GioHang.GioHang');
-        // ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
-    } 
+    public function HienThiDanhMucCon($MaDanhMuc){
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $sanPhamThuocDanhMuc = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
+        where('MaDanhMuc', $MaDanhMuc)->paginate('20');
+        return view('pages.DanhMuc.HienThiDanhMucCon')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc'));
+    }
 
-    public function XoaSanPhamTrongGioHang($session_id){
-        $cart = Session::get('cart');
-        if($cart == true){
-            foreach($cart as $key => $value){
-                if($value['session_id'] == $session_id){
-                    unset($cart[$key]);
-                }
+    public function ChiTietSanPham($MaSanPham){
+        $chiTietSanPham = SanPham::where('MaSanPham', $MaSanPham)->first();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        return view('pages.SanPham.ChiTietSanPham')->with(compact('allDanhMuc', 'allThuongHieu', 'chiTietSanPham'));;
+    }
+
+    public function TimKiem(Request $request){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $keywords = $request->keywords_submit;
+
+        if($keywords == ''){
+            return Redirect::to('/');
+        }
+
+        $timKiemSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')
+        ->where('TenSanPham', 'like', '%'.$keywords.'%')->get();
+        return view('pages.SanPham.TimKiem')->with(compact('allDanhMuc', 'allThuongHieu', 'timKiemSanPham', 'keywords'));
+    }
+
+    public function GioHang(){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        return view('pages.GioHang.GioHang')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
+    }
+
+    public function ThanhToan(){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        return view('pages.ThanhToan.ThanhToan')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));;
+    }
+
+    public function TrangKhachHangDangNhap(){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        return view('pages.TaiKhoan.login')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));;
+    }
+
+    public function KhachHangDangNhap(Request $request){
+        $data = $request->all();
+        $Email = $data['Email'];
+        $MatKhau = md5($data['MatKhau']);
+        $login = TaiKhoan::where('Email', $Email)->where('MatKhau', $MatKhau)->first();
+        $isAdmin = 0;
+        $phanQuyenNguoiDung = PhanQuyenNguoiDung::orderBy('MaPQND', 'DESC')->get();
+        foreach($phanQuyenNguoiDung as $key => $value){
+            if($value->MaTaiKhoan == $login->MaTaiKhoan){
+                $isAdmin++;
             }
-            Session::put('cart', $cart);
-            return Redirect()->back()->with('message', 'Xóa sản phẩm khỏi giỏ hàng thành công');
+        }
+        if($isAdmin > 1){
+            Session::put('isAdmin', $isAdmin); 
+        }
+        if($login){
+            $login_count = $login->count();
+            if($login_count){
+                Session::put('MaTaiKhoan', $login->MaTaiKhoan);
+                return Redirect::to('/');
+            }
         }else{
-            return Redirect()->back()->with('message', 'Xóa sản phẩm khỏi giỏ hàng thất bại');
+            Session::put('status', 'Mật khẩu hoặc tài khoản không đúng. Vui lòng đăng nhập lại');
+            return Redirect::to('/TrangKhachHangDangNhap');
         }
     }
 
-    public function ThayDoiSoLuong(Request $request){
-        $data = $request->all();
-        $cart = Session::get('cart');
-        if($cart == true){
-            foreach($cart as $session => $value){
-                if($value['session_id'] == $data['cartid']){
-                    $cart[$session]['SoLuong'] =  $data['qty'];
-                }
-            }
-            Session::put('cart', $cart);
-            return Redirect()->back();
-        }else{
-            return Redirect()->back();
-        }
+    public function KhachHangDangXuat(){
+        Session::put('TenTaiKhoan', null);
+        Session::put('MaTaiKhoan', null);
+        Session::put('isAdmin', null);
+        return Redirect::to('/');
     }
 }

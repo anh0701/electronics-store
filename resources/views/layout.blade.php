@@ -86,7 +86,7 @@
 									}
 								@endphp		
 								{{-- Trang admin --}}	
-								@php
+								{{-- @php
 									if($isAdmin != '' && $isAdmin != '1'){
 								@endphp
 									<li class=""><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
@@ -96,7 +96,7 @@
 									<li class="hidden"><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
 								@php
 									}
-								@endphp
+								@endphp --}}
 								
 							</ul>
 						</div>
@@ -308,7 +308,7 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	{{-- Create cart --}}
-	{{-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.ThemGioHang').click(function(){
 				var id = $(this).data('id_product');
@@ -348,9 +348,9 @@
 				});
 			});
 		});
-	</script> --}}
+	</script>
 	{{-- Update cart Item --}}
-	{{-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(document).on('click', '.updateCartItem', function(){
 			if($(this).hasClass('qtyPlus')){
 				var quantity = $(this).data('qty');
@@ -379,6 +379,6 @@
 				}
 			});
 		});
-	</script> --}}
+	</script>
 </body>
 </html>

@@ -7,7 +7,7 @@ use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DatLaiMatKhau;
 use App\Http\Controllers\DoiMatKhau;
 use App\Http\Controllers\QuenMatKhau;
