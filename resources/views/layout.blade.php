@@ -70,7 +70,7 @@
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-crosshairs"></i> Đặt hàng</a></li>
-								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								{{-- <li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li> --}}
 								{{-- Đăng xuất/ Đăng nhập --}}								
 								@php
 									$maTaiKhoan = Session::get('MaTaiKhoan');
@@ -308,7 +308,7 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	{{-- Create cart --}}
-	<script type="text/javascript">
+	{{-- <script type="text/javascript">
 		$(document).ready(function(){
 			$('.ThemGioHang').click(function(){
 				var id = $(this).data('id_product');
@@ -348,9 +348,9 @@
 				});
 			});
 		});
-	</script>
+	</script> --}}
 	{{-- Update cart Item --}}
-	<script type="text/javascript">
+	{{-- <script type="text/javascript">
 		$(document).on('click', '.updateCartItem', function(){
 			if($(this).hasClass('qtyPlus')){
 				var quantity = $(this).data('qty');
@@ -379,6 +379,6 @@
 				}
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>
