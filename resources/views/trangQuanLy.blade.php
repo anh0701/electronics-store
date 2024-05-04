@@ -38,6 +38,7 @@
                     <div class="dropdown-content" id="dropdownContent">
                         <a href="{{ route('taoTK') }}">Tạo tài khoản</a>
                         <a href="{{ route('lietKeTK') }}">Liệt kê tài khoản</a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -45,8 +46,5 @@
             <h1>Chao mung ban den trang ho tro kinh doanh hang dien tu</h1>
         </div>
     </div>
-    
-    
-
 </body>
 </html>

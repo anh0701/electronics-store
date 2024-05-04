@@ -81,7 +81,6 @@
             @endif
             @endforeach
         </div><!--/category-products-->
-
         <div class="brands_products"><!--brands_products-->
             <h2>Thương hiệu sản phẩm</h2>
             <div class="brands-name">
@@ -110,7 +109,7 @@
                             <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                             <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
-                                <img src="{{ asset(up) }}" alt="" />
+                                <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
                                 <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
                                 <p>{{ $sanPham->TenSanPham }}</p>
                             </a>

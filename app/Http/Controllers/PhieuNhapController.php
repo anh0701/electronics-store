@@ -51,7 +51,7 @@ class PhieuNhapController extends Controller
             'soTienNo' => $soTienNo,
         ]);
 
-        return redirect('/xemPN/')->with('success', 'Lap phieu nhap thanh cong');
+        return redirect('/xemPN')->with('success', 'Lap phieu nhap thanh cong');
     }
 
     public function suaPN($id){

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use App\Models\SanPham;
+use App\Models\DanhMuc;
+use App\Models\ThuongHieu;
+use Illuminate\Support\Facades\Redirect;
 
-class CartController extends Controller
+class GioHangController extends Controller
 {
-    public function ThemGioHang(Request $request){
+
+    public function them_gio_hang(Request $request){
         $data = $request->all();
         // khi mỗi sp dc thêm vào giỏ hàng thì tạo 1 $session_id làm vc thic dựa vào $session_id đó
         $session_id = substr(md5(microtime()), rand(0, 26), 5);
@@ -43,7 +49,7 @@ class CartController extends Controller
         Session::save();
     }
 
-    public function HienThiGioHang(Request $request){
+    public function hien_thi_gio_hang(Request $request){
 
         // $meta_desc = "Giỏ hàng của bạn";
         // $meta_keywords = "Giỏ hàng ajax";
@@ -55,7 +61,7 @@ class CartController extends Controller
         // ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
     } 
 
-    public function XoaSanPhamTrongGioHang($session_id){
+    public function xoa_sp_trong_gio_hang($session_id){
         $cart = Session::get('cart');
         if($cart == true){
             foreach($cart as $key => $value){
@@ -70,7 +76,7 @@ class CartController extends Controller
         }
     }
 
-    public function ThayDoiSoLuong(Request $request){
+    public function thay_doi_so_luong(Request $request){
         $data = $request->all();
         $cart = Session::get('cart');
         if($cart == true){
@@ -85,4 +91,16 @@ class CartController extends Controller
             return Redirect()->back();
         }
     }
+
+    public function xoa_gio_hang(){
+        $cart = Session::get('cart');
+        if($cart){
+            Session::forget('cart');
+            Session::forget('coupon');
+            return Redirect()->back()->with('message', 'Xóa toàn bộ giỏ hàng'); 
+        }else{
+            return Redirect()->back()->with('message', 'Giỏ hàng đang trống'); 
+        }
+    }
 }
+

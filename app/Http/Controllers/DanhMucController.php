@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DanhMuc;
+use App\Models\ThuongHieu;
+use App\Models\ThuongHieuThuocDanhMuc;
 use Illuminate\Support\Facades\Redirect;
 
 class DanhMucController extends Controller
@@ -16,6 +18,22 @@ class DanhMucController extends Controller
     public function TrangLietKeDanhMuc(){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(15);
         return view('admin.DanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc'));
+    }
+
+    public function trangThemThuongHieuVaoDanhMuc(){
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
+        $allDanhMucCha = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('DanhMucCha', 0)->get();
+        return view('admin.DanhMuc.ThemThuongHieuVaoDanhMuc')->with(compact('allThuongHieu', 'allDanhMuc', 'allDanhMucCha'));
+    }
+
+    public function themThuongHieuVaoDanhMuc(){
+
+    }
+
+    public function trangLietKeTHDM(){
+        $allTHDM = ThuongHieuThuocDanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(20);
+        return view('admin.DanhMuc.LietKeTHDM')->with(compact('allTHDM'));
     }
 
     public function ThemDanhMuc(Request $request){

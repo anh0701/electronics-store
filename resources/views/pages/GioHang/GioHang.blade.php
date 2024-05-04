@@ -32,10 +32,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $total = 0;
+                        @endphp
                         @if (Session::get('cart') == true)
-                            @php
-                                $total = 0;
-                            @endphp
                             @foreach (Session::get('cart') as $key => $cart)
                             @php
                                 $subtotal = $cart['GiaSanPham'] * $cart['SoLuong'];
@@ -67,7 +67,7 @@
                                     <p class="cart_total_price">{{ number_format($subtotal, 0, '', '.') }} đ</p>
                                 </td>
                                 <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href="{{ route('/XoaSanPhamTrongGioHang', $cart['session_id']) }}"><i class="fa fa-times"></i></a>
+                                    <a class="cart_quantity_delete" href="{{ route('/xoa-sp-trong-gio-hang', $cart['session_id']) }}"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>                            
                             @endforeach
@@ -108,7 +108,7 @@
                         <li>Mã giảm giá <span>$2</span></li>
                         <li>Tổng tiền <span>$61</span></li>
                     </ul>
-                        <a class="btn btn-default update" href="">Xóa giỏ hàng</a>
+                        <a class="btn btn-default update" href="{{ route('/xoa-gio-hang') }}">Xóa giỏ hàng</a>
                         <a class="btn btn-default check_out" href="">Thanh toán</a>
                 </div>
             </div>

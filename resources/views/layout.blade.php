@@ -70,7 +70,7 @@
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-crosshairs"></i> Đặt hàng</a></li>
-								{{-- <li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li> --}}
+								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								{{-- Đăng xuất/ Đăng nhập --}}								
 								@php
 									$maTaiKhoan = Session::get('MaTaiKhoan');
@@ -86,7 +86,7 @@
 									}
 								@endphp		
 								{{-- Trang admin --}}	
-								{{-- @php
+								@php
 									if($isAdmin != '' && $isAdmin != '1'){
 								@endphp
 									<li class=""><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
@@ -96,7 +96,7 @@
 									<li class="hidden"><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
 								@php
 									}
-								@endphp --}}
+								@endphp
 								
 							</ul>
 						</div>
@@ -320,7 +320,7 @@
 				var _token = $('input[name="_token"]').val();
 				
 				$.ajax({
-					url: '{{ route('/ThemGioHang') }}',
+					url: '{{ route('/them-gio-hang') }}',
 					method: 'POST',
 					data:{
 						cart_product_id:cart_product_id, 
@@ -342,7 +342,7 @@
 							closeOnConfirm: false
 							},
 						function() {
-							window.location.href = "{{ route('/HienThiGioHang') }}";
+							window.location.href = "{{ route('/hien-thi-gio-hang') }}";
 						});
 					}
 				});
@@ -367,7 +367,7 @@
 			var cartid = $(this).data('cartid');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url: '{{ route('/ThayDoiSoLuong') }}',
+				url: '{{ route('/thay-doi-so-luong') }}',
 				method: 'POST',
 				data:{
 					cartid:cartid,

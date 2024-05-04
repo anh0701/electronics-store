@@ -101,6 +101,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="sub">
               <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm danh mục sản phẩm</a></li>
               <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê danh mục sản phẩm</a></li>
+              <li><a href="{{ route('/trang-them-thuong-hieu-vao-danh-muc') }}">Thêm thương hiệu vào danh mục</a></li>
+              <li><a href="{{ route('/trang-liet-ke-thtdm') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -119,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li>
+              {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
               <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>
               <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>
             </ul>
