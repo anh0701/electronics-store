@@ -6,7 +6,7 @@ table {
 }
   
 th, td {
-    padding: 12px; /* Khoảng cách giữa nội dung và viền */
+    padding: 5px 7px; /* Khoảng cách giữa nội dung và viền */
     text-align: center; /* Căn lề nội dung sang trái */
 }
   

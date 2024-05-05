@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuNhapController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaiKhoanController;
@@ -20,6 +21,14 @@ use App\Http\Controllers\HomeController;
 */
 
 // Trang admin
+//Nha cung cap
+Route::get('/liet-ke-nha-cung-cap', [NhaCungCapController::class, 'lietKe'])->name('lietKeNCC');
+Route::get('/them-nha-cung-cap', [NhaCungCapController::class, 'themNCC'])->name('themNCC');
+Route::post('/xuLyThemNCC', [NhaCungCapController::class, 'xuLyThemNCC']);
+Route::get('/sua-nha-cung-cap/{id}', [NhaCungCapController::class, 'suaNCC'])->name('suaNCC');
+Route::post('/xuLySuaNCC', [NhaCungCapController::class, 'xuLySuaNCC'])->name('xuLySuaNCC');
+Route::get('/xoa-nha-cung-cap/{id}', [NhaCungCapController::class, 'xoaNCC'])->name('xoaNCC');
+
 // Thuong Hieu San Pham
 Route::get('/xemPN', [PhieuNhapController::class, 'trangXemPhieuNhap']);
 Route::get('/xemCTPN/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xem.CT');
