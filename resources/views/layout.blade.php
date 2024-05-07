@@ -69,8 +69,8 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-crosshairs"></i> Đặt hàng</a></li>
-								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								{{-- <li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li> --}}
 								{{-- Đăng xuất/ Đăng nhập --}}								
 								@php
 									$maTaiKhoan = Session::get('MaTaiKhoan');

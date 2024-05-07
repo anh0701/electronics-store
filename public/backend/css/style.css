@@ -155,6 +155,7 @@ ul.sidebar-menu ul.sub li {
 }
 ul.sidebar-menu li a span {
     display:inline-block;
+    height: auto;
 }
 ul.sidebar-menu li a {
     color:#fff;
@@ -546,7 +547,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 }
 /*form*/
 .position-center {
-    width:62%;
+    width:80%;
     margin: 0 auto;
 }
 /*----*/

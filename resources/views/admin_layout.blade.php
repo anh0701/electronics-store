@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="sub">
               <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm danh mục sản phẩm</a></li>
               <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê danh mục sản phẩm</a></li>
-              <li><a href="{{ route('/trang-them-thuong-hieu-vao-danh-muc') }}">Thêm thương hiệu vào danh mục</a></li>
+              <li><a href="{{ route('/trang-them-thdm') }}">Thêm thương hiệu vào danh mục</a></li>
               <li><a href="{{ route('/trang-liet-ke-thtdm') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
             </ul>
           </li>
@@ -124,6 +124,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
               <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>
               <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-th"></i>
+              <span>Quản lý danh mục TSKT</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemDanhMucTSKT') }}">Thêm danh mục TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">Liệt kê danh mục TSKT</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>Quản lý TSKT</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemTSKT') }}">Thêm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeTSKT') }}">Liệt kê TSKT</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-toolbox"></i>
+              <span>Quản lý sản phẩm TSKT</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemSanPhamTSKT') }}">Thêm sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeSanPhamTSKT') }}">Liệt kê sản phẩm TSKT</a></li>
             </ul>
           </li>
         </ul>
@@ -152,6 +182,93 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
   <script src="{{ asset('backend/js/monthly.js') }}"></script>
+  {{-- Tạo session SP cho TSKT --}}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ThemThongSoKyThuat').click(function(){
+				var id = $(this).data('id_product');
+				var cart_product_id = $('.cart_product_id_' + id).val();
+				var cart_product_name = $('.cart_product_name_' + id).val();
+				var _token = $('input[name="_token"]').val();
+				
+				$.ajax({
+					url: '{{ route('/ThemSanPhamSession') }}',
+					method: 'POST',
+					data:{
+						cart_product_id:cart_product_id, 
+						cart_product_name:cart_product_name,
+						_token:_token
+					},
+					success:function(data){
+						window.location.reload()
+					}
+				});
+			});
+		});
+	</script>
+  {{-- Hiển thị bảng SP qua Danh Mục  --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+			$('.ChangeTable').on('click',function(){
+          var action = $(this).attr('id');
+          var ma_id = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          var result = '';
+          
+          if(action=='DanhMucCha'){
+            result = 'DanhMucCon';
+          }else{
+            result = 'SanPham';
+          }
+
+          $.ajax({
+            url : '{{ route('/ChangeTable') }}',
+            method: 'POST',
+            data:{
+              action:action,
+              ma_id:ma_id,
+              _token:_token
+            },
+            success:function(data){
+              $('#'+result).html(data);
+            }
+        });
+      });
+	  });
+  </script>
+  {{-- Chọn danh thông số kỹ thuật --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+			$('.chonDanhMucTSKT').on('click',function(){
+          var action = $(this).attr('id');
+          var ma_id = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          var result = '';
+          
+          if(action=='DanhMucCha'){
+            result = 'DanhMucCon';
+          }else if(action=='DanhMucCon'){
+            result = 'DanhMucTSKT';
+          }else if(action=='DanhMucTSKT'){
+            result = 'ThongSoKyThuat';
+          }
+
+          $.ajax({
+            url : '{{ route('/ChonDanhMucTSKT') }}',
+            method: 'POST',
+            data:{
+              action:action,
+              ma_id:ma_id,
+              _token:_token
+            },
+            success:function(data){
+              $('#'+result).html(data);
+            }
+        });
+      });
+	  });
+  </script>
+  {{-- Chọn danh mục --}}
   <script type="text/javascript">
 		$(document).ready(function(){
 			$('.choose').on('change',function(){

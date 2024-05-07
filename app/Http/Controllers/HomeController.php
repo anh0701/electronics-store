@@ -67,13 +67,6 @@ class HomeController extends Controller
         return view('pages.SanPham.TimKiem')->with(compact('allDanhMuc', 'allThuongHieu', 'timKiemSanPham', 'keywords'));
     }
 
-    public function GioHang(){
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
-        return view('pages.GioHang.GioHang')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
-    }
-
     public function ThanhToan(){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();

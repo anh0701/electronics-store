@@ -20,3 +20,7 @@ php artisan serve
     git commit -n "..."
     git push origin
 ```
+
+5. Trước khi pull request
+   git pull origin main
+   git merge main

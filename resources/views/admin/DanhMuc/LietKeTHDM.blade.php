@@ -30,7 +30,9 @@
             <tr>
               <th>STT</th>
               <th>Tên danh mục</th>
+              <th>Danh mục cha</th>
               <th>Tên thương hiệu</th>
+              <th>Hình ảnh thương hiệu</th>
               <th style="width:100px">Quản lý</th>
             </tr>
           </thead>
@@ -39,11 +41,24 @@
             <tr>
               <td>{{ $key+1 }}</td>
               <td>{{ $value->DanhMuc->TenDanhMuc }}</td>
-              <td>{{ $value->ThuongHieu->TenThuongHieu }}</td>
               <td>
-                {{-- <a href="{{ route('/TrangSuaDanhMuc', $value->MaDanhMuc) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $value->TenDanhMuc }} không?')" href="{{ route('/XoaDanhMuc', [$value->MaDanhMuc]) }}">
-                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a> --}}
+                @if ($value->DanhMuc->DanhMucCha == 0)
+                  <span style="color: red">Danh Mục cha</span>
+                @else
+                  @foreach ($allDanhMuc as $key => $danhMuc)
+                    @if ($value->DanhMuc->DanhMucCha == $danhMuc->MaDanhMuc)
+                    <span style="color: rgb(25, 174, 25)">{{ $danhMuc->TenDanhMuc }}</span>
+                    @endif
+                  @endforeach
+                @endif
+              </td>
+              <td>{{ $value->ThuongHieu->TenThuongHieu }}</td>
+              <td><img src="{{ asset('upload/ThuongHieu/'.$value->ThuongHieu->HinhAnh) }}" height="100px" width="150px"></td>
+              <td>
+                <a href="{{ route('/trang-sua-thdm', $value->MaTHDM) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                <a onclick="return confirm('Bạn có muốn xóa danh mục không?')" href="{{ route('/xoa-thdm', $value->MaTHDM) }}">
+                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
+                </a>
               </td>
             </tr>
             @endforeach

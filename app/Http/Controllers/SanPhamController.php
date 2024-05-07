@@ -22,15 +22,35 @@ class SanPhamController extends Controller
         return view('admin.SanPham.LietKeSanPham')->with(compact('allSanPham'));
     }
 
+    // public function ChonDanhMuc(Request $request){
+    //     $data = $request->all();
+    //     if($data['action']){
+    //         $output = '';
+    //         $output.='<option value="">'.'---Danh mục con---'.'</option>';
+    //         $select_danhMucCon = DanhMuc::where('DanhMucCha', $data['ma_id'])->orderBy('MaDanhMuc', 'ASC')->get();
+    //         foreach($select_danhMucCon as $key => $danhMucCon){
+    //             $output.='<option value="'.$danhMucCon->MaDanhMuc.'">'.$danhMucCon->TenDanhMuc.'</option>';
+    //         }
+    //     }
+    //     echo $output;
+    // }
+
     public function ChonDanhMuc(Request $request){
         $data = $request->all();
         if($data['action']){
             $output = '';
-            $output.='<option value="">'.'---Danh mục con---'.'</option>';
-            $select_danhMucCon = DanhMuc::where('DanhMucCha', $data['ma_id'])->orderBy('MaDanhMuc', 'ASC')->get();
-            foreach($select_danhMucCon as $key => $danhMucCon){
-                $output.='<option value="'.$danhMucCon->MaDanhMuc.'">'.$danhMucCon->TenDanhMuc.'</option>';
-            }
+            $select_danhMucCon = DanhMuc::where('DanhMucCha', $data['ma_id'])->orderBy('MaDanhMuc', 'DESC')->get();
+                if($select_danhMucCon->isEmpty()){
+                    $select_danhMucCha = DanhMuc::where('MaDanhMuc', $data['ma_id'])->get();
+                    foreach($select_danhMucCha as $key => $danhMucCha){
+                        $output.='<option value="'.$danhMucCha->MaDanhMuc.'">--- Không có danh mục con ---</option>';
+                    }
+                }elseif($select_danhMucCon->isNotEmpty()){
+                    $output.='<option>--- Chọn danh mục con ---</option>';
+                    foreach($select_danhMucCon as $key => $danhMucCon){
+                        $output.='<option value="'.$danhMucCon->MaDanhMuc.'">'.$danhMucCon->TenDanhMuc.'</option>';
+                    }
+                }
         }
         echo $output;
     }
@@ -62,8 +82,9 @@ class SanPhamController extends Controller
         $sanPham = new SanPham();
         $sanPham->TenSanPham = $data['TenSanPham'];
         $sanPham->SlugSanPham = $data['SlugSanPham'];
-        if($data['DanhMucCha'] != '' && $data['DanhMucCon'] == '' ){
-            $sanPham->MaDanhMuc = $data['DanhMucCha'];
+        if($data['DanhMucCon'] == false){
+            $data['DanhMucCon'] = $data['DanhMucCha'];
+            $sanPham->MaDanhMuc = $data['DanhMucCon'];
         }else{
             $sanPham->MaDanhMuc = $data['DanhMucCon'];
         }
@@ -72,7 +93,7 @@ class SanPhamController extends Controller
         $sanPham->MoTa = $data['MoTa'];
         $sanPham->TrangThai = $data['TrangThai'];
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $sanPham->ThoiGianSua = now();
+        $sanPham->ThoiGianTao = now();
 
 
         $get_image = $request->HinhAnh;
@@ -84,7 +105,7 @@ class SanPhamController extends Controller
 
         $sanPham->HinhAnh = $new_image;
         $sanPham->save();
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Cập nhật sản phẩm thành công');
+        return Redirect::to('TrangLietKeSanPham')->with('status', 'Thêm sản phẩm mới thành công');
     }
 
     public function TrangSuaSanPham($MaSanPham){

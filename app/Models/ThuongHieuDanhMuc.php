@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ThuongHieuThuocDanhMuc extends Model
+class ThuongHieuDanhMuc extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -13,7 +13,7 @@ class ThuongHieuThuocDanhMuc extends Model
         'MaThuongHieu', 'MaDanhMuc'
     ];
     protected $primaryKey = 'MaTHDM';
-    protected $table = 'tbl_thuonghieuthuocdm';
+    protected $table = 'tbl_thuonghieudanhmuc';
 
     public function DanhMuc()
     {

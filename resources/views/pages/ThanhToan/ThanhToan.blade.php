@@ -5,62 +5,86 @@
         <div class="review-payment">
             <h2>Giỏ hàng</h2>
         </div>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {!! session()->get('message') !!}
+            </div>
+        @elseif (session()->has('error'))
+            <div class="alert alert-danger">
+                {!! session()->get('error') !!}
+            </div>
+        @endif
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
-                        <td class="image">Item</td>
-                        <td class="description"></td>
-                        <td class="price">Price</td>
-                        <td class="quantity">Quantity</td>
-                        <td class="total">Total</td>
+                        <td class="image">Hình ảnh</td>
+                        <td style="width: 25%" class="description">Tên sản phẩm</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Thành tiền</td>
                         <td></td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="{{ asset('frontend/images/home/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600198.jpg') }}" style="width: 100px; height:70px" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">Sản phẩm B</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>59.000 đ</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">59.000 đ</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+                    @php
+                    $total = 0;
+                    @endphp
+                    @if (Session::get('cart') == true)
+                        @foreach (Session::get('cart') as $key => $cart)
+                        @php
+                            $subtotal = $cart['GiaSanPham'] * $cart['SoLuong'];
+                            $total += $subtotal;
+                        @endphp
+                        <tr>
+                            <td class="HinhAnh">
+                                <a href=""><img src="{{ asset('upload/SanPham/'.$cart['HinhAnh']) }}" style="width: 120px; height:90px" alt=""></a>
+                            </td>
+                            <td class="TenSanPham">
+                                <h4><a href=""></a></h4>
+                                <p>{{ $cart['TenSanPham'] }}</p>
+                            </td>
+                            <td class="GiaSanPham">
+                                <p class="cart_total_price">{{ number_format($cart['GiaSanPham'], 0, '', '.') }} đ</p>
+                            </td>
+                            <td class="SoLuong">
+                                <div class="cart_quantity_button">
+                                    <a class="cart_quantity_up updateCartItem qtyPlus" 
+                                    data-cartid="{{ $cart['session_id'] }}" data-qty="{{ $cart['SoLuong'] }}"> + </a>
+                                    <input class="cart_quantity_input " type="text" name="quantity" 
+                                    value="{{ $cart['SoLuong'] }}" autocomplete="off" size="2" 
+                                    data-min="1" data-max="1000">
+                                    <a class="cart_quantity_down updateCartItem qtyMinus" 
+                                    data-cartid="{{ $cart['session_id'] }}" data-qty="{{ $cart['SoLuong'] }}"> - </a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">{{ number_format($subtotal, 0, '', '.') }} đ</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" href="{{ route('/xoa-sp-trong-gio-hang', $cart['session_id']) }}"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>                            
+                        @endforeach
+                    @endif
                     <tr>
                         <td colspan="4"></td>
                         <td colspan="2">
                             <table class="table table-condensed total-result">
                                 <tr>
-                                    <td>Cart Sub Total</td>
-                                    <td>59.000 đ</td>
+                                    <td>Tiền của giỏ hàng</td>
+                                    <td>{{ number_format($total, 0, '', '.') }} đ</td>
                                 </tr>
                                 <tr>
-                                    <td>Exo Tax</td>
+                                    <td>Tiền giảm giá</td>
                                     <td>$2</td>
                                 </tr>
                                 <tr class="shipping-cost">
-                                    <td>Shipping Cost</td>
+                                    <td>Tiền giao hàng</td>
                                     <td>Free</td>										
                                 </tr>
                                 <tr>
-                                    <td>Total</td>
+                                    <td>Tổng tiền</td>
                                     <td><span>$61</span></td>
                                 </tr>
                             </table>

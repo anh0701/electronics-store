@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DanhMuc;
 use App\Models\ThuongHieu;
-use App\Models\ThuongHieuThuocDanhMuc;
+use App\Models\ThuongHieuDanhMuc;
 use Illuminate\Support\Facades\Redirect;
 
 class DanhMucController extends Controller
 {
+    // Quản lý danh mục
+
     public function TrangThemDanhMuc(){
         $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->where('DanhMucCha', 0)->get();
         return view('admin.DanhMuc.ThemDanhMuc')->with(compact('allDanhMuc'));
@@ -18,22 +20,6 @@ class DanhMucController extends Controller
     public function TrangLietKeDanhMuc(){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(15);
         return view('admin.DanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc'));
-    }
-
-    public function trangThemThuongHieuVaoDanhMuc(){
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
-        $allDanhMucCha = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('DanhMucCha', 0)->get();
-        return view('admin.DanhMuc.ThemThuongHieuVaoDanhMuc')->with(compact('allThuongHieu', 'allDanhMuc', 'allDanhMucCha'));
-    }
-
-    public function themThuongHieuVaoDanhMuc(){
-
-    }
-
-    public function trangLietKeTHDM(){
-        $allTHDM = ThuongHieuThuocDanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(20);
-        return view('admin.DanhMuc.LietKeTHDM')->with(compact('allTHDM'));
     }
 
     public function ThemDanhMuc(Request $request){
@@ -115,4 +101,77 @@ class DanhMucController extends Controller
         $danhMuc = DanhMuc::find($MaDanhMuc)->delete();
         return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Xóa danh mục sản phẩm thành công');
     }
+
+    // Quản lý thương hiệu thuộc danh mục
+
+    public function trangThemTHDM(){
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
+        $allDanhMucCha = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('DanhMucCha', 0)->get();
+        return view('admin.DanhMuc.ThemTHDM')->with(compact('allThuongHieu', 'allDanhMuc', 'allDanhMucCha'));
+    }
+
+    public function trangLietKeTHDM(){
+        $allTHDM = ThuongHieuDanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(20);
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
+        $allDanhMucCha = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('DanhMucCha', 0)->get();
+        return view('admin.DanhMuc.LietKeTHDM')->with(compact('allTHDM', 'allDanhMuc'));
+    }
+
+    public function themTHDM(Request $request){
+        $data = $request->validate([
+            'MaThuongHieu' => 'required',
+            'DanhMucCha' => 'required',
+            'DanhMucCon' => '',
+        ],
+        [
+            'DanhMucCha.required' => 'Chưa điền Danh mục cho sản phẩm',
+            'MaThuongHieu.required' => 'Chưa điền Thương hiệu cho sản phẩm',
+        ]);
+        $thuongHieuDanhMuc = new ThuongHieuDanhMuc();
+        if($data['DanhMucCon'] == false){
+            $data['DanhMucCon'] = $data['DanhMucCha'];
+            $thuongHieuDanhMuc->MaDanhMuc = $data['DanhMucCon'];
+        }else{
+            $thuongHieuDanhMuc->MaDanhMuc = $data['DanhMucCon'];
+        }
+        $thuongHieuDanhMuc->MaThuongHieu = $data['MaThuongHieu'];
+        $thuongHieuDanhMuc->save();
+        return Redirect::to('trang-liet-ke-thtdm')->with('status', 'Thêm thương hiệu vào danh mục thành công');
+    }
+
+    public function trangSuaTHDM($MaTHDM){
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
+        $thuongHieuDanhMuc = ThuongHieuDanhMuc::where('MaTHDM', $MaTHDM)->get();
+        return view('admin.DanhMuc.SuaTHDM', compact('thuongHieuDanhMuc', 'allThuongHieu', 'allDanhMuc')); 
+    }
+
+    public function suaTHDM(Request $request, $MaTHDM){
+        $data = $request->validate([
+            'MaThuongHieu' => 'required',
+            'DanhMucCha' => 'required',
+            'DanhMucCon' => '',
+        ],
+        [
+            'DanhMucCha.required' => 'Chưa điền Danh mục cho sản phẩm',
+            'MaThuongHieu.required' => 'Chưa điền Thương hiệu cho sản phẩm',
+        ]);
+        $thuongHieuDanhMuc = ThuongHieuDanhMuc::find($MaTHDM);
+        if($data['DanhMucCon'] == false){
+            $data['DanhMucCon'] = $data['DanhMucCha'];
+            $thuongHieuDanhMuc->MaDanhMuc = $data['DanhMucCon'];
+        }else{
+            $thuongHieuDanhMuc->MaDanhMuc = $data['DanhMucCon'];
+        }
+        $thuongHieuDanhMuc->MaThuongHieu = $data['MaThuongHieu'];
+        $thuongHieuDanhMuc->save();
+        return Redirect::to('trang-liet-ke-thtdm')->with('status', 'Cập nhật thương hiệu thuộc danh mục thành công');
+    }
+
+    public function xoaTHDM($MaTHDM){
+        $thuongHieuDanhMuc = ThuongHieuDanhMuc::find($MaTHDM)->delete();
+        return Redirect::to('trang-liet-ke-thtdm')->with('status', 'Xóa thương hiệu thuộc danh mục thành công');
+    }
+
 }

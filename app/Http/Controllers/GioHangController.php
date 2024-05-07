@@ -57,7 +57,7 @@ class GioHangController extends Controller
         // $url_canonical = $request->url();
         // $image_og = $url_canonical.'/upload/product/logo.jpg';
 
-        return view('pages.GioHang.GioHang');
+        return view('pages.ThanhToan.ThanhToan');
         // ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
     } 
 

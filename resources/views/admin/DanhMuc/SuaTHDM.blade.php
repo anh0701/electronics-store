@@ -2,13 +2,13 @@
 @section('admin_content')
 <div class="row">
     <div class="col-lg-12">
-        <section class="panel">
+        <section class="panel" style="height: 600px">
             <header class="panel-heading">
-                Thêm thương hiệu vào danh mục
+                Cập nhật Thương hiệu thuộc danh mục
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                   @if ($errors->any())
+                    @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -17,14 +17,18 @@
                         </ul>
                     </div>
                     @endif
-                    <form role="form" action="{{ Route('/them-thuong-hieu-vao-danh-muc') }}" method="POST" enctype="multipart/form-data">
+                    @foreach ($thuongHieuDanhMuc as $key => $value)
+                    <form role="form" action="{{ Route('/sua-thdm', [$value->MaTHDM]) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Thương hiệu sản phẩm</label>
+                            <label for="exampleInputEmail1">Thương hiệu của danh mục</label>
                             <select name="MaThuongHieu" class="form-control input-lg m-bot15">
-                                <option value="" >--Chọn thương hiệu--</option>
-                                @foreach ($allThuongHieu as $key => $thuongHieu)
-                                    <option value="{{ $thuongHieu->MaThuongHieu }}" >{{ $thuongHieu->TenThuongHieu }}</option>
+                                @foreach ($allThuongHieu as $key => $valueThuongHieu)
+                                @if ($value->MaThuongHieu  == $valueThuongHieu->MaThuongHieu)
+                                    <option selected value="{{ $valueThuongHieu->MaThuongHieu }}" >{{ $valueThuongHieu->TenThuongHieu }}</option>
+                                @else
+                                    <option value="{{ $valueThuongHieu->MaThuongHieu }}" >{{ $valueThuongHieu->TenThuongHieu }}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
@@ -32,10 +36,11 @@
                             <div class="col-lg-6">
                                 <label for="exampleInputPassword1">Chọn danh mục cha</label>
                                 <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 choose DanhMucCha">
-                                    <option value="">--Chọn danh mục cha--</option>
-                                    @foreach ($allDanhMuc as $key => $danhMuc)
-                                        @if ($danhMuc->DanhMucCha == 0)
-                                            <option value="{{ $danhMuc->MaDanhMuc }}" >{{ $danhMuc->TenDanhMuc }}</option>
+                                    @foreach ($allDanhMuc as $key => $valueDanhMuc)
+                                        @if ($value->MaDanhMuc == $valueDanhMuc->MaDanhMuc)
+                                            <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>
+                                        @elseif ($valueDanhMuc->DanhMucCha == 0)
+                                            <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -43,12 +48,13 @@
                             <div class="col-lg-6">
                                 <label for="exampleInputPassword1">Chọn danh mục con</label>
                                 <select name="DanhMucCon" id="DanhMucCon" class="form-control input-lg m-bot15 DanhMucCon">
-                                    <option value=""></option>
+                                    <option value="">---Chọn danh mục con---</option>
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" name="ThemSanPham" class="btn btn-info">Thêm thương hiệu vào danh mục</button>
+                        <button type="submit" name="SuaSanPham" class="btn btn-info">Cập nhật thương hiệu danh mục</button>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </section>
