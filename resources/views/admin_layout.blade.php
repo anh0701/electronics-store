@@ -182,30 +182,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
   <script src="{{ asset('backend/js/monthly.js') }}"></script>
-  {{-- Tạo session SP cho TSKT --}}
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.ThemThongSoKyThuat').click(function(){
-				var id = $(this).data('id_product');
-				var cart_product_id = $('.cart_product_id_' + id).val();
-				var cart_product_name = $('.cart_product_name_' + id).val();
-				var _token = $('input[name="_token"]').val();
-				
-				$.ajax({
-					url: '{{ route('/ThemSanPhamSession') }}',
-					method: 'POST',
-					data:{
-						cart_product_id:cart_product_id, 
-						cart_product_name:cart_product_name,
-						_token:_token
-					},
-					success:function(data){
-						window.location.reload()
-					}
-				});
-			});
-		});
-	</script>
   {{-- Hiển thị bảng SP qua Danh Mục  --}}
   <script type="text/javascript">
     $(document).ready(function(){

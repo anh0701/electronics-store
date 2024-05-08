@@ -30,10 +30,10 @@
             <tr>
               <th>STT</th>
               <th>Tên thông số</th>
+              <th>Slug</th>
               <th>Thuộc danh mục SP</th>
               <th>Thuộc danh mục TSKT</th>
-              <th>Hình ảnh</th>
-              <th>Slug</th>
+              <th>Mô tả</th>
               <th style="width:100px;">Quản lý</th>
             </tr>
           </thead>
@@ -42,6 +42,7 @@
             <tr>
               <td>{{ $key+1 }}</td>
               <td>{{ $value->TenTSKT }}</td>
+              <td>{{ $value->SlugTSKT }}</td>
               <td>
                 @foreach ($allDanhMucTSKT as $key => $danhMucTSKT)
                   @if ($danhMucTSKT->MaDMTSKT == $value->MaDMTSKT)
@@ -51,7 +52,6 @@
               </td>
               <td>{{ $value->DanhMucTSKT->TenDMTSKT }}</td>
               <td>{{ $value->MoTa }}</td>
-              <td>{{ $value->SlugTSKT }}</td>
               <td>
                 <a href="{{ route('/TrangSuaTSKT', $value->MaTSKT) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" 
                     class="fa fa-pencil-square-o text-success text-active"></i></a>

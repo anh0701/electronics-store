@@ -111,8 +111,6 @@ Route::get('/TrangSuaSanPhamTSKT/{MaDMTSKT}', [SanPhamTSKTController::class, 'Tr
 Route::post('/SuaSanPhamTSKT/{MaDMTSKT}', [SanPhamTSKTController::class, 'SuaSanPhamTSKT'])->name('/SuaSanPhamTSKT');
 Route::get('/XoaSanPhamTSKT/{MaDMTSKT}', [SanPhamTSKTController::class, 'XoaSanPhamTSKT'])->name('/XoaSanPhamTSKT');
 Route::post('/ChangeTable', [SanPhamTSKTController::class, 'ChangeTable'])->name('/ChangeTable');
-Route::post('/ThemSanPhamSession', [SanPhamTSKTController::class, 'ThemSanPhamSession'])->name('/ThemSanPhamSession');
-Route::get('/XoaSanPhamSession/{session_id}', [SanPhamTSKTController::class, 'XoaSanPhamSession'])->name('/XoaSanPhamSession');
 
 
 // San pham
