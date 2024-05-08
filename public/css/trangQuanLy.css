@@ -88,7 +88,7 @@ display: block;
 }
 
 .menu-left{
-    width: 200px;
+    width: 210px;
     height: 1200px;
     background-color: #333; 
     margin-top: 5px;
@@ -135,7 +135,7 @@ display: block;
 
   .menu-left .dropdown-content a:hover {
     background-color: #fff;
-    padding: 10px 12px;
+    padding: 5px 7px;
     color: #333;
   }
   .arrow{

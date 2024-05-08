@@ -68,36 +68,37 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-								{{-- <li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li> --}}
-								{{-- Đăng xuất/ Đăng nhập --}}								
 								@php
 									$maTaiKhoan = Session::get('MaTaiKhoan');
-									$isAdmin = Session::get('isAdmin');
-									if($maTaiKhoan != ''){
+									if($maTaiKhoan != ''){}
 								@endphp
-									<li><a href="{{ route('/KhachHangDangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-								@php
-									}else{
-								@endphp
-									<li><a href="{{ route('/TrangKhachHangDangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-								@php
-									}
-								@endphp		
-								{{-- Trang admin --}}	
-								@php
-									if($isAdmin != '' && $isAdmin != '1'){
-								@endphp
-									<li class=""><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
-								@php
-									}else{
-								@endphp
-									<li class="hidden"><a href="{{ route('/dashboard') }}"><i class="fa fa-users"></i> Admin</a></li>
-								@php
-									}
-								@endphp
-								
+                    			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								@if (session('user'))
+									@php
+										$user = session('user');
+										$tenTK = $user['TenTaiKhoan'];
+									@endphp
+									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-user"></i>
+                                            <span>Tài khoản</span>
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">Cập nhật thông tin tài khoản</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+									<li><a><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
+								@else
+									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								@endif
 							</ul>
 						</div>
 					</div>

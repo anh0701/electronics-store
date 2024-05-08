@@ -34,27 +34,20 @@
             <ul>
                 <li><a href="#">Trang chủ</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropbtn" onclick="toggleDropdown()">Quan ly tai khoan<span class="arrow">  v</span></a>
+                    <a href="#" class="dropbtn" onclick="toggleDropdown()">Quản lý tài khoản<span class="arrow">  v</span></a>
                     <div class="dropdown-content" id="dropdownContent">
                         <a href="{{ route('taoTK') }}">Tạo tài khoản</a>
                         <a href="{{ route('lietKeTK') }}">Liệt kê tài khoản</a>
-                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" onclick="toggleDropdown()">Quản lý nhà cung cấp<span class="arrow">  v</span></a>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="{{ route('themNCC') }}">Thêm nhà cung cấp</a>
+                        <a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a>
                 </li>
             </ul>
         </div>
-        <div class="content">
-            <h1>Chao mung ban den trang ho tro kinh doanh hang dien tu</h1>
-        </div>
-    </div>
+        @yield('content')
+
 </body>
 </html>
-@extends('layout.trangQL_header')
-
-@section('content')
-    <div class="content">
-        <h1>Chào mừng bạn đến trang hỗ trợ kinh doanh hàng điện tử</h1>
-    </div>
-@endsection   
-    
-
-

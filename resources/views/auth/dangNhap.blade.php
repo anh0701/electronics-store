@@ -20,8 +20,8 @@
                     </ul>
                 @endif
             </div>
-            <input type="text" name="email" placeholder="Email">
-            <input type="password" name="matkhau" placeholder="Mật khẩu">
+            <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+            <input type="password" name="matkhau" placeholder="Mật khẩu" value="{{ old('matkhau') }}">
             <input type="submit" value="Đăng nhập">
 
         </form>
