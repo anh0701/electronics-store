@@ -6,15 +6,17 @@
             <header class="panel-heading">
                 Cập nhật sản phẩm
             </header>
-            <?php
-                $status = Session::get('status');
-                if ($status) {
-                    echo '<span style="font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$status.'</span>';
-                    Session::put('status', null);
-                }
-            ?>
             <div class="panel-body">
                 <div class="position-center">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     @foreach ($sanPham as $key => $value)
                     <form role="form" action="{{ Route('/SuaSanPham', [$value->MaSanPham]) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -27,6 +29,38 @@
                             <input type="text" value="{{ $value->SlugSanPham }}" class="form-control" name="SlugSanPham" placeholder="Slug" id="convert_slug">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Thương hiệu sản phẩm</label>
+                            <select name="MaThuongHieu" class="form-control input-lg m-bot15">
+                                @foreach ($allThuongHieu as $key => $valueThuongHieu)
+                                @if ($value->MaThuongHieu  == $valueThuongHieu->MaThuongHieu)
+                                    <option selected value="{{ $valueThuongHieu->MaThuongHieu }}" >{{ $valueThuongHieu->TenThuongHieu }}</option>
+                                @else
+                                    <option value="{{ $valueThuongHieu->MaThuongHieu }}" >{{ $valueThuongHieu->TenThuongHieu }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label for="exampleInputPassword1">Chọn danh mục cha</label>
+                                <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 choose DanhMucCha">
+                                    @foreach ($allDanhMuc as $key => $valueDanhMuc)
+                                        @if ($value->MaDanhMuc == $valueDanhMuc->MaDanhMuc)
+                                            <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>
+                                        @elseif ($valueDanhMuc->DanhMucCha == 0)
+                                            <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="exampleInputPassword1">Chọn danh mục con</label>
+                                <select name="DanhMucCon" id="DanhMucCon" class="form-control input-lg m-bot15 DanhMucCon">
+                                    <option value="">---Chọn danh mục con---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
                             <textarea id="editor2" style="resize: none" value="" rows="5" class="form-control" name="MoTa" placeholder="Mô tả sản phẩm">{{ $value->MoTa }}</textarea>
                         </div>
@@ -34,30 +68,6 @@
                             <label>Hình ảnh</label>
                             <input type="file" class="form-control-file" name="HinhAnh">
                             <img src="{{ asset('upload/SanPham/'.$value->HinhAnh) }}" height="100px" width="150px">
-                        </div>
-                        <div class="form-group" style="display: inline">
-                            <label for="exampleInputEmail1">Danh mục sản phẩm</label>
-                            <select name="MaDanhMuc" class="form-control input-lg m-bot15">
-                                @foreach ($allDanhMuc as $key => $valueDanhMuc)
-                                @if ($value->MaDanhMuc  == $valueDanhMuc->MaDanhMuc)
-                                    <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
-                                @else
-                                    <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
-                                @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Thương hiệu sản phẩm</label>
-                            <select name="MaThuongHieu" class="form-control input-lg m-bot15">
-                                @foreach ($allThuongHieu as $key => $valueThuongHieu)
-                                @if ($value->MaThuongHieu  == $valueThuongHieu->MaThuongHieu)
-                                    <option selected value="{{ $valueDanhMuc->MaThuongHieu }}" >{{ $valueThuongHieu->TenThuongHieu }}</option>
-                                @else
-                                    <option value="{{ $valueThuongHieu->MaThuongHieu }}" >{{ $valueThuongHieu->TenThuongHieu }}</option>
-                                @endif
-                                @endforeach
-                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Trạng thái sản phẩm</label>

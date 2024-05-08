@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
-<title>Visitors an Admin Panel Category</title>
+<title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="{{ asset('backend/css/font.css') }}" type="text/css"/>
-<link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet">
+<link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- calendar -->
@@ -28,7 +28,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/morris.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <!-- morris JavaScript -->
-<script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>
 <section id="container">
@@ -56,13 +55,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="{{ asset('backend/images/2.png') }}">
                 <span class="username">
-                @if (session('user'))
-                    <p>Hello, {{ session('user') }}</p>
-                    <form action="{{ route('dangXuat') }}" method="POST">
-                        @csrf
-                        <button type="submit">DangXuat</button>
-                    </form>
-                @else
+                  @php
+                    $tenTaiKhoan = Session::get('TenTaiKhoan');
+                    if ($tenTaiKhoan) {
+                      echo $tenTaiKhoan;
+                    }
+                  @endphp
                 </span>
                 <b class="caret"></b>
             </a>
@@ -103,6 +101,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="sub">
               <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm danh mục sản phẩm</a></li>
               <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê danh mục sản phẩm</a></li>
+              <li><a href="{{ route('/trang-them-thdm') }}">Thêm thương hiệu vào danh mục</a></li>
+              <li><a href="{{ route('/trang-liet-ke-thtdm') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -121,8 +121,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Liệt kê tài khoản</a></li>
+              {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
               <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>
+              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-th"></i>
+              <span>Quản lý danh mục TSKT</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemDanhMucTSKT') }}">Thêm danh mục TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">Liệt kê danh mục TSKT</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>Quản lý TSKT</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemTSKT') }}">Thêm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeTSKT') }}">Liệt kê TSKT</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-toolbox"></i>
+              <span>Quản lý sản phẩm TSKT</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemSanPhamTSKT') }}">Thêm sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeSanPhamTSKT') }}">Liệt kê sản phẩm TSKT</a></li>
             </ul>
           </li>
         </ul>
@@ -138,116 +169,198 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer -->
 		  <div class="footer">
         <div class="wthree-copyright">
-          <p>Visitors an Admin Panel Category</p>
+          <p>Đây là trang admin</a></p>
         </div>
 		  </div>
   <!-- / footer -->
-</section>
-<!--main content end-->
-</section>
-<script src="{{ asset('backend/js/bootstrap.js') }}"></script>
-<script src="{{ asset('backend/js/jquery.dcjqaccordion.2.7.js') }}"></script>
-<script src="{{ asset('backend/js/scripts.js') }}"></script>
-<script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
-<script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-<script type="text/javascript">
-    function ChangeToSlug(){
-        var slug;
-        //Lấy text từ thẻ input title
-        slug = document.getElementById("slug").value;
-        slug = slug.toLowerCase();
-        //Đổi ký tự có dấu thành không dấu
-            slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-            slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-            slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-            slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-            slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-            slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-            slug = slug.replace(/đ/gi, 'd');
-            //Xóa các ký tự đặt biệt
-            slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-            //Đổi khoảng trắng thành ký tự gạch ngang
-            slug = slug.replace(/ /gi, "-");
-            //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-            //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-            slug = slug.replace(/\-\-\-\-\-/gi, '-');
-            slug = slug.replace(/\-\-\-\-/gi, '-');
-            slug = slug.replace(/\-\-\-/gi, '-');
-            slug = slug.replace(/\-\-/gi, '-');
-            //Xóa các ký tự gạch ngang ở đầu và cuối
-            slug = '@' + slug + '@';
-            slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-            //In slug ra textbox có id “slug”
-        document.getElementById('convert_slug').value = slug;
-    }
-</script>
-<script type="text/javascript">
-    CKEDITOR.replace( 'editor1' );
-</script>
-<script>
-	$(document).ready(function(){
-		//BOX BUTTON SHOW AND CLOSE
-	   jQuery('.small-graph-box').hover(function() {
-		  jQuery(this).find('.box-button').fadeIn('fast');
-	   }, function() {
-		  jQuery(this).find('.box-button').fadeOut('fast');
-	   });
-	   jQuery('.small-graph-box .box-close').click(function() {
-		  jQuery(this).closest('.small-graph-box').fadeOut(200);
-		  return false;
-	   });
+  </section>
+  <!--main content end-->
+  </section>
+  <script src="{{ asset('backend/js/bootstrap.js') }}"></script>
+  <script src="{{ asset('backend/js/jquery.dcjqaccordion.2.7.js') }}"></script>
+  <script src="{{ asset('backend/js/scripts.js') }}"></script>
+  <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
+  <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
+  <script src="{{ asset('backend/js/monthly.js') }}"></script>
+  {{-- Hiển thị bảng SP qua Danh Mục  --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+			$('.ChangeTable').on('click',function(){
+          var action = $(this).attr('id');
+          var ma_id = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          var result = '';
+          
+          if(action=='DanhMucCha'){
+            result = 'DanhMucCon';
+          }else{
+            result = 'SanPham';
+          }
 
-	    //CHARTS
-	    function gd(year, day, month) {
-			return new Date(year, month - 1, day).getTime();
-		}
+          $.ajax({
+            url : '{{ route('/ChangeTable') }}',
+            method: 'POST',
+            data:{
+              action:action,
+              ma_id:ma_id,
+              _token:_token
+            },
+            success:function(data){
+              $('#'+result).html(data);
+            }
+        });
+      });
+	  });
+  </script>
+  {{-- Chọn danh thông số kỹ thuật --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+			$('.chonDanhMucTSKT').on('click',function(){
+          var action = $(this).attr('id');
+          var ma_id = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          var result = '';
+          
+          if(action=='DanhMucCha'){
+            result = 'DanhMucCon';
+          }else if(action=='DanhMucCon'){
+            result = 'DanhMucTSKT';
+          }else if(action=='DanhMucTSKT'){
+            result = 'ThongSoKyThuat';
+          }
 
-		graphArea2 = Morris.Area({
-			element: 'hero-area',
-			padding: 10,
-        behaveLikeLine: true,
-        gridEnabled: false,
-        gridLineColor: '#dddddd',
-        axes: true,
-        resize: true,
-        smooth:true,
-        pointSize: 0,
-        lineWidth: 0,
-        fillOpacity:0.85,
-			data: [
-				{period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-				{period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-				{period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-				{period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-				{period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-				{period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-				{period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-				{period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-				{period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-
-			],
-			lineColors:['#eb6f6f','#926383','#eb6f6f'],
-			xkey: 'period',
-            redraw: true,
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-			pointSize: 2,
-			hideHover: 'auto',
-			resize: true
-		});
-
-
-	});
+          $.ajax({
+            url : '{{ route('/ChonDanhMucTSKT') }}',
+            method: 'POST',
+            data:{
+              action:action,
+              ma_id:ma_id,
+              _token:_token
+            },
+            success:function(data){
+              $('#'+result).html(data);
+            }
+        });
+      });
+	  });
+  </script>
+  {{-- Chọn danh mục --}}
+  <script type="text/javascript">
+		$(document).ready(function(){
+			$('.choose').on('change',function(){
+          var action = $(this).attr('id');
+          var ma_id = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          var result = '';
+          
+          if(action=='DanhMucCha'){
+              result = 'DanhMucCon';
+          }else{
+              result = '';
+          }
+          $.ajax({
+            url : '{{ route('/ChonDanhMuc') }}',
+            method: 'POST',
+            data:{
+              action:action,
+              ma_id:ma_id,
+              _token:_token
+            },
+            success:function(data){
+                $('#'+result).html(data);
+            }
+        });
+      });
+	  });
 	</script>
-<!-- calendar -->
-	<script type="text/javascript" src="{{ asset('backend/js/monthly.js') }}"></script>
+  <script type="text/javascript">
+      function ChangeToSlug(){
+          var slug;
+          //Lấy text từ thẻ input title 
+          slug = document.getElementById("slug").value;
+          slug = slug.toLowerCase();
+          //Đổi ký tự có dấu thành không dấu
+              slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+              slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+              slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+              slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+              slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+              slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+              slug = slug.replace(/đ/gi, 'd');
+              //Xóa các ký tự đặt biệt
+              slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+              //Đổi khoảng trắng thành ký tự gạch ngang
+              slug = slug.replace(/ /gi, "-");
+              //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+              //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+              slug = slug.replace(/\-\-\-\-\-/gi, '-');
+              slug = slug.replace(/\-\-\-\-/gi, '-');
+              slug = slug.replace(/\-\-\-/gi, '-');
+              slug = slug.replace(/\-\-/gi, '-');
+              //Xóa các ký tự gạch ngang ở đầu và cuối
+              slug = '@' + slug + '@';
+              slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+              //In slug ra textbox có id “slug”
+          document.getElementById('convert_slug').value = slug;
+      }
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      //BOX BUTTON SHOW AND CLOSE
+      jQuery('.small-graph-box').hover(function() {
+        jQuery(this).find('.box-button').fadeIn('fast');
+      }, function() {
+        jQuery(this).find('.box-button').fadeOut('fast');
+      });
+      jQuery('.small-graph-box .box-close').click(function() {
+        jQuery(this).closest('.small-graph-box').fadeOut(200);
+        return false;
+      });
+      
+        //CHARTS
+        function gd(year, day, month) {
+        return new Date(year, month - 1, day).getTime();
+      }
+      
+      graphArea2 = Morris.Area({
+        element: 'hero-area',
+        padding: 10,
+          behaveLikeLine: true,
+          gridEnabled: false,
+          gridLineColor: '#dddddd',
+          axes: true,
+          resize: true,
+          smooth:true,
+          pointSize: 0,
+          lineWidth: 0,
+          fillOpacity:0.85,
+        data: [
+          {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
+          {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
+          {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
+          {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
+          {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
+          {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
+          {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
+          {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
+          {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
+        
+        ],
+        lineColors:['#eb6f6f','#926383','#eb6f6f'],
+        xkey: 'period',
+              redraw: true,
+              ykeys: ['iphone', 'ipad', 'itouch'],
+              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
+        pointSize: 2,
+        hideHover: 'auto',
+        resize: true
+      });
+    });
+  </script>
 	<script type="text/javascript">
 		$(window).load( function() {
-
 			$('#mycalendar').monthly({
 				mode: 'event',
-
 			});
 
 			$('#mycalendar2').monthly({
@@ -259,7 +372,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				stylePast: true,
 				disablePast: true
 			});
-
 		switch(window.location.protocol) {
 		case 'http:':
 		case 'https:':
@@ -268,7 +380,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		case 'file:':
 		alert('Just a heads-up, events will not work when run locally.');
 		}
-
 		});
 	</script>
 </body>

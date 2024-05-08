@@ -6,15 +6,17 @@
             <header class="panel-heading">
                 Thêm sản phẩm
             </header>
-            <?php
-                $status = Session::get('status');
-                if ($status) {
-                    echo '<span style="margin-left: 5px;font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$status.'</span>';
-                    Session::put('status', null);
-                }
-            ?>
             <div class="panel-body">
                 <div class="position-center">
+                   @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form role="form" action="{{ Route('/ThemSanPham') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -28,24 +30,30 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Thương hiệu sản phẩm</label>
                             <select name="MaThuongHieu" class="form-control input-lg m-bot15">
+                                <option value="" >--Chọn thương hiệu--</option>
                                 @foreach ($allThuongHieu as $key => $thuongHieu)
                                     <option value="{{ $thuongHieu->MaThuongHieu }}" >{{ $thuongHieu->TenThuongHieu }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Danh mục sản phẩm</label>
-                            <select name="MaDanhMuc" class="form-control input-lg m-bot15">
-                                @foreach ($allDanhMuc as $key => $danhMuc)
-                                    <option value="{{ $danhMuc->MaDanhMuc }}" >{{ $danhMuc->TenDanhMuc }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Nhà cung cấp</label>
-                            <select name="MaNhaCungCap" class="form-control input-lg m-bot15">
-                                <option value="0" >To be Continued</option>
-                            </select>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label for="exampleInputPassword1">Chọn danh mục cha</label>
+                                <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 choose DanhMucCha">
+                                    <option value="">--Chọn danh mục cha--</option>
+                                    @foreach ($allDanhMuc as $key => $danhMuc)
+                                        @if ($danhMuc->DanhMucCha == 0)
+                                            <option value="{{ $danhMuc->MaDanhMuc }}" >{{ $danhMuc->TenDanhMuc }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="exampleInputPassword1">Chọn danh mục con</label>
+                                <select name="DanhMucCon" id="DanhMucCon" class="form-control input-lg m-bot15 DanhMucCon">
+                                    <option value=""></option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
@@ -58,6 +66,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Trạng thái sản phẩm</label>
                             <select name="TrangThai" class="form-control input-lg m-bot15">
+                                <option value="" >--Chọn trạng thái--</option>
                                 <option value="1" >Hiển thị</option>
                                 <option value="0" >Ẩn</option>
                             </select>
