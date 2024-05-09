@@ -63,12 +63,20 @@
         .error-message{
             color: red;
         }
+        .success-message{
+            color: blue;
+            width: 50%;
+            text-align: center;
+            padding: 10px 12px;
+            font-size: large;
+
+        }
 
     </style>
 </head>
 <body>
     <h1>Sửa tài khoản</h1>
-    <form action="/xuLySuaTK" method="post">
+    <form action="/xuLyCapNhatTK" method="post">
         @csrf <!-- Sử dụng token CSRF protection trong Laravel -->
         <div class="error-message">
             @if ($errors->any())
@@ -79,18 +87,22 @@
                 </ul>
             @endif
         </div>
+        @if(session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
         @foreach ($data as $item)
-            <label for="maTK">Mã tài khoản:</label>
-            <input type="text" id="maTK" name="maTK" value="{{ $item->MaTaiKhoan }}" readonly class="gray-background"><br>
+            <input type="text" id="maTK" name="maTK" value="{{ $item->MaTaiKhoan }}" hidden><br>
 
             <label for="tentaikhoan">Tên tài khoản:</label>
-            <input type="text" id="tentaikhoan" name="tentaikhoan" value="{{ $item->TenTaiKhoan }}" readonly class="gray-background"><br>
+            <input type="text" id="tentaikhoan" name="tentaikhoan" value="{{ $item->TenTaiKhoan }}" ><br>
 
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" value="{{ $item->Email }}" readonly class="gray-background"><br>
 
             <label for="sdt">Số điện thoại:</label>
-            <input type="text" id="sdt" name="sdt" value="{{ $item->SoDienThoai }}" readonly class="gray-background"><br>
+            <input type="text" id="sdt" name="sdt" value="{{ $item->SoDienThoai }}"><br>
 
             <label for="thoiGianTao">Thời gian tạo:</label>
             <input type="text" id="thoiGianTao" name="thoiGianTao" value="{{ $item->ThoiGianTao }}"  readonly class="gray-background"><br>
@@ -99,21 +111,14 @@
             <input type="text" id="thoiGianSua" name="thoiGianSua" value="{{ $item->ThoiGianSua }}"  readonly class="gray-background"><br>
 
             <label for="quyen">Quyền: </label>
-            <select id="quyen" name="quyen">
-                <option value="NV" {{ $item->Quyen === 'NV' ? 'selected' : '' }}>Khong chon</option>
-                <option value="QTV" {{ $item->Quyen === 'QTV' ? 'selected' : '' }}>Quan tri vien</option>
-                <option value="QTVCC" {{ $item->Quyen === 'QTVCC' ? 'selected' : '' }}>Quan tri vien cap cao</option>
-                <option value="NVBH" {{ $item->Quyen === 'NVBH' ? 'selected' : '' }}>Nhan vien ban hang</option>
-                <option value="NVK" {{ $item->Quyen === 'NVK' ? 'selected' : '' }}>Nhan vien kho</option>
-                <option value="NVKT" {{ $item->Quyen === 'NVKT' ? 'selected' : '' }}>Nhan vien ke toan</option>
-            </select>
+            <input type="text" id="quyen" name="quyen" value="{{ $item->Quyen }}"  readonly class="gray-background"><br>
 
 
         @endforeach
 
         <button type="submit" class="submit">Lưu</button>
     </form>
-    <a href="{{ route('lietKeTK') }}"><button class="submit">Trở lại</button></a>
+    <a href="{{ route('/') }}"><button class="submit">Trở lại</button></a>
     
     
 </body>

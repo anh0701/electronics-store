@@ -117,4 +117,34 @@ class NhaCungCapController extends Controller
         return redirect('/liet-ke-nha-cung-cap')->with('Success', 'Xoa nha cung cap thanh cong');
     }
 
+    public function timkiemNCC(Request $request){
+        $keyword = $request->input('keyword');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = "SELECT * FROM tbl_nhacungcap WHERE 1=1"; // 1=1 để bắt đầu điều kiện WHERE
+
+        if (!empty($startDate)) {
+            $query .= " AND DATE(ThoiGianTao) >= '$startDate'";
+        }
+
+        if (!empty($endDate)) {
+            $query .= " AND DATE(ThoiGianTao) <= '$endDate'";
+        }
+
+        if (!empty($keyword)) {
+            $query .= " AND (TenNhaCungCap LIKE '%$keyword%' 
+                        OR DiaChi LIKE '%$keyword%' 
+                        OR SoDienThoai LIKE '%$keyword%' 
+                        OR Email LIKE '%$keyword%' 
+                        OR ThoiHanHopDong LIKE '%$keyword%' 
+                        OR ThoiGianTao LIKE '%$keyword%' 
+                        OR ThoiGianSua LIKE '%$keyword%')";
+        }
+
+        $data = DB::select($query);
+
+        return view('admin.NhaCungCap.lietkeNCC', compact('data'));
+    }
+
 }

@@ -1,17 +1,12 @@
-table {
-    border-collapse: collapse; /* Gộp viền của các ô lại với nhau */
-    width: 100%; /* Chiều rộng của bảng */
-    border: 1px solid #dddddd; /* Viền của bảng */
-    table-layout: auto;
-}
-  
-th, td {
-    padding: 5px 7px; /* Khoảng cách giữa nội dung và viền */
+td {
+    padding: 12px 7px; /* Khoảng cách giữa nội dung và viền */
     text-align: center; /* Căn lề nội dung sang trái */
 }
   
-th {
-    background-color: #fff000; /* Màu nền cho tiêu đề cột */
+.th1{
+    padding: 5px 7px;
+    text-align: center;
+    background-color: #78C1F3;
 }
 
 td a{
@@ -20,20 +15,23 @@ td a{
 }
 
 td a:hover{
-    color: #0000ff;
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
 }
 
 th:not(:last-child),
 td:not(:last-child) {
-    border-right: 1px solid #dddddd; /* Viền bên phải của các ô, trừ ô cuối cùng */
+    border-right: 1px solid #fff; /* Viền bên phải của các ô, trừ ô cuối cùng */
 }
   
 tr:nth-child(even) {
-    background-color: #dddddd; /* Màu nền xen kẽ cho các hàng */
+    background-color: #F8FDCF; /* Màu nền xen kẽ cho các hàng */
 }
   
 tr:hover {
-    background-color: #dddddd; /* Màu nền khi di chuột qua */
+    background-color: #9BE8D8; /* Màu nền khi di chuột qua */
 }
   
 .currency {

@@ -83,7 +83,7 @@
                                             <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">Cập nhật thông tin tài khoản</a>
+                                            <a class="dropdown-item" href="{{ route('capNhatTK') }}">Cập nhật thông tin tài khoản</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -97,9 +97,15 @@
 									@php
 										$user = session('user');
 										$tenTK = $user['TenTaiKhoan'];
+										$quyen = $user['Quyen'];
 									@endphp
 									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+									@if ($quyen != 'KH')
+										<li><a href="{{ route('trangAdmin') }}"><i class="fa"></i> Trang quan ly</a></li>
+										<li><a href="{{ route('/dashboard') }}"><i class="fa"></i> Dashbroad</a></li>
+									@endif
 									<li><a><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
+									
 								@else
 									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								@endif
