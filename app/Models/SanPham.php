@@ -17,8 +17,7 @@ class SanPham extends Model
     protected $primaryKey = 'MaSanPham';
     protected $table = 'tbl_sanpham';
 
-    public function DanhMuc()
-    {
+    public function DanhMuc(){
         return $this->belongsTo(DanhMuc::class, 'MaDanhMuc');
     }
 

@@ -99,10 +99,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý danh mục</span>
             </a>
             <ul class="sub">
+<<<<<<< HEAD
               <li><a href="{{ route('/') }}">Thêm danh mục sản phẩm</a></li>
               <li><a href="{{ route('/') }}">Liệt kê danh mục sản phẩm</a></li>
               <li><a href="{{ route('/') }}">Thêm thương hiệu vào danh mục</a></li>
               <li><a href="{{ route('/') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
+=======
+              <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm danh mục sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê danh mục sản phẩm</a></li>
+              <li><a href="{{ route('/trang-them-thdm') }}">Thêm thương hiệu vào danh mục</a></li>
+              <li><a href="{{ route('/trang-liet-ke-thtdm') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             </ul>
           </li>
           <li class="sub-menu">
@@ -121,9 +128,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
+<<<<<<< HEAD
              
               <li><a href="{{ route('/') }}">Tạo tài khoản</a></li>
               <li><a href="{{ route('/') }}">Quản lý tài khoản</a></li>
+=======
+              {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
+              <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>
+              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             </ul>
           </li>
           <li class="sub-menu">
@@ -132,8 +145,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý danh mục TSKT</span>
             </a>
             <ul class="sub">
+<<<<<<< HEAD
               <li><a href="{{ route('/') }}">Thêm danh mục TSKT</a></li>
               <li><a href="{{ route('/') }}">Liệt kê danh mục TSKT</a></li>
+=======
+              <li><a href="{{ route('/TrangThemDanhMucTSKT') }}">Thêm danh mục TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">Liệt kê danh mục TSKT</a></li>
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             </ul>
           </li>
           <li class="sub-menu">
@@ -142,8 +160,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý TSKT</span>
             </a>
             <ul class="sub">
+<<<<<<< HEAD
               <li><a href="{{ route('/') }}">Thêm TSKT</a></li>
               <li><a href="{{ route('/') }}">Liệt kê TSKT</a></li>
+=======
+              <li><a href="{{ route('/TrangThemTSKT') }}">Thêm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeTSKT') }}">Liệt kê TSKT</a></li>
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             </ul>
           </li>
           <li class="sub-menu">
@@ -152,8 +175,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý sản phẩm TSKT</span>
             </a>
             <ul class="sub">
+<<<<<<< HEAD
               <li><a href="{{ route('/') }}">Thêm sản phẩm TSKT</a></li>
               <li><a href="{{ route('/') }}">Liệt kê sản phẩm TSKT</a></li>
+=======
+              <li><a href="{{ route('/TrangThemSanPhamTSKT') }}">Thêm sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeSanPhamTSKT') }}">Liệt kê sản phẩm TSKT</a></li>
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             </ul>
           </li>
         </ul>
@@ -198,7 +226,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           }
 
           $.ajax({
+<<<<<<< HEAD
             url : '{{ route('/') }}',
+=======
+            url : '{{ route('/ChangeTable') }}',
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             method: 'POST',
             data:{
               action:action,
@@ -230,7 +262,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           }
 
           $.ajax({
+<<<<<<< HEAD
             url : '{{ route('/') }}',
+=======
+            url : '{{ route('/ChonDanhMucTSKT') }}',
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             method: 'POST',
             data:{
               action:action,
@@ -259,7 +295,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               result = '';
           }
           $.ajax({
+<<<<<<< HEAD
             url : '{{ route('/') }}',
+=======
+            url : '{{ route('/ChonDanhMuc') }}',
+>>>>>>> 19929db5af40f64752a16f498c91b0ba5de5e075
             method: 'POST',
             data:{
               action:action,

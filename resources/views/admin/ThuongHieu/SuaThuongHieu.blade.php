@@ -6,15 +6,17 @@
             <header class="panel-heading">
                 Cập nhật thương hiệu sản phẩm
             </header>
-            @php
-                $status = Session::get('status');
-                if ($status) {
-                    echo '<span style="font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$status.'</span>';
-                    Session::put('status', null);
-                }
-            @endphp
             <div class="panel-body">
                 <div class="position-center">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     @foreach ($thuongHieu as $key => $value)
                     <form role="form" action="{{ Route('/SuaThuongHieu', [$value->MaThuongHieu]) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}

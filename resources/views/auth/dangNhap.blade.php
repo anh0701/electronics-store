@@ -23,13 +23,13 @@
             <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
             <input type="password" name="matkhau" placeholder="Mật khẩu" value="{{ old('matkhau') }}">
             <input type="submit" value="Đăng nhập">
-            
+
         </form>
         <a href="{{ route('dangKy') }}" class="link-dn">Chưa có tài khoản? Đăng ký!</a>
-        <a href="{{ route('dangNhap') }}" class="link-dn">Quên mật khẩu?</a>
+        <a href="{{ route('quenMatKhau') }}" class="link-dn">Quên mật khẩu?</a>
         <a href="{{ route('/') }}" class="link-dn">Về trang chủ?</a>
 
-        
+
     </div>
 </body>
 </html>

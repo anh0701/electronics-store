@@ -41,6 +41,10 @@ class DoiMatKhau extends Controller
         if (!$user || !password_verify($request->MatKhauCu, $user->MatKhau)){
             return redirect()->back()->withErrors("error", "Mật khẩu cũ không đúng");
         }
+
+        if($request->MatKhauMoi != $request->MatKhauMoi2){
+            return redirect()->back()->withErrors("error", "Mật khẩu nhập lại không khớp");
+        }
         TaiKhoan::where('TenTaiKhoan', $request->session()->get('user.TenTaiKhoan'))->update([
             'MatKhau' => bcrypt($request->MatKhauMoi)
         ]);
