@@ -26,7 +26,7 @@
 
         </form>
         <a href="{{ route('dangKy') }}" class="link-dn">Chưa có tài khoản? Đăng ký!</a>
-        <a href="{{ route('quenMatKhau') }}" class="link-dn">Quên mật khẩu?</a>
+        <a href="{{ route('/') }}" class="link-dn">Quên mật khẩu?</a>
         <a href="{{ route('/') }}" class="link-dn">Về trang chủ?</a>
 
 

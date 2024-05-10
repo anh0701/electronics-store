@@ -147,7 +147,7 @@ class TaiKhoanController extends Controller
         $tenTK = $request->tentaikhoan;
         $thoiGianSua = date('Y-m-d H:i:s');
         $sdt = $request->sdt;
-
+        $quyen = $request->quyen;
 
         TaiKhoan::where('MaTaiKhoan', $maTK)->update([
             'TenTaiKhoan' => $tenTK,
@@ -157,7 +157,7 @@ class TaiKhoanController extends Controller
 
         $request->session()->put('user', [
             'TenTaiKhoan' => $tenTK,
-            'Quyen' => $request->Quyen,
+            'Quyen' => $quyen,
         ]);
 
         return redirect('/')->with('success', 'Tài khoản đã được sửa thành công!');

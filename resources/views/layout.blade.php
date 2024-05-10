@@ -72,20 +72,13 @@
 									$maTaiKhoan = Session::get('MaTaiKhoan');
 									if($maTaiKhoan != ''){}
 								@endphp
-                    			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-								@if (session('user'))
-									@php
-										$user = session('user');
-										$tenTK = $user['TenTaiKhoan'];
-									@endphp
-									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-user"></i>
-                                            <span>Tài khoản</span>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user"></i>
+                                        <span>Tài khoản</span>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                                         <li>
                                             <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
@@ -98,9 +91,7 @@
 {{--
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
                     			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{{ route('/GioHang') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								{{-- Đăng xuất/ Đăng nhập --}}
-
+								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								@if (session('user'))
 									@php
 										$user = session('user');
@@ -386,7 +377,7 @@
 			var cartid = $(this).data('cartid');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url: '{{ route('/thay-doi-so-luong') }}',
+				url: '{{ route('/') }}',
 				method: 'POST',
 				data:{
 					cartid:cartid,
