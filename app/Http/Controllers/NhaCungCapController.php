@@ -21,8 +21,9 @@ class NhaCungCapController extends Controller
         } 
     }
 
-    public function themNCC(){
-        return view('admin.NhaCungCap.themNCC');
+    public function themNCC(Request $request){
+        $test = $request->source;
+        return view('admin.NhaCungCap.themNCC', ['test' => $test]);
     }
 
     public function xuLyThemNCC(Request $request){
@@ -63,9 +64,16 @@ class NhaCungCapController extends Controller
         $nhacungcap->ThoiGianTao = $thoiGianTao;
         $nhacungcap->save();
 
-        return redirect('/liet-ke-nha-cung-cap')->with('success', 'Thên nhà cung cấp thành công!');
+        if ($request->nccMoi == 'NCCMoi') {
+            // Chuyển hướng người dùng đến trang tạo mới phiếu nhập
+            return redirect('/lap-phieu-nhap')->with('success', 'Thêm nhà cung cấp thành công!');
+        }else{
+            return redirect('/liet-ke-nha-cung-cap')->with('success', 'Thên nhà cung cấp thành công!');
+        }
+        
 
     }
+
 
     public function suaNCC($id){
         $ncc = DB::select("SELECT * FROM tbl_nhacungcap WHERE tbl_nhacungcap.MaNhaCungCap = '{$id}' LIMIT 1");

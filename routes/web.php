@@ -23,6 +23,7 @@ Route::get('/lap-phieu-nhap', [PhieuNhapController::class, 'lapPN'])->name('lapP
 Route::post('/xuLyThemMatHang', [PhieuNhapController::class, 'xuLyThemMatHang']);
 Route::get('/xoaMatHang/{id}', [PhieuNhapController::class, 'xoaMatHang'])->name('xoaMatHang');
 Route::post('/xuLyLapPN', [PhieuNhapController::class, 'xuLyPN']);
+Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
 //Nha cung cap
 Route::get('/liet-ke-nha-cung-cap', [NhaCungCapController::class, 'lietKe'])->name('lietKeNCC');
 Route::get('/them-nha-cung-cap', [NhaCungCapController::class, 'themNCC'])->name('themNCC');

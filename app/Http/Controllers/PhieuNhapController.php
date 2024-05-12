@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChiTietPhieuNhap;
+use App\Models\NhaCungCap;
 use Exception;
 use Session;
 use Illuminate\Contracts\Support\ValidatedData;
@@ -14,7 +15,7 @@ use Illuminate\Validation\Rule;
 class PhieuNhapController extends Controller
 {
     public function trangXemPhieuNhap(){
-        session::forget('matHangList');
+        session::forget('matHangList');     
         $pns = DB::select("SELECT pn.*, tk.TenTaiKhoan
                   FROM tbl_phieunhap pn
                   JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan");
@@ -22,15 +23,30 @@ class PhieuNhapController extends Controller
         return view('admin.PhieuNhap.xemPhieuNhap', ['data' => $pns]);
     } 
 
+    public function xemCTPN($id){
+        $pn = DB::select("SELECT * FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
+        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
+        // $maNCC = $pn[0]->MaNhaCungCap;
+        // $tenNCC = DB::select("SELECT TenNhaCungCap FROM tbl_nhacungcap WHERE MaNhaCungCap = '{$maNCC}'");
+        // $maTK = $pn[0]->MaTaiKhoan;
+        // $tenTK = DB::select("SELECT TenTaiKhoan FROM tbl_taikhoan WHERE MaTaiKhoan = '{$maTK}'");
+        return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn]);
+    }
+
 
     public function lapPN(){
         $matHangList = session('matHangList', []);
+        $user = session(('user'));
+        $tenTK = $user['TenTaiKhoan'];
         $tongTien = 0;
+        $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap");
+
+        
         foreach ($matHangList as $mh){
             $tongTien += $mh['thanhTien'];
         }
 
-        return view('admin.PhieuNhap.lapPN', ['matHangList' => $matHangList, 'tongTien' => $tongTien]);
+        return view('admin.PhieuNhap.lapPN', ['matHangList' => $matHangList, 'tongTien' => $tongTien, 'nguoiLap' => $tenTK, 'listNCC' => $listNCC]);
     }
     
     public function xuLyThemMatHang(Request $request)
@@ -99,37 +115,47 @@ class PhieuNhapController extends Controller
         if (!$valid) {
             return redirect()->back()->withInput();
         }
-
         
         $maPN = 'PN' . date('YmdHis');
         $thoiGianTao = date('Y-m-d H:i:s');
         $tongTien = $request->tongTien;
         $tienTra = $request->soTienTra;
         if($tienTra > $tongTien){
-            return redirect()->back()->withInput()->withErrors(['error' => 'Ban nhap sai so tien tra']);
+            return redirect()->back()->withInput()->withErrors(['tienTra' => 'Ban nhap sai so tien tra']);
         }
         if($tongTien != "" && $tienTra != ""){
             $soTienNo = $request->tongTien - $request->soTienTra;
         }else{
             $soTienNo = 0;
         }
+
+        $matHangList = session('matHangList', []);
+        $dem = count($matHangList);
+        if ($dem <= 0) {
+            return redirect()->back()->withInput()->withErrors(['matHang' => 'Ban chua them mat hang']);
+        }
+
+        $tenTK = $request->nguoiLap;
+        $maTK = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
+        
         $phieunhap = new PhieuNhap();
         $phieunhap->MaPhieuNhap = $maPN;
         $phieunhap->MaNhaCungCap = $request->maNCC;
-        $phieunhap->MaTaiKhoan = $request->nguoiLap;
+        $phieunhap->MaTaiKhoan = $maTK[0]->MaTaiKhoan;
         $phieunhap->TongTien = $tongTien;
         $phieunhap->TienTra = $tienTra;
         $phieunhap->TienNo = $soTienNo;
         $phieunhap->PhuongThucThanhToan = $request->pttt;
         $phieunhap->ThoiGianTao = $thoiGianTao;
-        try{
-            $phieunhap->save();         
-        }catch(Exception $e){
-            return redirect('/lap-phieu-nhap')->withInput()->withErrors(['error' => $e->getMessage()]);
-        }
+        // try{
+            $phieunhap->save();  
+                  
+        // }catch(Exception $e){
+        //     return redirect('/lap-phieu-nhap')->withInput()->withErrors(['error' => $e->getMessage()]);
+        // }
         
 
-        $matHangList = session('matHangList', []);
+        
         foreach ($matHangList as $mh){
             $maCTPN = 'CTPN' . uniqid();
             $ctpn = new ChiTietPhieuNhap();
@@ -142,7 +168,7 @@ class PhieuNhapController extends Controller
             try{
                 $ctpn->save();      
             }catch(Exception $e){
-                return redirect('/lap-phieu-nhap')->withInput()->withErrors(['error' => 'Ma san pham khong ton tai']);
+                return redirect('/lap-phieu-nhap')->withInput()->withErrors(['maHang' => 'Ma san pham khong ton tai']);
             }
         }
         

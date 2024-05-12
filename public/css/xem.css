@@ -40,3 +40,7 @@ tr:hover {
     line-height: 1; /* Đặt chiều cao dòng bằng với kích thước của chữ */
     margin-left: 2px; /* Khoảng cách giữa số và đơn vị tiền tệ */
 }
+
+.gray-background {
+    background-color: #f2f2f2;
+}

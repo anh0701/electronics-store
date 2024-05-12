@@ -72,7 +72,7 @@
 									$maTaiKhoan = Session::get('MaTaiKhoan');
 									if($maTaiKhoan != ''){}
 								@endphp
-
+								@if (session('user'))
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-user"></i>
@@ -88,6 +88,7 @@
                                         </li>
                                     </ul>
                                 </li>
+								@endif
 {{--
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
                     			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>

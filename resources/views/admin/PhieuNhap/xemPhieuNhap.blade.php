@@ -25,7 +25,7 @@
                 <td>{{ $pn->ThoiGianTao }}</td>
                 <td>{{ $pn->TongTien }}</td>
                 <td>{{ $pn->TienNo }}</td>
-                <td><a href="{{ route('/', ['id' => $pn->MaPhieuNhap]) }}">Sửa</a><span> / </span><a href="{{ route('/', ['id' => $pn->MaPhieuNhap]) }}">Xóa</a></td>
+                <td><a href="{{ route('xemCTPN', ['id' => $pn->MaPhieuNhap]) }}">Xem chi tiet</a><span> / </span><a href="{{ route('/', ['id' => $pn->MaPhieuNhap]) }}">Xóa</a></td>
             </tr>
             @endforeach
         </tbody>
