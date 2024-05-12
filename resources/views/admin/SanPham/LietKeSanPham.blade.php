@@ -19,10 +19,10 @@
       </div>
       <div class="table-responsive">
         <?php
-            $message = Session::get('status');
-            if ($message) {
-                echo '<span style="font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$message.'</span>';
-                Session::put('message', null);
+            $status = Session::get('status');
+            if ($status) {
+                echo '<span style="font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$status.'</span>';
+                Session::put('status', null);
             }
         ?>
         <table class="table table-striped b-t b-light">
@@ -33,7 +33,6 @@
               <th>Thuộc thương hiệu</th>
               <th>Thuộc danh mục</th>
               <th>Hình ảnh</th>
-              <th>Trạng thái</th>
               <th>Giá</th>
               <th style="width:100px;">Quản lý</th>
             </tr>
@@ -46,22 +45,7 @@
               <td>{{ $sanPham->ThuongHieu->TenThuongHieu ?? 'None' }}</td>
               <td>{{ $sanPham->DanhMuc->TenDanhMuc }}</td>
               <td><img src="{{ asset('upload/sanPham/'.$sanPham->HinhAnh) }}" height="100px" width="150px"></td>
-              <td><span class="text-ellipsis">
-                <?php
-                if ($sanPham->TrangThai == 1){
-                ?>
-                  <a href="{{ route('/KoKichHoatSanPham', $sanPham->MaSanPham) }}" ><span 
-                    style="font-size: 28px; color: green; content: \f164" class="fa-solid fa-thumbs-up"></span></a>
-                <?php
-                }else{
-                ?>
-                  <a href="{{ route('/KichHoatsanPham', $sanPham->MaSanPham) }}" ><span 
-                    style="font-size: 28px; color: red; ; content: \f164" class="fa-thumb-styling-down fa fa-thumbs-down"></span></a>
-                <?php
-                }
-                ?>
-              </span></td>
-              <td>{{ $sanPham->GiaSanPham }}</td>
+              <td>{{ number_format($sanPham->GiaSanPham, 0, '', '.') }} đ</td>
               <td>
                 <a href="{{ route('/TrangSuaSanPham', $sanPham->MaSanPham) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
                 <a onclick="return confirm('Bạn có muốn xóa {{ $sanPham->TenSanPham }} không?')" href="{{ route('/XoaSanPham', [$sanPham->MaSanPham]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>

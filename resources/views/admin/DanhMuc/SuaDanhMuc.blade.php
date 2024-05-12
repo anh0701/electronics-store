@@ -6,16 +6,18 @@
             <header class="panel-heading">
                 Cập nhật danh mục sản phẩm
             </header>
-            <?php
-                $status = Session::get('status');
-                if ($status) {
-                    echo '<span style="font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">'.$status.'</span>';
-                    Session::put('status', null);
-                }
-            ?>
             <div class="panel-body">
                 <div class="position-center">
-                    @foreach ($suaDanhMuc as $key => $value)
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @foreach ($suaDanhMuc as $key => $value)
                     <form role="form" action="{{ Route('/SuaDanhMuc', [$value->MaDanhMuc]) }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -33,7 +35,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Thuộc danh mục</label>
                             <select name="DanhMucCha" class="form-control input-lg m-bot15">
-                                <option value="0" >Chuyển thành danh mục cha</option>
+                                <option value="0">---Chuyển thành danh mục cha---</option>
                                 @foreach ($danhMuc as $key => $value1)
                                     @if ($value1->DanhMucCha == 0)
                                         <option {{ $value1->MaDanhMuc == $value->MaDanhMuc ? 'selected' : '' }} value="{{ $value1->MaDanhMuc }}" >{{ $value1->TenDanhMuc }}</option>
@@ -61,7 +63,7 @@
                         </div>
                         <button type="submit" name="SuaDanhMuc" class="btn btn-info">Cập nhật danh mục</button>
                     </form>
-                    @endforeach
+                @endforeach
                 </div>
             </div>
         </section>

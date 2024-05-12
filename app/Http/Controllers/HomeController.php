@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
 {
     public function index(){
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('12');
         return view('pages.home')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
 
@@ -26,21 +26,21 @@ class HomeController extends Controller
         $sanPhamThuocThuongHieu = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
         where('MaThuongHieu', $MaThuongHieu)->paginate('20');
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         return view('pages.ThuongHieu.HienThiThuongHieu')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocThuongHieu'));
     }
 
     public function HienThiDanhMucCha($MaDanhMuc){
         $danhMucCha = $MaDanhMuc;
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         return view('pages.DanhMuc.HienThiDanhMucCha')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'danhMucCha'));
     }
 
     public function HienThiDanhMucCon($MaDanhMuc){
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $sanPhamThuocDanhMuc = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
         where('MaDanhMuc', $MaDanhMuc)->paginate('20');
         return view('pages.DanhMuc.HienThiDanhMucCon')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc'));
@@ -49,12 +49,12 @@ class HomeController extends Controller
     public function ChiTietSanPham($MaSanPham){
         $chiTietSanPham = SanPham::where('MaSanPham', $MaSanPham)->first();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         return view('pages.SanPham.ChiTietSanPham')->with(compact('allDanhMuc', 'allThuongHieu', 'chiTietSanPham'));;
     }
 
     public function TimKiem(Request $request){
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $keywords = $request->keywords_submit;
 
@@ -67,12 +67,18 @@ class HomeController extends Controller
         return view('pages.SanPham.TimKiem')->with(compact('allDanhMuc', 'allThuongHieu', 'timKiemSanPham', 'keywords'));
     }
 
-    public function GioHang(){
-        return view('pages.GioHang.GioHang');
+    public function ThanhToan(){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        return view('pages.ThanhToan.ThanhToan')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));;
     }
 
     public function TrangKhachHangDangNhap(){
-        return view('pages.TaiKhoan.login');
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        return view('pages.TaiKhoan.login')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));;
     }
 
     public function KhachHangDangNhap(Request $request){
@@ -80,20 +86,20 @@ class HomeController extends Controller
         $Email = $data['Email'];
         $MatKhau = md5($data['MatKhau']);
         $login = TaiKhoan::where('Email', $Email)->where('MatKhau', $MatKhau)->first();
-        // $isAdmin = 0;
+        $isAdmin = 0;
+        $phanQuyenNguoiDung = PhanQuyenNguoiDung::orderBy('MaPQND', 'DESC')->get();
+        foreach($phanQuyenNguoiDung as $key => $value){
+            if($value->MaTaiKhoan == $login->MaTaiKhoan){
+                $isAdmin++;
+            }
+        }
+        if($isAdmin > 1){
+            Session::put('isAdmin', $isAdmin); 
+        }
         if($login){
             $login_count = $login->count();
             if($login_count){
-                // $phanQuyenNguoiDung = PhanQuyenNguoiDung::orderBy('MaPQND', 'DESC')->get();
-                // foreach($phanQuyenNguoiDung as $key => $value){
-                //     if($value->MaTaiKhoan == $login->MaTaiKhoan){
-                //         $isAdmin++;
-                //     }
-                // }
-                Session::put('MaTaiKhoan', $login->MaTaiKhoan); 
-                // if($isAdmin > 1){
-                //     Session::put('isAdmin', $isAdmin); 
-                // }
+                Session::put('MaTaiKhoan', $login->MaTaiKhoan);
                 return Redirect::to('/');
             }
         }else{
@@ -105,6 +111,7 @@ class HomeController extends Controller
     public function KhachHangDangXuat(){
         Session::put('TenTaiKhoan', null);
         Session::put('MaTaiKhoan', null);
+        Session::put('isAdmin', null);
         return Redirect::to('/');
     }
 }
