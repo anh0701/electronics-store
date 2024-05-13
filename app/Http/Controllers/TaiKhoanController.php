@@ -13,10 +13,10 @@ use Illuminate\Validation\Rule;
 
 class TaiKhoanController extends Controller
 {
-    // public function dangNhap(){
-    //     session::forget('user');
-    //     return view('auth.dangNhap');
-    
+    public function dashboard(){
+        return view('admin_layout');
+    }
+
     public function dangNhap(Request $request){
         session::forget('user');
         return view('auth.dangNhap');

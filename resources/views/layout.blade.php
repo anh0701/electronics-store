@@ -13,8 +13,9 @@
     <link href="{{ asset('frontend/css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet" >
-	
+    <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
+	<link href="{{ asset('frontend/css/profile.css') }}" rel="stylesheet" >
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
     <link rel="shortcut icon" href="{{ asset('frontend/images/ico/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
@@ -72,8 +73,8 @@
 									$maTaiKhoan = Session::get('MaTaiKhoan');
 									if($maTaiKhoan != ''){}
 								@endphp
-                    			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								<li><a href="{{ route('/UserProfile') }}"><i class="fa fa-user"></i> Trang cá nhân</a></li>
 								@if (session('user'))
 									@php
 										$user = session('user');
@@ -308,6 +309,61 @@
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
+	{{-- Tính tiền giao hàng --}}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.TinhPhiGiaoHang').click(function(){
+				var MaThanhPho = $('.MaThanhPho').val();
+				var MaQuanHuyen = $('.MaQuanHuyen').val();
+				var MaXaPhuong = $('.MaXaPhuong').val();
+				var _token = $('input[name="_token"]').val();
+				if(MaThanhPho == '' && MaQuanHuyen == '' && MaXaPhuong == ''){
+					alert('Chọn địa điểm để tính phí vận chuyển');
+				}else{
+					$.ajax({
+					url: '{{ url('/TinhPhiGiaoHang') }}',
+					method: 'POST',
+					data:{
+						MaThanhPho:MaThanhPho,
+						MaQuanHuyen:MaQuanHuyen,
+						MaXaPhuong:MaXaPhuong,
+						_token:_token
+					},
+					success:function(data){
+						location.reload();
+					}
+				});
+			}
+		});
+	});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ChonDiaDiem').on('click',function(){
+			var action = $(this).attr('id');
+			var ma_id = $(this).val();
+			var _token = $('input[name="_token"]').val();
+			var result = '';
+        
+			if(action=='MaThanhPho'){
+				result = 'MaQuanHuyen';
+			}else{
+				result = 'MaXaPhuong';
+			}
+			$.ajax({
+				url : '{{ route('/ChonDiaDiem') }}',
+				method: 'POST',
+				data:{
+					action:action,
+					ma_id:ma_id,
+					_token:_token
+				},
+				success:function(data){
+					$('#'+result).html(data);
+				}});
+    		});
+		});
+	</script>
 	{{-- Create cart --}}
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -321,7 +377,7 @@
 				var _token = $('input[name="_token"]').val();
 				
 				$.ajax({
-					url: '{{ route('/them-gio-hang') }}',
+					url: '{{ route('/ThemGioHang') }}',
 					method: 'POST',
 					data:{
 						cart_product_id:cart_product_id, 
@@ -343,7 +399,7 @@
 							closeOnConfirm: false
 							},
 						function() {
-							window.location.href = "{{ route('/hien-thi-gio-hang') }}";
+							window.location.href = "{{ route('/HienThiGioHang') }}";
 						});
 					}
 				});
@@ -368,7 +424,7 @@
 			var cartid = $(this).data('cartid');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url: '{{ route('/thay-doi-so-luong') }}',
+				url: '{{ route('/ThayDoiSoLuong') }}',
 				method: 'POST',
 				data:{
 					cartid:cartid,

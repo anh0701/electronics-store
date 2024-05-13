@@ -3,7 +3,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
       <div class="panel-heading">
-         Liệt kê sản phẩm
+         Liệt kê phí giao hàng
       </div>
       <div class="row w3-res-tb">
         <div class="col-sm-4">
@@ -29,33 +29,24 @@
           <thead>
             <tr>
               <th>STT</th>
-              <th>Tên sản phẩm</th>
-              <th>Thuộc thương hiệu</th>
-              <th>Thuộc danh mục</th>
-              <th>Hình ảnh</th>
-              <th>Giá</th>
+              <th>Tên thành phố / Tỉnh</th>
+              <th>Tên quận / Huyện</th>
+              <th>Tên xã phường / Thị trấn</th>
+              <th>Thành tiền</th>
               <th style="width:100px;">Quản lý</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($allSanPham as $key => $sanPham)
+            @foreach ($allPhiGiaoHang as $key => $phiGiaoHang)
             <tr>
               <td>{{ $key+1 }}</td>
-              <td>{{ $sanPham->TenSanPham }}</td>
-              <td>{{ $sanPham->ThuongHieu->TenThuongHieu ?? 'None' }}</td>
-              <td>{{ $sanPham->DanhMuc->TenDanhMuc }}</td>
-              <td><img src="{{ asset('upload/sanPham/'.$sanPham->HinhAnh) }}" height="100px" width="150px"></td>
-              <td>{{ number_format($sanPham->GiaSanPham, 0, '', '.') }} đ</td>
+              <td>{{ $phiGiaoHang->TinhThanhPho->TenThanhPho }}</td>
+              <td>{{ $phiGiaoHang->QuanHuyen->TenQuanHuyen }}</td>
+              <td>{{ $phiGiaoHang->XaPhuongThiTran->TenXaPhuong }}</td>
+              <td>{{ number_format($phiGiaoHang->SoTien, 0, '', '.') }} đ</td>
               <td>
-                <a href="{{ route('/TrangSuaSanPham', $sanPham->MaSanPham) }}">
-                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green; margin-bottom: 15px" class="fa fa-pencil-square-o text-success text-active"></i>
-                </a>
-                <a onclick="return confirm('Bạn có muốn xóa {{ $sanPham->TenSanPham }} không?')" href="{{ route('/XoaSanPham', [$sanPham->MaSanPham]) }}">
-                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red; margin-bottom: 15px" class="fa fa-times text-danger text"></i>
-                </a>
-                <a href="{{ route('/TrangSanPhamTSKT', $sanPham->MaSanPham) }}">
-                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
-                </a>
+                <a href="{{ route('/TrangSuaPhiGiaoHang', $phiGiaoHang->MaPhiGiaoHang) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                <a onclick="return confirm('Bạn có muốn xóa mục này không?')" href="{{ route('/XoaPhiGiaoHang', [$phiGiaoHang->MaPhiGiaoHang]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
               </td>
             </tr>
             @endforeach
@@ -66,7 +57,7 @@
         <div class="row">
           <div class="col-sm-7 text-right text-center-xs">                
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allSanPham->links('vendor.pagination.bootstrap-4') }}
+              {{ $allPhiGiaoHang->links('vendor.pagination.bootstrap-4') }}
             </ul>
           </div>
       </div>

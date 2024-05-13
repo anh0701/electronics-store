@@ -41,24 +41,52 @@
                             </select>
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-6">
-                                <label for="exampleInputPassword1">Chọn danh mục cha</label>
-                                <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 choose DanhMucCha">
-                                    @foreach ($allDanhMuc as $key => $valueDanhMuc)
-                                        @if ($value->MaDanhMuc == $valueDanhMuc->MaDanhMuc)
-                                            <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>
-                                        @elseif ($valueDanhMuc->DanhMucCha == 0)
-                                            <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="exampleInputPassword1">Chọn danh mục con</label>
-                                <select name="DanhMucCon" id="DanhMucCon" class="form-control input-lg m-bot15 DanhMucCon">
-                                    <option value="">---Chọn danh mục con---</option>
-                                </select>
-                            </div>
+                            @if ($danhMuc->DanhMucCha == 0)
+                                <div class="col-lg-6">
+                                    <label for="exampleInputPassword1">Chọn danh mục cha</label>
+                                    <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 chonDanhMucTSKT DanhMucCha">
+                                        @foreach ($allDanhMuc as $key => $valueDanhMuc)
+                                            @if ($value->MaDanhMuc == $valueDanhMuc->MaDanhMuc)
+                                                <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>
+                                            @elseif ($valueDanhMuc->DanhMucCha == 0)
+                                                <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="exampleInputPassword1">Chọn danh mục con</label>
+                                    <select name="DanhMucCon" id="DanhMucCon" class="form-control input-lg m-bot15 chonDanhMucTSKT DanhMucCon">
+                                        <option value="">--- Không có danh mục con ---</option>
+                                    </select>
+                                </div>
+                            @elseif ($danhMuc->DanhMucCha != 0)
+                                <div class="col-lg-6">
+                                    <label for="exampleInputPassword1">Chọn danh mục cha</label>
+                                    <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 chonDanhMucTSKT DanhMucCha">
+                                        @foreach ($allDanhMuc as $key => $valueDanhMuc)
+                                            @if ($valueDanhMuc->DanhMucCha == 0 && $valueDanhMuc->MaDanhMuc == $danhMuc->DanhMucCha )
+                                                <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>
+                                            @elseif ($valueDanhMuc->DanhMucCha == 0)
+                                                <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="exampleInputPassword1">Chọn danh mục con</label>
+                                    <select name="DanhMucCon" id="DanhMucCon" class="form-control input-lg m-bot15 chonDanhMucTSKT DanhMucCon">
+                                        <option value="">--- Chọn danh mục con ---</option>
+                                        @foreach ($allDanhMuc as $key => $valueDanhMuc)
+                                            @if ($valueDanhMuc->DanhMucCha != 0 && $valueDanhMuc->MaDanhMuc == $danhMuc->MaDanhMuc)
+                                                <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>
+                                            @elseif($valueDanhMuc->DanhMucCha != 0 && $valueDanhMuc->DanhMucCha == $danhMuc->DanhMucCha)
+                                                <option value="{{ $valueDanhMuc->MaDanhMuc }}" >{{ $valueDanhMuc->TenDanhMuc }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>

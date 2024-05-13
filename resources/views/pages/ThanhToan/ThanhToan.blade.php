@@ -62,7 +62,7 @@
                                 <p class="cart_total_price">{{ number_format($subtotal, 0, '', '.') }} đ</p>
                             </td>
                             <td class="cart_delete">
-                                <a class="cart_quantity_delete" href="{{ route('/xoa-sp-trong-gio-hang', $cart['session_id']) }}"><i class="fa fa-times"></i></a>
+                                <a class="cart_quantity_delete" href="{{ route('/XoaSanPhamTrongGioHang', $cart['session_id']) }}"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>                            
                         @endforeach
@@ -76,16 +76,22 @@
                                     <td>{{ number_format($total, 0, '', '.') }} đ</td>
                                 </tr>
                                 <tr>
-                                    <td>Tiền giảm giá</td>
-                                    <td>$2</td>
+                                    <td>Tiền từ giảm giá</td>
+                                    <td></td>
                                 </tr>
                                 <tr class="shipping-cost">
                                     <td>Tiền giao hàng</td>
-                                    <td>Free</td>										
+                                    <td>
+                                        @if (Session::get('fee'))
+                                            {{ number_format(Session::get('fee'), 0,',','.') }} đ
+                                        @elseif (!Session::get('fee'))
+                                            0 đ
+                                        @endif
+                                    </td>										
                                 </tr>
                                 <tr>
                                     <td>Tổng tiền</td>
-                                    <td><span>$61</span></td>
+                                    <td><span>{{ number_format(Session::get('fee') + $total, 0,',','.') }}  đ</span></td>
                                 </tr>
                             </table>
                         </td>
@@ -117,46 +123,26 @@
                                 <input type="text" placeholder="Coupon code">
                             </form>
                             <a class="btn btn-primary" href="">Áp dụng mã giảm giá</a>
+                            <a class="btn btn-primary" href="">Xóa mã giảm giá</a>
                         </div>
                         <div class="form-two">
                             <form>
-                                <select>
+                                {{ csrf_field() }}
+                                <select name="MaThanhPho" id="MaThanhPho" class="ChonDiaDiem MaThanhPho">
                                     <option>-- Thành phố / Tỉnh --</option>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
+                                    @foreach ($allThanhPho as $key => $thanhPho)
+                                        <option value="{{ $thanhPho->MaThanhPho }}" >{{ $thanhPho->TenThanhPho }}</option>
+                                    @endforeach
                                 </select>
-                                <select>
+                                <select name="MaQuanHuyen" id="MaQuanHuyen" class="ChonDiaDiem MaQuanHuyen">
                                     <option>-- Quận / Huyện --</option>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
                                 </select>
-                                <select>
+                                <select name="MaXaPhuong" id="MaXaPhuong" class="MaXaPhuong">
                                     <option>-- Xã / Phường --</option>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
                                 </select>
-                                <input type="text" placeholder="Tiền giao hàng">
                             </form>
-                            <a class="btn btn-primary" href="">Chọn địa điểm</a>
-                            <a class="btn btn-primary" href="">Xóa tiền giao hàng</a>
+                            <a class="btn btn-primary TinhPhiGiaoHang" name="TinhPhiGiaoHang" >Tính tiền giao hàng</a>
+                            <a class="btn btn-primary" href="{{ route('/XoaPhiGiaoHang') }}">Xóa tiền giao hàng</a>
                         </div>
                     </div>
                 </div>

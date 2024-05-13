@@ -2440,6 +2440,9 @@ h2.title {
 }
 
 .btn.btn-primary {
+  text-align: center;
+  width: auto;
+  height: 35px;
   background:#FE980F;
   border: 0 none;
   border-radius: 0;
