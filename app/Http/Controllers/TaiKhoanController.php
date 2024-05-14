@@ -39,7 +39,7 @@ class TaiKhoanController extends Controller
         $taikhoan = TaiKhoan::where('Email', $email)->first();
 
         if ($taikhoan && password_verify($matkhau, $taikhoan->MatKhau)) {
-            if($taikhoan->Quyen == ""){
+            if($taikhoan->Quyen == "KH"){
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
@@ -84,15 +84,17 @@ class TaiKhoanController extends Controller
                 'required',
                 Rule::unique('tbl_taikhoan')->ignore($request->user_id),
             ],
+            'matkhau' => 'required',
         ], $messages);
 
         if (!$valid) {
             return redirect()->back()->withInput();
         }
 
-        $maTK = 'TKNV' . date('YmdHis');
+        $maTK = 'TK' . date('YmdHis');
         $thoiGianTao = date('Y-m-d H:i:s');
         $matkhauMoi = bcrypt($request->matkhau);
+        $quyen = 'KH';
 
         $taiKhoan = new TaiKhoan();
         $taiKhoan->MaTaiKhoan = $maTK;
@@ -100,6 +102,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->MatKhau = $matkhauMoi;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
+        $taiKhoan->Quyen = $quyen;
         $taiKhoan->save();
 
         return redirect('/dang-nhap')->with('success', 'Tài khoản đăng ký thành công!');
@@ -108,13 +111,56 @@ class TaiKhoanController extends Controller
     public function trangAdmin(){
         $user = session('user');
         $quyen = $user['Quyen'];
-        if($quyen == "NV" || $quyen == null){
+        if($quyen == "NV" || $quyen == "KH"){
             return redirect('/');
         }else{
             return view('trangQuanLy', compact('user'));
         }
         // Trả về view Dashboard và truyền thông tin người dùng vào view
 
+    }
+
+    public function capNhatTK(){
+        $user = session(('user'));
+        $tenTK = $user['TenTaiKhoan'];
+        if($tenTK != ""){
+            $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
+            return view('auth.capNhatTK', ['data' => $tk]);
+        }
+    }
+
+    public function xuLyCNTK(Request $request){
+        $messages = [
+            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
+            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+        ];
+        $valid = $request->validate([
+            'tentaikhoan' => [
+                'required',
+                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
+            ],
+            'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
+        ], $messages);
+        
+        $valid = $request->all();
+        $maTK = $request->maTK;
+        $tenTK = $request->tentaikhoan;
+        $thoiGianSua = date('Y-m-d H:i:s');
+        $sdt = $request->sdt;
+        $quyen = $request->quyen;
+
+        TaiKhoan::where('MaTaiKhoan', $maTK)->update([
+            'TenTaiKhoan' => $tenTK,
+            'SoDienThoai' => $sdt,
+            'ThoiGianSua' => $thoiGianSua,
+        ]);
+
+        $request->session()->put('user', [
+            'TenTaiKhoan' => $tenTK,
+            'Quyen' => $quyen,
+        ]);
+
+        return redirect('/')->with('success', 'Tài khoản đã được sửa thành công!');
     }
 
     public function dangXuat(){
@@ -197,39 +243,12 @@ class TaiKhoanController extends Controller
     }
 
     public function xuLySuaTK(Request $request){
-        $messages = [
-            'email.required' => 'Vui lòng nhập địa chỉ email.',
-            'email.email' => 'Địa chỉ email không hợp lệ.',
-            'email.unique' => 'Địa chỉ email đã được sử dụng.',
-            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
-            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
-            'matkhau.required' => 'Vui lòng nhập mật khẩu.',
-        ];
-        $valid = $request->validate([
-            'email' => [
-            'required',
-            'email',
-                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
-            ],
-            'tentaikhoan' => [
-                'required',
-                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
-            ],
-            'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
-        ], $messages);
-        
-        $valid = $request->all();
         $maTK = $request->maTK;
-        $tenTK = $request->tentaikhoan;
-        $email = $request->email;
-        $sdt = $request->sdt;
         $quyen = $request->quyen;
-
+        $thoiGianSua = date('Y-m-d H:i:s');
         TaiKhoan::where('MaTaiKhoan', $maTK)->update([
-            'TenTaiKhoan' => $tenTK,
-            'Email' => $email,
-            'SoDienThoai' => $sdt,
             'Quyen' => $quyen,
+            'ThoiGianSua' => $thoiGianSua,
         ]);
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được sửa thành công!');
     }
@@ -238,5 +257,102 @@ class TaiKhoanController extends Controller
         DB::delete('DELETE FROM tbl_taikhoan WHERE MaTaiKhoan = ?', [$id]);
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được xóa thành công!');
     }
+
+    public function timkiemTK(Request $request){
+        $keyword = $request->input('keyword');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $quyen = $request->input('quyen');
+
+        $query = "SELECT * FROM tbl_taikhoan WHERE 1=1"; // 1=1 để bắt đầu điều kiện WHERE
+
+        if (!empty($startDate)) {
+            $query .= " AND DATE(ThoiGianTao) >= '$startDate'";
+        }
+
+        if (!empty($endDate)) {
+            $query .= " AND DATE(ThoiGianTao) <= '$endDate'";
+        }
+
+        if (!empty($quyen)){
+            $query .= " AND Quyen LIKE '%$quyen%'";
+        }
+
+        if (!empty($keyword)) {
+            $query .= " AND (TenTaiKhoan LIKE '%$keyword%' 
+                        OR Email LIKE '%$keyword%' 
+                        OR SoDienThoai LIKE '%$keyword%' 
+                        OR Email LIKE '%$keyword%' 
+                        OR ThoiGianTao LIKE '%$keyword%' 
+                        -- OR ThoiGianSua LIKE '%$keyword%'
+                        )";
+        }
+
+        $data = DB::select($query);
+
+        return view('admin.TaiKhoan.lietkeTK', compact('data'));
+    }
+
+    public function show_dashboard(){
+        return view('admin_layout');
+    }
+
+    // public function TrangLietKeTaiKhoan(){
+    //     $allTaiKhoan = TaiKhoan::orderBy('MaTaiKhoan', 'DESC')->paginate(10);
+    //     $allPQND = PhanQuyenNguoiDung::orderBy('MaPQND', 'DESC')->get();
+    //     $allPhanQuyen = PhanQuyen::orderBy('MaPhanQuyen', 'DESC')->get();
+    //     return view('admin.TaiKhoan.LietKeTaiKhoan')->with(compact('allTaiKhoan', 'allPQND', 'allPhanQuyen'));
+    // }
+
+    // public function XoaPQND($MaPQND){
+    //     $phanQuyenNguoiDung = PhanQuyenNguoiDung::find($MaPQND);
+    //     $phanQuyenNguoiDung->delete();
+    //     return Redirect::to('TrangLietKeTaiKhoan')->with('status', 'Xóa phân quyền của tài khoản thành công');
+    // }
+
+    // public function ThemPQND($MaTaiKhoan, $MaPhanQuyen){
+    //     $phanQuyenNguoiDung = new PhanQuyenNguoiDung();
+    //     $phanQuyenNguoiDung->MaTaiKhoan = $MaTaiKhoan;
+    //     $phanQuyenNguoiDung->MaPhanQuyen = $MaPhanQuyen;
+    //     $phanQuyenNguoiDung->save();
+    //     return Redirect::to('TrangLietKeTaiKhoan')->with('status', 'Phân quyền cho tài khoản thành công');
+    // }
+
+    // public function XemChiTiet($MaTaiKhoan){
+    //     $allTaiKhoan = TaiKhoan::orderBy('MaTaiKhoan', 'DESC')->get();
+    //     $allPQND = PhanQuyenNguoiDung::orderBy('MaPQND', 'DESC')->where('MaTaiKhoan', $MaTaiKhoan)->get();
+    //     $allPhanQuyen = PhanQuyen::orderBy('MaPhanQuyen', 'DESC')->get();
+    //     return view('admin.TaiKhoan.XemChiTiet')->with(compact('allTaiKhoan', 'allPQND', 'allPhanQuyen'));
+    // }
+
+    // public function TrangTaoTaiKhoan(){
+    //     return view('admin.TaiKhoan.TaoTaiKhoan');
+    // }
+
+    // public function TaoTaiKhoan(Request $request){
+
+    // }
+
+    // public function TrangDangNhap(){
+    //     return view('admin.TaiKhoan.login');
+    // }
+
+    // public function DangNhapAdmin(Request $request){
+    //     $data = $request->all();
+    //     $Email = $data['Email'];
+    //     $MatKhau = md5($data['MatKhau']);
+    //     $login = TaiKhoan::where('Email', $Email)->where('MatKhau', $MatKhau)->first();
+    //     if($login){
+    //         $login_count = $login->count();
+    //         if($login_count){
+    //             Session::put('TenTaiKhoan', $login->TenTaiKhoan);
+    //             Session::put('MaTaiKhoan', $login->MaTaiKhoan);
+    //             return Redirect::to('/dashboard');
+    //         }
+    //     }else{
+    //         Session::put('status', 'Mật khẩu hoặc tài khoản không đúng. Vui lòng đăng nhập lại');
+    //         return Redirect::to('/DangNhapAdmin');
+    //     }
+    // }
 
 }

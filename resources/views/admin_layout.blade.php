@@ -89,8 +89,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý thương hiệu</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
-              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/') }}">Thêm thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/') }}">Liệt kê thương hiệu sản phẩm</a></li>
             </ul>
           </li>
           <li class="sub-menu">

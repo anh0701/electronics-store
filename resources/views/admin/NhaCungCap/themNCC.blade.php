@@ -18,6 +18,7 @@
             @endif
         </div>
         <label for="tennhacungcap">Tên nhà cung cấp:</label>
+        <input type="hidden" id="nccMoi" name="nccMoi" value="{{ $test }}" readonly>
         <input type="text" id="tennhacungcap" name="tennhacungcap" value="{{ old('tennhacungcap') }}">
         <label for="diachi">Địa chỉ:</label>
         <input type="text" id="diachi" name="diachi" value="{{ old('diachi') }}">
