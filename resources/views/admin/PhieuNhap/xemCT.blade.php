@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Detail</title>
+    <title>Xem phieu nhap chi tiet</title>
     <link rel="stylesheet" href="{{ asset('/css/xem.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}" >
 </head>
 <body>
-    <h1>Data Detail</h1>
+    <h1>Xem phieu nhap chi tiet</h1>
     <label for="maPN">Ma phieu:</label><br>
     <input type="text" id="maPN" name="maPN" value="{{ $pn->MaPhieuNhap }}" readonly class="gray-background"><br>
     <label for="maNCC">Nha cung cap:</label><br>
@@ -34,7 +34,6 @@
                 <th class="th1">Số Lượng</th>
                 <th class="th1">Đơn Giá</th>
                 <th class="th1">Thanh tien</th>
-                <th class="th1">Tuy chon</th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +51,8 @@
         </tbody>
     </table>
     <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
+    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-primary">Sua phieu nhap</button></a>
+    <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-warning">Xoa phieu nhap</button></a>
 </body>
 
 </html>

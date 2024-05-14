@@ -24,6 +24,10 @@ Route::post('/xuLyThemMatHang', [PhieuNhapController::class, 'xuLyThemMatHang'])
 Route::get('/xoaMatHang/{id}', [PhieuNhapController::class, 'xoaMatHang'])->name('xoaMatHang');
 Route::post('/xuLyLapPN', [PhieuNhapController::class, 'xuLyPN']);
 Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
+Route::get('/sua-phieu-nhap/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
+Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySuaPN']);
+Route::get('/xoa-phieu-nhap/{id}', [PhieuNhapController::class, 'xoaPN'])->name('xoaPN');
+
 //Nha cung cap
 Route::get('/liet-ke-nha-cung-cap', [NhaCungCapController::class, 'lietKe'])->name('lietKeNCC');
 Route::get('/them-nha-cung-cap', [NhaCungCapController::class, 'themNCC'])->name('themNCC');
@@ -32,14 +36,6 @@ Route::get('/sua-nha-cung-cap/{id}', [NhaCungCapController::class, 'suaNCC'])->n
 Route::post('/xuLySuaNCC', [NhaCungCapController::class, 'xuLySuaNCC'])->name('xuLySuaNCC');
 Route::get('/xoa-nha-cung-cap/{id}', [NhaCungCapController::class, 'xoaNCC'])->name('xoaNCC');
 Route::get('/tim-kiem-nha-cung-cap', [NhaCungCapController::class, 'timkiemNCC'])->name('timkiemNCC');
-
-// Thuong Hieu San Pham
-// Route::get('/xemPN', [PhieuNhapController::class, 'trangXemPhieuNhap']);
-// Route::get('/xemCTPN/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xem.CT');
-// Route::get('/lapPN/', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
-// Route::post('/xuLyLapPN', [PhieuNhapController::class, 'luuPN']);
-// Route::get('/suaPN/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
-// Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySua'])->name('xuLySuaPN');
 
 // Thuong Hieu San Pham
 Route::get('/TrangThemThuongHieu', [ThuongHieuController::class, 'TrangThemThuongHieu'])->name('/TrangThemThuongHieu');

@@ -33,6 +33,13 @@ class PhieuNhapController extends Controller
         return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn]);
     }
 
+    public function suaPN($id){
+        $pn = DB::select("SELECT * FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
+        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
+
+        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn]);
+    }
+
 
     public function lapPN(){
         $matHangList = session('matHangList', []);
@@ -178,29 +185,35 @@ class PhieuNhapController extends Controller
         return redirect('/liet-ke-phieu-nhap')->with('success', 'Phieu nhap đã được tạo thành công!');
     }
 
-    public function suaPN($id){
-        $pn = DB::select("SELECT * FROM test1 WHERE test1.maPN = '{$id}' LIMIT 1");
-        return view('admin.PhieuNhap.suaPN', ['data' => $pn]);
-    }
+    public function xuLySuaPN(Request $request){
+        $tongTien = 0;
+        foreach($request->maCTPN as $key => $maCTPN){
+            $soluong = $request->soluong[$key];
+            $dongia = $request->dongia[$key];
+            $thanhTien = $soluong * $dongia;
+            $tongTien += $thanhTien;
+            ChiTietPhieuNhap::where('MaCTPN', $maCTPN)->update([
+                'SoLuong' => $soluong,
+                'GiaSanPham' => $dongia,
 
-    public function xuLySua(Request $request){
-        $maPN = $request->input('maPN');
-        $nguoiLap = $request->input('nguoiLap');
-        $maNCC = $request->input('maNCC');
-        $tongTien = $request->input('tongTien');
-        $soTienTra = $request->input('soTienTra');
-        $soTienNo = $request->input('tongTien') - $request->input('soTienTra');
-
-        // Cập nhật dữ liệu vào cơ sở dữ liệu
-        PhieuNhap::where('maPN', $maPN)->update([
-            'nguoiLap' => $nguoiLap,
-            'maNCC' => $maNCC,
-            'tongTien' => $tongTien,
-            'soTienTra' => $soTienTra,
-            'soTienNo' => $soTienNo,
+            ]);  
+        }
+        $tienTra = $request->tongTien - $request->tienNo;
+        $tienTraMoi = $tienTra + $request->tienTra;
+        $tienNo = $tongTien - $tienTraMoi;
+        $thoiGianSua = date('Y-m-d H:i:s');
+        PhieuNhap::where('MaPhieuNhap', $request->maPN)->update([
+            'TongTien' => $tongTien,
+            'TienTra' => $tienTraMoi,
+            'TienNo' => $tienNo,
+            'ThoiGianSua' => $thoiGianSua,
         ]);
-        return redirect()->route('xem.CT', ['id' => $maPN]);
+        return redirect()->route('xemCTPN', ['id' => $request->maPN]);
     }
 
-
+    public function xoaPN($id){
+        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
+        DB::delete("DELETE FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
+        return redirect('/liet-ke-phieu-nhap');
+    }
 }

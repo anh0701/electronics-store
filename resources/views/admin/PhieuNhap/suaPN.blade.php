@@ -3,77 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SuaPhieuNhap</title>
-    <style>
-        /* Thiết lập phần tử label */
-        label {
-            display: block; /* Hiển thị mỗi nhãn trên một dòng mới */
-            margin-bottom: 5px; /* Khoảng cách giữa các nhãn */
-        }
-
-        /* Thiết lập phần tử input */
-        input {
-            width: 100%; /* Độ rộng của ô textbox */
-            padding: 5px; /* Khoảng cách bên trong ô textbox */
-            margin-bottom: 10px; /* Khoảng cách giữa các ô textbox */
-            border: 1px solid #ccc; /* Đường viền của ô textbox */
-            border-radius: 4px; /* Bo tròn các góc của ô textbox */
-            box-sizing: border-box; /* Kích thước ô textbox bao gồm cả padding và border */
-        }
-
-        /* Thiết lập phần tử button */
-        .edit-btn {
-            padding: 8px 16px; /* Kích thước nút */
-            background-color: #4CAF50; /* Màu nền của nút */
-            color: white; /* Màu chữ của nút */
-            border: none; /* Không có đường viền */
-            border-radius: 4px; /* Bo tròn các góc */
-            cursor: pointer; /* Con trỏ thành dạng bàn tay khi di chuột vào nút */
-        }
-
-        /* Thiết lập hover cho nút */
-        .edit-btn:hover {
-            background-color: #45a049; /* Màu nền khi di chuột vào */
-        }
-        .gray-background {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Sua phieu nhap</title>
+    <link rel="stylesheet" href="{{ asset('/css/xem.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}" >
 </head>
 <body>
-    <h1>SuaPhieuNhap</h1>
+    <h1>Sua phieu nhap</h1>
     <form action="/xuLySuaPN" method="post">
-    @csrf <!-- Sử dụng token CSRF protection trong Laravel -->
-
-        @foreach ($data as $item)
-            <label for="maPN">Mã Phiếu Nhập:</label>
-            <input type="text" id="maPN" name="maPN" value="{{ $item->maPN }}" readonly class="gray-background"><br>
-
-            <label for="nguoiLap">Người Lập:</label>
-            <input type="text" id="nguoiLap" name="nguoiLap" value="{{ $item->nguoiLap }}"><br>
-
-            <label for="maNCC">Mã Nhà Cung Cấp:</label>
-            <input type="text" id="maNCC" name="maNCC" value="{{ $item->maNCC }}"><br>
-
-            <label for="thoiGianLap">Thời Gian Lập:</label>
-            <input type="text" id="thoiGianLap" name="thoiGianLap" value="{{ $item->thoiGianLap }}" readonly class="gray-background"><br>
-
-            <label for="tongTien">Tổng Tiền:</label>
-            <input type="text" id="tongTien" name="tongTien" value="{{ $item->tongTien }}"><br>
-
-            <label for="soTienTra">Số Tiền Trả:</label>
-            <input type="text" id="soTienTra" name="soTienTra" value="{{ $item->soTienTra !== null ? $item->soTienTra : '0' }}"><br>
-
-            <label for="soTienNo">Số Tiền Nợ:</label>
-            <input type="text" id="soTienNo" name="soTienNo" value="{{ $item->soTienNo }}" readonly class="gray-background"><br>
-        @endforeach
-
-        <button type="submit" class="submit">Lưu</button>
+        @csrf
+        <label for="maPN">Ma phieu:</label><br>
+        <input type="text" id="maPN" name="maPN" value="{{ $pn->MaPhieuNhap }}" readonly class="gray-background"><br>
+        <label for="maNCC">Nha cung cap:</label><br>
+        <input type="text" id="maNCC" name="maNCC" value="{{ $pn->MaNhaCungCap }}" readonly class="gray-background"><br>
+        <label for="nguoiLap">Nguoi Lap:</label><br>
+        <input type="text" id="nguoiLap" name="nguoiLap" value="{{ $pn->MaTaiKhoan }}" readonly class="gray-background"><br>
+        <label for="tongTien">Tong tien:</label><br>
+        <input type="text" id="tongTien" name="tongTien" value="{{ $pn->TongTien }}" readonly class="gray-background"><br>
+        <label for="tienTra">Tien tra:</label><br>
+        <input type="text" id="tienTra" name="tienTra" value="0"><br>
+        <label for="tienNo">Tien no:</label><br>
+        <input type="text" id="tienNo" name="tienNo" value="{{ $pn->TienNo }}" readonly class="gray-background"><br>
+        <label for="phuongThucThanhToan">Phuong thuc thanh toan:</label><br>
+        <input type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $pn->PhuongThucThanhToan }}" readonly class="gray-background"><br>
+        <br>
+        <table class="table" style="width: auto;">
+            <thead>
+                <tr>
+                    <th class="th1">Mã PNCT</th>
+                    <th class="th1">Mã San Pham</th>
+                    <th class="th1">Số Lượng</th>
+                    <th class="th1">Đơn Giá</th>
+                    <th class="th1">Thanh tien</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($ctpn as $key => $matHang)
+                    <tr>
+                        <td><input type="text" id="maCTPN[]" name="maCTPN[]" value="{{ $matHang->MaCTPN }}" readonly class="gray-background"></td>
+                        <td><input type="text" value = "{{ $matHang->MaSanPham }}" readonly class="gray-background"></td>
+                        <td><input type="text" id="soluong[]" name="soluong[]" min="1" value="{{ $matHang->SoLuong }}"></td>
+                        <td><input type="text" id="dongia[]" name="dongia[]" min="10000" step="1000" value="{{ $matHang->GiaSanPham }}"></td>
+                        @php
+                            $thanhTien = $matHang->SoLuong * $matHang->GiaSanPham;
+                        @endphp
+                        <td>{{ $thanhTien }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-warning">Luu</button>
     </form>
-    
-    
-    
+    <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
+    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-primary">Sua phieu nhap</button></a>
 </body>
 
 </html>
