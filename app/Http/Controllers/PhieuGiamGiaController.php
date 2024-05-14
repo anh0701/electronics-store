@@ -61,15 +61,28 @@ class PhieuGiamGiaController extends Controller
     {
         //
         $suaPhieu = PhieuGiamGia::where('MaGiamGia', $MaGiamGia)->get();
-        return view('admin.PhieuGiamGia.suaPhieuGiamGia', compact($suaPhieu));
+        return view('admin.PhieuGiamGia.suaPhieuGiamGia', compact('suaPhieu'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function suaPhieuGiamGia(Request $request, PhieuGiamGia $phieuGiamGia)
+    public function suaPhieuGiamGia(Request $request, $MaGiamGia)
     {
         //
+        $data = $request->all();
+//        dd($data);
+        $phieu = PhieuGiamGia::find($MaGiamGia);
+//        dd($phieu);
+        $phieu->TenMaGiamGia = $request->TenMaGiamGia;
+        $phieu->SlugMaGiamGia = $request->SlugMaGiamGia;
+        $phieu->TriGia = $request->TriGia;
+        $phieu->MaCode = $request->MaCode;
+        $phieu->DonViTinh = $request->DonViTinh;
+        $phieu->save();
+
+        return Redirect::to('/liet-ke-phieu-giam-gia')->with('message', 'Sửa mã giảm giá thành công');
+
     }
 
     /**
