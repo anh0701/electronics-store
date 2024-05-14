@@ -284,24 +284,26 @@ CREATE TABLE `tbl_hoadon` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgia`
+-- Cấu trúc bảng cho bảng `tbl_phieugiamgia`
 --
 
-CREATE TABLE `tbl_magiamgia` (
+CREATE TABLE `tbl_phieugiamgia` (
   `MaGiamGia` int(11) NOT NULL,
   `TenMaGiamGia` varchar(50) NOT NULL,
   `SlugMaGiamGia` varchar(50) NOT NULL,
-  `TinhNang` int(11) NOT NULL,
+  `TriGia` int(11) NOT NULL,
   `MaCode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+alter table tbl_phieugiamgia
+    add DonViTinh int not null comment '% hoặc đ';
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgiand`
+-- Cấu trúc bảng cho bảng `tbl_phieugiamgiand`
 --
 
-CREATE TABLE `tbl_magiamgiand` (
+CREATE TABLE `tbl_phieugiamgiand` (
   `MaGGND` int(11) NOT NULL,
   `MaGiamGia` int(11) NOT NULL,
   `MaTaiKhoan` int(11) NOT NULL,
@@ -798,15 +800,15 @@ ALTER TABLE `tbl_hoadon`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgia`
+-- Chỉ mục cho bảng `tbl_phieugiamgia`
 --
-ALTER TABLE `tbl_magiamgia`
+ALTER TABLE `tbl_phieugiamgia`
   ADD PRIMARY KEY (`MaGiamGia`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgiand`
+-- Chỉ mục cho bảng `tbl_phieugiamgiand`
 --
-ALTER TABLE `tbl_magiamgiand`
+ALTER TABLE `tbl_phieugiamgiand`
   ADD PRIMARY KEY (`MaGGND`),
   ADD KEY `MaGiamGia` (`MaGiamGia`),
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
@@ -1032,15 +1034,15 @@ ALTER TABLE `tbl_hoadon`
   MODIFY `MaHoaDon` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgia`
+-- AUTO_INCREMENT cho bảng `tbl_phieugiamgia`
 --
-ALTER TABLE `tbl_magiamgia`
+ALTER TABLE `tbl_phieugiamgia`
   MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgiand`
+-- AUTO_INCREMENT cho bảng `tbl_phieugiamgiand`
 --
-ALTER TABLE `tbl_magiamgiand`
+ALTER TABLE `tbl_phieugiamgiand`
   MODIFY `MaGGND` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -1205,21 +1207,21 @@ ALTER TABLE `tbl_danhmuctskt`
 -- Các ràng buộc cho bảng `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
+  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`),
   ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`);
 
 --
 -- Các ràng buộc cho bảng `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
-  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
+  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`),
   ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`);
 
 --
--- Các ràng buộc cho bảng `tbl_magiamgiand`
+-- Các ràng buộc cho bảng `tbl_phieugiamgiand`
 --
-ALTER TABLE `tbl_magiamgiand`
-  ADD CONSTRAINT `tbl_magiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`);
+ALTER TABLE `tbl_phieugiamgiand`
+  ADD CONSTRAINT `tbl_phieugiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`);
 
 --
 -- Các ràng buộc cho bảng `tbl_phanquyennguoidung`
