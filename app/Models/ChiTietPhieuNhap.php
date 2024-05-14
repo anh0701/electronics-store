@@ -10,4 +10,9 @@ class ChiTietPhieuNhap extends Model
     use HasFactory;
     protected $table = 'tbl_chitietphieunhap';
     public $timestamps = false;
+
+    public function SanPham()
+    {
+        return $this->belongsTo(SanPham::class, 'MaSanPham');
+    }
 }

@@ -198,6 +198,7 @@ class PhieuNhapController extends Controller
 
             ]);  
         }
+        $trangThai = $request->trangThai;
         $tienTra = $request->tongTien - $request->tienNo;
         $tienTraMoi = $tienTra + $request->tienTra;
         $tienNo = $tongTien - $tienTraMoi;
@@ -207,7 +208,22 @@ class PhieuNhapController extends Controller
             'TienTra' => $tienTraMoi,
             'TienNo' => $tienNo,
             'ThoiGianSua' => $thoiGianSua,
+            'TrangThai' => $trangThai,
         ]);
+
+        if($trangThai == "DAXACNHAN"){
+            foreach($request->maCTPN as $key => $maCTPN){
+                $soluong = $request->soluong[$key];
+                $chiTietPhieuNhap = ChiTietPhieuNhap::where('MaCTPN', $maCTPN)->first();
+                if($chiTietPhieuNhap){
+                    $sanpham = $chiTietPhieuNhap->SanPham;
+                    if($sanpham){
+                        $sanpham->SoLuongTrongKho += $soluong;
+                        $sanpham->save();
+                    }
+                }
+            }
+        }
         return redirect()->route('xemCTPN', ['id' => $request->maPN]);
     }
 

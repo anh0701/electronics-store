@@ -55,11 +55,11 @@
             @endif
         </div>
         <label for="maHang">Mã Hàng:</label><br>
-        <input type="text" id="maHang" name="maHang" value="{{ old('maHang') }}"><br>
+        <input type="text" id="maHang" name="maHang"><br>
         <label for="soLuong">Số Lượng:</label><br>
-        <input type="number" id="soLuong" name="soLuong" value="{{ old('soLuong') }}" min="0" step="1"><br>
+        <input type="number" id="soLuong" name="soLuong" min="0" step="1"><br>
         <label for="donGia">Đơn Giá:</label><br>
-        <input type="number" id="donGia" name="donGia" value="{{ old('donGia') }}" min="0" step="1000" placeholder="Nhập giá tiền"><br>
+        <input type="number" id="donGia" name="donGia" min="0" step="1000" placeholder="Nhập giá tiền"><br>
         <!-- Thêm nút để lưu mặt hàng này -->
         <button type="submit">Them Mặt Hàng</button>
     </form>

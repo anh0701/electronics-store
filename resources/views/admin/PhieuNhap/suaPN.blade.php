@@ -19,12 +19,18 @@
         <input type="text" id="nguoiLap" name="nguoiLap" value="{{ $pn->MaTaiKhoan }}" readonly class="gray-background"><br>
         <label for="tongTien">Tong tien:</label><br>
         <input type="text" id="tongTien" name="tongTien" value="{{ $pn->TongTien }}" readonly class="gray-background"><br>
-        <label for="tienTra">Tien tra:</label><br>
+        <label for="tienTra">Tien tra them:</label><br>
         <input type="text" id="tienTra" name="tienTra" value="0"><br>
         <label for="tienNo">Tien no:</label><br>
         <input type="text" id="tienNo" name="tienNo" value="{{ $pn->TienNo }}" readonly class="gray-background"><br>
         <label for="phuongThucThanhToan">Phuong thuc thanh toan:</label><br>
         <input type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $pn->PhuongThucThanhToan }}" readonly class="gray-background"><br>
+        <label for="trangThai">Trang thai: </label><br>
+        <select id="trangThai" name="trangThai">
+            <option value="">Chua xac nhan</option>
+            <option value="DAXACNHAN">Da xac nhan</option>
+            <option value="KHAC">Khac</option>
+        </select><br>
         <br>
         <table class="table" style="width: auto;">
             <thead>

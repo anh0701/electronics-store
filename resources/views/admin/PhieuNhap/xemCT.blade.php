@@ -27,6 +27,16 @@
     <input type="text" id="thoiGianTao" name="thoiGianTao" value="{{ $pn->ThoiGianTao }}" readonly class="gray-background"><br>
     <label for="thoiGianSua">Thoi gian sua:</label><br>
     <input type="text" id="thoiGianSua" name="thoiGianSua" value="{{ $pn->ThoiGianSua }}" readonly class="gray-background"><br>
+    <label for="trangThai">Trang thai:</label><br>
+    @php
+        if ($pn->TrangThai == "DAXACNHAN"){
+            $trangthai = "Đã xác nhận";
+        }else{
+            $trangthai = "Chưa xác nhận";
+        }
+    @endphp
+    
+    <input type="text" id="trangThai" name="trangThai" value="{{ $trangthai }}" readonly class="gray-background"><br>
     <table class="table" style="width: auto;">
         <thead>
             <tr>
@@ -50,9 +60,15 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
-    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-primary">Sua phieu nhap</button></a>
-    <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-warning">Xoa phieu nhap</button></a>
+    @if ($pn->TrangThai == "DAXACNHAN")
+        <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
+    @else
+        <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
+        <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-primary">Sua phieu nhap</button></a>
+        <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-warning">Xoa phieu nhap</button></a>
+    @endif
+    
+    
 </body>
 
 </html>
