@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NhaCungCapController;
+use App\Http\Controllers\PhieuGiamGiaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhieuNhapController;
 use App\Http\Controllers\TaiKhoanController;
@@ -146,10 +147,17 @@ Route::get('/TrangKhachHangDangNhap', [HomeController::class, 'TrangKhachHangDan
 Route::post('/KhachHangDangNhap', [HomeController::class, 'KhachHangDangNhap'])->name('/KhachHangDangNhap');
 Route::get('/KhachHangDangXuat', [HomeController::class, 'KhachHangDangXuat'])->name('/KhachHangDangXuat');
 
-// GioHangController 
+// GioHangController
 Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('/them-gio-hang');
 Route::get('/hien-thi-gio-hang', [GioHangController::class, 'hien_thi_gio_hang'])->name('/hien-thi-gio-hang');
 Route::get('/xoa-sp-trong-gio-hang/{session_id}', [GioHangController::class, 'xoa_sp_trong_gio_hang'])->name('/xoa-sp-trong-gio-hang');
 Route::post('/thay-doi-so-luong', [GioHangController::class, 'thay_doi_so_luong'])->name('/thay-doi-so-luong');
 Route::get('/xoa-gio-hang', [GioHangController::class, 'xoa_gio_hang'])->name('/xoa-gio-hang');
 
+// phieu giam gia
+Route::get('/liet-ke-phieu-giam-gia', [PhieuGiamGiaController::class, 'phieuGiamGia'])->name('/liet-ke-phieu-giam-gia');
+Route::get('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'giaoDienTao'])->name('/them-phieu-giam-gia');
+Route::post('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'taoPhieuGiamGia'])->name('/them-phieu-giam-gia');
+Route::get('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'giaoDienSua'])->name('/sua-phieu');
+Route::post('/sua-phieu-giam-gia', [PhieuGiamGiaController::class, 'suaPhieuGiamGia'])->name('/sua-phieu-giam-gia');
+Route::get('/xoa-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'Xoa'])->name('/xoa-phieu-giam-gia');

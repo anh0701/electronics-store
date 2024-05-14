@@ -3,7 +3,7 @@
 <title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="{{ asset('backend/css/font.css') }}" type="text/css"/>
-<link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet"> 
+<link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- calendar -->
@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
-                <li><a href="{{ route('/') }}"><i class="fa fa-key"></i>Log Out</a></li>
+{{--                <li><a href="{{ route('/dang-xuat') }}"><i class="fa fa-key"></i>Log Out</a></li>--}}
             </ul>
         </li>
     </ul>
@@ -78,10 +78,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="leftside-navigation">
         <ul class="sidebar-menu" id="nav-accordion">
           <li>
-            <a class="active" href="{{ route('/dashboard') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Dashboard</span>
-            </a>
+{{--            <a class="active" href="{{ route('/dashboard') }}">--}}
+{{--                <i class="fa fa-dashboard"></i>--}}
+{{--                <span>Dashboard</span>--}}
+{{--            </a>--}}
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
@@ -122,8 +122,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </a>
             <ul class="sub">
               {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
-              <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>
-              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>
+{{--              <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>--}}
+{{--              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>--}}
             </ul>
           </li>
           <li class="sub-menu">
@@ -156,6 +156,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li><a href="{{ route('/TrangLietKeSanPhamTSKT') }}">Liệt kê sản phẩm TSKT</a></li>
             </ul>
           </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa-solid fa-money-bill"></i>
+                    <span>Phiếu giảm giá</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
+                    <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
+                </ul>
+            </li>
         </ul>
       </div>
     </div>
@@ -190,7 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           var ma_id = $(this).val();
           var _token = $('input[name="_token"]').val();
           var result = '';
-          
+
           if(action=='DanhMucCha'){
             result = 'DanhMucCon';
           }else{
@@ -220,7 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           var ma_id = $(this).val();
           var _token = $('input[name="_token"]').val();
           var result = '';
-          
+
           if(action=='DanhMucCha'){
             result = 'DanhMucCon';
           }else if(action=='DanhMucCon'){
@@ -252,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           var ma_id = $(this).val();
           var _token = $('input[name="_token"]').val();
           var result = '';
-          
+
           if(action=='DanhMucCha'){
               result = 'DanhMucCon';
           }else{
@@ -276,7 +286,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script type="text/javascript">
       function ChangeToSlug(){
           var slug;
-          //Lấy text từ thẻ input title 
+          //Lấy text từ thẻ input title
           slug = document.getElementById("slug").value;
           slug = slug.toLowerCase();
           //Đổi ký tự có dấu thành không dấu
@@ -316,12 +326,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         jQuery(this).closest('.small-graph-box').fadeOut(200);
         return false;
       });
-      
+
         //CHARTS
         function gd(year, day, month) {
         return new Date(year, month - 1, day).getTime();
       }
-      
+
       graphArea2 = Morris.Area({
         element: 'hero-area',
         padding: 10,
@@ -344,7 +354,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
           {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
           {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-        
+
         ],
         lineColors:['#eb6f6f','#926383','#eb6f6f'],
         xkey: 'period',
