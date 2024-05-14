@@ -48,10 +48,15 @@
                 @if ($danhMuc->DanhMucCha == 0)
                   <span style="color: red">Danh Mục cha</span>
                 @else
-                  @foreach ($allDanhMuc as $key => $value)
+                  {{-- @foreach ($allDanhMuc as $key => $value)
                     @if ($value->MaDanhMuc == $danhMuc->DanhMucCha)
                     <span style="color: rgb(25, 174, 25)">{{ $value->TenDanhMuc }}</span>
                     @endif
+                  @endforeach --}}
+                  @foreach ($allDanhMucCha as $key => $danhMucCha)
+                    @if ($danhMuc->DanhMucCha == $danhMucCha->MaDanhMuc)
+                    <span style="color: rgb(25, 174, 25)">{{ $danhMucCha->TenDanhMuc }}</span>
+                    @endif                    
                   @endforeach
                 @endif
               </td>

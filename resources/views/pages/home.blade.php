@@ -81,7 +81,7 @@
             @endif
             @endforeach
         </div><!--/category-products-->
-        <div class="brands_products"><!--brands_products-->
+        {{-- <div class="brands_products"><!--brands_products-->
             <h2>Thương hiệu sản phẩm</h2>
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
@@ -90,7 +90,7 @@
                     @endforeach									
                 </ul>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 <div class="col-sm-9 padding-right">

@@ -15,8 +15,7 @@ class ThuongHieuDanhMuc extends Model
     protected $primaryKey = 'MaTHDM';
     protected $table = 'tbl_thuonghieudanhmuc';
 
-    public function DanhMuc()
-    {
+    public function DanhMuc(){
         return $this->belongsTo(DanhMuc::class, 'MaDanhMuc');
     }
 

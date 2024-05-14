@@ -22,6 +22,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
+	<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 </head><!--/head-->
 
 <body>
@@ -119,7 +120,7 @@
 								<span class="icon-bar"></span>
 							</button>
 						</div>
-						<div class="mainmenu pull-left">
+						{{-- <div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{ route('/') }}" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
@@ -135,7 +136,7 @@
                                     </ul>
                                 </li>
 							</ul>
-						</div>
+						</div> --}}
 					</div>
 					<div class="col-sm-4">
 						<form action="{{ route('/TimKiem') }}" method="GET">

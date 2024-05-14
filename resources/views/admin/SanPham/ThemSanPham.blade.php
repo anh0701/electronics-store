@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea id="editor1" style="resize: none" rows="5" class="form-control" name="MoTa" placeholder="Mô tả"></textarea>
+                            <textarea id="MoTa" style="resize: none" rows="10" class="form-control" name="MoTa" placeholder="Mô tả"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Chọn hình ảnh</label>
@@ -84,4 +84,13 @@
         </section>
     </div>
 </div>
+@endsection
+@section('js-custom')
+    <script>
+        ClassicEditor
+        .create(document.querySelector('#MoTa'))
+        .catch(error => {
+            console.error(error);
+        })
+    </script>
 @endsection

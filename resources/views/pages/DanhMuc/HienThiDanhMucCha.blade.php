@@ -82,7 +82,7 @@
             @endif
             @endforeach
         </div><!--/category-products-->
-        <div class="brands_products"><!--brands_products-->
+        {{-- <div class="brands_products"><!--brands_products-->
             <h2>Thương hiệu sản phẩm</h2>
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
@@ -91,7 +91,40 @@
                     @endforeach									
                 </ul>
             </div>
-        </div>
+        </div> --}}
+    </div>
+</div>
+<div class="col-sm-9 padding-right">
+    <div class="mainmenu pull-left">
+        <h2 class="title text-center">Bộ lọc</h2>
+        <ul class="nav navbar-nav collapse navbar-collapse">
+            <li class="dropdown"><a href="#">Bộ lọc<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                    <li class="pull-left"><a href="#">Giá thấp đến cao</a></li>
+                    <li class="pull-left"><a href="#">Giá cao đến thấy</a></li>
+                    <li class="pull-left"><a href="#">Bán chạy</a></li>
+                    <li class="pull-left"><a href="#">Giảm theo %</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#">Hãng<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                    @foreach ($allTHDM as $key => $valueTHDM)
+                    <li class="col-sm-15 col-sm-3"><a href=""><img src="{{ asset('upload/ThuongHieu/'.$valueTHDM->ThuongHieu->HinhAnh) }}" alt=""></a></li>
+                    @endforeach
+                </ul>
+            </li>
+            @foreach ($allDanhMucTSKT as $key => $valueDanhMucTSKT)
+            <li class="dropdown"><a href="#">{{ $valueDanhMucTSKT->TenDMTSKT }}<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                    @foreach ($allTSKT as $key => $valueTSKT)
+                        @if ($valueTSKT->MaDMTSKT == $valueDanhMucTSKT->MaDMTSKT)
+                            <li class="pull-left"><a href="#">{{ $valueTSKT->TenTSKT }}</a></li>
+                        @endif
+                    @endforeach
+                </ul>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
 <div class="col-sm-9 padding-right">

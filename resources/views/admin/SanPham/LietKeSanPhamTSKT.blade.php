@@ -35,34 +35,7 @@
             </tr>
           </thead>
           <tbody>
-            <form action="{{ Route('/SuaSanPhamTSKT') }}" method="POST">
-              @foreach ($allDanhMucTSKT as $key => $valueDanhMucTSKT)
-                <tr>
-                  <td>{{ $key+1 }}</td>
-                  <td>{{ $valueDanhMucTSKT->TenDMTSKT }}</td>
-                  <td>
-                    <select name="ThongSoKyThuat{{ $key }}" class="form-control input-lg m-bot15">
-                      @foreach ($allTSKT as $key => $valueTSKT)
-                        @if ($valueTSKT->MaDMTSKT == $valueDanhMucTSKT->MaDMTSKT)
-                          @foreach ($allSanPhamTSKT as $key => $valueSanPhamTSKT)
-                            @if ($valueSanPhamTSKT->MaTSKT == $valueTSKT->MaTSKT)
-                            <option selected value="{{ $valueSanPhamTSKT->ThongSoKyThuat->MaTSKT }}">---{{ $valueSanPhamTSKT->ThongSoKyThuat->TenTSKT }}---</option>
-                            @elseif ($valueTSKT->MaDMTSKT == $valueSanPhamTSKT->ThongSoKyThuat->MaDMTSKT)
-                            <option value="{{ $valueTSKT->MaTSKT }}">{{ $valueTSKT->TenTSKT }}</option>
-                            @endif
-                          @endforeach
-                        @endif
-                      @endforeach
-                    </select>
-                  </td>
-                  <td>
-                    <a href="{{ route('/SuaSanPhamTSKT', $valueTSKT) }}">
-                      <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green; margin-bottom: 15px" class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                  </td>
-                </tr>
-              @endforeach
-            </form>
+            
           </tbody> 
         </table>
       </div>
