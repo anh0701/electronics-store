@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PhieuGiamGiaController extends Controller
 {
@@ -13,7 +14,8 @@ class PhieuGiamGiaController extends Controller
     public function phieuGiamGia()
     {
         //
-        return view('');
+        $phieuGiamGia = PhieuGiamGia::orderBy('MaGiamGia', 'DESC')->get();
+        return view('admin.PhieuGiamGia.lietKePhieuGiamGia')->with(compact("phieuGiamGia"));
     }
 
     /**
@@ -22,6 +24,7 @@ class PhieuGiamGiaController extends Controller
     public function giaoDienTao()
     {
         //
+        return view('admin.PhieuGiamGia.themPhieuGiamGia');
     }
 
     /**
@@ -30,6 +33,17 @@ class PhieuGiamGiaController extends Controller
     public function taoPhieuGiamGia(Request $request)
     {
         //
+        $data = $request->all();
+        $phieu = new PhieuGiamGia();
+        $phieu->TenMaGiamGia = $data['TenMaGiamGia'];
+        $phieu->SlugMaGiamGia = $data['SlugMaGiamGia'];
+        $phieu->TriGia = $data['TriGia'];
+        $phieu->MaCode = $data['MaCode'];
+        $phieu->DonViTinh = $data['DonViTinh'];
+        $phieu->save();
+
+        return Redirect::to('/liet-ke-phieu-giam-gia')->with('message', 'Thêm mã giảm giá thành công');
+
     }
 
     /**
@@ -43,9 +57,11 @@ class PhieuGiamGiaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function giaoDienSua(PhieuGiamGia $phieuGiamGia)
+    public function giaoDienSua($MaGiamGia)
     {
         //
+        $suaPhieu = PhieuGiamGia::where('MaGiamGia', $MaGiamGia)->get();
+        return view('admin.PhieuGiamGia.suaPhieuGiamGia', compact($suaPhieu));
     }
 
     /**
@@ -59,8 +75,12 @@ class PhieuGiamGiaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function Xoa(PhieuGiamGia $phieuGiamGia)
+    public function Xoa($MaGiamGia)
     {
         //
+        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
+        $phieuGiamGia->delete();
+        return Redirect::to('liet-ke-phieu-giam-gia')->with('status', 'Xóa mã giảm giá thành công');
+
     }
 }
