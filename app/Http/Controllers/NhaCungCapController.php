@@ -21,8 +21,9 @@ class NhaCungCapController extends Controller
         } 
     }
 
-    public function themNCC(){
-        return view('admin.NhaCungCap.themNCC');
+    public function themNCC(Request $request){
+        $test = $request->source;
+        return view('admin.NhaCungCap.themNCC', ['test' => $test]);
     }
 
     public function xuLyThemNCC(Request $request){
@@ -63,9 +64,16 @@ class NhaCungCapController extends Controller
         $nhacungcap->ThoiGianTao = $thoiGianTao;
         $nhacungcap->save();
 
-        return redirect('/liet-ke-nha-cung-cap')->with('success', 'Thên nhà cung cấp thành công!');
+        if ($request->nccMoi == 'NCCMoi') {
+            // Chuyển hướng người dùng đến trang tạo mới phiếu nhập
+            return redirect('/lap-phieu-nhap')->with('success', 'Thêm nhà cung cấp thành công!');
+        }else{
+            return redirect('/liet-ke-nha-cung-cap')->with('success', 'Thên nhà cung cấp thành công!');
+        }
+        
 
     }
+
 
     public function suaNCC($id){
         $ncc = DB::select("SELECT * FROM tbl_nhacungcap WHERE tbl_nhacungcap.MaNhaCungCap = '{$id}' LIMIT 1");
@@ -115,6 +123,36 @@ class NhaCungCapController extends Controller
     public function xoaNCC($id){
         DB::delete('DELETE FROM tbl_nhacungcap WHERE MaNhaCungCap = ?', [$id]);
         return redirect('/liet-ke-nha-cung-cap')->with('Success', 'Xoa nha cung cap thanh cong');
+    }
+
+    public function timkiemNCC(Request $request){
+        $keyword = $request->input('keyword');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = "SELECT * FROM tbl_nhacungcap WHERE 1=1"; // 1=1 để bắt đầu điều kiện WHERE
+
+        if (!empty($startDate)) {
+            $query .= " AND DATE(ThoiGianTao) >= '$startDate'";
+        }
+
+        if (!empty($endDate)) {
+            $query .= " AND DATE(ThoiGianTao) <= '$endDate'";
+        }
+
+        if (!empty($keyword)) {
+            $query .= " AND (TenNhaCungCap LIKE '%$keyword%' 
+                        OR DiaChi LIKE '%$keyword%' 
+                        OR SoDienThoai LIKE '%$keyword%' 
+                        OR Email LIKE '%$keyword%' 
+                        OR ThoiHanHopDong LIKE '%$keyword%' 
+                        OR ThoiGianTao LIKE '%$keyword%' 
+                        OR ThoiGianSua LIKE '%$keyword%')";
+        }
+
+        $data = DB::select($query);
+
+        return view('admin.NhaCungCap.lietkeNCC', compact('data'));
     }
 
 }

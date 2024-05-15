@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 05, 2024 lúc 06:16 AM
+-- Thời gian đã tạo: Th5 12, 2024 lúc 07:12 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -102,12 +102,42 @@ CREATE TABLE `tbl_chitietphieukiemkho` (
 --
 
 CREATE TABLE `tbl_chitietphieunhap` (
-  `MaCTPN` int(11) NOT NULL,
-  `order_code` varchar(50) NOT NULL,
+  `MaCTPN` varchar(50) NOT NULL,
+  `MaPhieuNhap` varchar(50) NOT NULL,
   `MaSanPham` int(11) NOT NULL,
   `SoLuong` int(11) NOT NULL,
   `GiaSanPham` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_chitietphieunhap`
+--
+
+INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
+('CTPN663ce4c9c288b', 'PN20240509215921', 1, 2, '1000000'),
+('CTPN6640306940f9e', 'PN20240512095849', 1, 12, '20000000'),
+('CTPN6640333b429d3', 'PN20240512101050', 1, 2, '1000000'),
+('CTPN6640363dc61f6', 'PN20240512102341', 1, 1, '1'),
+('CTPN6640363dc6cc1', 'PN20240512102341', 1, 3, '5000000'),
+('CTPN664037850b8db', 'PN20240512102909', 1, 1, '1'),
+('CTPN664038c07e12b', 'PN20240512103424', 3, 3, '1000000'),
+('CTPN66403c48ba928', 'PN20240512104928', 1, 1, '5000000'),
+('CTPN66403cc7aa6be', 'PN20240512105135', 1, 1, '1000000'),
+('CTPN66403cc7ab3a7', 'PN20240512105135', 1, 1, '1000000'),
+('CTPN66403cc7ac12c', 'PN20240512105135', 1, 1, '1000000'),
+('CTPN66403d3686b1f', 'PN20240512105326', 1, 1, '1000000'),
+('CTPN66403d5f27e6e', 'PN20240512105407', 1, 1, '5000000'),
+('CTPN66403d5f28cb0', 'PN20240512105407', 1, 1, '5000000'),
+('CTPN66403d5f296c9', 'PN20240512105407', 1, 1, '5000000'),
+('CTPN66403dc5b975e', 'PN20240512105549', 1, 1, '1000000'),
+('CTPN66403e5715b37', 'PN20240512105815', 1, 1, '5000000'),
+('CTPN66403e7fe2890', 'PN20240512105855', 1, 1, '5000000'),
+('CTPN66403f10350fd', 'PN20240512110120', 1, 1, '5000000'),
+('CTPN66403f3a7e2fc', 'PN20240512110202', 1, 22, '5000000'),
+('CTPN6640401bd9902', 'PN20240512110547', 1, 1, '5002000'),
+('CTPN6640404e43e42', 'PN20240512110638', 1, 1, '5000000'),
+('CTPN6640e6ae6fa2a', 'PN20240512225630', 1, 1, '1000000'),
+('CTPN6640e6ae73594', 'PN20240512225630', 2, 1, '1000000');
 
 -- --------------------------------------------------------
 
@@ -284,24 +314,26 @@ CREATE TABLE `tbl_hoadon` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgia`
+-- Cấu trúc bảng cho bảng `tbl_phieugiamgia`
 --
 
-CREATE TABLE `tbl_magiamgia` (
+CREATE TABLE `tbl_phieugiamgia` (
   `MaGiamGia` int(11) NOT NULL,
   `TenMaGiamGia` varchar(50) NOT NULL,
   `SlugMaGiamGia` varchar(50) NOT NULL,
-  `TinhNang` int(11) NOT NULL,
+  `TriGia` int(11) NOT NULL,
   `MaCode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+alter table tbl_phieugiamgia
+    add DonViTinh int not null comment '% hoặc đ';
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgiand`
+-- Cấu trúc bảng cho bảng `tbl_phieugiamgiand`
 --
 
-CREATE TABLE `tbl_magiamgiand` (
+CREATE TABLE `tbl_phieugiamgiand` (
   `MaGGND` int(11) NOT NULL,
   `MaGiamGia` int(11) NOT NULL,
   `MaTaiKhoan` int(11) NOT NULL,
@@ -330,7 +362,9 @@ CREATE TABLE `tbl_nhacungcap` (
 --
 
 INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `ThoiHanHopDong`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240505110829', 'Công ty TNHH ZTECH 3', '22 lý tư trọng, hong bang, hai phong', 999998888, 'ztech3@gmail.com', NULL, '2024-05-05 04:08:29', '2024-05-05 04:09:44');
+('NCC20240505110829', 'Công ty TNHH ZTECH 3', '22 lý tư trọng, hong bang, hai phong', 999998888, 'ztech3@gmail.com', NULL, '2024-05-05 04:08:29', '2024-05-05 04:09:44'),
+('NCC20240512225056', 'Công ty TNHH ZTECH 2', '22 lý tư trọng, hong bang, hai phong', NULL, 'anhnx286@gmail.com', NULL, '2024-05-12 15:50:56', NULL),
+('NCC20240512225513', 'NCC b', NULL, NULL, 'anhnx286a@gmail.com', NULL, '2024-05-12 15:55:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -424,16 +458,45 @@ CREATE TABLE `tbl_phieukiemkho` (
 --
 
 CREATE TABLE `tbl_phieunhap` (
-  `MaPhieuNhap` int(11) NOT NULL,
-  `MaNhaCungCap` int(11) NOT NULL,
-  `MaTaiKhoan` int(11) NOT NULL,
-  `order_code` varchar(50) NOT NULL,
-  `TienTra` varchar(50) DEFAULT NULL,
-  `TienNo` varchar(50) DEFAULT NULL,
+  `MaPhieuNhap` varchar(50) NOT NULL,
+  `MaNhaCungCap` varchar(50) NOT NULL,
+  `MaTaiKhoan` varchar(18) NOT NULL,
+  `order_code` varchar(50) DEFAULT NULL,
+  `TongTien` double NOT NULL,
+  `TienTra` double DEFAULT NULL,
+  `TienNo` double DEFAULT NULL,
   `PhuongThucThanhToan` varchar(255) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_phieunhap`
+--
+
+INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `order_code`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+('PN20240509215921', 'NCC20240505110829', 'TKNV20240430213939', NULL, 2000000, 1000000, 1000000, 'CK', '2024-05-09 14:59:21', NULL),
+('PN20240512095849', 'NCC20240505110829', 'TKNV20240428002556', NULL, 240000000, NULL, 0, 'CK', '2024-05-12 02:58:49', NULL),
+('PN20240512095919', 'NCC20240505110829', 'TKNV20240428002556', NULL, 0, NULL, 0, 'CK', '2024-05-12 02:59:19', NULL),
+('PN20240512095930', 'NCC20240505110829', 'TKNV20240428002556', NULL, 0, NULL, 0, 'CK', '2024-05-12 02:59:30', NULL),
+('PN20240512101050', 'NCC20240505110829', 'TKNV20240428002556', NULL, 2000000, NULL, 0, 'CK', '2024-05-12 03:10:50', NULL),
+('PN20240512102341', 'NCC20240505110829', 'TKNV20240428002556', NULL, 15000001, NULL, 0, 'CK', '2024-05-12 03:23:41', NULL),
+('PN20240512102909', 'NCC20240505110829', 'TKNV20240428002556', NULL, 1, NULL, 0, 'CK', '2024-05-12 03:29:09', NULL),
+('PN20240512103424', 'NCC20240505110829', 'TKNV20240428002556', NULL, 3000000, 1000000, 2000000, 'CK', '2024-05-12 03:34:24', NULL),
+('PN20240512104928', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 0, 5000000, 'CK', '2024-05-12 03:49:28', NULL),
+('PN20240512105135', 'NCC20240505110829', 'TKNV20240428002556', NULL, 3000000, NULL, 0, 'CK', '2024-05-12 03:51:35', NULL),
+('PN20240512105326', 'NCC20240505110829', 'TKNV20240428002556', NULL, 1000000, NULL, 0, 'CK', '2024-05-12 03:53:26', NULL),
+('PN20240512105407', 'NCC20240505110829', 'TKNV20240428002556', NULL, 15000000, NULL, 0, 'CK', '2024-05-12 03:54:07', NULL),
+('PN20240512105549', 'NCC20240505110829', 'TKNV20240428002556', NULL, 1000000, NULL, 0, 'CK', '2024-05-12 03:55:49', NULL),
+('PN20240512105815', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, NULL, 0, 'CK', '2024-05-12 03:58:15', NULL),
+('PN20240512105855', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 0, 5000000, 'CK', '2024-05-12 03:58:55', NULL),
+('PN20240512110120', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, NULL, 0, 'CK', '2024-05-12 04:01:20', NULL),
+('PN20240512110202', 'NCC20240505110829', 'TKNV20240428002556', NULL, 110000000, 0, 110000000, 'CK', '2024-05-12 04:02:02', NULL),
+('PN20240512110547', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5002000, 0, 5002000, 'CK', '2024-05-12 04:05:47', NULL),
+('PN20240512110638', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 10000, 4990000, 'CK', '2024-05-12 04:06:38', NULL),
+('PN20240512110753', 'NCC20240505110829', 'TKNV20240428002556', NULL, 2000, 0, 2000, 'CK', '2024-05-12 04:07:53', NULL),
+('PN20240512225630', 'NCC20240512225513', 'TKNV20240428002556', NULL, 2000000, 0, 2000000, 'CK', '2024-05-12 15:56:30', NULL),
+('PN20240905214000', 'NCC20240505110829', 'TKNV20240430213939', NULL, 1000000, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -569,22 +632,20 @@ CREATE TABLE `tbl_taikhoan` (
 --
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', NULL, 'QTV', NULL),
-('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, '2024-04-27 17:31:10', NULL, NULL, NULL),
-('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, '2024-04-28 09:17:26', NULL, NULL, NULL),
-('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, '2024-04-28 15:14:12', NULL, NULL, NULL),
+('TK20240506111228', 'anh55@gmail.com', 'anh55', 1, '$2y$12$iBnlIRn.0Oe/b41QNlQ4eu5W0H62NT/o8n6HNR22CBu6Yk/TCPE8G', NULL, NULL, '2024-05-06 04:12:28', '2024-05-09 10:00:50', 'NVKT', NULL),
+('TK20240509163440', 'anhnx2867a@gmail.com', 'anh1234', 1265668, '$2y$12$yn2QVZiGhm4DtYq9em8kqOxooEhL6nm5i/nXf.521nV0rmJgyRzSC', NULL, NULL, '2024-05-09 09:34:40', '2024-05-10 15:04:39', 'KH', NULL),
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', '2024-05-09 14:51:15', 'QTV', NULL),
 ('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', '', NULL, '2024-04-28 15:34:47', NULL, 'NVKT', NULL),
 ('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, '2024-04-28 16:04:54', NULL, 'NVK', NULL),
-('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, '2024-04-28 17:04:39', NULL, NULL, NULL),
-('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, '2024-04-29 02:49:49', NULL, NULL, NULL),
-('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 1223, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, '2024-04-30 14:06:07', NULL, 'QTVCC', NULL),
+('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 12234, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, '2024-04-30 14:06:07', NULL, 'QTVCC', NULL),
 ('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, '2024-04-30 14:24:10', NULL, 'NVK', NULL),
-('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 1, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, '2024-04-30 14:31:00', NULL, 'NV', NULL),
+('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 11, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, '2024-04-30 14:31:00', '2024-05-09 09:23:55', 'NV', NULL),
 ('TKNV20240430213939', 'anhnx0@gmail.com', 'anhnx1', NULL, '$2y$12$ZLViL9MCYTElq8nf2wX2MOSwEnpscGVdZCalrWqxBWt.CU2aKlvnW', '', NULL, '2024-04-30 14:39:39', NULL, 'NV', NULL),
-('TKNV20240430214532', 'admin@gmail.com', 'anhnx', NULL, '$2y$12$KLWMScRbTm.By51tFIdxceoc/AjC5e3cToY7bCZtnivIf04i15.DS', NULL, NULL, '2024-04-30 14:45:32', NULL, NULL, NULL),
-('TKNV20240430214559', 'adminnx@gmail.com', 'anhnx2', NULL, '$2y$12$kJMkcJ6SCOjMC2kZjtA08uOw5iZwOn.OPVYTR0bWxGW7eOSXT4BxG', '', NULL, '2024-04-30 14:45:59', NULL, 'NV', NULL),
+('TKNV20240430214559', 'adminnx@gmail.com', 'anhnx2', 1, '$2y$12$kJMkcJ6SCOjMC2kZjtA08uOw5iZwOn.OPVYTR0bWxGW7eOSXT4BxG', '', NULL, '2024-04-30 14:45:59', '2024-05-09 09:23:43', 'NV', NULL),
 ('TKNV20240501102252', 'admin66@gmail.com', 'admin66', 12345, '$2y$12$XXi882nibejrLzcsrhv6FO1nJVCOcaRiqPCQ2xwXQ9yXiYfHRi.IS', '', NULL, '2024-05-01 03:22:52', NULL, 'NV', NULL),
-('TKNV20240501102400', 'admin77@gmail.com', 'anh77', NULL, '$2y$12$ypwbJ4gkfbZQsRinmxc3QOgecD1oNHj1PlAK0kUUPEkTKioQ9IDDG', '', NULL, '2024-05-01 03:24:00', NULL, 'NV', NULL);
+('TKNV20240501102400', 'admin77@gmail.com', 'anh77', NULL, '$2y$12$ypwbJ4gkfbZQsRinmxc3QOgecD1oNHj1PlAK0kUUPEkTKioQ9IDDG', '', NULL, '2024-05-01 03:24:00', NULL, 'NV', NULL),
+('TKNV20240509214619', 'anh22@gmail.com', 'anhnx3', NULL, '$2y$12$ALEIuXZTSJDwZzvk/DkDgODABtJnqj34PI8t5dezJABoXgnGOK9rC', '', NULL, '2024-05-09 14:46:19', NULL, 'NV', NULL),
+('TKNV20240510220505', 'admin10@gmail.com', 'admin10', NULL, '$2y$12$RpRsH8IAFplsCelPKNuihOk3wG0q8TX4IJCjsfJKzmnugI1O805ga', '', NULL, '2024-05-10 15:05:05', NULL, 'NV', NULL);
 
 -- --------------------------------------------------------
 
@@ -727,8 +788,9 @@ ALTER TABLE `tbl_chitietphieukiemkho`
 -- Chỉ mục cho bảng `tbl_chitietphieunhap`
 --
 ALTER TABLE `tbl_chitietphieunhap`
+  ADD PRIMARY KEY (`MaCTPN`),
   ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `order_code` (`order_code`);
+  ADD KEY `tbl_chitietphieunhap_ibfk_2` (`MaPhieuNhap`);
 
 --
 -- Chỉ mục cho bảng `tbl_chitietphieutrahang`
@@ -798,15 +860,15 @@ ALTER TABLE `tbl_hoadon`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgia`
+-- Chỉ mục cho bảng `tbl_phieugiamgia`
 --
-ALTER TABLE `tbl_magiamgia`
+ALTER TABLE `tbl_phieugiamgia`
   ADD PRIMARY KEY (`MaGiamGia`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgiand`
+-- Chỉ mục cho bảng `tbl_phieugiamgiand`
 --
-ALTER TABLE `tbl_magiamgiand`
+ALTER TABLE `tbl_phieugiamgiand`
   ADD PRIMARY KEY (`MaGGND`),
   ADD KEY `MaGiamGia` (`MaGiamGia`),
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
@@ -1032,15 +1094,15 @@ ALTER TABLE `tbl_hoadon`
   MODIFY `MaHoaDon` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgia`
+-- AUTO_INCREMENT cho bảng `tbl_phieugiamgia`
 --
-ALTER TABLE `tbl_magiamgia`
+ALTER TABLE `tbl_phieugiamgia`
   MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgiand`
+-- AUTO_INCREMENT cho bảng `tbl_phieugiamgiand`
 --
-ALTER TABLE `tbl_magiamgiand`
+ALTER TABLE `tbl_phieugiamgiand`
   MODIFY `MaGGND` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -1066,12 +1128,6 @@ ALTER TABLE `tbl_phieubaohanh`
 --
 ALTER TABLE `tbl_phieukiemkho`
   MODIFY `MaPKK` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `tbl_phieunhap`
---
-ALTER TABLE `tbl_phieunhap`
-  MODIFY `MaPhieuNhap` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_phieutrahang`
@@ -1173,7 +1229,7 @@ ALTER TABLE `tbl_chitietphieukiemkho`
 --
 ALTER TABLE `tbl_chitietphieunhap`
   ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`),
-  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_2` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieunhap` (`order_code`);
+  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_2` FOREIGN KEY (`MaPhieuNhap`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`);
 
 --
 -- Các ràng buộc cho bảng `tbl_chitietphieutrahang`
@@ -1205,21 +1261,21 @@ ALTER TABLE `tbl_danhmuctskt`
 -- Các ràng buộc cho bảng `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
+  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`),
   ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`);
 
 --
 -- Các ràng buộc cho bảng `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
-  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
+  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`),
   ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`);
 
 --
--- Các ràng buộc cho bảng `tbl_magiamgiand`
+-- Các ràng buộc cho bảng `tbl_phieugiamgiand`
 --
-ALTER TABLE `tbl_magiamgiand`
-  ADD CONSTRAINT `tbl_magiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`);
+ALTER TABLE `tbl_phieugiamgiand`
+  ADD CONSTRAINT `tbl_phieugiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`);
 
 --
 -- Các ràng buộc cho bảng `tbl_phanquyennguoidung`
@@ -1232,6 +1288,13 @@ ALTER TABLE `tbl_phanquyennguoidung`
 --
 ALTER TABLE `tbl_phieubaohanh`
   ADD CONSTRAINT `tbl_phieubaohanh_ibfk_1` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`);
+
+--
+-- Các ràng buộc cho bảng `tbl_phieunhap`
+--
+ALTER TABLE `tbl_phieunhap`
+  ADD CONSTRAINT `tbl_phieunhap_ibfk_2` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`),
+  ADD CONSTRAINT `tbl_phieunhap_ibfk_3` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`);
 
 --
 -- Các ràng buộc cho bảng `tbl_phigiaohang`

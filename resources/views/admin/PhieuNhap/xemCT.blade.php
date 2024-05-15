@@ -3,70 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Data Detail</title>
-    <style>
-        /* Thiết lập phần tử label */
-        label {
-            display: block; /* Hiển thị mỗi nhãn trên một dòng mới */
-            margin-bottom: 5px; /* Khoảng cách giữa các nhãn */
-        }
-
-        /* Thiết lập phần tử input */
-        input {
-            width: 100%; /* Độ rộng của ô textbox */
-            padding: 5px; /* Khoảng cách bên trong ô textbox */
-            margin-bottom: 10px; /* Khoảng cách giữa các ô textbox */
-            border: 1px solid #ccc; /* Đường viền của ô textbox */
-            border-radius: 4px; /* Bo tròn các góc của ô textbox */
-            box-sizing: border-box; /* Kích thước ô textbox bao gồm cả padding và border */
-        }
-
-        /* Thiết lập phần tử button */
-        .edit-btn {
-            padding: 8px 16px; /* Kích thước nút */
-            background-color: #4CAF50; /* Màu nền của nút */
-            color: white; /* Màu chữ của nút */
-            border: none; /* Không có đường viền */
-            border-radius: 4px; /* Bo tròn các góc */
-            cursor: pointer; /* Con trỏ thành dạng bàn tay khi di chuột vào nút */
-        }
-
-        /* Thiết lập hover cho nút */
-        .edit-btn:hover {
-            background-color: #45a049; /* Màu nền khi di chuột vào */
-        }
-        .gray-background {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Xem phieu nhap chi tiet</title>
+    <link rel="stylesheet" href="{{ asset('/css/xem.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}" >
 </head>
 <body>
-    <h1>Data Detail</h1>
-    @foreach ($data as $item)
-        <label for="maPN">MaPN:</label>
-        <input type="text" id="maPN" name="maPN" value="{{ $item->maPN }}" readonly class="gray-background"><br>
-
-        <label for="nguoiLap">NguoiLap:</label>
-        <input type="text" id="nguoiLap" name="nguoiLap" value="{{ $item->nguoiLap }}" readonly class="gray-background"><br>
-
-        <label for="maNCC">MaNCC:</label>
-        <input type="text" id="maNCC" name="maNCC" value="{{ $item->maNCC }}" readonly class="gray-background"><br>
-
-        <label for="thoiGianLap">ThoiGianLap:</label>
-        <input type="text" id="thoiGianLap" name="thoiGianLap" value="{{ $item->thoiGianLap }}" readonly class="gray-background"><br>
-
-        <label for="tongTien">TongTien:</label>
-        <input type="text" id="tongTien" name="tongTien" value="{{ number_format($item->tongTien) }}" readonly class="gray-background"><br>
-
-        <label for="soTienTra">SoTienTra:</label>
-        <input type="text" id="soTienTra" name="soTienTra" value="{{ $item->soTienTra !== null ? number_format($item->soTienTra) : '0' }}" readonly class="gray-background"><br>
-
-        <label for="soTienNo">SoTienNo:</label>
-        <input type="text" id="soTienNo" name="soTienNo" value="{{ number_format($item->soTienNo) }}" readonly class="gray-background"><br> 
-        <a href="{{ route('suaPN', ['id' => $item->maPN]) }}"><button class="edit-btn">Sửa</button></a>
-    @endforeach
+    <h1>Xem phieu nhap chi tiet</h1>
+    <label for="maPN">Ma phieu:</label><br>
+    <input type="text" id="maPN" name="maPN" value="{{ $pn->MaPhieuNhap }}" readonly class="gray-background"><br>
+    <label for="maNCC">Nha cung cap:</label><br>
+    <input type="text" id="maNCC" name="maNCC" value="{{ $pn->MaNhaCungCap }}" readonly class="gray-background"><br>
+    <label for="nguoiLap">Nguoi Lap:</label><br>
+    <input type="text" id="nguoiLap" name="nguoiLap" value="{{ $pn->MaTaiKhoan }}" readonly class="gray-background"><br>
+    <label for="tongTien">Tong tien:</label><br>
+    <input type="text" id="tongTien" name="tongTien" value="{{ $pn->TongTien }}" readonly class="gray-background"><br>
+    <label for="tienTra">Tien tra:</label><br>
+    <input type="text" id="tienTra" name="tienTra" value="{{ $pn->TienTra }}" readonly class="gray-background"><br>
+    <label for="tienNo">Tien no:</label><br>
+    <input type="text" id="tienNo" name="tienNo" value="{{ $pn->TienNo }}" readonly class="gray-background"><br>
+    <label for="phuongThucThanhToan">Phuong thuc thanh toan:</label><br>
+    <input type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $pn->PhuongThucThanhToan }}" readonly class="gray-background"><br>
+    <label for="thoiGianTao">Thoi gian tao:</label><br>
+    <input type="text" id="thoiGianTao" name="thoiGianTao" value="{{ $pn->ThoiGianTao }}" readonly class="gray-background"><br>
+    <label for="thoiGianSua">Thoi gian sua:</label><br>
+    <input type="text" id="thoiGianSua" name="thoiGianSua" value="{{ $pn->ThoiGianSua }}" readonly class="gray-background"><br>
+    <label for="trangThai">Trang thai:</label><br>
+    @php
+        if ($pn->TrangThai == "DAXACNHAN"){
+            $trangthai = "Đã xác nhận";
+        }else{
+            $trangthai = "Chưa xác nhận";
+        }
+    @endphp
     
+    <input type="text" id="trangThai" name="trangThai" value="{{ $trangthai }}" readonly class="gray-background"><br>
+    <table class="table" style="width: auto;">
+        <thead>
+            <tr>
+                <th class="th1">Mã San Pham</th>
+                <th class="th1">Số Lượng</th>
+                <th class="th1">Đơn Giá</th>
+                <th class="th1">Thanh tien</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($ctpn as $key => $matHang)
+                <tr>
+                    <td>{{ $matHang->MaSanPham }}</td>
+                    <td>{{ $matHang->SoLuong }}</td>
+                    <td>{{ $matHang->GiaSanPham }}</td>
+                    @php
+                        $thanhTien = $matHang->SoLuong * $matHang->GiaSanPham;
+                    @endphp
+                    <td>{{ $thanhTien }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @if ($pn->TrangThai == "DAXACNHAN")
+        <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
+    @else
+        <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
+        <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-primary">Sua phieu nhap</button></a>
+        <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-warning">Xoa phieu nhap</button></a>
+    @endif
     
     
 </body>

@@ -39,6 +39,9 @@
             <label for="thoihanhopdong">Thời han hop dong:</label>
             <input type="datetime-local" id="thoihanhopdong" name="thoihanhopdong" value="{{ $item->ThoiHanHopDong }}"><br>
 
+            <label for="thoigiansua">Thoi gian sua:</label>
+            <input type="text" id="thoigiansua" name="thoigiansua" value="{{ $item->ThoiGianSua }}" readonly class="gray-background"><br>
+
         @endforeach
 
         <button type="submit" class="submit">Lưu</button>
