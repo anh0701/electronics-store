@@ -21,19 +21,31 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên mã giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->TenMaGiamGia }}" class="form-control"
+                                    <input type="text" value="{{ $edit_value->TenMaGiamGia }}"
+                                           class="@error('TenMaGiamGia') is-invalid @enderror form-control"
                                            name="TenMaGiamGia" placeholder="Tên mã giảm giá">
                                 </div>
+                                @error('TenMaGiamGia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mã phiếu giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->MaCode }}" class="form-control"
+                                    <label for="exampleInputPassword1">Mã code phiếu giảm giá</label>
+                                    <input type="text" value="{{ $edit_value->MaCode }}"
+                                           class="@error('MaCode') is-invalid @enderror form-control"
                                            name="MaCode" placeholder="Code mã giảm giá">
                                 </div>
+                                @error('MaCode')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Slug giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->SlugMaGiamGia }}" class="form-control"
+                                    <input type="text" value="{{ $edit_value->SlugMaGiamGia }}"
+                                           class="@error('SlugMaGiamGia') is-invalid @enderror form-control"
                                            name="SlugMaGiamGia" placeholder="Code mã giảm giá">
                                 </div>
+                                @error('SlugMaGiamGia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Số tiền | Phần trămm giảm</label>
                                     <select name="DonViTinh" class="form-control input-lg m-bot15">
@@ -48,9 +60,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Trị giá</label>
-                                    <input type="text" value="{{ $edit_value->TriGia }}" class="form-control"
+                                    <input type="text" value="{{ $edit_value->TriGia }}"
+                                           class="@error('TriGia') is-invalid @enderror form-control"
                                            name="TriGia" placeholder="Giá trị">
                                 </div>
+                                @error('TriGia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <button type="submit" name="suaPhieuGG" class="btn btn-info">Cập nhật mã giảm giá
                                 </button>
                             </form>

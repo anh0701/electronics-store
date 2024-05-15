@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class PhieuGiamGiaController extends Controller
 {
@@ -33,6 +34,25 @@ class PhieuGiamGiaController extends Controller
     public function taoPhieuGiamGia(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'TenMaGiamGia' => ['required', 'string', 'max:255'],
+            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
+            'TriGia' => ['required', 'integer'],
+            'MaCode' => ['required', 'string'],
+            'DonViTinh' =>['required', 'integer'],
+        ],[
+            'TenMaGiamGia.required' =>  "Vui lòng nhập tên phiếu giảm giá.",
+            'SlugMaGiamGia.required' =>  "Vui lòng nhập slug phiếu giảm giá.",
+            'TriGia.required' =>  "Vui lòng nhập trị giá phiếu giảm giá.",
+            'MaCode.required' =>  "Vui lòng nhập mã code của phiếu giảm giá.",
+            'DonViTinh.required' =>  "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors($validator->errors());
+        }
         $data = $request->all();
         $phieu = new PhieuGiamGia();
         $phieu->TenMaGiamGia = $data['TenMaGiamGia'];
@@ -69,8 +89,26 @@ class PhieuGiamGiaController extends Controller
      */
     public function suaPhieuGiamGia(Request $request, $MaGiamGia)
     {
-        //
-        $data = $request->all();
+        $validator = Validator::make($request->all(), [
+            'TenMaGiamGia' => ['required', 'string', 'max:255'],
+            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
+            'TriGia' => ['required', 'integer'],
+            'MaCode' => ['required', 'string'],
+            'DonViTinh' =>['required', 'integer'],
+        ],[
+            'TenMaGiamGia.required' =>  "Vui lòng nhập tên phiếu giảm giá.",
+            'SlugMaGiamGia.required' =>  "Vui lòng nhập slug phiếu giảm giá.",
+            'TriGia.required' =>  "Vui lòng nhập trị giá phiếu giảm giá.",
+            'MaCode.required' =>  "Vui lòng nhập mã code của phiếu giảm giá.",
+            'DonViTinh.required' =>  "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors($validator->errors());
+        }
+//        $data = $request->all();
 //        dd($data);
         $phieu = PhieuGiamGia::find($MaGiamGia);
 //        dd($phieu);
