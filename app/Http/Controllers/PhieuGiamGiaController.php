@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class PhieuGiamGiaController extends Controller
 {
@@ -14,7 +17,7 @@ class PhieuGiamGiaController extends Controller
     public function phieuGiamGia()
     {
         //
-        $phieuGiamGia = PhieuGiamGia::orderBy('MaGiamGia', 'DESC')->get();
+        $phieuGiamGia = PhieuGiamGia::orderBy('MaGiamGia', 'DESC')->paginate(5);
         return view('admin.PhieuGiamGia.lietKePhieuGiamGia')->with(compact("phieuGiamGia"));
     }
 
@@ -33,6 +36,26 @@ class PhieuGiamGiaController extends Controller
     public function taoPhieuGiamGia(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'TenMaGiamGia' => ['required', 'string', 'max:255'],
+            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
+            'TriGia' => ['required', 'integer'],
+            'MaCode' => ['required', 'string', 'unique:tbl_phieugiamgia'],
+            'DonViTinh' => ['required', 'integer'],
+        ], [
+            'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
+            'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
+            'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
+            'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
+            'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
+            'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors($validator->errors());
+        }
         $data = $request->all();
         $phieu = new PhieuGiamGia();
         $phieu->TenMaGiamGia = $data['TenMaGiamGia'];
@@ -49,9 +72,17 @@ class PhieuGiamGiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function hienThiCTP(PhieuGiamGia $phieuGiamGia)
+    public function timKiem(Request $request)
     {
         //
+        $phieuGiamGia = PhieuGiamGia::where('TenMaGiamGia', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('SlugMaGiamGia', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('TriGia', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('MaCode', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('DonViTinh', 'LIKE', "%{$request->timKiem}%")
+            ->get();
+//        dd($phieuGiamGia);
+        return view('admin.PhieuGiamGia.lietKePhieuGiamGia')->with(compact("phieuGiamGia"));
     }
 
     /**
@@ -69,11 +100,28 @@ class PhieuGiamGiaController extends Controller
      */
     public function suaPhieuGiamGia(Request $request, $MaGiamGia)
     {
-        //
-        $data = $request->all();
-//        dd($data);
+        $validator = Validator::make($request->all(), [
+            'TenMaGiamGia' => ['required', 'string', 'max:255'],
+            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
+            'TriGia' => ['required', 'integer'],
+            'MaCode'=>'required|unique:tbl_phieugiamgia,MaCode,' . $MaGiamGia . ',MaGiamGia',
+            'DonViTinh' => ['required', 'integer'],
+        ], [
+            'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
+            'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
+            'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
+            'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
+            'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
+            'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors($validator->errors());
+        }
+
         $phieu = PhieuGiamGia::find($MaGiamGia);
-//        dd($phieu);
         $phieu->TenMaGiamGia = $request->TenMaGiamGia;
         $phieu->SlugMaGiamGia = $request->SlugMaGiamGia;
         $phieu->TriGia = $request->TriGia;
