@@ -82,16 +82,6 @@
             @endif
             @endforeach
         </div><!--/category-products-->
-        {{-- <div class="brands_products"><!--brands_products-->
-            <h2>Thương hiệu sản phẩm</h2>
-            <div class="brands-name">
-                <ul class="nav nav-pills nav-stacked">
-                    @foreach ($allThuongHieu as $key => $thuongHieu)
-                        <li><a href="{{ route('/HienThiThuongHieu', $thuongHieu->MaThuongHieu) }}"><span class="pull-right"></span>{{ $thuongHieu->TenThuongHieu }}</a></li>
-                    @endforeach									
-                </ul>
-            </div>
-        </div> --}}
     </div>
 </div>
 <div class="col-sm-9 padding-right">
@@ -137,12 +127,23 @@
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
-                                    <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
-                                    <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
-                                    <p>{{ $sanPham->TenSanPham }}</p>
-                                </a>
-                                <a href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <form>
+                                    {{ csrf_field() }}
+                                    <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
+                                    <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
+                                        <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
+                                        <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
+                                        <p>{{ $sanPham->TenSanPham }}</p>
+                                    </a>
+                                    <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                    data-id_product="{{ $sanPham->MaSanPham }}">
+                                        <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -154,12 +155,23 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
-                                <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
-                                <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
-                                <p>{{ $sanPham->TenSanPham }}</p>
-                            </a>
-                            <a href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <form>
+                                {{ csrf_field() }}
+                                <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
+                                <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
+                                <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
+                                <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                                <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
+                                <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
+                                    <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
+                                    <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
+                                    <p>{{ $sanPham->TenSanPham }}</p>
+                                </a>
+                                <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                data-id_product="{{ $sanPham->MaSanPham }}">
+                                    <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -170,7 +182,6 @@
 </div>
 <div class="col-sm-12">
     <div class="recommended_items">
-        <h2 class="title text-center">Chương trình giảm giá</h2>
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <img src="{{ asset('frontend/images/shop/discount-program.gif') }}" style="margin-bottom: 15px; width: 100%" alt="">
             <div class="discount-program">

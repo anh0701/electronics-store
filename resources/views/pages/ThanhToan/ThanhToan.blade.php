@@ -117,7 +117,7 @@
                 </div>
                 <div class="col-sm-6 clearfix">
                     <div class="bill-to">
-                        <p>Bill To</p>
+                        <p>Phiếu giảm giá</p>
                         <div class="form-one">
                             <form>
                                 <input type="text" placeholder="Coupon code">

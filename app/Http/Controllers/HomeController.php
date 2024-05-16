@@ -26,14 +26,6 @@ class HomeController extends Controller
         return view('pages.home')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
 
-    // public function HienThiThuongHieu($MaThuongHieu){
-    //     $sanPhamThuocThuongHieu = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
-    //     where('MaThuongHieu', $MaThuongHieu)->paginate('20');
-    //     $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-    //     $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-    //     return view('pages.ThuongHieu.HienThiThuongHieu')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocThuongHieu'));
-    // }
-
     public function HienThiDanhMucCha($MaDanhMuc){
         $danhMucCha = $MaDanhMuc;
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
@@ -49,9 +41,12 @@ class HomeController extends Controller
     public function HienThiDanhMucCon($MaDanhMuc){
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        $sanPhamThuocDanhMuc = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
-        where('MaDanhMuc', $MaDanhMuc)->paginate('20');
-        return view('pages.DanhMuc.HienThiDanhMucCon')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc'));
+        $sanPhamThuocDanhMuc = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->where('MaDanhMuc', $MaDanhMuc)->paginate('20');
+        $allTHDM = ThuongHieuDanhMuc::orderBy('MaTHDM', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
+        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
+        $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
+        return view('pages.DanhMuc.HienThiDanhMucCon')
+        ->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'allTHDM'));
     }
 
     public function ChiTietSanPham($MaSanPham){

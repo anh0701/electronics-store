@@ -81,16 +81,6 @@
             @endif
             @endforeach
         </div><!--/category-products-->
-        {{-- <div class="brands_products"><!--brands_products-->
-            <h2>Thương hiệu sản phẩm</h2>
-            <div class="brands-name">
-                <ul class="nav nav-pills nav-stacked">
-                    @foreach ($allThuongHieu as $key => $thuongHieu)
-                        <li><a href="{{ route('/HienThiThuongHieu', $thuongHieu->MaThuongHieu) }}"><span class="pull-right"></span>{{ $thuongHieu->TenThuongHieu }}</a></li>
-                    @endforeach									
-                </ul>
-            </div>
-        </div> --}}
     </div>
 </div>
 <div class="col-sm-9 padding-right">
@@ -129,11 +119,6 @@
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <img src="{{ asset('frontend/images/shop/discount-program.gif') }}" style="margin-bottom: 15px; width: 100%" alt="">
-            <div class="discount-program">
-                <div class="col-sm-12">
-                    {{-- <img src="{{ asset('frontend/images/shop/discount-program.gif') }}" alt=""> --}}
-                </div>
-            </div>
             <div class="carousel-inner">
                 <div class="item active">	
                     <div class="col-sm-15 col-sm-3">
@@ -201,13 +186,56 @@
                         </div>
                     </div>
                 </div>
+                <div class="item">	
+                    <div class="col-sm-15 col-sm-3">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
+                                    <h2>56.000 đ</h2>
+                                    <p>Sản phẩm D</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-15 col-sm-3">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
+                                    <h2>56.000 đ</h2>
+                                    <p>Sản phẩm D</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-15 col-sm-3">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
+                                    <h2>56.000 đ</h2>
+                                    <p>Sản phẩm D</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                 <i class="fa fa-angle-left"></i>
             </a>
             <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                 <i class="fa fa-angle-right"></i>
-            </a>			
+            </a>	
+            <div class="discount-program">
+                <a class="readmore-btn" href="">Xem tất cả<i class="fa fa-angle-right"></i></a>
+            </div>		
         </div>
     </div>
 </div>

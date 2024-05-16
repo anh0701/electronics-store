@@ -31,11 +31,16 @@
               <th>STT</th>
               <th>Thuộc danh mục TSKT</th>
               <th>Tên thông số kỹ thuật</th>
-              <th>Cập nhật</th>
             </tr>
           </thead>
           <tbody>
-            
+            @foreach ($allSanPhamTSKT as $key => $valueSanPhamTSKT)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td>{{ $valueSanPhamTSKT->ThongSoKyThuat->DanhMucTSKT->TenDMTSKT }}</td>
+              <td>{{ $valueSanPhamTSKT->ThongSoKyThuat->TenTSKT }}</td>
+            </tr>
+            @endforeach
           </tbody> 
         </table>
       </div>

@@ -82,65 +82,75 @@
             @endif
             @endforeach
         </div><!--/category-products-->
-    
-        <div class="brands_products"><!--brands_products-->
-            <h2>Thương hiệu sản phẩm</h2>
-            <div class="brands-name">
-                <ul class="nav nav-pills nav-stacked">
-                    @foreach ($allThuongHieu as $key => $thuongHieu)
-                        <li><a href="{{ route('/HienThiThuongHieu', $thuongHieu->MaThuongHieu) }}"><span class="pull-right"></span>{{ $thuongHieu->TenThuongHieu }}</a></li>
-                    @endforeach									
+    </div>
+</div>
+<div class="col-sm-9 padding-right">
+    <div class="mainmenu pull-left">
+        <h2 class="title text-center">Bộ lọc</h2>
+        <ul class="nav navbar-nav collapse navbar-collapse">
+            <li class="dropdown"><a href="#">Bộ lọc<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                    <li class="pull-left"><a href="#">Giá thấp đến cao</a></li>
+                    <li class="pull-left"><a href="#">Giá cao đến thấy</a></li>
+                    <li class="pull-left"><a href="#">Bán chạy</a></li>
+                    <li class="pull-left"><a href="#">Giảm theo %</a></li>
                 </ul>
-            </div>
-        </div><!--/brands_products-->
-        
-        <div class="price-range"><!--price-range-->
-            <h2>Price Range</h2>
-            <div class="well text-center">
-                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-            </div>
-        </div>
+            </li>
+            <li class="dropdown"><a href="#">Hãng<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                    @foreach ($allTHDM as $key => $valueTHDM)
+                    <li class="col-sm-15 col-sm-3"><a href=""><img src="{{ asset('upload/ThuongHieu/'.$valueTHDM->ThuongHieu->HinhAnh) }}" alt=""></a></li>
+                    @endforeach
+                </ul>
+            </li>
+            @foreach ($allDanhMucTSKT as $key => $valueDanhMucTSKT)
+            <li class="dropdown"><a href="#">{{ $valueDanhMucTSKT->TenDMTSKT }}<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                    @foreach ($allTSKT as $key => $valueTSKT)
+                        @if ($valueTSKT->MaDMTSKT == $valueDanhMucTSKT->MaDMTSKT)
+                            <li class="pull-left"><a href="#">{{ $valueTSKT->TenTSKT }}</a></li>
+                        @endif
+                    @endforeach
+                </ul>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
 <div class="col-sm-9 padding-right">
     <div class="features_items">
         <h2 class="title text-center">Sản phẩm nổi bật</h2>
-        @foreach ($sanPhamThuocThuongHieu as $key => $sanPham)
+        @foreach ($sanPhamThuocDanhMuc as $key => $sanPham)
         <div class="col-sm-3">
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
-                            <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
-                            <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
-                            <p>{{ $sanPham->TenSanPham }}</p>
-                        </a>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <form>
+                            {{ csrf_field() }}
+                            <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
+                            <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
+                                <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
+                                <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
+                                <p>{{ $sanPham->TenSanPham }}</p>
+                            </a>
+                            <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                            data-id_product="{{ $sanPham->MaSanPham }}">
+                                <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-    {{-- <div class="brands_products">
-        <h2>Danh mục nổi bật</h2>
-        <div class="category-tab">
-            <div class="col-sm-12">
-                <ul class="nav nav-tabs">
-                    @foreach ($allDanhMuc as $key => $danhMuc)
-                        @if ($danhMuc->DanhMucCha == 0)
-                            <li class="{{ $key+1==1 ? 'active' : '' }}"><a href="{{ $danhMuc->MaDanhMuc }}" data-toggle="tab">{{ $danhMuc->TenDanhMuc }}</a></li>
-                        @endif
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div> --}}
 </div>
 <div class="col-sm-12">
     <div class="recommended_items">
-        <h2 class="title text-center">Chương trình giảm giá</h2>
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <img src="{{ asset('frontend/images/shop/discount-program.gif') }}" style="margin-bottom: 15px; width: 100%" alt="">
             <div class="discount-program">
