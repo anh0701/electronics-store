@@ -15,16 +15,26 @@ use Illuminate\Validation\Rule;
 class PhieuNhapController extends Controller
 {
     public function trangXemPhieuNhap(){
-        $pns = DB::select("SELECT pn.*, tk.TenTaiKhoan
-                  FROM tbl_phieunhap pn
-                  JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan");
+        $pns = DB::table('tbl_phieunhap')
+                ->join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+                ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
+                ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+                ->orderByDesc('tbl_phieunhap.ThoiGianTao')
+                ->paginate(5);
 
         return view('admin.PhieuNhap.xemPhieuNhap', ['data' => $pns]);
     } 
 
     public function xemCTPN($id){
-        $pn = DB::select("SELECT * FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
-        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
+        $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
+                        FROM tbl_phieunhap pn 
+                        JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
+                        JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
+                        WHERE MaPhieuNhap = '{$id}'");
+        $ctpn = DB::select("SELECT ct.*, sp.TenSanPham
+                        FROM tbl_chitietphieunhap ct
+                        JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
+                        WHERE MaPhieuNhap = '{$id}'");
         // $maNCC = $pn[0]->MaNhaCungCap;
         // $tenNCC = DB::select("SELECT TenNhaCungCap FROM tbl_nhacungcap WHERE MaNhaCungCap = '{$maNCC}'");
         // $maTK = $pn[0]->MaTaiKhoan;
@@ -90,6 +100,16 @@ class PhieuNhapController extends Controller
         Session::put('tongTien', $tongTien);
         return redirect('/lap-phieu-nhap-chi-tiet');
 
+    }
+
+    public function xoaCTPN($id){
+        $tongTien = Session::get('tongTien');
+        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaCTPN = '{$id}'");
+        $tongTien -= $ctpn[0]->SoLuong * $ctpn[0]->GiaSanPham;
+        Session::put('tongTien', $tongTien);
+        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaCTPN = '{$id}'");
+
+        return redirect('/lap-phieu-nhap-chi-tiet');
     }
 
     public function luuPN(){

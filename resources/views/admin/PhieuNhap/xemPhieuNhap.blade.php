@@ -35,7 +35,7 @@
                             <tr class="row-clickable" data-id="{{ $pn->MaPhieuNhap }}">
                                 <td>{{ $pn->MaPhieuNhap }}</td>
                                 <td>{{ $pn->TenTaiKhoan }}</td>
-                                <td>{{ $pn->MaNhaCungCap }}</td>
+                                <td>{{ $pn->TenNhaCungCap }}</td>
                                 <td>{{ $pn->ThoiGianTao }}</td>
                                 <td>{{ $pn->TongTien }}</td>
                                 <td>{{ $pn->TienNo }}</td>
@@ -47,6 +47,18 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <footer class="panel-footer">
+                    <div class="row">
+                    <div class="col-sm-5 text-center">
+                    </div>
+                    <div class="col-sm-7 text-right text-center-xs">                
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                        {{ $data->links('vendor.pagination.bootstrap-4') }}
+                        </ul>
+                    </div>
+                    </div>
+                </footer>
             </div>
         </div>
     </div>

@@ -103,7 +103,7 @@
                                             <td>{{ $pnct->GiaSanPham }}</td>
                                             <td>{{ $pnct->SoLuong * $pnct->GiaSanPham }}</td>
                                             <td>
-                                                <a href="">Xoa</a>
+                                                <a href="{{ route('xoaCTPN', ['id' => $pnct->MaCTPN]) }}">Xoa</a>
                                             </td>
 
                                         </tr>

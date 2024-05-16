@@ -16,11 +16,11 @@
                     </div>
                     <div class="form-group">
                         <label for="maNCC">Nhà cung cấp:</label>
-                        <input class="form-control" class="in1" type="text" id="maNCC" name="maNCC" value="{{ $pn->MaNhaCungCap }}" readonly class="gray-background">
+                        <input class="form-control" class="in1" type="text" id="maNCC" name="maNCC" value="{{ $pn->TenNhaCungCap }}" readonly class="gray-background">
                     </div>
                     <div class="form-group">
                         <label for="nguoiLap">Người lập:</label>
-                        <input class="form-control" type="text" id="nguoiLap" name="nguoiLap" value="{{ $pn->MaTaiKhoan }}" readonly class="gray-background">
+                        <input class="form-control" type="text" id="nguoiLap" name="nguoiLap" value="{{ $pn->TenTaiKhoan }}" readonly class="gray-background">
                     </div>
                     <div class="form-group">
                         <label for="tongTien">Tổng tiền:</label>
@@ -92,7 +92,7 @@
                 <tbody>
                     @foreach ($ctpn as $key => $matHang)
                         <tr>
-                            <td>{{ $matHang->MaSanPham }}</td>
+                            <td>{{ $matHang->TenSanPham }}</td>
                             <td>{{ $matHang->SoLuong }}</td>
                             <td>{{ $matHang->GiaSanPham }}</td>
                             @php
