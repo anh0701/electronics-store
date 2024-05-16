@@ -132,14 +132,6 @@ Route::get('/XoaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'Xo
 Route::post('/SuaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'SuaPhiGiaoHang'])->name('/SuaPhiGiaoHang');
 Route::post('/ChonDiaDiem', [PhiGiaoHangController::class, 'ChonDiaDiem'])->name('/ChonDiaDiem');
 
-// Mã giảm giá
-Route::get('/TrangThemMaGiamGia', [MaGiamGiaController::class, 'TrangThemMaGiamGia'])->name('/TrangThemMaGiamGia');
-Route::get('/TrangLietKeMaGiamGia', [MaGiamGiaController::class, 'TrangLietKeMaGiamGia'])->name('/TrangLietKeMaGiamGia');
-Route::post('/ThemMaGiamGia', [MaGiamGiaController::class, 'ThemMaGiamGia'])->name('/ThemMaGiamGia');
-Route::get('/TrangSuaMaGiamGia/{MaGiamGia}', [MaGiamGiaController::class, 'TrangSuaMaGiamGia'])->name('/TrangSuaMaGiamGia');
-Route::get('/XoaMaGiamGia/{MaGiamGia}', [MaGiamGiaController::class, 'XoaMaGiamGia'])->name('/XoaMaGiamGia');
-Route::post('/SuaMaGiamGia/{MaGiamGia}', [MaGiamGiaController::class, 'SuaMaGiamGia'])->name('/SuaMaGiamGia');
-
 // Trang bán hàng
 Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('/SanPhamThuocDanhMuc/{MaDanhMuc}', [HomeController::class, 'SanPhamThuocDanhMuc'])->name('/SanPhamThuocDanhMuc');

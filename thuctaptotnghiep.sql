@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 14, 2024 at 02:25 PM
+-- Generation Time: May 16, 2024 at 11:29 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.2
 
@@ -1621,7 +1621,9 @@ INSERT INTO `tbl_thuonghieu` (`MaThuongHieu`, `TenThuongHieu`, `SlugThuongHieu`,
 (11, 'Sony', 'sony', 'sony80.png', 0, 'Công ty công nghiệp Sony (ソニーグループ株式会社 (Sonī Gurūpu Chu Thức Hội Xã) Sonī Gurūpu kabushiki gaisha?, tiếng Anh: Sony Corporation), cách điệu SONY, là một tập đoàn đa quốc gia của Nhật Bản, với trụ sở chính nằm tại Minato, Tokyo, Nhật Bản, và là tập đoàn điện tử đứng thứ 5 thế giới với 81,64 tỉ USD (2011). Sony là một trong những công ty hàng đầu thế giới về điện tử, sản xuất tivi, điện thoại, máy ảnh, máy tính xách tay và đồ dân dụng khác.\r\nĐược thành lập vào tháng 5/1946 tại Nihonbashi, Chūō, Tokyo, được mang tên là Tokyo Tsushin Kogyo K.K (東京通信工業株式会社, Đông Kinh Thông tin Công nghiệp Chu Thức Hội Xã) với số vốn ban đầu là 190.000 yên. Công ty này đổi tên thành Sony vào tháng 1/1958.\r\nTừ \"Sony\" là kết hợp của từ \"sonus\" trong tiếng La-tinh (âm thanh) và từ \"sonny\" trong tiếng Anh (cậu bé nhanh nhẹn thông minh) theo cách gọi tên thân mật. Những nhà sáng lập hy vọng tên \"Sony\" thể hiện tinh thần nhiệt huyết và sáng tạo của giới trẻ.', '2024-04-01 08:09:46', '2024-04-28 05:37:00'),
 (12, 'Toshiba', 'toshiba', 'TOSHIBA_Logo98.png', 0, 'Toshiba được thành lập vào năm 1939 dưới tên Tokyo Shibaura Electric K.K. qua sự hợp nhất của Shibaura Seisaku-sho (thành lập năm 1875) và Tokyo Denki (thành lập năm 1890). Tên tập đoàn đã được chình thức thay đổi sang Toshiba Corporation vào năm 1978.\r\nToshiba được tổ chức thành bốn nhóm thương mại chính: Nhóm Sản Phẩm Số, Nhóm Thiết Bị Điện Tử, Nhóm Đồ Dùng Gia Dụng và Nhóm Cơ Sở Hạ Tầng Xã hội. Vào năm 2010, Toshiba là công ty máy tính cá nhân lớn thứ năm thế giới về doanh thu (xếp phía sau Hewlett-Packard, Dell, Acer và Lenovo). Vào cùng năm, nó cũng là công ty sản xuất chất bán dẫn lớn thứ tư thế giới về doanh thu (xếp phía sau Intel Corporation, Samsung và Texas Instruments).', '2024-04-28 05:31:44', '2024-05-08 01:03:51'),
 (13, 'TCL', 'tcl', 'TCL96.png', 1, 'Thương hiệu TCL', '2024-05-13 15:37:41', NULL),
-(14, 'LG', 'lg', 'LG1.png', 1, 'Thương hiệu LG', '2024-05-13 15:38:41', NULL);
+(14, 'LG', 'lg', 'LG1.png', 1, 'Thương hiệu LG', '2024-05-13 15:38:41', NULL),
+(15, 'Panasonic', 'panasonic', 'Panasonic32.png', 1, 'Thương hiệu Panasonic', '2024-05-15 00:34:57', NULL),
+(16, 'Hitachi', 'hitachi', 'Hitachi51.png', 1, 'Thương hiệu Hitachi', '2024-05-15 00:35:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -1648,7 +1650,13 @@ INSERT INTO `tbl_thuonghieudanhmuc` (`MaTHDM`, `MaThuongHieu`, `MaDanhMuc`) VALU
 (6, 2, 8),
 (8, 14, 1),
 (9, 13, 1),
-(10, 8, 8);
+(10, 8, 8),
+(11, 16, 15),
+(12, 15, 15),
+(13, 14, 15),
+(14, 8, 15),
+(15, 9, 2),
+(16, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -13479,13 +13487,13 @@ ALTER TABLE `tbl_thongsokythuatsp`
 -- AUTO_INCREMENT for table `tbl_thuonghieu`
 --
 ALTER TABLE `tbl_thuonghieu`
-  MODIFY `MaThuongHieu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `MaThuongHieu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_thuonghieudanhmuc`
-  MODIFY `MaTHDM` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `MaTHDM` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_tichdiem`
