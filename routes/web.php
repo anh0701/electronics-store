@@ -23,7 +23,11 @@ Route::get('/liet-ke-phieu-nhap', [PhieuNhapController::class, 'trangXemPhieuNha
 Route::get('/lap-phieu-nhap', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
 Route::post('/xuLyThemMatHang', [PhieuNhapController::class, 'xuLyThemMatHang']);
 Route::get('/xoaMatHang/{id}', [PhieuNhapController::class, 'xoaMatHang'])->name('xoaMatHang');
-Route::post('/xuLyLapPN', [PhieuNhapController::class, 'xuLyPN']);
+Route::post('/xuLyLapPN', [PhieuNhapController::class, 'xuLyPN'])->name('xuLyLapPN');
+Route::get('/lap-phieu-nhap-chi-tiet', [PhieuNhapController::class, 'lapPNCT'])->name('lapPNCT');
+Route::post('/xuLyLapPNCT', [PhieuNhapController::class, 'xuLyLapPNCT'])->name('xuLyLapPNCT');
+Route::get('luu-phieu-nhap', [PhieuNhapController::class, 'luuPN'])->name('luuPN');
+Route::get('/timKiemSP', [PhieuNhapController::class, 'timKiemSP']);
 Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
 Route::get('/sua-phieu-nhap/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
 Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySuaPN']);

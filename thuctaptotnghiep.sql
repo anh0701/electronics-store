@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 12, 2024 lúc 07:12 PM
+-- Thời gian đã tạo: Th5 16, 2024 lúc 10:03 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -114,30 +114,15 @@ CREATE TABLE `tbl_chitietphieunhap` (
 --
 
 INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
-('CTPN663ce4c9c288b', 'PN20240509215921', 1, 2, '1000000'),
-('CTPN6640306940f9e', 'PN20240512095849', 1, 12, '20000000'),
-('CTPN6640333b429d3', 'PN20240512101050', 1, 2, '1000000'),
-('CTPN6640363dc61f6', 'PN20240512102341', 1, 1, '1'),
-('CTPN6640363dc6cc1', 'PN20240512102341', 1, 3, '5000000'),
-('CTPN664037850b8db', 'PN20240512102909', 1, 1, '1'),
-('CTPN664038c07e12b', 'PN20240512103424', 3, 3, '1000000'),
-('CTPN66403c48ba928', 'PN20240512104928', 1, 1, '5000000'),
-('CTPN66403cc7aa6be', 'PN20240512105135', 1, 1, '1000000'),
-('CTPN66403cc7ab3a7', 'PN20240512105135', 1, 1, '1000000'),
-('CTPN66403cc7ac12c', 'PN20240512105135', 1, 1, '1000000'),
-('CTPN66403d3686b1f', 'PN20240512105326', 1, 1, '1000000'),
-('CTPN66403d5f27e6e', 'PN20240512105407', 1, 1, '5000000'),
-('CTPN66403d5f28cb0', 'PN20240512105407', 1, 1, '5000000'),
-('CTPN66403d5f296c9', 'PN20240512105407', 1, 1, '5000000'),
-('CTPN66403dc5b975e', 'PN20240512105549', 1, 1, '1000000'),
-('CTPN66403e5715b37', 'PN20240512105815', 1, 1, '5000000'),
-('CTPN66403e7fe2890', 'PN20240512105855', 1, 1, '5000000'),
-('CTPN66403f10350fd', 'PN20240512110120', 1, 1, '5000000'),
-('CTPN66403f3a7e2fc', 'PN20240512110202', 1, 22, '5000000'),
-('CTPN6640401bd9902', 'PN20240512110547', 1, 1, '5002000'),
-('CTPN6640404e43e42', 'PN20240512110638', 1, 1, '5000000'),
 ('CTPN6640e6ae6fa2a', 'PN20240512225630', 1, 1, '1000000'),
-('CTPN6640e6ae73594', 'PN20240512225630', 2, 1, '1000000');
+('CTPN6640e6ae73594', 'PN20240512225630', 2, 1, '1000000'),
+('CTPN6643444e55876', 'PN20240514180030', 1, 3, '550000'),
+('CTPN6643444e5707b', 'PN20240514180030', 2, 4, '200000'),
+('CTPN66434ab3bd46a', 'PN20240514182747', 1, 13, '2000000'),
+('CTPN664405fcd74e2', 'PN20240515074652', 1, 1, '5000000'),
+('CTPN6644084c3d866', 'PN20240515075644', 1, 3, '1000000'),
+('CTPN6644084c3ed2e', 'PN20240515075644', 1, 2, '1000000'),
+('CTPN66442a92b8c73', 'PN20240515102258', 1, 1, '1000000');
 
 -- --------------------------------------------------------
 
@@ -314,26 +299,24 @@ CREATE TABLE `tbl_hoadon` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieugiamgia`
+-- Cấu trúc bảng cho bảng `tbl_magiamgia`
 --
 
-CREATE TABLE `tbl_phieugiamgia` (
+CREATE TABLE `tbl_magiamgia` (
   `MaGiamGia` int(11) NOT NULL,
   `TenMaGiamGia` varchar(50) NOT NULL,
   `SlugMaGiamGia` varchar(50) NOT NULL,
-  `TriGia` int(11) NOT NULL,
+  `TinhNang` int(11) NOT NULL,
   `MaCode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-alter table tbl_phieugiamgia
-    add DonViTinh int not null comment '% hoặc đ';
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieugiamgiand`
+-- Cấu trúc bảng cho bảng `tbl_magiamgiand`
 --
 
-CREATE TABLE `tbl_phieugiamgiand` (
+CREATE TABLE `tbl_magiamgiand` (
   `MaGGND` int(11) NOT NULL,
   `MaGiamGia` int(11) NOT NULL,
   `MaTaiKhoan` int(11) NOT NULL,
@@ -362,7 +345,7 @@ CREATE TABLE `tbl_nhacungcap` (
 --
 
 INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `ThoiHanHopDong`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240505110829', 'Công ty TNHH ZTECH 3', '22 lý tư trọng, hong bang, hai phong', 999998888, 'ztech3@gmail.com', NULL, '2024-05-05 04:08:29', '2024-05-05 04:09:44'),
+('NCC20240505110829', 'Công ty TNHH ZTECH 3', '22 lý tư trọng, hong bang, hai phong', NULL, 'ztech3@gmail.com', NULL, '2024-05-05 04:08:29', '2024-05-15 04:21:05'),
 ('NCC20240512225056', 'Công ty TNHH ZTECH 2', '22 lý tư trọng, hong bang, hai phong', NULL, 'anhnx286@gmail.com', NULL, '2024-05-12 15:50:56', NULL),
 ('NCC20240512225513', 'NCC b', NULL, NULL, 'anhnx286a@gmail.com', NULL, '2024-05-12 15:55:13', NULL);
 
@@ -466,6 +449,7 @@ CREATE TABLE `tbl_phieunhap` (
   `TienTra` double DEFAULT NULL,
   `TienNo` double DEFAULT NULL,
   `PhuongThucThanhToan` varchar(255) DEFAULT NULL,
+  `TrangThai` varchar(50) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -474,29 +458,13 @@ CREATE TABLE `tbl_phieunhap` (
 -- Đang đổ dữ liệu cho bảng `tbl_phieunhap`
 --
 
-INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `order_code`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240509215921', 'NCC20240505110829', 'TKNV20240430213939', NULL, 2000000, 1000000, 1000000, 'CK', '2024-05-09 14:59:21', NULL),
-('PN20240512095849', 'NCC20240505110829', 'TKNV20240428002556', NULL, 240000000, NULL, 0, 'CK', '2024-05-12 02:58:49', NULL),
-('PN20240512095919', 'NCC20240505110829', 'TKNV20240428002556', NULL, 0, NULL, 0, 'CK', '2024-05-12 02:59:19', NULL),
-('PN20240512095930', 'NCC20240505110829', 'TKNV20240428002556', NULL, 0, NULL, 0, 'CK', '2024-05-12 02:59:30', NULL),
-('PN20240512101050', 'NCC20240505110829', 'TKNV20240428002556', NULL, 2000000, NULL, 0, 'CK', '2024-05-12 03:10:50', NULL),
-('PN20240512102341', 'NCC20240505110829', 'TKNV20240428002556', NULL, 15000001, NULL, 0, 'CK', '2024-05-12 03:23:41', NULL),
-('PN20240512102909', 'NCC20240505110829', 'TKNV20240428002556', NULL, 1, NULL, 0, 'CK', '2024-05-12 03:29:09', NULL),
-('PN20240512103424', 'NCC20240505110829', 'TKNV20240428002556', NULL, 3000000, 1000000, 2000000, 'CK', '2024-05-12 03:34:24', NULL),
-('PN20240512104928', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 0, 5000000, 'CK', '2024-05-12 03:49:28', NULL),
-('PN20240512105135', 'NCC20240505110829', 'TKNV20240428002556', NULL, 3000000, NULL, 0, 'CK', '2024-05-12 03:51:35', NULL),
-('PN20240512105326', 'NCC20240505110829', 'TKNV20240428002556', NULL, 1000000, NULL, 0, 'CK', '2024-05-12 03:53:26', NULL),
-('PN20240512105407', 'NCC20240505110829', 'TKNV20240428002556', NULL, 15000000, NULL, 0, 'CK', '2024-05-12 03:54:07', NULL),
-('PN20240512105549', 'NCC20240505110829', 'TKNV20240428002556', NULL, 1000000, NULL, 0, 'CK', '2024-05-12 03:55:49', NULL),
-('PN20240512105815', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, NULL, 0, 'CK', '2024-05-12 03:58:15', NULL),
-('PN20240512105855', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 0, 5000000, 'CK', '2024-05-12 03:58:55', NULL),
-('PN20240512110120', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, NULL, 0, 'CK', '2024-05-12 04:01:20', NULL),
-('PN20240512110202', 'NCC20240505110829', 'TKNV20240428002556', NULL, 110000000, 0, 110000000, 'CK', '2024-05-12 04:02:02', NULL),
-('PN20240512110547', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5002000, 0, 5002000, 'CK', '2024-05-12 04:05:47', NULL),
-('PN20240512110638', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 10000, 4990000, 'CK', '2024-05-12 04:06:38', NULL),
-('PN20240512110753', 'NCC20240505110829', 'TKNV20240428002556', NULL, 2000, 0, 2000, 'CK', '2024-05-12 04:07:53', NULL),
-('PN20240512225630', 'NCC20240512225513', 'TKNV20240428002556', NULL, 2000000, 0, 2000000, 'CK', '2024-05-12 15:56:30', NULL),
-('PN20240905214000', 'NCC20240505110829', 'TKNV20240430213939', NULL, 1000000, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `order_code`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+('PN20240512225630', 'NCC20240512225513', 'TKNV20240428002556', NULL, 2000000, 0, 2000000, 'CK', 'DAXACNHAN', '2024-05-12 15:56:30', '2024-05-14 11:20:27'),
+('PN20240514180030', 'NCC20240512225056', 'TKNV20240428002556', NULL, 2450000, 1000000, 1450000, 'CK', 'DAXACNHAN', '2024-05-14 11:00:30', '2024-05-14 11:19:46'),
+('PN20240514182747', 'NCC20240512225513', 'TKNV20240428002556', NULL, 26000000, 0, 26000000, 'CK', 'DAXACNHAN', '2024-05-14 11:27:47', '2024-05-15 03:32:02'),
+('PN20240515074652', 'NCC20240512225056', 'TKNV20240428002556', NULL, 5000000, 1000000, 4000000, 'CK', NULL, '2024-05-15 00:46:52', NULL),
+('PN20240515075644', 'NCC20240505110829', 'TKNV20240428002556', NULL, 5000000, 0, 5000000, 'CK', NULL, '2024-05-15 00:56:44', NULL),
+('PN20240515102258', 'NCC20240512225056', 'TKNV20240428002556', NULL, 1000000, 0, 1000000, 'CK', NULL, '2024-05-15 03:22:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -583,8 +551,8 @@ CREATE TABLE `tbl_sanpham` (
 --
 
 INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ThongSoKyThuat`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(1, 'Smart Tivi Samsung 4K Crystal UHD 75 inch UA75AU8100', 'smart-tivi-samsung-4k-crystal-uhd-75-inch-ua75au8100', 8, 1, 'led-4k-samsung-ua75au8100-29.jpg', 1, 'Tivi LED 4K Samsung UA75AU8100 có thiết kế hiện đại với không viền 3 cạnh sang trọng loại bỏ cảm giác bị giới hạn bởi khung viền đen, mang đến cho bạn cảm giác xem phim không bị không bị phân tâm.\r\n\r\nKích thước tivi Samsung 75 inch phù hợp để trên kệ tủ hay treo trên tường ở những nơi không gian lớn như: Phòng khách, phòng họp,...', NULL, NULL, NULL, '17900000', '', '2024-04-01 17:17:33', '2024-04-02 02:02:43'),
-(2, 'Smart Tivi Samsung 4K 55 inch UA55AU7002', 'smart-tivi-samsung-4k-55-inch-ua55au7002', 8, 1, 'vi-vn-smart-samsung-4k-55-inch-ua55au7002-137.jpg', 1, '- Smart Tivi Samsung 4K 55 inch UA55AU7002 có vẻ ngoài thanh lịch, đường viền đen lịch lãm giúp tôn lên phong cách hiện đại, cao cấp của mọi không gian.\r\n- Sản phẩm thích hợp để trang trí cho các căn phòng có diện tích vừa và lớn với màn hình kích cỡ 55 inch.\r\n- Có thể lắp đặt treo tường hoặc sử dụng chân đế chữ V úp ngược để bố trí kiểu để bàn tùy theo thiết kế của từng căn phòng.', NULL, NULL, NULL, '8490000', '', '2024-04-02 02:06:43', NULL),
+(1, 'Smart Tivi Samsung 4K Crystal UHD 75 inch UA75AU8100', 'smart-tivi-samsung-4k-crystal-uhd-75-inch-ua75au8100', 8, 1, 'led-4k-samsung-ua75au8100-29.jpg', 1, 'Tivi LED 4K Samsung UA75AU8100 có thiết kế hiện đại với không viền 3 cạnh sang trọng loại bỏ cảm giác bị giới hạn bởi khung viền đen, mang đến cho bạn cảm giác xem phim không bị không bị phân tâm.\r\n\r\nKích thước tivi Samsung 75 inch phù hợp để trên kệ tủ hay treo trên tường ở những nơi không gian lớn như: Phòng khách, phòng họp,...', 0, NULL, 17, '17900000', '', '2024-04-01 17:17:33', '2024-04-02 02:02:43'),
+(2, 'Smart Tivi Samsung 4K 55 inch UA55AU7002', 'smart-tivi-samsung-4k-55-inch-ua55au7002', 8, 1, 'vi-vn-smart-samsung-4k-55-inch-ua55au7002-137.jpg', 1, '- Smart Tivi Samsung 4K 55 inch UA55AU7002 có vẻ ngoài thanh lịch, đường viền đen lịch lãm giúp tôn lên phong cách hiện đại, cao cấp của mọi không gian.\r\n- Sản phẩm thích hợp để trang trí cho các căn phòng có diện tích vừa và lớn với màn hình kích cỡ 55 inch.\r\n- Có thể lắp đặt treo tường hoặc sử dụng chân đế chữ V úp ngược để bố trí kiểu để bàn tùy theo thiết kế của từng căn phòng.', NULL, NULL, 5, '8490000', '', '2024-04-02 02:06:43', NULL),
 (3, 'Google Tivi Sony 4K 43 inch KD-43X77L', 'google-tivi-sony-4k-43-inch-kd-43x77l', 11, 1, 'vi-vn-google-tivi-sony-4k-43-inch-kd-43x77l-0162.jpg', 1, 'Google Tivi Sony 4K KD-43X77L có kích thước màn hình 43 inch, viền tivi được thiết kế mỏng, đen, giúp bạn dễ dàng tập trung vào màn hình, hình ảnh sắc nét chuẩn 4K với bộ xử lý hình ảnh chuẩn 4K kết hợp cùng với âm thanh vòm Dolby Audio cho bạn trải nghiệm xem phim đầy lôi cuốn.', NULL, NULL, NULL, '11090000', '', '2024-04-02 02:20:52', NULL),
 (4, 'Tủ lạnh Samsung Inverter 236 lít RT22M4032BY/SV', 'tu-lanh-samsung-inverter-236-lit-rt22m4032bysv', 8, 15, 'samsung-rt22m4032by-sv-140821-091759026.jpg', 1, 'Thịt cá tươi ngon, ăn trong ngày không cần rã đông với ngăn đông mềm -1 độ C Optimal Fresh Zone\r\nNgăn đông mềm thực phẩm ở nhiệt độ -1°C của tủ lạnh giúp thịt cá luôn tươi ngon, trọn vẹn dinh dưỡng do chúng không bị đông đá, giúp bạn có thể chế biến thực phẩm nhanh chóng không cần rã đông.\r\nBạn nên sử dụng ngăn này đối với thực phẩm sẽ chế biến trong ngày, nếu muốn trữ lâu hơn, bạn hãy dùng ngăn đông để bảo quản được tốt nhất.', NULL, NULL, NULL, '5290000', NULL, '2024-04-04 14:51:17', NULL),
 (5, 'Máy giặt Samsung Inverter 8kg WW80T3020WW/SV', 'may-giat-samsung-inverter-8kg-ww80t3020wwsv', 8, 3, 'vi-vn-may-giat-samsung-inverter-8kg-ww80t3020ww-sv-0139.jpg', 1, 'Động cơ Digital Inverter tối ưu hóa hiệu năng và lượng điện tiêu thụ\r\nMáy giặt được trang bị động cơ Digital Inverter với nam châm vĩnh cửu, giảm tối đa ma sát khi máy giặt vận hành, giúp tiết kiệm điện năng, vận hành êm ái hơn so với động cơ thông thường sử dụng chổi than. Đặc biệt, động cơ Digital Inverter có độ bền vượt trội và được bảo hành đến 11 năm.', NULL, NULL, NULL, '3990000', NULL, '2024-04-05 01:33:50', '2024-04-05 14:53:04'),
@@ -860,15 +828,15 @@ ALTER TABLE `tbl_hoadon`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_phieugiamgia`
+-- Chỉ mục cho bảng `tbl_magiamgia`
 --
-ALTER TABLE `tbl_phieugiamgia`
+ALTER TABLE `tbl_magiamgia`
   ADD PRIMARY KEY (`MaGiamGia`);
 
 --
--- Chỉ mục cho bảng `tbl_phieugiamgiand`
+-- Chỉ mục cho bảng `tbl_magiamgiand`
 --
-ALTER TABLE `tbl_phieugiamgiand`
+ALTER TABLE `tbl_magiamgiand`
   ADD PRIMARY KEY (`MaGGND`),
   ADD KEY `MaGiamGia` (`MaGiamGia`),
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
@@ -1094,15 +1062,15 @@ ALTER TABLE `tbl_hoadon`
   MODIFY `MaHoaDon` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieugiamgia`
+-- AUTO_INCREMENT cho bảng `tbl_magiamgia`
 --
-ALTER TABLE `tbl_phieugiamgia`
+ALTER TABLE `tbl_magiamgia`
   MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieugiamgiand`
+-- AUTO_INCREMENT cho bảng `tbl_magiamgiand`
 --
-ALTER TABLE `tbl_phieugiamgiand`
+ALTER TABLE `tbl_magiamgiand`
   MODIFY `MaGGND` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -1261,21 +1229,21 @@ ALTER TABLE `tbl_danhmuctskt`
 -- Các ràng buộc cho bảng `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`),
+  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
   ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`);
 
 --
 -- Các ràng buộc cho bảng `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
-  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`),
+  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
   ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`);
 
 --
--- Các ràng buộc cho bảng `tbl_phieugiamgiand`
+-- Các ràng buộc cho bảng `tbl_magiamgiand`
 --
-ALTER TABLE `tbl_phieugiamgiand`
-  ADD CONSTRAINT `tbl_phieugiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`);
+ALTER TABLE `tbl_magiamgiand`
+  ADD CONSTRAINT `tbl_magiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`);
 
 --
 -- Các ràng buộc cho bảng `tbl_phanquyennguoidung`
