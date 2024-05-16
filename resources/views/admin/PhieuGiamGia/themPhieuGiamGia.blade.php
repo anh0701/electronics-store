@@ -18,7 +18,7 @@
                         <form role="form" action="{{ Route('/them-phieu-giam-gia') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên mã giảm giá</label>
+                                <label for="exampleInputEmail1">Tên phiếu giảm giá</label>
                                 <input type="text" class="form-control @error('TenMaGiamGia') is-invalid @enderror"
                                        name="TenMaGiamGia"
                                        placeholder="Tên phiếu giảm giá" value="{{old('TenMaGiamGia')}}">
