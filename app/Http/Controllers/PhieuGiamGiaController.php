@@ -15,7 +15,7 @@ class PhieuGiamGiaController extends Controller
     public function phieuGiamGia()
     {
         //
-        $phieuGiamGia = PhieuGiamGia::orderBy('MaGiamGia', 'DESC')->get();
+        $phieuGiamGia = PhieuGiamGia::orderBy('MaGiamGia', 'DESC')->paginate(5);
         return view('admin.PhieuGiamGia.lietKePhieuGiamGia')->with(compact("phieuGiamGia"));
     }
 
@@ -39,13 +39,13 @@ class PhieuGiamGiaController extends Controller
             'SlugMaGiamGia' => ['required', 'string', 'max:255'],
             'TriGia' => ['required', 'integer'],
             'MaCode' => ['required', 'string'],
-            'DonViTinh' =>['required', 'integer'],
-        ],[
-            'TenMaGiamGia.required' =>  "Vui lòng nhập tên phiếu giảm giá.",
-            'SlugMaGiamGia.required' =>  "Vui lòng nhập slug phiếu giảm giá.",
-            'TriGia.required' =>  "Vui lòng nhập trị giá phiếu giảm giá.",
-            'MaCode.required' =>  "Vui lòng nhập mã code của phiếu giảm giá.",
-            'DonViTinh.required' =>  "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+            'DonViTinh' => ['required', 'integer'],
+        ], [
+            'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
+            'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
+            'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
+            'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
+            'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
         ]);
 
         if ($validator->fails()) {
@@ -69,9 +69,17 @@ class PhieuGiamGiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function hienThiCTP(PhieuGiamGia $phieuGiamGia)
+    public function timKiem(Request $request)
     {
         //
+        $phieuGiamGia = PhieuGiamGia::where('TenMaGiamGia', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('SlugMaGiamGia', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('TriGia', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('MaCode', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('DonViTinh', 'LIKE', "%{$request->timKiem}%")
+            ->get();
+//        dd($phieuGiamGia);
+        return view('admin.PhieuGiamGia.lietKePhieuGiamGia')->with(compact("phieuGiamGia"));
     }
 
     /**
@@ -94,13 +102,13 @@ class PhieuGiamGiaController extends Controller
             'SlugMaGiamGia' => ['required', 'string', 'max:255'],
             'TriGia' => ['required', 'integer'],
             'MaCode' => ['required', 'string'],
-            'DonViTinh' =>['required', 'integer'],
-        ],[
-            'TenMaGiamGia.required' =>  "Vui lòng nhập tên phiếu giảm giá.",
-            'SlugMaGiamGia.required' =>  "Vui lòng nhập slug phiếu giảm giá.",
-            'TriGia.required' =>  "Vui lòng nhập trị giá phiếu giảm giá.",
-            'MaCode.required' =>  "Vui lòng nhập mã code của phiếu giảm giá.",
-            'DonViTinh.required' =>  "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+            'DonViTinh' => ['required', 'integer'],
+        ], [
+            'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
+            'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
+            'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
+            'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
+            'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
         ]);
 
         if ($validator->fails()) {
