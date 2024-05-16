@@ -18,21 +18,33 @@
                         <form role="form" action="{{ Route('/them-phieu-giam-gia') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên mã giảm giá</label>
-                                <input type="text" class="form-control" name="TenMaGiamGia"
-                                       placeholder="Tên phiếu giảm giá">
+                                <label for="exampleInputEmail1">Tên phiếu giảm giá</label>
+                                <input type="text" class="form-control @error('TenMaGiamGia') is-invalid @enderror"
+                                       name="TenMaGiamGia"
+                                       placeholder="Tên phiếu giảm giá" value="{{old('TenMaGiamGia')}}">
                             </div>
+                            @error('TenMaGiamGia')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Mã giảm giá</label>
-                                <input type="text" class="form-control" name="MaCode" placeholder="Mã phiếu giảm giá">
+                                <label for="exampleInputPassword1">Mã code giảm giá</label>
+                                <input type="text" class="form-control @error('MaCode') is-invalid @enderror"
+                                       name="MaCode" placeholder="Mã code phiếu giảm giá" value="{{old('MaCode')}}">
                             </div>
+                            @error('MaCode')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Slug phiếu giảm giá</label>
-                                <input type="text" class="form-control" name="SlugMaGiamGia" placeholder="Slug phiếu giảm giá">
+                                <input type="text" class="form-control @error('SlugMaGiamGia') is-invalid @enderror"
+                                       name="SlugMaGiamGia" placeholder="Slug phiếu giảm giá" value="{{old('SlugMaGiamGia')}}">
                             </div>
+                            @error('SlugMaGiamGia')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Tính năng mã giảm giá</label>
-                                <select name="DonViTinh" class="form-control input-lg m-bot15">
+                                <select name="DonViTinh" class="form-control input-lg m-bot15 ">
                                     <option value="0">--Chọn--</option>
                                     <option value="2">Giảm theo %</option>
                                     <option value="1">Giảm theo tiền</option>
@@ -40,8 +52,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nhập số % | số tiền giảm</label>
-                                <input type="text" class="form-control" name="TriGia">
+                                <input type="text" class="form-control @error('TriGia') is-invalid @enderror"
+                                       name="TriGia" value="{{old('TriGia')}}">
                             </div>
+                            @error('TriGia')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <button type="submit" name="add_coupon" class="btn btn-info">Thêm mã giảm giá</button>
                         </form>
                     </div>

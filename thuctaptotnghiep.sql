@@ -306,8 +306,9 @@ CREATE TABLE `tbl_magiamgia` (
   `MaGiamGia` int(11) NOT NULL,
   `TenMaGiamGia` varchar(50) NOT NULL,
   `SlugMaGiamGia` varchar(50) NOT NULL,
-  `TinhNang` int(11) NOT NULL,
-  `MaCode` varchar(50) NOT NULL
+  `TriGia` int(11) NOT NULL,
+  `MaCode` varchar(50) NOT NULL,
+  UNIQUE (`MaCode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

@@ -16,22 +16,39 @@
                 <div class="panel-body">
                     <div class="position-center">
                         @foreach ($suaPhieu as $key => $edit_value)
-                            <form role="form" action="{{ Route('/sua-phieu-giam-gia', [$edit_value->MaGiamGia]) }}"
+                            <form role="form" action="{{ Route('/suaPhieuGG', [$edit_value->MaGiamGia]) }}"
                                   method="POST">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên mã giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->TenMaGiamGia }}" class="form-control"
-                                           name="coupon_name" placeholder="Tên mã giảm giá">
+                                    <label for="exampleInputEmail1">Tên phiếu giảm giá</label>
+                                    <input type="text" value="{{ old('TenMaGiamGia', $edit_value->TenMaGiamGia) }}"
+                                           class="@error('TenMaGiamGia') is-invalid @enderror form-control"
+                                           name="TenMaGiamGia" placeholder="Tên mã giảm giá">
                                 </div>
+                                @error('TenMaGiamGia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mô tả mã giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->MaCode }}" class="form-control"
-                                           name="coupon_code" placeholder="Code mã giảm giá">
+                                    <label for="exampleInputPassword1">Mã code phiếu giảm giá</label>
+                                    <input type="text" value="{{ old('MaCode', $edit_value->MaCode) }}"
+                                           class="@error('MaCode') is-invalid @enderror form-control"
+                                           name="MaCode" placeholder="Code mã giảm giá">
                                 </div>
+                                @error('MaCode')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Trạng thái mã giảm giá</label>
-                                    <select name="coupon_condition" class="form-control input-lg m-bot15">
+                                    <label for="exampleInputPassword1">Slug giảm giá</label>
+                                    <input type="text" value="{{ old('SlugMaGiamGia', $edit_value->SlugMaGiamGia) }}"
+                                           class="@error('SlugMaGiamGia') is-invalid @enderror form-control"
+                                           name="SlugMaGiamGia" placeholder="Code mã giảm giá">
+                                </div>
+                                @error('SlugMaGiamGia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Số tiền | Phần trămm giảm</label>
+                                    <select name="DonViTinh" class="form-control input-lg m-bot15">
                                         @if ($edit_value->DonViTinh == '1')
                                             <option value="1" selected>Giảm theo tiền</option>
                                             <option value="2">Giảm theo %</option>
@@ -42,11 +59,15 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Nhập số % | số tiền giảm</label>
-                                    <input type="text" value="{{ $edit_value->TriGia }}" class="form-control"
-                                           name="coupon_number" placeholder="Giá trị">
+                                    <label for="exampleInputPassword1">Trị giá</label>
+                                    <input type="text" value="{{ old('TriGia', $edit_value->TriGia) }}"
+                                           class="@error('TriGia') is-invalid @enderror form-control"
+                                           name="TriGia" placeholder="Giá trị">
                                 </div>
-                                <button type="submit" name="update_coupon" class="btn btn-info">Cập nhật mã giảm giá
+                                @error('TriGia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <button type="submit" name="suaPhieuGG" class="btn btn-info">Cập nhật mã giảm giá
                                 </button>
                             </form>
                         @endforeach
