@@ -20,8 +20,8 @@
                                   method="POST">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên mã giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->TenMaGiamGia }}"
+                                    <label for="exampleInputEmail1">Tên phiếu giảm giá</label>
+                                    <input type="text" value="{{ old('TenMaGiamGia', $edit_value->TenMaGiamGia) }}"
                                            class="@error('TenMaGiamGia') is-invalid @enderror form-control"
                                            name="TenMaGiamGia" placeholder="Tên mã giảm giá">
                                 </div>
@@ -30,7 +30,7 @@
                                 @enderror
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mã code phiếu giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->MaCode }}"
+                                    <input type="text" value="{{ old('MaCode', $edit_value->MaCode) }}"
                                            class="@error('MaCode') is-invalid @enderror form-control"
                                            name="MaCode" placeholder="Code mã giảm giá">
                                 </div>
@@ -39,7 +39,7 @@
                                 @enderror
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Slug giảm giá</label>
-                                    <input type="text" value="{{ $edit_value->SlugMaGiamGia }}"
+                                    <input type="text" value="{{ old('SlugMaGiamGia', $edit_value->SlugMaGiamGia) }}"
                                            class="@error('SlugMaGiamGia') is-invalid @enderror form-control"
                                            name="SlugMaGiamGia" placeholder="Code mã giảm giá">
                                 </div>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Trị giá</label>
-                                    <input type="text" value="{{ $edit_value->TriGia }}"
+                                    <input type="text" value="{{ old('TriGia', $edit_value->TriGia) }}"
                                            class="@error('TriGia') is-invalid @enderror form-control"
                                            name="TriGia" placeholder="Giá trị">
                                 </div>
