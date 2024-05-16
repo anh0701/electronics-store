@@ -21,7 +21,9 @@
 {{--                    </ul>--}}
 {{--                @endif--}}
 {{--            </div>--}}
-            <input type="text" name="Email" placeholder="Email">
+            <div class="form-group">
+                <input type="text" name="Email" placeholder="Email" class="form-control @error('Email') is-invalid @enderror">
+            </div>
             @error('Email')
             <div class="alert alert-danger">
                 {{ $message }}

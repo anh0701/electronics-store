@@ -26,9 +26,10 @@ class QuenMatKhau extends Controller
     public function quenMatKhau(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'Email' => ['required', 'string', 'Email', 'max:255'],
+            'Email' => ['required', 'string', 'email', 'max:255'],
         ],[
             'Email.required' =>  "Vui lòng nhập Email.",
+            'Email.email' => "Định dạng email không hợp lệ."
         ]);
 
         if ($validator->fails()) {
@@ -63,22 +64,8 @@ class QuenMatKhau extends Controller
                 ]);
                 Mail::to($request->all()['Email'])->send(new DoiMatKhau($Pin));
                 return redirect('/xac-thuc-pin') -> with('success', 'Vui lòng kiểm tra email');
-//                return new JsonResponse(
-//                    [
-//                        'success' => true,
-//                        'message' => "Please check your Email for a 6 digit pin"
-//                    ],
-//                    200
-//                );
             }
         } else {
-//            return new JsonResponse(
-//                [
-//                    'success' => false,
-//                    'message' => "This Email does not exist"
-//                ],
-//                400
-//            );
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors( 'Email này không tồn tại.');
@@ -115,31 +102,11 @@ class QuenMatKhau extends Controller
                     ->withErrors('Mã pin hết hiệu lực.');
 //                return new JsonResponse(['success' => false, 'message' => "Pin Expired"], 400);
             }
-
-//            $delete = DB::table('tbl_taikhoan')->where([
-//                ['Email', $request->all()['Email']],
-//                ['Pin', $request->all()['Pin']],
-//            ])->delete();
-
-//            return new JsonResponse(
-//                [
-//                    'success' => true,
-//                    'message' => "You can now reset your password"
-//                ],
-//                200
-//            );
             return redirect('/dat-lai-mat-khau');
         } else {
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors('Mã pin không .');
-//            return new JsonResponse(
-//                [
-//                    'success' => false,
-//                    'message' => "Invalid Pin"
-//                ],
-//                401
-//            );
         }
     }
 

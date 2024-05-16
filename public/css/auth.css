@@ -31,6 +31,7 @@ body {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    font-size: medium;
 }
 
 .container-custom input[type="submit"] {
@@ -42,6 +43,7 @@ body {
     border-radius: 3px;
     cursor: pointer;
     font-size: medium;
+    line-height: normal;
 }
 
 .container-custom input[type="submit"]:hover {
@@ -51,6 +53,10 @@ body {
 .container-custom .error-message {
     color: #ff0000;
     margin-bottom: 10px;
+}
+
+.alert{
+    padding: 10px !important;
 }
 
 .container-custom a{

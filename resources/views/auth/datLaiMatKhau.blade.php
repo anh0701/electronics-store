@@ -21,13 +21,15 @@
 {{--                    </ul>--}}
 {{--                @endif--}}
 {{--            </div>--}}
-            <input type="password" name="MatKhauMoi" placeholder="Mật khẩu mới" value="{{ old('MatKhauMoi') }}">
+            <div class="form-group">
+                <input type="password" class="form-control @error('MatKhauMoi') is-invalid @enderror" name="MatKhauMoi" placeholder="Mật khẩu mới" value="{{ old('MatKhauMoi') }}">
+            </div>
             @error('MatKhauMoi')
             <div class="alert alert-danger">
                 {{ $message }}
             </div>
             @enderror
-            <input type="password" name="MatKhauMoi2" placeholder="Nhập lại mật khẩu mới" value="{{ old('MatKhauMoi2') }}">
+            <input type="password" class="form-control @error('MatKhauMoi2') is-invalid @enderror" name="MatKhauMoi2" placeholder="Nhập lại mật khẩu mới" value="{{ old('MatKhauMoi2') }}">
             @error('MatKhauMoi2')
             <div class="alert alert-danger">
                 {{ $message }}

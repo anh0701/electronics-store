@@ -39,17 +39,6 @@ class DatLaiMatKhau extends Controller
                 'MatKhau' => bcrypt($request->MatKhauMoi)
             ]);
         return view('auth.dangNhap');
-//        return redirect('/dang-nhap')->with('success', 'Tài khoản cập nhật mật khẩu thành công!');
-//    $token = $user->first()->createToken('myapptoken')->plainTextToken;
-//        $token = 1;
-//        return new JsonResponse(
-//            [
-//                'success' => true,
-//                'message' => "Your password has been reset",
-////            'token'=>$token
-//            ],
-//            200
-//        );
     }
 
 }
