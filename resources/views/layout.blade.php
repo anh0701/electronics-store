@@ -93,7 +93,6 @@
 								@endif
 {{--
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
-                    			<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								<li><a href="{{ route('/UserProfile') }}"><i class="fa fa-user"></i> Trang cá nhân</a></li>
 								@if (session('user'))

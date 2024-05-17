@@ -34,7 +34,7 @@ class HomeController extends Controller
         $allTHDM = ThuongHieuDanhMuc::orderBy('MaTHDM', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
         $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
-        return view('pages.DanhMuc.HienThiDanhMucCha')
+        return view('pages.SanPham.DanhMuc.HienThiDanhMucCha')
         ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'danhMucCha', 'allTHDM', 'allDanhMucTSKT', 'allTSKT'));
     }
 
@@ -45,7 +45,7 @@ class HomeController extends Controller
         $allTHDM = ThuongHieuDanhMuc::orderBy('MaTHDM', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
         $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
-        return view('pages.DanhMuc.HienThiDanhMucCon')
+        return view('pages.SanPham.DanhMuc.HienThiDanhMucCon')
         ->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'allTHDM'));
     }
 

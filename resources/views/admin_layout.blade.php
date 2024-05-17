@@ -79,17 +79,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="leftside-navigation">
         <ul class="sidebar-menu" id="nav-accordion">
           <li>
-{{--            <a class="active" href="{{ route('/dashboard') }}">--}}
-{{--                <i class="fa fa-dashboard"></i>--}}
-{{--                <span>Dashboard</span>--}}
-{{--            </a>--}}
-          </li>
-          {{-- <li>
             <a class="active" href="{{ route('/dashboard') }}">
                 <i class="fa fa-dashboard"></i>
                 <span>Dashboard</span>
             </a>
-          </li> --}}
+          </li>
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa-solid fa-money-bill-wave"></i>
