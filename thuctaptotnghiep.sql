@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 05, 2024 lúc 06:16 AM
--- Phiên bản máy phục vụ: 10.4.27-MariaDB
--- Phiên bản PHP: 8.1.12
+-- Host: localhost:3306
+-- Generation Time: May 17, 2024 at 02:11 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -162,12 +162,12 @@ CREATE TABLE `tbl_chitietphieukiemkho` (
 --
 
 CREATE TABLE `tbl_chitietphieunhap` (
-  `MaCTPN` int(11) NOT NULL,
+  `MaCTPN` int NOT NULL,
   `order_code` varchar(50) NOT NULL,
-  `MaSanPham` int(11) NOT NULL,
-  `SoLuong` int(11) NOT NULL,
+  `MaSanPham` int NOT NULL,
+  `SoLuong` int NOT NULL,
   `GiaSanPham` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -413,31 +413,29 @@ CREATE TABLE `tbl_hoadon` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgia`
+-- Table structure for table `tbl_lichsubaohanh`
 --
 
-CREATE TABLE `tbl_magiamgia` (
-  `MaGiamGia` int(11) NOT NULL,
-  `TenMaGiamGia` varchar(50) NOT NULL,
-  `SlugMaGiamGia` varchar(50) NOT NULL,
-  `TinhNang` int(11) NOT NULL,
-  `MaCode` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tbl_lichsubaohanh` (
+  `MaLSBH` int NOT NULL,
+  `MaPhieuBaoHanh` int NOT NULL,
+  `NgayBaoHanh` timestamp NOT NULL,
+  `MaTaiKhoan` int NOT NULL,
+  `MaLienKet` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-alter table tbl_phieugiamgia
-    add DonViTinh int not null comment '% hoặc đ';
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgiand`
+-- Table structure for table `tbl_magiamgiannguoidung`
 --
 
-CREATE TABLE `tbl_magiamgiand` (
-  `MaGGND` int(11) NOT NULL,
-  `MaGiamGia` int(11) NOT NULL,
-  `MaTaiKhoan` int(11) NOT NULL,
-  `SoLuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tbl_magiamgiannguoidung` (
+  `MaGGND` int NOT NULL,
+  `MaGiamGia` int NOT NULL,
+  `MaTaiKhoan` int NOT NULL,
+  `SoLuong` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -455,13 +453,6 @@ CREATE TABLE `tbl_nhacungcap` (
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_nhacungcap`
---
-
-INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `ThoiHanHopDong`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240505110829', 'Công ty TNHH ZTECH 3', '22 lý tư trọng, hong bang, hai phong', 999998888, 'ztech3@gmail.com', NULL, '2024-05-05 04:08:29', '2024-05-05 04:09:44');
 
 -- --------------------------------------------------------
 
@@ -555,6 +546,28 @@ CREATE TABLE `tbl_phieubaohanh` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_phieugiamgia`
+--
+
+CREATE TABLE `tbl_phieugiamgia` (
+  `MaGiamGia` int NOT NULL,
+  `TenMaGiamGia` varchar(50) NOT NULL,
+  `SlugMaGiamGia` varchar(50) NOT NULL,
+  `DonViTinh` int NOT NULL,
+  `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `MaCode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_phieugiamgia`
+--
+
+INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TriGia`, `MaCode`) VALUES
+(1, 'Mã giảm giá chào mừng đăng ký', 'ma-giam-gia-chao-mung-dang-ky', 1, '50000', 'CMDKTV');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_phieukiemkho`
 --
 
@@ -573,16 +586,16 @@ CREATE TABLE `tbl_phieukiemkho` (
 --
 
 CREATE TABLE `tbl_phieunhap` (
-  `MaPhieuNhap` int(11) NOT NULL,
-  `MaNhaCungCap` int(11) NOT NULL,
-  `MaTaiKhoan` int(11) NOT NULL,
+  `MaPhieuNhap` int NOT NULL,
+  `MaNhaCungCap` int NOT NULL,
+  `MaTaiKhoan` int NOT NULL,
   `order_code` varchar(50) NOT NULL,
   `TienTra` varchar(50) DEFAULT NULL,
   `TienNo` varchar(50) DEFAULT NULL,
   `PhuongThucThanhToan` varchar(255) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1435,39 +1448,42 @@ INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHi
 --
 
 CREATE TABLE `tbl_taikhoan` (
-  `MaTaiKhoan` int NOT NULL,
+  `MaTaiKhoan` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `TenTaiKhoan` varchar(50) DEFAULT NULL,
-  `SoDienThoai` int NOT NULL,
-  `MatKhau` varchar(50) NOT NULL,
+  `SoDienThoai` int DEFAULT NULL,
+  `MatKhau` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `HinhAnh` varchar(50) DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
   `BacNguoiDung` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
-  `ThoiGianSua` timestamp NULL DEFAULT NULL
+  `ThoiGianSua` timestamp NULL DEFAULT NULL,
+  `Quyen` varchar(50) DEFAULT NULL,
+  `Pin` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_taikhoan`
 --
 
-INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, '2024-04-27 17:25:56', NULL, 'QTV', NULL),
-('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, '2024-04-27 17:31:10', NULL, NULL, NULL),
-('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, '2024-04-28 09:17:26', NULL, NULL, NULL),
-('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, '2024-04-28 15:14:12', NULL, NULL, NULL),
-('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', '', NULL, '2024-04-28 15:34:47', NULL, 'NVKT', NULL),
-('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, '2024-04-28 16:04:54', NULL, 'NVK', NULL),
-('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, '2024-04-28 17:04:39', NULL, NULL, NULL),
-('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, '2024-04-29 02:49:49', NULL, NULL, NULL),
-('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 1223, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, '2024-04-30 14:06:07', NULL, 'QTVCC', NULL),
-('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, '2024-04-30 14:24:10', NULL, 'NVK', NULL),
-('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 1, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, '2024-04-30 14:31:00', NULL, 'NV', NULL),
-('TKNV20240430213939', 'anhnx0@gmail.com', 'anhnx1', NULL, '$2y$12$ZLViL9MCYTElq8nf2wX2MOSwEnpscGVdZCalrWqxBWt.CU2aKlvnW', '', NULL, '2024-04-30 14:39:39', NULL, 'NV', NULL),
-('TKNV20240430214532', 'admin@gmail.com', 'anhnx', NULL, '$2y$12$KLWMScRbTm.By51tFIdxceoc/AjC5e3cToY7bCZtnivIf04i15.DS', NULL, NULL, '2024-04-30 14:45:32', NULL, NULL, NULL),
-('TKNV20240430214559', 'adminnx@gmail.com', 'anhnx2', NULL, '$2y$12$kJMkcJ6SCOjMC2kZjtA08uOw5iZwOn.OPVYTR0bWxGW7eOSXT4BxG', '', NULL, '2024-04-30 14:45:59', NULL, 'NV', NULL),
-('TKNV20240501102252', 'admin66@gmail.com', 'admin66', 12345, '$2y$12$XXi882nibejrLzcsrhv6FO1nJVCOcaRiqPCQ2xwXQ9yXiYfHRi.IS', '', NULL, '2024-05-01 03:22:52', NULL, 'NV', NULL),
-('TKNV20240501102400', 'admin77@gmail.com', 'anh77', NULL, '$2y$12$ypwbJ4gkfbZQsRinmxc3QOgecD1oNHj1PlAK0kUUPEkTKioQ9IDDG', '', NULL, '2024-05-01 03:24:00', NULL, 'NV', NULL);
+INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
+('TK20240517142055', 'binh@gmail.com', 'binhdz', NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', NULL, NULL, NULL, '2024-05-17 07:20:55', NULL, 'KH', NULL),
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, NULL, '2024-04-27 10:25:56', NULL, 'QTV', NULL),
+('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, NULL, '2024-04-27 10:31:10', NULL, NULL, NULL),
+('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, NULL, '2024-04-28 02:17:26', NULL, NULL, NULL),
+('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, NULL, '2024-04-28 08:14:12', NULL, NULL, NULL),
+('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', '', NULL, NULL, '2024-04-28 08:34:47', NULL, 'NVKT', NULL),
+('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, NULL, '2024-04-28 09:04:54', NULL, 'NVK', NULL),
+('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, NULL, '2024-04-28 10:04:39', NULL, NULL, NULL),
+('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, NULL, '2024-04-28 19:49:49', NULL, NULL, NULL),
+('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 1223, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, NULL, '2024-04-30 07:06:07', NULL, 'QTVCC', NULL),
+('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, NULL, '2024-04-30 07:24:10', NULL, 'NVK', NULL),
+('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 1, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, NULL, '2024-04-30 07:31:00', NULL, 'NV', NULL),
+('TKNV20240430213939', 'anhnx0@gmail.com', 'anhnx1', NULL, '$2y$12$ZLViL9MCYTElq8nf2wX2MOSwEnpscGVdZCalrWqxBWt.CU2aKlvnW', '', NULL, NULL, '2024-04-30 07:39:39', NULL, 'NV', NULL),
+('TKNV20240430214532', 'admin@gmail.com', 'anhnx', NULL, '$2y$12$KLWMScRbTm.By51tFIdxceoc/AjC5e3cToY7bCZtnivIf04i15.DS', NULL, NULL, NULL, '2024-04-30 07:45:32', NULL, NULL, NULL),
+('TKNV20240430214559', 'adminnx@gmail.com', 'anhnx2', NULL, '$2y$12$kJMkcJ6SCOjMC2kZjtA08uOw5iZwOn.OPVYTR0bWxGW7eOSXT4BxG', '', NULL, NULL, '2024-04-30 07:45:59', NULL, 'NV', NULL),
+('TKNV20240501102252', 'admin66@gmail.com', 'admin66', 12345, '$2y$12$XXi882nibejrLzcsrhv6FO1nJVCOcaRiqPCQ2xwXQ9yXiYfHRi.IS', '', NULL, NULL, '2024-04-30 20:22:52', NULL, 'NV', NULL),
+('TKNV20240501102400', 'admin77@gmail.com', 'anh77', NULL, '$2y$12$ypwbJ4gkfbZQsRinmxc3QOgecD1oNHj1PlAK0kUUPEkTKioQ9IDDG', '', NULL, NULL, '2024-04-30 20:24:00', NULL, 'NV', NULL);
 
 -- --------------------------------------------------------
 
@@ -13009,9 +13025,8 @@ ALTER TABLE `tbl_chitietphieukiemkho`
 -- Indexes for table `tbl_chitietphieunhap`
 --
 ALTER TABLE `tbl_chitietphieunhap`
-  ADD PRIMARY KEY (`MaCTPN`),
   ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `tbl_chitietphieunhap_ibfk_2` (`MaPhieuNhap`);
+  ADD KEY `order_code` (`order_code`);
 
 --
 -- Indexes for table `tbl_chitietphieutrahang`
@@ -13098,15 +13113,17 @@ ALTER TABLE `tbl_hoadon`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgia`
+-- Indexes for table `tbl_lichsubaohanh`
 --
-ALTER TABLE `tbl_phieugiamgia`
-  ADD PRIMARY KEY (`MaGiamGia`);
+ALTER TABLE `tbl_lichsubaohanh`
+  ADD PRIMARY KEY (`MaLSBH`),
+  ADD UNIQUE KEY `MaLienKet` (`MaLienKet`),
+  ADD KEY `MaPhieuBaoHanh` (`MaPhieuBaoHanh`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgiand`
+-- Indexes for table `tbl_magiamgiannguoidung`
 --
-ALTER TABLE `tbl_magiamgiand`
+ALTER TABLE `tbl_magiamgiannguoidung`
   ADD PRIMARY KEY (`MaGGND`),
   ADD KEY `MaGiamGia` (`MaGiamGia`),
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
@@ -13133,6 +13150,12 @@ ALTER TABLE `tbl_phieubaohanh`
   ADD PRIMARY KEY (`MaPhieuBaoHanh`),
   ADD UNIQUE KEY `order_code` (`order_code`),
   ADD KEY `MaDonHang` (`MaDonHang`);
+
+--
+-- Indexes for table `tbl_phieugiamgia`
+--
+ALTER TABLE `tbl_phieugiamgia`
+  ADD PRIMARY KEY (`MaGiamGia`);
 
 --
 -- Indexes for table `tbl_phieukiemkho`
@@ -13198,13 +13221,6 @@ ALTER TABLE `tbl_sanpham`
   ADD UNIQUE KEY `SlugSanPham` (`SlugSanPham`),
   ADD KEY `MaDanhMuc` (`MaDanhMuc`),
   ADD KEY `MaThuongHieu` (`MaThuongHieu`);
-
---
--- Indexes for table `tbl_taikhoan`
---
-ALTER TABLE `tbl_taikhoan`
-  ADD PRIMARY KEY (`MaTaiKhoan`),
-  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- Indexes for table `tbl_thanhtruot`
@@ -13377,16 +13393,10 @@ ALTER TABLE `tbl_hoadon`
   MODIFY `MaHoaDon` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgia`
+-- AUTO_INCREMENT for table `tbl_magiamgiannguoidung`
 --
-ALTER TABLE `tbl_magiamgia`
-  MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `tbl_magiamgiand`
---
-ALTER TABLE `tbl_magiamgiand`
-  MODIFY `MaGGND` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_magiamgiannguoidung`
+  MODIFY `MaGGND` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_nhacungcap`
@@ -13407,16 +13417,22 @@ ALTER TABLE `tbl_phieubaohanh`
   MODIFY `MaPhieuBaoHanh` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_phieugiamgia`
+--
+ALTER TABLE `tbl_phieugiamgia`
+  MODIFY `MaGiamGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tbl_phieukiemkho`
 --
 ALTER TABLE `tbl_phieukiemkho`
   MODIFY `MaPKK` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieunhap`
+-- AUTO_INCREMENT for table `tbl_phieunhap`
 --
 ALTER TABLE `tbl_phieunhap`
-  MODIFY `MaPhieuNhap` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaPhieuNhap` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_phieutrahang`
@@ -13447,12 +13463,6 @@ ALTER TABLE `tbl_quyen`
 --
 ALTER TABLE `tbl_sanpham`
   MODIFY `MaSanPham` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `tbl_taikhoan`
---
-ALTER TABLE `tbl_taikhoan`
-  MODIFY `MaTaiKhoan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_thanhtruot`
@@ -13504,8 +13514,7 @@ ALTER TABLE `tbl_baiviet`
 -- Constraints for table `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
-  ADD CONSTRAINT `tbl_binhluan_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_binhluan_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tbl_binhluan_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_chitietbaocaodoanhthu`
@@ -13549,8 +13558,8 @@ ALTER TABLE `tbl_chitietphieukiemkho`
 -- Constraints for table `tbl_chitietphieunhap`
 --
 ALTER TABLE `tbl_chitietphieunhap`
-  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`),
-  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_2` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieunhap` (`order_code`);
+  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_2` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieunhap` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_chitietphieutrahang`
@@ -13577,7 +13586,6 @@ ALTER TABLE `tbl_chuongtrinhgiamgiasp`
 --
 ALTER TABLE `tbl_danhgia`
   ADD CONSTRAINT `tbl_danhgia_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_danhgia_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_danhgia_ibfk_3` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
@@ -13590,35 +13598,21 @@ ALTER TABLE `tbl_danhmuctskt`
 -- Constraints for table `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
-  ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`);
+  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
-  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`),
-  ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`);
+  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_magiamgiand`
+-- Constraints for table `tbl_lichsubaohanh`
 --
-ALTER TABLE `tbl_magiamgiand`
-  ADD CONSTRAINT `tbl_magiamgiand_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`);
-
---
--- Constraints for table `tbl_magiamgiannguoidung`
---
-ALTER TABLE `tbl_magiamgiannguoidung`
-  ADD CONSTRAINT `tbl_magiamgiannguoidung_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_magiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_magiamgiannguoidung_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Constraints for table `tbl_phanquyennguoidung`
---
-ALTER TABLE `tbl_phanquyennguoidung`
-  ADD CONSTRAINT `tbl_phanquyennguoidung_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_phanquyennguoidung_ibfk_2` FOREIGN KEY (`MaPhanQuyen`) REFERENCES `tbl_quyen` (`MaPhanQuyen`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `tbl_lichsubaohanh`
+  ADD CONSTRAINT `tbl_lichsubaohanh_ibfk_1` FOREIGN KEY (`MaPhieuBaoHanh`) REFERENCES `tbl_phieubaohanh` (`MaPhieuBaoHanh`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_phieubaohanh`
@@ -13627,37 +13621,16 @@ ALTER TABLE `tbl_phieubaohanh`
   ADD CONSTRAINT `tbl_phieubaohanh_ibfk_1` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_phieunhap`
---
-ALTER TABLE `tbl_phieunhap`
-  ADD CONSTRAINT `tbl_phieunhap_ibfk_2` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`),
-  ADD CONSTRAINT `tbl_phieunhap_ibfk_3` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`);
-
---
--- Constraints for table `tbl_phieukiemkho`
---
-ALTER TABLE `tbl_phieukiemkho`
-  ADD CONSTRAINT `tbl_phieukiemkho_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
 -- Constraints for table `tbl_phieunhap`
 --
 ALTER TABLE `tbl_phieunhap`
-  ADD CONSTRAINT `tbl_phieunhap_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_phieunhap_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tbl_phieunhap_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_phieutrahang`
 --
 ALTER TABLE `tbl_phieutrahang`
-  ADD CONSTRAINT `tbl_phieutrahang_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_phieutrahang_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Constraints for table `tbl_phieuxuat`
---
-ALTER TABLE `tbl_phieuxuat`
-  ADD CONSTRAINT `tbl_phieuxuat_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tbl_phieutrahang_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `tbl_sanpham`
@@ -13691,12 +13664,6 @@ ALTER TABLE `tbl_thongsokythuatsp`
 ALTER TABLE `tbl_thuonghieudanhmuc`
   ADD CONSTRAINT `tbl_thuonghieudanhmuc_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_thuonghieudanhmuc_ibfk_2` FOREIGN KEY (`MaThuongHieu`) REFERENCES `tbl_thuonghieu` (`MaThuongHieu`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Constraints for table `tbl_tichdiem`
---
-ALTER TABLE `tbl_tichdiem`
-  ADD CONSTRAINT `tbl_tichdiem_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
