@@ -24,4 +24,6 @@ class SanPham extends Model
     public function ThuongHieu(){
         return $this->belongsTo(ThuongHieu::class, 'MaThuongHieu');
     }
+
+
 }

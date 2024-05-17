@@ -24,3 +24,14 @@ php artisan serve
 5. Trước khi pull request
    git pull origin main
    git merge main
+
+6. fix conflict
+
+-   git switch main
+-   git pull
+-   git switch binhdz
+-   git merge main
+-   mở file bị conflict ra xem xem nó bị xung đột như nào, giữ lại cái cần, xoá cái không cần đi
+-   git add .
+-   git commit -m "....."
+-   git push
