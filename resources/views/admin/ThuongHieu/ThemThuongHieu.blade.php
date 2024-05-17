@@ -50,3 +50,12 @@
     </div>
 </div>
 @endsection
+@section('js-custom')
+    <script>
+        ClassicEditor
+        .create(document.querySelector('#MoTa'))
+        .catch(error => {
+            console.error(error);
+        })
+    </script>
+@endsection

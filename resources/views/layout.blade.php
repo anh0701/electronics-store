@@ -91,10 +91,8 @@
                                     </ul>
                                 </li>
 								@endif
-{{--
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
 								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-								<li><a href="{{ route('/UserProfile') }}"><i class="fa fa-user"></i> Trang cá nhân</a></li>
 								@if (session('user'))
 									@php
 										$user = session('user');
@@ -106,8 +104,7 @@
 										<li><a href="{{ route('trangAdmin') }}"><i class="fa"></i> Trang quan ly</a></li>
 										<li><a href="{{ route('/dashboard') }}"><i class="fa"></i> Dashbroad</a></li>
 									@endif
-									<li><a><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
-									
+									<li><a href="{{ route('/UserProfile') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
 								@else
 									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								@endif
@@ -448,5 +445,6 @@
 			});
 		});
 	</script>
+	@yield('js-custom')
 </body>
 </html>

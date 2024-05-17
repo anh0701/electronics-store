@@ -66,7 +66,6 @@ class PhieuGiamGiaController extends Controller
         $phieu->save();
 
         return Redirect::to('/liet-ke-phieu-giam-gia')->with('message', 'Thêm mã giảm giá thành công');
-
     }
 
     /**
@@ -142,6 +141,5 @@ class PhieuGiamGiaController extends Controller
         $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
         $phieuGiamGia->delete();
         return Redirect::to('liet-ke-phieu-giam-gia')->with('status', 'Xóa mã giảm giá thành công');
-
     }
 }

@@ -90,8 +90,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý thương hiệu</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/') }}">Thêm thương hiệu sản phẩm</a></li>
-              <li><a href="{{ route('/') }}">Liệt kê thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -161,20 +161,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý phí giao hàng</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemSanPhamTSKT') }}">Thêm sản phẩm TSKT</a></li>
-              <li><a href="{{ route('/TrangLietKeSanPhamTSKT') }}">Liệt kê sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangThemPhiGiaoHang') }}">Thêm sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKePhiGiaoHang') }}">Liệt kê sản phẩm TSKT</a></li>
             </ul>
           </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <span>Phiếu giảm giá</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
-                    <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
-                </ul>
-            </li>
+          <li class="sub-menu">
+              <a href="javascript:;">
+                  <i class="fa-solid fa-money-bill"></i>
+                  <span>Phiếu giảm giá</span>
+              </a>
+              <ul class="sub">
+                  <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
+                  <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
+              </ul>
+          </li>
         </ul>
       </div>
     </div>
