@@ -27,6 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/raphael-min.js') }}"></script>
 <script src="{{ asset('backend/js/morris.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <!-- morris JavaScript -->
 </head>
 <body>
@@ -78,10 +79,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="leftside-navigation">
         <ul class="sidebar-menu" id="nav-accordion">
           <li>
-{{--            <a class="active" href="{{ route('/dashboard') }}">--}}
-{{--                <i class="fa fa-dashboard"></i>--}}
-{{--                <span>Dashboard</span>--}}
-{{--            </a>--}}
+            <a class="active" href="{{ route('/dashboard') }}">
+                <i class="fa fa-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
@@ -89,18 +90,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý thương hiệu</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/') }}">Thêm thương hiệu sản phẩm</a></li>
-              <li><a href="{{ route('/') }}">Liệt kê thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa-solid fa-warehouse"></i>
-              <span>Quản lý danh mục</span>
+              <span>Quản lý loại sản phẩm</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm danh mục sản phẩm</a></li>
-              <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê danh mục sản phẩm</a></li>
+              <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm loại sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê loại sản phẩm</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-signature"></i>
+              <span>Quản lý THDM</span>
+            </a>
+            <ul class="sub">
               <li><a href="{{ route('/trang-them-thdm') }}">Thêm thương hiệu vào danh mục</a></li>
               <li><a href="{{ route('/trang-liet-ke-thtdm') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
             </ul>
@@ -148,24 +157,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-toolbox"></i>
-              <span>Quản lý sản phẩm TSKT</span>
+                <i class="fa-solid fa-sack-dollar"></i>
+                <span>Quản lý phí giao hàng</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemSanPhamTSKT') }}">Thêm sản phẩm TSKT</a></li>
-              <li><a href="{{ route('/TrangLietKeSanPhamTSKT') }}">Liệt kê sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangThemPhiGiaoHang') }}">Thêm sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKePhiGiaoHang') }}">Liệt kê sản phẩm TSKT</a></li>
             </ul>
           </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <span>Phiếu giảm giá</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
-                    <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
-                </ul>
-            </li>
+          <li class="sub-menu">
+              <a href="javascript:;">
+                  <i class="fa-solid fa-money-bill"></i>
+                  <span>Phiếu giảm giá</span>
+              </a>
+              <ul class="sub">
+                  <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
+                  <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
+              </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -192,36 +201,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
   <script src="{{ asset('backend/js/monthly.js') }}"></script>
-  {{-- Hiển thị bảng SP qua Danh Mục  --}}
+  {{-- Chọn địa điểm giao hàng --}}
   <script type="text/javascript">
-    $(document).ready(function(){
-			$('.ChangeTable').on('click',function(){
-          var action = $(this).attr('id');
-          var ma_id = $(this).val();
-          var _token = $('input[name="_token"]').val();
-          var result = '';
-
-          if(action=='DanhMucCha'){
-            result = 'DanhMucCon';
-          }else{
-            result = 'SanPham';
-          }
-
-          $.ajax({
-            url : '{{ route('/ChangeTable') }}',
-            method: 'POST',
-            data:{
-              action:action,
-              ma_id:ma_id,
-              _token:_token
-            },
-            success:function(data){
+		$(document).ready(function(){
+			$('.ChonDiaDiem').on('click',function(){
+        var action = $(this).attr('id');
+        var ma_id = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        var result = '';
+        
+        if(action=='MaThanhPho'){
+            result = 'MaQuanHuyen';
+        }else{
+            result = 'MaXaPhuong';
+        }
+        $.ajax({
+          url : '{{ route('/ChonDiaDiem') }}',
+          method: 'POST',
+          data:{
+            action:action,
+            ma_id:ma_id,
+            _token:_token
+          },
+          success:function(data){
               $('#'+result).html(data);
-            }
-        });
+          }
       });
-	  });
-  </script>
+    });
+	});
+	</script>
   {{-- Chọn danh thông số kỹ thuật --}}
   <script type="text/javascript">
     $(document).ready(function(){
@@ -254,22 +262,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
 	  });
   </script>
-  {{-- Chọn danh mục --}}
+  {{-- Thêm TSKT cho sản phẩm --}}
   <script type="text/javascript">
-		$(document).ready(function(){
-			$('.choose').on('change',function(){
+    $(document).ready(function(){
+			$('.ThemTSKTChoSanPham').on('click',function(){
           var action = $(this).attr('id');
           var ma_id = $(this).val();
           var _token = $('input[name="_token"]').val();
           var result = '';
 
           if(action=='DanhMucCha'){
-              result = 'DanhMucCon';
-          }else{
-              result = '';
+            result = 'DanhMucCon';
+          }else if(action=='DanhMucCon'){
+            result = 'DanhMucTSKT';
           }
+
           $.ajax({
-            url : '{{ route('/ChonDanhMuc') }}',
+            url : '{{ route('/ThemTSKTChoSanPham') }}',
             method: 'POST',
             data:{
               action:action,
@@ -277,12 +286,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               _token:_token
             },
             success:function(data){
-                $('#'+result).html(data);
+              $('#'+result).html(data);
             }
         });
       });
 	  });
-	</script>
+  </script>
+   {{-- Sửa TSKT thuộc sản phẩm --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+			$('.SuaTSKTChoSanPham').on('click',function(){
+          var action = $(this).attr('id');
+          var ma_id = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          var result = '';
+          
+          if(action=='DanhMucCha'){
+            result = 'DanhMucCon';
+          }else if(action=='DanhMucCon'){
+            result = 'DanhMucTSKT';
+          }
+
+          $.ajax({
+            url : '{{ route('/SuaTSKTChoSanPham') }}',
+            method: 'POST',
+            data:{
+              action:action,
+              ma_id:ma_id,
+              _token:_token
+            },
+            success:function(data){
+              $('#'+result).html(data);
+            }
+        });
+      });
+	  });
+  </script>
+  {{-- ChangeToSlug --}}
   <script type="text/javascript">
       function ChangeToSlug(){
           var slug;
@@ -392,5 +432,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 		});
 	</script>
+  @yield('js-custom')
 </body>
 </html>

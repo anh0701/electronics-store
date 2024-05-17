@@ -44,7 +44,6 @@
                         <th>STT</th>
                         <th>Tên phiếu giảm giá</th>
                         <th>Mã code phiếu giảm giá</th>
-                        {{--                        <th>Trị giá</th>--}}
                         <th>Slug</th>
                         <th>Số tiền | Phần trămm giảm</th>
                         <th>Trị giá</th>
@@ -59,7 +58,6 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $phieu->TenMaGiamGia }}</td>
                             <td>{{ $phieu->MaCode }}</td>
-                            {{--                            <td>{{ $phieu->TriGia }}</td>--}}
                             <td>{{$phieu->SlugMaGiamGia}}</td>
                             <td>
                                 @if($phieu->DonViTinh == 1)

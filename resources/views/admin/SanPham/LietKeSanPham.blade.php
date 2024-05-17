@@ -47,8 +47,15 @@
               <td><img src="{{ asset('upload/sanPham/'.$sanPham->HinhAnh) }}" height="100px" width="150px"></td>
               <td>{{ number_format($sanPham->GiaSanPham, 0, '', '.') }} đ</td>
               <td>
-                <a href="{{ route('/TrangSuaSanPham', $sanPham->MaSanPham) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                <a onclick="return confirm('Bạn có muốn xóa {{ $sanPham->TenSanPham }} không?')" href="{{ route('/XoaSanPham', [$sanPham->MaSanPham]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                <a href="{{ route('/TrangSuaSanPham', $sanPham->MaSanPham) }}">
+                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green; margin-bottom: 15px" class="fa fa-pencil-square-o text-success text-active"></i>
+                </a>
+                <a onclick="return confirm('Bạn có muốn xóa {{ $sanPham->TenSanPham }} không?')" href="{{ route('/XoaSanPham', [$sanPham->MaSanPham]) }}">
+                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red; margin-bottom: 15px" class="fa fa-times text-danger text"></i>
+                </a>
+                <a href="{{ route('/TrangSanPhamTSKT', $sanPham->MaSanPham) }}">
+                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
+                </a>
               </td>
             </tr>
             @endforeach

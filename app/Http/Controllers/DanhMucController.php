@@ -14,12 +14,13 @@ class DanhMucController extends Controller
 
     public function TrangThemDanhMuc(){
         $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->where('DanhMucCha', 0)->get();
-        return view('admin.DanhMuc.ThemDanhMuc')->with(compact('allDanhMuc'));
+        return view('admin.DanhMuc.QuanlyDanhMuc.ThemDanhMuc')->with(compact('allDanhMuc'));
     }
     
     public function TrangLietKeDanhMuc(){
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(15);
-        return view('admin.DanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc'));
+        $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->orderBy('MaDanhMuc', 'DESC')->paginate(15);
+        $allDanhMucCha = DanhMuc::where('DanhMucCha', 0)->get();
+        return view('admin.DanhMuc.QuanlyDanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc', 'allDanhMucCha'));
     }
 
     public function ThemDanhMuc(Request $request){
@@ -66,7 +67,7 @@ class DanhMucController extends Controller
     public function TrangSuaDanhMuc($MaDanhMuc){
         $suaDanhMuc = DanhMuc::where('MaDanhMuc', $MaDanhMuc)->get();
         $danhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
-        return view('admin.DanhMuc.SuaDanhMuc', compact('suaDanhMuc', 'danhMuc')); 
+        return view('admin.DanhMuc.QuanlyDanhMuc.SuaDanhMuc', compact('suaDanhMuc', 'danhMuc')); 
     }
 
     public function SuaDanhMuc(Request $request, $MaDanhMuc){
@@ -108,14 +109,14 @@ class DanhMucController extends Controller
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
         $allDanhMucCha = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('DanhMucCha', 0)->get();
-        return view('admin.DanhMuc.ThemTHDM')->with(compact('allThuongHieu', 'allDanhMuc', 'allDanhMucCha'));
+        return view('admin.DanhMuc.QuanLyTHDM.ThemTHDM')->with(compact('allThuongHieu', 'allDanhMuc', 'allDanhMucCha'));
     }
 
     public function trangLietKeTHDM(){
         $allTHDM = ThuongHieuDanhMuc::orderBy('MaDanhMuc', 'DESC')->paginate(20);
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
         $allDanhMucCha = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('DanhMucCha', 0)->get();
-        return view('admin.DanhMuc.LietKeTHDM')->with(compact('allTHDM', 'allDanhMuc'));
+        return view('admin.DanhMuc.QuanLyTHDM.LietKeTHDM')->with(compact('allTHDM', 'allDanhMuc'));
     }
 
     public function themTHDM(Request $request){
@@ -144,7 +145,7 @@ class DanhMucController extends Controller
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
         $thuongHieuDanhMuc = ThuongHieuDanhMuc::where('MaTHDM', $MaTHDM)->get();
-        return view('admin.DanhMuc.SuaTHDM', compact('thuongHieuDanhMuc', 'allThuongHieu', 'allDanhMuc')); 
+        return view('admin.DanhMuc.QuanLyTHDM.SuaTHDM', compact('thuongHieuDanhMuc', 'allThuongHieu', 'allDanhMuc')); 
     }
 
     public function suaTHDM(Request $request, $MaTHDM){
