@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên phiếu giảm giá</label>
                                 <input type="text" class="form-control @error('TenMaGiamGia') is-invalid @enderror"
-                                       name="TenMaGiamGia"
+                                       name="TenMaGiamGia" onkeyup="ChangeToSlug();" id="slug"
                                        placeholder="Tên phiếu giảm giá" value="{{old('TenMaGiamGia')}}">
                             </div>
                             @error('TenMaGiamGia')
@@ -37,23 +37,40 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Slug phiếu giảm giá</label>
                                 <input type="text" class="form-control @error('SlugMaGiamGia') is-invalid @enderror"
-                                       name="SlugMaGiamGia" placeholder="Slug phiếu giảm giá" value="{{old('SlugMaGiamGia')}}">
+                                       id="convert_slug"  name="SlugMaGiamGia" placeholder="Slug phiếu giảm giá" value="{{old('SlugMaGiamGia')}}">
                             </div>
                             @error('SlugMaGiamGia')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
+                                <label for="exampleInputPassword1">Thời gian có hiệu lực</label>
+                                <input type="datetime-local" class="form-control @error('ThoiGianBatDau') is-invalid @enderror"
+                                         name="ThoiGianBatDau" value="{{old('ThoiGianBatDau')}}">
+                            </div>
+                            @error('ThoiGianBatDau')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Thời gian hết hiệu lực</label>
+                                <input type="datetime-local" class="form-control @error('ThoiGianKetThuc') is-invalid @enderror"
+                                         name="ThoiGianKetThuc" value="{{old('ThoiGianKetThuc')}}">
+                            </div>
+                            @error('ThoiGianKetThuc')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
                                 <label for="exampleInputPassword1">Tính năng mã giảm giá</label>
-                                <select name="DonViTinh" class="form-control input-lg m-bot15 ">
-                                    <option value="0">--Chọn--</option>
-                                    <option value="2">Giảm theo %</option>
-                                    <option value="1">Giảm theo tiền</option>
+                                <select name="DonViTinh" id="DonViTinh" class="form-control input-lg m-bot15 ">
+                                    <option value="0" {{ old('DonViTinh') == '0' ? 'selected' : '' }}>--Chọn--</option>
+                                    <option value="2" {{ old('DonViTinh') == '2' ? 'selected' : '' }}>Giảm theo %</option>
+                                    <option value="1" {{ old('DonViTinh') == '1' ? 'selected' : '' }}>Giảm theo tiền</option>
                                 </select>
+                                <small class="form-text text-muted"> * Mặc định chọn giảm theo %</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nhập số % | số tiền giảm</label>
                                 <input type="text" class="form-control @error('TriGia') is-invalid @enderror"
-                                       name="TriGia" value="{{old('TriGia')}}">
+                                      id="TriGia" name="TriGia" value="{{old('TriGia')}}">
                             </div>
                             @error('TriGia')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -65,4 +82,80 @@
             </section>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var selectElement = document.getElementById('DonViTinh');
+            var triGiaInput = document.getElementById('TriGia');
+            var initialTriGiaValue = triGiaInput.value; // Lưu giá trị ban đầu của TriGia
+
+            function updateTriGiaMaxLength(clearValue = true) {
+                if (clearValue) {
+                    triGiaInput.value = ''; // Xóa giá trị hiện tại của trường TriGia khi thay đổi lựa chọn
+                }
+
+                if (selectElement.value === '2') { // Giảm theo %
+                    triGiaInput.maxLength = 3;
+                    triGiaInput.removeEventListener('input', handleMoneyInput);
+                    triGiaInput.addEventListener('input', handlePercentageInput);
+                } else {
+                    triGiaInput.removeAttribute('maxLength');
+                    triGiaInput.addEventListener('input', handleMoneyInput);
+                    triGiaInput.removeEventListener('input', handlePercentageInput);
+                }
+            }
+
+            function handlePercentageInput() {
+                var value = parseInt(triGiaInput.value.replace(/,/g, ''), 10);
+                if (isNaN(value)) {
+                    triGiaInput.value = '';
+                } else if (value < 1) {
+                    triGiaInput.value = 1;
+                } else if (value > 100) {
+                    triGiaInput.value = 100;
+                } else {
+                    triGiaInput.value = value.toString();
+                }
+            }
+
+            function handleMoneyInput() {
+                var value = triGiaInput.value.replace(/,/g, '');
+                if (value.startsWith('0') && value.length > 1) {
+                    value = value.replace(/^0+/, '');
+                }
+                triGiaInput.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            // Cập nhật độ dài khi giá trị của select box thay đổi và xóa giá trị nhập vào
+            selectElement.addEventListener('change', function() {
+                updateTriGiaMaxLength(true);
+            });
+
+            // Gọi hàm khi trang được tải để thiết lập độ dài ban đầu mà không xóa giá trị nhập vào
+            updateTriGiaMaxLength(false);
+
+            const amountInput = document.getElementById('TriGia');
+            amountInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+                // Chỉ cho phép nhập số
+                value = value.replace(/[^0-9]/g, '');
+                e.target.value = value;
+            });
+
+            amountInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+
+                // Loại bỏ tất cả dấu phẩy
+                value = value.replace(/,/g, '');
+
+                // Thêm dấu phẩy dưới dạng dấu phân cách nghìn
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+                e.target.value = value;
+            });
+        });
+    </script>
+
 @endsection
+
+

@@ -9,7 +9,11 @@ use App\Models\DanhMuc;
 use App\Models\ThuongHieu;
 use App\Models\TaiKhoan;
 use App\Models\PhanQuyen;
+use App\Models\TinhThanhPho;
 use App\Models\PhanQuyenNguoiDung;
+use App\Models\ThuongHieuDanhMuc;
+use App\Models\DanhMucTSKT;
+use App\Models\ThongSoKyThuat;
 
 use Illuminate\Support\Facades\Redirect;
 
@@ -22,28 +26,27 @@ class HomeController extends Controller
         return view('pages.home')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
 
-    public function HienThiThuongHieu($MaThuongHieu){
-        $sanPhamThuocThuongHieu = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
-        where('MaThuongHieu', $MaThuongHieu)->paginate('20');
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        return view('pages.ThuongHieu.HienThiThuongHieu')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocThuongHieu'));
-    }
-
     public function HienThiDanhMucCha($MaDanhMuc){
         $danhMucCha = $MaDanhMuc;
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        return view('pages.DanhMuc.HienThiDanhMucCha')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'danhMucCha'));
+        $allTHDM = ThuongHieuDanhMuc::orderBy('MaTHDM', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
+        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
+        $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
+        return view('pages.SanPham.DanhMuc.HienThiDanhMucCha')
+        ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'danhMucCha', 'allTHDM', 'allDanhMucTSKT', 'allTSKT'));
     }
 
     public function HienThiDanhMucCon($MaDanhMuc){
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        $sanPhamThuocDanhMuc = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->
-        where('MaDanhMuc', $MaDanhMuc)->paginate('20');
-        return view('pages.DanhMuc.HienThiDanhMucCon')->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc'));
+        $sanPhamThuocDanhMuc = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->where('MaDanhMuc', $MaDanhMuc)->paginate('20');
+        $allTHDM = ThuongHieuDanhMuc::orderBy('MaTHDM', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
+        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
+        $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
+        return view('pages.SanPham.DanhMuc.HienThiDanhMucCon')
+        ->with(compact('allDanhMuc', 'allThuongHieu', 'sanPhamThuocDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'allTHDM'));
     }
 
     public function ChiTietSanPham($MaSanPham){
@@ -68,17 +71,25 @@ class HomeController extends Controller
     }
 
     public function ThanhToan(){
+        $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
-        return view('pages.ThanhToan.ThanhToan')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));;
+        return view('pages.ThanhToan.ThanhToan')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allThanhPho'));
+    }
+    
+    public function UserProfile(){
+        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        return view('pages.UserProfile.Userprofile')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
 
     public function TrangKhachHangDangNhap(){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
-        return view('pages.TaiKhoan.login')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));;
+        return view('pages.TaiKhoan.login')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
 
     public function KhachHangDangNhap(Request $request){

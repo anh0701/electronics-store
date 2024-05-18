@@ -13,7 +13,7 @@ class ThuongHieuController extends Controller
     }
 
     public function TrangLietKeThuongHieu(){
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->paginate(10);
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->paginate(20);
         return view('admin.ThuongHieu.LietKeThuongHieu')->with(compact('allThuongHieu'));
     }
 

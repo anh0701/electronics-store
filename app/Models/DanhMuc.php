@@ -14,6 +14,4 @@ class DanhMuc extends Model
     ];
     protected $primaryKey = 'MaDanhMuc';
     protected $table = 'tbl_danhmuc';
-
-
 }

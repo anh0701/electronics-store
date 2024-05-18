@@ -36,46 +36,52 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        <th style="width:20px;">
-                            <label class="i-checks m-b-none">
-                                <input type="checkbox"><i></i>
-                            </label>
-                        </th>
+{{--                        <th style="width:20px;">--}}
+{{--                            <label class="i-checks m-b-none">--}}
+{{--                                <input type="checkbox"><i></i>--}}
+{{--                            </label>--}}
+{{--                        </th>--}}
                         <th>STT</th>
                         <th>Tên phiếu giảm giá</th>
                         <th>Mã code phiếu giảm giá</th>
-                        {{--                        <th>Trị giá</th>--}}
                         <th>Slug</th>
-                        <th>Số tiền | Phần trămm giảm</th>
+{{--                        <th>Số tiền | Phần trămm giảm</th>--}}
                         <th>Trị giá</th>
+                        <th>Thời gian có hiệu lực</th>
+                        <th>Thời gian hết hiệu lực</th>
                         <th style="width:100px;">Quản lý</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($phieuGiamGia as $key => $phieu)
                         <tr>
-                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>
-                            </td>
+{{--                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>--}}
+{{--                            </td>--}}
                             <td>{{ $key+1 }}</td>
                             <td>{{ $phieu->TenMaGiamGia }}</td>
                             <td>{{ $phieu->MaCode }}</td>
-                            {{--                            <td>{{ $phieu->TriGia }}</td>--}}
                             <td>{{$phieu->SlugMaGiamGia}}</td>
+{{--                            <td>--}}
+{{--                                @if($phieu->DonViTinh == 1)--}}
+{{--                                    Giảm theo tiền--}}
+{{--                                @else--}}
+{{--                                    Giảm theo %--}}
+{{--                                @endif--}}
+{{--                            </td>--}}
+{{--                            </td>--}}
                             <td>
                                 @if($phieu->DonViTinh == 1)
-                                    Giảm theo tiền
+{{--                                    Giảm {{ number_format($phieu->TriGia).''.''.'' }}đ--}}
+{{--                                    Giảm {{$phieu->TriGia}}đ--}}
+                                    Giảm {{ strpos($phieu->TriGia, ',') === false ? number_format($phieu->TriGia, 0, '', ',') : $phieu->TriGia }}đ
                                 @else
-                                    Giảm theo %
+                                    Giảm {{ strpos($phieu->TriGia, ',') === false ? number_format($phieu->TriGia, 0, '', ',') : $phieu->TriGia }}%
+                                    {{--                                    Giảm {{ number_format($phieu->TriGia)}}%--}}
+{{--                                    Giảm {{$phieu->TriGia}}%--}}
                                 @endif
                             </td>
-                            </td>
-                            <td>
-                                @if($phieu->DonViTinh == 1)
-                                    Giảm {{ number_format($phieu->TriGia).''.''.'' }}đ
-                                @else
-                                    Giảm {{ number_format($phieu->TriGia)}}%
-                                @endif
-                            </td>
+                            <td>{{$phieu->ThoiGianBatDau}}</td>
+                            <td>{{$phieu->ThoiGianKetThuc}}</td>
                             <td>
                                 <a href="{{ route('/sua-phieu-giam-gia', $phieu->MaGiamGia) }}"><i
                                         style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"

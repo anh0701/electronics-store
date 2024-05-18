@@ -38,17 +38,23 @@ class PhieuGiamGiaController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'TenMaGiamGia' => ['required', 'string', 'max:255'],
-            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
-            'TriGia' => ['required', 'integer'],
+            'SlugMaGiamGia' => ['required', 'string', 'max:255', 'unique:tbl_phieugiamgia'],
+            'TriGia' => ['required', 'string'],
             'MaCode' => ['required', 'string', 'unique:tbl_phieugiamgia'],
             'DonViTinh' => ['required', 'integer'],
+            'ThoiGianBatDau' =>['required', 'date_format:Y-m-d\TH:i'],
+            'ThoiGianKetThuc'=>['required','date_format:Y-m-d\TH:i','after:ThoiGianBatDau'],
         ], [
             'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
             'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
             'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
             'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
             'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
+            'SlugMaGiamGia.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
             'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+            'ThoiGianKetThuc.required' => "Vui lòng nhập ngày hết hiệu lực phiếu giảm giá.",
+            'ThoiGianBatDau.required' => "Vui lòng nhập ngày có hiệu lực phiếu giảm giá.",
+            'ThoiGianKetThuc.after' => "Ngày hết hiệu lực phải sau ngày có hiệu lực.",
         ]);
 
         if ($validator->fails()) {
@@ -63,10 +69,11 @@ class PhieuGiamGiaController extends Controller
         $phieu->TriGia = $data['TriGia'];
         $phieu->MaCode = $data['MaCode'];
         $phieu->DonViTinh = $data['DonViTinh'];
+        $phieu->ThoiGianBatDau = $data['ThoiGianBatDau'];
+        $phieu->ThoiGianKetThuc = $data['ThoiGianKetThuc'];
         $phieu->save();
 
         return Redirect::to('/liet-ke-phieu-giam-gia')->with('message', 'Thêm mã giảm giá thành công');
-
     }
 
     /**
@@ -102,17 +109,23 @@ class PhieuGiamGiaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'TenMaGiamGia' => ['required', 'string', 'max:255'],
-            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
-            'TriGia' => ['required', 'integer'],
+            'SlugMaGiamGia' => 'required|unique:tbl_phieugiamgia,SlugMaGiamGia,' . $MaGiamGia . ',MaGiamGia',
+            'TriGia' => ['required', 'string'],
             'MaCode'=>'required|unique:tbl_phieugiamgia,MaCode,' . $MaGiamGia . ',MaGiamGia',
             'DonViTinh' => ['required', 'integer'],
+            'ThoiGianBatDau' =>['required', 'date_format:Y-m-d\TH:i'],
+            'ThoiGianKetThuc'=>['required','date_format:Y-m-d\TH:i','after:ThoiGianBatDau'],
         ], [
             'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
             'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
+            'SlugMaGiamGia.unique' => "Slug đã tồn tại.",
             'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
             'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
             'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
             'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
+            'ThoiGianKetThuc.required' => "Vui lòng nhập ngày hết hiệu lực phiếu giảm giá.",
+            'ThoiGianBatDau.required' => "Vui lòng nhập ngày có hiệu lực phiếu giảm giá.",
+            'ThoiGianKetThuc.after' => "Ngày hết hiệu lực phải sau ngày có hiệu lực.",
         ]);
 
         if ($validator->fails()) {
@@ -127,6 +140,9 @@ class PhieuGiamGiaController extends Controller
         $phieu->TriGia = $request->TriGia;
         $phieu->MaCode = $request->MaCode;
         $phieu->DonViTinh = $request->DonViTinh;
+        $phieu->ThoiGianBatDau = $request->ThoiGianBatDau;
+        $phieu->ThoiGianKetThuc = $request->ThoiGianKetThuc;
+//        dd($request->ThoiGianKetThuc);
         $phieu->save();
 
         return Redirect::to('/liet-ke-phieu-giam-gia')->with('message', 'Sửa mã giảm giá thành công');
@@ -142,6 +158,5 @@ class PhieuGiamGiaController extends Controller
         $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
         $phieuGiamGia->delete();
         return Redirect::to('liet-ke-phieu-giam-gia')->with('status', 'Xóa mã giảm giá thành công');
-
     }
 }
