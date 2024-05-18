@@ -20,7 +20,7 @@
                         @php
                             $pn = Session::get('pn');
                             $listSP = Session::get('listSP');  
-                            $tongTien = Session::get('tongTien');
+
                         @endphp
                         <div class="form-group">
                             <label for="">Mã phiếu</label>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Tổng tiền</label>
-                            <input type="text" class="form-control" value="{{ $tongTien }}" readonly>
+                            <input type="text" class="form-control" value="0" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Phương thức thanh toán</label>
@@ -75,15 +75,15 @@
                             <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                         </form>
                         <br>
-                        <a href="{{ route('luuPN') }}"><button class="btn btn-info">Luu</button></a>
-                        <a href="{{ route('xemPN') }}"><button class="btn btn-info">Thoát</button></a>
+                        <a href="{{ route('luuPN') }}"><button class="btn btn-info">Lưu</button></a>
+                        <a href="{{ route('xoaPN', ['id' => $pn[0]]) }}"><button class="btn btn-info">Hủy</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped b-t b-light">
                                 <thead>
                                     <tr>
-                                        <th>Mã phiếu nhập chi tiết</th>
+                                        <!-- <th>Mã phiếu nhập chi tiết</th> -->
                                         <th>Mã phiếu nhập</th>
-                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Giá sản phẩm</th>
                                         <th>Thành tiền</th>
@@ -96,14 +96,14 @@
                                     @endphp
                                     @foreach ($listPNCT as $pnct)
                                         <tr>
-                                            <td>{{ $pnct->MaCTPN }}</td>
+                                            <!-- <td>{{ $pnct->MaCTPN }}</td> -->
                                             <td>{{ $pnct->MaPhieuNhap }}</td>
-                                            <td>{{ $pnct->MaSanPham }}</td>
+                                            <td>{{ $pnct->TenSanPham }}</td>
                                             <td>{{ $pnct->SoLuong }}</td>
                                             <td>{{ $pnct->GiaSanPham }}</td>
                                             <td>{{ $pnct->SoLuong * $pnct->GiaSanPham }}</td>
                                             <td>
-                                                <a href="{{ route('xoaCTPN', ['id' => $pnct->MaCTPN]) }}">Xoa</a>
+                                                <a href="{{ route('xoaCTPN', ['id' => $pnct->MaCTPN]) }}">Xóa</a>
                                             </td>
 
                                         </tr>

@@ -59,8 +59,8 @@
                         <input class="form-control" type="text" id="trangThai" name="trangThai" value="{{ $trangthai }}" readonly class="gray-background">
                     </div>
                     <a href="{{ route('xemPN') }}"><button class="btn btn-info">Trở lại</button></a>
-                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sua phieu nhap</button></a>
-                    <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xoa phieu nhap</button></a>
+                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa</button></a>
+                    <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xóa</button></a>
 
                 </div>
             </div>
@@ -86,7 +86,6 @@
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
                         <th>Thành tiền</th>
-                        <th style="width:100px">Quản lý</th>
                     </tr>
                 </thead>
                 <tbody>

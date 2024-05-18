@@ -1,66 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sua phieu nhap</title>
-    <link rel="stylesheet" href="{{ asset('/css/xem.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')}}" >
-</head>
-<body>
-    <h1>Sua phieu nhap</h1>
-    <form action="/xuLySuaPN" method="post">
-        @csrf
-        <label for="maPN">Ma phieu:</label><br>
-        <input type="text" id="maPN" name="maPN" value="{{ $pn->MaPhieuNhap }}" readonly class="gray-background"><br>
-        <label for="maNCC">Nha cung cap:</label><br>
-        <input type="text" id="maNCC" name="maNCC" value="{{ $pn->MaNhaCungCap }}" readonly class="gray-background"><br>
-        <label for="nguoiLap">Nguoi Lap:</label><br>
-        <input type="text" id="nguoiLap" name="nguoiLap" value="{{ $pn->MaTaiKhoan }}" readonly class="gray-background"><br>
-        <label for="tongTien">Tong tien:</label><br>
-        <input type="text" id="tongTien" name="tongTien" value="{{ $pn->TongTien }}" readonly class="gray-background"><br>
-        <label for="tienTra">Tien tra them:</label><br>
-        <input type="text" id="tienTra" name="tienTra" value="0"><br>
-        <label for="tienNo">Tien no:</label><br>
-        <input type="text" id="tienNo" name="tienNo" value="{{ $pn->TienNo }}" readonly class="gray-background"><br>
-        <label for="phuongThucThanhToan">Phuong thuc thanh toan:</label><br>
-        <input type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $pn->PhuongThucThanhToan }}" readonly class="gray-background"><br>
-        <label for="trangThai">Trang thai: </label><br>
-        <select id="trangThai" name="trangThai">
-            <option value="">Chua xac nhan</option>
-            <option value="DAXACNHAN">Da xac nhan</option>
-            <option value="KHAC">Khac</option>
-        </select><br>
-        <br>
-        <table class="table" style="width: auto;">
-            <thead>
-                <tr>
-                    <th class="th1">Mã PNCT</th>
-                    <th class="th1">Mã San Pham</th>
-                    <th class="th1">Số Lượng</th>
-                    <th class="th1">Đơn Giá</th>
-                    <th class="th1">Thanh tien</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($ctpn as $key => $matHang)
-                    <tr>
-                        <td><input type="text" id="maCTPN[]" name="maCTPN[]" value="{{ $matHang->MaCTPN }}" readonly class="gray-background"></td>
-                        <td><input type="text" value = "{{ $matHang->MaSanPham }}" readonly class="gray-background"></td>
-                        <td><input type="text" id="soluong[]" name="soluong[]" min="1" value="{{ $matHang->SoLuong }}"></td>
-                        <td><input type="text" id="dongia[]" name="dongia[]" min="10000" step="1000" value="{{ $matHang->GiaSanPham }}"></td>
-                        @php
-                            $thanhTien = $matHang->SoLuong * $matHang->GiaSanPham;
-                        @endphp
-                        <td>{{ $thanhTien }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <button type="submit" class="btn btn-warning">Luu</button>
-    </form>
-    <a href="{{ route('xemPN') }}"><button class="btn btn-primary">Trở lại</button></a>
-    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-primary">Sua phieu nhap</button></a>
-</body>
-
-</html>
+@extends('admin_layout')
+@section('admin_content')
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Cập nhật phiếu nhập 
+            </header>
+            <div class="panel-body">
+                <div class="position-center">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    </div>
+                @endif
+                    <form role="form" action="{{ Route('xuLySuaPN') }}" method="POST" >
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="">Mã phiếu</label>
+                            <input type="text" class="form-control" name="maPN" value="{{ $pn->MaPhieuNhap }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Người lập phiếu</label>
+                            <input type="text" class="form-control" name="nguoiLap" value="{{ $pn->MaTaiKhoan }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nhà cung cấp</label>
+                            <input type="text" class="form-control" name="ncc" value="{{ $pn->MaNhaCungCap }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tổng tiền</label>
+                            <input type="text" class="form-control" name="tongTien" value="{{ $pn->TongTien }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tiền đã trả</label>
+                            <input type="text" class="form-control" value="{{ $pn->TienTra }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tiền trả thêm</label>
+                            <input type="text" class="form-control" name="tienTra" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tiền nợ</label>
+                            <input type="text" class="form-control" name="tienNo" value="{{ $pn->TienNo }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Thời gian sửa</label>
+                            <input type="text" class="form-control" name="tgSua" value="{{ $pn->ThoiGianSua }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Phương thức thanh toán</label>
+                            <select name="thanhToan" class="form-control input-lg m-bot15">
+                                <option value="0" >Chuyển khoản</option>
+                                <option value="1" >Tiền mặt</option>
+                                <option value="2" >Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Trạng thái</label>
+                            <select name="trangThai" class="form-control input-lg m-bot15">
+                                <option value="" >Chưa xác nhận</option>
+                                <option value="1" >Đã xác nhận (cập nhật hàng trong kho?)</option>
+                            </select>
+                        </div>
+                        <button type="submit" name="" class="btn btn-info">Lưu</button>
+                        
+                    </form>
+                    <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button type="sua" name="" class="btn btn-info">Sửa phiếu nhập chi tiết</button></a>
+                    <div class="table-responsive">
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                                <tr>
+                                    <!-- <th>Mã phiếu nhập chi tiết</th> -->
+                                    <th>Mã phiếu nhập</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá sản phẩm</th>
+                                    <th>Thành tiền</th>
+                                    <!-- <th style="width:100px">Quản lý</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    
+                                @endphp
+                                @foreach ($ctpn as $ct)
+                                    <tr>
+                                        <!-- <td>{{ $ct->MaCTPN }}</td> -->
+                                        <td>{{ $ct->MaPhieuNhap }}</td>
+                                        <td>{{ $ct->TenSanPham }}</td>
+                                        <td>{{ $ct->SoLuong }}</td>
+                                        <td>{{ $ct->GiaSanPham }}</td>
+                                        <td>{{ $ct->SoLuong * $ct->GiaSanPham }}</td>
+                                        <!-- <td>
+                                            <a href="{{ route('xoaCTPN', ['id' => $ct->MaCTPN]) }}">Xóa</a>
+                                        </td> -->
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+@endsection
