@@ -555,15 +555,17 @@ CREATE TABLE `tbl_phieugiamgia` (
   `SlugMaGiamGia` varchar(50) NOT NULL,
   `DonViTinh` int NOT NULL,
   `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `MaCode` varchar(50) NOT NULL
+  `MaCode` varchar(50) NOT NULL,
+  `ThoiGianBatDau` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ThoiGianKetThuc` TIMESTAMP NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_phieugiamgia`
 --
 
-INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TriGia`, `MaCode`) VALUES
-(1, 'Mã giảm giá chào mừng đăng ký', 'ma-giam-gia-chao-mung-dang-ky', 1, '50000', 'CMDKTV');
+# INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TriGia`, `MaCode`) VALUES
+# (1, 'Mã giảm giá chào mừng đăng ký', 'ma-giam-gia-chao-mung-dang-ky', 1, '50000', 'CMDKTV');
 
 -- --------------------------------------------------------
 

@@ -47,8 +47,24 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <div class="form-group">
+                                    <label for="exampleInputPassword1">Thời gian có hiệu lực</label>
+                                    <input type="datetime-local" class="form-control @error('ThoiGianBatDau') is-invalid @enderror"
+                                           name="ThoiGianBatDau" value="{{old('ThoiGianBatDau', $edit_value->ThoiGianBatDau)}}">
+                                </div>
+                                @error('ThoiGianBatDau')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Thời gian hết hiệu lực</label>
+                                    <input type="datetime-local" class="form-control @error('ThoiGianKetThuc') is-invalid @enderror"
+                                           name="ThoiGianKetThuc" value="{{old('ThoiGianKetThuc', $edit_value->ThoiGianKetThuc)}}">
+                                </div>
+                                @error('ThoiGianKetThuc')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Số tiền | Phần trămm giảm</label>
-                                    <select name="DonViTinh" class="form-control input-lg m-bot15">
+                                    <select name="DonViTinh" id="DonViTinh" class="form-control input-lg m-bot15">
                                         @if ($edit_value->DonViTinh == '1')
                                             <option value="1" selected>Giảm theo tiền</option>
                                             <option value="2">Giảm theo %</option>
@@ -76,8 +92,60 @@
             </section>
         </div>
     </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+            var selectElement = document.getElementById('DonViTinh');
+            var triGiaInput = document.getElementById('TriGia');
+            var initialTriGiaValue = triGiaInput.value; // Lưu giá trị ban đầu của TriGia
+
+            function updateTriGiaMaxLength(clearValue = true) {
+                if (clearValue) {
+                    triGiaInput.value = ''; // Xóa giá trị hiện tại của trường TriGia khi thay đổi lựa chọn
+                }
+
+                if (selectElement.value === '2') { // Giảm theo %
+                    triGiaInput.maxLength = 3;
+                    triGiaInput.removeEventListener('input', handleMoneyInput);
+                    triGiaInput.addEventListener('input', handlePercentageInput);
+                } else {
+                    triGiaInput.removeAttribute('maxLength');
+                    triGiaInput.addEventListener('input', handleMoneyInput);
+                    triGiaInput.removeEventListener('input', handlePercentageInput);
+                }
+            }
+
+            function handlePercentageInput() {
+                var value = parseInt(triGiaInput.value.replace(/,/g, ''), 10);
+                if (isNaN(value)) {
+                    triGiaInput.value = '';
+                } else if (value < 1) {
+                    triGiaInput.value = 1;
+                } else if (value > 100) {
+                    triGiaInput.value = 100;
+                } else {
+                    triGiaInput.value = value.toString();
+                }
+            }
+
+            function handleMoneyInput() {
+                var value = triGiaInput.value.replace(/,/g, '');
+                if (value.startsWith('0') && value.length > 1) {
+                    value = value.replace(/^0+/, '');
+                }
+                triGiaInput.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            // Cập nhật độ dài khi giá trị của select box thay đổi và xóa giá trị nhập vào
+            selectElement.addEventListener('change', function() {
+                updateTriGiaMaxLength(true);
+            });
+
+            // Gọi hàm khi trang được tải để thiết lập độ dài ban đầu mà không xóa giá trị nhập vào
+            updateTriGiaMaxLength(false);
+
             const amountInput = document.getElementById('TriGia');
             amountInput.addEventListener('input', function(e) {
                 let value = e.target.value;
@@ -99,4 +167,5 @@
             });
         });
     </script>
+
 @endsection
