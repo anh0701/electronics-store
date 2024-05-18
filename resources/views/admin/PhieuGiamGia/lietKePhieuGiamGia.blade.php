@@ -69,9 +69,13 @@
                             </td>
                             <td>
                                 @if($phieu->DonViTinh == 1)
-                                    Giảm {{ number_format($phieu->TriGia).''.''.'' }}đ
+{{--                                    Giảm {{ number_format($phieu->TriGia).''.''.'' }}đ--}}
+{{--                                    Giảm {{$phieu->TriGia}}đ--}}
+                                    Giảm {{ strpos($phieu->TriGia, ',') === false ? number_format($phieu->TriGia, 0, '', ',') : $phieu->TriGia }}đ
                                 @else
-                                    Giảm {{ number_format($phieu->TriGia)}}%
+                                    Giảm {{ strpos($phieu->TriGia, ',') === false ? number_format($phieu->TriGia, 0, '', ',') : $phieu->TriGia }}%
+                                    {{--                                    Giảm {{ number_format($phieu->TriGia)}}%--}}
+{{--                                    Giảm {{$phieu->TriGia}}%--}}
                                 @endif
                             </td>
                             <td>
