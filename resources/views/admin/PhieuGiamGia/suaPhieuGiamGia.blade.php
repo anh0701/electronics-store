@@ -62,7 +62,7 @@
                                     <label for="exampleInputPassword1">Trị giá</label>
                                     <input type="text" value="{{ old('TriGia', $edit_value->TriGia) }}"
                                            class="@error('TriGia') is-invalid @enderror form-control"
-                                           name="TriGia" placeholder="Giá trị">
+                                          id="TriGia" name="TriGia" placeholder="Giá trị">
                                 </div>
                                 @error('TriGia')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -76,4 +76,27 @@
             </section>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInput = document.getElementById('TriGia');
+            amountInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+                // Chỉ cho phép nhập số
+                value = value.replace(/[^0-9]/g, '');
+                e.target.value = value;
+            });
+
+            amountInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+
+                // Loại bỏ tất cả dấu phẩy
+                value = value.replace(/,/g, '');
+
+                // Thêm dấu phẩy dưới dạng dấu phân cách nghìn
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+                e.target.value = value;
+            });
+        });
+    </script>
 @endsection
