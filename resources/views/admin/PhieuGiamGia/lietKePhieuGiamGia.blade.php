@@ -45,6 +45,7 @@
                         <th>Tên phiếu giảm giá</th>
                         <th>Mã code phiếu giảm giá</th>
                         <th>Slug</th>
+                        <th>Cấp bậc thành viên</th>
 {{--                        <th>Số tiền | Phần trămm giảm</th>--}}
                         <th>Trị giá</th>
                         <th>Thời gian có hiệu lực</th>
@@ -61,6 +62,15 @@
                             <td>{{ $phieu->TenMaGiamGia }}</td>
                             <td>{{ $phieu->MaCode }}</td>
                             <td>{{$phieu->SlugMaGiamGia}}</td>
+                            <td>
+                                @if($phieu->BacNguoiDung == '2')
+                                    Kim Cương
+                                @elseif($phieu->BacNguoiDung == '3')
+                                    Bạch Kim
+                                @else
+                                    Vàng
+                                @endif
+                            </td>
 {{--                            <td>--}}
 {{--                                @if($phieu->DonViTinh == 1)--}}
 {{--                                    Giảm theo tiền--}}

@@ -63,6 +63,24 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <div class="form-group">
+                                    <label for="exampleInputPassword1">Cấp bậc thành viên</label>
+                                    <select name="BacNguoiDung" id="BacNguoiDung" class="form-control input-lg m-bot15">
+                                        @if ($edit_value->BacNguoiDung == '1')
+                                            <option value="1" >Vàng</option>
+                                            <option value="2" >Kim Cương</option>
+                                            <option value="3" >Bạch Kim</option>
+                                        @elseif($edit_value->BacNguoiDung == '2')
+                                            <option value="1" >Vàng</option>
+                                            <option value="2" >Kim Cương</option>
+                                            <option value="3" >Bạch Kim</option>
+                                        @else
+                                            <option value="1" >Vàng</option>
+                                            <option value="2" >Kim Cương</option>
+                                            <option value="3" >Bạch Kim</option>
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Số tiền | Phần trămm giảm</label>
                                     <select name="DonViTinh" id="DonViTinh" class="form-control input-lg m-bot15">
                                         @if ($edit_value->DonViTinh == '1')
