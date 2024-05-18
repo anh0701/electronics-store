@@ -12,5 +12,5 @@ class PhieuGiamGia extends Model
     public $timestamps = false;
     protected $table = "tbl_phieugiamgia";
     protected $primaryKey = "MaGiamGia";
-    protected $fillable = ["MaGiamGia", "TenMaGiamGia", "SlugMaGiamGia", "DonViTinh", "MaCode", "TriGia", 'ThoiGianBatDau', 'ThoiGianKetThuc'];
+    protected $fillable = ["MaGiamGia", "TenMaGiamGia", "SlugMaGiamGia", "DonViTinh", "MaCode", "TriGia", 'ThoiGianBatDau', 'ThoiGianKetThuc', 'BacNguoiDung'];
 }

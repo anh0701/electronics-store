@@ -554,6 +554,7 @@ CREATE TABLE `tbl_phieugiamgia` (
   `TenMaGiamGia` varchar(50) NOT NULL,
   `SlugMaGiamGia` varchar(50) NOT NULL,
   `DonViTinh` int NOT NULL,
+  `BacNguoiDung` int NOT NULL,
   `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `MaCode` varchar(50) NOT NULL,
   `ThoiGianBatDau` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
