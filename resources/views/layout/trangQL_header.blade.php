@@ -75,9 +75,7 @@
     <section id="main-content">
         @yield('content')
     </section>
-    
 </body>
     <script src="{{ asset('/js/jquery.dcjqaccordion.2.7.js')}}"></script>
     <script src="{{ asset('/js/scripts.js')}}"></script>
-    
 </html>

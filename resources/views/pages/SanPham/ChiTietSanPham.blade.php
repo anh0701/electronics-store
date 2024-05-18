@@ -118,6 +118,7 @@
                 <div class="tab-pane fade active in" id="details" >
                     <div class="col-sm-12">
                         <span>
+                            {{-- <textarea name="" id="MoTa" cols="30" rows="10">{{ $chiTietSanPham->MoTa }}</textarea> --}}
                             <p>{{ $chiTietSanPham->MoTa }}</p>
                         </span>
                     </div>
@@ -207,4 +208,13 @@
         </div><!--/category-tab-->
     </div>
 </div>
+@endsection
+@section('js-custom')
+    <script>
+        ClassicEditor
+        .create(document.querySelector('#MoTa'))
+        .catch(error => {
+            console.error(error);
+        })
+    </script>
 @endsection
