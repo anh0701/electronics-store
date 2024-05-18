@@ -102,13 +102,14 @@ class PhieuGiamGiaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'TenMaGiamGia' => ['required', 'string', 'max:255'],
-            'SlugMaGiamGia' => ['required', 'string', 'max:255'],
+            'SlugMaGiamGia' => 'required|unique:tbl_phieugiamgia,SlugMaGiamGia,' . $MaGiamGia . ',MaGiamGia',
             'TriGia' => ['required', 'string'],
             'MaCode'=>'required|unique:tbl_phieugiamgia,MaCode,' . $MaGiamGia . ',MaGiamGia',
             'DonViTinh' => ['required', 'integer'],
         ], [
             'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
             'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
+            'SlugMaGiamGia.unique' => "Slug đã tồn tại.",
             'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
             'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
             'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
