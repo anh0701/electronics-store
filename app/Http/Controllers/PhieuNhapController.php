@@ -46,7 +46,7 @@ class PhieuNhapController extends Controller
                         JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
                         WHERE MaPhieuNhap = '{$id}'");
 
-        return view('admin.PhieuNhap.test1', ['pn' => $pn[0], 'ctpn' => $ctpn]);
+        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn]);
     }
 
     public function suaPNCT($id){
@@ -222,7 +222,7 @@ class PhieuNhapController extends Controller
     }
         
     public function xuLySuaPN(Request $request){
-        
+        Session::forget('maPN');
         $maPN = $request->maPN;
         $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
         $tongTien = 0;

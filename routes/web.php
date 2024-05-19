@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuGiamGiaController;
+use App\Http\Controllers\TonKhoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhieuNhapController;
 use App\Http\Controllers\TaiKhoanController;
@@ -21,6 +22,10 @@ use App\Http\Controllers\QuenMatKhau;
 
 
 // Trang admin
+//TonKho
+Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
+Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
+
 //PhieuNhap
 Route::get('/liet-ke-phieu-nhap', [PhieuNhapController::class, 'trangXemPhieuNhap'])->name('xemPN');
 Route::get('/lap-phieu-nhap', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
