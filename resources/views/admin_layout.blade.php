@@ -29,6 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <!-- morris JavaScript -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 <section id="container">
@@ -168,11 +170,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li class="sub-menu">
               <a href="javascript:;">
                   <i class="fa-solid fa-money-bill"></i>
-                  <span>Phiếu giảm giá</span>
+                  <span>Quản lý giảm giá</span>
               </a>
               <ul class="sub">
                   <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
                   <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
+                  <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">Thêm chương trình giảm giá</a></li>
+{{--                  <li><a href="{{ Route('/liet-ke-chuong-trinh-giam-gia') }}">Liệt kê chương trình giảm giá</a></li>--}}
               </ul>
           </li>
         </ul>
@@ -209,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var ma_id = $(this).val();
         var _token = $('input[name="_token"]').val();
         var result = '';
-        
+
         if(action=='MaThanhPho'){
             result = 'MaQuanHuyen';
         }else{
@@ -300,7 +304,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           var ma_id = $(this).val();
           var _token = $('input[name="_token"]').val();
           var result = '';
-          
+
           if(action=='DanhMucCha'){
             result = 'DanhMucCon';
           }else if(action=='DanhMucCon'){
