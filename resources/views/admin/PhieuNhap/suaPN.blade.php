@@ -37,11 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Tiền đã trả</label>
-                            <input type="text" class="form-control" value="{{ $pn->TienTra }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Tiền trả thêm</label>
-                            <input type="text" class="form-control" name="tienTra" value="0">
+                            <input type="text" class="form-control" name="tienTra" value="{{ $pn->TienTra }}">
                         </div>
                         <div class="form-group">
                             <label for="">Tiền nợ</label>
@@ -69,40 +65,49 @@
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
-                    <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button type="sua" name="" class="btn btn-info">Sửa phiếu nhập chi tiết</button></a>
-                    <div class="table-responsive">
-                        <table class="table table-striped b-t b-light">
-                            <thead>
-                                <tr>
-                                    <!-- <th>Mã phiếu nhập chi tiết</th> -->
-                                    <th>Mã phiếu nhập</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Giá sản phẩm</th>
-                                    <th>Thành tiền</th>
-                                    <!-- <th style="width:100px">Quản lý</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    
-                                @endphp
-                                @foreach ($ctpn as $ct)
-                                    <tr>
-                                        <!-- <td>{{ $ct->MaCTPN }}</td> -->
-                                        <td>{{ $ct->MaPhieuNhap }}</td>
-                                        <td>{{ $ct->TenSanPham }}</td>
-                                        <td>{{ $ct->SoLuong }}</td>
-                                        <td>{{ $ct->GiaSanPham }}</td>
-                                        <td>{{ $ct->SoLuong * $ct->GiaSanPham }}</td>
-                                        <!-- <td>
-                                            <a href="{{ route('xoaCTPN', ['id' => $ct->MaCTPN]) }}">Xóa</a>
-                                        </td> -->
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa chi tiết phiếu nhập</button></a>
+                    <div class="table-agile-info">                           
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Liệt kê sản phẩm trong phiếu nhập
+                            </div>
+                            <div class="table-responsive">
+                            
+                                <table class="table table-striped b-t b-light">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Mã phiếu nhập chi tiết</th> -->
+                                            <th>Mã phiếu nhập</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Giá sản phẩm</th>
+                                            <th>Thành tiền</th>
+                                            <!-- <th style="width:100px">Quản lý</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            
+                                        @endphp
+                                        @foreach ($ctpn as $ct)
+                                            <tr>
+                                                <!-- <td>{{ $ct->MaCTPN }}</td> -->
+                                                <td>{{ $ct->MaPhieuNhap }}</td>
+                                                <td>{{ $ct->TenSanPham }}</td>
+                                                <td>{{ $ct->SoLuong }}</td>
+                                                <td>{{ $ct->GiaSanPham }}</td>
+                                                <td>{{ $ct->SoLuong * $ct->GiaSanPham }}</td>
+                                                <!-- <td>
+                                                    <a href="{{ route('xoaCTPN', ['id' => $ct->MaCTPN]) }}">Xóa</a>
+                                                </td> -->
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </section>

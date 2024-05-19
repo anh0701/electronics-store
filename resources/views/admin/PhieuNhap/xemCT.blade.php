@@ -36,7 +36,16 @@
                     </div>
                     <div class="form-group">
                         <label for="phuongThucThanhToan">Phương thức thanh toán:</label>
-                        <input class="form-control" type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $pn->PhuongThucThanhToan }}" readonly class="gray-background">   
+                        @php
+                            if($pn->PhuongThucThanhToan == 0){
+                                $tt = "Chuyển khoản";
+                            }elseif($pn->PhuongThucThanhToan == 1){
+                                $tt = "Tiền mặt";
+                            }else{
+                                $tt = "Khác";
+                            }
+                        @endphp
+                        <input class="form-control" type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $tt }}" readonly class="gray-background">   
                     </div>
                     <div class="form-group">
                         <label for="thoiGianTao">Thời gian tạo:</label>
@@ -49,7 +58,7 @@
                     <div class="form-group">
                         <label for="trangThai">Trạng thái:</label>
                         @php
-                            if ($pn->TrangThai == "DAXACNHAN"){
+                            if ($pn->TrangThai == 1){
                                 $trangthai = "Đã xác nhận";
                             }else{
                                 $trangthai = "Chưa xác nhận";

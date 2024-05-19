@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChiTietPhieuNhap;
 use App\Models\NhaCungCap;
+use App\Models\SanPham;
 use Exception;
 use Session;
 use Illuminate\Contracts\Support\ValidatedData;
@@ -93,12 +94,10 @@ class PhieuNhapController extends Controller
 
     public function xuLyLapPNCT(Request $request){
         $messages = [
-            'maSP.required' => 'Vui lòng nhập ma nha cung cap.',
             'soLuong.required' => 'vui lòng nhập số lượng',
             'gia.required' => 'Vui lòng nhập giá nhập',
         ];
         $valid = $request->validate([
-            'maSP' => 'required',
             'soLuong' => 'required',
             'gia' => 'required',
         ], $messages);
@@ -183,7 +182,7 @@ class PhieuNhapController extends Controller
         $phieunhap->MaPhieuNhap = $maPN;
         $phieunhap->MaNhaCungCap = $maNCC;
         $phieunhap->MaTaiKhoan = $maTK[0]->MaTaiKhoan;
-        $phieunhap->PhuongThucThanhToan = $request->pttt;
+        $phieunhap->PhuongThucThanhToan = $request->thanhToan;
         $phieunhap->TongTien = $request->tongTien;
         $phieunhap->TienTra = $tienTra;
         $phieunhap->TienNo = $tienNo;
@@ -222,43 +221,53 @@ class PhieuNhapController extends Controller
         return redirect()->route('suaPNCT', ['id' => $maPN]);
     }
         
-
-    public function luuCTPN(Request $request){
-        $maPN = Session::get('maPN');
-        foreach($request->maCTPN as $key => $maCTPN){
-            $soluong = $request->soluong[$key];
-            $dongia = $request->dongia[$key];
-            ChiTietPhieuNhap::where('MaCTPN', $maCTPN)->update([
-                'SoLuong' => $soluong,
-                'GiaSanPham' => $dongia,
-            ]);  
-        }
-        return redirect()->route('suaPN', ['id' => $maPN]);
-    }
-
     public function xuLySuaPN(Request $request){
-        $tienTraThem = $request->tienTra;
-        if($tienTraThem > $request->tienNo){
-            return redirect()->back()->withInput()->withErrors(['tienTra' => 'Bạn nhập sai rồi']);
-        }
-        $tienTra = $request->tongTien - $request->tienNo;
-        $tienTraMoi = $tienTraThem + $tienTra;
-        $thoiGianSua = date('Y-m-d H:i:s');
-        $tongTien = 0;
+        
         $maPN = $request->maPN;
         $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
+        $tongTien = 0;
+
         foreach ($ctpn as $ct){
             $tongTien += $ct->SoLuong * $ct->GiaSanPham;
         }
+        
+        $tienTraMoi = $request->tienTra + $request->tienTraMoi;
+        if($tienTraMoi > $tongTien){
+            return redirect()->back()->withInput()->withErrors(['tienTra' => 'Bạn nhập sai rồi']);
+        }
         $tienNo = $tongTien - $tienTraMoi;
-
+        $thoiGianSua = date('Y-m-d H:i:s');
+        
+        
         PhieuNhap::where('MaPhieuNhap', $maPN)->update([
             'TongTien' => $tongTien,
             'TienTra' => $tienTraMoi,
             'TienNo' => $tienNo,
+            'PhuongThucThanhToan' => $request->thanhToan,
+            'TrangThai' => $request->trangThai,
             'ThoiGianSua' => $thoiGianSua,
         ]);
-        return redirect()->route('xemCTPN', ['id' => $request->maPN]);
+
+        $trangThai1 = $request->trangThaiTruoc;
+        $trangThai2 = $request->trangThai;
+        if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
+            foreach($ctpn as $ct){
+                $maSP = $ct->MaSanPham;
+                $soLuong = $ct->SoLuong;
+                $sltk = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sl = $sltk[0]->SoLuongTrongKho + $soLuong;
+                SanPham::where('MaSanPham', $maSP)->update(['SoLuongTrongKho' => $sl]);
+            }
+        }elseif($trangThai2 == 0 && ($trangThai1 != $trangThai2)){
+            foreach($ctpn as $ct){
+                $maSP = $ct->MaSanPham;
+                $soLuong = $ct->SoLuong;
+                $sltk = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sl = $sltk[0]->SoLuongTrongKho - $soLuong;
+                SanPham::where('MaSanPham', $maSP)->update(['SoLuongTrongKho' => $sl]);
+            }
+        }
+        return redirect()->route('xemCTPN', ['id' => $maPN]);
 
     }
 

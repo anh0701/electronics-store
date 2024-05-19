@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Tiền trả thêm</label>
-                            <input type="text" class="form-control" name="tienTra" value="0">
+                            <input type="text" class="form-control" name="tienTraMoi" value="0">
                         </div>
                         <div class="form-group">
                             <label for="">Tiền nợ</label>
@@ -59,11 +59,22 @@
                                 <option value="2" >Khác</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="">Trạng thái</label>
+                            <input type="text" class="form-control" name="trangThaiTruoc" value="{{ $pn->TrangThai }}" readonly>
+                            <select name="trangThai" class="form-control input-lg m-bot15">
+                                <option value="0" >Chưa xác nhận</option>
+                                <option value="1" >Xác nhận</option>
+                            </select>
+                        </div>
 
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
-                    <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button type="sua" name="" class="btn btn-info">Sửa phiếu nhập chi tiết</button></a>
+                    @if ($pn->TrangThai == 0)
+                        <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button type="sua" name="" class="btn btn-info">Sửa phiếu nhập chi tiết</button></a>
+                    @endif
+                    
                     <div class="table-responsive">
                         <table class="table table-striped b-t b-light">
                             <thead>
