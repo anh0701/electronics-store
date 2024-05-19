@@ -224,7 +224,7 @@ CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
   `MaCTGGSP` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `PhamTramGiam` varchar(50) NOT NULL
+  `PhanTramGiam` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------

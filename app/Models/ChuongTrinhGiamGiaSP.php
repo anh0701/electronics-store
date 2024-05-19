@@ -9,8 +9,9 @@ class ChuongTrinhGiamGiaSP extends Model
 {
     use HasFactory;
     protected $primaryKey = 'MaCTGGSP';
-    protected $fillable = ['MaSanPham', 'MaCTGG', 'PhamTramGiam'];
-
+    protected $fillable = ['MaSanPham', 'MaCTGG', 'PhanTramGiam'];
+    protected $table = 'tbl_chuongtrinhgiamgiasp';
+    public $timestamps = false;
     public function product()
     {
         return $this->belongsTo(SanPham::class, 'MaSanPham', 'MaSanPham');

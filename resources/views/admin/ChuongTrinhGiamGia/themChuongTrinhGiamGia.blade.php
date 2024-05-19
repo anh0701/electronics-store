@@ -6,31 +6,35 @@
                 <header class="panel-heading">
                     Thêm chương trình giảm giá
                 </header>
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
                 <div class="panel-body">
                     <div class="position-center">
                         <form action="{{ route('/taoChuongTrinhGiamGia') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="TenCTGG">Tên chương trình giảm giá:</label>
-                                <input type="text" class="form-control" onkeyup="ChangeToSlug();" id="slug" name="TenCTGG" required>
+                                <input type="text" class="form-control @error('TenCTGG') is-invalid @enderror" onkeyup="ChangeToSlug();" id="slug" name="TenCTGG" value="{{old('TenCTGG')}}" >
                             </div>
+                            @error('TenCTGG')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="SlugCTGG">Slug:</label>
-                                <input id="convert_slug" type="text" class="form-control" name="SlugCTGG" required>
+                                <input id="convert_slug" type="text" class="form-control @error('SlugCTGG') is-invalid @enderror" name="SlugCTGG" value="{{old('SlugCTGG')}}">
                             </div>
+                            @error('SlugCTGG')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="HinhAnh">Hình ảnh:</label>
                                 <input type="file" class="form-control" name="HinhAnh" placeholder="Hình ảnh">
                             </div>
                             <div class="form-group">
                                 <label for="MoTa">Mô tả:</label>
-                                <textarea id="MoTa" style="resize: none" rows="10" class="form-control" name="MoTa" placeholder="Mô tả"></textarea>
+                                <textarea id="MoTa" style="resize: none" rows="10" class="form-control @error('MoTa') is-invalid @enderror" name="MoTa" placeholder="Mô tả"></textarea>
                             </div>
+                            @error('MoTa')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="TrangThai">Trạng thái:</label>
                                 <select name="TrangThai" class="form-control input-lg m-bot15">
@@ -41,12 +45,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>
-                                <select class="form-control" id="MaSanPham" name="MaSanPham" required></select>
+                                <select class="form-control" id="MaSanPham" name="MaSanPham[]" multiple="multiple" required></select>
                             </div>
                             <div class="form-group">
-                                <label for="PhamTramGiam">Số phần trăm giảm giá:</label>
-                                <input type="text" class="form-control" id="PhamTramGiam" name="PhamTramGiam" required>
+                                <label for="PhamTranGiam">Số phần trăm giảm giá:</label>
+                                <input type="text" class="form-control @error('PhamTranGiam') is-invalid @enderror" id="PhanTramGiam" name="PhanTramGiam" value="{{old('PhanTramGiam')}}">
                             </div>
+                            @error('PhanTramGiam')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <button type="submit" class="btn btn-info">Thêm chương trình giảm giá</button>
                         </form>
                     </div>
@@ -56,7 +63,7 @@
     </div>
 
     <!-- Tải các tệp thư viện -->
-    <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <script>
@@ -70,7 +77,7 @@
                     delay: 250,
                     data: function (params) {
                         return {
-                            q: params.term // search term
+                            q: params.term // từ khóa tìm kiếm
                         };
                     },
                     processResults: function (data) {
@@ -83,5 +90,6 @@
             });
         });
     </script>
+
 @endsection
 
