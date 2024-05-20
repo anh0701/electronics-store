@@ -58,15 +58,15 @@
                             <td>{{ $program->TrangThai == 1 ? 'Hiển Thị' : 'Ẩn' }}</td>
                             <td>{{ $program->ThoiGianTao }}</td>
                             <td>{{ $program->ThoiGianSua }}</td>
-{{--                            <td>--}}
-{{--                                <a href="{{ route('/sua-chuong-trinh-giam-gia', $program->MaCTGG) }}"><i--}}
-{{--                                        style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"--}}
-{{--                                        class="fa fa-pencil-square-o text-success text-active"></i></a>--}}
-{{--                                <a onclick="return confirm('Bạn có muốn xóa chương trình giảm giá {{ $program->MaCTGG }} này không?')"--}}
-{{--                                   href="{{ route('/xoa-chuong-trinh-giam-gia', [$program->MaCTGG]) }}"><i--}}
-{{--                                        style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;"--}}
-{{--                                        class="fa fa-times text-danger text"></i></a>--}}
-{{--                            </td>--}}
+                            <td>
+                                <a href="{{ route('/sua-chuong-trinh-giam-gia', $program->MaCTGG) }}"><i
+                                        style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"
+                                        class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                <a onclick="return confirm('Bạn có muốn xóa chương trình giảm giá {{ $program->MaCTGG }} này không?')"
+                                   href="{{ route('/xoa-chuong-trinh-giam-gia', [$program->MaCTGG]) }}"><i
+                                        style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;"
+                                        class="fa fa-times text-danger text"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

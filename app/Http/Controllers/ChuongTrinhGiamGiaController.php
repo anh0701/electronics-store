@@ -102,4 +102,24 @@ class ChuongTrinhGiamGiaController extends Controller
         return view('admin.ChuongTrinhGiamGia.lietKeChuongTrinhGiamGia', compact('discountPrograms'));
     }
 
+    public function xoa()
+    {
+
+    }
+
+    public function giaoDienSua($MaCT)
+    {
+        $suaCT = ChuongTrinhGiamGia::find($MaCT);
+//        dd($MaCT);
+//        dd($suaCT);
+//        ddd($suaCT);
+        return view('admin.ChuongTrinhGiamGia.suaChuongTrinhGiamGia', compact('suaCT'));
+    }
+
+    public function suaChuongTrinhGiamGia(Request $request,$MaCT)
+    {
+        $validator = Validator::make($request->all(),[
+
+        ]);
+    }
 }
