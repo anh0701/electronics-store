@@ -119,8 +119,8 @@ class PhieuNhapController extends Controller
         $ctpn->GiaSanPham = $request->gia;      
         $ctpn->save();
 
-        if($page == 2){
-            return redirect()->route('suaPNCT', ['id'=>$maPN]);
+        if(is_null(Session::get('pn'))){
+            return redirect()->route('suaPN', ['id'=>$maPN]);
         }else{
             return redirect('/lap-phieu-nhap-chi-tiet');
         }
@@ -131,7 +131,7 @@ class PhieuNhapController extends Controller
         if(is_null(Session::get('maPN'))){
             return redirect('/lap-phieu-nhap-chi-tiet');   
         }else{
-            return redirect()->route('suaPNCT', ['id' => Session::get('maPN')]);
+            return redirect()->route('suaPN', ['id' => Session::get('maPN')]);
         }  
     }
 
@@ -156,7 +156,7 @@ class PhieuNhapController extends Controller
     public function xuLyPN(Request $request)
     {
         $messages = [
-            'maNCC.required' => 'Vui lòng nhập ma nha cung cap.',
+            'maNCC.required' => 'Vui lòng nhập mã nhà cung cấp.',
         ];
         $valid = $request->validate([
             'maNCC' => 'required',
@@ -176,6 +176,7 @@ class PhieuNhapController extends Controller
         $arr = preg_split("/\//", $request->maNCC);
         $maNCC = $arr[0];
         $tenNCC = $arr[1];
+        $trangThai = 0;
         
 
         $phieunhap = new PhieuNhap();
@@ -186,6 +187,7 @@ class PhieuNhapController extends Controller
         $phieunhap->TongTien = $request->tongTien;
         $phieunhap->TienTra = $tienTra;
         $phieunhap->TienNo = $tienNo;
+        $phieunhap->TrangThai = $trangThai;
         $phieunhap->ThoiGianTao = $thoiGianTao;
         $phieunhap->save();  
 
@@ -218,7 +220,7 @@ class PhieuNhapController extends Controller
             'SoLuong' => $sl,
             'GiaSanPham' => $gia,
         ]);
-        return redirect()->route('suaPNCT', ['id' => $maPN]);
+        return redirect()->route('suaPN', ['id' => $maPN]);
     }
         
     public function xuLySuaPN(Request $request){

@@ -72,7 +72,7 @@
                         
                     </form>
                     @if ($pn->TrangThai == 0)
-                        <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button type="sua" name="" class="btn btn-info">Sửa phiếu nhập chi tiết</button></a>
+                        <a href="{{ route('suaPNCT', ['id' => $pn->MaPhieuNhap]) }}"><button type="sua" name="" class="btn btn-info" style="margin-top:5px">Thêm sản phẩm</button></a>
                     @endif
                     
                     <div class="table-responsive">
@@ -84,8 +84,8 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>
                                     <th>Giá sản phẩm</th>
-                                    <th>Thành tiền</th>
-                                    <!-- <th style="width:100px">Quản lý</th> -->
+                                    <th>Thành tiền</th>                                    
+                                    <th style="width:100px">Quản lý</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,9 +100,10 @@
                                         <td>{{ $ct->SoLuong }}</td>
                                         <td>{{ $ct->GiaSanPham }}</td>
                                         <td>{{ $ct->SoLuong * $ct->GiaSanPham }}</td>
-                                        <!-- <td>
-                                            <a href="{{ route('xoaCTPN', ['id' => $ct->MaCTPN]) }}">Xóa</a>
-                                        </td> -->
+                                        <td>
+                                            <a href="{{ route('suaCT', ['id' => $ct->MaCTPN]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPN }} không?')" href="{{ route('xoaCTPN', ['id' => $ct->MaCTPN]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
