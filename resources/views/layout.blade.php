@@ -101,7 +101,6 @@
 									@endphp
 									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
 									@if ($quyen != 'KH')
-										<li><a href="{{ route('trangAdmin') }}"><i class="fa"></i> Trang quan ly</a></li>
 										<li><a href="{{ route('/dashboard') }}"><i class="fa"></i> Dashbroad</a></li>
 									@endif
 									<li><a href="{{ route('/UserProfile') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>

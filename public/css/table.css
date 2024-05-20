@@ -1,51 +1,27 @@
-label {
-    display: block; /* Hiển thị mỗi nhãn trên một dòng mới */
-    margin-bottom: 5px; /* Khoảng cách giữa các nhãn */
+*{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+}
+#lapPN{
+    border: 2px solid #333;
 }
 
-/* Thiết lập phần tử input */
-input {
-    width: 100%; /* Độ rộng của ô textbox */
-    padding: 5px; /* Khoảng cách bên trong ô textbox */
-    margin-bottom: 10px; /* Khoảng cách giữa các ô textbox */
-    border: 1px solid #ccc; /* Đường viền của ô textbox */
-    border-radius: 4px; /* Bo tròn các góc của ô textbox */
-    box-sizing: border-box; /* Kích thước ô textbox bao gồm cả padding và border */
+#xemPN{
+    border: 2px solid #333;
+    padding: 20px 25px;
 }
 
-/* Thiết lập phần tử button */
-.edit-btn {
-    padding: 8px 16px; /* Kích thước nút */
-    background-color: #4CAF50; /* Màu nền của nút */
-    color: white; /* Màu chữ của nút */
-    border: none; /* Không có đường viền */
-    border-radius: 4px; /* Bo tròn các góc */
-    cursor: pointer; /* Con trỏ thành dạng bàn tay khi di chuột vào nút */
-}
-
-/* Thiết lập hover cho nút */
-.edit-btn:hover {
-    background-color: #45a049; /* Màu nền khi di chuột vào */
-}
 .gray-background {
     background-color: #f2f2f2;
 }
-select {
-padding: 5px; /* Khoảng cách bên trong của combobox */
-border: 1px solid #ccc; /* Đường viền của combobox */
-border-radius: 4px; /* Bo góc combobox */
-font-size: 16px; /* Cỡ chữ */
-width: 200px; /* Độ rộng của combobox */
-}
 
-/* Thiết lập kiểu cho các tùy chọn trong combobox */
-option {
-    font-size: 16px; /* Cỡ chữ */
-}
+
 .submit{
-    margin:5px;
-    padding: 10px 12px;
+    margin-left: 12px;
+    margin-top: 2px;
+    padding: 5px 7px;
     background-color: #fff;
+    border-radius: 5px;
 }
 .submit:hover{
     color:#fff;
@@ -55,8 +31,95 @@ option {
     color: red;
 }
 
-#from{
-    width: 500px;
-    border: 1px solid #333;
-    padding: 10px 12px;
+
+.lb1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    color: #333;
 }
+
+.in1{
+    padding: 5px;
+    margin-top: 5px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+#pnct{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 12px;
+    border: 1px solid #333;
+}
+.pn{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 12px;
+
+}
+
+.table1{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 1px solid #333;
+    
+}
+.table1 th{
+    text-align: center;
+    border-right: 1px solid #333;
+
+}
+.table1 td{
+    border-right: 1px solid #333;
+}
+
+.table1 tbody tr:hover{
+    background-color: #ffff00;
+    
+}
+
+.table1 a{
+    text-decoration: none;
+    color: #333;
+}
+.table1 a:hover{
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.tongTien{
+    width: 50%;
+    float: right;
+    text-align: left;
+}
+
+.submit2{
+    padding: 5px 7px;
+    color: #fff;
+    background-color: #0000ff;
+    border-radius: 5px;
+    margin: 2px;
+}
+.submit2:hover{
+    color:#333;
+    background-color:#00ff00;
+}
+
+#themNCC h1{
+    padding-left: 50px;
+}
+
+#themNCC{
+    border: 2px solid #333;
+    width: 40%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 100px;  
+    margin-left: auto;
+    margin-right: auto;
+}
+

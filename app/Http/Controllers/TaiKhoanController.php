@@ -114,7 +114,7 @@ class TaiKhoanController extends Controller
         if($quyen == "NV" || $quyen == "KH"){
             return redirect('/');
         }else{
-            return view('trangQuanLy', compact('user'));
+            return view('admin_layout', compact('user'));
         }
         // Trả về view Dashboard và truyền thông tin người dùng vào view
 
