@@ -36,7 +36,7 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Tên Chương Trình</th>
                         <th>Slug</th>
                         <th>Hình Ảnh</th>
@@ -56,8 +56,8 @@
                             <td><img src="{{ $program->HinhAnh }}" alt="{{ $program->TenCTGG }}" width="50"></td>
                             <td>{{ $program->MoTa }}</td>
                             <td>{{ $program->TrangThai == 1 ? 'Hiển Thị' : 'Ẩn' }}</td>
-                            <td>{{ $program->created_at }}</td>
-                            <td>{{ $program->updated_at }}</td>
+                            <td>{{ $program->ThoiGianTao }}</td>
+                            <td>{{ $program->ThoiGianSua }}</td>
 {{--                            <td>--}}
 {{--                                <a href="{{ route('/sua-chuong-trinh-giam-gia', $program->MaCTGG) }}"><i--}}
 {{--                                        style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"--}}

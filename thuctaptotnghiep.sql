@@ -205,12 +205,12 @@ CREATE TABLE `tbl_chitietphieuxuat` (
 
 CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `MaCTGG` int NOT NULL,
-  `SlugCTGG` int NOT NULL,
+  `SlugCTGG` varchar(255) NOT NULL,
   `TenCTGG` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL,
   `MoTa` text NOT NULL,
   `TrangThai` int NOT NULL,
-  `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianTao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -224,7 +224,7 @@ CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
   `MaCTGGSP` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `PhanTramGiam` varchar(50) NOT NULL
+  `PhanTramGiam` INT(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
