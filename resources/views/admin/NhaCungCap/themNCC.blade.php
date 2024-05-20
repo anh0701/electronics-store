@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                 @endif
-                    <form role="form" id="from" action="/xuLySuaNCC" method="POST">
+                    <form role="form" id="from" action="/xuLyThemNCC" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="tennhacungcap">Tên nhà cung cấp:</label>
