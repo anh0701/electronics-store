@@ -51,8 +51,8 @@ class ChuongTrinhGiamGiaController extends Controller
         if ($request->hasFile('HinhAnh')) {
             $image = $request->file('HinhAnh');
             $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('uploads/ChuongTrinhGiamGia'), $imageName);
-            $imagePath = 'uploads/ChuongTrinhGiamGia/'.$imageName;
+            $image->move(public_path('upload/ChuongTrinhGiamGia'), $imageName);
+            $imagePath = 'upload/ChuongTrinhGiamGia/'.$imageName;
         }
 //        dd($imagePath);
         // Lưu thông tin chương trình giảm giá vào cơ sở dữ liệu
@@ -102,9 +102,15 @@ class ChuongTrinhGiamGiaController extends Controller
         return view('admin.ChuongTrinhGiamGia.lietKeChuongTrinhGiamGia', compact('discountPrograms'));
     }
 
-    public function xoa()
+    public function xoa($MaCT)
     {
+        $discountProgram = ChuongTrinhGiamGia::findOrFail($MaCT);
+        // Xóa các bản ghi liên quan trong bảng tbl_chuongtrinhgiamgiasp
+        $discountProgram->SanPham()->detach();
 
+        $discountProgram->delete();
+
+        return redirect()->route('/chuong-trinh-giam-gia')->with('success', 'Chương trình giảm giá đã được xóa thành công!');
     }
 
     public function giaoDienSua($MaCT)
