@@ -71,7 +71,7 @@ class ChuongTrinhGiamGiaController extends Controller
             ChuongTrinhGiamGiaSP::create([
                 'MaCTGG' => $discountProgram->MaCTGG,
                 'MaSanPham' => $maSanPham,
-                'PhamTramGiam' => $request->PhamTramGiam,
+                'PhanTramGiam' => $request->PhanTramGiam,
             ]);
         }
 
@@ -121,5 +121,11 @@ class ChuongTrinhGiamGiaController extends Controller
         $validator = Validator::make($request->all(),[
 
         ]);
+    }
+
+    public function xemCT($MaCT)
+    {
+        $discountProgram = ChuongTrinhGiamGia::findOrFail($MaCT);
+        return view('admin.ChuongTrinhGiamGia.xemCT', compact('discountProgram'));
     }
 }

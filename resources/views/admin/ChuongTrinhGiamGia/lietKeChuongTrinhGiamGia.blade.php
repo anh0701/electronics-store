@@ -3,7 +3,7 @@
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Liêt kê mã giảm giá
+                Liêt kê chương trình giảm giá
             </div>
             <div class="row w3-res-tb">
                 <div class="col-sm-5 m-b-xs">
@@ -66,6 +66,8 @@
                                    href="{{ route('/xoa-chuong-trinh-giam-gia', [$program->MaCTGG]) }}"><i
                                         style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;"
                                         class="fa fa-times text-danger text"></i></a>
+                                <a href="{{ route('/xem-chi-tiet-ctgg', $program->MaCTGG) }}">
+                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach
