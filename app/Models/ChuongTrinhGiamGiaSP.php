@@ -17,7 +17,7 @@ class ChuongTrinhGiamGiaSP extends Model
         return $this->belongsTo(SanPham::class, 'MaSanPham', 'MaSanPham');
     }
 
-    public function discountProgram()
+    public function ChuongTrinhGiamGia()
     {
         return $this->belongsTo(ChuongTrinhGiamGia::class, 'MaCTGG', 'MaCTGG');
     }

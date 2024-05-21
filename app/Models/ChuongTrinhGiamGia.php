@@ -13,8 +13,9 @@ class ChuongTrinhGiamGia extends Model
     protected $primaryKey = 'MaCTGG';
     protected $fillable = ['SlugCTGG', 'TenCTGG', 'HinhAnh', 'MoTa', 'TrangThai', 'ThoiGianTao', 'ThoiGianSua'];
 
-    public function products()
+    public function SanPham()
     {
-        return $this->hasMany(ChuongTrinhGiamGiaSP::class, 'MaCTGG', 'MaCTGG');
+        return $this->belongsToMany(SanPham::class, 'tbl_chuongtrinhgiamgiasp', 'MaCTGG', 'MaSanPham')
+            ->withPivot('PhanTramGiam');
     }
 }

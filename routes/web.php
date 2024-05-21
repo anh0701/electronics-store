@@ -198,4 +198,5 @@ Route::get('/chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'giao
 Route::get('/xoa-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'xoa'])->name('/xoa-chuong-trinh-giam-gia');
 Route::get('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'giaoDienSua'])->name('/sua-chuong-trinh-giam-gia');
 Route::post('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'suaChuongTrinhGiamGia'])->name('/suaChuongTrinhGiamGia');
+Route::get('/chuong-trinh-giam-gia/{MaCT}',[ChuongTrinhGiamGiaController::class, 'xemCT'])->name('/xem-chi-tiet-ctgg');
 
