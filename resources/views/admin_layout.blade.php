@@ -160,8 +160,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
+              <li><a href="{{ route('taoTK') }}">Tạo tài khoản</a>
+              <li><a href="{{ route('lietKeTK') }}">Liệt kê tài khoản</a>
               {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
-{{--              <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>--}}
 {{--              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>--}}
             </ul>
           </li>

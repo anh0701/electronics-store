@@ -90,7 +90,7 @@ Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->nam
 Route::get('/cap-nhat-tai-khoan', [TaiKhoanController::class, 'capNhatTK'])->name('capNhatTK');
 Route::post('/xuLyCapNhatTK', [TaiKhoanController::class, 'xuLyCNTK'])->name('xuLyCapNhatTK');
 
-Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');
+Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard')->middleware('DangNhap');
 // Route::get('/TrangLietKeTaiKhoan', [TaiKhoanController::class, 'TrangLietKeTaiKhoan'])->name('/TrangLietKeTaiKhoan');
 // Route::get('/XemChiTiet/{MaTaiKhoan}', [TaiKhoanController::class, 'XemChiTiet'])->name('/XemChiTiet');
 // Route::get('/XoaPQND/{MaPQND}', [TaiKhoanController::class, 'XoaPQND'])->name('/XoaPQND');
