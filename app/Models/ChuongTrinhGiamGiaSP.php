@@ -12,7 +12,7 @@ class ChuongTrinhGiamGiaSP extends Model
     protected $fillable = ['MaSanPham', 'MaCTGG', 'PhanTramGiam'];
     protected $table = 'tbl_chuongtrinhgiamgiasp';
     public $timestamps = false;
-    public function product()
+    public function SanPham()
     {
         return $this->belongsTo(SanPham::class, 'MaSanPham', 'MaSanPham');
     }
