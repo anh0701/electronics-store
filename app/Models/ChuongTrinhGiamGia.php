@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ChuongTrinhGiamGia extends Model
 {
     use HasFactory;
+    protected $table = 'tbl_chuongtrinhgiamgia';
+    public $timestamps = false;
     protected $primaryKey = 'MaCTGG';
-    protected $fillable = ['SlugCTGG', 'TenCTGG', 'HinhAnh', 'MoTa', 'TrangThai'];
+    protected $fillable = ['SlugCTGG', 'TenCTGG', 'HinhAnh', 'MoTa', 'TrangThai', 'ThoiGianTao', 'ThoiGianSua'];
 
-    public function products()
+    public function SanPham()
     {
-        return $this->hasMany(ChuongTrinhGiamGiaSP::class, 'MaCTGG', 'MaCTGG');
+        return $this->belongsToMany(SanPham::class, 'tbl_chuongtrinhgiamgiasp', 'MaCTGG', 'MaSanPham')
+            ->withPivot('PhanTramGiam');
     }
 }

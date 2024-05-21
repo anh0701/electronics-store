@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ChuongTrinhGiamGia;
+use App\Http\Controllers\ChuongTrinhGiamGiaController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuGiamGiaController;
 use App\Http\Controllers\TonKhoController;
@@ -191,7 +191,12 @@ Route::get('/xoa-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'X
 Route::get('/tim-kiem-phieu-giam-gia', [PhieuGiamGiaController::class, 'timKiem'])->name('/timKiem');
 
 // chuong trinh giam gia
-Route::get('/tao-chuong-trinh-giam-gia', [ChuongTrinhGiamGia::class, 'giaoDienTao'])->name('/tao-chuong-trinh-giam-gia');
-Route::post('/tao-chuong-trinh-giam-gia', [ChuongTrinhGiamGia::class, 'taoChuongTrinhGiamGia'])->name('/taoChuongTrinhGiamGia');
-Route::get('/api/san-pham', [ChuongTrinhGiamGia::class, 'danhSachSanPham'])->name('api.san-pham');
+Route::get('/tao-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'giaoDienTao'])->name('/tao-chuong-trinh-giam-gia');
+Route::post('/tao-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'taoChuongTrinhGiamGia'])->name('/taoChuongTrinhGiamGia');
+Route::get('/api/san-pham', [ChuongTrinhGiamGiaController::class, 'danhSachSanPham'])->name('api.san-pham');
+Route::get('/chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'giaoDienLietKe'])->name('/chuong-trinh-giam-gia');
+Route::get('/xoa-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'xoa'])->name('/xoa-chuong-trinh-giam-gia');
+Route::get('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'giaoDienSua'])->name('/sua-chuong-trinh-giam-gia');
+Route::post('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'suaChuongTrinhGiamGia'])->name('/suaChuongTrinhGiamGia');
+Route::get('/chuong-trinh-giam-gia/{MaCT}',[ChuongTrinhGiamGiaController::class, 'xemCT'])->name('/xem-chi-tiet-ctgg');
 

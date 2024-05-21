@@ -205,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
                   <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
                   <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">Thêm chương trình giảm giá</a></li>
-{{--                  <li><a href="{{ Route('/liet-ke-chuong-trinh-giam-gia') }}">Liệt kê chương trình giảm giá</a></li>--}}
+                  <li><a href="{{ Route('/chuong-trinh-giam-gia') }}">Liệt kê chương trình giảm giá</a></li>
               </ul>
           </li>
         </ul>
