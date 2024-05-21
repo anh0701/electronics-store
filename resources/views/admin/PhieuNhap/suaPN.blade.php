@@ -48,10 +48,6 @@
                             <input type="text" class="form-control" name="tienNo" value="{{ $pn->TienNo }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="">Thời gian sửa</label>
-                            <input type="text" class="form-control" name="tgSua" value="{{ $pn->ThoiGianSua }}" readonly>
-                        </div>
-                        <div class="form-group">
                             <label for="">Phương thức thanh toán</label>
                             <select name="thanhToan" class="form-control input-lg m-bot15">
                                 <option value="0" >Chuyển khoản</option>
@@ -61,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Trạng thái</label>
-                            <input type="text" class="form-control" name="trangThaiTruoc" value="{{ $pn->TrangThai }}" readonly>
+                            <input type="hidden" class="form-control" name="trangThaiTruoc" value="{{ $pn->TrangThai }}" readonly>
                             <select name="trangThai" class="form-control input-lg m-bot15">
                                 <option value="0" >Chưa xác nhận</option>
                                 <option value="1" >Xác nhận</option>

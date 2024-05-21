@@ -48,14 +48,6 @@
                         <input class="form-control" type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $tt }}" readonly class="gray-background">   
                     </div>
                     <div class="form-group">
-                        <label for="thoiGianTao">Thời gian tạo:</label>
-                        <input class="form-control" type="text" id="thoiGianTao" name="thoiGianTao" value="{{ $pn->ThoiGianTao }}" readonly class="gray-background">                          
-                    </div>
-                    <div class="form-group">
-                        <label for="thoiGianSua">Thời gian sửa:</label>
-                        <input class="form-control" type="text" id="thoiGianSua" name="thoiGianSua" value="{{ $pn->ThoiGianSua }}" readonly class="gray-background">
-                    </div>
-                    <div class="form-group">
                         <label for="trangThai">Trạng thái:</label>
                         @php
                             if ($pn->TrangThai == 1){

@@ -8,19 +8,8 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        </div>
-                    @endif
                         @php
                             $pn = Session::get('pn');
-                            $listSP = Session::get('listSP');  
-
                         @endphp
                         <div class="form-group">
                             <label for="">Mã phiếu</label>
@@ -42,36 +31,31 @@
                             <label for="">Phương thức thanh toán</label>
                             <input type="text" class="form-control" value="{{ $pn[3] }}" readonly>
                         </div>
-                            
-                            
-                        <form role="form" action="/timKiemSP" method="get">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="tkSP" placeholder="Nhập từ khóa">
-                                <button type="submit" class="btn btn-info">Tìm kiếm</button>
-                            </div>
-                        </form>
                         <form role="form" action="{{ route('xuLyLapPNCT') }}" method="POST" >
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="">Tên sản phẩm</label>
-                                <select class="form-control input-lg m-bot15" id="maSP" name="maSP">
-                                    <option value="">Chọn một sản phẩm</option>
-                                    
-                                    @if(!is_null($listSP))
-                                        @foreach($listSP as $sp)
-                                            <option value="{{ $sp->MaSanPham }}">{{ $sp->TenSanPham }}</option>
-                                        @endforeach
-                                    @endif
+                                <label for="MaSanPham">Sản phẩm:</label>
+                                <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" 
+                                >
                                 </select>
                             </div>
+                            @error('maSP')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="">Số lượng</label>
                                 <input type="text" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
                             </div>
+                            @error('soLuong')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="">Giá sản phẩm</label>
                                 <input type="text" class="form-control" name="gia" value="{{ old('gia') }}">
                             </div>
+                            @error('gia')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                         </form>
                         <br>
@@ -116,4 +100,56 @@
         </section>
     </div>
 </div>
+
+<!-- Tải các tệp thư viện -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var selectedValues = {!! json_encode(old('MaSanPham')) !!};
+
+            $('#MaSanPham').select2({
+                placeholder: 'Chọn sản phẩm',
+                allowClear: true,
+                ajax: {
+                    url: '{{ route("api.san-pham-pn") }}',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term // từ khóa tìm kiếm
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // Khởi tạo lại giá trị đã chọn nếu có
+            if (selectedValues) {
+                $.ajax({
+                    url: '{{ route("api.san-pham-pn") }}',
+                    dataType: 'json',
+                    data: {
+                        ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin
+                    },
+                    success: function (data) {
+                        var selectedOptions = [];
+                        $.each(data, function (index, item) {
+                            selectedOptions.push({
+                                id: item.id,
+                                text: item.text
+                            });
+                            $('#MaSanPham').append(new Option(item.text, item.id, true, true)).trigger('change');
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
