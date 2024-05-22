@@ -131,7 +131,7 @@ class ChuongTrinhGiamGiaController extends Controller
                 'required',
                 Rule::unique('tbl_chuongtrinhgiamgia', 'SlugCTGG')->ignore($MaCT, 'MaCTGG'),
             ],
-            'HinhAnh' => ['required', 'image','mimes:jpeg,png,jpg,gif|max:2048'],
+            'HinhAnh' => ['nullable', 'image','mimes:jpeg,png,jpg,gif|max:2048'],
             'MoTa' => 'required',
             'TrangThai' => 'required',
             'MaSanPham' => 'required|array',
@@ -171,6 +171,7 @@ class ChuongTrinhGiamGiaController extends Controller
         $discountProgram->SlugCTGG = $request->SlugCTGG;
         $discountProgram->MoTa = $request->MoTa;
         $discountProgram->TrangThai = $request->TrangThai;
+        $discountProgram->ThoiGianSua = Carbon::now();
         $discountProgram->save();
 
 //        dd($discountProgram->SanPham());

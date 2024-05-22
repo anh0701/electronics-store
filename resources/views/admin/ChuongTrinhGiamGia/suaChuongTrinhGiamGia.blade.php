@@ -63,7 +63,7 @@
 
                             <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>
-                                <select multiple="multiple" class="form-control select2  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="MaSanPham[]">
+                                <select class="form-control select2  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="MaSanPham[]"  multiple="multiple">
                                     @foreach($suaCT->chuongTrinhGiamGiaSPs as $sp)
                                         <option value="{{ $sp->SanPham->MaSanPham }}" selected>{{ $sp->SanPham->TenSanPham }}</option>
                                     @endforeach
