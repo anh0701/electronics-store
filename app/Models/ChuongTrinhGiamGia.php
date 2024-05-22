@@ -18,4 +18,9 @@ class ChuongTrinhGiamGia extends Model
         return $this->belongsToMany(SanPham::class, 'tbl_chuongtrinhgiamgiasp', 'MaCTGG', 'MaSanPham')
             ->withPivot('PhanTramGiam');
     }
+
+    public function chuongTrinhGiamGiaSPs()
+    {
+        return $this->hasMany(ChuongTrinhGiamGiaSP::class, 'MaCTGG');
+    }
 }
