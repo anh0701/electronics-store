@@ -11,7 +11,7 @@
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-5">
-                    <form action="{{ Route('/') }}" method="get">
+                    <form action="{{ Route('/timKiem') }}" method="get">
                         <div class="input-group">
                             <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
                             <span class="input-group-btn">

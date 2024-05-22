@@ -208,4 +208,18 @@ class ChuongTrinhGiamGiaController extends Controller
 
         return response()->json($sanphams);
     }
+
+    public function timKiem(Request $request)
+    {
+        //
+        $discountPrograms  = ChuongTrinhGiamGia::where('TenCTGG', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('SlugCTGG', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('MoTa', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('TrangThai', 'LIKE', "%{$request->timKiem}%")
+//            ->orWhere('PhanTramGiam', 'LIKE', "%{$request->timKiem}%")
+            ->get();
+//        dd($phieuGiamGia);
+        return view('admin.ChuongTrinhGiamGia.lietKeChuongTrinhGiamGia')->with(compact("discountPrograms"));
+
+    }
 }
