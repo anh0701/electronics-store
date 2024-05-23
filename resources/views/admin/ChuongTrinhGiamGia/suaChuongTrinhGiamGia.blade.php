@@ -60,6 +60,22 @@
                             @error('TrangThai')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Thời gian có hiệu lực</label>
+                                <input type="datetime-local" class="form-control @error('ThoiGianBatDau') is-invalid @enderror"
+                                       name="ThoiGianBatDau" value="{{old('ThoiGianBatDau', $suaCT->ThoiGianBatDau)}}">
+                            </div>
+                            @error('ThoiGianBatDau')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Thời gian hết hiệu lực</label>
+                                <input type="datetime-local" class="form-control @error('ThoiGianKetThuc') is-invalid @enderror"
+                                       name="ThoiGianKetThuc" value="{{old('ThoiGianKetThuc', $suaCT->ThoiGianKetThuc)}}">
+                            </div>
+                            @error('ThoiGianKetThuc')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
 
                             <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>

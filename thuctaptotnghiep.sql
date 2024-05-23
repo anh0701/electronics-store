@@ -218,9 +218,11 @@ CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `TenCTGG` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL,
   `MoTa` text NOT NULL,
-  `TrangThai` int NOT NULL,
+  `TrangThai` int,
   `ThoiGianTao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `ThoiGianSua` timestamp NULL DEFAULT NULL
+  `ThoiGianSua` timestamp NULL DEFAULT NULL,
+  `ThoiGianBatDau` timestamp NOT NULL ,
+  `ThoiGianKetThuc` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1406,28 +1408,6 @@ INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `tbl_quyen`
---
-
-CREATE TABLE `tbl_quyen` (
-  `MaPhanQuyen` int NOT NULL,
-  `TenPhanQuyen` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_quyen`
---
-
-INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
-(1, 'Khách hàng'),
-(2, 'Nhân viên bán hàng'),
-(3, 'Quản trị viên'),
-(4, 'Quản trị viên cao cấp'),
-(5, 'Nhân viên kho'),
-(6, 'Nhân viên kế toán');
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `tbl_sanpham`
@@ -13229,11 +13209,6 @@ ALTER TABLE `tbl_phigiaohang`
 ALTER TABLE `tbl_quanhuyen`
   ADD PRIMARY KEY (`MaQuanHuyen`);
 
---
--- Chỉ mục cho bảng `tbl_quyen`
---
-ALTER TABLE `tbl_quyen`
-  ADD PRIMARY KEY (`MaPhanQuyen`);
 
 --
 -- Chỉ mục cho bảng `tbl_sanpham`
@@ -13468,11 +13443,6 @@ ALTER TABLE `tbl_phieuxuat`
 ALTER TABLE `tbl_phigiaohang`
   MODIFY `MaPhiGiaoHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT cho bảng `tbl_quyen`
---
-ALTER TABLE `tbl_quyen`
-  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_sanpham`
