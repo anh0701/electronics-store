@@ -11,7 +11,7 @@ class ChuongTrinhGiamGia extends Model
     protected $table = 'tbl_chuongtrinhgiamgia';
     public $timestamps = false;
     protected $primaryKey = 'MaCTGG';
-    protected $fillable = ['SlugCTGG', 'TenCTGG', 'HinhAnh', 'MoTa', 'TrangThai', 'ThoiGianTao', 'ThoiGianSua'];
+    protected $fillable = ['SlugCTGG', 'TenCTGG', 'HinhAnh', 'MoTa', 'TrangThai', 'ThoiGianTao', 'ThoiGianSua', 'ThoiGianKetThuc', 'ThoiGianBatDau'];
 
     public function SanPham()
     {

@@ -1,25 +1,24 @@
 <?php
 
 use App\Http\Controllers\ChuongTrinhGiamGiaController;
-use App\Http\Controllers\NhaCungCapController;
-use App\Http\Controllers\PhieuGiamGiaController;
-use App\Http\Controllers\TonKhoController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PhieuNhapController;
-use App\Http\Controllers\TaiKhoanController;
-use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\DanhMucTSKTController;
-use App\Http\Controllers\ThongSoKyThuatController;
-use App\Http\Controllers\SanPhamTSKTController;
-use App\Http\Controllers\SanPhamController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\GioHangController;
-use App\Http\Controllers\PhiGiaoHangController;
-use App\Http\Controllers\MaGiamGiaController;
 use App\Http\Controllers\DatLaiMatKhau;
 use App\Http\Controllers\DoiMatKhau;
+use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MaGiamGiaController;
+use App\Http\Controllers\NhaCungCapController;
+use App\Http\Controllers\PhieuGiamGiaController;
+use App\Http\Controllers\PhieuNhapController;
+use App\Http\Controllers\PhiGiaoHangController;
 use App\Http\Controllers\QuenMatKhau;
+use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\TaiKhoanController;
+use App\Http\Controllers\ThongSoKyThuatController;
+use App\Http\Controllers\ThuongHieuController;
+use App\Http\Controllers\TonKhoController;
+use Illuminate\Support\Facades\Route;
 
 
 // Trang admin
@@ -197,7 +196,9 @@ Route::get('/api/san-pham', [ChuongTrinhGiamGiaController::class, 'danhSachSanPh
 Route::get('/chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'giaoDienLietKe'])->name('/chuong-trinh-giam-gia');
 Route::get('/xoa-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'xoa'])->name('/xoa-chuong-trinh-giam-gia');
 Route::get('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'giaoDienSua'])->name('/sua-chuong-trinh-giam-gia');
-Route::post('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'suaChuongTrinhGiamGia'])->name('/suaChuongTrinhGiamGia');
-Route::get('/chuong-trinh-giam-gia/{MaCT}',[ChuongTrinhGiamGiaController::class, 'xemCT'])->name('/xem-chi-tiet-ctgg');
+Route::middleware('TrangThaiCTGG')->group(function () {
+    Route::post('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'suaChuongTrinhGiamGia'])->name('/suaChuongTrinhGiamGia');
+});
+Route::get('/chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'xemCT'])->name('/xem-chi-tiet-ctgg');
 Route::get('/sanpham/list', [ChuongTrinhGiamGiaController::class, 'list'])->name('sanpham.list');
-Route::get('/tim-kiem-chuong-trinh-giam-gia',[ChuongTrinhGiamGiaController::class, 'timKiem'])->name('/timKiem');
+Route::get('/tim-kiem-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'timKiem'])->name('/timKiem');

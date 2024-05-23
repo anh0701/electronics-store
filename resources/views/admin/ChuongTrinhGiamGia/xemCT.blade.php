@@ -16,6 +16,8 @@
                 <p><strong>Mô Tả:</strong> {{ $discountProgram->MoTa }}</p>
                 <p><strong>Trạng Thái:</strong> {{ $discountProgram->TrangThai ? 'Hiển thị' : 'Ẩn' }}</p>
                 <p><strong>Ngày Tạo:</strong> {{ $discountProgram->ThoiGianTao }}</p>
+                <p><strong>Thời gian bắt đầu:</strong> {{ $discountProgram->ThoiGianBatDau }}</p>
+                <p><strong>Thời gian kết thúc:</strong> {{ $discountProgram->ThoiGianKetThuc }}</p>
 
                 <div class="panel-heading" style="margin-top: 5%">
                     Sản Phẩm trong Chương Trình Giảm Giá
