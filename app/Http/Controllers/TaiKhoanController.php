@@ -133,14 +133,9 @@ class TaiKhoanController extends Controller
 
     public function xuLyCNTK(Request $request){
         $messages = [
-            'TenTaiKhoan.required' => 'Vui lòng nhập tên tài khoản.',
-            'TenTaiKhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+            'HinhAnh.image' => "Vui lòng chọn đúng file hình ảnh."
         ];
         $valid = Validator::make ( $request->all() ,[
-            'tentaikhoan' => [
-                'required',
-                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
-            ],
             'HinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
         ], $messages);
 
@@ -148,6 +143,16 @@ class TaiKhoanController extends Controller
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors($valid->errors());
+        }
+        // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
+        if ($request->hasFile('HinhAnh')) {
+            $hinhanh = $request->file('hinhanh');
+            $tenHinhAnh = time() . '.' . $hinhanh->getClientOriginalExtension();
+            $duongDan = public_path('upload/Profile');
+            $hinhanh->move($duongDan, $tenHinhAnh);
+            $duongDanHinhAnh = 'upload/Profile/' . $tenHinhAnh;
+        } else {
+            $duongDanHinhAnh = ''; // Nếu không có hình ảnh được tải lên
         }
 
         $valid = $request->all();
@@ -157,10 +162,9 @@ class TaiKhoanController extends Controller
         $tenNguoiDung = $request->TenNguoiDung;
         $email = $request->Email;
         $diaChi = $request->DiaChi;
-        $hinhAnh = $request->HinhAnh;
-        $maTK = $request->maTK;
+        $hinhAnh = $duongDanHinhAnh;
 
-        TaiKhoan::where('maTK', $maTK)->update([
+        TaiKhoan::where('TenTaiKhoan', $tenTK)->update([
             'TenNguoiDung' => $tenNguoiDung,
             'Email' => $email,
             'DiaChi' => $diaChi,
