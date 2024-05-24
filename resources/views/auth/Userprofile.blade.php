@@ -4,6 +4,7 @@
         <div class="main">
             <div class="row">
                 <form action="{{route('/thongTinTaiKhoan')}}" method="post">
+                    @csrf
                     <div class="col-md-4">
                         <div class="card text-center sidebar">
                             <div class="card-body">
@@ -13,7 +14,10 @@
                                 {{--                            <a href="">Xem đơn hàng</a>--}}
                                 {{--                            <a href="Signout"></a>--}}
                                 {{--                        </div>--}}
-                                <input type="file" style="color: black; margin: 5% auto" name="HinhAnh" id="HinhAnh" onchange="previewImage(event)">
+                                <input type="file" class="@error('HinhAnh') is-invalid @enderror" style="color: black; margin: 5% auto" name="HinhAnh" id="HinhAnh" onchange="previewImage(event)">
+                                @error('HinhAnh')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -28,7 +32,10 @@
                                         <h5>Họ và tên</h5>
                                     </div>
                                     <div class="col-9 text-secondary">
-                                        <input type="text" name="TenNguoiDung" id="TenNguoiDung" value="{{old('TenNguoiDung', $tk[0] -> TenNguoiDung)}}">
+                                        <input type="text" class="@error('TenNguoiDung') is-invalid @enderror" name="TenNguoiDung" id="TenNguoiDung" value="{{old('TenNguoiDung', $tk[0] -> TenNguoiDung)}}">
+                                        @error('TenNguoiDung')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <hr>
@@ -37,7 +44,10 @@
                                         <h5>Email</h5>
                                     </div>
                                     <div class="col-9 text-secondary">
-                                        <input type="text" name="Email" id="Email" value="{{old('Email', $tk[0]->Email)}}">
+                                        <input type="text" class="@error('Email') is-invalid @enderror" name="Email" id="Email" value="{{old('Email', $tk[0]->Email)}}">
+                                        @error('Email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <hr>
@@ -46,7 +56,10 @@
                                         <h5>Số điện thoại</h5>
                                     </div>
                                     <div class="col-9 text-secondary">
-                                        <input type="text" name="SoDienThoai" id="SoDienThoai" value="{{old('SoDienThoai', $tk[0]->SoDienThoai)}}">
+                                        <input type="text" class="@error('SoDienThoai') is-invalid @enderror" name="SoDienThoai" id="SoDienThoai" value="{{old('SoDienThoai', $tk[0]->SoDienThoai)}}">
+                                        @error('SoDienThoai')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <hr>
@@ -55,7 +68,10 @@
                                         <h5>Địa chỉ</h5>
                                     </div>
                                     <div class="col-9 text-secondary">
-                                        <input type="text" name="DiaChi" id="DiaChi" value="{{old('DiaChi', $tk[0]->DiaChi)}}">
+                                        <input type="text" class="@error('DiaChi') is-invalid @enderror" name="DiaChi" id="DiaChi" value="{{old('DiaChi', $tk[0]->DiaChi)}}">
+                                        @error('DiaChi')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <hr>
@@ -92,7 +108,7 @@
                     @foreach($phieuGiamGia as $phieu)
                     <tbody>
                     <tr>
-                        <td class="text-center">{{$i + 1}}</td>
+                        <td class="text-center">{{$i = $i + 1}}</td>
                         <td>{{$phieu->MaCode}}</td>
                         <td class="cart_description">
                             <h4>{{$phieu ->TenMaGiamGia}}</h4>
