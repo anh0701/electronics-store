@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 use App\Models\SanPham;
 use App\Models\DanhMuc;
@@ -77,12 +78,18 @@ class HomeController extends Controller
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
         return view('pages.ThanhToan.ThanhToan')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allThanhPho'));
     }
-    
-    public function UserProfile(){
+
+    public function thongTinTaiKhoan(){
+        $user = session(('user'));
+        if ($user && isset($user['TenTaiKhoan'])){
+            $TenTaiKhoan = $user['TenTaiKhoan'];
+            $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
+        }
+//            dd($tk);
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
-        return view('pages.UserProfile.Userprofile')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
+        return view('auth.Userprofile')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'tk'));
     }
 
     public function TrangKhachHangDangNhap(){
@@ -105,7 +112,7 @@ class HomeController extends Controller
             }
         }
         if($isAdmin > 1){
-            Session::put('isAdmin', $isAdmin); 
+            Session::put('isAdmin', $isAdmin);
         }
         if($login){
             $login_count = $login->count();

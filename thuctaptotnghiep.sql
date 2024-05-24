@@ -1453,6 +1453,8 @@ CREATE TABLE `tbl_taikhoan` (
   `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `Email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `TenTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenNguoiDung` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `SoDienThoai` int DEFAULT NULL,
   `MatKhau` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
