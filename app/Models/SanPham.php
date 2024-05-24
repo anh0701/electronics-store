@@ -25,4 +25,11 @@ class SanPham extends Model
     public function ThuongHieu(){
         return $this->belongsTo(ThuongHieu::class, 'MaThuongHieu');
     }
+
+    public function ChuongTrinhGiamGia()
+    {
+        return $this->belongsToMany(ChuongTrinhGiamGia::class, 'tbl_chuongtrinhgiamgiasp', 'MaSanPham', 'MaCTGG')
+            ->withPivot('PhanTramGiam');
+    }
+
 }
