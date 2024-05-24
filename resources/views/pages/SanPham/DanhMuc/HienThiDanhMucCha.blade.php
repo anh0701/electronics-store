@@ -99,7 +99,7 @@
             <li class="dropdown"><a href="#">Hãng<i class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
                     @foreach ($allTHDM as $key => $valueTHDM)
-                    <li class="col-sm-15 col-sm-3"><a href=""><img src="{{ asset('upload/ThuongHieu/'.$valueTHDM->ThuongHieu->HinhAnh) }}" alt=""></a></li>
+                    <li class="col-sm-15 col-sm-3"><a href="{{ route('/HienThiSanPhamTheoTH', [$valueTHDM->MaThuongHieu, $MaDanhMuc]) }}"><img src="{{ asset('upload/ThuongHieu/'.$valueTHDM->ThuongHieu->HinhAnh) }}" alt=""></a></li>
                     @endforeach
                 </ul>
             </li>
@@ -108,7 +108,7 @@
                 <ul role="menu" class="sub-menu">
                     @foreach ($allTSKT as $key => $valueTSKT)
                         @if ($valueTSKT->MaDMTSKT == $valueDanhMucTSKT->MaDMTSKT)
-                            <li class="pull-left"><a href="#">{{ $valueTSKT->TenTSKT }}</a></li>
+                            <li class="pull-left"><a href="{{ route('/HienThiSanPhamTheoTSKT', [$valueTSKT->MaTSKT, $MaDanhMuc]) }}">{{ $valueTSKT->TenTSKT }}</a></li>
                         @endif
                     @endforeach
                 </ul>
@@ -133,6 +133,10 @@
                                     <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ChieuCao }}" class="cart_product_height_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                     <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                         <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />

@@ -106,6 +106,24 @@
                                 </select>
                             @endforeach
                         </div>
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều cao</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuCao }} cm" name="ChieuCao" placeholder="Chiều cao">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều ngang</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuNgang }} cm" name="ChieuNgang" placeholder="Chiều ngang">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều dày</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuDay }} cm" name="ChieuDay" placeholder="Chiều dày">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Cân nặng</label>
+                                <input type="text" class="form-control" value="{{ $value->CanNang }} kg" name="CanNang" placeholder="Cân nặng">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
                             <textarea id="MoTa" style="resize: none" value="" rows="10" class="form-control" name="MoTa" placeholder="Mô tả sản phẩm">{{ $value->MoTa }}</textarea>

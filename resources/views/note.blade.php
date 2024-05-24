@@ -1,12 +1,18 @@
+$data = $request->all();
+
 echo '<pre>';
-print_r();
+print_r($data);
 echo '</pre>';
 
-Route::get('/TrangThemMaGiamGia', [MaGiamGiaController::class, 'TrangThemMaGiamGia'])->name('/TrangThemMaGiamGia');
-Route::get('/TrangLietKeMaGiamGia', [MaGiamGiaController::class, 'TrangLietKeMaGiamGia'])->name('/TrangLietKeMaGiamGia');
-Route::post('/ThemMaGiamGia', [MaGiamGiaController::class, 'ThemMaGiamGia'])->name('/ThemMaGiamGia');
-Route::get('/TrangSuaMaGiamGia/{MaGiamGia}', [MaGiamGiaController::class, 'TrangSuaMaGiamGia'])->name('/TrangSuaMaGiamGia');
-Route::get('/XoaMaGiamGia/{MaGiamGia}', [MaGiamGiaController::class, 'XoaMaGiamGia'])->name('/XoaMaGiamGia');
-Route::post('/SuaMaGiamGia/{MaGiamGia}', [MaGiamGiaController::class, 'SuaMaGiamGia'])->name('/SuaMaGiamGia');
-
+// JUST RESPONSE (Not needed)
+    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    var msg = "";
+    if (ratingValue > 1) {
+        msg = "Thanks! You rated this " + ratingValue + " stars.";
+    }
+    else {
+        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+    }
+    responseMessage(msg);
+});
 

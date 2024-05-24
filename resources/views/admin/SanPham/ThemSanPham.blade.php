@@ -55,6 +55,24 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều cao</label>
+                                <input type="text" class="form-control" name="ChieuCao" placeholder="Chiều cao">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều ngang</label>
+                                <input type="text" class="form-control" name="ChieuNgang" placeholder="Chiều ngang">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều dày</label>
+                                <input type="text" class="form-control" name="ChieuDay" placeholder="Chiều dày">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Cân nặng</label>
+                                <input type="text" class="form-control" name="CanNang" placeholder="Cân nặng">
+                            </div>
+                        </div>
                         <div class="form-group DanhMucTSKT" id="DanhMucTSKT" name="DanhMucTSKT">
                         </div>
                         <div class="form-group">

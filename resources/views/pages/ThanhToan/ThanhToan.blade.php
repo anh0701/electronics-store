@@ -29,6 +29,8 @@
                 <tbody>
                     @php
                     $total = 0;
+                    $total_after = 0;
+                    $total_after_fee = 0;
                     @endphp
                     @if (Session::get('cart') == true)
                         @foreach (Session::get('cart') as $key => $cart)
@@ -64,7 +66,7 @@
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete" href="{{ route('/XoaSanPhamTrongGioHang', $cart['session_id']) }}"><i class="fa fa-times"></i></a>
                             </td>
-                        </tr>                            
+                        </tr>                         
                         @endforeach
                     @endif
                     <tr>
@@ -76,22 +78,63 @@
                                     <td>{{ number_format($total, 0, '', '.') }} đ</td>
                                 </tr>
                                 <tr>
-                                    <td>Tiền từ giảm giá</td>
-                                    <td></td>
+                                    <td>Tiền từ phiếu giảm giá</td>
+                                    <td>
+                                        @if (Session::get('PhieuGiamGia'))
+                                            @php
+                                                $phieuGiamGia = Session::get('PhieuGiamGia');
+                                            @endphp
+                                            @if ($phieuGiamGia['DonViTinh'] == 1)
+                                                {{ number_format($phieuGiamGia['TriGia'], 0,',','.') }}đ
+                                                @php
+                                                    $total_after_coupon = $phieuGiamGia['TriGia'];
+                                                @endphp
+                                            @elseif ($phieuGiamGia['DonViTinh'] == 2)
+                                                @php
+                                                    $phanTramGiam = (int) $phieuGiamGia['TriGia'];
+                                                    $tienGiam = ($total*$phanTramGiam)/100;
+                                                    $total_after_coupon = $tienGiam;
+                                                @endphp
+                                                {{ $phieuGiamGia['TriGia'] }}% | {{ number_format($tienGiam, 0,',','.') }} đ
+                                            @endif
+                                        @else
+                                            0 đ
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr class="shipping-cost">
                                     <td>Tiền giao hàng</td>
                                     <td>
-                                        @if (Session::get('fee'))
-                                            {{ number_format(Session::get('fee'), 0,',','.') }} đ
-                                        @elseif (!Session::get('fee'))
+                                        @if (Session::get('PhiGiaoHang'))
+                                            @php
+                                                $PhiGiaoHang = Session::get('PhiGiaoHang');
+                                                $total_after_fee = $PhiGiaoHang['SoTien'];
+                                            @endphp
+                                            {{ number_format($total_after_fee, 0,',','.') }} đ
+                                        @elseif (!Session::get('PhiGiaoHang'))
                                             0 đ
                                         @endif
                                     </td>										
                                 </tr>
                                 <tr>
                                     <td>Tổng tiền</td>
-                                    <td><span>{{ number_format(Session::get('fee') + $total, 0,',','.') }}  đ</span></td>
+                                    <td>
+                                        @php
+                                            if(Empty(Session('PhieuGiamGia')) && Empty(Session('PhiGiaoHang'))){
+                                                $total_after = $total;
+                                                echo number_format($total_after,0,',','.').'đ';
+                                            }elseif(Empty(Session('PhieuGiamGia')) && Session('PhiGiaoHang')){
+                                                $total_after = $total + $total_after_fee;
+                                                echo number_format($total_after,0,',','.').'đ';
+                                            }elseif (Session('PhieuGiamGia') && Empty(Session('PhiGiaoHang'))){
+                                                $total_after = $total - $total_after_coupon;
+                                                echo number_format($total_after,0,',','.').'đ';
+                                            }elseif (Session('PhieuGiamGia') && Session('PhiGiaoHang')){
+                                                $total_after = $total - $total_after_coupon + $total_after_fee;
+                                                echo number_format($total_after,0,',','.').'đ';
+                                            }
+                                        @endphp
+                                    </td>
                                 </tr>
                             </table>
                         </td>
@@ -101,29 +144,46 @@
         </div>
         <div class="review-payment">
             <h2>Điền thông tin đặt hàng</h2>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
         <div class="shopper-informations">
             <div class="row">
-                <div class="col-sm-3">
-                    <div class="shopper-info">
-                        <p>Thông tin người nhận hàng</p>
-                        <form>
-                            <input type="text" placeholder="Tên người nhận">
-                            <input type="text" placeholder="Số điện thoại">
-                            <input type="text" placeholder="Địa chỉ">
-                        </form>
-                        <a class="btn btn-primary" href="">Đặt hàng</a>
+                <form action="{{ route('/DatHang') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="col-sm-3">
+                        <div class="shopper-info">
+                            <p>Thông tin người nhận hàng</p>
+                            <input type="text" name="TenNguoiNhan" placeholder="Tên người nhận">
+                            <input type="text" name="SoDienThoai" placeholder="Số điện thoại">
+                            <input type="text" name="DiaChi" placeholder="Địa chỉ">
+                            <button class="btn btn-primary DatHang" type="submit" name="DatHang">Đặt hàng</button>
+                        </div>
                     </div>
-                </div>
+                    <div class="col-sm-3">
+                        <div class="order-message">
+                            <p>Ghi chú</p>
+                            <textarea class="GhiChu" name="GhiChu" placeholder="Điền ghi chú của bạn để nhân viên có thể làm theo yêu cầu" rows="16"></textarea>
+                        </div>	
+                    </div>
+                </form>
                 <div class="col-sm-6 clearfix">
                     <div class="bill-to">
                         <p>Phiếu giảm giá và tiền giao hàng</p>
                         <div class="form-one">
-                            <form>
-                                <input type="text" placeholder="Coupon code">
+                            <form action="{{ Route('/ApDungPhieuGiamGia') }}" method="POST">
+                                {{ csrf_field() }}  
+                                <input type="text" class="MaCode" name="MaCode" placeholder="Điền Mã Code">
+                                <button type="submit" name="ThemSanPham" class="btn btn-primary">Áp dụng mã giảm giá</button>
                             </form>
-                            <a class="btn btn-primary" href="">Áp dụng mã giảm giá</a>
-                            <a class="btn btn-primary" href="">Xóa mã giảm giá</a>
+                            <a class="btn btn-primary" href="{{ Route('/HuyPhieuGiamGia') }}">Xóa phiếu giảm giá</a>
                         </div>
                         <div class="form-two">
                             <form>
@@ -142,21 +202,11 @@
                                 </select>
                             </form>
                             <a class="btn btn-primary TinhPhiGiaoHang" name="TinhPhiGiaoHang" >Tính tiền giao hàng</a>
-                            <a class="btn btn-primary" href="{{ route('/XoaPhiGiaoHang') }}">Xóa tiền giao hàng</a>
+                            <a class="btn btn-primary" href="{{ route('/HuyPhiGiaoHang') }}">Xóa tiền giao hàng</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="order-message">
-                        <p>Ghi chú</p>
-                        <textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-                        <label><input type="checkbox">Ghi chú trước khi nhận đơn hàng của bạn</label>
-                    </div>	
-                </div>					
+                </div>				
             </div>
-        </div>
-        <div class="payment-options">
-            
         </div>
     </div>
 </section>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\TaiKhoan;
-use App\Models\PhanQuyen;
-use App\Models\PhanQuyenNguoiDung;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -43,6 +41,7 @@ class TaiKhoanController extends Controller
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
+                    'Email' => $taikhoan->Email,
                 ]);
                 return redirect('/');
             }
@@ -50,6 +49,7 @@ class TaiKhoanController extends Controller
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
+                    'Email' => $taikhoan->Email,
                 ]);
                 return redirect('/trang-quan-ly');
             }
@@ -165,6 +165,9 @@ class TaiKhoanController extends Controller
 
     public function dangXuat(){
         session::forget('user');
+        session::forget('cart');
+        session::forget('PhiGiaoHang');
+        session::forget('PhieuGiamGia');
         return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
     }
 

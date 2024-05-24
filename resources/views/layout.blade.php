@@ -127,23 +127,13 @@
 								<span class="icon-bar"></span>
 							</button>
 						</div>
-						{{-- <div class="mainmenu pull-left">
+						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{ route('/') }}" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-								<li class="dropdown"><a href="#">Bài viết<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
+								<li><a href="{{ route('/Test') }}" class="active">Bài viết</a></li>
+								<li><a href="{{ route('/') }}" class="active">Liên hệ</a></li>
 							</ul>
-						</div> --}}
+						</div>
 					</div>
 					<div class="col-sm-4">
 						<form action="{{ route('/TimKiem') }}" method="GET">
@@ -174,7 +164,6 @@
 			</div>
 		</div>
 	</section>
-	
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
@@ -317,6 +306,7 @@
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	{{-- Tính tiền giao hàng --}}
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -325,11 +315,11 @@
 				var MaQuanHuyen = $('.MaQuanHuyen').val();
 				var MaXaPhuong = $('.MaXaPhuong').val();
 				var _token = $('input[name="_token"]').val();
-				if(MaThanhPho == '' && MaQuanHuyen == '' && MaXaPhuong == ''){
+				if(MaXaPhuong == null){
 					alert('Chọn địa điểm để tính phí vận chuyển');
 				}else{
 					$.ajax({
-					url: '{{ url('/TinhPhiGiaoHang') }}',
+					url: '{{ route('/TinhPhiGiaoHang') }}',
 					method: 'POST',
 					data:{
 						MaThanhPho:MaThanhPho,
@@ -341,10 +331,11 @@
 						location.reload();
 					}
 				});
-			}
+				}
+			});
 		});
-	});
 	</script>
+	{{-- Chọn địa điểm --}}
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.ChonDiaDiem').on('click',function(){
@@ -382,6 +373,10 @@
 				var cart_product_image = $('.cart_product_image_' + id).val();
 				var cart_product_price = $('.cart_product_price_' + id).val();
 				var cart_product_qty = $('.cart_product_qty_' + id).val();
+				var cart_product_height = $('.cart_product_height_' + id).val();
+				var cart_product_width = $('.cart_product_width_' + id).val();
+				var cart_product_thick = $('.cart_product_thick_' + id).val();
+				var cart_product_weight = $('.cart_product_weight_' + id).val();
 				var _token = $('input[name="_token"]').val();
 				
 				$.ajax({
@@ -393,6 +388,10 @@
 						cart_product_image:cart_product_image, 
 						cart_product_price:cart_product_price,
 						cart_product_qty:cart_product_qty, 
+						cart_product_height:cart_product_height,
+						cart_product_width:cart_product_width,
+						cart_product_thick:cart_product_thick,
+						cart_product_weight:cart_product_weight,
 						_token:_token
 					},
 					success:function(data){
@@ -444,6 +443,78 @@
 				}
 			});
 		});
+	</script>
+	{{-- Đánh giá --}}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ThemDanhGia').click(function(){
+				var id = $(this).data('masanpham');
+				var MaSanPham = $('.MaSanPham_' + id).val();
+				var NoiDung = $('.NoiDung_' + id).val();
+				var _token = $('input[name="_token"]').val();
+				var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+				$.ajax({
+					url: '{{ route('/DanhGia') }}',
+					method: 'POST',
+					data:{
+						MaSanPham:MaSanPham, 
+						NoiDung:NoiDung,
+						SoSao:ratingValue,
+						_token:_token
+					},
+				});
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		/* 1. Visualizing things on Hover - See next part for action on click */
+		$('#stars li').on('mouseover', function(){
+			var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+		
+			// Now highlight all the stars that's not after the current hovered star
+			$(this).parent().children('li.star').each(function(e){
+			if (e < onStar) {
+				$(this).addClass('hover');
+			}
+			else {
+				$(this).removeClass('hover');
+			}
+			});
+			
+		}).on('mouseout', function(){
+			$(this).parent().children('li.star').each(function(e){
+			$(this).removeClass('hover');
+			});
+		});
+		/* 2. Action to perform on click */
+		$('#stars li').on('click', function(){
+			var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+			var stars = $(this).parent().children('li.star');
+			
+			for (i = 0; i < stars.length; i++) {
+			$(stars[i]).removeClass('selected');
+			}
+			
+			for (i = 0; i < onStar; i++) {
+			$(stars[i]).addClass('selected');
+			}
+			// JUST RESPONSE (Not needed)
+			// var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+			// var msg = "";
+			// if (ratingValue > 1) {
+			// 	msg = "Thanks! You rated this " + ratingValue + " stars.";
+			// }
+			// else {
+			// 	msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+			// }
+			// responseMessage(msg);
+		});
+		});
+		// function responseMessage(msg) {
+		// $('.success-box').fadeIn(200);  
+		// $('.success-box div.text-message').html("<span>" + msg + "</span>");
+		// }
 	</script>
 	@yield('js-custom')
 </body>

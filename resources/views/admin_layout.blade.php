@@ -130,9 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
-              {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
-{{--              <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>--}}
-{{--              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>--}}
+
             </ul>
           </li>
           <li class="sub-menu">
@@ -174,6 +172,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
                   <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
               </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Quản lý đơn hàng</span>
+            </a>
+            <ul class="sub">
+                <li><a href="{{ Route('/TrangLietKeDonHang') }}">Liệt kê đơn hàng</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+                <i class="fa-solid fa-newspaper"></i>
+                <span>Quản lý đơn hàng</span>
+            </a>
+            <ul class="sub">
+                <li><a href="{{ Route('/TrangLietKeDanhGia') }}">Liệt kê đánh giá sản phẩm</a></li>
+            </ul>
           </li>
         </ul>
       </div>
