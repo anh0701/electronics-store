@@ -81,15 +81,13 @@ class HomeController extends Controller
 
     public function thongTinTaiKhoan(){
         $user = session(('user'));
-        if ($user && isset($user['TenTaiKhoan'])){
+        if ($user && isset($user['TenTaiKhoan'])) {
             $TenTaiKhoan = $user['TenTaiKhoan'];
             $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
+            $phieuGiamGia = DB::select('SELECT * FROM tbl_phieugiamgia WHERE  BacNguoiDung = ?', [$tk[0]->BacNguoiDung]);
         }
-//            dd($tk);
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
-        return view('auth.Userprofile')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'tk'));
+//        dd($phieuGiamGia);
+        return view('auth.Userprofile')->with(compact( 'tk', 'phieuGiamGia'));
     }
 
     public function TrangKhachHangDangNhap(){

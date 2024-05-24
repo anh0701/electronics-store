@@ -73,11 +73,13 @@
             <div class="review-payment">
                 <h2>Mã giảm giá của người dùng</h2>
             </div>
+
             <div class="table-responsive cart_info">
                 <table class="table table-condensed">
                     <thead>
                     <tr class="cart_menu">
                         <td class="text-center">STT</td>
+                        <td>Mã code</td>
 {{--                        <td class="image">Item</td>--}}
                         <td class="description">Tên phiếu giảm giá</td>
                         <td class="price">Trị giá</td>
@@ -86,18 +88,21 @@
                         <td></td>
                     </tr>
                     </thead>
+                    @php $i = 0; @endphp
+                    @foreach($phieuGiamGia as $phieu)
                     <tbody>
                     <tr>
-                        <td class="text-center">1</td>
+                        <td class="text-center">{{$i + 1}}</td>
+                        <td>{{$phieu->MaCode}}</td>
                         <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
+                            <h4>{{$phieu ->TenMaGiamGia}}</h4>
                         </td>
                         <td class="cart_price">
-                            <p>$59</p>
+                            <p>{{$phieu->TriGia . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
                         </td>
                     </tr>
                     </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>

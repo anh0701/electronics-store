@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Cấp bậc thành viên</label>
                                 <select name="BacNguoiDung" id="BacNguoiDung" class="form-control input-lg m-bot15 ">
-                                    <option value="0" {{ old('BacNguoiDung') == '0' ? 'selected' : '' }}>--Chọn--</option>
+                                    <option value="1" {{ old('BacNguoiDung') == '1' ? 'selected' : '' }}>--Chọn--</option>
                                     <option value="1" {{ old('BacNguoiDung') == '1' ? 'selected' : '' }}>Vàng</option>
                                     <option value="2" {{ old('BacNguoiDung') == '2' ? 'selected' : '' }}>Kim Cương</option>
                                     <option value="3" {{ old('BacNguoiDung') == '3' ? 'selected' : '' }}>Bạch Kim</option>
