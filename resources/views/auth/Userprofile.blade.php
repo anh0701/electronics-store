@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <section id="cart_items" class="mt-5 pt-5">
+    <section id="cart_items" >
         <div class="container">
             <div class="review-payment">
                 <h2 class="mb-4">Mã giảm giá của người dùng</h2>
@@ -96,7 +96,8 @@
                         <td>Mã code</td>
                         <td class="description">Tên phiếu giảm giá</td>
                         <td class="price">Trị giá</td>
-                        <td></td>
+                        <td>Thời gian có hiệu lực</td>
+                        <td>Thời gian hết hiệu lực</td>
                     </tr>
                     </thead>
                     @php $i = 0; @endphp
@@ -104,13 +105,15 @@
                         <tbody>
                         <tr class="{{ $phieu->ThoiGianKetThuc < now() ? 'text-muted' : '' }}">
                             <td class="text-center">{{$i = $i + 1}}</td>
-                            <td>{{$phieu->MaCode}}</td>
-                            <td class="cart_description">
-                                <h4>{{$phieu ->TenMaGiamGia}}</h4>
+                            <td><h5>{{$phieu->MaCode}}</h5></td>
+                            <td>
+                                {{$phieu ->TenMaGiamGia}}
                             </td>
-                            <td class="cart_price">
+                            <td>
                                 <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
                             </td>
+                            <td>{{$phieu->ThoiGianBatDau}}</td>
+                            <td>{{$phieu->ThoiGianKetThuc}}</td>
                         </tr>
                         </tbody>
                     @endforeach
@@ -159,25 +162,8 @@
 
         .text-muted {
             color: #a6a5a5 !important;
+            background-color: #ccc;
         }
 
-        @media (max-width: 767px) {
-            .card.mb-3 {
-                margin-bottom: 1.5rem !important;
-            }
-            .btn-info {
-                width: 100%;
-            }
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            .main {
-                margin-bottom: 2rem;
-            }
-            #cart_items {
-                margin-top: 1rem;
-            }
-        }
     </style>
 @endsection

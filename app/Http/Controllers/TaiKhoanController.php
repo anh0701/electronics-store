@@ -146,7 +146,7 @@ class TaiKhoanController extends Controller
         }
         // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
         if ($request->hasFile('HinhAnh')) {
-            $hinhanh = $request->file('hinhanh');
+            $hinhanh = $request->file('HinhAnh');
             $tenHinhAnh = time() . '.' . $hinhanh->getClientOriginalExtension();
             $duongDan = public_path('upload/Profile');
             $hinhanh->move($duongDan, $tenHinhAnh);
