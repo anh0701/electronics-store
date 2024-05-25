@@ -11,7 +11,7 @@
                 <div class="col-sm-2">
                 </div>
                 <div class="col-sm-5">
-                    <form action="{{ Route('/') }}" method="get">
+                    <form action="{{ Route('/timKiem') }}" method="get">
                         <div class="input-group">
                             <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
                             <span class="input-group-btn">
@@ -62,7 +62,7 @@
                                 <a href="{{ route('/sua-chuong-trinh-giam-gia', $program->MaCTGG) }}"><i
                                         style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"
                                         class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có muốn xóa chương trình giảm giá {{ $program->MaCTGG }} này không?')"
+                                <a onclick="return confirm('Bạn có muốn ẩn chương trình giảm giá: {{ $program->TenCTGG }}  này không?')"
                                    href="{{ route('/xoa-chuong-trinh-giam-gia', [$program->MaCTGG]) }}"><i
                                         style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;"
                                         class="fa fa-times text-danger text"></i></a>

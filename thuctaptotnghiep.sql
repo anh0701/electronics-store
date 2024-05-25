@@ -218,9 +218,11 @@ CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `TenCTGG` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL,
   `MoTa` text NOT NULL,
-  `TrangThai` int NOT NULL,
+  `TrangThai` int,
   `ThoiGianTao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `ThoiGianSua` timestamp NULL DEFAULT NULL
+  `ThoiGianSua` timestamp NULL DEFAULT NULL,
+  `ThoiGianBatDau` timestamp NOT NULL ,
+  `ThoiGianKetThuc` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1406,28 +1408,6 @@ INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `tbl_quyen`
---
-
-CREATE TABLE `tbl_quyen` (
-  `MaPhanQuyen` int NOT NULL,
-  `TenPhanQuyen` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_quyen`
---
-
-INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
-(1, 'Khách hàng'),
-(2, 'Nhân viên bán hàng'),
-(3, 'Quản trị viên'),
-(4, 'Quản trị viên cao cấp'),
-(5, 'Nhân viên kho'),
-(6, 'Nhân viên kế toán');
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `tbl_sanpham`
@@ -1473,6 +1453,8 @@ CREATE TABLE `tbl_taikhoan` (
   `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `Email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `TenTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenNguoiDung` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `SoDienThoai` int DEFAULT NULL,
   `MatKhau` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -1489,7 +1471,7 @@ CREATE TABLE `tbl_taikhoan` (
 --
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
-('TK20240517142055', 'binh@gmail.com', 'binhdz', NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', NULL, NULL, NULL, '2024-05-17 07:20:55', NULL, 'KH', NULL),
+('TK20240517142055', 'binh@gmail.com', 'binhdz', NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', NULL, NULL, '1', '2024-05-17 07:20:55', NULL, 'KH', NULL),
 ('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, NULL, '2024-04-27 10:25:56', NULL, 'QTV', NULL),
 ('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, NULL, '2024-04-27 10:31:10', NULL, NULL, NULL),
 ('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, NULL, '2024-04-28 02:17:26', NULL, NULL, NULL),
@@ -1499,7 +1481,7 @@ INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`,
 ('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, NULL, '2024-04-28 10:04:39', NULL, NULL, NULL),
 ('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, NULL, '2024-04-28 19:49:49', NULL, NULL, NULL),
 ('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 1223, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, NULL, '2024-04-30 07:06:07', NULL, 'QTVCC', NULL),
-('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, NULL, '2024-04-30 07:24:10', NULL, 'NVK', NULL),
+('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, '1', '2024-04-30 07:24:10', NULL, 'NVK', NULL),
 ('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 1, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, NULL, '2024-04-30 07:31:00', NULL, 'NV', NULL),
 ('TKNV20240430213939', 'anhnx0@gmail.com', 'anhnx1', NULL, '$2y$12$ZLViL9MCYTElq8nf2wX2MOSwEnpscGVdZCalrWqxBWt.CU2aKlvnW', '', NULL, NULL, '2024-04-30 07:39:39', NULL, 'NV', NULL),
 ('TKNV20240430214532', 'admin@gmail.com', 'anhnx', NULL, '$2y$12$KLWMScRbTm.By51tFIdxceoc/AjC5e3cToY7bCZtnivIf04i15.DS', NULL, NULL, NULL, '2024-04-30 07:45:32', NULL, NULL, NULL),
@@ -13229,11 +13211,6 @@ ALTER TABLE `tbl_phigiaohang`
 ALTER TABLE `tbl_quanhuyen`
   ADD PRIMARY KEY (`MaQuanHuyen`);
 
---
--- Chỉ mục cho bảng `tbl_quyen`
---
-ALTER TABLE `tbl_quyen`
-  ADD PRIMARY KEY (`MaPhanQuyen`);
 
 --
 -- Chỉ mục cho bảng `tbl_sanpham`
@@ -13468,11 +13445,6 @@ ALTER TABLE `tbl_phieuxuat`
 ALTER TABLE `tbl_phigiaohang`
   MODIFY `MaPhiGiaoHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT cho bảng `tbl_quyen`
---
-ALTER TABLE `tbl_quyen`
-  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_sanpham`
