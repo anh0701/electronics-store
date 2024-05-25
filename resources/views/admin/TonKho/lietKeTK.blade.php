@@ -12,6 +12,7 @@
             <div class="col-sm-3">
             </div>
         </div>
+        <a href="{{ route('xemPN')}}"><button class="btn btn-info">Xem phiếu nhập</button></a>
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>

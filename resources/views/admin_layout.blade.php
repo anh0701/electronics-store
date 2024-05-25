@@ -69,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
-{{--                <li><a href="{{ route('/dang-xuat') }}"><i class="fa fa-key"></i>Log Out</a></li>--}}
+                <li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
             </ul>
         </li>
     </ul>
@@ -113,6 +113,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="sub">
               <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>
               <li><a href="{{ route('lapPN') }}">Thêm phiếu nhập</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Quản lý phiếu xuất</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
+              <li><a href="{{ route('taoPX') }}">Lập phiếu xuất</a></li>
             </ul>
           </li>
           <li class="sub-menu">

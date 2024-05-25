@@ -24,9 +24,10 @@
                             <th>Mã phiếu nhập</th>
                             <th>Người lập phiếu</th>
                             <th>Nhà cung cấp</th>
-                            <th>Thời gian lập</th>
+                            
                             <th>Tổng tiền</th>
                             <th>Số tiền nợ</th>
+                            <th>Trạng thái</th>
                             <th style="width:100px">Quản lý</th>
                         </tr>
                     </thead>
@@ -36,12 +37,28 @@
                                 <td>{{ $pn->MaPhieuNhap }}</td>
                                 <td>{{ $pn->TenTaiKhoan }}</td>
                                 <td>{{ $pn->TenNhaCungCap }}</td>
-                                <td>{{ $pn->ThoiGianTao }}</td>
+                                
                                 <td>{{ $pn->TongTien }}</td>
                                 <td>{{ $pn->TienNo }}</td>
+                                @php 
+                                    if($pn->TrangThai == 0){
+                                        $trangthai = "Chưa xác nhận";
+                                    }elseif($pn->TrangThai == 1){
+                                        $trangthai = "Đã xác nhận";
+                                    }else{
+                                        $trangthai = "";
+                                    }
+
+                                @endphp 
+                                <td>{{ $trangthai }}</td>
                                 <td>
-                                    <a href="{{ route('xemCTPN', ['id' => $pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                    <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                    <a href="{{ route('xemCTPN', ['id' => $pn->MaPhieuNhap]) }}">
+                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    @if ($pn->TrangThai == 0)
+                                        <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

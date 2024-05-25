@@ -4,34 +4,11 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Lập phiếu nhập chi tiết
+                Lập phiếu xuất
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                        @php
-                            $pn = Session::get('pn');
-                        @endphp
-                        <div class="form-group">
-                            <label for="">Mã phiếu</label>
-                            <input type="text" class="form-control" name="maPhieu" value="{{ $pn[0] }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Người lập phiếu</label>
-                            <input type="text" class="form-control" name="nguoiLap" value="{{ $pn[1] }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Nhà cung cấp</label>
-                            <input type="text" class="form-control" value="{{ $pn[2] }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Tổng tiền</label>
-                            <input type="text" class="form-control" value="0" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Phương thức thanh toán</label>
-                            <input type="text" class="form-control" value="{{ $pn[3] }}" readonly>
-                        </div>
-                        <form role="form" action="{{ route('xuLyLapPNCT') }}" method="POST" >
+                        <form role="form" action="{{ route('taoPXCT', ['id' => $maPX]) }}" method="POST" >
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>
@@ -44,54 +21,41 @@
                             @enderror
                             <div class="form-group">
                                 <label for="">Số lượng</label>
-                                <input type="text" class="form-control" name="page" value="tao">
                                 <input type="text" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
                             </div>
                             @error('soLuong')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                            <div class="form-group">
-                                <label for="">Giá sản phẩm</label>
-                                <input type="text" class="form-control" name="gia" value="{{ old('gia') }}">
-                            </div>
-                            @error('gia')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                             <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                         </form>
                         <br>
-                        <a href="{{ route('luuPN') }}"><button class="btn btn-info">Lưu</button></a>
-                        <a href="{{ route('xoaPN', ['id' => $pn[0]]) }}"><button class="btn btn-info">Hủy</button></a>
+                        <a href="{{ route('luuPX', ['id' => $maPX]) }}"><button class="btn btn-info">Lưu</button></a>
+                        <a href="{{ route('xoaPX', ['id' => $maPX]) }}"><button class="btn btn-info">Hủy</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped b-t b-light">
                                 <thead>
                                     <tr>
                                         <!-- <th>Mã phiếu nhập chi tiết</th> -->
-                                        <th>Mã phiếu nhập</th>
+                                        <th>Mã phiếu xuất</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
-                                        <th>Giá sản phẩm</th>
-                                        <th>Thành tiền</th>
                                         <th style="width:100px">Quản lý</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        
-                                    @endphp
-                                    @foreach ($listPNCT as $pnct)
+                                    @foreach ($data as $i)
                                         <tr>
-                                            <!-- <td>{{ $pnct->MaCTPN }}</td> -->
-                                            <td>{{ $pnct->MaPhieuNhap }}</td>
-                                            <td>{{ $pnct->TenSanPham }}</td>
-                                            <td>{{ $pnct->SoLuong }}</td>
-                                            <td>{{ $pnct->GiaSanPham }}</td>
-                                            <td>{{ $pnct->SoLuong * $pnct->GiaSanPham }}</td>
+                                            <td>{{ $i->MaPhieuXuat }}</td>
+                                            <td>{{ $i->TenSanPham }}</td>
+                                            <td>{{ $i->SoLuong }}</td>
+                                            @php 
+                                                $ma = $i->MaCTPX;
+                                            @endphp  
                                             <td>
-                                                <a href="{{ route('xoaCTPN', ['id' => $pnct->MaCTPN]) }}">Xóa</a>
+                                                <a href="{{ route('xoaCTL', ['id' => $ma]) }}">Xóa</a>
                                             </td>
-
                                         </tr>
+                                    
                                     @endforeach
                                 </tbody>
                             </table>
@@ -114,7 +78,7 @@
                 placeholder: 'Chọn sản phẩm',
                 allowClear: true,
                 ajax: {
-                    url: '{{ route("api.san-pham-pn") }}',
+                    url: '{{ route("api.san-pham-px") }}',
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -134,7 +98,7 @@
             // Khởi tạo lại giá trị đã chọn nếu có
             if (selectedValues) {
                 $.ajax({
-                    url: '{{ route("api.san-pham-pn") }}',
+                    url: '{{ route("api.san-pham-px") }}',
                     dataType: 'json',
                     data: {
                         ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin
