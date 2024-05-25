@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 use App\Models\SanPham;
 use App\Models\DanhMuc;
@@ -113,21 +115,56 @@ class HomeController extends Controller
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
         return view('pages.ThanhToan.ThanhToan')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allThanhPho'));
     }
-    
-    public function UserProfile(){
+
+    public function thongTinTaiKhoan(){
+        $user = session(('user'));
+        if ($user && isset($user['TenTaiKhoan'])) {
+            $TenTaiKhoan = $user['TenTaiKhoan'];
+            $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
+            $phieuGiamGia = PhieuGiamGia::where('BacNguoiDung', $tk[0]->BacNguoiDung)->orderBy('ThoiGianBatDau', 'DESC')->paginate('4');
+        }
+//        dd($phieuGiamGia);
+        return view('auth.Userprofile')->with(compact( 'tk', 'phieuGiamGia'));
+    }
+
+    public function TrangKhachHangDangNhap(){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
-        return view('pages.UserProfile.Userprofile')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
+        return view('pages.TaiKhoan.login')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
     }
-    
-    public function Test(Request $request){
-        $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->where('MaSanPham', 25)->get();
-        $count = Count($allDanhGia);
+
+    public function KhachHangDangNhap(Request $request){
         $data = $request->all();
-        $user = Session('cart');
-        echo '<pre>';
-        print_r($count);
-        echo '</pre>';
+        $Email = $data['Email'];
+        $MatKhau = md5($data['MatKhau']);
+        $login = TaiKhoan::where('Email', $Email)->where('MatKhau', $MatKhau)->first();
+        $isAdmin = 0;
+        $phanQuyenNguoiDung = PhanQuyenNguoiDung::orderBy('MaPQND', 'DESC')->get();
+        foreach($phanQuyenNguoiDung as $key => $value){
+            if($value->MaTaiKhoan == $login->MaTaiKhoan){
+                $isAdmin++;
+            }
+        }
+        if($isAdmin > 1){
+            Session::put('isAdmin', $isAdmin);
+        }
+        if($login){
+            $login_count = $login->count();
+            if($login_count){
+                Session::put('MaTaiKhoan', $login->MaTaiKhoan);
+                return Redirect::to('/');
+            }
+        }else{
+            Session::put('status', 'Mật khẩu hoặc tài khoản không đúng. Vui lòng đăng nhập lại');
+            return Redirect::to('/TrangKhachHangDangNhap');
+        }
+    }
+
+    public function KhachHangDangXuat(){
+        Session::put('TenTaiKhoan', null);
+        Session::put('MaTaiKhoan', null);
+        Session::put('isAdmin', null);
+        return Redirect::to('/');
     }
 }
