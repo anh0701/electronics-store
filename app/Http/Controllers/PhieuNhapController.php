@@ -159,8 +159,12 @@ class PhieuNhapController extends Controller
         foreach ($ctpn as $ct){
             $tongTien += $ct->SoLuong * $ct->GiaSanPham;
         }
+
+        $pn = DB::select("SELECT TienTra FROM tbl_phieunhap WHERE MaPhieuNhap = '{$maPN}'");
+        $tienNo = $tongTien - $pn[0]->TienTra;
         PhieuNhap::where('MaPhieuNhap', $maPN)->update([
             'TongTien' => $tongTien,
+            'TienNo' => $tienNo
         ]);
 
         return redirect('/liet-ke-phieu-nhap');

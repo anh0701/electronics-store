@@ -40,7 +40,7 @@
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
-                    <form id="myLink3" role="form" action="{{ route('taoCT', ['id'=>$px->MaPhieuXuat]) }}" method="POST">
+                    <form id="myLink3" role="form" action="{{ route('xuLyLapPXCT') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="">Mã phiếu xuất:</label>

@@ -41,32 +41,68 @@ class PhieuXuatController extends Controller
     }
 
     public function taoPX(){
-        $user = session(('user'));
-        $tenTK = $user['TenTaiKhoan'];
-        $products = SanPham::all();
         $maPX = 'PX' . date('YmdHis');
-        $thoiGianTao = date('Y-m-d H:i:s');
-        $tongSL = 0;
-        $maTK = DB::select("SELECT MaTaiKhoan FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
-        $phieuxuat = new PhieuXuat();
-        $phieuxuat->MaPhieuXuat = $maPX;
-        $phieuxuat->MaTaiKhoan = $maTK[0]->MaTaiKhoan;
-        $phieuxuat->TongSoLuong = $tongSL;
-        $phieuxuat->TrangThai = 0;
-        $phieuxuat->ThoiGianTao = $thoiGianTao;
-        $phieuxuat->save();
-
-        return view('admin.PhieuXuat.taoPX', compact('products'), ['maPX' => $maPX]);
-    }
-
-    public function taoCT($id){
         $products = SanPham::all();
-        $ct = DB::select("SELECT ct.*, sp.TenSanPham
-                            FROM tbl_chitietphieuxuat ct
-                            JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                            WHERE MaPhieuXuat = '{$id}'");
-        return view('admin.PhieuXuat.taoPXCT', compact('products'), ['data' => $ct, 'maPX' => $id]);
+        return view('admin.PhieuXuat.themPX', ['maPX' => $maPX], compact('products'));
     }
+
+    public function xuLyLapPX(Request $request)
+    {
+        $maPX = $request->maPhieu;
+        $thoiGianTao = date('Y-m-d H:i:s');
+        $tenTK = $request->nguoiLap;
+        $maTK = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
+        $tongSL = $request->tongSoLuong;
+        $trangThai = 0;
+        
+        if ($maPX) {
+            $phieuxuat = new PhieuXuat();
+            $phieuxuat->MaPhieuXuat = $maPX;
+            $phieuxuat->MaTaiKhoan = $maTK[0]->MaTaiKhoan;
+            $phieuxuat->TongSoLuong = $tongSL;
+            $phieuxuat->TrangThai = $trangThai;
+            $phieuxuat->ThoiGianTao = $thoiGianTao;
+            $phieuxuat->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Mời bạn kiểm tra lại thông tin!!']);
+    }
+
+    public function xuLyLapPXCT1(Request $request){
+        $maPX = $request->maPX;
+        $maSP = $request->maSP;
+        $soLuong = $request->soLuong;
+
+        $soLuong = $request->soLuong;
+        $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+        if($soLuong > $sl[0]->SoLuongTrongKho){
+            return response()->json(['success' => false, 'message' => 'Số lượng trong kho không đủ']);
+        }
+        if ($maPX) {
+            $maCTPX = 'CTPX' . uniqid();
+            $ctpx = new ChiTietPhieuXuat();
+            $ctpx->MaCTPX = $maCTPX;
+            $ctpx->MaPhieuXuat = $maPX;
+            $ctpx->MaSanPham = $maSP;
+            $ctpx->SoLuong = $soLuong;    
+            $ctpx->save();
+            $tenSP = DB::select("SELECT TenSanPham FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+            $tenSP1 = $tenSP[0]->TenSanPham;
+            return response()->json([
+                'success' => true,
+                'maCTPX' => $maCTPX,
+                'maPX' => $maPX,
+                'maSP' => $tenSP1,
+                'soLuong' => $soLuong,
+            ]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy sản phẩm']);
+        
+    }
+   
     public function taoPXCT(Request $request){
         $messages = [
             'maSP.required' => 'vui lòng chọn sản phẩm',
@@ -84,7 +120,7 @@ class PhieuXuatController extends Controller
             return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng trong kho không đủ']);
         }
 
-        $maPX = $request->id;
+        $maPX = $request->maPXSua;
         $maCTPX = 'CTPX' . uniqid();
         $ctpx = new ChiTietPhieuXuat();
         $ctpx->MaCTPX = $maCTPX;

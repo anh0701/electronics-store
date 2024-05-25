@@ -30,16 +30,20 @@ Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK']
 //PhieuXuat
 Route::get('/xem-phieu-xuat', [PhieuXuatController::class, 'xem'])->name('xemPX');
 Route::get('/xem-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xemCT'])->name('xemCT');
-Route::get('/xoa-phieu-xuat/{id}', [PhieuXuatController::class, 'xoaPX'])->name('xoaPX');
+
 Route::get('/lap-phieu-xuat', [PhieuXuatController::class, 'taoPX'])->name('taoPX');
-Route::get('/lap-phieu-xuat/{id}', [PhieuXuatController::class, 'taoCT'])->name('taoCT');
+Route::post('/lap-phieu-xuat', [PhieuXuatController::class, 'xuLyLapPX'])->name('xuLyLapPX');
+Route::post('/lap-phieu-xuat-chi-tiet1', [PhieuXuatController::class, 'xuLyLapPXCT1'])->name('xuLyLapPXCT1');
+Route::post('/lap-phieu-xuat-chi-tiet', [PhieuXuatController::class, 'taoPXCT'])->name('xuLyLapPXCT');
+Route::get('/luuPX/{id}', [PhieuXuatController::class, 'luuPX'])->name('luuPX');
+
+Route::get('/xoa-phieu-xuat/{id}', [PhieuXuatController::class, 'xoaPX'])->name('xoaPX');
+Route::get('/xoa-chi-tiet-phieu-xuat/{id}/{maPX}', [PhieuXuatController::class, 'xoaCTPXS'])->name('xoaCTPXS');
 Route::get('/xoa-chi-tiet-phieu-xuat1/{id}/{maPX}', [PhieuXuatController::class, 'xoaCT'])->name('xoaCTL');
+
 Route::get('/sua-phieu-xuat/{id}', [PhieuXuatController::class, 'suaPX'])->name('suaPX');
 Route::post('/sua-phieu-xuat', [PhieuXuatController::class, 'suaPXP'])->name('suaPXP');
 Route::post('/update-soluong-px', [PhieuXuatController::class, 'updateSoLuong'])->name('update.soluong-px');
-Route::get('/xoa-chi-tiet-phieu-xuat/{id}/{maPX}', [PhieuXuatController::class, 'xoaCTPXS'])->name('xoaCTPXS');
-Route::post('/lap-phieu-xuat/{id}', [PhieuXuatController::class, 'taoPXCT'])->name('taoPXCT');
-Route::get('/luuPX/{id}', [PhieuXuatController::class, 'luuPX'])->name('luuPX');
 
 Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])->name('api.san-pham-px');
 
