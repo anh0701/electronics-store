@@ -136,7 +136,7 @@ class TaiKhoanController extends Controller
             'HinhAnh.image' => "Vui lòng chọn đúng file hình ảnh."
         ];
         $valid = Validator::make ( $request->all() ,[
-            'HinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
+            'HinhAnh' => ['nullable','image','mimes:jpeg,png,jpg,gif|max:2048'], // Giới hạn kích thước và loại hình ảnh
         ], $messages);
 
         if ($valid->fails()) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -84,7 +85,7 @@ class HomeController extends Controller
         if ($user && isset($user['TenTaiKhoan'])) {
             $TenTaiKhoan = $user['TenTaiKhoan'];
             $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
-            $phieuGiamGia = DB::select('SELECT * FROM tbl_phieugiamgia WHERE  BacNguoiDung = ?', [$tk[0]->BacNguoiDung]);
+            $phieuGiamGia = PhieuGiamGia::where('BacNguoiDung', $tk[0]->BacNguoiDung)->orderBy('ThoiGianBatDau', 'DESC')->paginate('5');
         }
 //        dd($phieuGiamGia);
         return view('auth.Userprofile')->with(compact( 'tk', 'phieuGiamGia'));
