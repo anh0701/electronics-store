@@ -1,111 +1,161 @@
 @extends('admin_layout')
 @section('admin_content')
+
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Cập nhật phiếu xuất
+                Cập nhật phiếu nhập 
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        </div>
-                    @endif
+
+                @php 
+                    $user = session(('user'));
+                    $quyen = $user['Quyen'];
+
+                @endphp 
                     <form role="form" action="{{ Route('suaPXP') }}" method="POST" >
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="maPX">Mã phiếu:</label>
-                            <input class="form-control" class="in1" type="text" id="maPX" name="maPX" value="{{ $px->MaPhieuXuat }}" readonly class="gray-background">
+                            <label for="">Mã phiếu</label>
+                            <input type="text" class="form-control" name="maPX" value="{{ $px->MaPhieuXuat }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="nguoiLap">Người lập:</label>
-                            <input class="form-control" type="text" id="nguoiLap" name="nguoiLap" value="{{ $px->TenTaiKhoan }}" readonly class="gray-background">
+                            <label for="">Người lập phiếu</label>
+                            <input type="text" class="form-control" name="nguoiLap" value="{{ $px->TenTaiKhoan }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="tongTien">Tổng số lượng:</label>
-                            <input class="form-control" type="text" id="tongTien" name="tongTien" value="{{ $px->TongSoLuong }}" readonly class="gray-background">
+                            <label for="">Tổng số lượng</label>
+                            <input type="text" class="form-control" name="tongSL" value="{{ $px->TongSoLuong }}" readonly>
                         </div>
-                        <div class="form-group">
-                            <label for="trangThai">Trạng thái:</label>
-                            <input type="hidden" class="form-control" name="trangThaiTruoc" value="{{ $px->TrangThai }}" readonly>
-                            <select name="trangThai" class="form-control input-lg m-bot15">
-                                <option value="0" >Chưa xác nhận</option>
-                                <option value="1" >Xác nhận</option>
+                        <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
+                            <label for="">Trạng thái</label>
+                            <input type="hidden" id="mySelect1" class="form-control" name="trangThaiTruoc" value="{{ $px->TrangThai }}">
+                            <select name="trangThai" id="mySelect" class="form-control input-lg m-bot15">
+                                <option value="0" {{ $px->TrangThai == '0' ? 'selected' : '' }}>Chưa xác nhận</option>
+                                <option value="1" {{ $px->TrangThai == '1' ? 'selected' : '' }}>Xác nhận</option>
                             </select>
                         </div>
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
+                        
                     </form>
-                    @if ($px->TrangThai == 0)
-                        <form role="form" action="{{ route('taoPXCT', ['id' => $px->MaPhieuXuat]) }}" method="POST" >
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <label for="MaSanPham">Sản phẩm:</label>
-                                <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" 
-                                >
-                                </select>
-                            </div>
-                            @error('maSP')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <div class="form-group">
-                                <label for="">Số lượng</label>
-                                <input type="text" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
-                                <input type="hidden" class="form-control" name="page" value="sua">
-                            </div>
-                            @error('soLuong')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
-                        </form>
-                    @endif
+                    <form id="myLink3" role="form" action="{{ route('taoCT', ['id'=>$px->MaPhieuXuat]) }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="">Mã phiếu xuất:</label>
+                            <input type="text" class="form-control" name="maPXSua" value="{{$px->MaPhieuXuat}}" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="MaSanPham">Sản phẩm:</label>
+                            <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
+                            >
+                            </select>
+                        </div>
+                        @error('maSP')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="form-group">
+                            <label for="">Số lượng</label>
+                            <input type="number" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
+                        </div>
+                        @error('soLuong')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
+                    </form>
+                    
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                                <tr>
+                                    <!-- <th>Mã phiếu nhập chi tiết</th> -->
+                                    <th>Mã phiếu nhập</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th style="width:100px" id="myLink4">Quản lý</th>                  
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                @foreach ($ctpx as $ct)
+
+                                    <tr>
+                                        <td>{{ $ct->MaPhieuXuat }}</td>
+                                        <td>{{ $ct->TenSanPham }}</td>
+                                        <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPX }}"></td>
+
+                                        <td id = "myLink">
+                                            <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPX }}">Cập nhật</a>
+                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPX }} không?')" href="{{ route('xoaCTPXS', ['id' => $ct->MaCTPX, 'maPX' => $px->MaPhieuXuat]) }}">
+                                                <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
+                                            </a>
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="responseMessage"></div>
                 </div>
             </div>
         </section>
     </div>
 </div>
-<div class="table-agile-info">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Liệt kê sản phẩm trong phiếu xuất
-        </div>
-        <div class="row w3-res-tb">
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-3">
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped b-t b-light">
-                <thead>
-                    <tr>
-                        <th>Tên sản phẩm</th>
-                        <th>Số lượng</th>
-                        <th style="width:100px">Quản lý</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($ct as $i)
-                        <tr>
-                            <td>{{ $i->TenSanPham }}</td>
-                            <td>{{ $i->SoLuong }}</td>
-                            <td>
-                                <a href=""><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có muốn xóa chi tiết phiếu {{ $i->MaCTPX }} không?')" href="{{ route('xoaCTS', ['id' => $i->MaCTPX]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+function handleChange() {
+    if ($('#mySelect').val() == '1') {
+        $('[id^="myLink"]').hide();
+    } else {
+        if ($('#mySelect1').val() == '0'){
+            $('[id^="myLink"]').show();
+        }
+        
+    }
+}
+
+// Sử dụng sự kiện change và gọi hàm onChange
+$(document).ready(function() {
+    handleChange();
+    $('#mySelect').change(handleChange);
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.update-btn').on('click', function() {
+        var MaCTPX = $(this).data('id');
+        var soLuong = $('#soLuong_' + MaCTPX).val();
+
+        $.ajax({
+            url: '{{ route('update.soluong-px') }}',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                MaCTPX: MaCTPX,
+                soLuong: soLuong,
+            },
+            success: function(data) {
+                if (data.success) {
+                    $('#responseMessage').text('Cập nhật thành công').css('color', 'green');
+                } else {
+                    $('#responseMessage').text('Cập nhật thất bại: ' + data.message).css('color', 'red');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                $('#responseMessage').text('Có lỗi xảy ra: ' + error).css('color', 'red');
+            }
+        });
+    });
+});
+</script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <script>
@@ -155,4 +205,5 @@
             }
         });
     </script>
+    
 @endsection

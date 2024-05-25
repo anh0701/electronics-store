@@ -11,6 +11,10 @@
                         <form role="form" action="{{ route('taoPXCT', ['id' => $maPX]) }}" method="POST" >
                             {{ csrf_field() }}
                             <div class="form-group">
+                                <label for="">Mã phiếu xuất:</label>
+                                <input type="text" class="form-control" name="maPN" value="{{$maPX}}" readonly>
+                            </div>
+                            <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>
                                 <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" 
                                 >

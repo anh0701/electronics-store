@@ -13,6 +13,7 @@
             </div>
         </div>
         <a href="{{ route('xemPN')}}"><button class="btn btn-info">Xem phiếu nhập</button></a>
+        <a href="{{ route('xemPX')}}"><button class="btn btn-info">Xem phiếu xuất</button></a>
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>

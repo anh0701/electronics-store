@@ -16,17 +16,10 @@ use App\Http\Controllers\DoiMatKhau;
 use App\Http\Controllers\GioHangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaGiamGiaController;
-use App\Http\Controllers\NhaCungCapController;
-use App\Http\Controllers\PhieuGiamGiaController;
-use App\Http\Controllers\PhieuNhapController;
 use App\Http\Controllers\PhiGiaoHangController;
 use App\Http\Controllers\QuenMatKhau;
 use App\Http\Controllers\SanPhamController;
-use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\ThongSoKyThuatController;
-use App\Http\Controllers\ThuongHieuController;
-use App\Http\Controllers\TonKhoController;
-use Illuminate\Support\Facades\Route;
 
 
 // Trang admin
@@ -40,10 +33,11 @@ Route::get('/xem-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xemCT'
 Route::get('/xoa-phieu-xuat/{id}', [PhieuXuatController::class, 'xoaPX'])->name('xoaPX');
 Route::get('/lap-phieu-xuat', [PhieuXuatController::class, 'taoPX'])->name('taoPX');
 Route::get('/lap-phieu-xuat/{id}', [PhieuXuatController::class, 'taoCT'])->name('taoCT');
-Route::get('/xoa-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xoaCT'])->name('xoaCTL');
+Route::get('/xoa-chi-tiet-phieu-xuat1/{id}/{maPX}', [PhieuXuatController::class, 'xoaCT'])->name('xoaCTL');
 Route::get('/sua-phieu-xuat/{id}', [PhieuXuatController::class, 'suaPX'])->name('suaPX');
 Route::post('/sua-phieu-xuat', [PhieuXuatController::class, 'suaPXP'])->name('suaPXP');
-Route::get('/xoa-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xoaCTS'])->name('xoaCTS');
+Route::post('/update-soluong-px', [PhieuXuatController::class, 'updateSoLuong'])->name('update.soluong-px');
+Route::get('/xoa-chi-tiet-phieu-xuat/{id}/{maPX}', [PhieuXuatController::class, 'xoaCTPXS'])->name('xoaCTPXS');
 Route::post('/lap-phieu-xuat/{id}', [PhieuXuatController::class, 'taoPXCT'])->name('taoPXCT');
 Route::get('/luuPX/{id}', [PhieuXuatController::class, 'luuPX'])->name('luuPX');
 

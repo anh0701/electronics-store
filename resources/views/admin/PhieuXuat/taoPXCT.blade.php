@@ -11,6 +11,10 @@
                         <form role="form" action="{{ route('taoPXCT', ['id' => $maPX]) }}" method="POST" >
                             {{ csrf_field() }}
                             <div class="form-group">
+                                <label for="">Mã phiếu xuất:</label>
+                                <input type="text" class="form-control" name="maPN" value="{{$maPX}}" readonly>
+                            </div>
+                            <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>
                                 <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" 
                                 >
@@ -21,6 +25,7 @@
                             @enderror
                             <div class="form-group">
                                 <label for="">Số lượng</label>
+                                <input type="hidden" class="form-control" name="page" value="tao">
                                 <input type="text" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
                             </div>
                             @error('soLuong')
@@ -48,12 +53,13 @@
                                             <td>{{ $i->MaPhieuXuat }}</td>
                                             <td>{{ $i->TenSanPham }}</td>
                                             <td>{{ $i->SoLuong }}</td>
-                                            @php 
+                                            <!-- @php 
                                                 $ma = $i->MaCTPX;
-                                            @endphp  
+                                            @endphp   -->
                                             <td>
-                                                <a href="{{ route('xoaCTL', ['id' => $ma]) }}">Xóa</a>
+                                                <a href="{{route('xoaCTL', ['id' => $i->MaCTPX, 'maPX' => $i->MaPhieuXuat])}}">Xóa</a>
                                             </td>
+                                            
                                         </tr>
                                     
                                     @endforeach

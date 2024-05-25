@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
@@ -41,18 +41,13 @@
             </div>
         </section>
     </div>
-</div>
+</div> -->
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
             Liệt kê sản phẩm trong phiếu xuất
         </div>
-        <div class="row w3-res-tb">
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-3">
-            </div>
-        </div>
+
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
@@ -71,6 +66,22 @@
                 </tbody>
             </table>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><strong>Tổng số lượng sản phẩm xuất:</strong></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>{{ $px->TongSoLuong }}</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
+    <a href="{{ route('xemPX') }}"><button class="btn btn-info">Trở lại</button></a>
+    <a href="{{ route('suaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Sửa</button></a>
+    @if ($px->TrangThai == 0)
+        <a href="{{ route('xoaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Xóa</button></a>
+    @endif
 </div>
 @endsection

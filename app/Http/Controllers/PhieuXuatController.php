@@ -77,13 +77,20 @@ class PhieuXuatController extends Controller
             'soLuong' => 'required',
         ], $messages);
 
+        $maSP = $request->maSP;
+        $soLuong = $request->soLuong;
+        $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+        if($soLuong > $sl[0]->SoLuongTrongKho){
+            return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng trong kho không đủ']);
+        }
+
         $maPX = $request->id;
         $maCTPX = 'CTPX' . uniqid();
         $ctpx = new ChiTietPhieuXuat();
         $ctpx->MaCTPX = $maCTPX;
         $ctpx->MaPhieuXuat = $maPX;
-        $ctpx->MaSanPham = $request->maSP;
-        $ctpx->SoLuong = $request->soLuong;
+        $ctpx->MaSanPham = $maSP;
+        $ctpx->SoLuong = $soLuong;
         $ctpx->save();
         $p = $request->page;
         if($p == "tao"){
@@ -94,16 +101,14 @@ class PhieuXuatController extends Controller
         
     }
 
-    public function xoaCT($id){
-        $maP = DB::select("SELECT MaPhieuXuat FROM tbl_chitietphieuxuat WHERE MaCTPX = '$id'");
+    public function xoaCT($id, $maPX){
         DB::delete("DELETE FROM tbl_chitietphieuxuat WHERE MaCTPX = '{$id}'");      
-        return redirect()->route('taoCT', ['id' => $maP[0]->MaPhieuXuat]);   
+        return redirect()->route('taoCT', ['id' => $maPX]);   
     }
 
-    public function xoaCTS($id){
-        $maP = DB::select("SELECT MaPhieuXuat FROM tbl_chitietphieuxuat WHERE MaCTPX = '$id'");
+    public function xoaCTPXS($id, $maPX){
         DB::delete("DELETE FROM tbl_chitietphieuxuat WHERE MaCTPX = '{$id}'");      
-        return redirect()->route('suaPX', ['id' => $maP[0]->MaPhieuXuat]);   
+        return redirect()->route('suaPX', ['id' => $maPX]);   
     }
 
     public function luuPX($id){
@@ -128,14 +133,14 @@ class PhieuXuatController extends Controller
                             FROM tbl_chitietphieuxuat ct
                             JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
                             WHERE MaPhieuXuat = '{$id}'");
-        return view('admin.PhieuXuat.suaPX', ['px' => $px[0], 'ct' => $ct], compact('products'));
+        return view('admin.PhieuXuat.suaPX', ['px' => $px[0], 'ctpx' => $ct], compact('products'));
     }
 
     public function suaPXP(Request $request){
         $maPX = $request->maPX;
-        $ct = DB::select("SELECT * FROM tbl_chitietphieuxuat WHERE MaPhieuXuat = '{$maPX}'");
+        $ctpx = DB::select("SELECT * FROM tbl_chitietphieuxuat WHERE MaPhieuXuat = '{$maPX}'");
         $tongSL = 0;
-        foreach($ct as $i){
+        foreach($ctpx as $i){
             $tongSL += $i->SoLuong;
         }
         $tgSua = date('Y-m-d H:i:s');
@@ -144,8 +149,58 @@ class PhieuXuatController extends Controller
             'TrangThai' => $request->trangThai,
             'ThoiGianSua' => $tgSua,
         ]);
-        return redirect()->route('xemCT', ['id' => $maPX]);
+        $trangThai1 = $request->trangThaiTruoc;
+        $trangThai2 = $request->trangThai;
+        if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
+            foreach($ctpx as $ct){
+                $maSP = $ct->MaSanPham;
+                $soLuong = $ct->SoLuong;
+                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sl = $sltk[0]->SoLuongTrongKho - $soLuong;
+                $sl2 = $sltk[0]->SoLuongHienTai - $soLuong;
+                SanPham::where('MaSanPham', $maSP)->update([
+                    'SoLuongTrongKho' => $sl,
+                    'SoLuongHienTai' => $sl2,
+                ]);
+            }
+        }elseif($trangThai2 == 0 && ($trangThai1 != $trangThai2)){
+            foreach($ctpx as $ct){
+                $maSP = $ct->MaSanPham;
+                $soLuong = $ct->SoLuong;
+                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sl = $sltk[0]->SoLuongTrongKho + $soLuong;
+                $sl2 = $sltk[0]->SoLuongHienTai + $soLuong;
+                SanPham::where('MaSanPham', $maSP)->update([
+                    'SoLuongTrongKho' => $sl,
+                    'SoLuongHienTai' => $sl2,
+                ]);
+            }
+        }
+        return redirect()->route('xemPX');
     }
+
+    public function updateSoLuong(Request $request)
+    {
+        $MaCTPX = $request->input('MaCTPX');
+        $soLuong = $request->input('soLuong');
+
+        $sl = DB::select("SELECT sp.SoLuongTrongKho 
+                        FROM tbl_sanpham sp
+                        JOIN tbl_chitietphieuxuat px ON px.MaSanPham = sp.MaSanPham
+                        WHERE MaCTPX = '{$MaCTPX}'");
+        if($soLuong > $sl[0]->SoLuongTrongKho){
+            return response()->json(['success' => false, 'message' => 'Số lượng sản phẩm trong kho không đủ']);
+        }
+        if ($MaCTPX) {
+            ChiTietPhieuXuat::where('MaCTPX', $MaCTPX)->update([
+                'SoLuong' => $soLuong,
+            ]);
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy sản phẩm']);
+    }
+
 
     public function danhSachSanPham(Request $request)
     {
