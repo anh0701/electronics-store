@@ -42,6 +42,7 @@
         </table>
       </div>
     </div>
+
     <div class="panel panel-default">
       <div class="panel-heading">
          Thông tin phiếu giảm giá
@@ -61,6 +62,7 @@
               <th>Số tiền | Phần trămm giảm</th>
               <th>Trị giá</th>
               <th>Mã code</th>
+              <th>Quản lý</th>
             </tr>
           </thead>
           @if ($allDonHang->MaGiamGia != 0)
@@ -75,6 +77,11 @@
                   <td>{{ $allDonHang->PhieuGiamGia->TriGia }} %</td>
                 @endif
                 <td>{{ $allDonHang->PhieuGiamGia->MaCode }}</td>
+                <td>
+                  <a onclick="return confirm('Bạn có muốn xóa phiếu giảm giá thuộc đơn hàng này không?')" href="{{ route('/') }}">
+                    <i style="font-size: 28px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
+                  </a>
+                </td>
               </tr>
             </tbody>
           @elseif ($allDonHang->MaGiamGia == 0)
@@ -85,6 +92,7 @@
         </table>
       </div>
     </div>
+
     <div class="panel panel-default">
       <div class="panel-heading">
          Liệt kê chi tiết đơn hàng
@@ -124,7 +132,7 @@
               <td><input type="number" size="5" min="1" value="{{ $value->SoLuong }}" name="product_sales_quantity"></td>
               <td>{{ number_format($value->GiaSanPham, 0, '', '.') }} đ</td>
               <td>
-                <a onclick="return confirm('Bạn có muốn sản phẩm {{ $value->SanPham->TenSanPham }} thuộc đơn hàng này không?')" href="{{ route('/XoaChiTietDonHang', [$value->MaCTDH]) }}">
+                <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->SanPham->TenSanPham }} thuộc đơn hàng này không?')" href="{{ route('/XoaChiTietDonHang', [$value->MaCTDH]) }}">
                   <i style="font-size: 28px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                 </a>
               </td>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 20, 2024 lúc 02:24 PM
--- Phiên bản máy phục vụ: 8.0.30
--- Phiên bản PHP: 8.1.10
+-- Host: localhost:3306
+-- Generation Time: May 25, 2024 at 08:25 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,59 +18,59 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `thuctaptest`
+-- Database: `thuctaptotnghiep`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_baiviet`
+-- Table structure for table `tbl_baiviet`
 --
 
 CREATE TABLE `tbl_baiviet` (
   `MaBaiViet` int NOT NULL,
-  `TenBaiViet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugBaiViet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenBaiViet` varchar(50) NOT NULL,
+  `SlugBaiViet` varchar(50) NOT NULL,
   `TrangThai` int NOT NULL,
   `MaDanhMucBV` int NOT NULL,
-  `NoiDung` text COLLATE utf8mb4_general_ci NOT NULL,
+  `NoiDung` text NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_baocaodoanhthu`
+-- Table structure for table `tbl_baocaodoanhthu`
 --
 
 CREATE TABLE `tbl_baocaodoanhthu` (
   `MaBCDT` int NOT NULL,
-  `MaLienKet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaLienKet` varchar(50) NOT NULL,
   `MaTaiKhoan` int NOT NULL,
   `NgayTao` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_binhluan`
+-- Table structure for table `tbl_binhluan`
 --
 
 CREATE TABLE `tbl_binhluan` (
   `MaBinhLuan` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
   `MaSanPham` int NOT NULL,
-  `NoiDung` text COLLATE utf8mb4_general_ci NOT NULL,
+  `NoiDung` text NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietbaocaodoanhthu`
+-- Table structure for table `tbl_chitietbaocaodoanhthu`
 --
 
 CREATE TABLE `tbl_chitietbaocaodoanhthu` (
@@ -78,43 +78,58 @@ CREATE TABLE `tbl_chitietbaocaodoanhthu` (
   `MaSanPham` int NOT NULL,
   `SoLuongNhap` int NOT NULL,
   `SoLuongBan` int NOT NULL,
-  `GiaNhap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `GiaBan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaLienKet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `GiaNhap` varchar(50) NOT NULL,
+  `GiaBan` varchar(50) NOT NULL,
+  `MaLienKet` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietdonhang`
+-- Table structure for table `tbl_chitietdonhang`
 --
 
 CREATE TABLE `tbl_chitietdonhang` (
   `MaCTDH` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SoLuong` int DEFAULT NULL,
+  `GiaSanPham` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_chitietdonhang`
+--
+
+INSERT INTO `tbl_chitietdonhang` (`MaCTDH`, `order_code`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
+(11, 'ee0b0', 27, 2, '14590000'),
+(13, '11e02', 28, 2, '11990000'),
+(14, '11e02', 25, 3, '14990000'),
+(15, '11e02', 26, 1, '5490000'),
+(16, '943da', 26, 1, '5490000'),
+(17, '943da', 28, 2, '11990000'),
+(18, '5763d', 31, 1, '20490000'),
+(19, '5763d', 30, 1, '14990000'),
+(20, '45e42', 26, 1, '5490000');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitiethoadon`
+-- Table structure for table `tbl_chitiethoadon`
 --
 
 CREATE TABLE `tbl_chitiethoadon` (
   `MaCTHD` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `GiaSanPham` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietlichsubaohanh`
+-- Table structure for table `tbl_chitietlichsubaohanh`
 --
 
 CREATE TABLE `tbl_chitietlichsubaohanh` (
@@ -122,55 +137,55 @@ CREATE TABLE `tbl_chitietlichsubaohanh` (
   `MaLienKet` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `TinhTrang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `ThoiGianTra` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `TinhTrang` varchar(50) NOT NULL,
+  `ThoiGianTra` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieubaohanh`
+-- Table structure for table `tbl_chitietphieubaohanh`
 --
 
 CREATE TABLE `tbl_chitietphieubaohanh` (
   `MaCTPBH` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
   `GiaSanPham` int NOT NULL,
-  `ThoiGianBaoHanh` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ThoiGianBaoHanh` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieukiemkho`
+-- Table structure for table `tbl_chitietphieukiemkho`
 --
 
 CREATE TABLE `tbl_chitietphieukiemkho` (
   `MaCTPKK` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `SoLuong` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TinhTrang` text COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SoLuong` varchar(50) NOT NULL,
+  `TinhTrang` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieunhap`
+-- Table structure for table `tbl_chitietphieunhap`
 --
 
 CREATE TABLE `tbl_chitietphieunhap` (
-  `MaCTPN` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaCTPN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaPhieuNhap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_chitietphieunhap`
+-- Dumping data for table `tbl_chitietphieunhap`
 --
 
 INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
@@ -181,101 +196,116 @@ INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuo
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieutrahang`
+-- Table structure for table `tbl_chitietphieutrahang`
 --
 
 CREATE TABLE `tbl_chitietphieutrahang` (
   `MaCTPTH` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `LyDoTraHang` text COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `GiaSanPham` varchar(50) NOT NULL,
+  `LyDoTraHang` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieuxuat`
+-- Table structure for table `tbl_chitietphieuxuat`
 --
 
 CREATE TABLE `tbl_chitietphieuxuat` (
   `MaCTPX` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `SoLuong` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SoLuong` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chuongtrinhgiamgia`
+-- Table structure for table `tbl_chuongtrinhgiamgia`
 --
 
 CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `MaCTGG` int NOT NULL,
-  `SlugCTGG` varchar(255) NOT NULL,
-  `TenCTGG` varchar(255) NOT NULL,
-  `HinhAnh` varchar(255) NOT NULL,
-  `MoTa` text NOT NULL,
-  `TrangThai` int,
-  `ThoiGianTao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `SlugCTGG` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenCTGG` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `HinhAnh` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `TrangThai` int DEFAULT NULL,
+  `ThoiGianTao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ThoiGianSua` timestamp NULL DEFAULT NULL,
-  `ThoiGianBatDau` timestamp NOT NULL ,
+  `ThoiGianBatDau` timestamp NOT NULL,
   `ThoiGianKetThuc` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chuongtrinhgiamgiasp`
+-- Table structure for table `tbl_chuongtrinhgiamgiasp`
 --
 
 CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
   `MaCTGGSP` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `PhanTramGiam` INT(3) NOT NULL DEFAULT 0
+  `PhanTramGiam` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhgia`
+-- Table structure for table `tbl_danhgia`
 --
 
 CREATE TABLE `tbl_danhgia` (
   `MaDanhGia` int NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
+  `Email` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `NoiDung` text COLLATE utf8mb4_general_ci NOT NULL,
-  `SoSao` int NOT NULL,
+  `NoiDung` text NOT NULL,
+  `SoSao` int DEFAULT NULL,
   `TrangThai` int NOT NULL,
-  `ThoiGianTao` timestamp NOT NULL,
-  `ThoiGianSua` timestamp NOT NULL,
-  `MaDonHang` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_danhgia`
+--
+
+INSERT INTO `tbl_danhgia` (`MaDanhGia`, `Email`, `MaSanPham`, `NoiDung`, `SoSao`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(2, 'binh@gmail.com', 26, 'Sản phẫm tốt nhân viên nhiệt tình giao nhanh . Nói chung là ok', 4, 1, '2024-05-22 07:43:25', NULL),
+(3, 'admin1@gmail.com', 31, 'Xem mô tả sản phẩm và thông số kĩ thuật quảng cáo về tivi Toshiba 55E330MP tôi tưởng là đúng như vậy nên tôi mua. Nhưng khi đem tivi về thì chân đế ko phải bằng kim loại ma được làm bằng nhựa. Khi để tivi lên bàn thì ko được chắc chắn, chỉ cần chạm nhẹ vào là tivi rung lắc, lung lay. Nhà sản xuất nghĩ sao mà tivi 55 inch, mà chân đế lại làm toàn bằng chất liệu nhựa thì làm sao gánh nổi trọng lượng tivi 11,3kg Mô tả sản phẩm và thông số kĩ thuật ko đúng với thực tế làm tôi bị hụt hẫng. Một điều nữa là tìm giọng nói bằng tiếng Việt lúc được lúc ko và thiếu chính xác. Mỗi lần chuyển từ kênh này sang kênh khác thì cứ hiện dòng chữ không có chương trình phải chờ ít nhất từ 5 đến 10 giây thì mới nhận ra kênh mới. Cảm thấy hơi bất ổn khi sử dụng tivi này.', 5, 1, '2024-05-22 07:53:46', NULL),
+(4, 'binh@gmail.com', 25, 'Đã sử dụng hình ảnh âm thanh tốt tuy nhiên hệ điều hành vidaa V6 bị hạn chế nhiều ứng dụng điển hình với gói TV360 của nhà mạng Viettel, nên ai đã sử dụng mạng internet Viettel thì căn nhắc lựa chọn.', 3, 1, '2024-05-22 07:55:09', NULL),
+(5, 'admin1@gmail.com', 25, 'Sản phẩm thật tốt, tôi đã mua và dùng cảm thấy rất yêu thích sản phẩm này', 5, 1, '2024-05-23 13:38:38', NULL),
+(6, 'admin1@gmail.com', 26, 'Sản phẩm không còn nét như khi còn ở cửa hàng, mấy bạn nhân viên giúp mình khắc phục tình trạng này với', 2, 1, '2024-05-23 13:38:38', NULL),
+(7, 'anhnx286@gmail.com', 25, 'Sản phẩm có độ nét không đúng với khi ở cửa hàng, mấy bạn nhân viên tư vấn giúp mình khắc phục vấn đề này với', 1, 1, '2024-05-23 13:54:47', NULL),
+(8, 'admin2@gmail.com', 25, 'Tivi này có chức năng điều khiển bằng giọng nói và kết nối qua điện thoại rất hay. Nhưng con mình cũng hay chơi game trên tivi mấy bạn chỉ mình cách xóa game với.', 4, 1, '2024-05-23 13:56:56', NULL),
+(9, 'binh@gmail.com', 27, 'Tivi này đẹp quá mua về nhà mình dùng rất ưng', 5, 1, '2024-05-24 02:22:47', NULL),
+(10, 'binh@gmail.com', 28, 'Thật sự phải nói điện máy xanh bây giờ cực kỳ tệ, cực kỳ thất vọng khi gần 10 năm qua vẫn mua sản phẩm ủng hộ. Nhưng bây giờ Cskh bảo hành CỰC TỆ HẠI, ngày 26/4 có đánh giá có cskh gọi hỏi xong tới giờ chẳng thấy 1 ai xuống bảo hành hay ngó ngàng gì đến sản phẩm bán ra như thế nào, không bao giờ giớii thiệu hay ủng hộ nữa', 1, 1, '2024-05-24 03:04:33', NULL),
+(12, 'binh@gmail.com', 26, 'Sản phẩm này không tốt như ở cửa hàng\nChê nhé', 4, 1, '2024-05-24 04:35:34', NULL),
+(13, 'binh@gmail.com', 28, 'Sản phẫm tốt nhân viên nhiệt tình giao nhanh . Nói chung là ok .', 5, 1, '2024-05-24 04:37:55', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhmuc`
+-- Table structure for table `tbl_danhmuc`
 --
 
 CREATE TABLE `tbl_danhmuc` (
   `MaDanhMuc` int NOT NULL,
-  `TenDanhMuc` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDanhMuc` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDanhMuc` varchar(50) NOT NULL,
+  `SlugDanhMuc` varchar(50) NOT NULL,
+  `MoTa` text NOT NULL,
   `TrangThai` int NOT NULL,
   `DanhMucCha` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_danhmuc`
+-- Dumping data for table `tbl_danhmuc`
 --
 
 INSERT INTO `tbl_danhmuc` (`MaDanhMuc`, `TenDanhMuc`, `SlugDanhMuc`, `MoTa`, `TrangThai`, `DanhMucCha`, `ThoiGianTao`, `ThoiGianSua`) VALUES
@@ -304,38 +334,38 @@ INSERT INTO `tbl_danhmuc` (`MaDanhMuc`, `TenDanhMuc`, `SlugDanhMuc`, `MoTa`, `Tr
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhmucbaiviet`
+-- Table structure for table `tbl_danhmucbaiviet`
 --
 
 CREATE TABLE `tbl_danhmucbaiviet` (
   `MaDanhMucBV` int NOT NULL,
-  `TenDanhMucBV` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDanhMucBV` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDanhMucBV` varchar(50) NOT NULL,
+  `SlugDanhMucBV` varchar(50) NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhmuctskt`
+-- Table structure for table `tbl_danhmuctskt`
 --
 
 CREATE TABLE `tbl_danhmuctskt` (
   `MaDMTSKT` int NOT NULL,
-  `TenDMTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDMTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDMTSKT` varchar(50) NOT NULL,
+  `SlugDMTSKT` varchar(50) NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text NOT NULL,
   `MaDanhMuc` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_danhmuctskt`
+-- Dumping data for table `tbl_danhmuctskt`
 --
 
 INSERT INTO `tbl_danhmuctskt` (`MaDMTSKT`, `TenDMTSKT`, `SlugDMTSKT`, `TrangThai`, `MoTa`, `MaDanhMuc`, `ThoiGianTao`, `ThoiGianSua`) VALUES
@@ -373,59 +403,85 @@ INSERT INTO `tbl_danhmuctskt` (`MaDMTSKT`, `TenDMTSKT`, `SlugDMTSKT`, `TrangThai
 (33, 'RAM', 'ram', 1, 'RAM của điện thoại', 8, '2024-05-13 14:24:38', NULL),
 (34, 'Dung lượng lưu trữ', 'dung-luong-luu-tru', 1, 'Dung lượng lưu trữ của điện thoại', 8, '2024-05-13 14:25:13', NULL),
 (35, 'Tính năng sạc', 'tinh-nang-sac', 1, 'Tính năng sạc của điện thoại', 8, '2024-05-13 14:25:41', NULL),
-(36, 'Tính năng đặc biệt', 'tinh-nang-dac-biet', 1, 'Tính năng đặc biệt của điện thoại', 8, '2024-05-13 14:26:11', NULL);
+(36, 'Tính năng đặc biệt', 'tinh-nang-dac-biet', 1, 'Tính năng đặc biệt của điện thoại', 8, '2024-05-13 14:26:11', NULL),
+(37, 'Loại Tivi', 'loai-tivi', 1, 'Loại tivi', 1, '2024-05-21 03:04:14', NULL),
+(38, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của tivi', 1, '2024-05-21 03:04:39', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_donhang`
+-- Table structure for table `tbl_donhang`
 --
 
 CREATE TABLE `tbl_donhang` (
   `MaDonHang` int NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
-  `MaGiaoHang` int NOT NULL,
+  `Email` varchar(50) NOT NULL,
   `MaGiamGia` int DEFAULT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaGiaoHang` int NOT NULL,
+  `TrangThai` int NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_donhang`
+--
+
+INSERT INTO `tbl_donhang` (`MaDonHang`, `Email`, `MaGiamGia`, `MaGiaoHang`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(1, 'binh@gmail.com', 1, 2, 1, 'ee0b0', '2024-05-20 11:09:50', NULL),
+(2, 'binh@gmail.com', 2, 3, 1, '11e02', '2024-05-20 11:16:02', NULL),
+(3, 'binh@gmail.com', 0, 5, 1, '943da', '2024-05-21 07:48:42', NULL),
+(4, 'admin1@gmail.com', 0, 6, 1, '5763d', '2024-05-21 13:52:27', NULL),
+(5, 'binh@gmail.com', 2, 7, 1, '45e42', '2024-05-23 01:06:00', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_giaohang`
+-- Table structure for table `tbl_giaohang`
 --
 
 CREATE TABLE `tbl_giaohang` (
   `MaGiaoHang` int NOT NULL,
-  `TenNguoiNhan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TienGiaoHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `SoDienThoai` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `TenNguoiNhan` varchar(50) NOT NULL,
+  `TienGiaoHang` varchar(50) NOT NULL,
+  `DiaChi` varchar(255) NOT NULL,
+  `SoDienThoai` varchar(10) DEFAULT NULL,
+  `GhiChu` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_giaohang`
+--
+
+INSERT INTO `tbl_giaohang` (`MaGiaoHang`, `TenNguoiNhan`, `TienGiaoHang`, `DiaChi`, `SoDienThoai`, `GhiChu`) VALUES
+(2, 'Vũ Minh Quang', '25000', 'Thành phố Hải Phòng Quận Hải An Phường Đằng Lâm 182 Đà Nẵng', '88090', 'Giao nhanh giúp em nhé anh'),
+(3, 'Vũ Minh Quang', '40000', 'Thành phố Hải Phòng Quận Hải An Phường Đông Hải 1 231 Đoạn Xá', '88675', 'Gửi hàng trước 20h giúp em nhé'),
+(5, 'Nguyễn Thanh Bình', '40000', 'Thành phố Hải Phòng Quận Hải An Phường Đông Hải 1 156 Phủ thượng đoạn', '0879824512', NULL),
+(6, 'Bùi Vĩnh Minh', '40000', '120 Đoạn Xá Phường Đông Hải 1 Quận Hải An Thành phố Hải Phòng', '88567', 'Đặt trước cửa nhà giúp em nhé'),
+(7, 'Nguyễn Thanh Bình', '40000', '120 Đoạn Xá Phường Đông Hải 1 Quận Hải An Thành phố Hải Phòng', '0879824512', 'abc xyz');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_hoadon`
+-- Table structure for table `tbl_hoadon`
 --
 
 CREATE TABLE `tbl_hoadon` (
   `MaHoaDon` int NOT NULL,
   `MaDonHang` int NOT NULL,
-  `TenKhachHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `ThongTinThanhToan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenKhachHang` varchar(50) NOT NULL,
+  `ThongTinThanhToan` varchar(255) DEFAULT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaGiamGia` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_lichsubaohanh`
+-- Table structure for table `tbl_lichsubaohanh`
 --
 
 CREATE TABLE `tbl_lichsubaohanh` (
@@ -433,13 +489,13 @@ CREATE TABLE `tbl_lichsubaohanh` (
   `MaPhieuBaoHanh` int NOT NULL,
   `NgayBaoHanh` timestamp NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `MaLienKet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MaLienKet` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgiannguoidung`
+-- Table structure for table `tbl_magiamgiannguoidung`
 --
 
 CREATE TABLE `tbl_magiamgiannguoidung` (
@@ -452,43 +508,67 @@ CREATE TABLE `tbl_magiamgiannguoidung` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_nhacungcap`
+-- Table structure for table `tbl_nhacungcap`
 --
 
 CREATE TABLE `tbl_nhacungcap` (
-  `MaNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MaNhaCungCap` int NOT NULL,
+  `TenNhaCungCap` varchar(50) NOT NULL,
+  `DiaChi` varchar(255) DEFAULT NULL,
   `SoDienThoai` int DEFAULT NULL,
-  `Email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
   `ThoiHanHopDong` timestamp NULL DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_nhacungcap`
+-- Dumping data for table `tbl_nhacungcap`
 --
 
 INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `ThoiHanHopDong`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp', 1111, 'ztech1@gmail', NULL, '2024-05-20 14:17:18', '2024-05-20 14:17:38');
+(0, 'Ztech 1', '22 ly tu trong, hong bang, hp', 1111, 'ztech1@gmail', NULL, '2024-05-20 14:17:18', '2024-05-20 14:17:38');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phanquyen`
+-- Table structure for table `tbl_phanquyen`
 --
 
 CREATE TABLE `tbl_phanquyen` (
   `MaPhanQuyen` int NOT NULL,
-  `TenPhanQuyen` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `TenPhanQuyen` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phanquyen`
+-- Dumping data for table `tbl_phanquyen`
 --
 
 INSERT INTO `tbl_phanquyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
+(1, 'Khách hàng'),
+(2, 'Nhân viên bán hàng'),
+(3, 'Quản trị viên'),
+(4, 'Quản trị viên cao cấp'),
+(5, 'Nhân viên kho'),
+(6, 'Nhân viên kế toán'),
+(1, 'Khách hàng'),
+(2, 'Nhân viên bán hàng'),
+(3, 'Quản trị viên'),
+(4, 'Quản trị viên cao cấp'),
+(5, 'Nhân viên kho'),
+(6, 'Nhân viên kế toán'),
+(1, 'Khách hàng'),
+(2, 'Nhân viên bán hàng'),
+(3, 'Quản trị viên'),
+(4, 'Quản trị viên cao cấp'),
+(5, 'Nhân viên kho'),
+(6, 'Nhân viên kế toán'),
+(1, 'Khách hàng'),
+(2, 'Nhân viên bán hàng'),
+(3, 'Quản trị viên'),
+(4, 'Quản trị viên cao cấp'),
+(5, 'Nhân viên kho'),
+(6, 'Nhân viên kế toán'),
 (1, 'Khách hàng'),
 (2, 'Nhân viên bán hàng'),
 (3, 'Quản trị viên'),
@@ -517,17 +597,17 @@ INSERT INTO `tbl_phanquyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phanquyennguoidung`
+-- Table structure for table `tbl_phanquyennguoidung`
 --
 
 CREATE TABLE `tbl_phanquyennguoidung` (
   `MaPQND` int NOT NULL,
   `MaPhanQuyen` int NOT NULL,
   `MaTaiKhoan` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phanquyennguoidung`
+-- Dumping data for table `tbl_phanquyennguoidung`
 --
 
 INSERT INTO `tbl_phanquyennguoidung` (`MaPQND`, `MaPhanQuyen`, `MaTaiKhoan`) VALUES
@@ -549,111 +629,137 @@ INSERT INTO `tbl_phanquyennguoidung` (`MaPQND`, `MaPhanQuyen`, `MaTaiKhoan`) VAL
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieubaohanh`
+-- Table structure for table `tbl_phieubaohanh`
 --
 
 CREATE TABLE `tbl_phieubaohanh` (
   `MaPhieuBaoHanh` int NOT NULL,
   `MaDonHang` int NOT NULL,
   `NgayTao` timestamp NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenKhachHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenNhanVien` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
+  `TenKhachHang` varchar(50) NOT NULL,
+  `TenNhanVien` varchar(50) NOT NULL,
   `SoDienThoai` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieugiamgia`
+-- Table structure for table `tbl_phieugiamgia`
 --
 
 CREATE TABLE `tbl_phieugiamgia` (
   `MaGiamGia` int NOT NULL,
-  `TenMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenMaGiamGia` varchar(50) NOT NULL,
+  `SlugMaGiamGia` varchar(50) NOT NULL,
   `DonViTinh` int NOT NULL,
-  `BacNguoiDung` int NOT NULL,
-  `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `MaCode` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `ThoiGianBatDau` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ThoiGianKetThuc` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `MaCode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_phieugiamgia`
+--
+
+INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TriGia`, `MaCode`) VALUES
+(1, 'Mã giảm giá chào mừng đăng ký', 'ma-giam-gia-chao-mung-dang-ky', 1, '50000', 'CMDKTV'),
+(2, 'Mã giảm giá mừng ngày sinh của Bác 19/05', 'ma-giam-gia-chao-mung-ngay-sinh-cua-bac', 2, '5', 'CMNSCB');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieukiemkho`
+-- Table structure for table `tbl_phieugiamgianguoidung`
+--
+
+CREATE TABLE `tbl_phieugiamgianguoidung` (
+  `MaPGGND` int NOT NULL,
+  `MaGiamGia` int NOT NULL,
+  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `SoLuong` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_phieugiamgianguoidung`
+--
+
+INSERT INTO `tbl_phieugiamgianguoidung` (`MaPGGND`, `MaGiamGia`, `Email`, `SoLuong`) VALUES
+(8, 1, 'binh@gmail.com', 4),
+(9, 2, 'binh@gmail.com', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_phieukiemkho`
 --
 
 CREATE TABLE `tbl_phieukiemkho` (
   `MaPKK` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieunhap`
+-- Table structure for table `tbl_phieunhap`
 --
 
 CREATE TABLE `tbl_phieunhap` (
-  `MaPhieuNhap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaPhieuNhap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaTaiKhoan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TongTien` float NOT NULL,
   `TienTra` float DEFAULT NULL,
   `TienNo` float DEFAULT NULL,
-  `PhuongThucThanhToan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `PhuongThucThanhToan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phieunhap`
+-- Dumping data for table `tbl_phieunhap`
 --
 
 INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240520212149', 'NCC20240520211718', 'TKNV20240428002556', 1800, 0, 0, '0', '0', '2024-05-20 14:21:49', NULL),
-('PN20240520212218', 'NCC20240520211718', 'TKNV20240428002556', 9720, 0, 9720, '0', '0', '2024-05-20 14:22:18', '2024-05-20 14:23:04');
+('PN20240520212149', 'NCC20240520211718', 'TKNV20240428002556', 1800, 0, 0, '0', '0', '2024-05-20 07:21:49', NULL),
+('PN20240520212218', 'NCC20240520211718', 'TKNV20240428002556', 9720, 0, 9720, '0', '0', '2024-05-20 07:22:18', '2024-05-20 07:23:04');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieutrahang`
+-- Table structure for table `tbl_phieutrahang`
 --
 
 CREATE TABLE `tbl_phieutrahang` (
   `MaPhieuTraHang` int NOT NULL,
   `MaNhaCungCap` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieuxuat`
+-- Table structure for table `tbl_phieuxuat`
 --
 
 CREATE TABLE `tbl_phieuxuat` (
   `MaPhieuXuat` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phigiaohang`
+-- Table structure for table `tbl_phigiaohang`
 --
 
 CREATE TABLE `tbl_phigiaohang` (
@@ -661,11 +767,11 @@ CREATE TABLE `tbl_phigiaohang` (
   `MaThanhPho` int DEFAULT NULL,
   `MaQuanHuyen` int DEFAULT NULL,
   `MaXaPhuong` int DEFAULT NULL,
-  `SoTien` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SoTien` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phigiaohang`
+-- Dumping data for table `tbl_phigiaohang`
 --
 
 INSERT INTO `tbl_phigiaohang` (`MaPhiGiaoHang`, `MaThanhPho`, `MaQuanHuyen`, `MaXaPhuong`, `SoTien`) VALUES
@@ -677,7 +783,7 @@ INSERT INTO `tbl_phigiaohang` (`MaPhiGiaoHang`, `MaThanhPho`, `MaQuanHuyen`, `Ma
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_quanhuyen`
+-- Table structure for table `tbl_quanhuyen`
 --
 
 CREATE TABLE `tbl_quanhuyen` (
@@ -688,7 +794,7 @@ CREATE TABLE `tbl_quanhuyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_quanhuyen`
+-- Dumping data for table `tbl_quanhuyen`
 --
 
 INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`) VALUES
@@ -1408,121 +1514,146 @@ INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`
 
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `tbl_quyen`
+--
+
+CREATE TABLE `tbl_quyen` (
+  `MaPhanQuyen` int NOT NULL,
+  `TenPhanQuyen` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Cấu trúc bảng cho bảng `tbl_sanpham`
+-- Dumping data for table `tbl_quyen`
+--
+
+INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
+(1, 'Khách hàng'),
+(2, 'Nhân viên bán hàng'),
+(3, 'Quản trị viên'),
+(4, 'Quản trị viên cao cấp'),
+(5, 'Nhân viên kho'),
+(6, 'Nhân viên kế toán');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_sanpham`
 --
 
 CREATE TABLE `tbl_sanpham` (
   `MaSanPham` int NOT NULL,
-  `TenSanPham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugSanPham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenSanPham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `SlugSanPham` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `MaThuongHieu` int DEFAULT NULL,
   `MaDanhMuc` int DEFAULT NULL,
-  `HinhAnh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `HinhAnh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci,
+  `MoTa` text,
   `SoLuongHienTai` int DEFAULT NULL,
   `SoLuongBan` int DEFAULT NULL,
   `SoLuongTrongKho` int DEFAULT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ThongSoKyThuat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `GiaSanPham` varchar(50) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
-  `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ThoiGianSua` timestamp NULL DEFAULT NULL,
+  `ChieuCao` double DEFAULT NULL,
+  `ChieuNgang` double DEFAULT NULL,
+  `ChieuDay` double DEFAULT NULL,
+  `CanNang` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_sanpham`
+-- Dumping data for table `tbl_sanpham`
 --
 
-INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ThongSoKyThuat`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(25, 'Smart Tivi QLED 4K 55 inch Samsung QA55Q60C', 'smart-tivi-qled-4k-55-inch-samsung-qa55q60c', 8, 1, 'vi-vn-google-sony-32-inch-kd-32w830k-152.jpg', 1, '<p><a href=\"https://www.dienmayxanh.com/tivi/smart-tivi-qled-4k-55-inch-samsung-qa55q60c\"><i><strong>Smart Tivi QLED 4K 55 inch Samsung QA55Q60C</strong></i></a><i><strong> tinh giản trong thiết kế, khung hình 55 inch với độ phân giải 4K sắc nét, bộ xử lý Quantum 4K Lite, công nghệ OTS Lite mang đến trải nghiệm hình ảnh và âm thanh chân thật, hệ điều hành Tizen™ giao diện trực quan dễ sử dụng, tìm kiếm bằng giọng nói tiếng Việt, gọi video qua Google Duo,…</strong></i></p><h3>Tổng quan thiết kế</h3><p>- Màn hình tivi kích thước <strong>55 inch</strong>, thiết kế liền mạch, cạnh viền thanh thoát góp phần tô điểm cho không gian nội thất.</p><p>- Chân đế đỡ <a href=\"https://www.dienmayxanh.com/tivi\"><strong>tivi </strong></a>được làm bằng chất liệu nhựa, nâng đỡ chắc chắn, là sự tuyệt vời cho không gian phòng khách, phòng làm việc, phòng ngủ,…</p>', NULL, NULL, 0, '14990000', NULL, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(26, 'Smart Tivi Toshiba 43 inch 43V31MP', 'smart-tivi-toshiba-43-inch-43v31mp', 12, 1, 'vi-vn-google-tivi-sony-4k-43-inch-kd-43x77l-0125.jpg', 1, 'Smart Tivi Toshiba 43 inch 43V31MP mang đến hình ảnh Full HD rõ đẹp, sống động với bộ xử lý Regza Engine HG, công nghệ Essential PQ tái tạo chi tiết, màu sắc trung thực, công nghệ Dolby Audio cho âm thanh vòm mạnh mẽ, hệ điều hành Vidaa U7 cùng thư viện ứng dụng đa dạng, dễ dàng sử dụng.\r\n\r\nTổng quan thiết kế\r\n- Mẫu Smart tivi Toshiba này có kiểu dáng đơn giản, 3 cạnh viền trên được làm thanh mảnh hơn cạnh viền dưới cho không gian hiển thị rộng rãi, tầm nhìn của người xem tập trung hơn vào nội dung trình chiếu mà không sợ bị xao nhãng. \r\n\r\n- Chân đế bằng kim loại được chế tạo dạng chữ V úp ngược giữ cho màn hình tivi đặt ổn định trên bề mặt kệ tủ. \r\n\r\n- Màn hình 43 inch hài hòa và vừa vặn trong không gian có diện tích nhỏ. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ hình ảnh \r\n- Độ phân giải Full HD hiển thị hình ảnh nét gấp đôi màn hình HD.\r\n\r\n- Bộ xử lý Regza Engine HG cùng với công nghệ hình ảnh Essential PQ, tấm nền chất lượng tái tạo nên khung hình mang độ nét Full HD sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Bộ xử lý Regza Engine HG\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\n- Công nghệ Color Re-Master khôi phục đầy đủ và nguyên bản những sắc màu tự nhiên trên nội dung gốc mang đến trải nghiệm xem với màu sắc tuyệt đẹp.\r\n\r\n- Chức năng Contrast Booster kiểm soát tối ưu độ tương phản màu sắc, xử lý chống chói cho cảnh phim hiển thị với màu sắc sinh động, chân thực.\r\n\r\n- Auto Signal Booster tái hiện hình ảnh rõ nét nhờ khả năng khuếch đại tín hiệu truyền hình mạnh mẽ một cách tự động, cho người xem được tận hưởng các nội dung liền mạch, cuốn hút hơn.\r\n\r\nXem thêm: Các công nghệ hình ảnh nổi bật trên tivi Toshiba\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ hình ảnh \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ âm thanh\r\n- Dolby Audio, công nghệ giả lập âm thanh vòm, cải thiện độ chi tiết của âm thanh phụ cùng với giải mã âm thanh DTS HD cho mọi nội dung bạn xem từ chương trình thể thao, phim ảnh đến âm nhạc đều trở nên chân thật, lôi cuốn trong từng khoảnh khắc. \r\n\r\n- Công nghệ Regza Power Audio cùng với 2 loa và tổng công suất 24W truyền tải chất âm trung thực, tạo cảm giác như bạn đang ở trong cảnh phim gay cấn mình đang thưởng thức.\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nHệ điều hành\r\n- Mẫu Smart tivi này sử dụng hệ điều hành Vidaa U7 có giao diện hiện đại, có khả năng đề xuất cho người xem những nội dung phù hợp với sở thích, đem đến cho bạn những giờ phút giải trí hấp dẫn hơn.\r\n\r\n- Kho ứng dụng phong phú, có nhiều ứng dụng phổ biến như YouTube, Netflix, FPT Play,...\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nTiện ích \r\n- Tìm kiếm bằng giọng nói thông qua ứng dụng VIDAA được thiết lập trên điện thoại. Bên cạnh đó, VIDAA còn giúp người dùng tùy chỉnh tivi linh hoạt như remote điều khiển từ xa.\r\n\r\n- Các tính năng DLNA, Miracast hỗ trợ bạn chiếu màn hình thiết bị di động lên tivi Toshiba để thưởng thức các video, hình ảnh với khung hình lớn hơn, rõ ràng hơn. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tiện ích \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP là mẫu tivi được Toshiba ra mắt vào năm 2023, sản xuất tại Thái Lan mang đến trải nghiệm nghe nhìn và giải trí hấp dẫn với các công nghệ hình ảnh, âm thanh tiên tiến, đi kèm hệ điều hành hiện đại, tiện ích thú vị cho bạn sử dụng tivi dễ dàng mọi lúc.\r\n\r\nXem thêm: Tư vấn chọn mua tivi phù hợp với gia đình có người lớn tuổi', NULL, NULL, NULL, '5490000', NULL, '2024-05-13 15:31:11', NULL),
-(27, 'Google Tivi Sony 4K 55 inch KD-55X77L', 'google-tivi-sony-4k-55-inch-kd-55x77l', 11, 1, 'vi-vn-smart-samsung-4k-55-inch-ua55au7002-188.jpg', 1, 'Google Tivi Sony 4K KD-55X77L sở hữu kích thước 55 inch cùng bộ xử lý mạnh mẽ X1 4K cho hình ảnh hiển thị chất lượng 4K sắc nét, công nghệ tạo màu Live Colour, công nghệ S-Master Digital Amplifier thu hút người xem ngay từ cái nhìn đầu tiên, đem đến những thước phim, bản nhạc kịch tính, sống động. Bên cạnh đó, tivi còn trang bị nhiều tính năng giúp ích cho người dùng trong quá trình sử dụng như: trợ lý ảo Google Assistant, AirPlay 2 (iPhone) và Chromecast,...\r\n\r\n\r\nThiết kế\r\n- Google Tivi Sony sở hữu kiểu dáng thanh lịch, sang trọng, chân đế chữ V úp ngược được làm từ nhựa chắc chắn, mặt sau tối giản giúp tivi dễ dàng hòa nhập cùng không gian gia đình.\r\n\r\n- Tivi trang bị màn hình 55 inch thích hợp cho những không gian vừa phải, sử dụng đa năng cho nhiều mục đích giải trí, dạy học hoặc trang trí cho không gian căn phòng đều được.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ hình ảnh \r\n- Tivi trang bị độ phân giải 4K đem lại sự sắc nét trong từng khung hình, giúp hình ảnh trở nên sống động, thu hút người xem.\r\n\r\n- Công nghệ 4K X-Reality PRO hỗ trợ hình ảnh có độ sắc nét cao, nâng cấp nội dung hiển thị, giúp hình ảnh được điều chỉnh độ tương phản, đậm nhạt hài hòa, hoàn hảo.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Bộ xử lý X1 4K làm giảm độ nhiễu, xử lý từng chi tiết nhỏ, giúp nội dung hiển thị đạt chất lượng 4K khi nguồn vào chỉ là chất lượng SD, HD hay 2K.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n- Công nghệ tạo màu Live Colour giúp tối ưu hóa bộ lọc màu, mang lại không gian màu rộng hơn, giúp hình ảnh chuyển động chân thật, có màu sắc tươi sáng.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Chuyển động mượt Motionflow XR 200 cho phép kiểm soát được khung hình, tránh tình trạng rung lắc mạnh, đem lại độ ổn định trong những phân khúc hành động, đua xe đỉnh cao.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ âm thanh\r\n- Tổng công suất loa là 20W giúp âm thanh trở nên chân thật, thu hút người nghe.\r\n\r\n- Dolby Audio mang cơ chế âm thanh vòm, giúp âm thanh được truyền tải đi mọi hướng, chân thật và chi tiết không khác gì trong rạp chiếu phim.\r\n\r\n- Công nghệ X-Balanced hỗ trợ tăng cường chất lượng âm thanh to rõ, âm trầm phong phú, giúp bạn tận hưởng những bộ phim hành động trở nên cuốn hút hơn.\r\n\r\n- Công nghệ S-Master Digital Amplifier hỗ trợ âm thanh được khuếch đại lớn nhưng không bị ồn và nhiễu, đem lại âm thanh tinh khiết, dễ dàng thu hút người nghe.\r\n\r\n- Công nghệ Clear Phase bảo vệ âm thanh tránh được tình trạng méo tiếng, nhiễu âm ở công suất loa tối đa, đem lại những phút giây thưởng thức âm thanh sống động.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nHệ điều hành\r\n- Với mong muốn gần gũi, thân thiện với người dùng, sản phẩm thiết lập hệ điều hành Google TV có giao diện dễ nhìn, được sắp xếp gọn gàng giúp bạn có thể lựa chọn được những chương trình yêu thích.\r\n\r\n- Không chỉ thân thiện, Google TV còn trang bị kho ứng dụng đồ sộ đáp ứng đầy đủ các nhu cầu xem phim, giải trí đến người dùng như: YouTube, FPT Play, Galaxy Play, VieON,...\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nTiện ích\r\n- Tivi Sony trang bị tính năng điều khiển bằng giọng nói tiếng Việt nhờ trợ lý ảo Google Assistant, tích hợp cùng micro trên tivi (có thể nói trực tiếp không cần remote) giúp quá trình sử dụng trở nên thuận tiện, nhanh chóng. Đây là một điểm cộng của tính năng, giúp những bậc phụ huynh không thông thạo công nghệ vẫn có thể dễ dàng sử dụng tivi.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tiện ích\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Tính năng AirPlay 2 (iPhone) và Chromecast giúp bạn dễ dàng chia sẻ hình ảnh, video từ điện thoại lên tivi, thích hợp cho những buổi họp cũng như giải trí trong gia đình.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tiện ích\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nGoogle Tivi Sony 4K 55 inch KD-55X77L sở hữu màn hình có kích thước 55 inch, độ phân giải 4K, trang bị công nghệ nâng cấp hình ảnh 4K X-Reality PRO, công nghệ chuyển động mượt Motionflow XR 200, loa X-Balanced đem đến âm thanh rõ nét và âm trầm phong phú cho từng thước phim và giai điệu âm nhạc,... giúp bạn có thể tận hưởng những thước phim sắc nét không khác gì đang xem tại rạp chiếu phim. Đây là sản phẩm không thể thiếu khi vừa có thể làm vật trang trí trong không gian gia đình, vừa đem đến nhiều tính năng giải trí cho bạn.', NULL, NULL, NULL, '14590000', NULL, '2024-05-13 15:32:58', NULL),
-(28, 'Google Tivi QLED TCL 4K 65 inch 65Q646', 'google-tivi-qled-tcl-4k-65-inch-65q646', 12, 1, 'vi-vn-acer-nitro-5-gaming-an515-57-5669-i5-nhqehsv001-138.jpg', 1, 'Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. \r\n\r\nTổng quan thiết kế\r\n- Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh.\r\n\r\n- Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,…\r\n\r\n- Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết.\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ hình ảnh\r\n- Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. \r\n\r\n- Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét.\r\n\r\n- Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. \r\n\r\n- Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản.\r\n\r\n- Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ âm thanh\r\n- Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. \r\n\r\n- Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. \r\n\r\n- Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nHệ điều hành\r\n- Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nTiện ích\r\n- Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói.\r\n\r\n- Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast.\r\n\r\n- Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,…\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nVới thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.', NULL, NULL, NULL, '11990000', NULL, '2024-05-13 15:34:40', NULL),
-(30, 'Google Tivi TCL 43 inch 43S5400', 'google-tivi-tcl-43-inch-43s5400', 13, 1, 'led-4k-samsung-ua75au8100-280.jpg', 1, 'Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. \r\n\r\nTổng quan thiết kế\r\n- Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh.\r\n\r\n- Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,…\r\n\r\n- Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết.\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ hình ảnh\r\n- Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. \r\n\r\n- Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét.\r\n\r\n- Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. \r\n\r\n- Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản.\r\n\r\n- Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ âm thanh\r\n- Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. \r\n\r\n- Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. \r\n\r\n- Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nHệ điều hành\r\n- Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nTiện ích\r\n- Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói.\r\n\r\n- Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast.\r\n\r\n- Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,…\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nVới thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.', NULL, NULL, NULL, '14990000', NULL, '2024-05-13 15:41:32', NULL),
-(31, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC', 'smart-tivi-lg-4k-55-inch-55uq8000psc', 14, 1, 'android-sony-4k-55-inch-kd-55x80k-180322-022717-550x34097.png', 1, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC tinh giản trong thiết kế thanh mảnh, sang đẹp, mang khung hình 4K rực rỡ, tương phản cao ấn tượng hòa mình vào không gian nội thất hiện đại, cùng chất âm sống động tinh chỉnh qua AI Sound và AI Acoustic Tuning cho người dùng trải nghiệm đầy lý thú trên từng ứng dụng giải trí từ webOS 22.\r\n\r\nTổng quan thiết kế\r\n- Smart Tivi LG 4K 55 inch 55UQ8000PSC sở hữu kích thước màn hình 55 inch thích hợp dùng cho các phòng có diện tích trung bình như phòng khách gia đình, phòng họp, sảnh nhỏ,...\r\n\r\n- Thiết kế tinh tế, thanh mảnh với các cạnh viền siêu mỏng, tinh giản mà sang trọng, phá vỡ giới hạn tầm nhìn trên khung hình trình chiếu.\r\n\r\n- Tivi có chân đế bằng nhựa lõi kim loại đảm bảo độ bền chắc để nâng đỡ tốt màn hình khi lắp đặt trên kệ tủ, dễ dàng tháo rời chân để bố trí treo tường tiết kiệm không gian.\r\n\r\nSmart Tivi LG 4K 55 inch 55UQ8000PSC - Thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ hình ảnh\r\n- Chất lượng hiển thị sắc nét ấn tượng với độ phân giải 4K (3.840 x 2.160).\r\n\r\n- Bộ xử lý α5 Gen5 AI 4K tối ưu hình ảnh và màu sắc chuẩn xác, chân thực, cùng với khả năng nâng cấp nội dung đầu vào lên chuẩn gần 4K từ công nghệ 4K AI Upscaling cho người xem thưởng thức những khung hình hoàn hảo về độ sắc nét chi tiết.\r\n\r\n- Chất lượng tương phản cũng được gia tăng nhờ công nghệ HDR10 Pro và HDR Dynamic Tone Mapping, độ sáng và độ rõ nét được tối ưu, màn hình xem trở nên rực rỡ hơn, các chi tiết ẩn rõ ràng hơn, đưa người xem hòa mình vào khung cảnh và nội dung đang chiếu.\r\n\r\n- Màn hình game mượt mà nhờ chế độ game HGIG và phản hồi tức thì với công nghệ giảm độ trễ Auto Low Latency Mode (ALLM).\r\n\r\n- Trải nghiệm phim điện ảnh theo đúng mong muốn từ nhà làm phim nhờ chế độ FilmMaker Mode. \r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi LG 4K 55 inch 55UQ8000PSC - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ âm thanh\r\n- Tổng công suất loa 20W cho âm thanh mạnh mẽ.\r\n\r\n- Chất âm được tinh chỉnh theo nội dung xem với AI Sound và tối ưu theo không gian phòng nhờ công nghệ AI Acoustic Tuning, đồng thời chế độ lọc thoại Clear Voice Pro cho thông điệp nội dung thật rõ ràng, giúp người dùng nắm bắt dễ dàng và trọn vẹn hơn.\r\n\r\n- Liên kết hoàn hảo smart tivi LG với dàn âm thanh qua kết nối Bluetooth, khuấy động không gian giải trí với LG Sound Sync.\r\n\r\nÂm thanh tinh chỉnh lôi cuốn - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nHệ điều hành\r\n- Smart tivi sử dụng hệ điều hành webOS 22 có giao diện thân thiện, dễ dàng sử dụng, kho ứng dụng phong phú gồm: YouTube, Netflix, Clip TV, FPT Play, Galaxy Play (Fim+), MyTV, Nhaccuatui, POPS Kids, Spotify, Trình duyệt web, TV 360, VieON, VTVcab ON, YouTube Kids, Zing TV, Apple TV,… phục vụ tốt cho nhu cầu của mọi thành viên.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nWebOS 6.0  - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nTiện ích\r\n- Chia sẻ nội dung trên điện thoại lên màn hình tivi qua tính năng AirPlay 2 (iPhone), Screen Share.\r\n\r\n- Magic Remote và AI ThinQ hoạt động thông minh, cho phép kết nối và điều khiển toàn bộ hệ sinh thái trong ngôi nhà.\r\n\r\n- Tivi LG hỗ trợ tìm kiếm giọng nói bằng tiếng Việt qua Magic Remote, LG Voice Search với Google Assistant (chưa hỗ trợ tiếng Việt), điều khiển đơn giản, nhanh chóng hơn, tiện lợi hơn.\r\n\r\nXem thêm: 9 cách kết nối điện thoại Android với tivi LG đơn giản, hiệu quả nhất\r\n\r\nChia sẻ nội dung điện thoại lên tivi  - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n *Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nNhìn chung, Smart Tivi LG 4K 55 inch 55UQ8000PSC với chất lượng khung hình 4K tương phản vượt trội, cùng âm thanh mạnh mẽ được tinh chỉnh tốt theo nội dung AI Sound sẽ mang đến những trải nghiệm thật lý thú cho người cả khi xem phim, video, thể thao hay các kênh thông tin,... thỏa mãn khung giờ giải trí của các thành viên trong gia đình.', NULL, NULL, NULL, '20490000', NULL, '2024-05-13 15:44:44', NULL);
+INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ThoiGianTao`, `ThoiGianSua`, `ChieuCao`, `ChieuNgang`, `ChieuDay`, `CanNang`) VALUES
+(25, 'Smart Tivi QLED 4K 55 inch Samsung QA55Q60C', 'smart-tivi-qled-4k-55-inch-samsung-qa55q60c', 8, 1, 'vi-vn-google-sony-32-inch-kd-32w830k-152.jpg', 1, '<h2>Tôi là sản phẩm Tivi, bạn là sản phẩm tủ lạnh</h2><p>abc xyz</p>', 10, NULL, NULL, '14990000', '2024-05-13 04:53:28', '2024-05-17 14:24:21', 123.5, 78.8, 28.5, 13.4),
+(26, 'Smart Tivi Toshiba 43 inch 43V31MP', 'smart-tivi-toshiba-43-inch-43v31mp', 12, 1, 'vi-vn-google-tivi-sony-4k-43-inch-kd-43x77l-0125.jpg', 1, 'Smart Tivi Toshiba 43 inch 43V31MP mang đến hình ảnh Full HD rõ đẹp, sống động với bộ xử lý Regza Engine HG, công nghệ Essential PQ tái tạo chi tiết, màu sắc trung thực, công nghệ Dolby Audio cho âm thanh vòm mạnh mẽ, hệ điều hành Vidaa U7 cùng thư viện ứng dụng đa dạng, dễ dàng sử dụng.\r\n\r\nTổng quan thiết kế\r\n- Mẫu Smart tivi Toshiba này có kiểu dáng đơn giản, 3 cạnh viền trên được làm thanh mảnh hơn cạnh viền dưới cho không gian hiển thị rộng rãi, tầm nhìn của người xem tập trung hơn vào nội dung trình chiếu mà không sợ bị xao nhãng. \r\n\r\n- Chân đế bằng kim loại được chế tạo dạng chữ V úp ngược giữ cho màn hình tivi đặt ổn định trên bề mặt kệ tủ. \r\n\r\n- Màn hình 43 inch hài hòa và vừa vặn trong không gian có diện tích nhỏ. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ hình ảnh \r\n- Độ phân giải Full HD hiển thị hình ảnh nét gấp đôi màn hình HD.\r\n\r\n- Bộ xử lý Regza Engine HG cùng với công nghệ hình ảnh Essential PQ, tấm nền chất lượng tái tạo nên khung hình mang độ nét Full HD sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Bộ xử lý Regza Engine HG\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\n- Công nghệ Color Re-Master khôi phục đầy đủ và nguyên bản những sắc màu tự nhiên trên nội dung gốc mang đến trải nghiệm xem với màu sắc tuyệt đẹp.\r\n\r\n- Chức năng Contrast Booster kiểm soát tối ưu độ tương phản màu sắc, xử lý chống chói cho cảnh phim hiển thị với màu sắc sinh động, chân thực.\r\n\r\n- Auto Signal Booster tái hiện hình ảnh rõ nét nhờ khả năng khuếch đại tín hiệu truyền hình mạnh mẽ một cách tự động, cho người xem được tận hưởng các nội dung liền mạch, cuốn hút hơn.\r\n\r\nXem thêm: Các công nghệ hình ảnh nổi bật trên tivi Toshiba\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ hình ảnh \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ âm thanh\r\n- Dolby Audio, công nghệ giả lập âm thanh vòm, cải thiện độ chi tiết của âm thanh phụ cùng với giải mã âm thanh DTS HD cho mọi nội dung bạn xem từ chương trình thể thao, phim ảnh đến âm nhạc đều trở nên chân thật, lôi cuốn trong từng khoảnh khắc. \r\n\r\n- Công nghệ Regza Power Audio cùng với 2 loa và tổng công suất 24W truyền tải chất âm trung thực, tạo cảm giác như bạn đang ở trong cảnh phim gay cấn mình đang thưởng thức.\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nHệ điều hành\r\n- Mẫu Smart tivi này sử dụng hệ điều hành Vidaa U7 có giao diện hiện đại, có khả năng đề xuất cho người xem những nội dung phù hợp với sở thích, đem đến cho bạn những giờ phút giải trí hấp dẫn hơn.\r\n\r\n- Kho ứng dụng phong phú, có nhiều ứng dụng phổ biến như YouTube, Netflix, FPT Play,...\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nTiện ích \r\n- Tìm kiếm bằng giọng nói thông qua ứng dụng VIDAA được thiết lập trên điện thoại. Bên cạnh đó, VIDAA còn giúp người dùng tùy chỉnh tivi linh hoạt như remote điều khiển từ xa.\r\n\r\n- Các tính năng DLNA, Miracast hỗ trợ bạn chiếu màn hình thiết bị di động lên tivi Toshiba để thưởng thức các video, hình ảnh với khung hình lớn hơn, rõ ràng hơn. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tiện ích \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP là mẫu tivi được Toshiba ra mắt vào năm 2023, sản xuất tại Thái Lan mang đến trải nghiệm nghe nhìn và giải trí hấp dẫn với các công nghệ hình ảnh, âm thanh tiên tiến, đi kèm hệ điều hành hiện đại, tiện ích thú vị cho bạn sử dụng tivi dễ dàng mọi lúc.\r\n\r\nXem thêm: Tư vấn chọn mua tivi phù hợp với gia đình có người lớn tuổi', 10, NULL, NULL, '5490000', '2024-05-13 15:31:11', NULL, 89.3, 56, 18.4, 9.8),
+(27, 'Google Tivi Sony 4K 55 inch KD-55X77L', 'google-tivi-sony-4k-55-inch-kd-55x77l', 11, 1, 'vi-vn-smart-samsung-4k-55-inch-ua55au7002-188.jpg', 1, 'Google Tivi Sony 4K KD-55X77L sở hữu kích thước 55 inch cùng bộ xử lý mạnh mẽ X1 4K cho hình ảnh hiển thị chất lượng 4K sắc nét, công nghệ tạo màu Live Colour, công nghệ S-Master Digital Amplifier thu hút người xem ngay từ cái nhìn đầu tiên, đem đến những thước phim, bản nhạc kịch tính, sống động. Bên cạnh đó, tivi còn trang bị nhiều tính năng giúp ích cho người dùng trong quá trình sử dụng như: trợ lý ảo Google Assistant, AirPlay 2 (iPhone) và Chromecast,...\r\n\r\n\r\nThiết kế\r\n- Google Tivi Sony sở hữu kiểu dáng thanh lịch, sang trọng, chân đế chữ V úp ngược được làm từ nhựa chắc chắn, mặt sau tối giản giúp tivi dễ dàng hòa nhập cùng không gian gia đình.\r\n\r\n- Tivi trang bị màn hình 55 inch thích hợp cho những không gian vừa phải, sử dụng đa năng cho nhiều mục đích giải trí, dạy học hoặc trang trí cho không gian căn phòng đều được.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ hình ảnh \r\n- Tivi trang bị độ phân giải 4K đem lại sự sắc nét trong từng khung hình, giúp hình ảnh trở nên sống động, thu hút người xem.\r\n\r\n- Công nghệ 4K X-Reality PRO hỗ trợ hình ảnh có độ sắc nét cao, nâng cấp nội dung hiển thị, giúp hình ảnh được điều chỉnh độ tương phản, đậm nhạt hài hòa, hoàn hảo.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Bộ xử lý X1 4K làm giảm độ nhiễu, xử lý từng chi tiết nhỏ, giúp nội dung hiển thị đạt chất lượng 4K khi nguồn vào chỉ là chất lượng SD, HD hay 2K.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n- Công nghệ tạo màu Live Colour giúp tối ưu hóa bộ lọc màu, mang lại không gian màu rộng hơn, giúp hình ảnh chuyển động chân thật, có màu sắc tươi sáng.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Chuyển động mượt Motionflow XR 200 cho phép kiểm soát được khung hình, tránh tình trạng rung lắc mạnh, đem lại độ ổn định trong những phân khúc hành động, đua xe đỉnh cao.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ âm thanh\r\n- Tổng công suất loa là 20W giúp âm thanh trở nên chân thật, thu hút người nghe.\r\n\r\n- Dolby Audio mang cơ chế âm thanh vòm, giúp âm thanh được truyền tải đi mọi hướng, chân thật và chi tiết không khác gì trong rạp chiếu phim.\r\n\r\n- Công nghệ X-Balanced hỗ trợ tăng cường chất lượng âm thanh to rõ, âm trầm phong phú, giúp bạn tận hưởng những bộ phim hành động trở nên cuốn hút hơn.\r\n\r\n- Công nghệ S-Master Digital Amplifier hỗ trợ âm thanh được khuếch đại lớn nhưng không bị ồn và nhiễu, đem lại âm thanh tinh khiết, dễ dàng thu hút người nghe.\r\n\r\n- Công nghệ Clear Phase bảo vệ âm thanh tránh được tình trạng méo tiếng, nhiễu âm ở công suất loa tối đa, đem lại những phút giây thưởng thức âm thanh sống động.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nHệ điều hành\r\n- Với mong muốn gần gũi, thân thiện với người dùng, sản phẩm thiết lập hệ điều hành Google TV có giao diện dễ nhìn, được sắp xếp gọn gàng giúp bạn có thể lựa chọn được những chương trình yêu thích.\r\n\r\n- Không chỉ thân thiện, Google TV còn trang bị kho ứng dụng đồ sộ đáp ứng đầy đủ các nhu cầu xem phim, giải trí đến người dùng như: YouTube, FPT Play, Galaxy Play, VieON,...\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nTiện ích\r\n- Tivi Sony trang bị tính năng điều khiển bằng giọng nói tiếng Việt nhờ trợ lý ảo Google Assistant, tích hợp cùng micro trên tivi (có thể nói trực tiếp không cần remote) giúp quá trình sử dụng trở nên thuận tiện, nhanh chóng. Đây là một điểm cộng của tính năng, giúp những bậc phụ huynh không thông thạo công nghệ vẫn có thể dễ dàng sử dụng tivi.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tiện ích\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Tính năng AirPlay 2 (iPhone) và Chromecast giúp bạn dễ dàng chia sẻ hình ảnh, video từ điện thoại lên tivi, thích hợp cho những buổi họp cũng như giải trí trong gia đình.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tiện ích\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nGoogle Tivi Sony 4K 55 inch KD-55X77L sở hữu màn hình có kích thước 55 inch, độ phân giải 4K, trang bị công nghệ nâng cấp hình ảnh 4K X-Reality PRO, công nghệ chuyển động mượt Motionflow XR 200, loa X-Balanced đem đến âm thanh rõ nét và âm trầm phong phú cho từng thước phim và giai điệu âm nhạc,... giúp bạn có thể tận hưởng những thước phim sắc nét không khác gì đang xem tại rạp chiếu phim. Đây là sản phẩm không thể thiếu khi vừa có thể làm vật trang trí trong không gian gia đình, vừa đem đến nhiều tính năng giải trí cho bạn.', 12, NULL, NULL, '14590000', '2024-05-13 15:32:58', NULL, 145.09, 89.71, 29.02, 15.89),
+(28, 'Google Tivi QLED TCL 4K 65 inch 65Q646', 'google-tivi-qled-tcl-4k-65-inch-65q646', 12, 1, 'vi-vn-acer-nitro-5-gaming-an515-57-5669-i5-nhqehsv001-138.jpg', 1, 'Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. \r\n\r\nTổng quan thiết kế\r\n- Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh.\r\n\r\n- Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,…\r\n\r\n- Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết.\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ hình ảnh\r\n- Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. \r\n\r\n- Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét.\r\n\r\n- Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. \r\n\r\n- Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản.\r\n\r\n- Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ âm thanh\r\n- Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. \r\n\r\n- Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. \r\n\r\n- Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nHệ điều hành\r\n- Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nTiện ích\r\n- Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói.\r\n\r\n- Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast.\r\n\r\n- Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,…\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nVới thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.', 15, NULL, NULL, '11990000', '2024-05-13 15:34:40', NULL, 97.02, 63.2, 26.65, 12.56),
+(30, 'Google Tivi TCL 43 inch 43S5400', 'google-tivi-tcl-43-inch-43s5400', 13, 1, 'led-4k-samsung-ua75au8100-280.jpg', 1, 'Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. \r\n\r\nTổng quan thiết kế\r\n- Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh.\r\n\r\n- Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,…\r\n\r\n- Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết.\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ hình ảnh\r\n- Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. \r\n\r\n- Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét.\r\n\r\n- Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. \r\n\r\n- Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản.\r\n\r\n- Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ âm thanh\r\n- Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. \r\n\r\n- Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. \r\n\r\n- Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nHệ điều hành\r\n- Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nTiện ích\r\n- Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói.\r\n\r\n- Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast.\r\n\r\n- Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,…\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nVới thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.', 18, NULL, NULL, '14990000', '2024-05-13 15:41:32', NULL, 145.4, 90.9, 34, 12.8),
+(31, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC', 'smart-tivi-lg-4k-55-inch-55uq8000psc', 14, 1, 'android-sony-4k-55-inch-kd-55x80k-180322-022717-550x34097.png', 1, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC tinh giản trong thiết kế thanh mảnh, sang đẹp, mang khung hình 4K rực rỡ, tương phản cao ấn tượng hòa mình vào không gian nội thất hiện đại, cùng chất âm sống động tinh chỉnh qua AI Sound và AI Acoustic Tuning cho người dùng trải nghiệm đầy lý thú trên từng ứng dụng giải trí từ webOS 22.\r\n\r\nTổng quan thiết kế\r\n- Smart Tivi LG 4K 55 inch 55UQ8000PSC sở hữu kích thước màn hình 55 inch thích hợp dùng cho các phòng có diện tích trung bình như phòng khách gia đình, phòng họp, sảnh nhỏ,...\r\n\r\n- Thiết kế tinh tế, thanh mảnh với các cạnh viền siêu mỏng, tinh giản mà sang trọng, phá vỡ giới hạn tầm nhìn trên khung hình trình chiếu.\r\n\r\n- Tivi có chân đế bằng nhựa lõi kim loại đảm bảo độ bền chắc để nâng đỡ tốt màn hình khi lắp đặt trên kệ tủ, dễ dàng tháo rời chân để bố trí treo tường tiết kiệm không gian.\r\n\r\nSmart Tivi LG 4K 55 inch 55UQ8000PSC - Thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ hình ảnh\r\n- Chất lượng hiển thị sắc nét ấn tượng với độ phân giải 4K (3.840 x 2.160).\r\n\r\n- Bộ xử lý α5 Gen5 AI 4K tối ưu hình ảnh và màu sắc chuẩn xác, chân thực, cùng với khả năng nâng cấp nội dung đầu vào lên chuẩn gần 4K từ công nghệ 4K AI Upscaling cho người xem thưởng thức những khung hình hoàn hảo về độ sắc nét chi tiết.\r\n\r\n- Chất lượng tương phản cũng được gia tăng nhờ công nghệ HDR10 Pro và HDR Dynamic Tone Mapping, độ sáng và độ rõ nét được tối ưu, màn hình xem trở nên rực rỡ hơn, các chi tiết ẩn rõ ràng hơn, đưa người xem hòa mình vào khung cảnh và nội dung đang chiếu.\r\n\r\n- Màn hình game mượt mà nhờ chế độ game HGIG và phản hồi tức thì với công nghệ giảm độ trễ Auto Low Latency Mode (ALLM).\r\n\r\n- Trải nghiệm phim điện ảnh theo đúng mong muốn từ nhà làm phim nhờ chế độ FilmMaker Mode. \r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi LG 4K 55 inch 55UQ8000PSC - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ âm thanh\r\n- Tổng công suất loa 20W cho âm thanh mạnh mẽ.\r\n\r\n- Chất âm được tinh chỉnh theo nội dung xem với AI Sound và tối ưu theo không gian phòng nhờ công nghệ AI Acoustic Tuning, đồng thời chế độ lọc thoại Clear Voice Pro cho thông điệp nội dung thật rõ ràng, giúp người dùng nắm bắt dễ dàng và trọn vẹn hơn.\r\n\r\n- Liên kết hoàn hảo smart tivi LG với dàn âm thanh qua kết nối Bluetooth, khuấy động không gian giải trí với LG Sound Sync.\r\n\r\nÂm thanh tinh chỉnh lôi cuốn - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nHệ điều hành\r\n- Smart tivi sử dụng hệ điều hành webOS 22 có giao diện thân thiện, dễ dàng sử dụng, kho ứng dụng phong phú gồm: YouTube, Netflix, Clip TV, FPT Play, Galaxy Play (Fim+), MyTV, Nhaccuatui, POPS Kids, Spotify, Trình duyệt web, TV 360, VieON, VTVcab ON, YouTube Kids, Zing TV, Apple TV,… phục vụ tốt cho nhu cầu của mọi thành viên.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nWebOS 6.0  - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nTiện ích\r\n- Chia sẻ nội dung trên điện thoại lên màn hình tivi qua tính năng AirPlay 2 (iPhone), Screen Share.\r\n\r\n- Magic Remote và AI ThinQ hoạt động thông minh, cho phép kết nối và điều khiển toàn bộ hệ sinh thái trong ngôi nhà.\r\n\r\n- Tivi LG hỗ trợ tìm kiếm giọng nói bằng tiếng Việt qua Magic Remote, LG Voice Search với Google Assistant (chưa hỗ trợ tiếng Việt), điều khiển đơn giản, nhanh chóng hơn, tiện lợi hơn.\r\n\r\nXem thêm: 9 cách kết nối điện thoại Android với tivi LG đơn giản, hiệu quả nhất\r\n\r\nChia sẻ nội dung điện thoại lên tivi  - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n *Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nNhìn chung, Smart Tivi LG 4K 55 inch 55UQ8000PSC với chất lượng khung hình 4K tương phản vượt trội, cùng âm thanh mạnh mẽ được tinh chỉnh tốt theo nội dung AI Sound sẽ mang đến những trải nghiệm thật lý thú cho người cả khi xem phim, video, thể thao hay các kênh thông tin,... thỏa mãn khung giờ giải trí của các thành viên trong gia đình.', 20, NULL, NULL, '20490000', '2024-05-13 15:44:44', NULL, 145.9, 89.71, 29.2, 16);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_taikhoan`
+-- Table structure for table `tbl_taikhoan`
 --
 
 CREATE TABLE `tbl_taikhoan` (
-  `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `Email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MaTaiKhoan` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `TenTaiKhoan` varchar(50) NOT NULL,
   `SoDienThoai` int DEFAULT NULL,
-  `MatKhau` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MatKhau` varchar(200) NOT NULL,
+  `HinhAnh` varchar(50) DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
-  `BacNguoiDung` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `BacNguoiDung` varchar(255) DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL,
-  `Quyen` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Quyen` varchar(50) DEFAULT NULL,
   `Pin` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_taikhoan`
+-- Dumping data for table `tbl_taikhoan`
 --
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
-('TK20240517142055', 'binh@gmail.com', 'binhdz', NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', NULL, NULL, NULL, '2024-05-17 07:20:55', NULL, 'KH', NULL),
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', NULL, NULL, '2024-04-27 10:25:56', NULL, 'QTV', NULL),
-('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', '', NULL, NULL, '2024-04-27 10:31:10', NULL, NULL, NULL),
-('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, NULL, NULL, '2024-04-28 02:17:26', NULL, NULL, NULL),
-('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, NULL, '2024-04-28 08:14:12', NULL, NULL, NULL),
-('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', '', NULL, NULL, '2024-04-28 08:34:47', NULL, 'NVKT', NULL),
-('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, NULL, '2024-04-28 09:04:54', NULL, 'NVK', NULL),
-('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, NULL, '2024-04-28 10:04:39', NULL, NULL, NULL),
-('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, NULL, '2024-04-28 19:49:49', NULL, NULL, NULL),
-('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 1223, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, NULL, '2024-04-30 07:06:07', NULL, 'QTVCC', NULL),
-('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, NULL, '2024-04-30 07:24:10', NULL, 'NVK', NULL),
-('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 1, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, NULL, '2024-04-30 07:31:00', NULL, 'NV', NULL),
-('TKNV20240430213939', 'anhnx0@gmail.com', 'anhnx1', NULL, '$2y$12$ZLViL9MCYTElq8nf2wX2MOSwEnpscGVdZCalrWqxBWt.CU2aKlvnW', '', NULL, NULL, '2024-04-30 07:39:39', NULL, 'NV', NULL),
-('TKNV20240430214532', 'admin@gmail.com', 'anhnx', NULL, '$2y$12$KLWMScRbTm.By51tFIdxceoc/AjC5e3cToY7bCZtnivIf04i15.DS', NULL, NULL, NULL, '2024-04-30 07:45:32', NULL, NULL, NULL),
-('TKNV20240430214559', 'adminnx@gmail.com', 'anhnx2', NULL, '$2y$12$kJMkcJ6SCOjMC2kZjtA08uOw5iZwOn.OPVYTR0bWxGW7eOSXT4BxG', '', NULL, NULL, '2024-04-30 07:45:59', NULL, 'NV', NULL),
-('TKNV20240501102252', 'admin66@gmail.com', 'admin66', 12345, '$2y$12$XXi882nibejrLzcsrhv6FO1nJVCOcaRiqPCQ2xwXQ9yXiYfHRi.IS', '', NULL, NULL, '2024-04-30 20:22:52', NULL, 'NV', NULL),
-('TKNV20240501102400', 'admin77@gmail.com', 'anh77', NULL, '$2y$12$ypwbJ4gkfbZQsRinmxc3QOgecD1oNHj1PlAK0kUUPEkTKioQ9IDDG', '', NULL, NULL, '2024-04-30 20:24:00', NULL, 'NV', NULL);
+('TK20240517142055', 'binh@gmail.com', 'binhdz', NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', 'anhDaiDien23.png', 1, NULL, '2024-05-17 00:20:55', NULL, 'KH', NULL),
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 03:25:56', NULL, 'QTV', NULL),
+('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', 1, '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', 'anhDaiDien43.jpg', 1, NULL, '2024-04-27 03:31:10', NULL, NULL, NULL),
+('TKNV20240428161726', 'anhnx286b@gmail.com', 'anh1234', NULL, '$2y$12$IzqJw6tuLaowU8dvCBONgujFYz/YwFYTeEJgZlhnGT5Wfm.ClB5Qm', NULL, 1, NULL, '2024-04-27 19:17:26', NULL, NULL, NULL),
+('TKNV20240428221412', 'anhnx286c@gmail.com', 'anh12345', NULL, '$2y$12$cYkpMKyfXLFJUWA790QcvOxvdaX8fn0ic7xetCI4Kj8nOyMeMLa0e', NULL, NULL, NULL, '2024-04-28 01:14:12', NULL, NULL, NULL),
+('TKNV20240428223447', 'admin2@gmail.com', 'binh', 1, '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', 'anhDaiDien36.jpg', NULL, NULL, '2024-04-28 01:34:47', NULL, 'NVKT', NULL),
+('TKNV20240428230454', 'anhnx286a@gmail.com', 'anh', 12345, '$2y$12$D2kI4oExXQN6ktPowIgKeewbDax6chJtZ1UWNrqJwVYYfrvarpXkG', '', NULL, NULL, '2024-04-28 02:04:54', NULL, 'NVK', NULL),
+('TKNV20240429000439', 'admin4@gmail.com', 'anh12345', NULL, '$2y$12$F9xWei53fr/s1LVt9LgPFe86oWQDT4vuU7rJuR1dOUA/q/z2X2G7u', NULL, NULL, NULL, '2024-04-28 03:04:39', NULL, NULL, NULL),
+('TKNV20240429094949', 'admin6@gmail.com', 'anh123456', NULL, '$2y$12$yEja62fbmq0FOCaP1lElq.dGOO0zeV01s59tHfd5QW1uWDndLneHm', NULL, NULL, NULL, '2024-04-28 12:49:49', NULL, NULL, NULL),
+('TKNV20240430210607', 'admin5@gmail.com', 'quynhanh', 1223, '$2y$12$IvqCRkudY3qs25AJT4s7BOaa1e3UjnqwJ7o0yp0IHbpNYBc7GijHq', '', NULL, NULL, '2024-04-30 00:06:07', NULL, 'QTVCC', NULL),
+('TKNV20240430212410', 'admin11@gmail.com', 'admin1', 1, '$2y$12$vWpz/R2BCiQwEytdwE6RA.Kak6DOkXY2H2unOGPDdWlCj5esdGL/O', '', NULL, NULL, '2024-04-30 00:24:10', NULL, 'NVK', NULL),
+('TKNV20240430213100', 'anhnx286g@gmail.com', 'anhg', 1, '$2y$12$Yc2vibF3kSUYP3jaxMEzN.2f4XOcnhHJ5l7jG7mmOw1S8Kn33jvZ6', '', NULL, NULL, '2024-04-30 00:31:00', NULL, 'NV', NULL),
+('TKNV20240430213939', 'anhnx0@gmail.com', 'anhnx1', NULL, '$2y$12$ZLViL9MCYTElq8nf2wX2MOSwEnpscGVdZCalrWqxBWt.CU2aKlvnW', '', NULL, NULL, '2024-04-30 00:39:39', NULL, 'NV', NULL),
+('TKNV20240430214532', 'admin@gmail.com', 'anhnx', NULL, '$2y$12$KLWMScRbTm.By51tFIdxceoc/AjC5e3cToY7bCZtnivIf04i15.DS', NULL, NULL, NULL, '2024-04-30 00:45:32', NULL, NULL, NULL),
+('TKNV20240430214559', 'adminnx@gmail.com', 'anhnx2', NULL, '$2y$12$kJMkcJ6SCOjMC2kZjtA08uOw5iZwOn.OPVYTR0bWxGW7eOSXT4BxG', '', NULL, NULL, '2024-04-30 00:45:59', NULL, 'NV', NULL),
+('TKNV20240501102252', 'admin66@gmail.com', 'admin66', 12345, '$2y$12$XXi882nibejrLzcsrhv6FO1nJVCOcaRiqPCQ2xwXQ9yXiYfHRi.IS', '', NULL, NULL, '2024-04-30 13:22:52', NULL, 'NV', NULL),
+('TKNV20240501102400', 'admin77@gmail.com', 'anh77', NULL, '$2y$12$ypwbJ4gkfbZQsRinmxc3QOgecD1oNHj1PlAK0kUUPEkTKioQ9IDDG', '', NULL, NULL, '2024-04-30 13:24:00', NULL, 'NV', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thanhtruot`
+-- Table structure for table `tbl_thanhtruot`
 --
 
 CREATE TABLE `tbl_thanhtruot` (
   `MaThanhTruot` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `SlugThanhTruot` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugThanhTruot` varchar(50) NOT NULL,
+  `HinhAnh` varchar(50) NOT NULL,
+  `MoTa` text NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thongsokythuat`
+-- Table structure for table `tbl_thongsokythuat`
 --
 
 CREATE TABLE `tbl_thongsokythuat` (
   `MaTSKT` int NOT NULL,
-  `TenTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenTSKT` varchar(50) NOT NULL,
   `MaDMTSKT` int DEFAULT NULL,
   `TrangThai` int NOT NULL,
-  `SlugTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci,
+  `SlugTSKT` varchar(50) NOT NULL,
+  `MoTa` text,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thongsokythuat`
+-- Dumping data for table `tbl_thongsokythuat`
 --
 
 INSERT INTO `tbl_thongsokythuat` (`MaTSKT`, `TenTSKT`, `MaDMTSKT`, `TrangThai`, `SlugTSKT`, `MoTa`, `ThoiGianTao`, `ThoiGianSua`) VALUES
@@ -1563,12 +1694,27 @@ INSERT INTO `tbl_thongsokythuat` (`MaTSKT`, `TenTSKT`, `MaDMTSKT`, `TrangThai`, 
 (36, 'Sạc siêu nhanh (từ 60W)', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 14:47:12', NULL),
 (37, 'Kháng bụi', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL),
 (38, 'Hỗ trợ khuôn mặt', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL),
-(39, 'Hỗ trợ 5G', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL);
+(39, 'Hỗ trợ 5G', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL),
+(40, 'Smart Tivi', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(41, 'Tivi OLED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(42, 'Tivi Android', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(43, 'Google Tivi', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(44, 'Tivi QLED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(45, 'Tivi NanoCell', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(46, 'Tivi ULED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(47, 'Tivi MiniLED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(48, 'Tivi Thiết kế đặc biệt', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(49, 'Tivi Micro LED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-21 03:11:26', NULL),
+(50, 'Tìm kiếm bằng giọng nói', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-21 03:14:55', NULL),
+(51, 'Chơi game trên tivi', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-21 03:14:55', NULL),
+(52, 'Kết nối với điện thoại', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-21 03:14:55', NULL),
+(53, 'Điều khiển bằng điện thoại', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-21 03:14:55', NULL),
+(54, 'Trợ lý Google Assistant', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-21 03:14:55', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thongsokythuatsp`
+-- Table structure for table `tbl_thongsokythuatsp`
 --
 
 CREATE TABLE `tbl_thongsokythuatsp` (
@@ -1577,16 +1723,16 @@ CREATE TABLE `tbl_thongsokythuatsp` (
   `MaTSKT` int NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thongsokythuatsp`
+-- Dumping data for table `tbl_thongsokythuatsp`
 --
 
 INSERT INTO `tbl_thongsokythuatsp` (`MaTSKTSP`, `MaSanPham`, `MaTSKT`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(10, 25, 13, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(11, 25, 5, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(12, 25, 10, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
+(10, 25, 13, '2024-05-13 04:53:28', '2024-05-17 14:24:21'),
+(11, 25, 5, '2024-05-13 04:53:28', '2024-05-17 14:24:21'),
+(12, 25, 10, '2024-05-13 04:53:28', '2024-05-17 14:24:21'),
 (13, 26, 13, '2024-05-13 15:31:11', NULL),
 (14, 26, 5, '2024-05-13 15:31:11', NULL),
 (15, 26, 7, '2024-05-13 15:31:11', NULL),
@@ -1601,27 +1747,40 @@ INSERT INTO `tbl_thongsokythuatsp` (`MaTSKTSP`, `MaSanPham`, `MaTSKT`, `ThoiGian
 (24, 30, 7, '2024-05-13 15:41:32', NULL),
 (25, 31, 13, '2024-05-13 15:44:44', NULL),
 (26, 31, 6, '2024-05-13 15:44:44', NULL),
-(27, 31, 7, '2024-05-13 15:44:44', NULL);
+(27, 31, 7, '2024-05-13 15:44:44', NULL),
+(28, 28, 42, '2024-05-21 05:09:51', NULL),
+(29, 28, 54, '2024-05-21 05:13:36', NULL),
+(30, 28, 54, '2024-05-21 05:13:36', NULL),
+(31, 25, 44, '2024-05-21 05:14:48', NULL),
+(32, 25, 50, NULL, NULL),
+(33, 26, 48, '2024-05-21 05:16:50', NULL),
+(34, 26, 54, '2024-05-21 05:16:50', NULL),
+(35, 27, 45, '2024-05-21 05:17:46', NULL),
+(36, 27, 51, '2024-05-21 05:17:46', NULL),
+(37, 30, 48, '2024-05-21 05:18:25', NULL),
+(38, 30, 51, '2024-05-21 05:18:25', NULL),
+(39, 31, 51, '2024-05-21 05:18:57', NULL),
+(40, 31, 40, '2024-05-21 05:18:57', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thuonghieu`
+-- Table structure for table `tbl_thuonghieu`
 --
 
 CREATE TABLE `tbl_thuonghieu` (
   `MaThuongHieu` int NOT NULL,
-  `TenThuongHieu` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SlugThuongHieu` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `HinhAnh` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenThuongHieu` varchar(50) DEFAULT NULL,
+  `SlugThuongHieu` varchar(50) DEFAULT NULL,
+  `HinhAnh` varchar(255) DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci,
+  `MoTa` text,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thuonghieu`
+-- Dumping data for table `tbl_thuonghieu`
 --
 
 INSERT INTO `tbl_thuonghieu` (`MaThuongHieu`, `TenThuongHieu`, `SlugThuongHieu`, `HinhAnh`, `TrangThai`, `MoTa`, `ThoiGianTao`, `ThoiGianSua`) VALUES
@@ -1642,17 +1801,17 @@ INSERT INTO `tbl_thuonghieu` (`MaThuongHieu`, `TenThuongHieu`, `SlugThuongHieu`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thuonghieudanhmuc`
+-- Table structure for table `tbl_thuonghieudanhmuc`
 --
 
 CREATE TABLE `tbl_thuonghieudanhmuc` (
   `MaTHDM` int NOT NULL,
   `MaThuongHieu` int NOT NULL,
   `MaDanhMuc` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thuonghieudanhmuc`
+-- Dumping data for table `tbl_thuonghieudanhmuc`
 --
 
 INSERT INTO `tbl_thuonghieudanhmuc` (`MaTHDM`, `MaThuongHieu`, `MaDanhMuc`) VALUES
@@ -1670,12 +1829,13 @@ INSERT INTO `tbl_thuonghieudanhmuc` (`MaTHDM`, `MaThuongHieu`, `MaDanhMuc`) VALU
 (13, 14, 15),
 (14, 8, 15),
 (15, 9, 2),
-(16, 5, 2);
+(16, 5, 2),
+(17, 12, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tichdiem`
+-- Table structure for table `tbl_tichdiem`
 --
 
 CREATE TABLE `tbl_tichdiem` (
@@ -1683,12 +1843,12 @@ CREATE TABLE `tbl_tichdiem` (
   `MaTaiKhoan` int NOT NULL,
   `TongDiem` int NOT NULL,
   `SoLuongDonHang` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tinhthanhpho`
+-- Table structure for table `tbl_tinhthanhpho`
 --
 
 CREATE TABLE `tbl_tinhthanhpho` (
@@ -1698,7 +1858,7 @@ CREATE TABLE `tbl_tinhthanhpho` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_tinhthanhpho`
+-- Dumping data for table `tbl_tinhthanhpho`
 --
 
 INSERT INTO `tbl_tinhthanhpho` (`MaThanhPho`, `TenThanhPho`, `type`) VALUES
@@ -1769,7 +1929,7 @@ INSERT INTO `tbl_tinhthanhpho` (`MaThanhPho`, `TenThanhPho`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_xaphuongthitran`
+-- Table structure for table `tbl_xaphuongthitran`
 --
 
 CREATE TABLE `tbl_xaphuongthitran` (
@@ -1780,7 +1940,7 @@ CREATE TABLE `tbl_xaphuongthitran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_xaphuongthitran`
+-- Dumping data for table `tbl_xaphuongthitran`
 --
 
 INSERT INTO `tbl_xaphuongthitran` (`MaXaPhuong`, `TenXaPhuong`, `type`, `MaQuanHuyen`) VALUES
@@ -12956,25 +13116,25 @@ INSERT INTO `tbl_xaphuongthitran` (`MaXaPhuong`, `TenXaPhuong`, `type`, `MaQuanH
 ('32248', 'Xã Đất Mũi', 'Xã', 973);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `tbl_baiviet`
+-- Indexes for table `tbl_baiviet`
 --
 ALTER TABLE `tbl_baiviet`
   ADD PRIMARY KEY (`MaBaiViet`),
   ADD KEY `MaDanhMucBV` (`MaDanhMucBV`);
 
 --
--- Chỉ mục cho bảng `tbl_baocaodoanhthu`
+-- Indexes for table `tbl_baocaodoanhthu`
 --
 ALTER TABLE `tbl_baocaodoanhthu`
   ADD PRIMARY KEY (`MaBCDT`),
   ADD UNIQUE KEY `MaLienKet` (`MaLienKet`);
 
 --
--- Chỉ mục cho bảng `tbl_binhluan`
+-- Indexes for table `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
   ADD PRIMARY KEY (`MaBinhLuan`),
@@ -12982,7 +13142,7 @@ ALTER TABLE `tbl_binhluan`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietbaocaodoanhthu`
+-- Indexes for table `tbl_chitietbaocaodoanhthu`
 --
 ALTER TABLE `tbl_chitietbaocaodoanhthu`
   ADD PRIMARY KEY (`MaCTBCDT`),
@@ -12990,7 +13150,7 @@ ALTER TABLE `tbl_chitietbaocaodoanhthu`
   ADD KEY `MaLienKet` (`MaLienKet`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietdonhang`
+-- Indexes for table `tbl_chitietdonhang`
 --
 ALTER TABLE `tbl_chitietdonhang`
   ADD PRIMARY KEY (`MaCTDH`),
@@ -12998,41 +13158,33 @@ ALTER TABLE `tbl_chitietdonhang`
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitiethoadon`
+-- Indexes for table `tbl_chitiethoadon`
 --
 ALTER TABLE `tbl_chitiethoadon`
   ADD PRIMARY KEY (`MaCTHD`),
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietlichsubaohanh`
+-- Indexes for table `tbl_chitietlichsubaohanh`
 --
 ALTER TABLE `tbl_chitietlichsubaohanh`
   ADD KEY `MaSanPham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieubaohanh`
+-- Indexes for table `tbl_chitietphieubaohanh`
 --
 ALTER TABLE `tbl_chitietphieubaohanh`
   ADD PRIMARY KEY (`MaCTPBH`),
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieukiemkho`
+-- Indexes for table `tbl_chitietphieukiemkho`
 --
 ALTER TABLE `tbl_chitietphieukiemkho`
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieunhap`
---
-ALTER TABLE `tbl_chitietphieunhap`
-  ADD PRIMARY KEY (`MaCTPN`),
-  ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `order_code` (`MaPhieuNhap`);
-
---
--- Chỉ mục cho bảng `tbl_chitietphieutrahang`
+-- Indexes for table `tbl_chitietphieutrahang`
 --
 ALTER TABLE `tbl_chitietphieutrahang`
   ADD PRIMARY KEY (`MaCTPTH`),
@@ -13040,74 +13192,54 @@ ALTER TABLE `tbl_chitietphieutrahang`
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieuxuat`
+-- Indexes for table `tbl_chitietphieuxuat`
 --
 ALTER TABLE `tbl_chitietphieuxuat`
   ADD PRIMARY KEY (`MaCTPX`),
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chuongtrinhgiamgia`
---
-ALTER TABLE `tbl_chuongtrinhgiamgia`
-  ADD PRIMARY KEY (`MaCTGG`),
-  ADD UNIQUE KEY `SlugCTGG` (`SlugCTGG`);
-
---
--- Chỉ mục cho bảng `tbl_chuongtrinhgiamgiasp`
---
-ALTER TABLE `tbl_chuongtrinhgiamgiasp`
-  ADD PRIMARY KEY (`MaCTGGSP`),
-  ADD KEY `MaCTGG` (`MaCTGG`),
-  ADD KEY `MaSanPham` (`MaSanPham`);
-
---
--- Chỉ mục cho bảng `tbl_danhgia`
+-- Indexes for table `tbl_danhgia`
 --
 ALTER TABLE `tbl_danhgia`
   ADD PRIMARY KEY (`MaDanhGia`),
-  ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`),
-  ADD KEY `MaDonHang` (`MaDonHang`);
+  ADD KEY `Email` (`Email`),
+  ADD KEY `MaSanPham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `tbl_danhmuc`
+-- Indexes for table `tbl_danhmuc`
 --
 ALTER TABLE `tbl_danhmuc`
   ADD PRIMARY KEY (`MaDanhMuc`),
   ADD UNIQUE KEY `SlugDanhMuc` (`SlugDanhMuc`);
 
 --
--- Chỉ mục cho bảng `tbl_danhmucbaiviet`
+-- Indexes for table `tbl_danhmucbaiviet`
 --
 ALTER TABLE `tbl_danhmucbaiviet`
   ADD PRIMARY KEY (`MaDanhMucBV`);
 
 --
--- Chỉ mục cho bảng `tbl_danhmuctskt`
+-- Indexes for table `tbl_danhmuctskt`
 --
 ALTER TABLE `tbl_danhmuctskt`
   ADD PRIMARY KEY (`MaDMTSKT`),
   ADD KEY `MaDanhMuc` (`MaDanhMuc`);
 
 --
--- Chỉ mục cho bảng `tbl_donhang`
+-- Indexes for table `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  ADD PRIMARY KEY (`MaDonHang`),
-  ADD UNIQUE KEY `order_code` (`order_code`),
-  ADD KEY `MaGiamGia` (`MaGiamGia`),
-  ADD KEY `MaGiaoHang` (`MaGiaoHang`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
+  ADD PRIMARY KEY (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_giaohang`
+-- Indexes for table `tbl_giaohang`
 --
 ALTER TABLE `tbl_giaohang`
   ADD PRIMARY KEY (`MaGiaoHang`);
 
 --
--- Chỉ mục cho bảng `tbl_hoadon`
+-- Indexes for table `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
   ADD PRIMARY KEY (`MaHoaDon`),
@@ -13116,7 +13248,7 @@ ALTER TABLE `tbl_hoadon`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_lichsubaohanh`
+-- Indexes for table `tbl_lichsubaohanh`
 --
 ALTER TABLE `tbl_lichsubaohanh`
   ADD PRIMARY KEY (`MaLSBH`),
@@ -13124,22 +13256,14 @@ ALTER TABLE `tbl_lichsubaohanh`
   ADD KEY `MaPhieuBaoHanh` (`MaPhieuBaoHanh`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgiannguoidung`
---
-ALTER TABLE `tbl_magiamgiannguoidung`
-  ADD PRIMARY KEY (`MaGGND`),
-  ADD KEY `MaGiamGia` (`MaGiamGia`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
-
---
--- Chỉ mục cho bảng `tbl_nhacungcap`
+-- Indexes for table `tbl_nhacungcap`
 --
 ALTER TABLE `tbl_nhacungcap`
   ADD PRIMARY KEY (`MaNhaCungCap`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Chỉ mục cho bảng `tbl_phanquyennguoidung`
+-- Indexes for table `tbl_phanquyennguoidung`
 --
 ALTER TABLE `tbl_phanquyennguoidung`
   ADD PRIMARY KEY (`MaPQND`),
@@ -13147,7 +13271,7 @@ ALTER TABLE `tbl_phanquyennguoidung`
   ADD KEY `MaPhanQuyen` (`MaPhanQuyen`);
 
 --
--- Chỉ mục cho bảng `tbl_phieubaohanh`
+-- Indexes for table `tbl_phieubaohanh`
 --
 ALTER TABLE `tbl_phieubaohanh`
   ADD PRIMARY KEY (`MaPhieuBaoHanh`),
@@ -13155,13 +13279,21 @@ ALTER TABLE `tbl_phieubaohanh`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_phieugiamgia`
+-- Indexes for table `tbl_phieugiamgia`
 --
 ALTER TABLE `tbl_phieugiamgia`
   ADD PRIMARY KEY (`MaGiamGia`);
 
 --
--- Chỉ mục cho bảng `tbl_phieukiemkho`
+-- Indexes for table `tbl_phieugiamgianguoidung`
+--
+ALTER TABLE `tbl_phieugiamgianguoidung`
+  ADD PRIMARY KEY (`MaPGGND`),
+  ADD KEY `MaGiamGia` (`MaGiamGia`),
+  ADD KEY `tbl_phieugiamgianguoidung_ibfk_2` (`Email`);
+
+--
+-- Indexes for table `tbl_phieukiemkho`
 --
 ALTER TABLE `tbl_phieukiemkho`
   ADD PRIMARY KEY (`MaPKK`),
@@ -13169,15 +13301,7 @@ ALTER TABLE `tbl_phieukiemkho`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_phieunhap`
---
-ALTER TABLE `tbl_phieunhap`
-  ADD PRIMARY KEY (`MaPhieuNhap`),
-  ADD KEY `MaNhaCungCap` (`MaNhaCungCap`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
-
---
--- Chỉ mục cho bảng `tbl_phieutrahang`
+-- Indexes for table `tbl_phieutrahang`
 --
 ALTER TABLE `tbl_phieutrahang`
   ADD PRIMARY KEY (`MaPhieuTraHang`),
@@ -13186,7 +13310,7 @@ ALTER TABLE `tbl_phieutrahang`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_phieuxuat`
+-- Indexes for table `tbl_phieuxuat`
 --
 ALTER TABLE `tbl_phieuxuat`
   ADD PRIMARY KEY (`MaPhieuXuat`),
@@ -13195,7 +13319,7 @@ ALTER TABLE `tbl_phieuxuat`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_phigiaohang`
+-- Indexes for table `tbl_phigiaohang`
 --
 ALTER TABLE `tbl_phigiaohang`
   ADD PRIMARY KEY (`MaPhiGiaoHang`),
@@ -13204,14 +13328,19 @@ ALTER TABLE `tbl_phigiaohang`
   ADD KEY `MaXaPhuong` (`MaXaPhuong`);
 
 --
--- Chỉ mục cho bảng `tbl_quanhuyen`
+-- Indexes for table `tbl_quanhuyen`
 --
 ALTER TABLE `tbl_quanhuyen`
   ADD PRIMARY KEY (`MaQuanHuyen`);
 
+--
+-- Indexes for table `tbl_quyen`
+--
+ALTER TABLE `tbl_quyen`
+  ADD PRIMARY KEY (`MaPhanQuyen`);
 
 --
--- Chỉ mục cho bảng `tbl_sanpham`
+-- Indexes for table `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
   ADD PRIMARY KEY (`MaSanPham`),
@@ -13220,13 +13349,14 @@ ALTER TABLE `tbl_sanpham`
   ADD KEY `MaThuongHieu` (`MaThuongHieu`);
 
 --
--- Chỉ mục cho bảng `tbl_taikhoan`
+-- Indexes for table `tbl_taikhoan`
 --
 ALTER TABLE `tbl_taikhoan`
-  ADD PRIMARY KEY (`MaTaiKhoan`);
+  ADD PRIMARY KEY (`MaTaiKhoan`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Chỉ mục cho bảng `tbl_thanhtruot`
+-- Indexes for table `tbl_thanhtruot`
 --
 ALTER TABLE `tbl_thanhtruot`
   ADD PRIMARY KEY (`MaThanhTruot`),
@@ -13234,14 +13364,14 @@ ALTER TABLE `tbl_thanhtruot`
   ADD KEY `MaCTGG` (`MaCTGG`);
 
 --
--- Chỉ mục cho bảng `tbl_thongsokythuat`
+-- Indexes for table `tbl_thongsokythuat`
 --
 ALTER TABLE `tbl_thongsokythuat`
   ADD PRIMARY KEY (`MaTSKT`),
   ADD KEY `MaDMTSKT` (`MaDMTSKT`);
 
 --
--- Chỉ mục cho bảng `tbl_thongsokythuatsp`
+-- Indexes for table `tbl_thongsokythuatsp`
 --
 ALTER TABLE `tbl_thongsokythuatsp`
   ADD PRIMARY KEY (`MaTSKTSP`),
@@ -13249,14 +13379,14 @@ ALTER TABLE `tbl_thongsokythuatsp`
   ADD KEY `MaTSKT` (`MaTSKT`);
 
 --
--- Chỉ mục cho bảng `tbl_thuonghieu`
+-- Indexes for table `tbl_thuonghieu`
 --
 ALTER TABLE `tbl_thuonghieu`
   ADD PRIMARY KEY (`MaThuongHieu`),
   ADD UNIQUE KEY `SlugThuongHieu` (`SlugThuongHieu`);
 
 --
--- Chỉ mục cho bảng `tbl_thuonghieudanhmuc`
+-- Indexes for table `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_thuonghieudanhmuc`
   ADD PRIMARY KEY (`MaTHDM`),
@@ -13264,383 +13394,341 @@ ALTER TABLE `tbl_thuonghieudanhmuc`
   ADD KEY `MaThuongHieu` (`MaThuongHieu`);
 
 --
--- Chỉ mục cho bảng `tbl_tichdiem`
+-- Indexes for table `tbl_tichdiem`
 --
 ALTER TABLE `tbl_tichdiem`
   ADD PRIMARY KEY (`MaTichDiem`),
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_tinhthanhpho`
+-- Indexes for table `tbl_tinhthanhpho`
 --
 ALTER TABLE `tbl_tinhthanhpho`
   ADD PRIMARY KEY (`MaThanhPho`);
 
 --
--- Chỉ mục cho bảng `tbl_xaphuongthitran`
+-- Indexes for table `tbl_xaphuongthitran`
 --
 ALTER TABLE `tbl_xaphuongthitran`
   ADD PRIMARY KEY (`MaXaPhuong`),
   ADD KEY `MaQuanHuyen` (`MaQuanHuyen`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `tbl_baiviet`
+-- AUTO_INCREMENT for table `tbl_baiviet`
 --
 ALTER TABLE `tbl_baiviet`
   MODIFY `MaBaiViet` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_baocaodoanhthu`
+-- AUTO_INCREMENT for table `tbl_baocaodoanhthu`
 --
 ALTER TABLE `tbl_baocaodoanhthu`
   MODIFY `MaBCDT` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_binhluan`
+-- AUTO_INCREMENT for table `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
   MODIFY `MaBinhLuan` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietbaocaodoanhthu`
+-- AUTO_INCREMENT for table `tbl_chitietbaocaodoanhthu`
 --
 ALTER TABLE `tbl_chitietbaocaodoanhthu`
   MODIFY `MaCTBCDT` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietdonhang`
+-- AUTO_INCREMENT for table `tbl_chitietdonhang`
 --
 ALTER TABLE `tbl_chitietdonhang`
-  MODIFY `MaCTDH` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaCTDH` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitiethoadon`
+-- AUTO_INCREMENT for table `tbl_chitiethoadon`
 --
 ALTER TABLE `tbl_chitiethoadon`
   MODIFY `MaCTHD` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietphieubaohanh`
+-- AUTO_INCREMENT for table `tbl_chitietphieubaohanh`
 --
 ALTER TABLE `tbl_chitietphieubaohanh`
   MODIFY `MaCTPBH` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietphieutrahang`
+-- AUTO_INCREMENT for table `tbl_chitietphieutrahang`
 --
 ALTER TABLE `tbl_chitietphieutrahang`
   MODIFY `MaCTPTH` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietphieuxuat`
+-- AUTO_INCREMENT for table `tbl_chitietphieuxuat`
 --
 ALTER TABLE `tbl_chitietphieuxuat`
   MODIFY `MaCTPX` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chuongtrinhgiamgia`
---
-ALTER TABLE `tbl_chuongtrinhgiamgia`
-  MODIFY `MaCTGG` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `tbl_chuongtrinhgiamgiasp`
---
-ALTER TABLE `tbl_chuongtrinhgiamgiasp`
-  MODIFY `MaCTGGSP` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `tbl_danhgia`
+-- AUTO_INCREMENT for table `tbl_danhgia`
 --
 ALTER TABLE `tbl_danhgia`
-  MODIFY `MaDanhGia` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDanhGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhmuc`
+-- AUTO_INCREMENT for table `tbl_danhmuc`
 --
 ALTER TABLE `tbl_danhmuc`
   MODIFY `MaDanhMuc` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhmucbaiviet`
+-- AUTO_INCREMENT for table `tbl_danhmucbaiviet`
 --
 ALTER TABLE `tbl_danhmucbaiviet`
   MODIFY `MaDanhMucBV` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhmuctskt`
+-- AUTO_INCREMENT for table `tbl_danhmuctskt`
 --
 ALTER TABLE `tbl_danhmuctskt`
-  MODIFY `MaDMTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `MaDMTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_donhang`
+-- AUTO_INCREMENT for table `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  MODIFY `MaDonHang` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDonHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_giaohang`
+-- AUTO_INCREMENT for table `tbl_giaohang`
 --
 ALTER TABLE `tbl_giaohang`
-  MODIFY `MaGiaoHang` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaGiaoHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_hoadon`
+-- AUTO_INCREMENT for table `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
   MODIFY `MaHoaDon` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgiannguoidung`
+-- AUTO_INCREMENT for table `tbl_nhacungcap`
 --
-ALTER TABLE `tbl_magiamgiannguoidung`
-  MODIFY `MaGGND` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_nhacungcap`
+  MODIFY `MaNhaCungCap` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phanquyennguoidung`
+-- AUTO_INCREMENT for table `tbl_phanquyennguoidung`
 --
 ALTER TABLE `tbl_phanquyennguoidung`
   MODIFY `MaPQND` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieubaohanh`
+-- AUTO_INCREMENT for table `tbl_phieubaohanh`
 --
 ALTER TABLE `tbl_phieubaohanh`
   MODIFY `MaPhieuBaoHanh` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieugiamgia`
+-- AUTO_INCREMENT for table `tbl_phieugiamgia`
 --
 ALTER TABLE `tbl_phieugiamgia`
-  MODIFY `MaGiamGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaGiamGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieukiemkho`
+-- AUTO_INCREMENT for table `tbl_phieugiamgianguoidung`
+--
+ALTER TABLE `tbl_phieugiamgianguoidung`
+  MODIFY `MaPGGND` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tbl_phieukiemkho`
 --
 ALTER TABLE `tbl_phieukiemkho`
   MODIFY `MaPKK` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieutrahang`
+-- AUTO_INCREMENT for table `tbl_phieutrahang`
 --
 ALTER TABLE `tbl_phieutrahang`
   MODIFY `MaPhieuTraHang` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieuxuat`
+-- AUTO_INCREMENT for table `tbl_phieuxuat`
 --
 ALTER TABLE `tbl_phieuxuat`
   MODIFY `MaPhieuXuat` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phigiaohang`
+-- AUTO_INCREMENT for table `tbl_phigiaohang`
 --
 ALTER TABLE `tbl_phigiaohang`
   MODIFY `MaPhiGiaoHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+--
+-- AUTO_INCREMENT for table `tbl_quyen`
+--
+ALTER TABLE `tbl_quyen`
+  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_sanpham`
+-- AUTO_INCREMENT for table `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
   MODIFY `MaSanPham` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thanhtruot`
+-- AUTO_INCREMENT for table `tbl_thanhtruot`
 --
 ALTER TABLE `tbl_thanhtruot`
   MODIFY `MaThanhTruot` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thongsokythuat`
+-- AUTO_INCREMENT for table `tbl_thongsokythuat`
 --
 ALTER TABLE `tbl_thongsokythuat`
-  MODIFY `MaTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `MaTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thongsokythuatsp`
+-- AUTO_INCREMENT for table `tbl_thongsokythuatsp`
 --
 ALTER TABLE `tbl_thongsokythuatsp`
-  MODIFY `MaTSKTSP` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `MaTSKTSP` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thuonghieu`
+-- AUTO_INCREMENT for table `tbl_thuonghieu`
 --
 ALTER TABLE `tbl_thuonghieu`
   MODIFY `MaThuongHieu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thuonghieudanhmuc`
+-- AUTO_INCREMENT for table `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_thuonghieudanhmuc`
-  MODIFY `MaTHDM` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `MaTHDM` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_tichdiem`
+-- AUTO_INCREMENT for table `tbl_tichdiem`
 --
 ALTER TABLE `tbl_tichdiem`
   MODIFY `MaTichDiem` int NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `tbl_baiviet`
+-- Constraints for table `tbl_baiviet`
 --
 ALTER TABLE `tbl_baiviet`
   ADD CONSTRAINT `tbl_baiviet_ibfk_1` FOREIGN KEY (`MaDanhMucBV`) REFERENCES `tbl_danhmucbaiviet` (`MaDanhMucBV`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_binhluan`
+-- Constraints for table `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
   ADD CONSTRAINT `tbl_binhluan_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietbaocaodoanhthu`
+-- Constraints for table `tbl_chitietbaocaodoanhthu`
 --
 ALTER TABLE `tbl_chitietbaocaodoanhthu`
   ADD CONSTRAINT `tbl_chitietbaocaodoanhthu_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chitietbaocaodoanhthu_ibfk_2` FOREIGN KEY (`MaLienKet`) REFERENCES `tbl_baocaodoanhthu` (`MaLienKet`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietdonhang`
---
-ALTER TABLE `tbl_chitietdonhang`
-  ADD CONSTRAINT `tbl_chitietdonhang_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_chitietdonhang_ibfk_2` FOREIGN KEY (`order_code`) REFERENCES `tbl_donhang` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitiethoadon`
+-- Constraints for table `tbl_chitiethoadon`
 --
 ALTER TABLE `tbl_chitiethoadon`
   ADD CONSTRAINT `tbl_chitiethoadon_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_hoadon` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietlichsubaohanh`
+-- Constraints for table `tbl_chitietlichsubaohanh`
 --
 ALTER TABLE `tbl_chitietlichsubaohanh`
   ADD CONSTRAINT `tbl_chitietlichsubaohanh_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieubaohanh`
+-- Constraints for table `tbl_chitietphieubaohanh`
 --
 ALTER TABLE `tbl_chitietphieubaohanh`
   ADD CONSTRAINT `tbl_chitietphieubaohanh_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieubaohanh` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieukiemkho`
+-- Constraints for table `tbl_chitietphieukiemkho`
 --
 ALTER TABLE `tbl_chitietphieukiemkho`
   ADD CONSTRAINT `tbl_chitietphieukiemkho_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieukiemkho` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieunhap`
---
-ALTER TABLE `tbl_chitietphieunhap`
-  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_2` FOREIGN KEY (`MaPhieuNhap`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitietphieutrahang`
+-- Constraints for table `tbl_chitietphieutrahang`
 --
 ALTER TABLE `tbl_chitietphieutrahang`
   ADD CONSTRAINT `tbl_chitietphieutrahang_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chitietphieutrahang_ibfk_2` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieutrahang` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieuxuat`
+-- Constraints for table `tbl_chitietphieuxuat`
 --
 ALTER TABLE `tbl_chitietphieuxuat`
   ADD CONSTRAINT `tbl_chitietphieuxuat_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieuxuat` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chuongtrinhgiamgiasp`
---
-ALTER TABLE `tbl_chuongtrinhgiamgiasp`
-  ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_1` FOREIGN KEY (`MaCTGG`) REFERENCES `tbl_chuongtrinhgiamgia` (`MaCTGG`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_danhgia`
+-- Constraints for table `tbl_danhgia`
 --
 ALTER TABLE `tbl_danhgia`
-  ADD CONSTRAINT `tbl_danhgia_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_danhgia_ibfk_3` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tbl_danhgia_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `tbl_taikhoan` (`Email`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_danhgia_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_danhmuctskt`
+-- Constraints for table `tbl_danhmuctskt`
 --
 ALTER TABLE `tbl_danhmuctskt`
   ADD CONSTRAINT `tbl_danhmuctskt_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_donhang`
---
-ALTER TABLE `tbl_donhang`
-  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_hoadon`
---
-ALTER TABLE `tbl_hoadon`
-  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_lichsubaohanh`
+-- Constraints for table `tbl_lichsubaohanh`
 --
 ALTER TABLE `tbl_lichsubaohanh`
   ADD CONSTRAINT `tbl_lichsubaohanh_ibfk_1` FOREIGN KEY (`MaPhieuBaoHanh`) REFERENCES `tbl_phieubaohanh` (`MaPhieuBaoHanh`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_phieubaohanh`
+-- Constraints for table `tbl_phieugiamgianguoidung`
 --
-ALTER TABLE `tbl_phieubaohanh`
-  ADD CONSTRAINT `tbl_phieubaohanh_ibfk_1` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `tbl_phieugiamgianguoidung`
+  ADD CONSTRAINT `tbl_phieugiamgianguoidung_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_phieugiamgianguoidung_ibfk_2` FOREIGN KEY (`Email`) REFERENCES `tbl_taikhoan` (`Email`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_phieunhap`
+-- Constraints for table `tbl_phieutrahang`
 --
-ALTER TABLE `tbl_phieunhap`
-  ADD CONSTRAINT `tbl_phieunhap_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_phieunhap_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `tbl_phieutrahang`
+  ADD CONSTRAINT `tbl_phieutrahang_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_sanpham`
+-- Constraints for table `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
   ADD CONSTRAINT `tbl_sanpham_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_sanpham_ibfk_2` FOREIGN KEY (`MaThuongHieu`) REFERENCES `tbl_thuonghieu` (`MaThuongHieu`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_thanhtruot`
---
-ALTER TABLE `tbl_thanhtruot`
-  ADD CONSTRAINT `tbl_thanhtruot_ibfk_1` FOREIGN KEY (`MaCTGG`) REFERENCES `tbl_chuongtrinhgiamgia` (`MaCTGG`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_thongsokythuat`
+-- Constraints for table `tbl_thongsokythuat`
 --
 ALTER TABLE `tbl_thongsokythuat`
   ADD CONSTRAINT `tbl_thongsokythuat_ibfk_1` FOREIGN KEY (`MaDMTSKT`) REFERENCES `tbl_danhmuctskt` (`MaDMTSKT`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_thongsokythuatsp`
+-- Constraints for table `tbl_thongsokythuatsp`
 --
 ALTER TABLE `tbl_thongsokythuatsp`
   ADD CONSTRAINT `tbl_thongsokythuatsp_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_thongsokythuatsp_ibfk_2` FOREIGN KEY (`MaTSKT`) REFERENCES `tbl_thongsokythuat` (`MaTSKT`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_thuonghieudanhmuc`
+-- Constraints for table `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_thuonghieudanhmuc`
   ADD CONSTRAINT `tbl_thuonghieudanhmuc_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT,

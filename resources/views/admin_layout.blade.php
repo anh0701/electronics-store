@@ -87,16 +87,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-money-bill-wave"></i>
-              <span>Quản lý thương hiệu</span>
-            </a>
-            <ul class="sub">
-              <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
-              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
               <i class="fa-solid fa-warehouse"></i>
               <span>Quản lý nhà cung cấp</span>
             </a>
@@ -126,7 +116,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-warehouse"></i>
+              <i class="fa-solid fa-money-bill-wave"></i>
+              <span>Quản lý thương hiệu</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-boxes-packing"></i>
               <span>Quản lý loại sản phẩm</span>
             </a>
             <ul class="sub">
@@ -217,7 +217,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li class="sub-menu">
             <a href="javascript:;">
                 <i class="fa-solid fa-newspaper"></i>
-                <span>Quản lý đơn hàng</span>
+                <span>Quản lý đánh giá sản phẩm</span>
             </a>
             <ul class="sub">
                 <li><a href="{{ Route('/TrangLietKeDanhGia') }}">Liệt kê đánh giá sản phẩm</a></li>

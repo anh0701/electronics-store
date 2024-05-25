@@ -25,6 +25,8 @@ class DonHangController extends Controller
     }
 
     public function XoaChiTietDonHang($MaCTDH){
+        $order_code = ChiTietDonHang::where('MaCTDH', $MaCTDH)->first();
+        
         $chiTietDonHang = ChiTietDonHang::find($MaCTDH);
         $chiTietDonHang->delete();
         return Redirect::to('TrangLietKeDonHang')->with('status', 'Xóa chi tiết đơn hàng thành công');

@@ -15,6 +15,7 @@ use App\Http\Controllers\PhiGiaoHangController;
 use App\Http\Controllers\QuenMatKhau;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\TaiKhoanController;
+use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\ThongSoKyThuatController;
 use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\TonKhoController;
@@ -152,6 +153,8 @@ Route::post('/ChonDiaDiem', [PhiGiaoHangController::class, 'ChonDiaDiem'])->name
 Route::get('/TrangLietKeDonHang', [DonHangController::class, 'TrangLietKeDonHang'])->name('/TrangLietKeDonHang');
 Route::get('/TrangChiTietDonHang/{order_code}', [DonHangController::class, 'TrangChiTietDonHang'])->name('/TrangChiTietDonHang');
 Route::get('/XoaChiTietDonHang/{MaCTDH}', [DonHangController::class, 'XoaChiTietDonHang'])->name('/XoaChiTietDonHang');
+Route::get('/XoaPhieuGiamGiaThuocDonHang/{}/{}', [DonHangController::class, 'XoaPhieuGiamGiaThuocDonHang'])->name('/XoaPhieuGiamGiaThuocDonHang');
+
 
 // Đánh giá
 Route::post('/DanhGia', [DanhGiaController::class, 'DanhGia'])->name('/DanhGia');
@@ -195,6 +198,14 @@ Route::get('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'g
 Route::post('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'suaPhieuGiamGia'])->name('/suaPhieuGG');
 Route::get('/xoa-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'Xoa'])->name('/xoa-phieu-giam-gia');
 Route::get('/tim-kiem-phieu-giam-gia', [PhieuGiamGiaController::class, 'timKiem'])->name('/timKiem');
+
+// ThemPhieuGiamGiaND
+Route::get('/ThemPhieuGiamGiaND', [PhieuGiamGiaController::class, 'ThemPhieuGiamGiaND'])->name('/ThemPhieuGiamGiaND');
+Route::get('/LietKePhieuGiamGiaND', [PhieuGiamGiaController::class, 'LietKePhieuGiamGiaND'])->name('/LietKePhieuGiamGiaND');
+Route::get('/XemPhieuGiamGiaND/{Email}', [PhieuGiamGiaController::class, 'XemPhieuGiamGiaND'])->name('/XemPhieuGiamGiaND');
+
+
+
 
 // chuong trinh giam gia
 Route::get('/tao-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'giaoDienTao'])->name('/tao-chuong-trinh-giam-gia');
