@@ -144,15 +144,15 @@
 							</ul>
 						</div> --}}
 					</div>
-					<div class="col-sm-4">
-						<form action="{{ route('/TimKiem') }}" method="GET">
-							{{ csrf_field() }}
-							<div class="search_box pull-right">
-								<input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
-								<input style="width: 50px" type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm">
-							</div>
-						</form>
-					</div>
+{{--					<div class="col-sm-4">--}}
+{{--						<form action="{{ route('/TimKiem') }}" method="GET">--}}
+{{--							{{ csrf_field() }}--}}
+{{--							<div class="search_box pull-right">--}}
+{{--								<input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>--}}
+{{--								<input style="width: 50px" type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm">--}}
+{{--							</div>--}}
+{{--						</form>--}}
+{{--					</div>--}}
 				</div>
 			</div>
 		</div><!--/header-bottom-->
