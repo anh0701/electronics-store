@@ -12,8 +12,7 @@
                     <div class="input-group">
                         <form action="{{ route('timkiemNCC') }}" method="GET">
                             <input type="text" name="keyword" placeholder="Nhập từ khóa..."><br>
-                            Từ: <input type="date" name="start_date"><br>
-                            Đến: <input type="date" name="end_date"><br>
+
                             <button type="submit">Tìm kiếm</button>
                         </form>
                     </div>
