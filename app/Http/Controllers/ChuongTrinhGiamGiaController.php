@@ -30,12 +30,12 @@ class ChuongTrinhGiamGiaController extends Controller
             'MoTa' => 'required',
             'MaSanPham' => 'required|array',
             'PhanTramGiam' => 'required',
+            'ThoiGianKetThuc' => ['required','date','after:ThoiGianBatDau'],
             'ThoiGianBatDau' => [
                 'required',
                 'date',
                 'after_or_equal:today',
                 new KiemTraTGCTGG($request->ThoiGianBatDau, $request->ThoiGianKetThuc, $request->MaCTGG)],
-            'ThoiGianKetThuc' => 'required|date|after:ThoiGianBatDau',
         ], [
             'TenCTGG.required' => "Vui lòng nhập tên chương trình giảm giá.",
             'SlugCTGG.required' => "Vui lòng nhập slug.",
@@ -46,7 +46,9 @@ class ChuongTrinhGiamGiaController extends Controller
             'HinhAnh.required' => 'Vui lòng nhập hình ảnh.',
             'HinhAnh.image' => 'Vui lòng chọn đúng định dạng file hình ảnh',
             'ThoiGianBatDau.required' => "Vui lòng chọn thời gian bắt đầu chương trình giảm giá có hiệu lực.",
-            'ThoiGianKetThuc.required' => "Vui lòng chọn thời gian kết thúc chương trình giảm giá."
+            'ThoiGianBatDau.after_or_equal' => 'Thời gian bắt đầu phải ít nhất bắt đầu từ hôm nay.',
+            'ThoiGianKetThuc.required' => "Vui lòng chọn thời gian kết thúc chương trình giảm giá.",
+            'ThoiGianKetThuc.after' => 'Thời gian kết thúc phải sau ngày bắt đầu.',
         ]);
 
         if ($validator->fails()) {
