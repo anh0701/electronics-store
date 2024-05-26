@@ -76,8 +76,7 @@
 
                             <div class="form-group">
                                 <label for="MaSanPham">Sản phẩm:</label>
-                                <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="MaSanPham[]" multiple="multiple"
-                                >
+                                <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="MaSanPham[]" multiple="multiple">
                                 </select>
                             </div>
                             @error('MaSanPham')
