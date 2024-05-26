@@ -3,7 +3,7 @@
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Liệt kê phiếu nhập
+                Liệt kê phiếu xuất
             </div>
             <div class="row w3-res-tb">
                 <div class="col-sm-4">
@@ -21,29 +21,25 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>
-                            <th>Mã phiếu nhập</th>
+                            <th>Mã phiếu xuất</th>
                             <th>Người lập phiếu</th>
-                            <th>Nhà cung cấp</th>
-                            
-                            <th>Tổng tiền</th>
-                            <th>Số tiền nợ</th>
+                            <th>Tổng số lượng xuất</th>
                             <th>Trạng thái</th>
+                            <th>Thời gian lập</th>
+
                             <th style="width:100px">Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $pn)
-                            <tr class="row-clickable" data-id="{{ $pn->MaPhieuNhap }}">
-                                <td>{{ $pn->MaPhieuNhap }}</td>
-                                <td>{{ $pn->TenTaiKhoan }}</td>
-                                <td>{{ $pn->TenNhaCungCap }}</td>
-                                
-                                <td>{{ $pn->TongTien }}</td>
-                                <td>{{ $pn->TienNo }}</td>
+                        @foreach ($data as $i)
+                            <tr>
+                                <td>{{ $i->MaPhieuXuat }}</td>
+                                <td>{{ $i->TenTaiKhoan }}</td>
+                                <td>{{ $i->TongSoLuong }}</td>
                                 @php 
-                                    if($pn->TrangThai == 0){
+                                    if($i->TrangThai == 0){
                                         $trangthai = "Chưa xác nhận";
-                                    }elseif($pn->TrangThai == 1){
+                                    }elseif($i->TrangThai == 1){
                                         $trangthai = "Đã xác nhận";
                                     }else{
                                         $trangthai = "";
@@ -51,13 +47,15 @@
 
                                 @endphp 
                                 <td>{{ $trangthai }}</td>
+                                <td>{{ $i->ThoiGianTao }}</td>
+
                                 <td>
-                                    <a href="{{ route('xemCTPN', ['id' => $pn->MaPhieuNhap]) }}">
+                                    <a href="{{ route('xemCT', ['id' => $i->MaPhieuXuat]) }}">
                                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                    @if ($pn->TrangThai == 0)
-                                        <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                    <a href="{{ route('suaPX', ['id' => $i->MaPhieuXuat]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    @if ($i->TrangThai == 0)
+                                        <a onclick="return confirm('Bạn có muốn xóa phiếu xuất {{ $i->MaPhieuXuat }} không?')" href="{{ route('xoaPX', [$i->MaPhieuXuat]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
                                     @endif
                                 </td>
                             </tr>

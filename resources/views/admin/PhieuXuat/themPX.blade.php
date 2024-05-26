@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Lập phiếu nhập 
+                Lập phiếu xuất 
             </header>
             @php
                 $user = Session::get('user');
@@ -13,68 +13,52 @@
                 <div class="position-center">
                 <div id="responseMessage"></div>
 
-                <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapPN') }}" method="POST">
+                <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapPX') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="">Mã phiếu</label>
-                        <input type="text" class="form-control" name="maPhieu" value="{{ $maPN }}" readonly>
+                        <input type="text" class="form-control" name="maPhieu" value="{{ $maPX }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="">Người lập phiếu</label>
                         <input type="text" class="form-control" name="nguoiLap" value="{{ $user['TenTaiKhoan'] }}" readonly>
                     </div>
+
                     <div class="form-group">
-                        <label for="">Nhà cung cấp</label>
-                        <select class="form-control input-lg m-bot15" id="maNCC" name="maNCC">
-                            <option value="">Chọn một nhà cung cấp</option>
-                            @foreach($listNCC as $ncc)
-                                <option value="{{ $ncc->MaNhaCungCap }}">{{ $ncc->TenNhaCungCap }}</option>
-                            @endforeach
-                        </select>
+                        <label for="">Tổng số lượng</label>
+                        <input type="text" class="form-control" name="tongSoLuong" value="0" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="">Tổng tiền</label>
-                        <input type="text" class="form-control" name="tongTien" value="0" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Phương thức thanh toán</label>
-                        <select name="thanhToan" class="form-control input-lg m-bot15">
-                            <option value="0">Chuyển khoản</option>
-                            <option value="1">Tiền mặt</option>
-                            <option value="2">Khác</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-info update-btn">Lập phiếu nhập</button>
+
+                    <button type="submit" class="btn btn-info update-btn">Lập phiếu xuất</button>
                 </form>
 
                 <div id="responseMessageCT"></div>
 
-                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPXCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="">Mã phiếu nhập:</label>
-                        <input type="text" class="form-control" name="maPN" value="{{$maPN}}" readonly>
+                        <label for="">Mã phiếu xuất:</label>
+                        <input type="text" class="form-control" name="maPX" value="{{$maPX}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MaSanPham">Sản phẩm:</label>
+                        <label for="MaSanPham">Sản phẩm</label>
                         <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
                     </div>
-
+                    @error('maSP')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="form-group">
                         <label for="">Số lượng</label>
                         <input type="number" class="form-control" name="soLuong" >
                     </div>
-
-                    <div class="form-group">
-                        <label for="">Giá sản phẩm</label>
-                        <input type="number" class="form-control" name="gia" >
-                    </div>
-
+                    @error('soLuong')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                 </form>
                 <div id="control" style="display:none; margin:5px;">
-                    <a href="{{ route('luuPN', ['id' => $maPN]) }}"><button class="btn btn-info">Lưu</button></a>
-                    <a href="{{ route('xoaPN', ['id' => $maPN]) }}"><button class="btn btn-info">Hủy</button></a>
+                    <a href="{{ route('luuPX', ['id' => $maPX]) }}"><button class="btn btn-info">Lưu</button></a>
+                    <a href="{{ route('xoaPX', ['id' => $maPX]) }}"><button class="btn btn-info">Hủy</button></a>
                 </div>
                 
                 <div class="table-responsive">
@@ -85,8 +69,6 @@
                                         <th>Mã phiếu nhập</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
-                                        <th>Giá sản phẩm</th>
-                                        <th>Thành tiền</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -144,11 +126,9 @@ $(document).ready(function() {
                     
                     var newRow = `
                         <tr>
-                            <td>${data.maPN}</td>
+                            <td>${data.maPX}</td>
                             <td>${data.maSP}</td>
                             <td>${data.soLuong}</td>
-                            <td>${data.gia}</td>
-                            <td>${data.soLuong * data.gia}</td>
                         </tr>
                     `;
 
@@ -163,7 +143,7 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessageCT').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!').css('color', 'red');
+                $('#responseMessageCT').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!' + error).css('color', 'red');
             }
         });
     });
