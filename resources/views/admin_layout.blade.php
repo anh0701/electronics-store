@@ -101,8 +101,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý nhà cung cấp</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a></li>
               <li><a href="{{ route('themNCC') }}">Thêm nhà cung cấp</a></li>
+              <li><a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a></li>
+              
             </ul>
           </li>
           <li class="sub-menu">
@@ -111,8 +112,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý phiếu nhập</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>
-              <li><a href="{{ route('lapPN') }}">Thêm phiếu nhập</a></li>
+              <li><a href="{{ route('lapPN') }}">Lập phiếu nhập</a></li>
+              <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>             
             </ul>
           </li>
           <li class="sub-menu">
@@ -121,8 +122,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý phiếu xuất</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
               <li><a href="{{ route('taoPX') }}">Lập phiếu xuất</a></li>
+              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
+              
             </ul>
           </li>
           <li class="sub-menu">

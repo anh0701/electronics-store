@@ -49,14 +49,14 @@
 
                 <div id="responseMessageCT"></div>
 
-                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" >
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="">Mã phiếu nhập:</label>
+                        <label for="">Mã phiếu nhập</label>
                         <input type="text" class="form-control" name="maPN" value="{{$maPN}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MaSanPham">Sản phẩm:</label>
+                        <label for="MaSanPham">Sản phẩm</label>
                         <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
                     </div>
 

@@ -180,11 +180,7 @@ class PhieuXuatController extends Controller
             $tongSL += $i->SoLuong;
         }
         $tgSua = date('Y-m-d H:i:s');
-        PhieuXuat::where('MaPhieuXuat', $maPX)->update([
-            'TongSoLuong' => $tongSL,
-            'TrangThai' => $request->trangThai,
-            'ThoiGianSua' => $tgSua,
-        ]);
+        
         $trangThai1 = $request->trangThaiTruoc;
         $trangThai2 = $request->trangThai;
         if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
@@ -194,6 +190,9 @@ class PhieuXuatController extends Controller
                 $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
                 $sl = $sltk[0]->SoLuongTrongKho - $soLuong;
                 $sl2 = $sltk[0]->SoLuongHienTai - $soLuong;
+                if($sl < 0){
+                    return redirect()->back()->withErrors(['trangThai' => 'Số lượng trong kho không đủ. Mời bạn kiểm tra lại']);
+                }
                 SanPham::where('MaSanPham', $maSP)->update([
                     'SoLuongTrongKho' => $sl,
                     'SoLuongHienTai' => $sl2,
@@ -212,6 +211,12 @@ class PhieuXuatController extends Controller
                 ]);
             }
         }
+
+        PhieuXuat::where('MaPhieuXuat', $maPX)->update([
+            'TongSoLuong' => $tongSL,
+            'TrangThai' => $request->trangThai,
+            'ThoiGianSua' => $tgSua,
+        ]);
         return redirect()->route('xemPX');
     }
 

@@ -49,13 +49,18 @@ class TaiKhoanController extends Controller
                 return redirect('/');
             }
             else{
+                if($taikhoan->TrangThai == 0){
+                    return redirect()->back()->withInput()->withErrors([
+                        'email' => 'Tài khoản đã bị vô hiệu hóa. Mời liên hệ quản trị viên hoặc tạo tài khoản mới',
+                    ]);
+                }
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
                 ]);
                 return redirect('/trang-quan-ly');
             }
-        } else {
+        }else {
             return redirect()->back()->withInput()->withErrors([
                 'email' => 'Email hoặc mật khẩu không đúng.',
             ]);
@@ -104,6 +109,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->MatKhau = $matkhauMoi;
         $taiKhoan->BacNguoiDung = 1;
+        $taiKhoan->TrangThai = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $quyen;
         $taiKhoan->save();
@@ -237,6 +243,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->SoDienThoai = $request->sdt;
         $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->TrangThai = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $request->quyen;
         $taiKhoan->save();
@@ -254,17 +261,22 @@ class TaiKhoanController extends Controller
     public function xuLySuaTK(Request $request){
         $maTK = $request->maTK;
         $quyen = $request->quyen;
+        $trangThai = $request->trangThai;
         $thoiGianSua = date('Y-m-d H:i:s');
         TaiKhoan::where('MaTaiKhoan', $maTK)->update([
             'SoDienThoai' => $request->sdt,
             'Quyen' => $quyen,
+            'TrangThai' => $trangThai,
             'ThoiGianSua' => $thoiGianSua,
         ]);
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được sửa thành công!');
     }
 
     public function xoaTK($id){
-        DB::delete('DELETE FROM tbl_taikhoan WHERE MaTaiKhoan = ?', [$id]);
+        // DB::delete('DELETE FROM tbl_taikhoan WHERE MaTaiKhoan = ?', [$id]);
+        TaiKhoan::where('MaTaiKhoan', $id)->update([
+            'TrangThai' => 0,
+        ]);
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được xóa thành công!');
     }
 

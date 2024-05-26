@@ -37,6 +37,9 @@
                                 <option value="1" {{ $px->TrangThai == '1' ? 'selected' : '' }}>Xác nhận</option>
                             </select>
                         </div>
+                        @error('trangThai')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>

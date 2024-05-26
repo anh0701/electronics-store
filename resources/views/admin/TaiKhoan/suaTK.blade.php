@@ -17,6 +17,11 @@
                         </ul>
                     </div>
                 @endif
+                @php 
+                    $user = session(('user'));
+                    $quyen = $user['Quyen'];
+
+                @endphp 
                 @foreach ($data as $item)
                     <form role="form" id="from" action="{{Route('xuLySuaTK')}}" method="POST">
                         {{ csrf_field() }}
@@ -45,6 +50,13 @@
                                 <option value="Nhân viên kế toán" {{ $item->Quyen === 'Nhân viên kế toán' ? 'selected' : '' }}>Nhân viên kế toán</option>
                                 <option value="Quản trị viên" {{ $item->Quyen === 'Quản trị viên' ? 'selected' : '' }}>Quản trị viên</option>
                                 <option value="Quản trị viên cấp cao" {{ $item->Quyen === 'Quản trị viên cấp cao' ? 'selected' : '' }}>Quản trị viên cấp cao</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
+                            <label for="">Trạng thái</label>
+                            <select name="trangThai" class="form-control input-lg m-bot15">
+                                <option value="0" {{ $item->TrangThai == '0' ? 'selected' : '' }}>Vô hiệu hóa</option>
+                                <option value="1" {{ $item->TrangThai == '1' ? 'selected' : '' }}>Kích hoạt</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-info">Lưu</button>

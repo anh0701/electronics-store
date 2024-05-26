@@ -10,15 +10,15 @@ class NhaCungCapController extends Controller
 {
     //
     public function lietKe(){
-        $user = session('user');
-        $quyen = $user['Quyen'];
-        $limit = 20;
-        $ncc = DB::select("SELECT * FROM tbl_nhacungcap LIMIT ?", [$limit]);
-        if($quyen == "NV" || $quyen == null){
-            return redirect('/');
-        }else{
-            return view('admin.NhaCungCap.lietKeNCC', ['data'=>$ncc]);
-        } 
+        $ncc = DB::table('tbl_nhacungcap')
+                ->join('tbl_phieunhap', 'tbl_nhacungcap.MaNhaCungCap', '=', 'tbl_phieunhap.MaNhaCungCap')
+                ->select('tbl_nhacungcap.*', DB::raw('count(tbl_phieunhap.MaPhieuNhap) as so_luong_phieu_nhap'))
+                ->groupBy('tbl_nhacungcap.MaNhaCungCap')
+                ->orderByDesc('tbl_nhacungcap.TrangThai')
+                ->orderByDesc('so_luong_phieu_nhap')
+                ->paginate(5);
+        return view('admin.NhaCungCap.lietKeNCC', ['data'=>$ncc]);
+        
     }
 
     public function themNCC(Request $request){
@@ -33,6 +33,9 @@ class NhaCungCapController extends Controller
             'email.unique' => 'Email đã được sử dụng.',
             'tennhacungcap.required' => 'Vui lòng nhập tên nhà cung cấp.',
             'tennhacungcap.unique' => 'Tên nhà cung cấp đã được sử dụng.',
+            'sdt.required' => 'Vui lòng nhập số điện thoại',
+            'sdt.digits_between' => 'Số điện thoại có tối đa 15 số',
+            'diachi.required' => 'Vui lòng nhập địa chỉ',
         ];
         $valid = $request->validate([
             'email' => [
@@ -44,6 +47,8 @@ class NhaCungCapController extends Controller
                 'required',
                 Rule::unique('tbl_nhacungcap')->ignore($request->user_id),
             ],
+            'sdt' => 'required|integer|digits_between:1,15',
+            'diachi' => 'required',
         ], $messages);
 
         if (!$valid) {
@@ -60,7 +65,7 @@ class NhaCungCapController extends Controller
         $nhacungcap->DiaChi = $request->diachi;
         $nhacungcap->SoDienThoai = $request->sdt;
         $nhacungcap->Email = $request->email;
-        $nhacungcap->ThoiHanHopDong = $request->thoihanhopdong;
+        $nhacungcap->TrangThai = 1;
         $nhacungcap->ThoiGianTao = $thoiGianTao;
         $nhacungcap->save();
 
@@ -85,8 +90,11 @@ class NhaCungCapController extends Controller
             'email.required' => 'Vui lòng nhập địa chỉ email.',
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'email.unique' => 'Địa chỉ email đã được sử dụng.',
-            'tennhacungcap.required' => 'Vui lòng nhập tên tài khoản.',
-            'tennhacungcap.unique' => 'Ten tai khoan đã được sử dụng.',
+            'tennhacungcap.required' => 'Vui lòng nhập tên nhà cung cấp.',
+            'tennhacungcap.unique' => 'Tên nhà cung cấp đã được sử dụng.',
+            'sdt.required' => 'Vui lòng nhập số điện thoại',
+            'sdt.digits_between' => 'Số điện thoại có tối đa 15 số',
+            'diachi.required' => 'Vui lòng nhập địa chỉ',
         ];
         $valid = $request->validate([
             'email' => [
@@ -98,6 +106,8 @@ class NhaCungCapController extends Controller
                 'required',
                 Rule::unique('tbl_nhacungcap')->ignore($request->maNCC, 'MaNhaCungCap'),
             ],
+            'sdt' => 'required|digits_between:1,15',
+            'diachi' => 'required',
         ], $messages);
         
         $valid = $request->all();
@@ -106,7 +116,7 @@ class NhaCungCapController extends Controller
         $email = $request->email;
         $sdt = $request->sdt;
         $diachi = $request->diachi;
-        $thoihanHD = $request->thoihanhopdong;
+        $trangThai = $request->trangThai;
         $thoigiansua = date('Y-m-d H:i:s');
 
         NhaCungCap::where('MaNhaCungCap', $maNCC)->update([
@@ -114,14 +124,17 @@ class NhaCungCapController extends Controller
             'DiaChi' => $diachi,
             'SoDienThoai' => $sdt,
             'Email' => $email,
-            'ThoiHanHopDong' => $thoihanHD,
+            'TrangThai' => $trangThai,
             'ThoiGianSua' => $thoigiansua,        
         ]);
         return redirect('/liet-ke-nha-cung-cap')->with('success', 'Nha cung cap đã được sửa thành công!');
     }
 
     public function xoaNCC($id){
-        DB::delete('DELETE FROM tbl_nhacungcap WHERE MaNhaCungCap = ?', [$id]);
+        // DB::delete('DELETE FROM tbl_nhacungcap WHERE MaNhaCungCap = ?', [$id]);
+        NhaCungCap::where('MaNhaCungCap', $id)->update([
+            'TrangThai' => 0,
+        ]);
         return redirect('/liet-ke-nha-cung-cap')->with('Success', 'Xoa nha cung cap thanh cong');
     }
 
@@ -145,7 +158,6 @@ class NhaCungCapController extends Controller
                         OR DiaChi LIKE '%$keyword%' 
                         OR SoDienThoai LIKE '%$keyword%' 
                         OR Email LIKE '%$keyword%' 
-                        OR ThoiHanHopDong LIKE '%$keyword%' 
                         OR ThoiGianTao LIKE '%$keyword%' 
                         OR ThoiGianSua LIKE '%$keyword%')";
         }

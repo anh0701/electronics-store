@@ -57,7 +57,7 @@ class PhieuNhapController extends Controller
 
     public function lapPN(){
         $maPN = 'PN' . date('YmdHis');
-        $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap");
+        $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap WHERE TrangThai = 1");
         $products = SanPham::all();
         return view('admin.PhieuNhap.themPN', ['listNCC' => $listNCC, 'maPN' => $maPN], compact('products'));
     }
