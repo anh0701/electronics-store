@@ -103,6 +103,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->Email = $request->email;
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->BacNguoiDung = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $quyen;
         $taiKhoan->save();

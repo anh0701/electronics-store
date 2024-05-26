@@ -117,7 +117,7 @@ class PhieuXuatController extends Controller
         $soLuong = $request->soLuong;
         $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
         if($soLuong > $sl[0]->SoLuongTrongKho){
-            return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng trong kho không đủ']);
+            return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng sản phẩm trong kho không đủ (Số lượng trong kho: ' . $sl[0]->SoLuongTrongKho . ')']);
         }
 
         $maPX = $request->maPXSua;
