@@ -43,14 +43,14 @@
                             @error('MoTa')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-{{--                            <div class="form-group">--}}
-{{--                                <label for="TrangThai">Trạng thái:</label>--}}
-{{--                                <select name="TrangThai" class="form-control input-lg m-bot15">--}}
-{{--                                    <option value="">--Chọn trạng thái--</option>--}}
-{{--                                    <option value="1" {{ old('TrangThai') == '1' ? 'selected' : '' }}>Hiển thị</option>--}}
-{{--                                    <option value="0" {{ old('TrangThai') == '0' ? 'selected' : '' }}>Ẩn</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="form-group">--}}
+                            {{--                                <label for="TrangThai">Trạng thái:</label>--}}
+                            {{--                                <select name="TrangThai" class="form-control input-lg m-bot15">--}}
+                            {{--                                    <option value="">--Chọn trạng thái--</option>--}}
+                            {{--                                    <option value="1" {{ old('TrangThai') == '1' ? 'selected' : '' }}>Hiển thị</option>--}}
+                            {{--                                    <option value="0" {{ old('TrangThai') == '0' ? 'selected' : '' }}>Ẩn</option>--}}
+                            {{--                                </select>--}}
+                            {{--                            </div>--}}
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Thời gian có hiệu lực</label>
                                 <input type="datetime-local" class="form-control @error('ThoiGianBatDau') is-invalid @enderror"
@@ -146,3 +146,10 @@
 
 @endsection
 
+@section('js-custom')
+    <script>
+        ClassicEditor .create(document.querySelector('#MoTa')) .catch(error => {
+            console.error(error);
+        });
+    </script>
+@endsection
