@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Session;
 use App\Models\TaiKhoan;
 use App\Models\PhanQuyen;
@@ -131,33 +133,50 @@ class TaiKhoanController extends Controller
 
     public function xuLyCNTK(Request $request){
         $messages = [
-            'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
-            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+            'HinhAnh.image' => "Vui lòng chọn đúng file hình ảnh."
         ];
-        $valid = $request->validate([
-            'tentaikhoan' => [
-                'required',
-                Rule::unique('tbl_taikhoan')->ignore($request->maTK, 'MaTaiKhoan'),
-            ],
-            'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
+        $valid = Validator::make ( $request->all() ,[
+            'HinhAnh' => ['nullable','image','mimes:jpeg,png,jpg,gif|max:2048'], // Giới hạn kích thước và loại hình ảnh
         ], $messages);
-        
-        $valid = $request->all();
-        $maTK = $request->maTK;
-        $tenTK = $request->tentaikhoan;
-        $thoiGianSua = date('Y-m-d H:i:s');
-        $sdt = $request->sdt;
-        $quyen = $request->quyen;
 
-        TaiKhoan::where('MaTaiKhoan', $maTK)->update([
-            'TenTaiKhoan' => $tenTK,
+        if ($valid->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors($valid->errors());
+        }
+        // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
+        if ($request->hasFile('HinhAnh')) {
+            $hinhanh = $request->file('HinhAnh');
+            $tenHinhAnh = time() . '.' . $hinhanh->getClientOriginalExtension();
+            $duongDan = public_path('upload/Profile');
+            $hinhanh->move($duongDan, $tenHinhAnh);
+            $duongDanHinhAnh = 'upload/Profile/' . $tenHinhAnh;
+        } else {
+            $duongDanHinhAnh = ''; // Nếu không có hình ảnh được tải lên
+        }
+
+        $valid = $request->all();
+        $tenTK = session(('user'))['TenTaiKhoan'];
+        $thoiGianSua = Carbon::now();
+        $sdt = $request->SoDienThoai;
+        $tenNguoiDung = $request->TenNguoiDung;
+        $email = $request->Email;
+        $diaChi = $request->DiaChi;
+        $hinhAnh = $duongDanHinhAnh;
+
+        TaiKhoan::where('TenTaiKhoan', $tenTK)->update([
+            'TenNguoiDung' => $tenNguoiDung,
+            'Email' => $email,
+            'DiaChi' => $diaChi,
             'SoDienThoai' => $sdt,
             'ThoiGianSua' => $thoiGianSua,
+            'HinhAnh' => $hinhAnh
         ]);
+
 
         $request->session()->put('user', [
             'TenTaiKhoan' => $tenTK,
-            'Quyen' => $quyen,
+            'Quyen' => $request->quyen
         ]);
 
         return redirect('/')->with('success', 'Tài khoản đã được sửa thành công!');
@@ -168,7 +187,7 @@ class TaiKhoanController extends Controller
         return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
     }
 
-    
+
 
     public function taoTK(){
         return view('admin.TaiKhoan.taoTK');
@@ -279,11 +298,11 @@ class TaiKhoanController extends Controller
         }
 
         if (!empty($keyword)) {
-            $query .= " AND (TenTaiKhoan LIKE '%$keyword%' 
-                        OR Email LIKE '%$keyword%' 
-                        OR SoDienThoai LIKE '%$keyword%' 
-                        OR Email LIKE '%$keyword%' 
-                        OR ThoiGianTao LIKE '%$keyword%' 
+            $query .= " AND (TenTaiKhoan LIKE '%$keyword%'
+                        OR Email LIKE '%$keyword%'
+                        OR SoDienThoai LIKE '%$keyword%'
+                        OR Email LIKE '%$keyword%'
+                        OR ThoiGianTao LIKE '%$keyword%'
                         -- OR ThoiGianSua LIKE '%$keyword%'
                         )";
         }

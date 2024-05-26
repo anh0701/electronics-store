@@ -86,8 +86,8 @@ Route::get('/quen-mat-khau', [QuenMatKhau::class, 'indexQMK'])->name('indexQMK')
 Route::post('/xac-thuc-pin', [QuenMatKhau::class, 'xacThucPin'])->name('xacThucPin');
 Route::get('/xac-thuc-pin', [QuenMatKhau::class, 'indexXTPin'])->name('indexXTPin');
 Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->name('timkiemTK');
-Route::get('/cap-nhat-tai-khoan', [TaiKhoanController::class, 'capNhatTK'])->name('capNhatTK');
-Route::post('/xuLyCapNhatTK', [TaiKhoanController::class, 'xuLyCNTK'])->name('xuLyCapNhatTK');
+//Route::get('/cap-nhat-tai-khoan', [TaiKhoanController::class, 'capNhatTK'])->name('capNhatTK');
+//Route::post('/xuLyCapNhatTK', [TaiKhoanController::class, 'xuLyCNTK'])->name('xuLyCapNhatTK');
 
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');
 // Route::get('/TrangLietKeTaiKhoan', [TaiKhoanController::class, 'TrangLietKeTaiKhoan'])->name('/TrangLietKeTaiKhoan');
@@ -166,7 +166,8 @@ Route::get('/HienThiDanhMucCon/{MaDanhMuc}', [HomeController::class, 'HienThiDan
 Route::get('/ChiTietSanPham/{MaSanPham}', [HomeController::class, 'ChiTietSanPham'])->name('/ChiTietSanPham');
 Route::get('/TimKiem', [HomeController::class, 'TimKiem'])->name('/TimKiem');
 Route::get('/ThanhToan', [HomeController::class, 'ThanhToan'])->name('/ThanhToan');
-Route::get('/UserProfile', [HomeController::class, 'UserProfile'])->name('/UserProfile');
+Route::get('/thong-tin-tai-khoan', [HomeController::class, 'thongTinTaiKhoan'])->name('/thong-tin-tai-khoan');
+Route::post('/thong-tin-tai-khoan', [TaiKhoanController::class, 'xuLyCNTK'])->name('/thongTinTaiKhoan');
 Route::get('/TrangKhachHangDangNhap', [HomeController::class, 'TrangKhachHangDangNhap'])->name('/TrangKhachHangDangNhap');
 Route::post('/KhachHangDangNhap', [HomeController::class, 'KhachHangDangNhap'])->name('/KhachHangDangNhap');
 Route::get('/KhachHangDangXuat', [HomeController::class, 'KhachHangDangXuat'])->name('/KhachHangDangXuat');
