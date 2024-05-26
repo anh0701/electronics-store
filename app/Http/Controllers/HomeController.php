@@ -85,6 +85,7 @@ class HomeController extends Controller
         if ($user && isset($user['TenTaiKhoan'])) {
             $TenTaiKhoan = $user['TenTaiKhoan'];
             $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
+//            dd($tk[0]->BacNguoiDung);
             $phieuGiamGia = PhieuGiamGia::where('BacNguoiDung', $tk[0]->BacNguoiDung)->orderBy('ThoiGianBatDau', 'DESC')->paginate('4');
         }
 //        dd($phieuGiamGia);
