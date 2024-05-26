@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" name="maPX" value="{{$maPX}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MaSanPham">Sản phẩm:</label>
+                        <label for="MaSanPham">Sản phẩm</label>
                         <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
                     </div>
                     @error('maSP')

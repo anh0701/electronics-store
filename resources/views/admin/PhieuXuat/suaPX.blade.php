@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Cập nhật phiếu nhập 
+                Cập nhật phiếu xuất 
             </header>
             <div class="panel-body">
                 <div class="position-center">
@@ -48,7 +48,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="MaSanPham">Sản phẩm:</label>
+                            <label for="MaSanPham">Sản phẩm</label>
                             <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
                             >
                             </select>
