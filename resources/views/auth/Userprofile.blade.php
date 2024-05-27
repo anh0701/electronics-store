@@ -11,7 +11,7 @@
                                 <img id="profile-image-preview" style="margin: 5% auto" src="{{$tk[0]->HinhAnh ? asset($tk[0]->HinhAnh): asset('upload/avatar-default.jpg')}}" class="rounded-circle" width="150" alt="Ảnh đại diện">
                                 <input type="file" class="form-control @error('HinhAnh') is-invalid @enderror" style="color: black; margin: 5% auto" name="HinhAnh" id="HinhAnh" onchange="previewImage(event)">
                                 @error('HinhAnh')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -19,7 +19,7 @@
                     <div class="col-lg-1 col-md-0"></div>
                     <div class="col-lg-7 col-md-6">
                         <div class="card mb-3 content">
-                            <h1 class="m-3 pt-3">Thông tin cá nhân</h1>
+                            <h1 class="m-3">Thông tin cá nhân</h1>
                             <div class="card-body">
                                 <hr>
                                 <div class="row mb-3">
@@ -29,7 +29,7 @@
                                     <div class="col-md-9 text-secondary">
                                         <input type="text" class="form-control @error('TenNguoiDung') is-invalid @enderror" name="TenNguoiDung" id="TenNguoiDung" value="{{old('TenNguoiDung', $tk[0] -> TenNguoiDung)}}">
                                         @error('TenNguoiDung')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                     <div class="col-md-9 text-secondary">
                                         <input type="email" class="form-control @error('Email') is-invalid @enderror" name="Email" id="Email" value="{{old('Email', $tk[0]->Email)}}">
                                         @error('Email')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -52,8 +52,9 @@
                                     </div>
                                     <div class="col-md-9 text-secondary">
                                         <input type="text" class="form-control @error('SoDienThoai') is-invalid @enderror" name="SoDienThoai" id="SoDienThoai" value="{{old('SoDienThoai', $tk[0]->SoDienThoai)}}">
+
                                         @error('SoDienThoai')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -65,7 +66,7 @@
                                     <div class="col-md-9 text-secondary">
                                         <input type="text" class="form-control @error('DiaChi') is-invalid @enderror" name="DiaChi" id="DiaChi" value="{{old('DiaChi', $tk[0]->DiaChi)}}">
                                         @error('DiaChi')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -179,5 +180,14 @@
             background-color: #ccc;
         }
 
+        .mt-2 {
+            margin-top: 0.5rem; /* Adjust the margin-top as needed */
+            margin-bottom: 0;
+        }
+
+        .small-alert {
+            padding: 0.5rem 0.5rem; /* Adjust the padding to make the alert smaller */
+            font-size: 1.25rem; /* Adjust the font size */
+        }
     </style>
 @endsection
