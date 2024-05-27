@@ -588,6 +588,7 @@ CREATE TABLE `tbl_phieugiamgia` (
   `TenMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `SlugMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `DonViTinh` int NOT NULL,
+  `TrangThai` int NOT NULL DEFAULT 1,
   `BacNguoiDung` int NOT NULL,
   `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaCode` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
