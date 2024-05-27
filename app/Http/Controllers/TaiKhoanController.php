@@ -134,9 +134,11 @@ class TaiKhoanController extends Controller
 
     public function xuLyCNTK(Request $request){
         $messages = [
-            'HinhAnh.image' => "Vui lòng chọn đúng file hình ảnh."
+            'HinhAnh.image' => "Vui lòng chọn đúng file hình ảnh.",
+            'SoDienThoai.regex' => 'Định dạng số điện thoại không hợp lệ.',
         ];
         $valid = Validator::make ( $request->all() ,[
+            'SoDienThoai' =>['regex:/^(\+84|0)[0-9]{9,10}$/'],
             'HinhAnh' => ['nullable','image','mimes:jpeg,png,jpg,gif|max:2048'], // Giới hạn kích thước và loại hình ảnh
         ], $messages);
 
@@ -180,7 +182,7 @@ class TaiKhoanController extends Controller
             'Quyen' => $request->quyen
         ]);
 
-        return redirect('/')->with('success', 'Tài khoản đã được sửa thành công!');
+        return redirect('/thong-tin-tai-khoan')->with('success', 'Tài khoản đã được sửa thành công!');
     }
 
     public function dangXuat(){
@@ -244,7 +246,7 @@ class TaiKhoanController extends Controller
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được tạo thành công!');
     }
 
-    
+
 
     public function suaTK($id){
         $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = '{$id}' LIMIT 1");
