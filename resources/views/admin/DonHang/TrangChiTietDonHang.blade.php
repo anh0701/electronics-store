@@ -27,6 +27,7 @@
               <th>Địa chỉ</th>
               <th>Số điện thoại</th>
               <th>Ghi chú</th>
+              <th>Quản lý</th>
             </tr>
           </thead>
           <tbody>
@@ -37,6 +38,11 @@
               <td>{{ $allDonHang->GiaoHang->DiaChi }}</td>
               <td>{{ $allDonHang->GiaoHang->SoDienThoai }}</td>
               <td>{{ $allDonHang->GiaoHang->GhiChu ?? 'Không có ghi chú nào' }}</td>
+              <td>
+                <a href="{{ route('/TrangSuaThongTinGiaoHang', [$allDonHang->GiaoHang->MaGiaoHang, $allDonHang->order_code]) }}">
+                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green; margin-bottom: 15px" class="fa fa-pencil-square-o text-success text-active"></i>
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -78,15 +84,15 @@
                 @endif
                 <td>{{ $allDonHang->PhieuGiamGia->MaCode }}</td>
                 <td>
-                  <a onclick="return confirm('Bạn có muốn xóa phiếu giảm giá thuộc đơn hàng này không?')" href="{{ route('/') }}">
+                  <a onclick="return confirm('Bạn có muốn xóa phiếu giảm giá thuộc đơn hàng này không?')" href="{{ route('/XoaPhieuGiamGiaThuocDonHang', [$allDonHang->MaDonHang, $allDonHang->MaGiamGia]) }}">
                     <i style="font-size: 28px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                   </a>
                 </td>
               </tr>
             </tbody>
-          @elseif ($allDonHang->MaGiamGia == 0)
+          @elseif ($allDonHang->MaGiamGia == '')
             <tr>
-              <td colspan="4">Không dùng mã giảm giá trong đơn hàng này</td>
+              <td colspan="5">Không dùng mã giảm giá trong đơn hàng này</td>
             </tr>       
           @endif
         </table>
@@ -110,8 +116,6 @@
             <tr>
               <th>STT</th>
               <th>Tên sản phẩm</th>
-              <th>Loại sản phẩm</th>
-              <th>Thương hiệu</th>
               <th>Hình ảnh</th>
               <th>Số lượng</th>
               <th>Giá sản phẩm</th>
@@ -126,20 +130,24 @@
             <tr>
               <td>{{ $key+1 }}</td>
               <td>{{ $value->SanPham->TenSanPham }}</td>
-              <td>{{ $value->SanPham->DanhMuc->TenDanhMuc }}</td>
-              <td>{{ $value->SanPham->ThuongHieu->TenThuongHieu }}</td>
               <td><img src="{{ asset('upload/sanPham/'.$value->SanPham->HinhAnh) }}" height="100px" width="150px"></td>
-              <td><input type="number" size="5" min="1" value="{{ $value->SoLuong }}" name="product_sales_quantity"></td>
+              <td>
+                <form action="{{ route('/SuaSoLuongSanPham', [$value->MaCTDH, $value->order_code]) }}" method="POST">
+                  {{ csrf_field() }}
+                  <input type="number" min="1" {{ $allDonHang->TrangThai!=1 ? 'disabled' : ''  }} value="{{ $value->SoLuong }}" name="SoLuongSanPham">
+                  <button type="submit" class="btn btn-default">Cập nhật</button>
+                </form>
+              </td>
               <td>{{ number_format($value->GiaSanPham, 0, '', '.') }} đ</td>
               <td>
-                <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->SanPham->TenSanPham }} thuộc đơn hàng này không?')" href="{{ route('/XoaChiTietDonHang', [$value->MaCTDH]) }}">
+                <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->SanPham->TenSanPham }} thuộc đơn hàng này không?')" href="{{ route('/XoaChiTietDonHang', [$value->MaCTDH, $value->order_code]) }}">
                   <i style="font-size: 28px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                 </a>
               </td>
             </tr>
             @endforeach
             <tr>
-              <td colspan="7">
+              <td colspan="8">
                 Tiền giỏ hàng: {{ number_format($total, 0,',','.').'đ' }}<br>         
                 Phí ship: {{ number_format($allDonHang->GiaoHang->TienGiaoHang, 0,',','.').'đ' }}<br>
                 @php
@@ -163,6 +171,59 @@
                   @endphp
                 @endif
                 Thanh toán: {{ number_format($total_after, 0,',','.').'đ' }}<br>           
+              </td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                @if ($allDonHang->TrangThai == 1)
+                <form method="POST" action="{{ route('/SuaTrangThaiDonHang', [$allDonHang->MaDonHang, $allDonHang->order_code]) }}">
+                  {{ csrf_field() }}
+                  <select class="form-control ThayDoiTrangThaiDonHang" name="TrangThaiDonHang" >
+                    <option value="">--Chọn hình thức đơn hàng--</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="1" selected>Đơn hàng vừa được tạo</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="2">Nhân viên giao hàng lấy đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="3">Khách hàng thanh toán đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="4">Khách hàng không nhận đơn hàng</option>
+                  </select>
+                  <button type="submit" style="margin-top: 10px" name="SuaTrangThaiDonHang" class="btn btn-info">Cập nhật trạng thái đơn hàng</button>
+                </form>
+                @elseif($allDonHang->TrangThai == 2)
+                <form method="POST" action="{{ route('/SuaTrangThaiDonHang', [$allDonHang->MaDonHang, $allDonHang->order_code]) }}">
+                  {{ csrf_field() }}
+                  <select class="form-control order_details" name="TrangThaiDonHang" >
+                    <option value="">--Chọn hình thức đơn hàng--</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="1">Đơn hàng vừa được tạo</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="2" selected>Nhân viên giao hàng lấy đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="3">Khách hàng thanh toán đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="4">Khách hàng không nhận đơn hàng</option>
+                  </select>
+                  <button type="submit" name="SuaTrangThaiDonHang" style="margin-top: 10px" class="btn btn-info">Cập nhật trạng thái đơn hàng</button>
+                </form>
+                @elseif($allDonHang->TrangThai == 3)
+                <form>
+                  {{ csrf_field() }}
+                  <select class="form-control order_details" name="TrangThaiDonHang" >
+                    <option value="">--Chọn hình thức đơn hàng--</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="1">Đơn hàng vừa được tạo - chưa xử lý</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="2">Nhân viên giao hàng lấy đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="3" selected>Khách hàng thanh toán đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="4">Khách hàng không nhận đơn hàng</option>
+                  </select>
+                  <button type="submit" style="margin-top: 10px" disabled name="SuaTrangThaiDonHang" class="btn btn-info">Cập nhật trạng thái đơn hàng</button>
+                </form>
+                @elseif($allDonHang->TrangThai == 4)
+                <form>
+                  {{ csrf_field() }}
+                  <select class="form-control order_details" name="TrangThaiDonHang" >
+                    <option value="TrangThaiDonHang">--Chọn hình thức đơn hàng--</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="1">Đơn hàng vừa được tạo - chưa xử lý</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="2">Nhân viên giao hàng lấy đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="3">Khách hàng thanh toán đơn hàng</option>
+                    <option id="{{ $allDonHang->MaDonHang }}" value="4" selected>Khách hàng không nhận đơn hàng</option>
+                  </select>
+                  <button type="submit" style="margin-top: 10px" disabled name="SuaTrangThaiDonHang" class="btn btn-info">Cập nhật trạng thái đơn hàng</button>
+                </form>
+                @endif
               </td>
             </tr>
           </tbody>

@@ -101,17 +101,17 @@
         <div class="category-tab shop-details-tab"><!--category-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
-                    <li><a href="#details" data-toggle="tab">Thông tin sản phẩm</a></li>
+                    <li class="active" ><a href="#details" data-toggle="tab">Thông tin sản phẩm</a></li>
                     <li><a href="#companyprofile" data-toggle="tab">Sản phẩm liên quan</a></li>
                     <li><a href="#tag" data-toggle="tab">Thông số kỹ thuật</a></li>
-                    <li  class="active"><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
+                    <li><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
                 </ul>
             </div>
             <div class="tab-content">
-                <div class="tab-pane fade" id="details" >
+                <div class="tab-pane fade active in" id="details" >
                     <div class="col-sm-12">
-                        <span>
-                            <span>{{ $chiTietSanPham->MoTa }}</span>
+                        <span class="container">
+                            {!! $chiTietSanPham->MoTa !!}
                         </span>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade active in" id="reviews" >
+                <div class="tab-pane fade" id="reviews" >
                     <div class="col-sm-12">
                         <ul>
                             @if (Session('user'))

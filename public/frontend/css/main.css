@@ -2122,11 +2122,15 @@ h2.title {
 .single-blog-post > a {
 }
 
+.single-blog-post{
+  margin-bottom: 15px;
+}
+
 .blog-post-area 
 .single-blog-post a img {
   border: 1px solid #F7F7F0;
   width: 100%;
-  margin-bottom: 30px
+  margin-bottom: 10px
 }
 
 .blog-post-area  
@@ -2203,7 +2207,7 @@ h2.title {
   border: medium none;
   border-radius: 0;
   color: #FFFFFF;
-  margin-top: 17px;
+  margin-bottom: 15px;
 }
 
 

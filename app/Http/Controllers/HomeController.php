@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use App\Models\SanPham;
 use App\Models\DanhMuc;
+use App\Models\BaiViet;
+use App\Models\DanhMucBaiViet;
 use App\Models\ThuongHieu;
 use App\Models\TaiKhoan;
 use App\Models\PhanQuyen;
@@ -166,5 +168,24 @@ class HomeController extends Controller
         Session::put('MaTaiKhoan', null);
         Session::put('isAdmin', null);
         return Redirect::to('/');
+    }
+
+    public function HienThiBaiViet(){
+        $allBaiViet = BaiViet::orderBy('MaBaiViet', 'DESC')->orderBy('MaDanhMucBV', 'DESC')->paginate(15);
+        $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->where('TrangThai', '1')->get();
+        return view('pages.BaiViet.BaiViet')->with(compact('allBaiViet', 'allDanhMucBV'));
+    }
+
+    public function HienThiBaiVietTheoDMBV($MaDanhMucBV){
+        $allBaiViet = BaiViet::orderBy('MaBaiViet', 'DESC')->orderBy('MaDanhMucBV', 'DESC')->where('MaDanhMucBV', $MaDanhMucBV)
+        ->where('TrangThai', 1)->paginate(15);
+        $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->where('TrangThai', '1')->get();
+        return view('pages.BaiViet.HienThiBaiVietTheoDMBV')->with(compact('allBaiViet', 'allDanhMucBV'));
+    }
+
+    public function ChiTietBaiViet($MaBaiViet){
+        $baiViet = BaiViet::where('MaBaiViet', $MaBaiViet)->first();
+        $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->where('TrangThai', '1')->get();
+        return view('pages.BaiViet.ChiTietBaiViet')->with(compact('baiViet', 'allDanhMucBV'));
     }
 }

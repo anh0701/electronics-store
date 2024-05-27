@@ -255,9 +255,10 @@ class GioHangController extends Controller
             $donHang->MaGiaoHang = $MaGiaoHang;
             $donHang->order_code = $thanhToan_code;
             if(Empty($phieuGiamGiaSession)){
-                $donHang->MaGiamGia = 0;
+                $donHang->MaGiamGia = null;
             }else{
                 $donHang->MaGiamGia = $phieuGiamGiaSession['MaGiamGia'];
+                
             }
             $donHang->TrangThai = 1;
             date_default_timezone_set('Asia/Ho_Chi_Minh');

@@ -223,6 +223,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li><a href="{{ Route('/TrangLietKeDanhGia') }}">Liệt kê đánh giá sản phẩm</a></li>
             </ul>
           </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-paperclip"></i>
+              <span>Quản lý bài viết</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ Route('/TrangLietKeDanhMucBV') }}">Liệt kê danh mục bài viết</a></li>
+              <li><a href="{{ route('/TrangThemDanhMucBV') }}">Thêm danh mục bài viết</a></li>
+              <li><a href="{{ Route('/TrangLietKeBaiViet') }}">Liệt kê bài viết</a></li>
+              <li><a href="{{ route('/TrangThemBaiViet') }}">Thêm bài viết</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -249,6 +261,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
   <script src="{{ asset('backend/js/monthly.js') }}"></script>
+  <script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
   {{-- Chọn địa điểm giao hàng --}}
   <script type="text/javascript">
 		$(document).ready(function(){

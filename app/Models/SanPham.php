@@ -31,5 +31,4 @@ class SanPham extends Model
         return $this->belongsToMany(ChuongTrinhGiamGia::class, 'tbl_chuongtrinhgiamgiasp', 'MaSanPham', 'MaCTGG')
             ->withPivot('PhanTramGiam');
     }
-
 }

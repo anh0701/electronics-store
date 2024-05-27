@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\PhiGiaoHang;
 use App\Models\PhieuGiamGia;
+use App\Models\PhieuGiamGiaNguoiDung;
 use App\Models\DonHang;
 use App\Models\GiaoHang;
 use App\Models\ChiTietDonHang;
@@ -24,11 +25,137 @@ class DonHangController extends Controller
         return view('admin.DonHang.TrangChiTietDonHang')->with(compact('allChiTietDonHang', 'allDonHang'));
     }
 
-    public function XoaChiTietDonHang($MaCTDH){
-        $order_code = ChiTietDonHang::where('MaCTDH', $MaCTDH)->first();
-        
-        $chiTietDonHang = ChiTietDonHang::find($MaCTDH);
-        $chiTietDonHang->delete();
-        return Redirect::to('TrangLietKeDonHang')->with('status', 'Xóa chi tiết đơn hàng thành công');
+    public function XoaChiTietDonHang($MaCTDH, $order_code){
+        $chiTietDonHang = ChiTietDonHang::orderBy('MaCTDH', 'DESC')->get();
+        $count = 0;
+        foreach($chiTietDonHang as $key => $valueCTDH){
+            if($valueCTDH->order_code == $order_code){
+                $count++;
+            }
+        }
+        if($count == 1){
+            return redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Hiện tại đơn hàng còn 1 sản phẩm nếu xóa đi đơn hàng sẽ trống!!!');
+        }else{
+            $deleteValue = ChiTietDonHang::find($MaCTDH);
+            $deleteValue->delete();
+            return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Xóa chi tiết đơn hàng thành công');
+        }
+    }
+
+    public function XoaPhieuGiamGiaThuocDonHang($MaDonHang, $MaGiamGia){
+        $donHang = DonHang::find($MaDonHang);
+        $value = DonHang::where('MaDonHang', $MaDonHang)->first();
+        $phieuGiamGiaND = PhieuGiamGiaNguoiDung::where('Email', $donHang['Email'])->where('MaGiamGia', $MaGiamGia)->first();
+        $valuePGGND = PhieuGiamGiaNguoiDung::find($phieuGiamGiaND['MaPGGND']);
+        $valuePGGND->SoLuong = $phieuGiamGiaND['SoLuong'] + 1;
+        $valuePGGND->save();
+        $donHang->MaGiamGia = null;
+        $donHang->save();
+        return Redirect()->route('/TrangChiTietDonHang', [$value->order_code])->with('status', 'Xóa phiếu giảm giảm giá '.$valuePGGND->PhieuGiamGia->TenPhieuGiamGia.' thành công');
+    }
+
+    public function TrangSuaThongTinGiaoHang($MaGiaoHang, $order_code){
+        $giaoHang = GiaoHang::where('MaGiaoHang', $MaGiaoHang)->first();
+        return view('admin.DonHang.ThayDoiThongTinGiaoHang')->with(compact('order_code', 'giaoHang'));
+    }    
+
+    public function SuaThongTinGiaoHang($MaGiaoHang, $order_code, Request $request){
+        $data = $request->validate([
+            'TenNguoiNhan' => 'required|',
+            'SoDienThoai' => 'required|',
+            'DiaChi' => 'required',
+            'GhiChu' => '',
+        ],
+        [
+            'TenNguoiNhan.required' => 'Chưa điền tên người nhận',
+            'SoDienThoai.required' => 'Chưa điền Số điện thoại',
+            'DiaChi.required' => 'Chưa điền Địa chỉ giao hàng',
+        ]);
+        $giaoHang = GiaoHang::find($MaGiaoHang);
+        $giaoHang->TenNguoiNhan = $data['TenNguoiNhan'];
+        $giaoHang->SoDienThoai = $data['SoDienThoai'];
+        $giaoHang->DiaChi = $data['DiaChi'];
+        $giaoHang->GhiChu = $data['GhiChu'];
+        $giaoHang->save();
+        return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật thông tin giao hàng thành công');
+    }
+
+    public function XoaDonHang($MaDonHang, $order_code){
+        $donHang = DonHang::find($MaDonHang);
+        $phieuGiamGiaND = PhieuGiamGiaNguoiDung::where('Email', $donHang['Email'])->where('MaGiamGia', $donHang['MaGiamGia'])->first();
+        $chiTietDonHang = ChiTietDonHang::find($order_code);
+        if(Empty($phieuGiamGiaND)){
+            $giaoHang = GiaoHang::find($donHang['MaGiaoHang']);
+            $giaoHang->delete();
+            $chiTietDonHang = ChiTietDonHang::where('order_code', $order_code)->get();
+            foreach($chiTietDonHang as $key => $value){
+                $chiTietDonHang->delete();
+            }
+            $donHang->delete();
+            return Redirect()->route('/TrangLietKeDonHang')->with('status', 'Xóa đơn hàng thành công');
+        }else{
+            $valuePGGND = PhieuGiamGiaNguoiDung::find($phieuGiamGiaND['MaPGGND']);
+            $valuePGGND->SoLuong = $phieuGiamGiaND['SoLuong'] + 1;
+            $valuePGGND->save();
+            $giaoHang = GiaoHang::find($donHang['MaGiaoHang']);
+            $giaoHang->delete();
+            $donHang->delete();
+            $chiTietDonHang = ChiTietDonHang::where('order_code', $order_code)->delete();
+            return Redirect()->route('/TrangLietKeDonHang')->with('status', 'Xóa đơn hàng thành công');
+        }
+    }
+
+    public function SuaSoLuongSanPham($MaCTDH, $order_code, Request $request){
+        $data = $request->all();
+        $chiTietDonHang = ChiTietDonHang::where('MaCTDH', $MaCTDH)->first();
+        $chiTietDonHang->SoLuong = $data['SoLuongSanPham'];
+        $chiTietDonHang->save();
+        return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật số lượng sản phẩm thành công');
+    }
+
+    public function SuaTrangThaiDonHang($MaDonHang, $order_code, Request $request){
+        $data = $request->all();
+        $allChiTietDonHang = ChiTietDonHang::where('order_code', $order_code)->get();
+        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
+        $donHang = DonHang::where('MaDonHang', $MaDonHang)->first();
+
+        // echo '<pre>';
+        // print_r(count($allChiTietDonHang));
+        // echo '</pre>';
+
+        if($donHang['TrangThai'] == 1){
+            if($data['TrangThaiDonHang'] != 2){
+                return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thất bại');
+            }elseif($data['TrangThaiDonHang'] == 2){
+                foreach($allChiTietDonHang as $key => $chiTietDonHang){
+                    foreach($allSanPham as $key => $sanPham){
+                        if($sanPham->MaSanPham == $chiTietDonHang->MaSanPham){
+                            SanPham::Where('MaSanPham', $sanPham->MaSanPham)->update(['SoLuongHienTai' => $sanPham->SoLuongHienTai - $chiTietDonHang->SoLuong]);
+                            SanPham::Where('MaSanPham', $sanPham->MaSanPham)->update(['SoLuongBan' => $chiTietDonHang->SoLuong]);
+                        }
+                    }
+                }
+                DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 2]);
+                return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công');
+            }
+        }elseif($donHang['TrangThai'] == 2){
+            if($data['TrangThaiDonHang'] == 1){
+                return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật sai trạng thái đơn hàng');
+            }elseif($data['TrangThaiDonHang'] == 3){
+                DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 3]);
+                return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng thanh toán đơn hàng');
+            }elseif($data['TrangThaiDonHang'] == 4){
+                foreach($allChiTietDonHang as $key => $chiTietDonHang){
+                    foreach($allSanPham as $key => $sanPham){
+                        if($sanPham->MaSanPham == $chiTietDonHang->MaSanPham){
+                            SanPham::Where('MaSanPham', $sanPham->MaSanPham)->update(['SoLuongHienTai' => $sanPham->SoLuongHienTai + $chiTietDonHang->SoLuong]);
+                            SanPham::Where('MaSanPham', $sanPham->MaSanPham)->update(['SoLuongBan' => $sanPham->SoLuongBan - $chiTietDonHang->SoLuong]);
+                        }
+                    }
+                }
+                DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 4]);
+                return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng không nhận hàng | Số lượng sản phẩm trả lại ban đầu');
+            }
+        }
     }
 }

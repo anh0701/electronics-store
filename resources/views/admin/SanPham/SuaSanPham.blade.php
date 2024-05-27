@@ -108,20 +108,20 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Chiều cao</label>
-                                <input type="text" class="form-control" value="{{ $value->ChieuCao }} cm" name="ChieuCao" placeholder="Chiều cao">
+                                <label for="exampleInputPassword1">Chiều cao (Đơn vị cm)</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuCao }}" name="ChieuCao" placeholder="Chiều cao">
                             </div>
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Chiều ngang</label>
-                                <input type="text" class="form-control" value="{{ $value->ChieuNgang }} cm" name="ChieuNgang" placeholder="Chiều ngang">
+                                <label for="exampleInputPassword1">Chiều ngang (Đơn vị cm)</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuNgang }}" name="ChieuNgang" placeholder="Chiều ngang">
                             </div>
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Chiều dày</label>
-                                <input type="text" class="form-control" value="{{ $value->ChieuDay }} cm" name="ChieuDay" placeholder="Chiều dày">
+                                <label for="exampleInputPassword1">Chiều dày (Đơn vị cm)</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuDay }}" name="ChieuDay" placeholder="Chiều dày">
                             </div>
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Cân nặng</label>
-                                <input type="text" class="form-control" value="{{ $value->CanNang }} kg" name="CanNang" placeholder="Cân nặng">
+                                <label for="exampleInputPassword1">Cân nặng (Đơn vị kg)</label>
+                                <input type="text" class="form-control" value="{{ $value->CanNang }}" name="CanNang" placeholder="Cân nặng">
                             </div>
                         </div>
                         <div class="form-group">

@@ -125,6 +125,12 @@
                                         <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
                                         <b>({{ $count }})</b>
                                     @php
+                                        }elseif($count == 0){
+                                    @endphp
+                                        <b>0</b>
+                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                        <b>(0)</b>
+                                    @php
                                         }
                                     @endphp
                                 </p>

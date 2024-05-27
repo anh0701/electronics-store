@@ -22,7 +22,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
-	<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 </head><!--/head-->
 
 <body>
@@ -129,7 +128,7 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{ route('/') }}" class="active">Home</a></li>
-								<li><a href="{{ route('/Test') }}" class="active">Bài viết</a></li>
+								<li><a href="{{ route('/HienThiBaiViet') }}" class="active">Bài viết</a></li>
 								<li><a href="{{ route('/') }}" class="active">Liên hệ</a></li>
 							</ul>
 						</div>
@@ -306,6 +305,7 @@
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
+	<script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	{{-- Tính tiền giao hàng --}}
 	<script type="text/javascript">
