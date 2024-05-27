@@ -25,7 +25,14 @@ class KiemTraTGCTGG implements ValidationRule
     }
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        //
+        if (!$this->start) {
+            return;
+        }
+
+        if(!$this->end){
+            return;
+        }
+
         $query = DB::table('tbl_chuongtrinhgiamgia')
             ->where(function ($query) {
                 $query->where(function ($query) {

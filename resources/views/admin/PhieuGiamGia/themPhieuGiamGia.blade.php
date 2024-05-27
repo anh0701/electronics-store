@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Tính năng mã giảm giá</label>
                                 <select name="DonViTinh" id="DonViTinh" class="form-control input-lg m-bot15 ">
-                                    <option value="1" {{ old('DonViTinh') == '0' ? 'selected' : '' }}>--Chọn--</option>
+                                    <option value="2" {{ old('DonViTinh') == '0' ? 'selected' : '' }}>--Chọn--</option>
                                     <option value="2" {{ old('DonViTinh') == '2' ? 'selected' : '' }}>Giảm theo %</option>
                                     <option value="1" {{ old('DonViTinh') == '1' ? 'selected' : '' }}>Giảm theo tiền</option>
                                 </select>

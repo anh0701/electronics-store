@@ -12,18 +12,24 @@
             <div class="col-sm-3">
             </div>
         </div>
+        <a href="{{ route('xemPN')}}"><button class="btn btn-info">Xem phiếu nhập</button></a>
+        <a href="{{ route('xemPX')}}"><button class="btn btn-info">Xem phiếu xuất</button></a>
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
                         <th>Tên sản phẩm</th>
-                        <th>Số lượng trong kho</th>
+                        <th>Số lượng hiện tại</th>
+                        <th>Số lượng bán</th>
+                        <th>Số lượng trong kho</th>                       
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $sp)
                         <tr>
                             <td>{{ $sp->TenSanPham }}</td>
+                            <td>{{ $sp->SoLuongHienTai }}</td>
+                            <td>{{ $sp->SoLuongBan }}</td>
                             <td>{{ $sp->SoLuongTrongKho }}</td>
 
                         </tr>

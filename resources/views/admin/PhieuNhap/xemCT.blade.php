@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
@@ -48,14 +48,6 @@
                         <input class="form-control" type="text" id="phuongThucThanhToan" name="phuongThucThanhToan" value="{{ $tt }}" readonly class="gray-background">   
                     </div>
                     <div class="form-group">
-                        <label for="thoiGianTao">Thời gian tạo:</label>
-                        <input class="form-control" type="text" id="thoiGianTao" name="thoiGianTao" value="{{ $pn->ThoiGianTao }}" readonly class="gray-background">                          
-                    </div>
-                    <div class="form-group">
-                        <label for="thoiGianSua">Thời gian sửa:</label>
-                        <input class="form-control" type="text" id="thoiGianSua" name="thoiGianSua" value="{{ $pn->ThoiGianSua }}" readonly class="gray-background">
-                    </div>
-                    <div class="form-group">
                         <label for="trangThai">Trạng thái:</label>
                         @php
                             if ($pn->TrangThai == 1){
@@ -67,19 +59,17 @@
                         
                         <input class="form-control" type="text" id="trangThai" name="trangThai" value="{{ $trangthai }}" readonly class="gray-background">
                     </div>
-                    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Trở lại</button></a>
-                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa</button></a>
-                    <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xóa</button></a>
-
+                    
+                    
                 </div>
             </div>
         </section>
     </div>
-</div>
+</div> -->
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Liệt kê sản phẩm trong phiếu nhập
+            Sản phẩm trong phiếu nhập
         </div>
         <div class="row w3-res-tb">
             <div class="col-sm-4">
@@ -111,7 +101,48 @@
                     @endforeach
                 </tbody>
             </table>
+
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><strong>Tổng tiền:</strong></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>{{ $pn->TongTien }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><strong>Phương thức thanh toán:</strong></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>{{ $tt }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><strong>Tiền trả:</strong></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>{{ $pn->TienTra }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><strong>Tiền nợ:</strong></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>{{ $pn->TienNo }}</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
+    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Trở lại</button></a>
+    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa</button></a>
+    @if ($pn->TrangThai == 0)
+        <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xóa</button></a>
+    @endif
 </div>
 @endsection

@@ -48,13 +48,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($discountPrograms as $program)
+                    @foreach($discountPrograms as $key =>  $program)
                         <tr>
-                            <td>{{ $program->MaCTGG }}</td>
+                            <td>{{ $key + 1 }}</td>
                             <td>{{ $program->TenCTGG }}</td>
                             <td>{{ $program->SlugCTGG }}</td>
                             <td><img src="{{ $program->HinhAnh }}" alt="{{ $program->TenCTGG }}" width="50"></td>
-                            <td>{{ $program->MoTa }}</td>
+                            <td>{!! $program->MoTa !!}</td>
                             <td>{{ $program->TrangThai == 1 ? 'Hiển Thị' : 'Ẩn' }}</td>
                             <td>{{ $program->ThoiGianTao }}</td>
                             <td>{{ $program->ThoiGianSua }}</td>

@@ -39,7 +39,7 @@ class TaiKhoanController extends Controller
         $taikhoan = TaiKhoan::where('Email', $email)->first();
 
         if ($taikhoan && password_verify($matkhau, $taikhoan->MatKhau)) {
-            if($taikhoan->Quyen == "KH"){
+            if($taikhoan->Quyen == "Khách hàng"){
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
@@ -73,7 +73,7 @@ class TaiKhoanController extends Controller
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'email.unique' => 'Địa chỉ email đã được sử dụng.',
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
-            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+            'tentaikhoan.unique' => 'Tên tài khoản đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
         ];
         $valid = $request->validate([
@@ -96,13 +96,14 @@ class TaiKhoanController extends Controller
         $maTK = 'TK' . date('YmdHis');
         $thoiGianTao = date('Y-m-d H:i:s');
         $matkhauMoi = bcrypt($request->matkhau);
-        $quyen = 'KH';
+        $quyen = 'Khách hàng';
 
         $taiKhoan = new TaiKhoan();
         $taiKhoan->MaTaiKhoan = $maTK;
         $taiKhoan->Email = $request->email;
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->BacNguoiDung = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $quyen;
         $taiKhoan->save();
@@ -113,7 +114,7 @@ class TaiKhoanController extends Controller
     public function trangAdmin(){
         $user = session('user');
         $quyen = $user['Quyen'];
-        if($quyen == "NV" || $quyen == "KH"){
+        if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
             return redirect('/');
         }else{
             return view('admin_layout', compact('user'));
@@ -190,7 +191,13 @@ class TaiKhoanController extends Controller
         return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
     }
 
-
+    public function lietKeTK(){
+        $tk = DB::table('tbl_taikhoan')
+                    ->select('tbl_taikhoan.*')
+                    ->orderByDesc('tbl_taikhoan.ThoiGianTao')
+                    ->paginate(10);
+        return view('admin.TaiKhoan.lietKeTK', ['data'=>$tk]);
+    }
 
     public function taoTK(){
         return view('admin.TaiKhoan.taoTK');
@@ -202,7 +209,7 @@ class TaiKhoanController extends Controller
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'email.unique' => 'Địa chỉ email đã được sử dụng.',
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
-            'tentaikhoan.unique' => 'Ten tai khoan đã được sử dụng.',
+            'tentaikhoan.unique' => 'Tên tài khoản đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
         ];
         $valid = $request->validate([
@@ -216,22 +223,10 @@ class TaiKhoanController extends Controller
                 Rule::unique('tbl_taikhoan')->ignore($request->user_id),
             ],
             'matkhau' => 'required',
-            'hinhanh' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Giới hạn kích thước và loại hình ảnh
         ], $messages);
 
         if(!$valid){
             return redirect()->back()->withInput();
-        }
-
-        // Lưu hình ảnh vào thư mục lưu trữ và lấy đường dẫn
-        if ($request->hasFile('hinhanh')) {
-            $hinhanh = $request->file('hinhanh');
-            $tenHinhAnh = time() . '.' . $hinhanh->getClientOriginalExtension();
-            $duongDan = public_path('uploads/hinhanh');
-            $hinhanh->move($duongDan, $tenHinhAnh);
-            $duongDanHinhAnh = 'uploads/hinhanh/' . $tenHinhAnh;
-        } else {
-            $duongDanHinhAnh = ''; // Nếu không có hình ảnh được tải lên
         }
 
         $maTK = 'TKNV' . date('YmdHis');
@@ -245,19 +240,14 @@ class TaiKhoanController extends Controller
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->SoDienThoai = $request->sdt;
         $taiKhoan->MatKhau = $matkhauMoi;
-        $taiKhoan->HinhAnh = $duongDanHinhAnh; // Lưu đường dẫn hình ảnh
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $request->quyen;
         $taiKhoan->save();
 
-        // Điều hướng sau khi tạo tài khoản thành công
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được tạo thành công!');
     }
 
-    public function lietKeTK(){
-        $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE quyen IS NOT NULL");
-        return view('admin.TaiKhoan.lietKeTK', ['data'=>$tk]);
-    }
+    
 
     public function suaTK($id){
         $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = '{$id}' LIMIT 1");
@@ -269,6 +259,7 @@ class TaiKhoanController extends Controller
         $quyen = $request->quyen;
         $thoiGianSua = date('Y-m-d H:i:s');
         TaiKhoan::where('MaTaiKhoan', $maTK)->update([
+            'SoDienThoai' => $request->sdt,
             'Quyen' => $quyen,
             'ThoiGianSua' => $thoiGianSua,
         ]);
@@ -316,6 +307,12 @@ class TaiKhoanController extends Controller
     }
 
     public function show_dashboard(){
-        return view('admin_layout');
+        $user = session('user');
+        $quyen = $user['Quyen'];
+        if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
+            return redirect('/');
+        }else{
+            return view('admin_layout', compact('user'));
+        }
     }
 }
