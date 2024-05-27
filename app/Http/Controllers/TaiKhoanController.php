@@ -180,7 +180,7 @@ class TaiKhoanController extends Controller
             'Quyen' => $request->quyen
         ]);
 
-        return redirect('/')->with('success', 'Tài khoản đã được sửa thành công!');
+        return redirect('/thong-tin-tai-khoan')->with('success', 'Tài khoản đã được sửa thành công!');
     }
 
     public function dangXuat(){
@@ -244,7 +244,7 @@ class TaiKhoanController extends Controller
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được tạo thành công!');
     }
 
-    
+
 
     public function suaTK($id){
         $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = '{$id}' LIMIT 1");

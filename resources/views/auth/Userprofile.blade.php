@@ -146,6 +146,17 @@
             };
             reader.readAsDataURL(event.target.files[0]);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            @endif
+        });
     </script>
 
     <style>
