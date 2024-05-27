@@ -161,8 +161,11 @@ class PhieuGiamGiaController extends Controller
     public function Xoa($MaGiamGia)
     {
         //
-        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
-        $phieuGiamGia->delete();
+//        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
+//        $phieuGiamGia->delete();
+        $pheuGiamGia = PhieuGiamGia::findOrFail($MaGiamGia);
+        $pheuGiamGia->TrangThai = 0;
+        $pheuGiamGia->save();
         return Redirect::to('liet-ke-phieu-giam-gia')->with('status', 'Xóa mã giảm giá thành công');
     }
 }
