@@ -82,56 +82,59 @@
             </div>
         </div>
     </div>
-    <section id="cart_items" >
-        <div class="container">
-            <div class="review-payment">
-                <h2 class="mb-4">Mã giảm giá của người dùng</h2>
-            </div>
+    @if(session('user')['Quyen'] == 'Khách hàng')
 
-            <div class="table-responsive cart_info">
-                <table class="table table-condensed">
-                    <thead>
-                    <tr class="cart_menu">
-                        <td class="text-center">STT</td>
-                        <td>Mã code</td>
-                        <td class="description">Tên phiếu giảm giá</td>
-                        <td class="price">Trị giá</td>
-                        <td>Thời gian có hiệu lực</td>
-                        <td>Thời gian hết hiệu lực</td>
-                    </tr>
-                    </thead>
-                    @php $i = 0; @endphp
-                    @foreach($phieuGiamGia as $phieu)
-                        <tbody>
-                        <tr class="{{ $phieu->ThoiGianKetThuc < now() ? 'text-muted' : '' }}">
-                            <td class="text-center">{{$i = $i + 1}}</td>
-                            <td><h5>{{$phieu->MaCode}}</h5></td>
-                            <td>
-                                {{$phieu ->TenMaGiamGia}}
-                            </td>
-                            <td>
-                                <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
-                            </td>
-                            <td>{{$phieu->ThoiGianBatDau}}</td>
-                            <td>{{$phieu->ThoiGianKetThuc}}</td>
+        <section id="cart_items" >
+            <div class="container">
+                <div class="review-payment">
+                    <h2 class="mb-4">Mã giảm giá của người dùng</h2>
+                </div>
+
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr class="cart_menu">
+                            <td class="text-center">STT</td>
+                            <td>Mã code</td>
+                            <td class="description">Tên phiếu giảm giá</td>
+                            <td class="price">Trị giá</td>
+                            <td>Thời gian có hiệu lực</td>
+                            <td>Thời gian hết hiệu lực</td>
                         </tr>
-                        </tbody>
-                    @endforeach
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-sm-5 text-center">
+                        </thead>
+                        @php $i = 0; @endphp
+                        @foreach($phieuGiamGia as $phieu)
+                            <tbody>
+                            <tr class="{{ ($phieu->ThoiGianKetThuc < now() || $phieu->TrangThai == 0) ? 'text-muted' : '' }}">
+                                <td class="text-center">{{$i = $i + 1}}</td>
+                                <td><h5>{{$phieu->MaCode}}</h5></td>
+                                <td>
+                                    {{$phieu ->TenMaGiamGia}}
+                                </td>
+                                <td>
+                                    <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
+                                </td>
+                                <td>{{$phieu->ThoiGianBatDau}}</td>
+                                <td>{{$phieu->ThoiGianKetThuc}}</td>
+                            </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
                 </div>
-                <div class="col-sm-7 text-right text-center-xs">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        @if ($phieuGiamGia instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                            {{ $phieuGiamGia->links('vendor.pagination.bootstrap-4') }}
-                        @endif
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-5 text-center">
+                    </div>
+                    <div class="col-sm-7 text-right text-center-xs">
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                            @if ($phieuGiamGia instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                                {{ $phieuGiamGia->links('vendor.pagination.bootstrap-4') }}
+                            @endif
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <script>
         function previewImage(event) {
