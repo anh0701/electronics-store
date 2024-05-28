@@ -12,7 +12,7 @@
         <h2>Xác thực Pin</h2>
         <form action="/xac-thuc-pin" method="POST">
             @csrf
-            <input type="text" name="Pin" placeholder="Pin">
+            <input type="text" class="form-control @error('Pin') is-invalid @enderror" name="Pin" placeholder="Pin">
             @error('Pin')
             <div class="alert alert-danger">
                 {{ $message }}
