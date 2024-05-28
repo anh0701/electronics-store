@@ -19,10 +19,10 @@
                     <div class="col-lg-1 col-md-0"></div>
                     <div class="col-lg-7 col-md-6">
                         <div class="card mb-3 content">
-                            <h1 class="m-3">Thông tin cá nhân</h1>
+                            <h1 style="margin-bottom: 5%">Thông tin cá nhân</h1>
                             <div class="card-body">
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Họ và tên</h5>
                                     </div>
@@ -33,8 +33,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Email</h5>
                                     </div>
@@ -45,8 +45,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Số điện thoại</h5>
                                     </div>
@@ -58,8 +58,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Địa chỉ</h5>
                                     </div>
@@ -70,8 +70,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-12 text-center text-secondary">
                                         <button type="submit" class="btn btn-info w-100">Cập nhật thông tin</button>
                                     </div>
@@ -181,13 +181,13 @@
         }
 
         .mt-2 {
-            margin-top: 0.5rem; /* Adjust the margin-top as needed */
+            margin-top: 0.5rem;
             margin-bottom: 0;
         }
 
         .small-alert {
-            padding: 0.5rem 0.5rem; /* Adjust the padding to make the alert smaller */
-            font-size: 1.25rem; /* Adjust the font size */
+            padding: 0.75rem 0.75rem;
+            font-size: 1.25rem;
         }
     </style>
 @endsection
