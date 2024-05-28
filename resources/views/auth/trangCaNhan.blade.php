@@ -83,9 +83,8 @@
             </div>
         </div>
     </div>
-    @if(session('user')['Quyen'] == 'Khách hàng')
 
-        <section id="cart_items" >
+    <section id="cart_items" >
             <div class="container">
                 <div class="review-payment">
                     <h2 class="mb-4">Mã giảm giá của người dùng</h2>
@@ -135,7 +134,6 @@
                 </div>
             </div>
         </section>
-    @endif
 
     <script>
         function previewImage(event) {

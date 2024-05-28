@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DoiMatKhau;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use App\Models\TaiKhoan;
@@ -312,6 +314,173 @@ class TaiKhoanController extends Controller
             return redirect('/');
         }else{
             return view('admin_layout', compact('user'));
+        }
+    }
+
+//
+    public  function trangDatLaiMatKhau()
+    {
+        return view('auth.datLaiMatKhau');
+    }
+    //
+    public function datlaiMatKhau(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+//            'MatKhauCu' => ['required', 'string', 'min:8'],
+            'MatKhauMoi' => ['required', 'string'],
+            'MatKhauMoi2' => ['required', 'string'],
+        ],[
+            'MatKhauMoi.required' =>'Vui lòng nhập mật khẩu mới.',
+            'MatKhauMoi2.required' =>'Vui lòng nhập lại mật khẩu mới.'
+        ]);
+
+        if ($validator->fails()) {
+//            $message = $validator->errors();
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors( $validator->errors());
+//            return new JsonResponse(['success' => false, 'message' => $validator->errors()], 422);
+        }
+
+//        $user = TaiKhoan::where('TenTaiKhoan', $request->session()->get('user.TenTaiKhoan'))->first();
+//        dd($user);
+        if($request -> MatKhauMoi == $request -> MatKhauMoi2)
+            TaiKhoan::where('TenTaiKhoan', $request->session()->get('user.TenTaiKhoan'))->update([
+                'MatKhau' => bcrypt($request->MatKhauMoi)
+            ]);
+        return view('auth.dangNhap');
+    }
+
+    public  function trangDoiMatKhau()
+    {
+        return view('auth.doiMatKhau');
+    }
+    //
+    public function doiMatKhau(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+//            'MatKhauCu' => ['required', 'string', 'min:8'],
+            'MatKhauCu' => ['required', 'string'],
+            'MatKhauMoi' => ['required', 'string'],
+            'MatKhauMoi2' => ['required', 'string'],
+        ],[
+            'MatKhauCu.required' => 'Vui lòng nhập mật khẩu cũ.',
+            'MatKhauMoi.required' =>'Vui lòng nhập mật khẩu mới.',
+            'MatKhauMoi2.required' =>'Vui lòng nhập lại mật khẩu mới.'
+        ]);
+
+        if ($validator->fails()) {
+//            $message = $validator->errors();
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors( $validator->errors());
+//            return new JsonResponse(['success' => false, 'message' => $validator->errors()], 422);
+        }
+
+        $user = TaiKhoan::where('TenTaiKhoan', $request->session()->get('user.TenTaiKhoan'))->first();
+//        dd($user);
+        if (!$user || !password_verify($request->MatKhauCu, $user->MatKhau)){
+            return redirect()->back()->withErrors("error", "Mật khẩu cũ không đúng");
+        }
+
+        if($request->MatKhauMoi != $request->MatKhauMoi2){
+            return redirect()->back()->withErrors("error", "Mật khẩu nhập lại không khớp");
+        }
+        TaiKhoan::where('TenTaiKhoan', $request->session()->get('user.TenTaiKhoan'))->update([
+            'MatKhau' => bcrypt($request->MatKhauMoi)
+        ]);
+        return view('auth.dangNhap');
+    }
+
+    public  function trangQMK()
+    {
+        return view('auth.quenMatKhau');
+    }
+
+    public function indexXTPin()
+    {
+        return view('auth.xacThucPin');
+    }
+    //
+    public function quenMatKhau(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'Email' => ['required', 'string', 'Email', 'max:255'],
+        ],[
+            'Email.required' =>  "Vui lòng nhập Email.",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors( $validator->errors());
+//            return new JsonResponse(['success' => false, 'message' => $validator->errors()], 422);
+        }
+
+        $verify = TaiKhoan::where('Email', $request->all()['Email'])->exists();
+
+        if ($verify) {
+            $verify2 = TaiKhoan::where('Email', $request -> Email)->first();
+
+            $Pin = random_int(100000, 999999);
+            $password_reset = DB::table('tbl_taikhoan')
+                ->where(['Email' => $request->all()['Email'],])
+                ->update([
+//            'Email' => $request->all()['Email'],
+                    'Pin' => $Pin,
+                    'ThoiGianSua' => Carbon::now()
+                ]);
+
+            if ($password_reset) {
+                $request->session()->put('user', [
+                    'TenTaiKhoan' => $verify2 -> TenTaiKhoan,
+                    'Quyen' => $verify2 -> Quyen,
+                ]);
+                Mail::to($request->all()['Email'])->send(new DoiMatKhau($Pin));
+                return redirect('/xac-thuc-pin') -> with('success', 'Vui lòng kiểm tra email');
+            }
+        } else {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors( 'Email này không tồn tại.');
+        }
+    }
+
+    public function xacThucPin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'Pin' => ['required'],
+        ],[
+            'Pin.required' => "Vui lòng nhập mã pin",
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors( $validator->errors());
+//            return new JsonResponse(['success' => false, 'message' => $validator->errors()], 422);
+        }
+
+        $check = DB::table('tbl_taikhoan')
+            ->where([
+                'TenTaiKhoan' => $request->session()->get('user.TenTaiKhoan'),
+                'Pin' => $request->all()['Pin'],
+            ]);
+
+        if ($check->exists()) {
+            $difference = Carbon::now()->diffInSeconds($check->first()->ThoiGianSua);
+            if ($difference > 3600) {
+                return redirect()->back()
+                    ->withInput($request->input())
+                    ->withErrors('Mã pin hết hiệu lực.');
+//                return new JsonResponse(['success' => false, 'message' => "Pin Expired"], 400);
+            }
+            return redirect('/dat-lai-mat-khau');
+        } else {
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors('Mã pin không .');
         }
     }
 }
