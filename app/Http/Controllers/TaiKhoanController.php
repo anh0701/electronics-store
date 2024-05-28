@@ -138,7 +138,7 @@ class TaiKhoanController extends Controller
             'SoDienThoai.regex' => 'Định dạng số điện thoại không hợp lệ.',
         ];
         $valid = Validator::make ( $request->all() ,[
-            'SoDienThoai' =>['regex:/^(\+84|0)[0-9]{9,10}$/'],
+            'SoDienThoai' =>['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
             'HinhAnh' => ['nullable','image','mimes:jpeg,png,jpg,gif|max:2048'], // Giới hạn kích thước và loại hình ảnh
         ], $messages);
 
