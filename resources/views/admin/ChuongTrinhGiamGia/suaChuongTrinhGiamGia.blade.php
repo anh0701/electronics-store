@@ -42,7 +42,7 @@
 
                             <div class="form-group">
                                 <label for="MoTa">Mô tả:</label>
-                                <textarea id="MoTa" style="resize: none" rows="10"
+                                <textarea id="MoTa" style="resize: none" rows="30"
                                           class="form-control @error('MoTa') is-invalid @enderror" name="MoTa"
                                           placeholder="Mô tả">{{ old('MoTa', $suaCT->MoTa) }}</textarea>
                             </div>
@@ -137,4 +137,10 @@
 
 
 @endsection
-
+@section('js-custom')
+    <script>
+        ClassicEditor .create(document.querySelector('#MoTa')) .catch(error => {
+            console.error(error);
+        });
+    </script>
+@endsection
