@@ -29,6 +29,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <!-- morris JavaScript -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </head>
 <body>
 <section id="container">
@@ -68,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
-{{--                <li><a href="{{ route('/dang-xuat') }}"><i class="fa fa-key"></i>Log Out</a></li>--}}
+                <li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
             </ul>
         </li>
     </ul>
@@ -92,6 +95,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="sub">
               <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
               <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Quản lý nhà cung cấp</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a></li>
+              <li><a href="{{ route('themNCC') }}">Thêm nhà cung cấp</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Quản lý phiếu nhập</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>
+              <li><a href="{{ route('lapPN') }}">Thêm phiếu nhập</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Quản lý phiếu xuất</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
+              <li><a href="{{ route('taoPX') }}">Lập phiếu xuất</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-warehouse"></i>
+              <span>Quản lý tồn kho</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ route('lietKeTonKho') }}">Liệt kê tồn kho</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -130,8 +172,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
+              <li><a href="{{ route('taoTK') }}">Tạo tài khoản</a>
+              <li><a href="{{ route('lietKeTK') }}">Liệt kê tài khoản</a>
               {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
-{{--              <li><a href="{{ route('/TrangTaoTaiKhoan') }}">Tạo tài khoản</a></li>--}}
 {{--              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>--}}
             </ul>
           </li>
@@ -168,11 +211,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li class="sub-menu">
               <a href="javascript:;">
                   <i class="fa-solid fa-money-bill"></i>
-                  <span>Phiếu giảm giá</span>
+                  <span>Quản lý giảm giá</span>
               </a>
               <ul class="sub">
                   <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
                   <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
+                  <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">Thêm chương trình giảm giá</a></li>
+                  <li><a href="{{ Route('/chuong-trinh-giam-gia') }}">Liệt kê chương trình giảm giá</a></li>
               </ul>
           </li>
         </ul>
@@ -209,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var ma_id = $(this).val();
         var _token = $('input[name="_token"]').val();
         var result = '';
-        
+
         if(action=='MaThanhPho'){
             result = 'MaQuanHuyen';
         }else{
@@ -300,7 +345,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           var ma_id = $(this).val();
           var _token = $('input[name="_token"]').val();
           var result = '';
-          
+
           if(action=='DanhMucCha'){
             result = 'DanhMucCon';
           }else if(action=='DanhMucCon'){

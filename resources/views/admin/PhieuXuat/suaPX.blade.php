@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Cập nhật phiếu nhập 
+                Cập nhật phiếu xuất 
             </header>
             <div class="panel-body">
                 <div class="position-center">
@@ -15,72 +15,40 @@
                     $quyen = $user['Quyen'];
 
                 @endphp 
-                    <form role="form" action="{{ Route('xuLySuaPN') }}" method="POST" >
+                    <form role="form" action="{{ Route('suaPXP') }}" method="POST" >
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="">Mã phiếu</label>
-                            <input type="text" class="form-control" name="maPN" value="{{ $pn->MaPhieuNhap }}" readonly>
+                            <input type="text" class="form-control" name="maPX" value="{{ $px->MaPhieuXuat }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Người lập phiếu</label>
-                            <input type="text" class="form-control" name="nguoiLap" value="{{ $pn->TenTaiKhoan }}" readonly>
+                            <input type="text" class="form-control" name="nguoiLap" value="{{ $px->TenTaiKhoan }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="">Nhà cung cấp</label>
-                            <input type="text" class="form-control" name="ncc" value="{{ $pn->TenNhaCungCap }}" readonly>
+                            <label for="">Tổng số lượng</label>
+                            <input type="text" class="form-control" name="tongSL" value="{{ $px->TongSoLuong }}" readonly>
                         </div>
-                        <div class="form-group">
-                            <label for="">Tổng tiền</label>
-                            <input type="text" class="form-control" name="tongTien" value="{{ $pn->TongTien }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Tiền đã trả</label>
-                            <input type="text" class="form-control" name="tienTra" value="{{ $pn->TienTra }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Tiền trả thêm</label>
-                            <input type="text" class="form-control" name="tienTraMoi" value="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Tiền nợ</label>
-                            <input type="text" class="form-control" name="tienNo" value="{{ $pn->TienNo }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Phương thức thanh toán</label>
-                            <select name="thanhToan" class="form-control input-lg m-bot15">
-                                <option value="0" >Chuyển khoản</option>
-                                <option value="1" >Tiền mặt</option>
-                                <option value="2" >Khác</option>
-                            </select>
-                        </div>
-                        
-                        
                         <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
                             <label for="">Trạng thái</label>
-                            <input type="hidden" id="mySelect1" class="form-control" name="trangThaiTruoc" value="{{ $pn->TrangThai }}">
+                            <input type="hidden" id="mySelect1" class="form-control" name="trangThaiTruoc" value="{{ $px->TrangThai }}">
                             <select name="trangThai" id="mySelect" class="form-control input-lg m-bot15">
-                                <option value="0" {{ $pn->TrangThai == '0' ? 'selected' : '' }}>Chưa xác nhận</option>
-                                <option value="1" {{ $pn->TrangThai == '1' ? 'selected' : '' }}>Xác nhận</option>
+                                <option value="0" {{ $px->TrangThai == '0' ? 'selected' : '' }}>Chưa xác nhận</option>
+                                <option value="1" {{ $px->TrangThai == '1' ? 'selected' : '' }}>Xác nhận</option>
                             </select>
                         </div>
-                        
-                        
-                        
-                        
-                        
-
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
-                    <form id="myLink3" role="form" action="{{ route('xuLyLapPNCT') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                    <form id="myLink3" role="form" action="{{ route('xuLyLapPXCT') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="">Mã phiếu nhập:</label>
-                            <input type="text" class="form-control" name="maPNSua" value="{{$pn->MaPhieuNhap}}" readonly>
+                            <label for="">Mã phiếu xuất:</label>
+                            <input type="text" class="form-control" name="maPXSua" value="{{$px->MaPhieuXuat}}" readonly>
                         </div>
                         
                         <div class="form-group">
-                            <label for="MaSanPham">Sản phẩm:</label>
+                            <label for="MaSanPham">Sản phẩm</label>
                             <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
                             >
                             </select>
@@ -95,13 +63,6 @@
                         @error('soLuong')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <div class="form-group">
-                            <label for="">Giá sản phẩm</label>
-                            <input type="number" class="form-control" name="gia" value="{{ old('gia') }}">
-                        </div>
-                        @error('gia')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                         <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                     </form>
                     
@@ -114,27 +75,22 @@
                                     <th>Mã phiếu nhập</th>
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>
-                                    <th>Giá sản phẩm</th>
-                                    <th>Thành tiền</th>                 
-
                                     <th style="width:100px" id="myLink4">Quản lý</th>                  
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                
-                                @foreach ($ctpn as $ct)
+                                @foreach ($ctpx as $ct)
 
                                     <tr>
-                                        <td>{{ $ct->MaPhieuNhap }}</td>
+                                        <td>{{ $ct->MaPhieuXuat }}</td>
                                         <td>{{ $ct->TenSanPham }}</td>
-                                        <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPN }}"></td>
-                                        <td><input type="number" value="{{ $ct->GiaSanPham }}" id="giaSanPham_{{ $ct->MaCTPN }}"></td>
-                                        <td id="thanhTien_{{ $ct->MaCTPN }}">{{ $ct->SoLuong * $ct->GiaSanPham }}</td>
+                                        <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPX }}"></td>
 
                                         <td id = "myLink">
-                                            <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPN }}">Cập nhật</a>
-                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPN }} không?')" href="{{ route('xoaCTS', ['id' => $ct->MaCTPN]) }}">
+                                            <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPX }}">Cập nhật</a>
+                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPX }} không?')" href="{{ route('xoaCTPXS', ['id' => $ct->MaCTPX, 'maPX' => $px->MaPhieuXuat]) }}">
                                                 <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                                             </a>
                                         </td>
@@ -173,25 +129,19 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
     $('.update-btn').on('click', function() {
-        var MaCTPN = $(this).data('id');
-        var soLuong = $('#soLuong_' + MaCTPN).val();
-        var giaSanPham = $('#giaSanPham_' + MaCTPN).val();
+        var MaCTPX = $(this).data('id');
+        var soLuong = $('#soLuong_' + MaCTPX).val();
 
         $.ajax({
-            url: '{{ route('update.soluong') }}',
+            url: '{{ route('update.soluong-px') }}',
             type: 'POST',
             data: {
                 _token: '{{ csrf_token() }}',
-                MaCTPN: MaCTPN,
+                MaCTPX: MaCTPX,
                 soLuong: soLuong,
-                giaSanPham: giaSanPham
             },
             success: function(data) {
                 if (data.success) {
-                    var thanhTien = soLuong * giaSanPham;
-                    
-                    // Cập nhật thành tiền trên giao diện
-                    $('#thanhTien_' + MaCTPN).text(thanhTien);
                     $('#responseMessage').text('Cập nhật thành công').css('color', 'green');
                 } else {
                     $('#responseMessage').text('Cập nhật thất bại: ' + data.message).css('color', 'red');
@@ -216,7 +166,7 @@ $(document).ready(function() {
                 placeholder: 'Chọn sản phẩm',
                 allowClear: true,
                 ajax: {
-                    url: '{{ route("api.san-pham-pn") }}',
+                    url: '{{ route("api.san-pham-px") }}',
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -236,7 +186,7 @@ $(document).ready(function() {
             // Khởi tạo lại giá trị đã chọn nếu có
             if (selectedValues) {
                 $.ajax({
-                    url: '{{ route("api.san-pham-pn") }}',
+                    url: '{{ route("api.san-pham-px") }}',
                     dataType: 'json',
                     data: {
                         ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin

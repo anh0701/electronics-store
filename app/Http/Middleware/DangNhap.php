@@ -27,6 +27,6 @@ class DangNhap
         }
     
         // Nếu không có session 'user', chuyển hướng đến trang đăng nhập
-        return redirect('/dangNhap');
+        return redirect('/dang-nhap');
     }
 }

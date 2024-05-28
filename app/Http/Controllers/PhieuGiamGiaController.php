@@ -40,6 +40,7 @@ class PhieuGiamGiaController extends Controller
             'TenMaGiamGia' => ['required', 'string', 'max:255'],
             'SlugMaGiamGia' => ['required', 'string', 'max:255', 'unique:tbl_phieugiamgia'],
             'TriGia' => ['required', 'string'],
+            'BacNguoiDung' => ['required', 'integer'],
             'MaCode' => ['required', 'string', 'unique:tbl_phieugiamgia'],
             'DonViTinh' => ['required', 'integer'],
             'ThoiGianBatDau' =>['required', 'date_format:Y-m-d\TH:i'],
@@ -48,6 +49,7 @@ class PhieuGiamGiaController extends Controller
             'TenMaGiamGia.required' => "Vui lòng nhập tên phiếu giảm giá.",
             'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
             'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
+            'BacNguoiDung.required' => "Vui lòng nhập Cấp bậc thành viên có thể dùng phiếu giảm giá.",
             'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
             'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
             'SlugMaGiamGia.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
@@ -67,6 +69,7 @@ class PhieuGiamGiaController extends Controller
         $phieu->TenMaGiamGia = $data['TenMaGiamGia'];
         $phieu->SlugMaGiamGia = $data['SlugMaGiamGia'];
         $phieu->TriGia = $data['TriGia'];
+        $phieu->BacNguoiDung = $data['BacNguoiDung'];
         $phieu->MaCode = $data['MaCode'];
         $phieu->DonViTinh = $data['DonViTinh'];
         $phieu->ThoiGianBatDau = $data['ThoiGianBatDau'];
@@ -113,6 +116,7 @@ class PhieuGiamGiaController extends Controller
             'TriGia' => ['required', 'string'],
             'MaCode'=>'required|unique:tbl_phieugiamgia,MaCode,' . $MaGiamGia . ',MaGiamGia',
             'DonViTinh' => ['required', 'integer'],
+            'BacNguoiDung' => ['required', 'integer'],
             'ThoiGianBatDau' =>['required', 'date_format:Y-m-d\TH:i'],
             'ThoiGianKetThuc'=>['required','date_format:Y-m-d\TH:i','after:ThoiGianBatDau'],
         ], [
@@ -120,6 +124,7 @@ class PhieuGiamGiaController extends Controller
             'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
             'SlugMaGiamGia.unique' => "Slug đã tồn tại.",
             'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
+            'BacNguoiDung.required' => "Vui lòng nhập Cấp bậc thành viên có thể dùng phiếu giảm giá.",
             'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
             'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
             'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
@@ -138,6 +143,7 @@ class PhieuGiamGiaController extends Controller
         $phieu->TenMaGiamGia = $request->TenMaGiamGia;
         $phieu->SlugMaGiamGia = $request->SlugMaGiamGia;
         $phieu->TriGia = $request->TriGia;
+        $phieu->BacNguoiDung = $request->BacNguoiDung;
         $phieu->MaCode = $request->MaCode;
         $phieu->DonViTinh = $request->DonViTinh;
         $phieu->ThoiGianBatDau = $request->ThoiGianBatDau;
@@ -155,8 +161,11 @@ class PhieuGiamGiaController extends Controller
     public function Xoa($MaGiamGia)
     {
         //
-        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
-        $phieuGiamGia->delete();
+//        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
+//        $phieuGiamGia->delete();
+        $pheuGiamGia = PhieuGiamGia::findOrFail($MaGiamGia);
+        $pheuGiamGia->TrangThai = 0;
+        $pheuGiamGia->save();
         return Redirect::to('liet-ke-phieu-giam-gia')->with('status', 'Xóa mã giảm giá thành công');
     }
 }

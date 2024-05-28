@@ -1,57 +1,62 @@
-
-@extends('layout.trangQL_header')
-<link rel="stylesheet" href="{{ asset('/css/xem.css') }}">
-@section('content')
-        <div class="content">
-            <form action="{{ route('timkiemTK') }}" method="GET">
-                <input type="text" name="keyword" placeholder="Nhập từ khóa...">
-                Từ: <input type="date" name="start_date">
-                Đến: <input type="date" name="end_date">
-                Quyền:
-                <select id="quyen" name="quyen">
-                    <option value="">Tat ca</option>
-                    <option value="NV">Nhan vien</option>
-                    <option value="QTVCC">Quan tri vien cap cao</option>
-                    <option value="QTV">Quan tri vien</option>
-                    <option value="NVBH">Nhan vien ban hang</option>
-                    <option value="NVK">Nhan vien kho</option>
-                    <option value="NVKT">Nhan vien ke toan</option>
-                    <option value="KH">Khach hang</option>
-                </select>
-                <button type="submit">Tìm kiếm</button>
-            </form>
-            <h1>Danh sách tài khoản nhân viên</h1>
-            <table class="table">
+@extends('admin_layout')
+@section('admin_content')
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Liệt kê tài khoản
+        </div>
+        <div class="row w3-res-tb">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
                 <thead>
-                    <tr>
-                        <th class="th1">Mã TK</th>
-                        <th class="th1">Tên TK</th>
-                        <th class="th1">Email</th>
-                        <th class="th1">SDT</th>
-                        <th class="th1">Thời gian tạo</th>
-                        <th class="th1">Quyền</th>
-                        <th class="th1">Tùy chọn</th>
+                    <tr>                     
+                        <th>Tên tài khoản</th>
+                        <th>Email</th>
+                        <th>SDT</th>                       
+                        <th>Quyền</th>
+                        <th>Thời gian tạo</th>
+                        <th style="width:100px">Quản lý</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $tk)
-                    <tr class="row-clickable" data-id="{{ $tk->MaTaiKhoan }}">
-                        <td>{{ $tk->MaTaiKhoan }}</td>
-                        <td>{{ $tk->TenTaiKhoan }}</td>
-                        <td>{{ $tk->Email }}</td>
-                        <td>{{ $tk->SoDienThoai }}</td>
-                        <td>{{ $tk->ThoiGianTao }}</td>
-                        <td>{{ $tk->Quyen }}</td>
-                        @if ($tk->Quyen != 'KH')
-                            <td><a href="{{ route('suaTK', ['id' => $tk->MaTaiKhoan]) }}">Sửa</a><span> / </span><a href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}">Xóa</a></td>
-                        @else
-                            <td><a href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}">Xóa</a></td>
-                        @endif
-                        
-                    </tr>
+                        <tr class="row-clickable" data-id="{{ $tk->TenTaiKhoan }}">
+                            <td>{{ $tk->TenTaiKhoan }}</td>
+                            <td>{{ $tk->Email }}</td>
+                            <td>{{ $tk->SoDienThoai }}</td>
+                            <td>{{ $tk->Quyen }}</td>
+                            <td>{{ $tk->ThoiGianTao }}</td>
+                            <td>
+                                @if ($tk->Quyen != 'Khách hàng')
+                                <a href="{{ route('suaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                <a onclick="return confirm('Bạn có muốn xóa nhà cung cấp {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                @else
+                                <a onclick="return confirm('Bạn có muốn xóa nhà cung cấp {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                @endif   
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
+            <footer class="panel-footer">
+                <div class="row">
+                <div class="col-sm-5 text-center">
+                </div>
+                <div class="col-sm-7 text-right text-center-xs">                
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                    {{ $data->links('vendor.pagination.bootstrap-4') }}
+                    </ul>
+                </div>
+                </div>
+            </footer>
         </div>
-@endsection   
-    
+    </div>
+</div>
+@endsection  

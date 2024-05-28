@@ -16,13 +16,18 @@
     <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/profile.css') }}" rel="stylesheet" >
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{{ asset('frontend/images/ico/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
 	<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 </head><!--/head-->
 
 <body>
@@ -52,7 +57,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -83,10 +88,10 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
+                                            <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}">Thông tin tài khoản</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('capNhatTK') }}">Cập nhật thông tin tài khoản</a>
+                                            <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -100,11 +105,10 @@
 										$quyen = $user['Quyen'];
 									@endphp
 									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-									@if ($quyen != 'KH')
-										<li><a href="{{ route('trangAdmin') }}"><i class="fa"></i> Trang quan ly</a></li>
+									@if ($quyen != 'Khách hàng')
 										<li><a href="{{ route('/dashboard') }}"><i class="fa"></i> Dashbroad</a></li>
 									@endif
-									<li><a href="{{ route('/UserProfile') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>
+{{--									<li><a href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>--}}
 								@else
 									<li><a href="{{ route('dangNhap') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								@endif
@@ -114,7 +118,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -145,20 +149,20 @@
 							</ul>
 						</div> --}}
 					</div>
-					<div class="col-sm-4">
-						<form action="{{ route('/TimKiem') }}" method="GET">
-							{{ csrf_field() }}
-							<div class="search_box pull-right">
-								<input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
-								<input style="width: 50px" type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm">
-							</div>
-						</form>
-					</div>
+{{--					<div class="col-sm-4">--}}
+{{--						<form action="{{ route('/TimKiem') }}" method="GET">--}}
+{{--							{{ csrf_field() }}--}}
+{{--							<div class="search_box pull-right">--}}
+{{--								<input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>--}}
+{{--								<input style="width: 50px" type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm">--}}
+{{--							</div>--}}
+{{--						</form>--}}
+{{--					</div>--}}
 				</div>
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-	
+
 	<section id="slider">
 		<div class="container">
 			<div class="row">
@@ -166,7 +170,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -174,7 +178,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
@@ -214,7 +218,7 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -229,7 +233,7 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -254,7 +258,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
@@ -299,7 +303,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -352,7 +356,7 @@
 			var ma_id = $(this).val();
 			var _token = $('input[name="_token"]').val();
 			var result = '';
-        
+
 			if(action=='MaThanhPho'){
 				result = 'MaQuanHuyen';
 			}else{
@@ -383,23 +387,23 @@
 				var cart_product_price = $('.cart_product_price_' + id).val();
 				var cart_product_qty = $('.cart_product_qty_' + id).val();
 				var _token = $('input[name="_token"]').val();
-				
+
 				$.ajax({
 					url: '{{ route('/ThemGioHang') }}',
 					method: 'POST',
 					data:{
-						cart_product_id:cart_product_id, 
+						cart_product_id:cart_product_id,
 						cart_product_name:cart_product_name,
-						cart_product_image:cart_product_image, 
+						cart_product_image:cart_product_image,
 						cart_product_price:cart_product_price,
-						cart_product_qty:cart_product_qty, 
+						cart_product_qty:cart_product_qty,
 						_token:_token
 					},
 					success:function(data){
 						swal({
 							title: "Đã thêm sản phẩm vào giỏ hàng",
 							text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-							
+
 							showCancelButton: true,
 							cancelButtonText: "Xem tiếp",
 							confirmButtonClass: "btn-success",
