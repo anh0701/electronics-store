@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChiTietPhieuNhap;
 use App\Models\NhaCungCap;
+use App\Models\PhieuXuat;
 use App\Models\SanPham;
 use Exception;
 use Session;
@@ -24,8 +25,23 @@ class PhieuNhapController extends Controller
                 ->orderByDesc('tbl_phieunhap.ThoiGianTao')
                 ->paginate(5);
 
-        return view('admin.PhieuNhap.xemPhieuNhap', ['data' => $pns]);
+        return view('admin.PhieuNhap.lietKePN', ['data' => $pns]);
     } 
+
+    public function timKiemPN(Request $request){
+        $data = PhieuNhap::join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+            ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
+            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+            ->where(function($query) use ($request) {
+                $query->where('tbl_taikhoan.TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_nhacungcap.TenNhaCungCap', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_phieunhap.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+            })
+            ->paginate(5);
+        return view('admin.PhieuNhap.lietKePN', compact('data'));
+    }
+
+    
 
     public function xemCTPN($id){
         $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
@@ -245,16 +261,6 @@ class PhieuNhapController extends Controller
         }
         $tienNo = $tongTien - $tienTraMoi;
         $thoiGianSua = date('Y-m-d H:i:s');
-        
-        
-        PhieuNhap::where('MaPhieuNhap', $maPN)->update([
-            'TongTien' => $tongTien,
-            'TienTra' => $tienTraMoi,
-            'TienNo' => $tienNo,
-            'PhuongThucThanhToan' => $request->thanhToan,
-            'TrangThai' => $request->trangThai,
-            'ThoiGianSua' => $thoiGianSua,
-        ]);
 
         $trangThai1 = $request->trangThaiTruoc;
         $trangThai2 = $request->trangThai;
@@ -277,12 +283,24 @@ class PhieuNhapController extends Controller
                 $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
                 $sl = $sltk[0]->SoLuongTrongKho - $soLuong;
                 $sl2 = $sltk[0]->SoLuongHienTai - $soLuong;
+                if($sl < 0){
+                    return redirect()->back()->withErrors(['trangThai' => 'Số lượng trong kho không đủ. Mời bạn kiểm tra lại']);
+                }
                 SanPham::where('MaSanPham', $maSP)->update([
                     'SoLuongTrongKho' => $sl,
                     'SoLuongHienTai' => $sl2,
                 ]);
             }
         }
+
+        PhieuNhap::where('MaPhieuNhap', $maPN)->update([
+            'TongTien' => $tongTien,
+            'TienTra' => $tienTraMoi,
+            'TienNo' => $tienNo,
+            'PhuongThucThanhToan' => $request->thanhToan,
+            'TrangThai' => $request->trangThai,
+            'ThoiGianSua' => $thoiGianSua,
+        ]);
         return redirect()->route('xemPN');
 
     }

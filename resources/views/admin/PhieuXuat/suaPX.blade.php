@@ -61,7 +61,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="">Số lượng</label>
-                            <input type="number" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
+                            <input type="number" class="form-control" name="soLuong" min="1" value="{{ old('soLuong') }}">
                         </div>
                         @error('soLuong')
                             <div class="alert alert-danger">{{ $message }}</div>

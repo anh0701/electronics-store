@@ -130,6 +130,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa-solid fa-warehouse"></i>
+              <span>Quản lý phiếu trả hàng</span>
+            </a>
+            <ul class="sub">
+            
+              <li><a href="{{ route('xemPTH') }}">Liệt kê phiếu trả hàng</a></li>
+              
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-warehouse"></i>
               <span>Quản lý tồn kho</span>
             </a>
             <ul class="sub">

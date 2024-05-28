@@ -10,9 +10,16 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="input-group">
-                        <form action="" method="GET">
-                            <input type="text" name="keyword" placeholder="Nhập từ khóa...">
-                            <button type="submit">Tìm kiếm</button>
+                        <form action="{{ Route('timKiemPN') }}" method="get">
+                            <div class="input-group">
+                                <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <a class="btn btn-sm btn-default" href="{{ Route('xemPN') }}">Xem tất cả</a>
+                                </span>
+                            </div>
                         </form>
                     </div>
                 </div>

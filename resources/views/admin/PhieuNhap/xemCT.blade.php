@@ -143,6 +143,8 @@
     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa</button></a>
     @if ($pn->TrangThai == 0)
         <a href="{{ route('xoaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xóa</button></a>
+    @elseif($pn->TrangThai == 1)
+        <a href="{{ route('lapTH', ['id' => $pn->MaPhieuNhap, 'maNCC' => $pn->MaNhaCungCap]) }}"><button class="btn btn-info">Lập phiếu trả hàng</button></a>
     @endif
 </div>
 @endsection

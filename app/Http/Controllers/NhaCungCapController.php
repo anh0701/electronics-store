@@ -11,7 +11,7 @@ class NhaCungCapController extends Controller
     //
     public function lietKe(){
         $ncc = DB::table('tbl_nhacungcap')
-                ->join('tbl_phieunhap', 'tbl_nhacungcap.MaNhaCungCap', '=', 'tbl_phieunhap.MaNhaCungCap')
+                ->leftJoin('tbl_phieunhap', 'tbl_nhacungcap.MaNhaCungCap', '=', 'tbl_phieunhap.MaNhaCungCap')
                 ->select('tbl_nhacungcap.*', DB::raw('count(tbl_phieunhap.MaPhieuNhap) as so_luong_phieu_nhap'))
                 ->groupBy('tbl_nhacungcap.MaNhaCungCap')
                 ->orderByDesc('tbl_nhacungcap.TrangThai')

@@ -197,6 +197,7 @@ class TaiKhoanController extends Controller
     public function lietKeTK(){
         $tk = DB::table('tbl_taikhoan')
                     ->select('tbl_taikhoan.*')
+                    ->orderByDesc('tbl_taikhoan.TrangThai')
                     ->orderByDesc('tbl_taikhoan.ThoiGianTao')
                     ->paginate(10);
         return view('admin.TaiKhoan.lietKeTK', ['data'=>$tk]);
@@ -214,6 +215,8 @@ class TaiKhoanController extends Controller
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
             'tentaikhoan.unique' => 'Tên tài khoản đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
+            'sdt.required' => 'Vui lòng nhập số điện thoại',
+            'sdt.digits_between' => 'Số điện thoại có tối đa 15 số',
         ];
         $valid = $request->validate([
             'email' => [
@@ -226,6 +229,7 @@ class TaiKhoanController extends Controller
                 Rule::unique('tbl_taikhoan')->ignore($request->user_id),
             ],
             'matkhau' => 'required',
+            'sdt' => 'required|integer|digits_between:1,15',
         ], $messages);
 
         if(!$valid){
@@ -281,37 +285,10 @@ class TaiKhoanController extends Controller
     }
 
     public function timkiemTK(Request $request){
-        $keyword = $request->input('keyword');
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-        $quyen = $request->input('quyen');
-
-        $query = "SELECT * FROM tbl_taikhoan WHERE 1=1"; // 1=1 để bắt đầu điều kiện WHERE
-
-        if (!empty($startDate)) {
-            $query .= " AND DATE(ThoiGianTao) >= '$startDate'";
-        }
-
-        if (!empty($endDate)) {
-            $query .= " AND DATE(ThoiGianTao) <= '$endDate'";
-        }
-
-        if (!empty($quyen)){
-            $query .= " AND Quyen LIKE '%$quyen%'";
-        }
-
-        if (!empty($keyword)) {
-            $query .= " AND (TenTaiKhoan LIKE '%$keyword%'
-                        OR Email LIKE '%$keyword%'
-                        OR SoDienThoai LIKE '%$keyword%'
-                        OR Email LIKE '%$keyword%'
-                        OR ThoiGianTao LIKE '%$keyword%'
-                        -- OR ThoiGianSua LIKE '%$keyword%'
-                        )";
-        }
-
-        $data = DB::select($query);
-
+        $data = TaiKhoan::where('TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('Quyen', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('ThoiGianTao', 'LIKE', "%{$request->timKiem}%")
+            ->paginate(5);
         return view('admin.TaiKhoan.lietkeTK', compact('data'));
     }
 

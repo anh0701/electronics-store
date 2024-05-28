@@ -8,15 +8,6 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div>
-                @endif
                     <form role="form" id="from" action="/xuLyThemNCC" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -24,18 +15,30 @@
                             <input class="form-control" type="hidden" id="nccMoi" name="nccMoi" value="{{ $test }}" readonly>
                             <input class="form-control" type="text" id="tennhacungcap" name="tennhacungcap" value="{{ old('tennhacungcap') }}">
                         </div>
+                        @error('tennhacungcap')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="diachi">Địa chỉ:</label>
                             <input class="form-control" type="text" id="diachi" name="diachi" value="{{ old('diachi') }}">
                         </div>
+                        @error('diachi')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="sdt">Số điện thoại:</label>
-                            <input class="form-control" type="text" id="sdt" name="sdt" value="{{ old('sdt') }}">
+                            <input class="form-control" type="number" id="sdt" name="sdt" value="{{ old('sdt') }}">
                         </div>
+                        @error('sdt')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input class="form-control" type="text" id="email" name="email" value="{{ old('email') }}">
                         </div>
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <button type="submit" class="btn btn-info">Lưu</button>
                     </form>
                 </div>

@@ -22,6 +22,17 @@ class PhieuXuatController extends Controller
         return view('admin.PhieuXuat.lietKe', ['data' => $pxs]);
     } 
 
+    public function timKiemPX(Request $request){
+        $data = PhieuXuat::join('tbl_taikhoan', 'tbl_phieuxuat.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+            ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan')
+            ->where(function($query) use ($request) {
+                $query->where('tbl_taikhoan.TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
+                      ->orWhere('tbl_phieuxuat.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+            })
+            ->paginate(5);
+        return view('admin.PhieuXuat.lietKe', compact('data'));
+    }
+
     public function xemCT($id){
         $px = DB::select("SELECT px.*, tk.TenTaiKhoan
                         FROM tbl_phieuxuat px 
