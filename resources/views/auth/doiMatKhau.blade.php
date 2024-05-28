@@ -14,16 +14,6 @@
     <h2>Đổi mật khẩu</h2>
     <form action="/doi-mat-khau" method="POST">
         @csrf
-        {{--            error --}}
-        {{--            <div class="error-message"> --}}
-        {{--                @if ($errors->any()) --}}
-        {{--                    <ul> --}}
-        {{--                        @foreach ($errors->all() as $error) --}}
-        {{--                            <li>{{ $error }}</li> --}}
-        {{--                        @endforeach --}}
-        {{--                    </ul> --}}
-        {{--                @endif --}}
-        {{--            </div> --}}
 
         <input type="password" class="form-control @error('MatKhauCu') is-invalid @enderror" name="MatKhauCu"
                placeholder="Mật khẩu cũ" value="{{ old('MatKhauCu') }}">
@@ -48,8 +38,7 @@
         @enderror
         <input type="submit" value="Đổi mật khẩu">
     </form>
-    {{--        <a href="{{ route('dangKy') }}" class="link-dn">Chưa có tài khoản? Đăng ký!</a> --}}
-    {{--        <a href="{{ route('dangNhap') }}" class="link-dn">Quên mật khẩu?</a> --}}
+
     <a href="{{ route('/') }}" class="link-dn">Về trang chủ?</a>
 
 

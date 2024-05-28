@@ -12,15 +12,6 @@
         <h2>Quên mật khẩu</h2>
         <form action="/quen-mat-khau" method="POST">
             @csrf
-{{--            <div class="error-message">--}}
-{{--                @if ($errors->any())--}}
-{{--                    <ul>--}}
-{{--                        @foreach ($errors->all() as $error)--}}
-{{--                            <li>{{ $error }}</li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                @endif--}}
-{{--            </div>--}}
             <div class="form-group">
                 <input type="text" name="Email" placeholder="Email" class="form-control @error('Email') is-invalid @enderror">
             </div>
