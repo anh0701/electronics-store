@@ -127,8 +127,6 @@ class TaiKhoanController extends Controller
         }else{
             return view('admin_layout', compact('user'));
         }
-        // Trả về view Dashboard và truyền thông tin người dùng vào view
-
     }
 
     public function capNhatTK(){
@@ -219,8 +217,7 @@ class TaiKhoanController extends Controller
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
             'tentaikhoan.unique' => 'Tên tài khoản đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
-            'sdt.required' => 'Vui lòng nhập số điện thoại',
-            'sdt.digits_between' => 'Số điện thoại có tối đa 15 số',
+            'sdt.regex' => 'Định dạng số điện thoại không hợp lệ.',
         ];
         $valid = $request->validate([
             'email' => [
@@ -233,7 +230,7 @@ class TaiKhoanController extends Controller
                 Rule::unique('tbl_taikhoan')->ignore($request->user_id),
             ],
             'matkhau' => 'required',
-            'sdt' => 'required|digits_between:0,15',
+            'sdt' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
         ], $messages);
 
         if(!$valid){

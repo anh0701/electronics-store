@@ -221,7 +221,7 @@ INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuo
 
 CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `MaCTGG` int NOT NULL,
-  `SlugCTGG` int NOT NULL,
+  `SlugCTGG` varchar(255) NOT NULL,
   `TenCTGG` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `HinhAnh` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
@@ -242,8 +242,9 @@ CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
   `MaCTGGSP` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `PhamTramGiam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `PhanTramGiam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -581,6 +582,7 @@ CREATE TABLE `tbl_phieugiamgia` (
   `TenMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `SlugMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `DonViTinh` int NOT NULL,
+  `TrangThai` int NOT NULL DEFAULT 1,
   `BacNguoiDung` int NOT NULL,
   `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaCode` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
@@ -13578,12 +13580,12 @@ ALTER TABLE `tbl_chitietphieuxuat`
   ADD CONSTRAINT `tbl_chitietphieuxuat_ibfk_1` FOREIGN KEY (`MaPhieuXuat`) REFERENCES `tbl_phieuxuat` (`MaPhieuXuat`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
+--
 -- Các ràng buộc cho bảng `tbl_chuongtrinhgiamgiasp`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgiasp`
   ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_1` FOREIGN KEY (`MaCTGG`) REFERENCES `tbl_chuongtrinhgiamgia` (`MaCTGG`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
 --
 -- Các ràng buộc cho bảng `tbl_danhgia`
 --

@@ -106,7 +106,7 @@
 									@endphp
 									<li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
 									@if ($quyen != 'Khách hàng')
-										<li><a href="{{ route('/dashboard') }}"><i class="fa"></i> Dashbroad</a></li>
+										<li><a href="{{ route('trangAdmin') }}"><i class="fa"></i>Trang quản lý</a></li>
 									@endif
 {{--									<li><a href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-users"></i> {{ htmlspecialchars($tenTK) }}</a></li>--}}
 								@else
