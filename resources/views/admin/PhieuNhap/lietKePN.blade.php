@@ -25,6 +25,9 @@
                 </div>
             </div>
             <div class="table-responsive">
+                @error('phieuTH')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>

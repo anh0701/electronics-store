@@ -118,7 +118,7 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessage').text('Lập phiếu nhập thành công').css('color', 'green');
+                    $('#responseMessage').text('Lập phiếu trả hàng thành công').css('color', 'green');
                     // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
                     $('#phieuNhapForm').hide();
                     $('#phieuNhapCTForm').show();
@@ -126,7 +126,7 @@ $(document).ready(function() {
                     $('#table1').show();
                     $('#table2').show();
                 } else {
-                    $('#responseMessage').text('Lập phiếu nhập thất bại: ' + data.message).css('color', 'red');
+                    $('#responseMessage').text('Lập phiếu trả hàng thất bại: ' + data.message).css('color', 'red');
                 }
             },
             error: function(xhr, status, error) {
@@ -148,22 +148,34 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessageCT').text('Thêm sản phẩm thành công').css('color', 'green');
+                    $('#responseMessageCT').text(data.message).css('color', 'green');
+                    var kt = false;
 
-                    // Tạo một hàng mới cho bảng
-                    
-                    var newRow = `
-                        <tr>
-                            <td>${data.maSP}</td>
-                            <td>${data.soLuong}</td>
-                            <td>${data.gia}</td>
-                            <td>${data.lyDo}</td>
-                        </tr>
-                    `;
+                    $('#phieuNhapTable tbody tr').each(function() {
+                        var row = $(this);
+                        var maSP = row.find('td:nth-child(1)').text();
+                        if (maSP === data.maSP) {
+                            row.find('td:nth-child(2)').text(data.soLuong);
+                            kt = true;
+                            return false;  // Thoát khỏi vòng lặp each
+                        }
+                    });
 
-                    // Thêm hàng mới vào bảng
-                    $('#phieuNhapTable tbody').append(newRow);
+                    if (!kt) {
+                        // Tạo một hàng mới cho bảng
+                        
+                        var newRow = `
+                            <tr>
+                                <td>${data.maSP}</td>
+                                <td>${data.soLuong}</td>
+                                <td>${data.gia}</td>
+                                <td>${data.lyDo}</td>
+                            </tr>
+                        `;
 
+                        // Thêm hàng mới vào bảng
+                        $('#phieuNhapTable tbody').append(newRow);
+                    }
                     // Reset form chi tiết phiếu nhập
                     $('#phieuNhapCTForm')[0].reset();
                 } else {

@@ -82,31 +82,42 @@ class PhieuXuatController extends Controller
     }
 
     public function xuLyLapPXCT1(Request $request){
+        $maCTPX = 'CTPX' . uniqid();
         $maPX = $request->maPX;
         $maSP = $request->maSP;
         $soLuong = $request->soLuong;
 
-        $soLuong = $request->soLuong;
         $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
         if($soLuong > $sl[0]->SoLuongTrongKho){
             return response()->json(['success' => false, 'message' => 'Số lượng trong kho không đủ']);
         }
         if ($maPX) {
-            $maCTPX = 'CTPX' . uniqid();
-            $ctpx = new ChiTietPhieuXuat();
-            $ctpx->MaCTPX = $maCTPX;
-            $ctpx->MaPhieuXuat = $maPX;
-            $ctpx->MaSanPham = $maSP;
-            $ctpx->SoLuong = $soLuong;    
-            $ctpx->save();
+            $ktSanPhamTonTai = ChiTietPhieuXuat::where('MaPhieuXuat', $maPX)
+                                ->where('MaSanPham', $maSP)
+                                ->first();
+            if($ktSanPhamTonTai){
+                $ktSanPhamTonTai->SoLuong += $soLuong;
+                $ktSanPhamTonTai->save();
+                $message = 'Cập nhật thành công';
+            }else{
+                $ctpx = new ChiTietPhieuXuat();
+                $ctpx->MaCTPX = $maCTPX;
+                $ctpx->MaPhieuXuat = $maPX;
+                $ctpx->MaSanPham = $maSP;
+                $ctpx->SoLuong = $soLuong;    
+                $ctpx->save();
+                $message = 'Thêm thành công';
+            }
+            
             $tenSP = DB::select("SELECT TenSanPham FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
             $tenSP1 = $tenSP[0]->TenSanPham;
             return response()->json([
                 'success' => true,
+                'message' => $message,
                 'maCTPX' => $maCTPX,
                 'maPX' => $maPX,
                 'maSP' => $tenSP1,
-                'soLuong' => $soLuong,
+                'soLuong' => $ktSanPhamTonTai ? $ktSanPhamTonTai->SoLuong : $soLuong,
             ]);
         }
 
@@ -124,27 +135,32 @@ class PhieuXuatController extends Controller
             'soLuong' => 'required',
         ], $messages);
 
+        $maCTPX = 'CTPX' . uniqid();
+        $maPX = $request->maPXSua;
         $maSP = $request->maSP;
         $soLuong = $request->soLuong;
+
         $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
         if($soLuong > $sl[0]->SoLuongTrongKho){
             return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng sản phẩm trong kho không đủ (Số lượng trong kho: ' . $sl[0]->SoLuongTrongKho . ')']);
         }
 
-        $maPX = $request->maPXSua;
-        $maCTPX = 'CTPX' . uniqid();
-        $ctpx = new ChiTietPhieuXuat();
-        $ctpx->MaCTPX = $maCTPX;
-        $ctpx->MaPhieuXuat = $maPX;
-        $ctpx->MaSanPham = $maSP;
-        $ctpx->SoLuong = $soLuong;
-        $ctpx->save();
-        $p = $request->page;
-        if($p == "tao"){
-            return redirect()->route('taoCT', ['id' => $maPX]);
+        $ktSanPhamTonTai = ChiTietPhieuXuat::where('MaPhieuXuat', $maPX)
+                            ->where('MaSanPham', $maSP)
+                            ->first();
+        if($ktSanPhamTonTai){
+            $ktSanPhamTonTai->SoLuong += $soLuong;
+            $ktSanPhamTonTai->save();
         }else{
-            return redirect()->route('suaPX', ['id' => $maPX]);
+            $ctpx = new ChiTietPhieuXuat();
+            $ctpx->MaCTPX = $maCTPX;
+            $ctpx->MaPhieuXuat = $maPX;
+            $ctpx->MaSanPham = $maSP;
+            $ctpx->SoLuong = $soLuong;
+            $ctpx->save();
         }
+        return redirect()->route('suaPX', ['id' => $maPX]);
+        
         
     }
 
@@ -195,18 +211,31 @@ class PhieuXuatController extends Controller
         $trangThai1 = $request->trangThaiTruoc;
         $trangThai2 = $request->trangThai;
         if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
+            $spMoi = [];
             foreach($ctpx as $ct){
                 $maSP = $ct->MaSanPham;
                 $soLuong = $ct->SoLuong;
+
                 $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
-                $sl = $sltk[0]->SoLuongTrongKho - $soLuong;
-                $sl2 = $sltk[0]->SoLuongHienTai - $soLuong;
+                $sltkHienTai = $sltk[0]->SoLuongTrongKho;
+                $slhtHienTai = $sltk[0]->SoLuongHienTai;
+
+                $sl = $sltkHienTai - $soLuong;
+                $sl2 = $slhtHienTai - $soLuong;
+
                 if($sl < 0){
                     return redirect()->back()->withErrors(['trangThai' => 'Số lượng trong kho không đủ. Mời bạn kiểm tra lại']);
                 }
-                SanPham::where('MaSanPham', $maSP)->update([
+
+                $spMoi[$maSP] = [
                     'SoLuongTrongKho' => $sl,
                     'SoLuongHienTai' => $sl2,
+                ];
+            }
+            foreach($spMoi as $maSP => $slMoi){
+                SanPham::where('MaSanPham', $maSP)->update([
+                    'SoLuongTrongKho' => $slMoi['SoLuongTrongKho'],
+                    'SoLuongHienTai' => $slMoi['SoLuongHienTai'],
                 ]);
             }
         }elseif($trangThai2 == 0 && ($trangThai1 != $trangThai2)){

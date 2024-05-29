@@ -9,6 +9,7 @@ class ChiTietPhieuXuat extends Model
 {
     use HasFactory;
     protected $table = 'tbl_chitietphieuxuat';
+    protected $primaryKey = 'MaCTPX';
     public $timestamps = false;
 
 }

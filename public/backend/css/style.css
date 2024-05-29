@@ -3145,3 +3145,7 @@ div#graph1, div#graph4, div#graph5, div#graph6, div#graph7, div#graph8, div#grap
     padding: 0;
 }
 }
+
+.cot-an{
+    display: none;
+}

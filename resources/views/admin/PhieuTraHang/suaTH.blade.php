@@ -105,6 +105,7 @@
                     
                     
                     <div class="table-responsive">
+                        <p>Danh sách sản phẩm trong phiếu trả hàng</p>
                         <table class="table table-striped b-t b-light">
                             <thead>
                                 <tr>
@@ -124,12 +125,12 @@
 
                                     <tr>
                                         <!-- <td>{{ $ct->MaPhieuTraHang }}</td> -->
-                                        <td><input type="text" value="{{ $ct->TenSanPham }}<" id="tenSanPham_{{ $ct->MaCTPTH }}" readonly></td>
+                                        <input type="hidden" value="{{ $ct->MaSanPham }}" id="maSanPham_{{ $ct->MaCTPTH }}" readonly>
+                                        
+                                        <td>{{ $ct->TenSanPham }}</td>
                                         <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPTH }}"></td>
-                                        <td><input type="number" value="{{ $ct->GiaSanPham }}" id="giaSanPham_{{ $ct->MaCTPTH }}" readonly></td>
+                                        <td>{{ $ct->GiaSanPham }}</td>
                                         <td><input type="text" value="{{ $ct->LyDoTraHang }}" id="lyDoTraHang_{{ $ct->MaCTPTH }}"></td>
-
-
                                         <td id = "myLink">
                                             <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPTH }}">Cập nhật</a>
                                             <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPTH }} không?')" href="{{ route('xoaCTPTHS', ['id' => $ct->MaCTPTH, 'maPTH' => $pth->MaPhieuTraHang]) }}">
@@ -172,9 +173,8 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.update-btn').on('click', function() {
         var MaCTPTH = $(this).data('id');
-        var tenSanPham = $('#tenSanPham_' + MaCTPTH).val();
+        var maSanPham = $('#maSanPham_' + MaCTPTH).val();
         var soLuong = $('#soLuong_' + MaCTPTH).val();
-        var giaSanPham = $('#giaSanPham_' + MaCTPTH).val();
         var lyDoTraHang = $('#lyDoTraHang_' + MaCTPTH).val();
         var maPN = $('#maPN').val();
 
@@ -185,10 +185,9 @@ $(document).ready(function() {
                 _token: '{{ csrf_token() }}',
                 MaCTPTH: MaCTPTH,
                 soLuong: soLuong,
-                giaSanPham: giaSanPham,
                 lyDoTraHang: lyDoTraHang,
                 maPN: maPN,
-                tenSanPham:tenSanPham,
+                maSanPham:maSanPham,
             },
             success: function(data) {
                 if (data.success) {                   

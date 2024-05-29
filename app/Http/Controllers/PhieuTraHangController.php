@@ -72,7 +72,65 @@ class PhieuTraHangController extends Controller
     }
 
     public function xuLySuaPTH(Request $request){
+        $maPTH = $request->maPTH;
+        $ctpth = DB::select("SELECT * FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$maPTH}'");
+        $tongTien = 0;
+        foreach($ctpth as $i){
+            $tien = $i->SoLuong * $i->GiaSanPham;
+            $tongTien += $tien;
+        }
+        $tgSua = date('Y-m-d H:i:s');
+        
+        $trangThai1 = $request->trangThaiTruoc;
+        $trangThai2 = $request->trangThai;
+        if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
+            $spMoi = [];
+            foreach($ctpth as $ct){
+                $maSP = $ct->MaSanPham;
+                $soLuong = $ct->SoLuong;
 
+                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sltkHienTai = $sltk[0]->SoLuongTrongKho;
+                $slhtHienTai = $sltk[0]->SoLuongHienTai;
+
+                $sl = $sltkHienTai - $soLuong;
+                $sl2 = $slhtHienTai - $soLuong;
+
+                if($sl < 0){
+                    return redirect()->back()->withErrors(['trangThai' => 'Số lượng trong kho không đủ. Mời bạn kiểm tra lại']);
+                }
+
+                $spMoi[$maSP] = [
+                    'SoLuongTrongKho' => $sl,
+                    'SoLuongHienTai' => $sl2,
+                ];
+            }
+            foreach($spMoi as $maSP => $slMoi){
+                SanPham::where('MaSanPham', $maSP)->update([
+                    'SoLuongTrongKho' => $slMoi['SoLuongTrongKho'],
+                    'SoLuongHienTai' => $slMoi['SoLuongHienTai'],
+                ]);
+            }
+        }elseif($trangThai2 == 0 && ($trangThai1 != $trangThai2)){
+            foreach($ctpth as $ct){
+                $maSP = $ct->MaSanPham;
+                $soLuong = $ct->SoLuong;
+                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sl = $sltk[0]->SoLuongTrongKho + $soLuong;
+                $sl2 = $sltk[0]->SoLuongHienTai + $soLuong;
+                SanPham::where('MaSanPham', $maSP)->update([
+                    'SoLuongTrongKho' => $sl,
+                    'SoLuongHienTai' => $sl2,
+                ]);
+            }
+        }
+
+        PhieuTraHang::where('MaPhieuTraHang', $maPTH)->update([
+            'TongTien' => $tongTien,
+            'TrangThai' => $request->trangThai,
+            'ThoiGianSua' => $tgSua,
+        ]);
+        return redirect()->route('xemPTH');
     }
 
     public function xuLyLapTHCT(Request $request){
@@ -86,18 +144,19 @@ class PhieuTraHangController extends Controller
             'soLuong' => 'required',
             'lyDo' => 'required',
         ], $messages);
-
+        $maCTTH = 'CTTH' . uniqid();
         $maSP = $request->maSP;
         $soLuong = $request->soLuong;
-        $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
-        if($soLuong > $sl[0]->SoLuongTrongKho){
-            return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng sản phẩm trong kho không đủ (Số lượng trong kho: ' . $sl[0]->SoLuongTrongKho . ')']);
-        }
         $maPTH = $request->maPTHSua;
         $maPN = $request->maPN;
         $lyDo = $request->lyDo;
         $gia = 0;
 
+        $sl = DB::select("SELECT SoLuongTrongKho FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+        if($soLuong > $sl[0]->SoLuongTrongKho){
+            return redirect()->back()->withInput()->withErrors(['soLuong' => 'Số lượng sản phẩm trong kho không đủ (Số lượng trong kho: ' . $sl[0]->SoLuongTrongKho . ')']);
+        }
+        
         $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
         $kt = false;
         foreach($ctpn as $i){
@@ -115,17 +174,23 @@ class PhieuTraHangController extends Controller
         }
         
         if ($maPTH) {
-            $maCTTH = 'CTTH' . uniqid();
-            $ctth = new ChiTietPhieuTraHang();
-            $ctth->MaCTPTH = $maCTTH;
-            $ctth->MaPhieuTraHang = $maPTH;
-            $ctth->MaSanPham = $maSP;
-            $ctth->SoLuong = $soLuong;    
-            $ctth->GiaSanPham = $gia;
-            $ctth->LyDoTraHang = $lyDo;
-            $ctth->save();
+            $ktSanPhamTonTai = ChiTietPhieuTraHang::where('MaPhieuTraHang', $maPTH)
+                            ->where('MaSanPham', $maSP)
+                            ->first();
+            if($ktSanPhamTonTai){
+                $ktSanPhamTonTai->SoLuong += $soLuong;
+                $ktSanPhamTonTai->save();
+            }else{
+                $ctth = new ChiTietPhieuTraHang();
+                $ctth->MaCTPTH = $maCTTH;
+                $ctth->MaPhieuTraHang = $maPTH;
+                $ctth->MaSanPham = $maSP;
+                $ctth->SoLuong = $soLuong;    
+                $ctth->GiaSanPham = $gia;
+                $ctth->LyDoTraHang = $lyDo;
+                $ctth->save();
+            }
         }
-
         return redirect()->route('suaPTH', ['id' => $maPTH]);  
     }
 
@@ -134,7 +199,7 @@ class PhieuTraHangController extends Controller
         $MaCTPTH = $request->input('MaCTPTH');
         $soLuong = $request->input('soLuong');
         $lyDoTraHang = $request->input('lyDoTraHang');
-        $tenSanPham = $request->input('tenSanPham');
+        $maSanPham = $request->input('maSanPham');
         $maPN = $request->input('maPN');
         $sl = DB::select("SELECT sp.SoLuongTrongKho 
                         FROM tbl_sanpham sp
@@ -146,7 +211,7 @@ class PhieuTraHangController extends Controller
         $ctpn = DB::select("SELECT ct.*
                         FROM tbl_chitietphieunhap ct
                         JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                        WHERE MaPhieuNhap = '{$maPN}' AND TenSanPham = '{$tenSanPham}'");
+                        WHERE MaPhieuNhap = '{$maPN}' AND ct.MaSanPham = '{$maSanPham}'");
 
         if($ctpn[0]->SoLuong < $soLuong){
             return response()->json(['success' => false, 'message' => 'Nhập quá số lượng trong phiếu nhập']);
@@ -207,6 +272,7 @@ class PhieuTraHangController extends Controller
     }
 
     public function xuLyLapTHCT1(Request $request){
+        $maCTTH = 'CTTH' . uniqid();
         $maTH = $request->maTH;
         $maSP = $request->maSP;
         $maPN = $request->maPN;
@@ -235,23 +301,36 @@ class PhieuTraHangController extends Controller
         if($soLuong > $sl[0]->SoLuongTrongKho){
             return response()->json(['success' => false, 'message' => 'Số lượng trong kho không đủ']);
         }
+
+
         if ($maTH) {
-            $maCTTH = 'CTTH' . uniqid();
-            $ctth = new ChiTietPhieuTraHang();
-            $ctth->MaCTPTH = $maCTTH;
-            $ctth->MaPhieuTraHang = $maTH;
-            $ctth->MaSanPham = $maSP;
-            $ctth->SoLuong = $soLuong;    
-            $ctth->GiaSanPham = $gia;
-            $ctth->LyDoTraHang = $lyDo;
-            $ctth->save();
+            $ktSanPhamTonTai = ChiTietPhieuTraHang::where('MaPhieuTraHang', $maTH)
+                                ->where('MaSanPham', $maSP)
+                                ->first();
+            if($ktSanPhamTonTai){
+                $ktSanPhamTonTai->SoLuong += $soLuong;
+                $ktSanPhamTonTai->save();
+                $message = 'Cập nhật thành công';
+            }else{
+                $ctth = new ChiTietPhieuTraHang();
+                $ctth->MaCTPTH = $maCTTH;
+                $ctth->MaPhieuTraHang = $maTH;
+                $ctth->MaSanPham = $maSP;
+                $ctth->SoLuong = $soLuong;    
+                $ctth->GiaSanPham = $gia;
+                $ctth->LyDoTraHang = $lyDo;
+                $ctth->save();
+                $message = 'Thêm thành công';
+            }
+            
             $tenSP = DB::select("SELECT TenSanPham FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
             $tenSP1 = $tenSP[0]->TenSanPham;
             return response()->json([
                 'success' => true,
+                'message' => $message,
                 'maCTTH' => $maCTTH,
                 'maSP' => $tenSP1,
-                'soLuong' => $soLuong,
+                'soLuong' => $ktSanPhamTonTai ? $ktSanPhamTonTai->SoLuong : $soLuong,
                 'gia' => $gia,
                 'lyDo' => $lyDo,
             ]);

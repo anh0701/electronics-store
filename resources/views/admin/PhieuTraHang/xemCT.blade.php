@@ -64,7 +64,7 @@
     <a href="{{ route('xemPTH') }}"><button class="btn btn-info">Trở lại</button></a>
     <a href="{{ route('suaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><button class="btn btn-info">Sửa</button></a>
     @if ($pth->TrangThai == 0)
-        <a href="{{ route('xoaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><button class="btn btn-info">Xóa</button></a>
+        <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{ route('xoaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><button class="btn btn-info">Xóa</button></a>
     @endif
 </div>
 @endsection
