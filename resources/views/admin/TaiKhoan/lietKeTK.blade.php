@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-3">
                 <div class="input-group">
-                    <form action="{{ Route('timKiemTK') }}" method="get">
+                    <form action="{{ route('timKiemTK') }}" method="get">
                         <div class="input-group">
                             <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
                             <span class="input-group-btn">

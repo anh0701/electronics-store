@@ -233,7 +233,7 @@ class TaiKhoanController extends Controller
                 Rule::unique('tbl_taikhoan')->ignore($request->user_id),
             ],
             'matkhau' => 'required',
-            'sdt' => 'required|integer|digits_between:1,15',
+            'sdt' => 'required|digits_between:0,15',
         ], $messages);
 
         if(!$valid){

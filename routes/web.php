@@ -131,7 +131,7 @@ Route::post('/quen-mat-khau', [TaiKhoanController::class, 'quenMatKhau'])->name(
 Route::get('/quen-mat-khau', [TaiKhoanController::class, 'trangQMK'])->name('indexQMK');
 Route::post('/xac-thuc-pin', [TaiKhoanController::class, 'xacThucPin'])->name('xacThucPin');
 Route::get('/xac-thuc-pin', [TaiKhoanController::class, 'indexXTPin'])->name('indexXTPin');
-Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->name('timkiemTK');
+Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->name('timKiemTK');
 //Route::get('/cap-nhat-tai-khoan', [TaiKhoanController::class, 'capNhatTK'])->name('capNhatTK');
 //Route::post('/xuLyCapNhatTK', [TaiKhoanController::class, 'xuLyCNTK'])->name('xuLyCapNhatTK');
 

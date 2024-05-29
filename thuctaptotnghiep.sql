@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 29, 2024 lúc 03:37 AM
+-- Thời gian đã tạo: Th5 29, 2024 lúc 04:19 AM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -1495,7 +1495,7 @@ CREATE TABLE `tbl_taikhoan` (
   `TenTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TenNguoiDung` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `DiaChi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SoDienThoai` int DEFAULT NULL,
+  `SoDienThoai` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `MatKhau` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
@@ -1512,9 +1512,11 @@ CREATE TABLE `tbl_taikhoan` (
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`, `DiaChi`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
 ('TK20240526100025', 'anhKH1@gmail.com', 'anhKH1', NULL, NULL, NULL, '$2y$12$H6HJwWwttDY2dnewoCPtm.gvv/yNsFjloZZE2UJ1HT6V.4cBQpZVS', NULL, 0, '1', '2024-05-26 03:00:25', NULL, 'Khách hàng', NULL),
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, 1, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', 1, NULL, '2024-04-27 10:25:56', '2024-05-24 08:54:33', 'Quản trị viên cấp cao', NULL),
-('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 0, NULL, '2024-05-21 07:53:52', '2024-05-26 07:27:56', 'Nhân viên kho', NULL),
-('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, 111, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', NULL, 'Nhân viên', NULL);
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
+('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 0, NULL, '2024-05-21 07:53:52', '2024-05-29 04:09:27', 'Nhân viên kho', NULL),
+('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-05-29 04:18:09', 'Nhân viên', NULL),
+('TKNV20240529111627', 'anh12@gmail.com', 'anh12', NULL, NULL, '012345678912345', '$2y$12$Xlbsm3Hb.G2/sjcjhjR6pO.9IA.1vKEXe8riUgZKzdq7X4TmCtLMy', NULL, 1, NULL, '2024-05-29 04:16:27', NULL, 'Nhân viên', NULL),
+('TKNV20240529111837', 'anh14@gmail.com', 'anh14', NULL, NULL, '0987654321', '$2y$12$86VOssWoySbDFGuykUsf/uR8WIJginUtQQlZaTv89qLSSmfdBxArC', NULL, 1, NULL, '2024-05-29 04:18:37', NULL, 'Nhân viên', NULL);
 
 -- --------------------------------------------------------
 
