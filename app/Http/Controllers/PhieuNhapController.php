@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChiTietPhieuNhap;
 use App\Models\NhaCungCap;
+use App\Models\PhieuXuat;
 use App\Models\SanPham;
 use Exception;
 use Session;
@@ -24,8 +25,23 @@ class PhieuNhapController extends Controller
                 ->orderByDesc('tbl_phieunhap.ThoiGianTao')
                 ->paginate(5);
 
-        return view('admin.PhieuNhap.xemPhieuNhap', ['data' => $pns]);
+        return view('admin.PhieuNhap.lietKePN', ['data' => $pns]);
     } 
+
+    public function timKiemPN(Request $request){
+        $data = PhieuNhap::join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+            ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
+            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+            ->where(function($query) use ($request) {
+                $query->where('tbl_taikhoan.TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_nhacungcap.TenNhaCungCap', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_phieunhap.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+            })
+            ->paginate(5);
+        return view('admin.PhieuNhap.lietKePN', compact('data'));
+    }
+
+    
 
     public function xemCTPN($id){
         $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
@@ -57,7 +73,7 @@ class PhieuNhapController extends Controller
 
     public function lapPN(){
         $maPN = 'PN' . date('YmdHis');
-        $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap");
+        $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap WHERE TrangThai = 1");
         $products = SanPham::all();
         return view('admin.PhieuNhap.themPN', ['listNCC' => $listNCC, 'maPN' => $maPN], compact('products'));
     }
@@ -79,28 +95,41 @@ class PhieuNhapController extends Controller
     }
     
     public function xuLyLapPNCT1(Request $request){
+        $maCTPN = 'CTPN' . uniqid();
         $maPN = $request->maPN;
         $maSP = $request->maSP;
         $soLuong = $request->soLuong;
         $gia = $request->gia;
         
         if ($maPN) {
-            $maCTPN = 'CTPN' . uniqid();
-            $ctpn = new ChiTietPhieuNhap();
-            $ctpn->MaCTPN = $maCTPN;
-            $ctpn->MaPhieuNhap = $maPN;
-            $ctpn->MaSanPham = $maSP;
-            $ctpn->SoLuong = $soLuong;
-            $ctpn->GiaSanPham = $gia;      
-            $ctpn->save();
+            $ktSanPhamTonTai = ChiTietPhieuNhap::where('MaPhieuNhap', $maPN)
+                                ->where('MaSanPham', $maSP)
+                                ->first();
+            if($ktSanPhamTonTai){
+                $ktSanPhamTonTai->SoLuong += $soLuong;
+                $ktSanPhamTonTai->GiaSanPham = $gia;
+                $ktSanPhamTonTai->save();
+                $message = 'Cập nhật thành công';
+            }else{
+                $ctpn = new ChiTietPhieuNhap();
+                $ctpn->MaCTPN = $maCTPN;
+                $ctpn->MaPhieuNhap = $maPN;
+                $ctpn->MaSanPham = $maSP;
+                $ctpn->SoLuong = $soLuong;
+                $ctpn->GiaSanPham = $gia;      
+                $ctpn->save();
+                $message = 'Thêm thành công';
+            }
             $tenSP = DB::select("SELECT TenSanPham FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
             $tenSP1 = $tenSP[0]->TenSanPham;
             return response()->json([
                 'success' => true,
+                'message' =>$message,
                 'maCTPN' => $maCTPN,
                 'maPN' => $maPN,
-                'maSP' => $tenSP1,
-                'soLuong' => $soLuong,
+                'maSP' => $maSP,
+                'tenSP' => $tenSP1,
+                'soLuong' => $ktSanPhamTonTai ? $ktSanPhamTonTai->SoLuong : $soLuong,
                 'gia' => $gia
             ]);
         }
@@ -121,21 +150,28 @@ class PhieuNhapController extends Controller
             'gia' => 'required',
         ], $messages);
 
-        if($request->maPNSua != null){
-            $maPN = $request->maPNSua;
-        }else{
-            $pn = Session::get('pn');
-            $maPN = $pn[0];
-        }
         $maCTPN = 'CTPN' . uniqid();
-        $ctpn = new ChiTietPhieuNhap();
-        $ctpn->MaCTPN = $maCTPN;
-        $ctpn->MaPhieuNhap = $maPN;
-        $ctpn->MaSanPham = $request->maSP;
-        $ctpn->SoLuong = $request->soLuong;
-        $ctpn->GiaSanPham = $request->gia;      
-        $ctpn->save();
-
+        $maPN = $request->maPNSua;
+        $maSP = $request->maSP;
+        $soLuong = $request->soLuong;
+        $gia = $request->gia;
+  
+        $ktSanPhamTonTai = ChiTietPhieuNhap::where('MaPhieuNhap', $maPN)
+                            ->where('MaSanPham', $maSP)
+                            ->first();
+        if($ktSanPhamTonTai){
+            $ktSanPhamTonTai->SoLuong += $soLuong;
+            $ktSanPhamTonTai->GiaSanPham = $gia;
+            $ktSanPhamTonTai->save();
+        }else{
+            $ctpn = new ChiTietPhieuNhap();
+            $ctpn->MaCTPN = $maCTPN;
+            $ctpn->MaPhieuNhap = $maPN;
+            $ctpn->MaSanPham = $maSP;
+            $ctpn->SoLuong = $soLuong;
+            $ctpn->GiaSanPham = $gia;      
+            $ctpn->save();
+        }
         return redirect()->route('suaPN', ['id'=>$maPN]);
     }
 
@@ -245,16 +281,6 @@ class PhieuNhapController extends Controller
         }
         $tienNo = $tongTien - $tienTraMoi;
         $thoiGianSua = date('Y-m-d H:i:s');
-        
-        
-        PhieuNhap::where('MaPhieuNhap', $maPN)->update([
-            'TongTien' => $tongTien,
-            'TienTra' => $tienTraMoi,
-            'TienNo' => $tienNo,
-            'PhuongThucThanhToan' => $request->thanhToan,
-            'TrangThai' => $request->trangThai,
-            'ThoiGianSua' => $thoiGianSua,
-        ]);
 
         $trangThai1 = $request->trangThaiTruoc;
         $trangThai2 = $request->trangThai;
@@ -271,23 +297,64 @@ class PhieuNhapController extends Controller
                 ]);
             }
         }elseif($trangThai2 == 0 && ($trangThai1 != $trangThai2)){
+            $spMoi = [];
             foreach($ctpn as $ct){
                 $maSP = $ct->MaSanPham;
                 $soLuong = $ct->SoLuong;
+
                 $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
-                $sl = $sltk[0]->SoLuongTrongKho - $soLuong;
-                $sl2 = $sltk[0]->SoLuongHienTai - $soLuong;
-                SanPham::where('MaSanPham', $maSP)->update([
+                $sltkHienTai = $sltk[0]->SoLuongTrongKho;
+                $slhtHienTai = $sltk[0]->SoLuongHienTai;
+
+                $sl = $sltkHienTai - $soLuong;
+                $sl2 = $slhtHienTai - $soLuong;
+
+                if($sl < 0){
+                    return redirect()->back()->withErrors(['trangThai' => 'Số lượng trong kho không đủ. Mời bạn kiểm tra lại']);
+                }
+
+                $spMoi[$maSP] = [
                     'SoLuongTrongKho' => $sl,
                     'SoLuongHienTai' => $sl2,
+                ];
+            }
+            foreach($spMoi as $maSP => $slMoi){
+                SanPham::where('MaSanPham', $maSP)->update([
+                    'SoLuongTrongKho' => $slMoi['SoLuongTrongKho'],
+                    'SoLuongHienTai' => $slMoi['SoLuongHienTai'],
                 ]);
             }
         }
+
+        PhieuNhap::where('MaPhieuNhap', $maPN)->update([
+            'TongTien' => $tongTien,
+            'TienTra' => $tienTraMoi,
+            'TienNo' => $tienNo,
+            'PhuongThucThanhToan' => $request->thanhToan,
+            'TrangThai' => $request->trangThai,
+            'ThoiGianSua' => $thoiGianSua,
+        ]);
         return redirect()->route('xemPN');
 
     }
 
     public function xoaPN($id){
+        $maPTH = DB::select("SELECT MaPhieuTraHang, TrangThai FROM tbl_phieutrahang WHERE MaPhieuNhap = '{$id}'");
+        $pth = [];
+        foreach($maPTH as $i){
+            $tt = $i->TrangThai;
+            $ma = $i->MaPhieuTraHang;
+            if($tt == 1){
+                return redirect('/liet-ke-phieu-nhap')->withErrors(['phieuTH' => 'Mời bạn kiểm tra lại phiếu trả hàng (có phiếu đã được xác nhận)']);
+            }
+            
+            $pth[] = $ma;
+        }
+        foreach($pth as $ma){
+            DB::delete("DELETE FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$ma}'");
+            DB::delete("DELETE FROM tbl_phieutrahang WHERE MaPhieuTraHang = '{$ma}'");
+        }
+        
         DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
         DB::delete("DELETE FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
 

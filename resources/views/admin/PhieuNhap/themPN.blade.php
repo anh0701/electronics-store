@@ -49,14 +49,14 @@
 
                 <div id="responseMessageCT"></div>
 
-                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" >
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="">Mã phiếu nhập:</label>
+                        <label for="">Mã phiếu nhập</label>
                         <input type="text" class="form-control" name="maPN" value="{{$maPN}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MaSanPham">Sản phẩm:</label>
+                        <label for="MaSanPham">Sản phẩm</label>
                         <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
                     </div>
 
@@ -138,22 +138,37 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessageCT').text('Thêm sản phẩm thành công').css('color', 'green');
+                    $('#responseMessageCT').text(data.message).css('color', 'green');
 
-                    // Tạo một hàng mới cho bảng
-                    
-                    var newRow = `
-                        <tr>
-                            <td>${data.maPN}</td>
-                            <td>${data.maSP}</td>
-                            <td>${data.soLuong}</td>
-                            <td>${data.gia}</td>
-                            <td>${data.soLuong * data.gia}</td>
-                        </tr>
-                    `;
+                    var kt = false;
 
-                    // Thêm hàng mới vào bảng
-                    $('#phieuNhapTable tbody').append(newRow);
+                    $('#phieuNhapTable tbody tr').each(function() {
+                        var row = $(this);
+                        var maSP = row.find('td:nth-child(2)').text();
+                        if (maSP === data.maSP) {
+                            row.find('td:nth-child(4)').text(data.soLuong);
+                            row.find('td:nth-child(5)').text(data.gia);
+                            row.find('td:nth-child(6)').text(data.soLuong * data.gia);
+                            kt = true;
+                            return false;  // Thoát khỏi vòng lặp each
+                        }
+                    });
+
+                    if (!kt) {
+                        // Tạo một hàng mới cho bảng
+                        var newRow = `
+                            <tr>
+                                <td>${data.maPN}</td>
+                                <td class="cot-an">${data.maSP}</td>
+                                <td>${data.tenSP}</td>
+                                <td>${data.soLuong}</td>
+                                <td>${data.gia}</td>
+                                <td>${data.soLuong * data.gia}</td>
+                            </tr>
+                        `;
+                        // Thêm hàng mới vào bảng
+                        $('#phieuNhapTable tbody').append(newRow);
+                    }
 
                     // Reset form chi tiết phiếu nhập
                     $('#phieuNhapCTForm')[0].reset();

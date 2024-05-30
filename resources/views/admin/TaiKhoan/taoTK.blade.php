@@ -8,33 +8,36 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div>
-                @endif
                     <form role="form" id="from" action="{{ Route('xuLyTaoTK')}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="tentaikhoan">Tên tài khoản:</label>
                             <input class="form-control" type="text" id="tentaikhoan" name="tentaikhoan" value="{{ old('tentaikhoan') }}">
                         </div>
+                        @error('tentaikhoan')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input class="form-control" type="text" id="email" name="email" value="{{ old('email') }}">
                         </div>
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="matkhau">Mật khẩu:</label>
                             <input class="form-control" type="text" id="matkhau" name="matkhau" value="{{ old('matkhau') }}">
                         </div>
+                        @error('matkhau')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="sdt">Số điện thoại:</label>
                             <input class="form-control" type="text" id="sdt" name="sdt" value="{{ old('sdt') }}">
                         </div>
+                        @error('sdt')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="quyen">Quyền hạn:</label>
                             <select id="quyen" class="form-control input-lg m-bot15" name="quyen">

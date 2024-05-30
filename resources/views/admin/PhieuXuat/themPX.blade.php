@@ -92,13 +92,13 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessage').text('Lập phiếu nhập thành công').css('color', 'green');
+                    $('#responseMessage').text('Lập phiếu xuất thành công').css('color', 'green');
                     // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
                     $('#phieuNhapForm').hide();
                     $('#phieuNhapCTForm').show();
                     $('#control').show();
                 } else {
-                    $('#responseMessage').text('Lập phiếu nhập thất bại: ' + data.message).css('color', 'red');
+                    $('#responseMessage').text('Lập phiếu xuất thất bại: ' + data.message).css('color', 'red');
                 }
             },
             error: function(xhr, status, error) {
@@ -120,20 +120,33 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessageCT').text('Thêm sản phẩm thành công').css('color', 'green');
+                    $('#responseMessageCT').text(data.message).css('color', 'green');
 
-                    // Tạo một hàng mới cho bảng
+                    var kt = false;
+
+                    $('#phieuNhapTable tbody tr').each(function() {
+                        var row = $(this);
+                        var maSP = row.find('td:nth-child(2)').text();
+                        if (maSP === data.maSP) {
+                            row.find('td:nth-child(3)').text(data.soLuong);
+                            kt = true;
+                            return false;  // Thoát khỏi vòng lặp each
+                        }
+                    });
+
+                    if (!kt) {
                     
-                    var newRow = `
-                        <tr>
-                            <td>${data.maPX}</td>
-                            <td>${data.maSP}</td>
-                            <td>${data.soLuong}</td>
-                        </tr>
-                    `;
+                        var newRow = `
+                            <tr>
+                                <td>${data.maPX}</td>
+                                <td>${data.maSP}</td>
+                                <td>${data.soLuong}</td>
+                            </tr>
+                        `;
 
-                    // Thêm hàng mới vào bảng
-                    $('#phieuNhapTable tbody').append(newRow);
+                        // Thêm hàng mới vào bảng
+                        $('#phieuNhapTable tbody').append(newRow);
+                    }
 
                     // Reset form chi tiết phiếu nhập
                     $('#phieuNhapCTForm')[0].reset();

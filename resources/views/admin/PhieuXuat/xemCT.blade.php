@@ -81,7 +81,7 @@
     <a href="{{ route('xemPX') }}"><button class="btn btn-info">Trở lại</button></a>
     <a href="{{ route('suaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Sửa</button></a>
     @if ($px->TrangThai == 0)
-        <a href="{{ route('xoaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Xóa</button></a>
+        <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{ route('xoaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Xóa</button></a>
     @endif
 </div>
 @endsection

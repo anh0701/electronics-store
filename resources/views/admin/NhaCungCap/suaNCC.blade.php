@@ -8,15 +8,11 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @php 
+                    $user = session(('user'));
+                    $quyen = $user['Quyen'];
+
+                @endphp 
                 @foreach ($data as $item)
                     <form role="form" id="from" action="/xuLySuaNCC" method="POST">
                         {{ csrf_field() }}
@@ -28,21 +24,36 @@
                             <label for="tennhacungcap">Tên nhà cung cấp</label>
                             <input class="form-control" type="text" id="tennhacungcap" name="tennhacungcap" value="{{ $item->TenNhaCungCap }}">
                         </div>
+                        @error('tennhacungcap')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="diachi">Địa chỉ</label>  
                             <input class="form-control" type="text" id="diachi" name="diachi" value="{{ $item->DiaChi }}" >    
                         </div>
+                        @error('diachi')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="email">Email</label>                   
                             <input class="form-control" type="text" id="email" name="email" value="{{ $item->Email }}">
                         </div>
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="sdt">Số điện thoại</label>                 
-                            <input class="form-control" type="text" id="sdt" name="sdt" value="{{ $item->SoDienThoai }}">
+                            <input class="form-control" type="number" id="sdt" name="sdt" value="{{ $item->SoDienThoai }}">
                         </div>
-                        <div class="form-group">
-                            <label for="thoigiansua">Thời gian sửa</label>             
-                            <input class="form-control" type="text" id="thoigiansua" name="thoigiansua" value="{{ $item->ThoiGianSua }}" readonly class="gray-background">
+                        @error('sdt')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
+                            <label for="">Trạng thái</label>
+                            <select name="trangThai" class="form-control input-lg m-bot15">
+                                <option value="0" {{ $item->TrangThai == '0' ? 'selected' : '' }}>Ngừng hợp tác</option>
+                                <option value="1" {{ $item->TrangThai == '1' ? 'selected' : '' }}>Hợp tác</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-info">Lưu</button>
                     </form>
