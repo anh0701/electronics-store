@@ -107,6 +107,34 @@
                                 <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
                                 <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
                                 <p>{{ $sanPham->TenSanPham }}</p>
+                                <p class="vote-txt">
+                                    @php
+                                    $count = 0;
+                                    $tongSoSao = 0;
+                                        foreach($allDanhGia as $key => $danhGia){
+                                            if($danhGia->MaSanPham == $sanPham->MaSanPham){
+                                                $count++;
+                                                $tongSoSao += $danhGia->SoSao;
+                                            }
+                                        }
+                                    @endphp
+                                    @php
+                                        if($count > 0){
+                                        $tongSoSao = $tongSoSao/$count
+                                    @endphp
+                                        <b>{{ number_format($tongSoSao, 1); }}</b>
+                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                        <b>({{ $count }})</b>
+                                    @php
+                                        }elseif($count == 0){
+                                    @endphp
+                                        <b>0</b>
+                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                        <b>(0)</b>
+                                    @php
+                                        }
+                                    @endphp
+                                </p>
                             </a>
                             <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
                             data-id_product="{{ $sanPham->MaSanPham }}">

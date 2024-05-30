@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\DB;
 
 class GioHangController extends Controller
 {
-
     public function ThemGioHang(Request $request){
         $data = $request->all();
         $session_id = substr(md5(microtime()), rand(0, 26), 5);

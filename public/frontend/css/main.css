@@ -968,7 +968,7 @@ h2.title {
 .product-overlay h2{
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
-	font-size: 24px;
+	font-size: 18px;
 	font-weight: 700;
 }
 
@@ -979,6 +979,7 @@ h2.title {
   color: #696763;
   height: 5 0px;
   margin: 10px 0;
+  height: 50px;
 }
 
 .productinfo p.vote-txt {
@@ -1050,13 +1051,11 @@ h2.title {
   color: #fff;
 }
 
-
-
 .add-to-cart {
   background:#FE980F;
   border: 0 none;
   border-radius: 0;
-  color: #6d6c69;
+  color: #2b2a29;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   margin-bottom: 25px;
@@ -2211,6 +2210,7 @@ h2.title {
 }
 
 
+
 .pagination-area {
   margin-bottom:45px;
   margin-top:45px
@@ -2396,18 +2396,33 @@ h2.title {
   background:#FE980F
 }
 
+.comment-blog {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 3px solid #F7F7F0;
+}
 
-.media-list .btn-primary, 
+.comment-blog  .comment-blog-btn {
+  
+  background: #FE980F;
+  color: #FFFFFF;
+  float: left;
+  font-size: 10px;
+  padding: 1px 7px;
+  text-transform: none;
+}
+
+/* .media-list .btn-primary, 
 .commnets .btn-primary {
   background:#FC9A11;
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
   float: left;
-  font-size: 10px;
+  font-size: 14px;
   padding: 1px 7px;
   text-transform: uppercase;
-}
+} */
 
 .response-area h2 {
   color: #363432;
@@ -2679,6 +2694,93 @@ h2.title {
 /* Selected state of the stars */
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
+}
+
+.shopping-trends {
+  display: block;
+  overflow: hidden;
+  margin: 0 0 30px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.shopping-trends strong.name-box {
+  display: block;
+  overflow: hidden;
+  padding: 15px 22px;
+  font-size: 22px;
+  line-height: 36px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.shopping-trends ul {
+  display: flex;
+  flex-flow: row wrap;
+  overflow: hidden;
+  padding: 0 22px 30px;
+}
+
+.shopping-trends ul li {
+  float: left;
+  width: 260px;
+  margin: 0 12px 0 0;
+  position: relative;
+}
+
+.shopping-trends ul li a {
+  display: block;
+  overflow: hidden;
+}
+
+.shopping-trends ul li img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  border-radius: 5px;
+}
+
+.shopping-trends ul li span {
+  position: absolute;
+  bottom: 55px;
+  left: 18px;
+  font-size: 19px;
+  line-height: 26px;
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 250px;
+  height: 24px;
+  margin-top: 15px;
+}
+
+.shopping-trends ul li strong {
+  position: absolute;
+  bottom: 24px;
+  left: 18px;
+  font-size: 17px;
+  line-height: 20px;
+  color: #2f80ed;
+  font-weight: 500;
+}
+
+.carousel-head {
+  display: block;
+  overflow: hidden;
+  margin: 0 0 30px;
+  border-radius: 0;
+  background: ;
+}
+
+.carousel-head strong.carousel-name {
+  display: block;
+  overflow: hidden;
+  padding: 15px 22px;
+  font-size: 22px;
+  line-height: 36px;
+  color: #333;
+  text-transform: uppercase;
 }
 
 .col-xs-15,

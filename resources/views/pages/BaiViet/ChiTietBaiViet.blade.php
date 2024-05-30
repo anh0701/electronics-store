@@ -70,80 +70,72 @@
         </div>
         <div class="col-sm-9">
             <div class="blog-post-area">
-                <h2 class="title text-center">Latest From our Blog</h2>
+                <h2 class="title text-center">Chi tiết bài viết {{ $baiViet->TenBaiViet }}</h2>
                 <div class="single-blog-post">
                     <h3>{{ $baiViet->TenBaiViet }}</h3>
-                    <a href="">
-                        <img src="images/blog/blog-one.jpg" alt="">
-                    </a>
-                    <span class="container">
+                    <span>
                         {!! $baiViet->MoTa !!}
                     </span>
                 </div>
             </div>
-            
             <div class="response-area">
-                <h2>Bình luận về bài viết</h2>
-                <ul class="media-list">
-                    <li class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="images/blog/man-two.jpg" alt="">
-                        </a>
-                        <div class="media-body">
-                            <ul class="sinlge-post-meta">
-                                <li><i class="fa fa-user"></i>Janis Gallagher</li>
-                                <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
+                <div class="col-sm-12 comment-blog">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
                             </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
                         </div>
-                    </li>
-                    <li class="media second-media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="images/blog/man-three.jpg" alt="">
-                        </a>
-                        <div class="media-body">
-                            <ul class="sinlge-post-meta">
-                                <li><i class="fa fa-user"></i>Janis Gallagher</li>
-                                <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                    @endif
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {!! session()->get('message') !!}
                         </div>
-                        <ul>
-                            <li class="media second-media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/blog/man-three.jpg" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <ul class="sinlge-post-meta">
-                                        <li><i class="fa fa-user"></i>Janis Gallagher</li>
-                                        <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                        <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="images/blog/man-four.jpg" alt="">
-                        </a>
-                        <div class="media-body">
-                            <ul class="sinlge-post-meta">
-                                <li><i class="fa fa-user"></i>Janis Gallagher</li>
-                                <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-                                <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-                            </ul>
-                            <p>abc xz</p>
-                            <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                    @elseif (session()->has('error'))
+                        <div class="alert alert-danger">
+                            {!! session()->get('error') !!}
                         </div>
-                    </li>
-                </ul>					
+                    @endif
+                    <h2>Viết bình luận về bài viết</h2>
+                    <form action="{{ route('/BinhLuan') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="MaBaiViet" value="{{ $baiViet->MaBaiViet }}" class="MaBaiViet_{{ $baiViet->MaBaiViet }}">
+                        <textarea id="BinhLuanBaiViet"
+                        class="NoiDung_{{ $baiViet->MaBaiViet }}" name="NoiDung"></textarea>
+                        </textarea>
+                        <button type="submit" name="ThemBinhLuan" class="btn btn-primary pull-right ThemBinhLuan" data-MaBaiViet="{{ $baiViet->MaBaiViet }}">
+                            Bình luận
+                        </button>
+                    </form>
+                </div>
+                <div class="col-sm-12 comment-blog">
+                    <h2>Bình luận về bài viết</h2>
+                    <ul class="media-list">
+                        @foreach ($allBinhLuan as $key => $binhLuan)
+                            @foreach ($allTaiKhoan as $key => $taiKhoan)
+                                @if ($taiKhoan->Email == $binhLuan->Email)
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="{{ asset('upload/TaiKhoan/'.$taiKhoan->HinhAnh) }}" alt="Ảnh đại diện">
+                                    </a>
+                                    <div class="media-body">
+                                        <ul class="sinlge-post-meta">
+                                            <li><i class="fa fa-user"></i>{{ $taiKhoan->TenTaiKhoan }}</li>
+                                            <li><i class="fa fa-calendar"></i><td>{{  date("d M Y", strtotime($binhLuan->ThoiGianTao)) }}</td></li>
+                                        </ul>
+                                        <p>{{ $binhLuan->NoiDung }}</p>
+                                        <button type="submit" name="ThemDanhGia" class="btn btn-primary pull-right" data-MaSanPham="">
+                                            Bình luận
+                                        </button>
+                                    </div>
+                                </li>
+                                @endif
+                            @endforeach
+                        @endforeach
+                    </ul>	
+                </div>				
             </div>
         </div>	
     </div>

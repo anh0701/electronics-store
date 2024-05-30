@@ -13,6 +13,9 @@ use App\Models\DonHang;
 use App\Models\ChiTietDonHang;
 use App\Models\GiaoHang;
 use App\Models\DanhGia;
+use App\Models\BinhLuan;
+use App\Models\BaiViet;
+
 use Illuminate\Support\Facades\Redirect;
 
 class DanhGiaController extends Controller
@@ -74,5 +77,53 @@ class DanhGiaController extends Controller
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->delete();
         return Redirect::to('TrangLietKeDanhGia')->with('status', 'Xóa đánh giá sản phẩm thành công');
+    }
+
+    public function BinhLuan(Request $request){
+        $data = $request->validate([
+            'NoiDung' => 'required',
+            'MaBaiViet' => 'required',
+        ],[
+            'NoiDung.required' => 'Bạn chưa điền nội dung bình luận',
+            'MaBaiViet.required' => 'Chọn bài viết để bình luận',
+        ]);
+        if(Empty(Session::get('user'))){
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể bình luận bài viết'); 
+        }elseif(Session::get('user')){
+            $user = Session('user');
+            $binhLuan = new BinhLuan();
+            $binhLuan->Email = $user['Email'];
+            $binhLuan->MaBaiViet = $data['MaBaiViet'];
+            $binhLuan->NoiDung = $data['NoiDung'];
+            $binhLuan->TrangThai = 1;
+            $binhLuan->BaiVietCha = 0;
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $binhLuan->ThoiGianTao = now();
+            $binhLuan->save();
+            return Redirect()->back()->with('message', 'Bình luận bài viết được lưu lại thành công'); 
+        }
+    }
+
+    public function TrangLietKeBinhLuan(){
+        $allBinhLuan = BinhLuan::orderBy('MaBaiViet', 'DESC')->paginate(20);
+        return view('admin.DanhGia.LietKeBinhLuan')->with(compact('allBinhLuan'));
+    }
+
+    public function KoKichHoatKoKichHoatBinhLuan($MaBinhLuan){
+        $binhLuan = BinhLuan::find($MaBinhLuan);
+        $binhLuan->update(['TrangThai'=>0]);
+        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
+    }
+
+    public function KichHoatBinhLian($MaBinhLuan){
+        $binhLuan = BinhLuan::find($MaBinhLuan);
+        $binhLuan->update(['TrangThai'=>1]);
+        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
+    }
+
+    public function XoaBinhLuan($MaBinhLuan){
+        $binhLuan = BinhLuan::find($MaBinhLuan);
+        $binhLuan->delete();
+        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Xóa bình luận bài viết thành công');
     }
 }

@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="{{ route('/Test') }}"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
                 <li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
             </ul>
@@ -230,10 +230,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li class="sub-menu">
             <a href="javascript:;">
                 <i class="fa-solid fa-newspaper"></i>
-                <span>Quản lý đánh giá sản phẩm</span>
+                <span>Quản lý phản hồi khách hàng</span>
             </a>
             <ul class="sub">
                 <li><a href="{{ Route('/TrangLietKeDanhGia') }}">Liệt kê đánh giá sản phẩm</a></li>
+                <li><a href="{{ Route('/TrangLietKeBinhLuan') }}">Liệt kê bình luận bài viết</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -248,6 +249,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li><a href="{{ route('/TrangThemBaiViet') }}">Thêm bài viết</a></li>
             </ul>
           </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa-solid fa-handshake-angle"></i>
+              <span>Quản lý giảm giá</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ Route('/TrangThemCTGG') }}">Thêm chương trình giảm giá</a></li>
+              <li><a href="{{ Route('/TrangThemCTGGSP') }}">Thêm chương trình giảm giá</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -255,17 +266,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
-    <section class="wrapper">
+  <section class="wrapper">
 		@yield('admin_content')
-    </section>
- <!-- footer -->
-		  <div class="footer">
-        <div class="wthree-copyright">
-          <p>Đây là trang admin</a></p>
-        </div>
-		  </div>
-  <!-- / footer -->
   </section>
+  <div class="footer">
+    <div class="wthree-copyright">
+      <p>Sản phẩm của nhóm số 59<a href=""> Đồ án tốt nghiệp</a></p>
+    </div>
+  </div>
+</section>
   <!--main content end-->
   </section>
   <script src="{{ asset('backend/js/bootstrap.js') }}"></script>

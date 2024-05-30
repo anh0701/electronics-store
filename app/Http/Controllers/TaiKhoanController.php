@@ -13,10 +13,6 @@ use Illuminate\Validation\Rule;
 
 class TaiKhoanController extends Controller
 {
-    public function dashboard(){
-        return view('admin_layout');
-    }
-
     public function dangNhap(Request $request){
         session::forget('user');
         return view('auth.dangNhap');
@@ -312,7 +308,7 @@ class TaiKhoanController extends Controller
         if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
             return redirect('/');
         }else{
-            return view('admin_layout', compact('user'));
+            return view('admin.dashboard', compact('user'));
         }
     }
 }

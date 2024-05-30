@@ -73,16 +73,11 @@
                 <h2 class="title text-center">Bài viết mới nhất</h2>
                 @foreach ($allBaiViet as $key => $baiViet)
                 <div class="single-blog-post col-sm-6" style="float: left">
-                        <div class="post-meta">
-                            <ul>
-                                <li><i class="fa fa-calendar"></i><td>{{  date("d M Y", strtotime($baiViet->ThoiGianTao)) }}</td></li>
-                            </ul>
-                        </div>
+                    <a href="{{ route('/ChiTietBaiViet', $baiViet->MaBaiViet) }}">
                         <h3>{{ $baiViet->TenBaiViet }}</h3>
-                        <a href="{{ route('/ChiTietBaiViet', $baiViet->MaBaiViet) }}">
                             <img src="{{ asset('upload/BaiViet/'.$baiViet->HinhAnh) }}" alt="Hình ảnh bài viết">
-                        </a>
                         <a  class="btn btn-primary" href="{{ route('/ChiTietBaiViet', $baiViet->MaBaiViet) }}">Xem chi tiết</a>
+                    </a>
                 </div>
                 @endforeach
             </div>
