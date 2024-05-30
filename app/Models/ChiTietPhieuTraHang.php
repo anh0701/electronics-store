@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChiTietPhieuXuat extends Model
+class ChiTietPhieuTraHang extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_chitietphieuxuat';
-    protected $primaryKey = 'MaCTPX';
+    protected $table = 'tbl_chitietphieutrahang';
+    protected $primaryKey = 'MaCTPTH';
     public $timestamps = false;
-
 }

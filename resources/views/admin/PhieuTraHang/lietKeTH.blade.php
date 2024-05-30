@@ -3,21 +3,21 @@
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Liệt kê phiếu xuất
+                Liệt kê phiếu trả hàng
             </div>
             <div class="row w3-res-tb">
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-3">
                     <div class="input-group">
-                        <form action="{{ Route('timKiemPX') }}" method="get">
+                        <form action="" method="get">
                             <div class="input-group">
                                 <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
                                 </span>
                                 <span class="input-group-btn">
-                                    <a class="btn btn-sm btn-default" href="{{ Route('xemPX') }}">Xem tất cả</a>
+                                    <a class="btn btn-sm btn-default" href="{{ Route('xemPTH') }}">Xem tất cả</a>
                                 </span>
                             </div>
                         </form>
@@ -28,25 +28,26 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>
-                            <th>Mã phiếu xuất</th>
+                            <th>Mã phiếu trả hàng</th>
                             <th>Người lập phiếu</th>
-                            <th>Tổng số lượng xuất</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Mã phiếu nhập</th>
                             <th>Trạng thái</th>
-                            <th>Thời gian lập</th>
-
+                            <th>Tổng tiền</th>
                             <th style="width:100px">Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $i)
-                            <tr>
-                                <td>{{ $i->MaPhieuXuat }}</td>
-                                <td>{{ $i->TenTaiKhoan }}</td>
-                                <td>{{ $i->TongSoLuong }}</td>
+                        @foreach ($data as $pth)
+                            <tr class="row-clickable" data-id="{{ $pth->MaPhieuTraHang }}">
+                                <td>{{ $pth->MaPhieuTraHang }}</td>
+                                <td>{{ $pth->TenTaiKhoan }}</td>
+                                <td>{{ $pth->TenNhaCungCap }}</td>
+                                <td>{{ $pth->MaPhieuNhap }}</td>
                                 @php 
-                                    if($i->TrangThai == 0){
+                                    if($pth->TrangThai == 0){
                                         $trangthai = "Chưa xác nhận";
-                                    }elseif($i->TrangThai == 1){
+                                    }elseif($pth->TrangThai == 1){
                                         $trangthai = "Đã xác nhận";
                                     }else{
                                         $trangthai = "";
@@ -54,15 +55,14 @@
 
                                 @endphp 
                                 <td>{{ $trangthai }}</td>
-                                <td>{{ $i->ThoiGianTao }}</td>
-
+                                <td>{{ $pth->TongTien }}</td>
                                 <td>
-                                    <a href="{{ route('xemCT', ['id' => $i->MaPhieuXuat]) }}">
+                                    <a href="{{ route('xemCTPTH', ['id' => $pth->MaPhieuTraHang]) }}">
                                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('suaPX', ['id' => $i->MaPhieuXuat]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                    @if ($i->TrangThai == 0)
-                                        <a onclick="return confirm('Bạn có muốn xóa phiếu xuất {{ $i->MaPhieuXuat }} không?')" href="{{ route('xoaPX', [$i->MaPhieuXuat]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                    <a href="{{ route('suaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    @if ($pth->TrangThai == 0)
+                                        <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pth->MaPhieuTraHang }} không?')" href="{{ route('xoaPTH', [$pth->MaPhieuTraHang]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
                                     @endif
                                 </td>
                             </tr>

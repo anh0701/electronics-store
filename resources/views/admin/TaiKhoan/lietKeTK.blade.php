@@ -10,6 +10,17 @@
             </div>
             <div class="col-sm-3">
                 <div class="input-group">
+                    <form action="{{ route('timKiemTK') }}" method="get">
+                        <div class="input-group">
+                            <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                            </span>
+                            <span class="input-group-btn">
+                                <a class="btn btn-sm btn-default" href="{{ Route('lietKeTK') }}">Xem tất cả</a>
+                            </span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -21,6 +32,7 @@
                         <th>Email</th>
                         <th>SDT</th>                       
                         <th>Quyền</th>
+                        <th>Trạng thái</th>
                         <th>Thời gian tạo</th>
                         <th style="width:100px">Quản lý</th>
                     </tr>
@@ -32,13 +44,21 @@
                             <td>{{ $tk->Email }}</td>
                             <td>{{ $tk->SoDienThoai }}</td>
                             <td>{{ $tk->Quyen }}</td>
+                            @php 
+                                if($tk->TrangThai == 1){
+                                    $tt = 'Kích hoạt'; 
+                                }else{
+                                    $tt = 'Vô hiệu hóa'; 
+                                }
+                            @endphp
+                            <td>{{ $tt }}</td>
                             <td>{{ $tk->ThoiGianTao }}</td>
                             <td>
                                 @if ($tk->Quyen != 'Khách hàng')
                                 <a href="{{ route('suaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có muốn xóa nhà cung cấp {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
                                 @else
-                                <a onclick="return confirm('Bạn có muốn xóa nhà cung cấp {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
                                 @endif   
                             </td>
                         </tr>

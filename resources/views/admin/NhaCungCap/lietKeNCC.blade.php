@@ -26,6 +26,7 @@
                             <th>Địa chỉ</th>
                             <th>SDT</th>
                             <th>Email</th>
+                            <th>Trạng thái</th>
                             <th>Thời gian tạo</th>
                             <th style="width:100px">Quản lý</th>
                         </tr>
@@ -38,6 +39,12 @@
                                 <td>{{ $ncc->DiaChi }}</td>
                                 <td>{{ $ncc->SoDienThoai }}</td>
                                 <td>{{ $ncc->Email }}</td>
+                                @php
+                                    if($ncc->TrangThai == 1){
+                                        $tt = 'Hợp tác';
+                                    }else $tt = 'Ngừng hợp tác';
+                                @endphp
+                                <td>{{ $tt }}</td>
                                 <td>{{ $ncc->ThoiGianTao }}</td>
                                 <!-- <td>{{ $ncc->ThoiGianSua }}</td> -->
                                 <td>

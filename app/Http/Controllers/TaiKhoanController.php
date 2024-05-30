@@ -51,13 +51,18 @@ class TaiKhoanController extends Controller
                 return redirect('/');
             }
             else{
+                if($taikhoan->TrangThai == 0){
+                    return redirect()->back()->withInput()->withErrors([
+                        'email' => 'Tài khoản đã bị vô hiệu hóa. Mời liên hệ quản trị viên hoặc tạo tài khoản mới',
+                    ]);
+                }
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
                 ]);
                 return redirect('/trang-quan-ly');
             }
-        } else {
+        }else {
             return redirect()->back()->withInput()->withErrors([
                 'email' => 'Email hoặc mật khẩu không đúng.',
             ]);
@@ -106,6 +111,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->MatKhau = $matkhauMoi;
         $taiKhoan->BacNguoiDung = 1;
+        $taiKhoan->TrangThai = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $quyen;
         $taiKhoan->save();
@@ -121,8 +127,6 @@ class TaiKhoanController extends Controller
         }else{
             return view('admin_layout', compact('user'));
         }
-        // Trả về view Dashboard và truyền thông tin người dùng vào view
-
     }
 
     public function capNhatTK(){
@@ -195,6 +199,7 @@ class TaiKhoanController extends Controller
     public function lietKeTK(){
         $tk = DB::table('tbl_taikhoan')
                     ->select('tbl_taikhoan.*')
+                    ->orderByDesc('tbl_taikhoan.TrangThai')
                     ->orderByDesc('tbl_taikhoan.ThoiGianTao')
                     ->paginate(10);
         return view('admin.TaiKhoan.lietKeTK', ['data'=>$tk]);
@@ -212,6 +217,7 @@ class TaiKhoanController extends Controller
             'tentaikhoan.required' => 'Vui lòng nhập tên tài khoản.',
             'tentaikhoan.unique' => 'Tên tài khoản đã được sử dụng.',
             'matkhau.required' => 'Vui lòng nhập mật khẩu.',
+            'sdt.regex' => 'Định dạng số điện thoại không hợp lệ.',
         ];
         $valid = $request->validate([
             'email' => [
@@ -224,6 +230,7 @@ class TaiKhoanController extends Controller
                 Rule::unique('tbl_taikhoan')->ignore($request->user_id),
             ],
             'matkhau' => 'required',
+            'sdt' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
         ], $messages);
 
         if(!$valid){
@@ -241,6 +248,7 @@ class TaiKhoanController extends Controller
         $taiKhoan->TenTaiKhoan = $request->tentaikhoan;
         $taiKhoan->SoDienThoai = $request->sdt;
         $taiKhoan->MatKhau = $matkhauMoi;
+        $taiKhoan->TrangThai = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
         $taiKhoan->Quyen = $request->quyen;
         $taiKhoan->save();
@@ -258,52 +266,30 @@ class TaiKhoanController extends Controller
     public function xuLySuaTK(Request $request){
         $maTK = $request->maTK;
         $quyen = $request->quyen;
+        $trangThai = $request->trangThai;
         $thoiGianSua = date('Y-m-d H:i:s');
         TaiKhoan::where('MaTaiKhoan', $maTK)->update([
             'SoDienThoai' => $request->sdt,
             'Quyen' => $quyen,
+            'TrangThai' => $trangThai,
             'ThoiGianSua' => $thoiGianSua,
         ]);
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được sửa thành công!');
     }
 
     public function xoaTK($id){
-        DB::delete('DELETE FROM tbl_taikhoan WHERE MaTaiKhoan = ?', [$id]);
+        // DB::delete('DELETE FROM tbl_taikhoan WHERE MaTaiKhoan = ?', [$id]);
+        TaiKhoan::where('MaTaiKhoan', $id)->update([
+            'TrangThai' => 0,
+        ]);
         return redirect('/liet-ke-tai-khoan')->with('success', 'Tài khoản đã được xóa thành công!');
     }
 
     public function timkiemTK(Request $request){
-        $keyword = $request->input('keyword');
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-        $quyen = $request->input('quyen');
-
-        $query = "SELECT * FROM tbl_taikhoan WHERE 1=1"; // 1=1 để bắt đầu điều kiện WHERE
-
-        if (!empty($startDate)) {
-            $query .= " AND DATE(ThoiGianTao) >= '$startDate'";
-        }
-
-        if (!empty($endDate)) {
-            $query .= " AND DATE(ThoiGianTao) <= '$endDate'";
-        }
-
-        if (!empty($quyen)){
-            $query .= " AND Quyen LIKE '%$quyen%'";
-        }
-
-        if (!empty($keyword)) {
-            $query .= " AND (TenTaiKhoan LIKE '%$keyword%'
-                        OR Email LIKE '%$keyword%'
-                        OR SoDienThoai LIKE '%$keyword%'
-                        OR Email LIKE '%$keyword%'
-                        OR ThoiGianTao LIKE '%$keyword%'
-                        -- OR ThoiGianSua LIKE '%$keyword%'
-                        )";
-        }
-
-        $data = DB::select($query);
-
+        $data = TaiKhoan::where('TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('Quyen', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('ThoiGianTao', 'LIKE', "%{$request->timKiem}%")
+            ->paginate(5);
         return view('admin.TaiKhoan.lietkeTK', compact('data'));
     }
 
