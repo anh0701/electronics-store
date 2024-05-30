@@ -26,13 +26,6 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <?php
-                $message = Session::get('message');
-                if ($message) {
-                    echo '<span style="font-size: 17px; width: 100%; text-align: center; font-weight: bold; color: red;" class="text-alert">' . $message . '</span>';
-                    Session::put('message', null);
-                }
-                ?>
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
