@@ -14,63 +14,63 @@
         </div>
         <div class="container">
             <div class="row r1">
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Mã phiếu xuất:</strong></p>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p>{{$px->MaPhieuXuat}}</p>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Người lập:</strong></p>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p> {{$px->TenTaiKhoan}}</p>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Trạng thái:</strong></p>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p>{{$tt}}</p>
                 </div>
                 
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Thời gian tạo:</strong></p>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p> {{$px->ThoiGianTao}}</p>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Thời gian sửa:</strong></p>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p> {{$px->ThoiGianSua}}</p>
                 </div>
             </div>
-
-            <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($ct as $i)
                         <tr>
-                            <th>Tên sản phẩm</th>
-                            <th>Số lượng</th>
+                            <td>{{ $i->TenSanPham }}</td>
+                            <td>{{ $i->SoLuong }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($ct as $i)
-                            <tr>
-                                <td>{{ $i->TenSanPham }}</td>
-                                <td>{{ $i->SoLuong }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
             <div class="row r1">
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Tổng số lượng:</strong></p>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p>{{ $px->TongSoLuong }}</p>
                 </div>
             </div>

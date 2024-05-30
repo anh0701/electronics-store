@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $pn)
-                            <tr class="row-clickable" data-id="{{ $pn->MaPhieuNhap }}">
+                            <tr>
                                 <td>{{ $pn->MaPhieuNhap }}</td>
                                 <td>{{ $pn->TenTaiKhoan }}</td>
                                 <td>{{ $pn->TenNhaCungCap }}</td>
@@ -51,23 +51,34 @@
                                 <td>{{ $pn->TongTien }}</td>
                                 <td>{{ $pn->TienNo }}</td>
                                 @php 
-                                    if($pn->TrangThai == 0){
-                                        $trangthai = "Chưa xác nhận";
-                                    }elseif($pn->TrangThai == 1){
-                                        $trangthai = "Đã xác nhận";
+                                    if($pn->soChiTietPN == 0){
+                                        $trangthai = "Không có sản phẩm được nhập!";
                                     }else{
-                                        $trangthai = "";
+                                        if($pn->TrangThai == 0){
+                                        $trangthai = "Chưa xác nhận";
+                                        }elseif($pn->TrangThai == 1){
+                                            $trangthai = "Đã xác nhận";
+                                            if($pn->TienNo == 0){
+                                                $trangthai = "Đã thanh toán";
+                                            }
+                                        }else{
+                                            $trangthai = "";
+                                        }
                                     }
+                                    
 
                                 @endphp 
-                                <td>{{ $trangthai }}</td>
+                                <td class="{{ $pn->soChiTietPN == 0 ? 'boi-mau' : '' }}">{{ $trangthai }}</td>
                                 <td>
                                     <a href="{{ route('xemCTPN', ['id' => $pn->MaPhieuNhap]) }}">
                                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
                                     </a>
+                                    
                                     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    
+                                    
                                     @if ($pn->TrangThai == 0)
-                                        <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                        <a onclick="return confirm('Bạn có muốn xóa phiếu {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
                                     @endif
                                 </td>
                             </tr>

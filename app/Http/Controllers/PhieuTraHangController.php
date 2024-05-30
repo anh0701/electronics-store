@@ -15,7 +15,10 @@ class PhieuTraHangController extends Controller
         $pth = DB::table('tbl_phieutrahang')
                 ->join('tbl_taikhoan', 'tbl_phieutrahang.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
                 ->join('tbl_nhacungcap', 'tbl_phieutrahang.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
-                ->select('tbl_phieutrahang.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+                ->leftJoin('tbl_chitietphieutrahang', 'tbl_phieutrahang.MaPhieuTraHang', '=', 'tbl_chitietphieutrahang.MaPhieuTraHang')
+                ->select('tbl_phieutrahang.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieutrahang.MaCTPTH) as soCTPTH'))
+                ->groupBy('tbl_phieutrahang.MaPhieuTraHang')
                 ->orderByDesc('tbl_phieutrahang.ThoiGianTao')
                 ->paginate(5);
 

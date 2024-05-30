@@ -34,13 +34,8 @@
                             <input type="text" class="form-control" name="tongTien" value="{{ $pn->TongTien }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="">Tiền đã trả</label>
-                            <input type="text" class="form-control" name="tienTra" value="{{ $pn->TienTra }}" readonly>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="">Tiền trả thêm</label>
-                            <input type="number" class="form-control" name="tienTraMoi" >
+                            <label for="">Tiền trả</label>
+                            <input type="number" class="form-control" value="{{ $pn->TienTra }}" name="tienTra" >
                         </div>
                         @error('tienTra')
                             <div class="alert alert-danger">{{ $message }}</div>

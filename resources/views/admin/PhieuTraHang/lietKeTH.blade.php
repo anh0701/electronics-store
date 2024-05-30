@@ -32,8 +32,9 @@
                             <th>Người lập phiếu</th>
                             <th>Nhà cung cấp</th>
                             <th>Mã phiếu nhập</th>
-                            <th>Trạng thái</th>
                             <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            
                             <th style="width:100px">Quản lý</th>
                         </tr>
                     </thead>
@@ -44,18 +45,22 @@
                                 <td>{{ $pth->TenTaiKhoan }}</td>
                                 <td>{{ $pth->TenNhaCungCap }}</td>
                                 <td>{{ $pth->MaPhieuNhap }}</td>
-                                @php 
-                                    if($pth->TrangThai == 0){
-                                        $trangthai = "Chưa xác nhận";
-                                    }elseif($pth->TrangThai == 1){
-                                        $trangthai = "Đã xác nhận";
-                                    }else{
-                                        $trangthai = "";
-                                    }
-
-                                @endphp 
-                                <td>{{ $trangthai }}</td>
                                 <td>{{ $pth->TongTien }}</td>
+                                @php
+                                    if($pth->soCTPTH == 0){
+                                        $trangthai = "Không có sản phẩm được trả!";
+                                    }else{
+                                        if($pth->TrangThai == 0){
+                                            $trangthai = "Chưa xác nhận";
+                                        }elseif($pth->TrangThai == 1){
+                                            $trangthai = "Đã xác nhận";
+                                        }else{
+                                            $trangthai = "";
+                                        }
+                                    }
+                                @endphp 
+                                <td class="{{ $pth->soCTPTH == 0 ? 'boi-mau' : '' }}">{{ $trangthai }}</td>
+                                
                                 <td>
                                     <a href="{{ route('xemCTPTH', ['id' => $pth->MaPhieuTraHang]) }}">
                                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>

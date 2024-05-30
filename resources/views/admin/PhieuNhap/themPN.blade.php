@@ -162,7 +162,7 @@ $(document).ready(function() {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        $('#MaSanPham').val(null).trigger('change');
+                        
                     var kt = false;
 
                     $('#phieuNhapTable tbody tr').each(function() {

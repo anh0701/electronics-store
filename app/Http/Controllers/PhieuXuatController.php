@@ -15,7 +15,10 @@ class PhieuXuatController extends Controller
     public function xem(){
         $pxs = DB::table('tbl_phieuxuat')
                 ->join('tbl_taikhoan', 'tbl_phieuxuat.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
-                ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan')
+                ->leftJoin('tbl_chitietphieuxuat', 'tbl_phieuxuat.MaPhieuXuat', '=', 'tbl_chitietphieuxuat.MaPhieuXuat')
+                ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan',
+                        DB::raw('COUNT(tbl_chitietphieuxuat.MaCTPX) as soCTPX'))
+                ->groupBy('tbl_phieuxuat.MaPhieuXuat')
                 ->orderByDesc('tbl_phieuxuat.ThoiGianTao')
                 ->paginate(5);
 
