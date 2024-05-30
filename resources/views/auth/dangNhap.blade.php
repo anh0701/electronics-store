@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="{{ asset('/css/style_taiKhoan.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/auth.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
 </head>
 <body>
-    <div class="login-container">
+    <div class="container-custom">
         <h2>Đăng nhập</h2>
         <form action="/xuLyDN" method="POST">
             @csrf
-            <div class="error-message">
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
-            <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
-            <input type="password" name="matkhau" placeholder="Mật khẩu" value="{{ old('matkhau') }}">
+            <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}">
+            @error('email')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            <input type="password" class="form-control @error('matkhau') is-invalid @enderror" name="matkhau" placeholder="Mật khẩu" value="{{ old('matkhau') }}">
+            @error('matkhau')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
             <input type="submit" value="Đăng nhập">
 
         </form>
