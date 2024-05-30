@@ -53,7 +53,25 @@ class PhieuNhapController extends Controller
                         FROM tbl_chitietphieunhap ct
                         JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
                         WHERE MaPhieuNhap = '{$id}'");
-        return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn]);
+        $pth = DB::select("SELECT pth.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
+                        FROM tbl_phieutrahang pth 
+                        JOIN tbl_taikhoan tk ON pth.MaTaiKhoan = tk.MaTaiKhoan
+                        JOIN tbl_nhacungcap ncc ON pth.MaNhaCungCap = ncc.MaNhaCungCap
+                        WHERE MaPhieuNhap = '{$id}'");
+        if(!empty($pth)){
+            $maPTH = $pth[0]->MaPhieuTraHang;
+        
+            $ctth = DB::select("SELECT ct.*, sp.TenSanPham
+                            FROM tbl_chitietphieutrahang ct
+                            JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
+                            WHERE MaPhieuTraHang = '{$maPTH}'");
+            $pthKQ = $pth[0];
+        }else { 
+            $ctth = null;
+            $pthKQ = null;
+        }
+        
+        return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn, 'pth' => $pthKQ, 'ctth' => $ctth]);
     }
 
     public function suaPN($id){
@@ -63,10 +81,12 @@ class PhieuNhapController extends Controller
                         JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
                         WHERE MaPhieuNhap = '{$id}'");
         $products = SanPham::all();
-        $ctpn = DB::select("SELECT ct.*, sp.TenSanPham
-                        FROM tbl_chitietphieunhap ct
-                        JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                        WHERE MaPhieuNhap = '{$id}'");
+
+        $ctpn = DB::table('tbl_chitietphieunhap')
+                ->join('tbl_sanpham', 'tbl_chitietphieunhap.MaSanPham', '=', 'tbl_sanpham.MaSanPham')
+                ->select('tbl_chitietphieunhap.*', 'tbl_sanpham.TenSanPham')
+                ->where('tbl_chitietphieunhap.MaPhieuNhap', $id)
+                ->paginate(5);
 
         return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn], compact('products'));
     }
@@ -163,6 +183,7 @@ class PhieuNhapController extends Controller
             $ktSanPhamTonTai->SoLuong += $soLuong;
             $ktSanPhamTonTai->GiaSanPham = $gia;
             $ktSanPhamTonTai->save();
+            $message = 'Cập nhật thành công';
         }else{
             $ctpn = new ChiTietPhieuNhap();
             $ctpn->MaCTPN = $maCTPN;
@@ -171,14 +192,15 @@ class PhieuNhapController extends Controller
             $ctpn->SoLuong = $soLuong;
             $ctpn->GiaSanPham = $gia;      
             $ctpn->save();
+            $message = 'Thêm thành công';
         }
-        return redirect()->route('suaPN', ['id'=>$maPN]);
+        return redirect()->route('suaPN', ['id'=>$maPN])->with('success', $message);
     }
 
     public function xoaCTS($id){
         $maPN = DB::select("SELECT MaPhieuNhap, MaSanPham, SoLuong FROM tbl_chitietphieunhap WHERE MaCTPN = '$id'");
         DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaCTPN = '{$id}'");
-        return redirect()->route('suaPN', ['id' => $maPN[0]->MaPhieuNhap]);
+        return redirect()->route('suaPN', ['id' => $maPN[0]->MaPhieuNhap])->with('success', 'Xóa thành công');
     }
 
     public function xoaCTPN($id){
@@ -345,7 +367,7 @@ class PhieuNhapController extends Controller
             $tt = $i->TrangThai;
             $ma = $i->MaPhieuTraHang;
             if($tt == 1){
-                return redirect('/liet-ke-phieu-nhap')->withErrors(['phieuTH' => 'Mời bạn kiểm tra lại phiếu trả hàng (có phiếu đã được xác nhận)']);
+                return redirect('/liet-ke-phieu-nhap')->with(['error' => 'Mời bạn kiểm tra lại phiếu trả hàng (có phiếu đã được xác nhận)']);
             }
             
             $pth[] = $ma;
@@ -358,6 +380,6 @@ class PhieuNhapController extends Controller
         DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
         DB::delete("DELETE FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
 
-        return redirect('/liet-ke-phieu-nhap');
+        return redirect('/liet-ke-phieu-nhap')->with('success', 'Xóa thành công!');
     }
 }
