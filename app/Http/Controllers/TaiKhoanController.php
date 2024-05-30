@@ -44,6 +44,11 @@ class TaiKhoanController extends Controller
 
         if ($taikhoan && password_verify($matkhau, $taikhoan->MatKhau)) {
             if($taikhoan->Quyen == "Khách hàng"){
+                if($taikhoan->TrangThai == 0){
+                    return redirect()->back()->withInput()->withErrors([
+                        'email' => 'Tài khoản đã vô hiệu hóa. Mời liên hệ quản trị viên hoặc tạo tài khoản mới',
+                    ]);
+                }
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,

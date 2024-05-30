@@ -11,7 +11,6 @@
             @endphp 
             <div class="panel-body">
                 <div class="position-center">
-                <div id="responseMessage"></div>
 
                 <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapPX') }}" method="POST">
                     {{ csrf_field() }}
@@ -31,8 +30,6 @@
 
                     <button type="submit" class="btn btn-info update-btn">Lập phiếu xuất</button>
                 </form>
-
-                <div id="responseMessageCT"></div>
 
                 <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPXCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
                     {{ csrf_field() }}
@@ -78,6 +75,7 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function() {
     // Xử lý form phiếu nhập
@@ -92,18 +90,36 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessage').text('Lập phiếu xuất thành công').css('color', 'green');
-                    // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: 'Lập phiếu xuất thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
                     $('#phieuNhapForm').hide();
                     $('#phieuNhapCTForm').show();
                     $('#control').show();
                 } else {
-                    $('#responseMessage').text('Lập phiếu xuất thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Lập phiếu xuất thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
+                   
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessage').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!').css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
+                
             }
         });
     });
@@ -120,7 +136,14 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessageCT').text(data.message).css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        $('#MaSanPham').val(null).trigger('change');
 
                     var kt = false;
 
@@ -151,12 +174,22 @@ $(document).ready(function() {
                     // Reset form chi tiết phiếu nhập
                     $('#phieuNhapCTForm')[0].reset();
                 } else {
-                    $('#responseMessageCT').text('Thêm sản phẩm thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Thêm sản phẩm thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessageCT').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!' + error).css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });

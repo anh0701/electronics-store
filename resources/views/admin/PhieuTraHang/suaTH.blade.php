@@ -1,6 +1,5 @@
 @extends('admin_layout')
 @section('admin_content')
-
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
@@ -9,7 +8,6 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-
                 @php 
                     $user = session(('user'));
                     $quyen = $user['Quyen'];
@@ -27,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Mã phiếu nhập</label>
-                            <input type="text" class="form-control" id="maPN" value="{{ $pth->MaPhieuNhap }}" readonly>
+                            <input type="text" class="form-control" name="maPNSua" id="maPN" value="{{ $pth->MaPhieuNhap }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Tổng tiền</label>
@@ -45,14 +43,12 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
-                        
                     </form>
                     <div class="table-responsive" >
-                        <p>Danh sách sản phẩm trong phiếu nhập</p>
+                        <p class="head1">Danh sách sản phẩm trong phiếu nhập</p>
                         <table class="table table-striped b-t b-light">
                             <thead>
                                 <tr>
-                                    <!-- <th>Mã phiếu nhập chi tiết</th> -->
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>     
                                     <th>Giá</th>               
@@ -69,81 +65,72 @@
                             </tbody>
                         </table>
                     </div>
-                    <form id="myLink3" role="form" action="{{ route('xuLyLapTHCT') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="">Mã phiếu trả hàng:</label>
-                            <input type="text" class="form-control" name="maPTHSua" value="{{$pth->MaPhieuTraHang}}" readonly>
-                            <input type="hidden" class="form-control" name="maPN" value="{{ $pth->MaPhieuNhap }}" readonly>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="MaSanPham">Sản phẩm:</label>
-                            <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
-                            >
-                            </select>
-                        </div>
-                        @error('maSP')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-group">
-                            <label for="">Số lượng</label>
-                            <input type="number" class="form-control" name="soLuong" min="1" value="{{ old('soLuong') }}">
-                        </div>
-                        @error('soLuong')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-group">
-                            <label for="">Lý do trả hàng</label>
-                            <input type="text" class="form-control" name="lyDo" value="{{ old('lyDo') }}">
-                        </div>
-                        @error('lyDo')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
-                    </form>
-                    
-                    
-                    <div class="table-responsive">
-                        <p>Danh sách sản phẩm trong phiếu trả hàng</p>
-                        <table class="table table-striped b-t b-light">
-                            <thead>
-                                <tr>
-                                    <!-- <th>Mã phiếu trả hàng</th> -->
-                                    <th>Tên sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Giá sản phẩm</th>
-                                    <th>Lý do trả hàng</th>                 
-
-                                    <th style="width:100px" id="myLink4">Quản lý</th>                  
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                @foreach ($ctpth as $ct)
-
+                    <div>
+                        <form id="myLink3" role="form" action="{{ route('xuLyLapTHCT') }}" method="POST" >
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="maPTHSua" value="{{$pth->MaPhieuTraHang}}" readonly>
+                                <input type="hidden" class="form-control" name="maPN" value="{{ $pth->MaPhieuNhap }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="MaSanPham">Sản phẩm:</label>
+                                <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
+                                >
+                                </select>
+                            </div>
+                            @error('maSP')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="">Số lượng</label>
+                                <input type="number" class="form-control" name="soLuong" min="1" value="{{ old('soLuong') }}">
+                            </div>
+                            @error('soLuong')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="">Lý do trả hàng</label>
+                                <input type="text" class="form-control" name="lyDo" value="{{ old('lyDo') }}">
+                            </div>
+                            @error('lyDo')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
+                        </form>
+                        <div class="table-responsive">
+                            <p class="head1">Danh sách sản phẩm trong phiếu trả hàng</p>
+                            <table class="table table-striped b-t b-light">
+                                <thead>
                                     <tr>
-                                        <!-- <td>{{ $ct->MaPhieuTraHang }}</td> -->
-                                        <input type="hidden" value="{{ $ct->MaSanPham }}" id="maSanPham_{{ $ct->MaCTPTH }}" readonly>
-                                        
-                                        <td>{{ $ct->TenSanPham }}</td>
-                                        <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPTH }}"></td>
-                                        <td>{{ $ct->GiaSanPham }}</td>
-                                        <td><input type="text" value="{{ $ct->LyDoTraHang }}" id="lyDoTraHang_{{ $ct->MaCTPTH }}"></td>
-                                        <td id = "myLink">
-                                            <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPTH }}">Cập nhật</a>
-                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPTH }} không?')" href="{{ route('xoaCTPTHS', ['id' => $ct->MaCTPTH, 'maPTH' => $pth->MaPhieuTraHang]) }}">
-                                                <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
-                                            </a>
-                                        </td>
-                                        
+                                        <th>Tên sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá sản phẩm</th>
+                                        <th>Lý do trả hàng</th>                 
+                                        <th style="width:100px" id="myLink4">Quản lý</th>                 
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($ctpth as $ct)
+                                        <tr>
+                                            <input type="hidden" value="{{ $ct->MaSanPham }}" id="maSanPham_{{ $ct->MaCTPTH }}" readonly>
+                                            <td>{{ $ct->TenSanPham }}</td>
+                                            <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPTH }}"></td>
+                                            <td>{{ $ct->GiaSanPham }}</td>
+                                            <td><input type="text" value="{{ $ct->LyDoTraHang }}" id="lyDoTraHang_{{ $ct->MaCTPTH }}"></td>
+                                            <td id = "myLink">
+                                                <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPTH }}">Cập nhật</a>
+                                                <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPTH }} không?')" href="{{ route('xoaCTPTHS', ['id' => $ct->MaCTPTH, 'maPTH' => $pth->MaPhieuTraHang]) }}">
+                                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
+                                                </a>
+                                            </td>
+                                            
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div id="responseMessage"></div>
+                    
                 </div>
             </div>
         </section>
@@ -162,12 +149,33 @@ function handleChange() {
     }
 }
 
-// Sử dụng sự kiện change và gọi hàm onChange
 $(document).ready(function() {
     handleChange();
     $('#mySelect').change(handleChange);
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            @elseif(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Thất bại',
+                text: '{{ session('error') }}',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            @endif
+        });
+    </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -191,15 +199,30 @@ $(document).ready(function() {
             },
             success: function(data) {
                 if (data.success) {                   
-                    // Cập nhật thành tiền trên giao diện
-                    $('#responseMessage').text('Cập nhật thành công').css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: 'Cập nhật thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                 } else {
-                    $('#responseMessage').text('Cập nhật thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Cập nhật thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessage').text('Có lỗi xảy ra: ' + error).css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });
