@@ -49,6 +49,7 @@ Route::get('/api/san-pham-th', [PhieuTraHangController::class, 'danhSachSanPham'
 Route::get('/xem-phieu-xuat', [PhieuXuatController::class, 'xem'])->name('xemPX');
 Route::get('/xem-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xemCT'])->name('xemCT');
 Route::get('/tim-kiem-phieu-xuat', [PhieuXuatController::class, 'timKiemPX'])->name('timKiemPX');
+Route::get('/phieu-xuat.loc', [PhieuXuatController::class, 'locPX'])->name('phieu-xuat.loc');
 
 Route::get('/lap-phieu-xuat', [PhieuXuatController::class, 'taoPX'])->name('taoPX');
 Route::post('/lap-phieu-xuat', [PhieuXuatController::class, 'xuLyLapPX'])->name('xuLyLapPX');
@@ -70,6 +71,7 @@ Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])-
 Route::get('/liet-ke-phieu-nhap', [PhieuNhapController::class, 'trangXemPhieuNhap'])->name('xemPN');
 Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
 Route::get('/tim-kiem-phieu-nhap', [PhieuNhapController::class, 'timKiemPN'])->name('timKiemPN');
+Route::get('/phieu-nhap.loc', [PhieuNhapController::class, 'locPN'])->name('phieu-nhap.loc');
 
 Route::get('/lap-phieu-nhap', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
 Route::post('/lap-phieu-nhap', [PhieuNhapController::class, 'xuLyPN'])->name('xuLyLapPN');

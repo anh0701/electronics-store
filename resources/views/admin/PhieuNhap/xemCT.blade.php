@@ -22,7 +22,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Thông tin phiếu nhập
+            Chi tiết phiếu nhập
         </div>
         <div class="container">
             <div class="row r1">
@@ -121,7 +121,7 @@
         </div>
         
     </div>
-    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Trở lại</button></a>
+    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Quay lại danh sách</button></a>
     
     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa phiếu nhập</button></a>
     

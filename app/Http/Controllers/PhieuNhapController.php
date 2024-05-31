@@ -31,20 +31,34 @@ class PhieuNhapController extends Controller
     } 
 
     public function timKiemPN(Request $request){
+
         $data = PhieuNhap::join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
             ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
-            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+            ->leftJoin('tbl_chitietphieunhap', 'tbl_phieunhap.MaPhieuNhap', '=', 'tbl_chitietphieunhap.MaPhieuNhap')
+            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieunhap.MaCTPN) as soChiTietPN'))
             ->where(function($query) use ($request) {
                 $query->where('tbl_taikhoan.TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
                     ->orWhere('tbl_nhacungcap.TenNhaCungCap', 'LIKE', "%{$request->timKiem}%")
-                    ->orWhere('tbl_phieunhap.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+                    ->orWhere(DB::raw("DATE_FORMAT(tbl_phieunhap.ThoiGianTao, '%Y-%m')"), '=', "{$request->thoiGian}");
             })
+            ->groupBy('tbl_phieunhap.MaPhieuNhap')
             ->paginate(5);
         return view('admin.PhieuNhap.lietKePN', compact('data'));
     }
 
-    
+    public function locPN(Request $request){
 
+        $data = PhieuNhap::join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+            ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
+            ->leftJoin('tbl_chitietphieunhap', 'tbl_phieunhap.MaPhieuNhap', '=', 'tbl_chitietphieunhap.MaPhieuNhap')
+            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieunhap.MaCTPN) as soChiTietPN'))
+            ->where(DB::raw("DATE_FORMAT(tbl_phieunhap.ThoiGianTao, '%Y-%m')"), '=', "{$request->thoiGian}")
+            ->groupBy('tbl_phieunhap.MaPhieuNhap')
+            ->paginate(5);
+        return view('admin.PhieuNhap.lietKePN', compact('data'));
+    }
     public function xemCTPN($id){
         $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
                         FROM tbl_phieunhap pn 

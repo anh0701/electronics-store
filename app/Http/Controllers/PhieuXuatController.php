@@ -27,11 +27,26 @@ class PhieuXuatController extends Controller
 
     public function timKiemPX(Request $request){
         $data = PhieuXuat::join('tbl_taikhoan', 'tbl_phieuxuat.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
-            ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan')
+            ->leftJoin('tbl_chitietphieuxuat', 'tbl_phieuxuat.MaPhieuXuat', '=', 'tbl_chitietphieuxuat.MaPhieuXuat')
+            ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan',
+                    DB::raw('COUNT(tbl_chitietphieuxuat.MaCTPX) as soCTPX'))
             ->where(function($query) use ($request) {
                 $query->where('tbl_taikhoan.TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
-                      ->orWhere('tbl_phieuxuat.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+                      ->orWhere('tbl_phieuxuat.TongSoLuong', 'LIKE', "%{$request->timKiem}%");
             })
+            ->groupBy('tbl_phieuxuat.MaPhieuXuat')
+            ->paginate(5);
+        return view('admin.PhieuXuat.lietKe', compact('data'));
+    }
+
+    public function locPX(Request $request){
+
+        $data = PhieuXuat::join('tbl_taikhoan', 'tbl_phieuxuat.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+            ->leftJoin('tbl_chitietphieuxuat', 'tbl_phieuxuat.MaPhieuXuat', '=', 'tbl_chitietphieuxuat.MaPhieuXuat')
+            ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan',
+                    DB::raw('COUNT(tbl_chitietphieuxuat.MaCTPX) as soCTPX'))
+            ->where(DB::raw("DATE_FORMAT(tbl_phieuxuat.ThoiGianTao, '%Y-%m')"), '=', "{$request->thoiGian}")
+            ->groupBy('tbl_phieuxuat.MaPhieuXuat')
             ->paginate(5);
         return view('admin.PhieuXuat.lietKe', compact('data'));
     }
