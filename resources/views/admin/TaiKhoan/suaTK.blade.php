@@ -8,15 +8,6 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div>
-                @endif
                 @php 
                     $user = session(('user'));
                     $quyen = $user['Quyen'];
@@ -41,6 +32,9 @@
                             <label for="sdt">Số điện thoại</label>                 
                             <input class="form-control" type="text" id="sdt" name="sdt" value="{{ $item->SoDienThoai }}">
                         </div>
+                        @error('sdt')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="">Quyền hạn</label>             
                             <select id="quyen" class="form-control input-lg m-bot15" name="quyen">

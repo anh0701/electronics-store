@@ -33,8 +33,7 @@ class NhaCungCapController extends Controller
             'email.unique' => 'Email đã được sử dụng.',
             'tennhacungcap.required' => 'Vui lòng nhập tên nhà cung cấp.',
             'tennhacungcap.unique' => 'Tên nhà cung cấp đã được sử dụng.',
-            'sdt.required' => 'Vui lòng nhập số điện thoại',
-            'sdt.digits_between' => 'Số điện thoại có tối đa 15 số',
+            'sdt.regex' => 'Định dạng số điện thoại không hợp lệ.',
             'diachi.required' => 'Vui lòng nhập địa chỉ',
         ];
         $valid = $request->validate([
@@ -47,7 +46,7 @@ class NhaCungCapController extends Controller
                 'required',
                 Rule::unique('tbl_nhacungcap')->ignore($request->user_id),
             ],
-            'sdt' => 'required|integer|digits_between:1,15',
+            'sdt' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
             'diachi' => 'required',
         ], $messages);
 
@@ -92,8 +91,7 @@ class NhaCungCapController extends Controller
             'email.unique' => 'Địa chỉ email đã được sử dụng.',
             'tennhacungcap.required' => 'Vui lòng nhập tên nhà cung cấp.',
             'tennhacungcap.unique' => 'Tên nhà cung cấp đã được sử dụng.',
-            'sdt.required' => 'Vui lòng nhập số điện thoại',
-            'sdt.digits_between' => 'Số điện thoại có tối đa 15 số',
+            'sdt.regex' => 'Định dạng số điện thoại không hợp lệ.',
             'diachi.required' => 'Vui lòng nhập địa chỉ',
         ];
         $valid = $request->validate([
@@ -106,7 +104,7 @@ class NhaCungCapController extends Controller
                 'required',
                 Rule::unique('tbl_nhacungcap')->ignore($request->maNCC, 'MaNhaCungCap'),
             ],
-            'sdt' => 'required|digits_between:1,15',
+            'sdt' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
             'diachi' => 'required',
         ], $messages);
         
@@ -139,31 +137,15 @@ class NhaCungCapController extends Controller
     }
 
     public function timkiemNCC(Request $request){
-        $keyword = $request->input('keyword');
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-
-        $query = "SELECT * FROM tbl_nhacungcap WHERE 1=1"; // 1=1 để bắt đầu điều kiện WHERE
-
-        if (!empty($startDate)) {
-            $query .= " AND DATE(ThoiGianTao) >= '$startDate'";
-        }
-
-        if (!empty($endDate)) {
-            $query .= " AND DATE(ThoiGianTao) <= '$endDate'";
-        }
-
-        if (!empty($keyword)) {
-            $query .= " AND (TenNhaCungCap LIKE '%$keyword%' 
-                        OR DiaChi LIKE '%$keyword%' 
-                        OR SoDienThoai LIKE '%$keyword%' 
-                        OR Email LIKE '%$keyword%' 
-                        OR ThoiGianTao LIKE '%$keyword%' 
-                        OR ThoiGianSua LIKE '%$keyword%')";
-        }
-
-        $data = DB::select($query);
-
+        $data = NhaCungCap::select('tbl_nhacungcap.*')
+            ->where(function($query) use ($request) {
+                $query->where('tbl_nhacungcap.TenNhaCungCap', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_nhacungcap.DiaChi', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_nhacungcap.Email', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_nhacungcap.SoDienThoai', 'LIKE', "%{$request->timKiem}%")
+                    ->orWhere('tbl_nhacungcap.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+            })
+            ->paginate(5);
         return view('admin.NhaCungCap.lietkeNCC', compact('data'));
     }
 

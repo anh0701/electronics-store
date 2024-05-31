@@ -31,9 +31,8 @@
                             <th>Mã phiếu xuất</th>
                             <th>Người lập phiếu</th>
                             <th>Tổng số lượng xuất</th>
-                            <th>Trạng thái</th>
                             <th>Thời gian lập</th>
-
+                            <th>Trạng thái</th>                           
                             <th style="width:100px">Quản lý</th>
                         </tr>
                     </thead>
@@ -43,19 +42,21 @@
                                 <td>{{ $i->MaPhieuXuat }}</td>
                                 <td>{{ $i->TenTaiKhoan }}</td>
                                 <td>{{ $i->TongSoLuong }}</td>
-                                @php 
-                                    if($i->TrangThai == 0){
-                                        $trangthai = "Chưa xác nhận";
-                                    }elseif($i->TrangThai == 1){
-                                        $trangthai = "Đã xác nhận";
-                                    }else{
-                                        $trangthai = "";
-                                    }
-
-                                @endphp 
-                                <td>{{ $trangthai }}</td>
                                 <td>{{ $i->ThoiGianTao }}</td>
-
+                                @php 
+                                    if($i->soCTPX == 0){
+                                        $trangthai = "Không có sản phẩm được xuất!";
+                                    }else{
+                                        if($i->TrangThai == 0){
+                                            $trangthai = "Chưa xác nhận";
+                                        }elseif($i->TrangThai == 1){
+                                            $trangthai = "Đã xác nhận";
+                                        }else{
+                                            $trangthai = "";
+                                        }
+                                    }                                    
+                                @endphp                                
+                                <td class="{{ $i->soCTPX == 0 ? 'boi-mau' : '' }}">{{ $trangthai }}</td>                               
                                 <td>
                                     <a href="{{ route('xemCT', ['id' => $i->MaPhieuXuat]) }}">
                                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>

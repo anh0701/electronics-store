@@ -17,11 +17,13 @@ use Illuminate\Validation\Rule;
 class PhieuNhapController extends Controller
 {
     public function trangXemPhieuNhap(){
-        Session::forget('maPN');
         $pns = DB::table('tbl_phieunhap')
                 ->join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
                 ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
-                ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+                ->leftJoin('tbl_chitietphieunhap', 'tbl_phieunhap.MaPhieuNhap', '=', 'tbl_chitietphieunhap.MaPhieuNhap')
+                ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieunhap.MaCTPN) as soChiTietPN'))
+                ->groupBy('tbl_phieunhap.MaPhieuNhap')
                 ->orderByDesc('tbl_phieunhap.ThoiGianTao')
                 ->paginate(5);
 
@@ -209,17 +211,14 @@ class PhieuNhapController extends Controller
     }
 
     public function luuPN($id){
-
         $maPN = $id;
-
         $tongTien = 0;
         $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
         foreach ($ctpn as $ct){
             $tongTien += $ct->SoLuong * $ct->GiaSanPham;
         }
 
-        $pn = DB::select("SELECT TienTra FROM tbl_phieunhap WHERE MaPhieuNhap = '{$maPN}'");
-        $tienNo = $tongTien - $pn[0]->TienTra;
+        $tienNo = $tongTien;
         PhieuNhap::where('MaPhieuNhap', $maPN)->update([
             'TongTien' => $tongTien,
             'TienNo' => $tienNo
@@ -246,7 +245,7 @@ class PhieuNhapController extends Controller
         $thoiGianTao = date('Y-m-d H:i:s');
         
         $tienTra = 0;
-        $tienNo = $request->tongTien - $tienTra;
+        $tienNo = $request->tongTien;
         $tenTK = $request->nguoiLap;
         $maTK = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
         $maNCC = $request->maNCC;
@@ -292,18 +291,18 @@ class PhieuNhapController extends Controller
         $maPN = $request->maPN;
         $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
         $tongTien = 0;
-
+        $tienTra = $request->tienTra;
         foreach ($ctpn as $ct){
             $tongTien += $ct->SoLuong * $ct->GiaSanPham;
         }
-        
-        $tienTraMoi = $request->tienTra + $request->tienTraMoi;
-        if($tienTraMoi > $tongTien){
-            return redirect()->back()->withInput()->withErrors(['tienTra' => 'Bạn nhập sai rồi']);
-        }
-        $tienNo = $tongTien - $tienTraMoi;
+        $tienNo = $tongTien - $tienTra;
         $thoiGianSua = date('Y-m-d H:i:s');
-
+        if($tienTra < 0){
+            return redirect()->back()->withInput()->withErrors(['tienTra' => 'Số tiền chỉ nhập số dương']);
+        }elseif($tienTra > $tongTien){
+            return redirect()->back()->withInput()->withErrors(['tienTra' => 'Bạn nhập thừa tiền!!!']);
+        }
+        
         $trangThai1 = $request->trangThaiTruoc;
         $trangThai2 = $request->trangThai;
         if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
@@ -350,7 +349,7 @@ class PhieuNhapController extends Controller
 
         PhieuNhap::where('MaPhieuNhap', $maPN)->update([
             'TongTien' => $tongTien,
-            'TienTra' => $tienTraMoi,
+            'TienTra' => $tienTra,
             'TienNo' => $tienNo,
             'PhuongThucThanhToan' => $request->thanhToan,
             'TrangThai' => $request->trangThai,
