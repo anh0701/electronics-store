@@ -11,7 +11,7 @@
                                 <img id="profile-image-preview" style="margin: 5% auto" src="{{$tk[0]->HinhAnh ? asset($tk[0]->HinhAnh): asset('upload/avatar-default.jpg')}}" class="rounded-circle" width="150" alt="Ảnh đại diện">
                                 <input type="file" class="form-control @error('HinhAnh') is-invalid @enderror" style="color: black; margin: 5% auto" name="HinhAnh" id="HinhAnh" onchange="previewImage(event)">
                                 @error('HinhAnh')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -19,58 +19,59 @@
                     <div class="col-lg-1 col-md-0"></div>
                     <div class="col-lg-7 col-md-6">
                         <div class="card mb-3 content">
-                            <h1 class="m-3 pt-3">Thông tin cá nhân</h1>
+                            <h1 style="margin-bottom: 5%">Thông tin cá nhân</h1>
                             <div class="card-body">
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Họ và tên</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
                                         <input type="text" class="form-control @error('TenNguoiDung') is-invalid @enderror" name="TenNguoiDung" id="TenNguoiDung" value="{{old('TenNguoiDung', $tk[0] -> TenNguoiDung)}}">
                                         @error('TenNguoiDung')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Email</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
                                         <input type="email" class="form-control @error('Email') is-invalid @enderror" name="Email" id="Email" value="{{old('Email', $tk[0]->Email)}}">
                                         @error('Email')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Số điện thoại</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
                                         <input type="text" class="form-control @error('SoDienThoai') is-invalid @enderror" name="SoDienThoai" id="SoDienThoai" value="{{old('SoDienThoai', $tk[0]->SoDienThoai)}}">
+
                                         @error('SoDienThoai')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-md-3">
                                         <h5>Địa chỉ</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
                                         <input type="text" class="form-control @error('DiaChi') is-invalid @enderror" name="DiaChi" id="DiaChi" value="{{old('DiaChi', $tk[0]->DiaChi)}}">
                                         @error('DiaChi')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="alert alert-danger  mt-2 small-alert">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mb-3">
+
+                                <div class="row mb-3" style="margin-bottom: 3%">
                                     <div class="col-12 text-center text-secondary">
                                         <button type="submit" class="btn btn-info w-100">Cập nhật thông tin</button>
                                     </div>
@@ -82,56 +83,57 @@
             </div>
         </div>
     </div>
-    <section id="cart_items" >
-        <div class="container">
-            <div class="review-payment">
-                <h2 class="mb-4">Mã giảm giá của người dùng</h2>
-            </div>
 
-            <div class="table-responsive cart_info">
-                <table class="table table-condensed">
-                    <thead>
-                    <tr class="cart_menu">
-                        <td class="text-center">STT</td>
-                        <td>Mã code</td>
-                        <td class="description">Tên phiếu giảm giá</td>
-                        <td class="price">Trị giá</td>
-                        <td>Thời gian có hiệu lực</td>
-                        <td>Thời gian hết hiệu lực</td>
-                    </tr>
-                    </thead>
-                    @php $i = 0; @endphp
-                    @foreach($phieuGiamGia as $phieu)
-                        <tbody>
-                        <tr class="{{ $phieu->ThoiGianKetThuc < now() ? 'text-muted' : '' }}">
-                            <td class="text-center">{{$i = $i + 1}}</td>
-                            <td><h5>{{$phieu->MaCode}}</h5></td>
-                            <td>
-                                {{$phieu ->TenMaGiamGia}}
-                            </td>
-                            <td>
-                                <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
-                            </td>
-                            <td>{{$phieu->ThoiGianBatDau}}</td>
-                            <td>{{$phieu->ThoiGianKetThuc}}</td>
+    <section id="cart_items" >
+            <div class="container">
+                <div class="review-payment">
+                    <h2 class="mb-4">Mã giảm giá của người dùng</h2>
+                </div>
+
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr class="cart_menu">
+                            <td class="text-center">STT</td>
+                            <td>Mã code</td>
+                            <td class="description">Tên phiếu giảm giá</td>
+                            <td class="price">Trị giá</td>
+                            <td>Thời gian có hiệu lực</td>
+                            <td>Thời gian hết hiệu lực</td>
                         </tr>
-                        </tbody>
-                    @endforeach
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-sm-5 text-center">
+                        </thead>
+                        @php $i = 0; @endphp
+                        @foreach($phieuGiamGia as $phieu)
+                            <tbody>
+                            <tr class="{{ ($phieu->ThoiGianKetThuc < now() || $phieu->TrangThai == 0) ? 'text-muted' : '' }}">
+                                <td class="text-center">{{$i = $i + 1}}</td>
+                                <td><h5>{{$phieu->MaCode}}</h5></td>
+                                <td>
+                                    {{$phieu ->TenMaGiamGia}}
+                                </td>
+                                <td>
+                                    <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
+                                </td>
+                                <td>{{$phieu->ThoiGianBatDau}}</td>
+                                <td>{{$phieu->ThoiGianKetThuc}}</td>
+                            </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
                 </div>
-                <div class="col-sm-7 text-right text-center-xs">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        @if ($phieuGiamGia instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                            {{ $phieuGiamGia->links('vendor.pagination.bootstrap-4') }}
-                        @endif
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-5 text-center">
+                    </div>
+                    <div class="col-sm-7 text-right text-center-xs">
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                            @if ($phieuGiamGia instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                                {{ $phieuGiamGia->links('vendor.pagination.bootstrap-4') }}
+                            @endif
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <script>
         function previewImage(event) {
@@ -143,6 +145,17 @@
             };
             reader.readAsDataURL(event.target.files[0]);
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            @endif
+        });
     </script>
 
     <style>
@@ -165,5 +178,14 @@
             background-color: #ccc;
         }
 
+        .mt-2 {
+            margin-top: 0.5rem;
+            margin-bottom: 0;
+        }
+
+        .small-alert {
+            padding: 0.75rem 0.75rem;
+            font-size: 1.25rem;
+        }
     </style>
 @endsection

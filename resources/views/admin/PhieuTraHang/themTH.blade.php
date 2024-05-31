@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Lập phiếu xuất 
+                Lập phiếu trả hàng 
             </header>
             @php
                 $user = Session::get('user');
@@ -12,64 +12,92 @@
             <div class="panel-body">
                 <div class="position-center">
 
-                <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapPX') }}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="">Mã phiếu</label>
-                        <input type="text" class="form-control" name="maPhieu" value="{{ $maPX }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Người lập phiếu</label>
-                        <input type="text" class="form-control" name="nguoiLap" value="{{ $user['TenTaiKhoan'] }}" readonly>
-                    </div>
+                    <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapTH') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="">Mã phiếu</label>
+                            <input type="text" class="form-control" name="maPhieu" value="{{ $maTH }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mã phiếu nhập</label>
+                            <input type="text" class="form-control" name="maPN" value="{{ $maPN }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mã nhà cung cấp</label>
+                            <input type="text" class="form-control" name="maNCC" value="{{ $maNCC }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Người lập phiếu</label>
+                            <input type="text" class="form-control" name="nguoiLap" value="{{ $user['TenTaiKhoan'] }}" readonly>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="">Tổng số lượng</label>
-                        <input type="text" class="form-control" name="tongSoLuong" value="0" readonly>
-                    </div>
-
-                    <button type="submit" class="btn btn-info update-btn">Lập phiếu xuất</button>
-                </form>
-
-                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPXCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="">Mã phiếu xuất:</label>
-                        <input type="text" class="form-control" name="maPX" value="{{$maPX}}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="MaSanPham">Sản phẩm</label>
-                        <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
-                    </div>
-                    @error('maSP')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <div class="form-group">
-                        <label for="">Số lượng</label>
-                        <input type="number" class="form-control" name="soLuong" >
-                    </div>
-                    @error('soLuong')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
-                </form>
-                <div id="control" style="display:none; margin:5px;">
-                    <a href="{{ route('luuPX', ['id' => $maPX]) }}"><button class="btn btn-info">Lưu</button></a>
-                    <a href="{{ route('xoaPX', ['id' => $maPX]) }}"><button class="btn btn-info">Hủy</button></a>
-                </div>
-                
-                <div class="table-responsive">
-                            <table id="phieuNhapTable" class="table table-striped b-t b-light">
-                                <thead>
+                        <button type="submit" class="btn btn-info update-btn">Lập phiếu trả hàng</button>
+                    </form>
+                    <div class="table-responsive" id="table2" style="display:none; margin:5px">
+                        <p class="head1">Danh sách sản phẩm trong phiếu nhập</p>
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                                <tr>
+                                    <!-- <th>Mã phiếu nhập chi tiết</th> -->
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>     
+                                    <th>Giá</th>               
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($ctpn as $ct)
                                     <tr>
-                                        <!-- <th>Mã phiếu nhập chi tiết</th> -->
-                                        <th>Mã phiếu nhập</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Số lượng</th>
+                                        <td>{{ $ct->TenSanPham }}</td>
+                                        <td>{{ $ct->SoLuong }}</td>
+                                        <td>{{ $ct->GiaSanPham }}</td>
                                     </tr>
-                                </thead>
-                                <tbody></tbody>
-                                </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapTHCT1')}}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                        {{ csrf_field() }}
+                        
+                        <div class="form-group">
+                            <label for="">Mã phiếu trả hàng:</label>
+                            <input type="text" class="form-control" name="maTH" value="{{$maTH}}" readonly>
+                            <input type="hidden" class="form-control" name="maPN" value="{{ $maPN }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="MaSanPham">Sản phẩm</label>
+                            <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Số lượng</label>
+                            <input type="number" class="form-control" name="soLuong" >
+                        </div>
+                        <div class="form-group">
+                            <label for="">Lý do trả hàng</label>
+                            <input type="text" class="form-control" name="lyDo" >
+                        </div>
+                        <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
+                    </form>
+                    <div id="control" style="display:none; margin:5px;">
+                        <a href="{{ route('luuPTH', ['id' => $maTH]) }}"><button class="btn btn-info">Lưu</button></a>
+                        <a href="{{ route('xoaPTH', ['id' => $maTH]) }}"><button class="btn btn-info">Hủy</button></a>
+                    </div>
+                    <div class="table-responsive" id="table1" style="display:none; margin:5px">
+                        <p class="head1">Danh sách sản phẩm trong phiếu trả hàng</p>
+                        <table id="phieuNhapTable" class="table table-striped b-t b-light">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Lý do trả hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -93,19 +121,21 @@ $(document).ready(function() {
                     Swal.fire({
                             icon: 'success',
                             title: 'Thành công',
-                            text: 'Lập phiếu xuất thành công',
+                            text: 'Lập phiếu trả hàng thành công',
                             showConfirmButton: false,
                             timer: 1500
                         });
-
+                    // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
                     $('#phieuNhapForm').hide();
                     $('#phieuNhapCTForm').show();
                     $('#control').show();
+                    $('#table1').show();
+                    $('#table2').show();
                 } else {
                     Swal.fire({
                             icon: 'error',
                             title: 'Thất bại',
-                            text: 'Lập phiếu xuất thất bại: ' + data.message,
+                            text: 'Lập phiếu trả hàng thất bại: ' + data.message,
                             showConfirmButton: true
                         });
                    
@@ -119,7 +149,6 @@ $(document).ready(function() {
                         text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
                         showConfirmButton: true
                     });
-                
             }
         });
     });
@@ -143,34 +172,34 @@ $(document).ready(function() {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                   
-
+                        
                     var kt = false;
 
                     $('#phieuNhapTable tbody tr').each(function() {
                         var row = $(this);
-                        var maSP = row.find('td:nth-child(2)').text();
+                        var maSP = row.find('td:nth-child(1)').text();
                         if (maSP === data.maSP) {
-                            row.find('td:nth-child(3)').text(data.soLuong);
+                            row.find('td:nth-child(2)').text(data.soLuong);
                             kt = true;
                             return false;  // Thoát khỏi vòng lặp each
                         }
                     });
 
                     if (!kt) {
-                    
+                        // Tạo một hàng mới cho bảng
+                        
                         var newRow = `
                             <tr>
-                                <td>${data.maPX}</td>
                                 <td>${data.maSP}</td>
                                 <td>${data.soLuong}</td>
+                                <td>${data.gia}</td>
+                                <td>${data.lyDo}</td>
                             </tr>
                         `;
 
                         // Thêm hàng mới vào bảng
                         $('#phieuNhapTable tbody').append(newRow);
                     }
-
                     // Reset form chi tiết phiếu nhập
                     $('#phieuNhapCTForm')[0].reset();
                 } else {
@@ -196,8 +225,11 @@ $(document).ready(function() {
 
     // Ẩn form chi tiết phiếu nhập lúc đầu
     $('#phieuNhapCTForm').hide();
+    
 });
 </script>
+
+    
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
@@ -208,7 +240,7 @@ $(document).ready(function() {
             placeholder: 'Chọn sản phẩm',
             allowClear: true,
             ajax: {
-                url: '{{ route("api.san-pham-pn") }}',
+                url: '{{ route("api.san-pham-th") }}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
@@ -228,7 +260,7 @@ $(document).ready(function() {
         // Khởi tạo lại giá trị đã chọn nếu có
         if (selectedValues) {
             $.ajax({
-                url: '{{ route("api.san-pham-pn") }}',
+                url: '{{ route("api.san-pham-th") }}',
                 dataType: 'json',
                 data: {
                     ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin

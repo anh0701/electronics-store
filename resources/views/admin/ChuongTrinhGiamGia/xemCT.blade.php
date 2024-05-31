@@ -13,7 +13,7 @@
                 <p><strong>Slug:</strong> {{ $discountProgram->SlugCTGG }}</p>
                 <p><strong>Hình Ảnh:</strong></p>
                 <img style="margin: 3% 5%" src="{{ asset($discountProgram->HinhAnh) }}" alt="{{ $discountProgram->TenCTGG }}" width="200">
-                <p><strong>Mô Tả:</strong> {{ $discountProgram->MoTa }}</p>
+                <p><strong>Mô Tả:</strong> <div style="margin-left: 5%">{!! $discountProgram->MoTa !!}</div> </p>
                 <p><strong>Trạng Thái:</strong> {{ $discountProgram->TrangThai ? 'Hiển thị' : 'Ẩn' }}</p>
                 <p><strong>Ngày Tạo:</strong> {{ $discountProgram->ThoiGianTao }}</p>
                 <p><strong>Thời gian bắt đầu:</strong> {{ $discountProgram->ThoiGianBatDau }}</p>

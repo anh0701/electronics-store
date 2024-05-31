@@ -144,7 +144,7 @@ class HomeController extends Controller
             $phieuGiamGia = PhieuGiamGia::where('BacNguoiDung', $tk[0]->BacNguoiDung)->orderBy('ThoiGianBatDau', 'DESC')->paginate('4');
         }
 //        dd($phieuGiamGia);
-        return view('auth.Userprofile')->with(compact( 'tk', 'phieuGiamGia'));
+        return view('auth.trangCaNhan')->with(compact( 'tk', 'phieuGiamGia'));
     }
 
     public function TrangKhachHangDangNhap(){

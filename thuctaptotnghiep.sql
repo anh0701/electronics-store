@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 31, 2024 at 07:07 AM
--- Server version: 8.0.30
--- PHP Version: 8.3.2
+-- Máy chủ: localhost:3306
+-- Thời gian đã tạo: Th5 30, 2024 lúc 04:30 PM
+-- Phiên bản máy phục vụ: 8.0.30
+-- Phiên bản PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thunghiem2`
+-- Cơ sở dữ liệu: `thuctaptotnghiep`
 --
 
 -- --------------------------------------------------------
@@ -243,7 +243,9 @@ CREATE TABLE `tbl_chitietphieuxuat` (
 INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuong`) VALUES
 ('CTPX66569880ed43e', 'PX20240529094830', 26, '6'),
 ('CTPX6656989d21e31', 'PX20240529094830', 27, '1'),
-('CTPX665698ae75a58', 'PX20240529094830', 25, '4');
+('CTPX665698ae75a58', 'PX20240529094830', 25, '4'),
+('CTPX6658987d9e78b', 'PX20240530221710', 25, '1'),
+('CTPX66589f364a46c', 'PX20240530221710', 26, '1');
 
 -- --------------------------------------------------------
 
@@ -287,8 +289,8 @@ CREATE TABLE `tbl_danhgia` (
   `MaDanhGia` int NOT NULL,
   `Email` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `NoiDung` text NOT NULL,
-  `SoSao` int DEFAULT NULL,
+  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SoSao` int NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -319,9 +321,9 @@ INSERT INTO `tbl_danhgia` (`MaDanhGia`, `Email`, `MaSanPham`, `NoiDung`, `SoSao`
 
 CREATE TABLE `tbl_danhmuc` (
   `MaDanhMuc` int NOT NULL,
-  `TenDanhMuc` varchar(50) NOT NULL,
-  `SlugDanhMuc` varchar(50) NOT NULL,
-  `MoTa` text NOT NULL,
+  `TenDanhMuc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugDanhMuc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `DanhMucCha` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
@@ -408,10 +410,10 @@ INSERT INTO `tbl_danhmucbaiviet` (`MaDanhMucBV`, `TenDanhMucBV`, `SlugDanhMucBV`
 
 CREATE TABLE `tbl_danhmuctskt` (
   `MaDMTSKT` int NOT NULL,
-  `TenDMTSKT` varchar(50) NOT NULL,
-  `SlugDMTSKT` varchar(50) NOT NULL,
+  `TenDMTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugDMTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaDanhMuc` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -550,7 +552,7 @@ CREATE TABLE `tbl_nhacungcap` (
   `MaNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TenNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SoDienThoai` int DEFAULT NULL,
+  `SoDienThoai` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
@@ -562,9 +564,10 @@ CREATE TABLE `tbl_nhacungcap` (
 --
 
 INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp1', 12, 'ztech1@gmail', 0, '2024-05-20 14:17:18', '2024-05-26 06:57:29'),
-('NCC20240521230116', 'Ztech 4', '22 ly tu trong, hong bang, hp', 1111, 'ztech4@gmail', 1, '2024-05-21 16:01:16', '2024-05-26 10:26:26'),
-('NCC20240526172247', 'Ztech 2', '22 ly tu trong, hong bang, hp', 111, 'ztech2@gmail.com', 1, '2024-05-26 10:22:47', NULL);
+('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp1', '01234567891', 'ztech1@gmail', 0, '2024-05-20 14:17:18', '2024-05-30 15:06:35'),
+('NCC20240521230116', 'Ztech 4', '22 ly tu trong, hong bang, hp', '0968666234', 'ztech4@gmail', 1, '2024-05-21 16:01:16', '2024-05-30 15:07:18'),
+('NCC20240526172247', 'Ztech 2', '22 ly tu trong, hong bang, hp', '0123456789', 'ztech2@gmail.com', 1, '2024-05-26 10:22:47', '2024-05-30 15:06:48'),
+('NCC20240530220431', 'Ztech 3', '22 ly tu trong', '01334567292', 'ztech3@gmail.com', 1, '2024-05-30 15:04:31', '2024-05-30 15:06:42');
 
 -- --------------------------------------------------------
 
@@ -725,7 +728,9 @@ CREATE TABLE `tbl_phieunhap` (
 --
 
 INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240529093813', 'NCC20240521230116', 'TKNV20240428002556', 1200, 0, 1200, '0', '1', '2024-05-29 02:38:16', '2024-05-29 03:36:55');
+('PN20240529093813', 'NCC20240521230116', 'TKNV20240428002556', 1200, 1200, 0, '0', '1', '2024-05-29 02:38:16', '2024-05-30 16:29:24'),
+('PN20240530224334', 'NCC20240526172247', 'TKNV20240428002556', 400, 0, 400, '0', '0', '2024-05-30 15:43:37', '2024-05-30 16:27:58'),
+('PN20240530225633', 'NCC20240526172247', 'TKNV20240428002556', 0, 0, 0, '0', '0', '2024-05-30 15:56:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -765,7 +770,9 @@ CREATE TABLE `tbl_phieuxuat` (
 --
 
 INSERT INTO `tbl_phieuxuat` (`MaPhieuXuat`, `MaTaiKhoan`, `TongSoLuong`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PX20240529094830', 'TKNV20240428002556', 11, 0, NULL, '2024-05-29 02:48:32', '2024-05-29 03:14:21');
+('PX20240529094830', 'TKNV20240428002556', 11, 0, NULL, '2024-05-29 02:48:32', '2024-05-30 15:18:44'),
+('PX20240530221710', 'TKNV20240428002556', 2, 0, NULL, '2024-05-30 15:17:12', '2024-05-30 15:46:34'),
+('PX20240530230257', 'TKNV20240428002556', 0, 0, NULL, '2024-05-30 16:02:58', NULL);
 
 -- --------------------------------------------------------
 

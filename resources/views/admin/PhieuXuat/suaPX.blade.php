@@ -37,6 +37,9 @@
                                 <option value="1" {{ $px->TrangThai == '1' ? 'selected' : '' }}>Xác nhận</option>
                             </select>
                         </div>
+                        @error('trangThai')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
@@ -58,7 +61,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="">Số lượng</label>
-                            <input type="number" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
+                            <input type="number" class="form-control" name="soLuong" min="1" value="{{ old('soLuong') }}">
                         </div>
                         @error('soLuong')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -100,7 +103,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="responseMessage"></div>
                 </div>
             </div>
         </section>
@@ -126,6 +128,20 @@ $(document).ready(function() {
 });
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if(session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Thành công',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        @endif
+    });
+</script>
 <script>
 $(document).ready(function() {
     $('.update-btn').on('click', function() {
@@ -142,14 +158,30 @@ $(document).ready(function() {
             },
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessage').text('Cập nhật thành công').css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: 'Cập nhật thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                 } else {
-                    $('#responseMessage').text('Cập nhật thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Cập nhật thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessage').text('Có lỗi xảy ra: ' + error).css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });

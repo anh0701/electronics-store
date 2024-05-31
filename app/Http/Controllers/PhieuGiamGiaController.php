@@ -6,6 +6,7 @@ use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class PhieuGiamGiaController extends Controller
@@ -39,7 +40,6 @@ class PhieuGiamGiaController extends Controller
             'SlugMaGiamGia' => ['required', 'string', 'max:255', 'unique:tbl_phieugiamgia'],
             'TriGia' => ['required', 'string'],
             'BacNguoiDung' => ['required', 'integer'],
-            'MaCode' => ['required', 'string', 'unique:tbl_phieugiamgia'],
             'DonViTinh' => ['required', 'integer'],
             'ThoiGianBatDau' =>['required', 'date_format:Y-m-d\TH:i'],
             'ThoiGianKetThuc'=>['required','date_format:Y-m-d\TH:i','after:ThoiGianBatDau'],
@@ -48,8 +48,6 @@ class PhieuGiamGiaController extends Controller
             'SlugMaGiamGia.required' => "Vui lòng nhập slug phiếu giảm giá.",
             'TriGia.required' => "Vui lòng nhập trị giá phiếu giảm giá.",
             'BacNguoiDung.required' => "Vui lòng nhập Cấp bậc thành viên có thể dùng phiếu giảm giá.",
-            'MaCode.required' => "Vui lòng nhập mã code của phiếu giảm giá.",
-            'MaCode.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
             'SlugMaGiamGia.unique' => "Mã code của phiếu giảm giá đã tồn tại.",
             'DonViTinh.required' => "Vui lòng nhập đơn vị tính của phiếu giảm giá.",
             'ThoiGianKetThuc.required' => "Vui lòng nhập ngày hết hiệu lực phiếu giảm giá.",
@@ -68,13 +66,38 @@ class PhieuGiamGiaController extends Controller
         $phieu->SlugMaGiamGia = $data['SlugMaGiamGia'];
         $phieu->TriGia = $data['TriGia'];
         $phieu->BacNguoiDung = $data['BacNguoiDung'];
-        $phieu->MaCode = $data['MaCode'];
+        $phieu->MaCode = $this->generateDiscountCode($data['TenMaGiamGia']);
         $phieu->DonViTinh = $data['DonViTinh'];
         $phieu->ThoiGianBatDau = $data['ThoiGianBatDau'];
         $phieu->ThoiGianKetThuc = $data['ThoiGianKetThuc'];
         $phieu->save();
 
         return Redirect::to('/liet-ke-phieu-giam-gia')->with('message', 'Thêm mã giảm giá thành công');
+    }
+
+    private function generateDiscountCode(mixed $name)
+    {
+        // Chuyển đổi tên thành slug
+        $slug = Str::slug($name, '-');
+
+        // Lấy chữ cái đầu tiên sau mỗi dấu gạch ngang
+        $parts = explode('-', $slug);
+        $initials = '';
+        foreach ($parts as $part) {
+            $initials .= strtoupper($part[0]);
+        }
+
+        // Thêm số ngẫu nhiên dựa trên timestamp hiện tại
+        $timestamp = now()->format('Y'); // Ví dụ: 20240530123456
+        $code = $initials . $timestamp;
+
+        // Đảm bảo mã giảm giá là duy nhất
+        while (PhieuGiamGia::where('MaCode', $code)->exists()) {
+            $timestamp = now()->format('Y') . rand(100, 999); // Thêm số ngẫu nhiên nếu bị trùng
+            $code = $initials . $timestamp;
+        }
+
+        return $code;
     }
 
     /**
@@ -159,8 +182,11 @@ class PhieuGiamGiaController extends Controller
     public function Xoa($MaGiamGia)
     {
         //
-        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
-        $phieuGiamGia->delete();
+//        $phieuGiamGia = PhieuGiamGia::find($MaGiamGia);
+//        $phieuGiamGia->delete();
+        $pheuGiamGia = PhieuGiamGia::findOrFail($MaGiamGia);
+        $pheuGiamGia->TrangThai = 0;
+        $pheuGiamGia->save();
         return Redirect::to('liet-ke-phieu-giam-gia')->with('status', 'Xóa mã giảm giá thành công');
     }
 }

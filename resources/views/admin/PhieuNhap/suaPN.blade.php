@@ -34,13 +34,12 @@
                             <input type="text" class="form-control" name="tongTien" value="{{ $pn->TongTien }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="">Tiền đã trả</label>
-                            <input type="text" class="form-control" name="tienTra" value="{{ $pn->TienTra }}" readonly>
+                            <label for="">Tiền trả</label>
+                            <input type="number" class="form-control" value="{{ $pn->TienTra }}" name="tienTra" >
                         </div>
-                        <div class="form-group">
-                            <label for="">Tiền trả thêm</label>
-                            <input type="text" class="form-control" name="tienTraMoi" value="0">
-                        </div>
+                        @error('tienTra')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="">Tiền nợ</label>
                             <input type="text" class="form-control" name="tienNo" value="{{ $pn->TienNo }}" readonly>
@@ -52,9 +51,7 @@
                                 <option value="1" >Tiền mặt</option>
                                 <option value="2" >Khác</option>
                             </select>
-                        </div>
-                        
-                        
+                        </div>                      
                         <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
                             <label for="">Trạng thái</label>
                             <input type="hidden" id="mySelect1" class="form-control" name="trangThaiTruoc" value="{{ $pn->TrangThai }}">
@@ -63,12 +60,9 @@
                                 <option value="1" {{ $pn->TrangThai == '1' ? 'selected' : '' }}>Xác nhận</option>
                             </select>
                         </div>
-                        
-                        
-                        
-                        
-                        
-
+                        @error('trangThai')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
@@ -90,14 +84,14 @@
                         @enderror
                         <div class="form-group">
                             <label for="">Số lượng</label>
-                            <input type="number" class="form-control" name="soLuong" value="{{ old('soLuong') }}">
+                            <input type="number" class="form-control" name="soLuong" min="1" value="{{ old('soLuong') }}">
                         </div>
                         @error('soLuong')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
                             <label for="">Giá sản phẩm</label>
-                            <input type="number" class="form-control" name="gia" value="{{ old('gia') }}">
+                            <input type="number" class="form-control" name="gia" min="1" value="{{ old('gia') }}">
                         </div>
                         @error('gia')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -143,8 +137,18 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <footer class="panel-footer">
+                            <div class="row">
+                            <div class="col-sm-5 text-center">
+                            </div>
+                            <div class="col-sm-7 text-right text-center-xs">                
+                                <ul class="pagination pagination-sm m-t-none m-b-none">
+                                {{ $ctpn->links('vendor.pagination.bootstrap-4') }}
+                                </ul>
+                            </div>
+                            </div>
+                        </footer>
                     </div>
-                    <div id="responseMessage"></div>
                 </div>
             </div>
         </section>
@@ -170,6 +174,20 @@ $(document).ready(function() {
 });
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            @endif
+        });
+    </script>
 <script>
 $(document).ready(function() {
     $('.update-btn').on('click', function() {
@@ -189,17 +207,31 @@ $(document).ready(function() {
             success: function(data) {
                 if (data.success) {
                     var thanhTien = soLuong * giaSanPham;
-                    
-                    // Cập nhật thành tiền trên giao diện
                     $('#thanhTien_' + MaCTPN).text(thanhTien);
-                    $('#responseMessage').text('Cập nhật thành công').css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: 'Cập nhật thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                 } else {
-                    $('#responseMessage').text('Cập nhật thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Cập nhật thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessage').text('Có lỗi xảy ra: ' + error).css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });

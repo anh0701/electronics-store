@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChuongTrinhGiamGiaController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuGiamGiaController;
+use App\Http\Controllers\PhieuTraHangController;
 use App\Http\Controllers\PhieuXuatController;
 use App\Http\Controllers\TonKhoController;
 use Illuminate\Support\Facades\Route;
@@ -11,11 +12,8 @@ use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\DanhMucTSKTController;
-use App\Http\Controllers\DatLaiMatKhau;
-use App\Http\Controllers\DoiMatKhau;
 use App\Http\Controllers\GioHangController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MaGiamGiaController;
 use App\Http\Controllers\PhiGiaoHangController;
 use App\Http\Controllers\DanhGiaController;
 use App\Http\Controllers\QuenMatKhau;
@@ -30,9 +28,31 @@ use App\Http\Controllers\ThongSoKyThuatController;
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
 Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
 
+//PhieuTraHang
+Route::get('/xem-phieu-tra-hang', [PhieuTraHangController::class, 'xem'])->name('xemPTH');
+Route::get('/xem-phieu-tra-hang-chi-tiet/{id}', [PhieuTraHangController::class, 'xemCTPTH'])->name('xemCTPTH');
+
+
+Route::get('/luuPTH/{id}', [PhieuTraHangController::class, 'luuPTH'])->name('luuPTH');
+Route::get('/xoaPTH/{id}', [PhieuTraHangController::class, 'xoaPTH'])->name('xoaPTH');
+
+Route::get('/sua-phieu-tra-hang/{id}', [PhieuTraHangController::class, 'suaPTH'])->name('suaPTH');
+Route::post('/sua-phieu-tra-hang', [PhieuTraHangController::class, 'xuLySuaPTH'])->name('xuLySuaPTH');
+Route::post('/lap-phieu-tra-hang-chi-tiet', [PhieuTraHangController::class, 'xuLyLapTHCT'])->name('xuLyLapTHCT');
+Route::get('xoa-chi-tiet-phieu-tra-hang/{id}/{maPTH}', [PhieuTraHangController::class, 'xoaCTPTHS'])->name('xoaCTPTHS');
+Route::post('/update-soluong-pth', [PhieuTraHangController::class, 'updateSoLuong'])->name('update.soluong-pth');
+
+
+Route::get('/lap-phieu-tra-hang/{id}/{maNCC}', [PhieuTraHangController::class, 'lapTH'])->name('lapTH');
+Route::post('/lap-phieu-tra-hang', [PhieuTraHangController::class, 'xuLyLapTH'])->name('xuLyLapTH');
+Route::post('/lap-phieu-tra-hang-chi-tiet1', [PhieuTraHangController::class, 'xuLyLapTHCT1'])->name('xuLyLapTHCT1');
+Route::get('/api/san-pham-th', [PhieuTraHangController::class, 'danhSachSanPham'])->name('api.san-pham-th');
+
+
 //PhieuXuat
 Route::get('/xem-phieu-xuat', [PhieuXuatController::class, 'xem'])->name('xemPX');
 Route::get('/xem-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xemCT'])->name('xemCT');
+Route::get('/tim-kiem-phieu-xuat', [PhieuXuatController::class, 'timKiemPX'])->name('timKiemPX');
 
 Route::get('/lap-phieu-xuat', [PhieuXuatController::class, 'taoPX'])->name('taoPX');
 Route::post('/lap-phieu-xuat', [PhieuXuatController::class, 'xuLyLapPX'])->name('xuLyLapPX');
@@ -53,6 +73,7 @@ Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])-
 //PhieuNhap
 Route::get('/liet-ke-phieu-nhap', [PhieuNhapController::class, 'trangXemPhieuNhap'])->name('xemPN');
 Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
+Route::get('/tim-kiem-phieu-nhap', [PhieuNhapController::class, 'timKiemPN'])->name('timKiemPN');
 
 Route::get('/lap-phieu-nhap', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
 Route::post('/lap-phieu-nhap', [PhieuNhapController::class, 'xuLyPN'])->name('xuLyLapPN');
@@ -106,15 +127,15 @@ Route::post('/xuLyTaoTK', [TaiKhoanController::class, 'xuLyTaoTK'])->name('xuLyT
 Route::get('/sua-tai-khoan/{id}', [TaiKhoanController::class, 'suaTK'])->name('suaTK');
 Route::post('/xuLySuaTK', [TaiKhoanController::class, 'xuLySuaTK'])->name('xuLySuaTK');
 Route::get('/xoaTK/{id}', [TaiKhoanController::class, 'xoaTK'])->name('xoaTK');
-Route::post('/doi-mat-khau', [DoiMatKhau::class, 'doiMatKhau'])->name('doiMatKhau');
-Route::get('/doi-mat-khau', [DoiMatKhau::class, 'index'])->name('indexDMK');
-Route::post('/dat-lai-mat-khau', [DatLaiMatKhau::class, 'datLaiMatKhau'])->name('datLaiMatKhau');
-Route::get('/dat-lai-mat-khau', [DatLaiMatKhau::class, 'index'])->name('indexDLMK');
-Route::post('/quen-mat-khau', [QuenMatKhau::class, 'quenMatKhau'])->name('quenMatKhau');
-Route::get('/quen-mat-khau', [QuenMatKhau::class, 'indexQMK'])->name('indexQMK');
-Route::post('/xac-thuc-pin', [QuenMatKhau::class, 'xacThucPin'])->name('xacThucPin');
-Route::get('/xac-thuc-pin', [QuenMatKhau::class, 'indexXTPin'])->name('indexXTPin');
-Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->name('timkiemTK');
+Route::post('/doi-mat-khau', [TaiKhoanController::class, 'doiMatKhau'])->name('doiMatKhau');
+Route::get('/doi-mat-khau', [TaiKhoanController::class, 'trangDoiMatKhau'])->name('indexDMK');
+Route::post('/dat-lai-mat-khau', [TaiKhoanController::class, 'datLaiMatKhau'])->name('datLaiMatKhau');
+Route::get('/dat-lai-mat-khau', [TaiKhoanController::class, 'trangDatLaiMatKhau'])->name('indexDLMK');
+Route::post('/quen-mat-khau', [TaiKhoanController::class, 'quenMatKhau'])->name('quenMatKhau');
+Route::get('/quen-mat-khau', [TaiKhoanController::class, 'trangQMK'])->name('indexQMK');
+Route::post('/xac-thuc-pin', [TaiKhoanController::class, 'xacThucPin'])->name('xacThucPin');
+Route::get('/xac-thuc-pin', [TaiKhoanController::class, 'indexXTPin'])->name('indexXTPin');
+Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->name('timKiemTK');
 //Route::get('/cap-nhat-tai-khoan', [TaiKhoanController::class, 'capNhatTK'])->name('capNhatTK');
 //Route::post('/xuLyCapNhatTK', [TaiKhoanController::class, 'xuLyCNTK'])->name('xuLyCapNhatTK');
 

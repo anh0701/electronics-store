@@ -30,6 +30,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <!-- morris JavaScript -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </head>
 <body>
 <section id="container">
@@ -91,8 +93,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý nhà cung cấp</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a></li>
               <li><a href="{{ route('themNCC') }}">Thêm nhà cung cấp</a></li>
+              <li><a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a></li>
+              
             </ul>
           </li>
           <li class="sub-menu">
@@ -101,8 +104,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý phiếu nhập</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>
-              <li><a href="{{ route('lapPN') }}">Thêm phiếu nhập</a></li>
+              <li><a href="{{ route('lapPN') }}">Lập phiếu nhập</a></li>
+              <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>             
             </ul>
           </li>
           <li class="sub-menu">
@@ -111,8 +114,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <span>Quản lý phiếu xuất</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
               <li><a href="{{ route('taoPX') }}">Lập phiếu xuất</a></li>
+              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
+              
             </ul>
           </li>
           <li class="sub-menu">
@@ -122,6 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </a>
             <ul class="sub">
               <li><a href="{{ route('lietKeTonKho') }}">Liệt kê tồn kho</a></li>
+              <li><a href="{{ route('xemPTH') }}">Liệt kê phiếu trả hàng</a></li>
             </ul>
           </li>
           <li class="sub-menu">

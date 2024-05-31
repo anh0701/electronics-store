@@ -11,7 +11,6 @@
             @endphp 
             <div class="panel-body">
                 <div class="position-center">
-                <div id="responseMessage"></div>
 
                 <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapPN') }}" method="POST">
                     {{ csrf_field() }}
@@ -47,16 +46,15 @@
                     <button type="submit" class="btn btn-info update-btn">Lập phiếu nhập</button>
                 </form>
 
-                <div id="responseMessageCT"></div>
 
-                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPNCT1') }}" method="POST" >
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="">Mã phiếu nhập:</label>
+                        <label for="">Mã phiếu nhập</label>
                         <input type="text" class="form-control" name="maPN" value="{{$maPN}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MaSanPham">Sản phẩm:</label>
+                        <label for="MaSanPham">Sản phẩm</label>
                         <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
                     </div>
 
@@ -96,6 +94,7 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function() {
     // Xử lý form phiếu nhập
@@ -110,27 +109,45 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessage').text('Lập phiếu nhập thành công').css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: 'Lập phiếu nhập thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    
                     // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
                     $('#phieuNhapForm').hide();
                     $('#phieuNhapCTForm').show();
                     $('#control').show();
                 } else {
-                    $('#responseMessage').text('Lập phiếu nhập thất bại: ' + data.message).css('color', 'red');
+                    // $('#responseMessage').text('Lập phiếu nhập thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Lập phiếu nhập thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
-                $('#responseMessage').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!').css('color', 'red');
+                // console.error('Error:', error);
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });
 
     // Xử lý form chi tiết phiếu nhập
     $('#phieuNhapCTForm').on('submit', function(e) {
-        e.preventDefault();  // Ngăn chặn hành động submit mặc định của form
+        e.preventDefault(); 
 
-        var formData = $(this).serialize();  // Lấy dữ liệu từ form
+        var formData = $(this).serialize();  
 
         $.ajax({
             url: $(this).attr('action'),
@@ -138,37 +155,62 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessageCT').text('Thêm sản phẩm thành công').css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        
+                    var kt = false;
 
-                    // Tạo một hàng mới cho bảng
-                    
-                    var newRow = `
-                        <tr>
-                            <td>${data.maPN}</td>
-                            <td>${data.maSP}</td>
-                            <td>${data.soLuong}</td>
-                            <td>${data.gia}</td>
-                            <td>${data.soLuong * data.gia}</td>
-                        </tr>
-                    `;
+                    $('#phieuNhapTable tbody tr').each(function() {
+                        var row = $(this);
+                        var maSP = row.find('td:nth-child(2)').text();
+                        if (maSP === data.maSP) {
+                            row.find('td:nth-child(4)').text(data.soLuong);
+                            row.find('td:nth-child(5)').text(data.gia);
+                            row.find('td:nth-child(6)').text(data.soLuong * data.gia);
+                            kt = true;
+                            return false;  
+                        }
+                    });
 
-                    // Thêm hàng mới vào bảng
-                    $('#phieuNhapTable tbody').append(newRow);
-
-                    // Reset form chi tiết phiếu nhập
+                    if (!kt) {
+                        var newRow = `
+                            <tr>
+                                <td>${data.maPN}</td>
+                                <td class="cot-an">${data.maSP}</td>
+                                <td>${data.tenSP}</td>
+                                <td>${data.soLuong}</td>
+                                <td>${data.gia}</td>
+                                <td>${data.soLuong * data.gia}</td>
+                            </tr>
+                        `;
+                        $('#phieuNhapTable tbody').append(newRow);
+                    }
                     $('#phieuNhapCTForm')[0].reset();
                 } else {
-                    $('#responseMessageCT').text('Thêm sản phẩm thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Thêm sản phẩm thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessageCT').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!').css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });
-
-    // Ẩn form chi tiết phiếu nhập lúc đầu
     $('#phieuNhapCTForm').hide();
 });
 </script>

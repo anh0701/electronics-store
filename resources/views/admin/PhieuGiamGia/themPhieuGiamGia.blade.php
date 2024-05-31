@@ -26,14 +26,14 @@
                             @error('TenMaGiamGia')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Mã code giảm giá</label>
-                                <input type="text" class="form-control @error('MaCode') is-invalid @enderror"
-                                       name="MaCode" placeholder="Mã code phiếu giảm giá" value="{{old('MaCode')}}">
-                            </div>
-                            @error('MaCode')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+{{--                            <div class="form-group">--}}
+{{--                                <label for="exampleInputPassword1">Mã code giảm giá</label>--}}
+{{--                                <input type="text" class="form-control @error('MaCode') is-invalid @enderror"--}}
+{{--                                       name="MaCode" placeholder="Mã code phiếu giảm giá" value="{{old('MaCode')}}">--}}
+{{--                            </div>--}}
+{{--                            @error('MaCode')--}}
+{{--                            <div class="alert alert-danger">{{ $message }}</div>--}}
+{{--                            @enderror--}}
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Slug phiếu giảm giá</label>
                                 <input type="text" class="form-control @error('SlugMaGiamGia') is-invalid @enderror"

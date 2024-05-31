@@ -1,30 +1,47 @@
 @extends('admin_layout')
 @section('admin_content')
+
 @php 
-    if($px->TrangThai == 0){
+    if($pth->TrangThai == 0){
         $tt = "Chưa xác nhận";
     }else{
         $tt = "Đã xác nhận";
     }
 @endphp 
+<style>
+    
+    
+</style>
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Thông tin phiếu xuất
+            Thông tin phiếu trả hàng
         </div>
         <div class="container">
             <div class="row r1">
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <p><strong>Mã phiếu xuất:</strong></p>
+                    <p><strong>Mã phiếu trả hàng:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p>{{$px->MaPhieuXuat}}</p>
+                    <p>{{$pth->MaPhieuTraHang}}</p>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <p><strong>Mã phiếu nhập:</strong></p>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                    <p> {{$pth->MaPhieuNhap}}</p>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <p><strong>Nhà cung cấp:</strong></p>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                    <p> {{$pth->TenNhaCungCap}}</p>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Người lập:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p> {{$px->TenTaiKhoan}}</p>
+                    <p> {{$pth->TenTaiKhoan}}</p>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Trạng thái:</strong></p>
@@ -37,29 +54,33 @@
                     <p><strong>Thời gian tạo:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p> {{$px->ThoiGianTao}}</p>
+                    <p> {{$pth->ThoiGianTao}}</p>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Thời gian sửa:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p> {{$px->ThoiGianSua}}</p>
+                    <p> {{$pth->ThoiGianSua}}</p>
                 </div>
             </div>
-        </div>
+        </div>    
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
                         <th>Tên sản phẩm</th>
                         <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Lý do trả hàng</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ct as $i)
+                    @foreach ($ctth as $key => $matHang)
                         <tr>
-                            <td>{{ $i->TenSanPham }}</td>
-                            <td>{{ $i->SoLuong }}</td>
+                            <td>{{ $matHang->TenSanPham }}</td>
+                            <td>{{ $matHang->SoLuong }}</td>
+                            <td>{{ $matHang->GiaSanPham }}</td>
+                            <td>{{ $matHang->LyDoTraHang }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -68,16 +89,16 @@
         <div class="container">
             <div class="row r1">
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <p><strong>Tổng số lượng:</strong></p>
+                    <p><strong></strong><strong>Tổng tiền:</strong></p>
                 </div>
-                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p>{{ $px->TongSoLuong }}</p>
+                <div class="col-sm-6">
+                    <p><strong></strong>{{ $pth->TongTien }}</p>
                 </div>
             </div>
         </div>
         
     </div>
-    <a href="{{ route('xemPX') }}"><button class="btn btn-info">Trở lại</button></a>
-    <a href="{{ route('suaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Sửa</button></a>
+    <a href="{{ route('xemPTH') }}"><button class="btn btn-info">Trở lại</button></a>
+    <a href="{{ route('suaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><button class="btn btn-info">Sửa</button></a>
 </div>
 @endsection
