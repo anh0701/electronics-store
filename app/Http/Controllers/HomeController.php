@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index(){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('12');
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->take('15')->get();
         $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->get();
         $allCTGG = ChuongTrinhGiamGia::orderBy('MaCTGG', 'DESC')->get();
         $allChiTietCTGG = ChuongTrinhGiamGiaSP::orderBy('MaCTGGSP', 'DESC')->get();

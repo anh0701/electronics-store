@@ -202,8 +202,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span>Quản lý phí giao hàng</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemPhiGiaoHang') }}">Thêm sản phẩm TSKT</a></li>
-              <li><a href="{{ route('/TrangLietKePhiGiaoHang') }}">Liệt kê sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangThemPhiGiaoHang') }}">Thêm phí giao hàng</a></li>
+              <li><a href="{{ route('/TrangLietKePhiGiaoHang') }}">Liệt kê phí giao hàng</a></li>
             </ul>
           </li>
           <li class="sub-menu">

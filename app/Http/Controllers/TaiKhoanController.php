@@ -49,7 +49,7 @@ class TaiKhoanController extends Controller
                     'Quyen' => $taikhoan->Quyen,
                     'Email' => $taikhoan->Email,
                 ]);
-                return redirect('/trang-quan-ly');
+                return redirect('/dashboard');
             }
         } else {
             return redirect()->back()->withInput()->withErrors([

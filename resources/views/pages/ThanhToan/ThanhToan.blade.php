@@ -22,6 +22,7 @@
                         <td style="width: 25%" class="description">Tên sản phẩm</td>
                         <td class="price">Giá</td>
                         <td class="quantity">Số lượng</td>
+                        <td>Tiền vận chuyển</td>
                         <td class="total">Thành tiền</td>
                         <td></td>
                     </tr>
@@ -31,16 +32,41 @@
                     $total = 0;
                     $total_after = 0;
                     $total_after_fee = 0;
+                    $TySo = 0;
+                    $TienVanChuyen = 0;
                     @endphp
                     @if (Session::get('cart') == true)
                         @foreach (Session::get('cart') as $key => $cart)
                         @php
                             $subtotal = $cart['GiaSanPham'] * $cart['SoLuong'];
                             $total += $subtotal;
+                            $TySo = ($cart['ChieuCao'] * $cart['ChieuNgang'] * $cart['ChieuDay']) / 5000;
+                            if ($cart['CanNang'] >= $TySo){
+                                if($cart['CanNang'] <= 1){
+                                    $TienVanChuyen = 0;
+                                }elseif ($cart['CanNang'] > 1 && $cart['CanNang'] <= 5){
+                                    $TienVanChuyen = $cart['CanNang'] * 2500;
+                                }elseif ($cart['CanNang'] > 5 && $cart['CanNang'] <= 10){
+                                    $TienVanChuyen = $cart['CanNang'] * 3000;
+                                }elseif ($cart['CanNang'] > 10){
+                                    $TienVanChuyen = $cart['CanNang'] * 4000;
+                                }
+                            }elseif ($cart['CanNang'] < $TySo){
+                                if($TySo <= 1){
+                                    $TienVanChuyen = 0;
+                                }elseif ($TySo > 1 && $TySo <= 5){
+                                    $TienVanChuyen = $TySo * 2500;
+                                }elseif ($TySo > 5 && $TySo <= 10){
+                                    $TienVanChuyen = $TySo * 3000;
+                                }elseif ($TySo > 10){
+                                    $TienVanChuyen = $TySo * 4000;
+                                }
+                            }
+                            $total_after_fee += $TienVanChuyen;
                         @endphp
                         <tr>
                             <td class="HinhAnh">
-                                <a href=""><img src="{{ asset('upload/SanPham/'.$cart['HinhAnh']) }}" style="width: 120px; height:90px" alt=""></a>
+                                <a href="{{ route('/ChiTietSanPham', $cart['MaSanPham']) }}"><img src="{{ asset('upload/SanPham/'.$cart['HinhAnh']) }}" style="width: 120px; height:90px" alt=""></a>
                             </td>
                             <td class="TenSanPham">
                                 <h4><a href=""></a></h4>
@@ -59,6 +85,9 @@
                                     <a class="cart_quantity_down updateCartItem qtyMinus" 
                                     data-cartid="{{ $cart['session_id'] }}" data-qty="{{ $cart['SoLuong'] }}"> - </a>
                                 </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">{{ number_format($TienVanChuyen, 0, '', '.') }} đ</p>
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">{{ number_format($subtotal, 0, '', '.') }} đ</p>
@@ -108,11 +137,11 @@
                                         @if (Session::get('PhiGiaoHang'))
                                             @php
                                                 $PhiGiaoHang = Session::get('PhiGiaoHang');
-                                                $total_after_fee = $PhiGiaoHang['SoTien'];
+                                                $total_after_fee += $PhiGiaoHang['SoTien'];
                                             @endphp
                                             {{ number_format($total_after_fee, 0,',','.') }} đ
                                         @elseif (!Session::get('PhiGiaoHang'))
-                                            0 đ
+                                            {{ number_format($total_after_fee, 0,',','.') }} đ
                                         @endif
                                     </td>										
                                 </tr>
@@ -121,13 +150,13 @@
                                     <td>
                                         @php
                                             if(Empty(Session('PhieuGiamGia')) && Empty(Session('PhiGiaoHang'))){
-                                                $total_after = $total;
+                                                $total_after = $total + $total_after_fee;
                                                 echo number_format($total_after,0,',','.').'đ';
                                             }elseif(Empty(Session('PhieuGiamGia')) && Session('PhiGiaoHang')){
                                                 $total_after = $total + $total_after_fee;
                                                 echo number_format($total_after,0,',','.').'đ';
                                             }elseif (Session('PhieuGiamGia') && Empty(Session('PhiGiaoHang'))){
-                                                $total_after = $total - $total_after_coupon;
+                                                $total_after = $total - $total_after_coupon + $total_after_fee;
                                                 echo number_format($total_after,0,',','.').'đ';
                                             }elseif (Session('PhieuGiamGia') && Session('PhiGiaoHang')){
                                                 $total_after = $total - $total_after_coupon + $total_after_fee;

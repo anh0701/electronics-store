@@ -87,3 +87,13 @@ Route::get('/TrangLietKeBinhLuan', [DanhGiaController::class, 'TrangLietKeBinhLu
         </div>
     </div>
 </div>
+
+if($TySo <= 1){
+    $TienVanChuyen = 0;
+}elseif ($TySo > 1 && $TySo <= 5){
+    $TienVanChuyen = $TySo * 2500;
+}elseif ($TySo > 5 && $TySo <= 10){
+    $TienVanChuyen = $TySo * 3000;
+}elseif ($TySo > 10){
+    $TienVanChuyen = $TySo * 4000;
+}

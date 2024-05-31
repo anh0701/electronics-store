@@ -1738,7 +1738,7 @@ h2.title {
 
 #cart_items .cart_info .cart_total_price {
   color: #FE980F;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .cart_product {
@@ -2723,7 +2723,7 @@ h2.title {
 
 .shopping-trends ul li {
   float: left;
-  width: 260px;
+  width: 265px;
   margin: 0 12px 0 0;
   position: relative;
 }
@@ -2782,6 +2782,39 @@ h2.title {
   color: #333;
   text-transform: uppercase;
 }
+
+/* .col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-12 {
+  width: 25%;
+  float: left;
+}
+@media (min-width: 768px) {
+.col-sm-12 {
+      width: 25%;
+      float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-12 {
+      width: 25%;
+      float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-12 {
+      width: 25%;
+      float: left;
+  }
+} */
 
 .col-xs-15,
 .col-sm-15,
