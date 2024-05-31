@@ -269,6 +269,13 @@ class TaiKhoanController extends Controller
     }
 
     public function xuLySuaTK(Request $request){
+        $message = [
+            'sdt.regex' => 'Định dạng số điện thoại không hợp lệ.',
+        ];
+        $valid = $request->validate([
+            'sdt' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
+        ], $message);
+
         $maTK = $request->maTK;
         $quyen = $request->quyen;
         $trangThai = $request->trangThai;
@@ -283,7 +290,6 @@ class TaiKhoanController extends Controller
     }
 
     public function xoaTK($id){
-        // DB::delete('DELETE FROM tbl_taikhoan WHERE MaTaiKhoan = ?', [$id]);
         TaiKhoan::where('MaTaiKhoan', $id)->update([
             'TrangThai' => 0,
         ]);
