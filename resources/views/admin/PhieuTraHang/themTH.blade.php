@@ -65,8 +65,17 @@
                             <input type="hidden" class="form-control" name="maPN" value="{{ $maPN }}" readonly>
                         </div>
                         <div class="form-group">
+                            <label for="">Loại sản phẩm</label>
+                            <select class="form-control input-lg m-bot15" id="loaiSP" name="loaiSP">
+                                <option value="">Chọn loại sản phẩm</option>
+                                @foreach($listLSP as $dm)
+                                    <option value="{{ $dm->MaDanhMuc }}">{{ $dm->TenDanhMuc }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="MaSanPham">Sản phẩm</label>
-                            <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
+                            <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" style="width: 100%;"></select>
                         </div>
                         <div class="form-group">
                             <label for="">Số lượng</label>
@@ -123,7 +132,7 @@ $(document).ready(function() {
                             title: 'Thành công',
                             text: 'Lập phiếu trả hàng thành công',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 800
                         });
                     // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
                     $('#phieuNhapForm').hide();
@@ -170,7 +179,7 @@ $(document).ready(function() {
                             title: 'Thành công',
                             text: data.message,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 800
                         });
                         
                     var kt = false;
@@ -236,16 +245,24 @@ $(document).ready(function() {
     $(document).ready(function () {
         var selectedValues = {!! json_encode(old('MaSanPham')) !!};
 
+        var selectedLoaiSP = '';
+
+        $('#loaiSP').on('change', function() {
+            selectedLoaiSP = $(this).val();
+            $('#MaSanPham').val(null).trigger('change');
+        });
+
         $('#MaSanPham').select2({
             placeholder: 'Chọn sản phẩm',
             allowClear: true,
             ajax: {
-                url: '{{ route("api.san-pham-th") }}',
+                url: '{{ route("api.san-pham-pn") }}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
                     return {
-                        q: params.term // từ khóa tìm kiếm
+                        q: params.term, // từ khóa tìm kiếm
+                        loaiSP:selectedLoaiSP
                     };
                 },
                 processResults: function (data) {
@@ -260,7 +277,7 @@ $(document).ready(function() {
         // Khởi tạo lại giá trị đã chọn nếu có
         if (selectedValues) {
             $.ajax({
-                url: '{{ route("api.san-pham-th") }}',
+                url: '{{ route("api.san-pham-pn") }}',
                 dataType: 'json',
                 data: {
                     ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin

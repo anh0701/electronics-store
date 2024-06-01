@@ -123,7 +123,7 @@
                 title: 'Thành công',
                 text: '{{ session('success') }}',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 800
             });
             @elseif(session('error'))
             Swal.fire({
@@ -131,7 +131,7 @@
                 title: 'Thất bại',
                 text: '{{ session('error') }}',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 800
             });
             @endif
         });

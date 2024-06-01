@@ -104,7 +104,7 @@
                 title: 'Thành công',
                 text: '{{ session('success') }}',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 800
             });
             @endif
         });
