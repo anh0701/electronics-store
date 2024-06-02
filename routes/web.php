@@ -25,6 +25,7 @@ use App\Http\Controllers\ThongSoKyThuatController;
 //BaoCao
 Route::get('/bao-cao', [BaoCaoController::class, 'xem'])->name('xemBaoCao');
 Route::post('/tao-bao-cao', [BaoCaoController::class, 'xuLyTaoBaoCao'])->name('xuLyTaoBaoCao');
+Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile');
 
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');

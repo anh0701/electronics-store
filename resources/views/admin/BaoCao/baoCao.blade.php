@@ -24,7 +24,7 @@
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-                        <th colspan="4" style="text-align:center;">{{ date_format(date_create($tgDau), 'd-m-Y') }} - {{ date_format(date_create($tgCuoi), 'd-m-Y') }}</th>
+                        <th colspan="4" style="text-align:center;">Thời gian: {{ date_format(date_create($tgDau), 'd-m-Y') }} - {{ date_format(date_create($tgCuoi), 'd-m-Y') }}</th>
                     </tr>
                     <tr>
                         <th></th>
@@ -58,5 +58,15 @@
         
     </div>
     <a href="{{ route('xemBaoCao') }}" style="margin: 5px"><button class="btn btn-info">Quay lại</button></a>
-</div>        
+    <form action="{{ route('luuFile') }}" method="POST">
+        @csrf 
+        <input type="hidden" name="dataSP" value="{{ $data }}">
+        <input type="hidden" name="tgDau" value="{{ $tgDau }}">
+        <input type="hidden" name="tgCuoi" value="{{ $tgCuoi }}">
+        <button type="submit" style="margin: 5px" class="btn btn-info">Xuất file</button>
+    </form>
+</div>
+
+
+
 @endsection
