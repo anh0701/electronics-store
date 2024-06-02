@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChuongTrinhGiamGia;
 use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,10 +23,11 @@ use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
 {
     public function index(){
+        $discountPrograms = ChuongTrinhGiamGia::with(['chuongTrinhGiamGiaSPs.SanPham'])->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('12');
-        return view('pages.home')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'));
+        return view('pages.home')->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'discountPrograms'));
     }
 
     public function HienThiDanhMucCha($MaDanhMuc){
@@ -132,4 +134,5 @@ class HomeController extends Controller
         Session::put('isAdmin', null);
         return Redirect::to('/');
     }
+
 }

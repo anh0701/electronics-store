@@ -103,7 +103,7 @@
                                 <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
                                 <p>{{ $sanPham->TenSanPham }}</p>
                             </a>
-                            <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                            <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                             data-id_product="{{ $sanPham->MaSanPham }}">
                                 <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                             </button>
@@ -115,128 +115,80 @@
         @endforeach
     </div>
 </div>
+
+{{--chuong trinh giam gia--}}
 <div class="col-sm-12">
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <img src="{{ asset('frontend/images/shop/discount-program.gif') }}" style="margin-bottom: 15px; width: 100%" alt="">
             <div class="carousel-inner">
-                <div class="item active">	
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                                
-                            </div>
+                @foreach($discountPrograms as $discountProgram)
+                    <div class="item {{ $loop->first ? 'active' : '' }}">
+                        <div class="col-sm-12  discount-image-container">
+                            <img src="{{ asset($discountProgram->HinhAnh) }}" class="discount-image" alt="{{ $discountProgram->TenCTGG }}">
+                            <h3 style="color: aliceblue">{{ $discountProgram->TenCTGG }}</h3>
+                            <p style="color: #ccccc6">{!! $discountProgram->MoTa  !!}</p>
                         </div>
-                    </div>
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">	
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                        @foreach($discountProgram->chuongTrinhGiamGiaSPs as $discountProduct)
+                            @php
+                                $product = $discountProduct->SanPham;
+                            @endphp
+
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <form>
+                                                {{ csrf_field() }}
+                                                <input type="hidden" value="{{ $product->MaSanPham }}" class="cart_product_id_{{ $product->MaSanPham }}">
+                                                <input type="hidden" value="{{ $product->TenSanPham }}" class="cart_product_name_{{ $product->MaSanPham }}">
+                                                <input type="hidden" value="{{ $product->HinhAnh }}" class="cart_product_image_{{ $product->MaSanPham }}">
+                                                <input type="hidden" value="{{ $product->GiaSanPham }}" class="cart_product_price_{{ $product->MaSanPham }}">
+                                                <input type="hidden" value="1" class="cart_product_qty_{{ $product->MaSanPham }}">
+                                                <a href="{{ route('/ChiTietSanPham', $product->MaSanPham) }}">
+                                                    <img src="{{ asset('upload/SanPham/'.$product->HinhAnh) }}" alt="" />
+                                                    <h2>{{  number_format($product->GiaSanPham,0,',','.').' đ'  }}</h2>
+                                                    <p>{{ $product->TenSanPham }}</p>
+                                                </a>
+                                                <button type="button" class="btn btn-default add-to-cart ThemGioHang"
+                                                        data-id_product="{{ $product->MaSanPham }}">
+                                                    <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-                    <div class="col-sm-15 col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('frontend/images/home/acer-aspire-3-a315-58-589k-i5-nxam0sv008-thumb-600x60057.jpg') }}" alt="" />
-                                    <h2>56.000 đ</h2>
-                                    <p>Sản phẩm D</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                 <i class="fa fa-angle-left"></i>
             </a>
             <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                 <i class="fa fa-angle-right"></i>
-            </a>	
+            </a>
             <div class="discount-program">
                 <a class="readmore-btn" href="">Xem tất cả<i class="fa fa-angle-right"></i></a>
-            </div>		
+            </div>
         </div>
     </div>
 </div>
+    <style>
+        .discount-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .discount-image {
+            margin-bottom: 15px;
+            margin-top: 2%;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+        }
+    </style>
 @endsection
