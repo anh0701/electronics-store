@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
 {
     public function index(){
-        $discountPrograms = ChuongTrinhGiamGia::with(['chuongTrinhGiamGiaSPs.SanPham'])->get();
+        $discountPrograms = ChuongTrinhGiamGia::with(['chuongTrinhGiamGiaSPs.SanPham'])->where('TrangThai', 1)->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('12');

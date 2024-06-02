@@ -117,78 +117,141 @@
 </div>
 
 {{--chuong trinh giam gia--}}
-<div class="col-sm-12">
-    <div class="recommended_items">
-        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                @foreach($discountPrograms as $discountProgram)
-                    <div class="item {{ $loop->first ? 'active' : '' }}">
-                        <div class="col-sm-12  discount-image-container">
-                            <img src="{{ asset($discountProgram->HinhAnh) }}" class="discount-image" alt="{{ $discountProgram->TenCTGG }}">
-                            <h3 style="color: aliceblue">{{ $discountProgram->TenCTGG }}</h3>
-                            <p style="color: #ccccc6">{!! $discountProgram->MoTa  !!}</p>
-                        </div>
-                        @foreach($discountProgram->chuongTrinhGiamGiaSPs as $discountProduct)
-                            @php
-                                $product = $discountProduct->SanPham;
-                            @endphp
+@if(!$discountPrograms->isEmpty())
 
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <form>
-                                                {{ csrf_field() }}
-                                                <input type="hidden" value="{{ $product->MaSanPham }}" class="cart_product_id_{{ $product->MaSanPham }}">
-                                                <input type="hidden" value="{{ $product->TenSanPham }}" class="cart_product_name_{{ $product->MaSanPham }}">
-                                                <input type="hidden" value="{{ $product->HinhAnh }}" class="cart_product_image_{{ $product->MaSanPham }}">
-                                                <input type="hidden" value="{{ $product->GiaSanPham }}" class="cart_product_price_{{ $product->MaSanPham }}">
-                                                <input type="hidden" value="1" class="cart_product_qty_{{ $product->MaSanPham }}">
-                                                <a href="{{ route('/ChiTietSanPham', $product->MaSanPham) }}">
-                                                    <img src="{{ asset('upload/SanPham/'.$product->HinhAnh) }}" alt="" />
-                                                    <h2>{{  number_format($product->GiaSanPham,0,',','.').' đ'  }}</h2>
-                                                    <p>{{ $product->TenSanPham }}</p>
-                                                </a>
-                                                <button type="button" class="btn btn-default add-to-cart ThemGioHang"
-                                                        data-id_product="{{ $product->MaSanPham }}">
-                                                    <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
-                                                </button>
-                                            </form>
+    <div class="col-sm-12">
+        <div class="recommended_items">
+            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach($discountPrograms as $discountProgram)
+                        <div class="item {{ $loop->first ? 'active' : '' }}">
+                            <div class="col-sm-12 discount-image-container">
+                                <img src="{{ asset($discountProgram->HinhAnh) }}" class="discount-image" alt="{{ $discountProgram->TenCTGG }}">
+                                <h3 style="color: aliceblue">{{ $discountProgram->TenCTGG }}</h3>
+                                <p style="color: #ccccc6">{!! $discountProgram->MoTa !!}</p>
+                            </div>
+                            <div class="products-container">
+                                @foreach($discountProgram->chuongTrinhGiamGiaSPs as $index => $discountProduct)
+                                    @php
+                                        $product = $discountProduct->SanPham;
+                                    @endphp
+
+                                    <div class="col-sm-3 product-item {{ $index >= 4 ? 'hidden' : '' }}">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <form>
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" value="{{ $product->MaSanPham }}" class="cart_product_id_{{ $product->MaSanPham }}">
+                                                        <input type="hidden" value="{{ $product->TenSanPham }}" class="cart_product_name_{{ $product->MaSanPham }}">
+                                                        <input type="hidden" value="{{ $product->HinhAnh }}" class="cart_product_image_{{ $product->MaSanPham }}">
+                                                        <h2><input type="hidden" name="" class="cart_product_price_{{ $product->MaSanPham }}" value="{{ $product->GiaSanPham * (1 - $discountProduct->PhanTramGiam / 100) }}"></h2>
+                                                        <input type="hidden" value="1" class="cart_product_qty_{{ $product->MaSanPham }}">
+                                                        <a href="{{ route('/ChiTietSanPham', $product->MaSanPham) }}">
+                                                            <img src="{{ asset('upload/SanPham/'.$product->HinhAnh) }}" alt="" />
+                                                            <h2>{{ number_format($product->GiaSanPham * (1 - $discountProduct->PhanTramGiam / 100), 0, ',', '.') }} đ</h2>
+                                                            <h4 style="text-decoration: line-through;">{{ number_format($product->GiaSanPham, 0, ',', '.') . ' đ' }}</h4>
+                                                            <p>{{ $product->TenSanPham }}</p>
+                                                        </a>
+                                                        <button type="button" class="btn btn-default add-to-cart ThemGioHang"
+                                                                data-id_product="{{ $product->MaSanPham }}">
+                                                            <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
-                @endforeach
-            </div>
-            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <div class="discount-program">
-                <a class="readmore-btn" href="">Xem tất cả<i class="fa fa-angle-right"></i></a>
+                        </div>
+                    @endforeach
+                </div>
+                <a class="left recommended-item-control" href="javascript:void(0)" onclick="slideProducts('prev')">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right recommended-item-control" href="javascript:void(0)" onclick="slideProducts('next')">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <div class="discount-program">
+                    <a class="readmore-btn" href="javascript:void(0)" onclick="showAllProducts(this)">Xem tất cả<i class="fa fa-angle-down"></i></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <style>
-        .discount-image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
+@endif
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function showAllProducts(button) {
+            const container = $(button).closest('.item').find('.products-container');
+            const hiddenItems = container.find('.product-item.hidden');
+            if (hiddenItems.length) {
+                hiddenItems.removeClass('hidden');
+                $(button).find('i').removeClass('fa-angle-down').addClass('fa-angle-up');
+            } else {
+                container.find('.product-item').each(function (index) {
+                    if (index >= 4) {
+                        $(this).addClass('hidden');
+                    }
+                });
+                $(button).find('i').removeClass('fa-angle-up').addClass('fa-angle-down');
+            }
         }
 
-        .discount-image {
-            margin-bottom: 15px;
-            margin-top: 2%;
-            width: 100%;
-            height: auto;
-            max-height: 200px;
+        window.showAllProducts = showAllProducts; // Expose the function to the global scope
+
+        function slideProducts(direction) {
+            $('.item.active').each(function () {
+                const container = $(this).find('.products-container');
+                const items = container.find('.product-item');
+                const visibleItems = container.find('.product-item:visible');
+                let startIndex = items.index(visibleItems.first());
+
+                if (direction === 'prev') {
+                    startIndex = Math.max(startIndex - 4, 0);
+                } else if (direction === 'next') {
+                    startIndex = Math.min(startIndex + 4, items.length - 4);
+                }
+
+                items.addClass('hidden').slice(startIndex, startIndex + 4).removeClass('hidden');
+            });
         }
-    </style>
+
+        window.slideProducts = slideProducts; // Expose the function to the global scope
+    });
+</script>
+
+<style>
+    .discount-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .discount-image {
+        margin-bottom: 15px;
+        margin-top: 2%;
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+
+    /*.products-container {*/
+    /*    display: flex;*/
+    /*    flex-wrap: wrap;*/
+    /*}*/
+
+    .product-item.hidden {
+        display: none;
+    }
+
+    .recommended-item-control {
+        cursor: pointer;
+    }
+</style>
 @endsection
+
