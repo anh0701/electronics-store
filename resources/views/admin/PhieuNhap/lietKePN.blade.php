@@ -60,8 +60,8 @@
                                 <td>{{ $pn->TenTaiKhoan }}</td>
                                 <td>{{ $pn->TenNhaCungCap }}</td>
                                 
-                                <td>{{ $pn->TongTien }}</td>
-                                <td>{{ $pn->TienNo }}</td>
+                                <td>{{ number_format($pn->TongTien, 0, '', '.') }} đ</td>
+                                <td>{{ number_format($pn->TienNo, 0, '', '.') }} đ</td>
                                 @php 
                                     if($pn->soChiTietPN == 0){
                                         $trangthai = "Không có sản phẩm được nhập!";

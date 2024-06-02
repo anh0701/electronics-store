@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaoCaoController;
 use App\Http\Controllers\ChuongTrinhGiamGiaController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuGiamGiaController;
@@ -20,6 +21,11 @@ use App\Http\Controllers\ThongSoKyThuatController;
 
 
 // Trang admin
+
+//BaoCao
+Route::get('/bao-cao', [BaoCaoController::class, 'xem'])->name('xemBaoCao');
+Route::post('/tao-bao-cao', [BaoCaoController::class, 'xuLyTaoBaoCao'])->name('xuLyTaoBaoCao');
+
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
 Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
