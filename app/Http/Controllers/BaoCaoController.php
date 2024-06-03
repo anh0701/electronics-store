@@ -36,7 +36,17 @@ class BaoCaoController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
         $data = $sheet->toArray();
 
-        return view('admin.BaoCao.xemCT', ['data' => $data, 'fileName' => $fileName]);
+        $dataSP = array_filter($data, function($row){
+            return isset($row[1]) && is_numeric($row[2]) && is_numeric($row[3]) && is_numeric($row[4]);
+        });
+
+        $dataSanPham = collect($dataSP);
+        $labels = $dataSanPham->pluck(1);
+        $dataNhap = $dataSanPham->pluck(3);
+        $dataXuat = $dataSanPham->pluck(4);
+        $dataTon = $dataSanPham->pluck(5);
+
+        return view('admin.BaoCao.xemCT', ['data' => $dataSP, 'fileName' => $fileName], compact('dataNhap', 'dataXuat', 'dataTon', 'labels'));
     }
 
     public function xuLyTaoBaoCao(Request $request){
