@@ -24,6 +24,8 @@ use App\Http\Controllers\ThongSoKyThuatController;
 
 //BaoCao
 Route::get('/bao-cao', [BaoCaoController::class, 'xem'])->name('xemBaoCao');
+Route::get('/bao-cao-chi-tiet/{fileName}', [BaoCaoController::class, 'xemCT'])->name('xemBaoCaoCT');
+Route::get('/tai-xuong/{fileName}', [BaoCaoController:: class, 'taiXuong'])->name('taiXuong');
 Route::post('/tao-bao-cao', [BaoCaoController::class, 'xuLyTaoBaoCao'])->name('xuLyTaoBaoCao');
 Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile');
 

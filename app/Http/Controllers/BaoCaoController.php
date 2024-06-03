@@ -10,14 +10,33 @@ use App\Models\SanPham;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
 
 class BaoCaoController extends Controller
 {
     //
     public function xem(){
-        return view('admin.BaoCao.xem', ['data' => '']);
+        $path = public_path('baoCaoXNT');
+        $file = File::files($path);
+
+        return view('admin.BaoCao.xem', ['file' => $file]);
+    }
+
+    public function xemCT($fileName) {
+        $filePath = public_path('baoCaoXNT/' . $fileName);
+
+        if (!File::exists($filePath)) {
+            abort(404);
+        }
+
+        $spreadsheet = IOFactory::load($filePath);
+        $sheet = $spreadsheet->getActiveSheet();
+        $data = $sheet->toArray();
+
+        return view('admin.BaoCao.xemCT', ['data' => $data, 'fileName' => $fileName]);
     }
 
     public function xuLyTaoBaoCao(Request $request){
@@ -64,16 +83,16 @@ class BaoCaoController extends Controller
         $jsonData = $request->input('dataSP');
         $data = json_decode($jsonData, true);
         
-        $tgD = Carbon::createFromFormat('Y-m-d', $request->input('tgDau'));
-        $tgC = Carbon::createFromFormat('Y-m-d', $request->input('tgCuoi'));
-        $tgDau = $tgD->format('d/m/Y');
-        $tgCuoi = $tgC->format('d/m/Y');
+
+        $tgDau = $request->input('tgDau');
+
+        $tg = date_format(date_create($tgDau), 'm_Y');
         
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'Báo cáo xuất nhập tồn');
         $sheet->mergeCells('A1:B1');
-        $sheet->setCellValue('C1', 'Thời gian:  ' . $tgDau. '  -  ' . $tgCuoi);
+        $sheet->setCellValue('C1', 'Thời gian:  ' . $tg);
         $sheet->mergeCells('C1:F1');
 
         $sheet->getColumnDimension('A')->setWidth(10);
@@ -101,14 +120,22 @@ class BaoCaoController extends Controller
             $row++;
         }
 
-        $tgDau = $tgD->format('d_m_Y');
-        $tgCuoi = $tgC->format('d_m_Y');
-
+        $fileName = $tg . '.xlsx';
+        $filePath = public_path('baoCaoXNT/' . $fileName);
         $writer = new Xlsx($spreadsheet);
-        $fileName = 'bao_cao_xuat_nhap_ton_'. $tgDau . '_' . $tgCuoi . '.xlsx';
-        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
-        $writer->save($temp_file);
-        return Response::download($temp_file, $fileName)->deleteFileAfterSend(true);
+        $writer->save($filePath);
+        
+        return redirect()->route('xemBaoCao');
 
+    }
+
+    public function taiXuong($fileName){
+        $filePath = public_path('baoCaoXNT/' . $fileName);
+
+        if (!File::exists($filePath)) {
+            abort(404);
+        }
+    
+        return response()->download($filePath, $fileName);
     }
 }
