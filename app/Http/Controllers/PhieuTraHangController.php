@@ -15,7 +15,10 @@ class PhieuTraHangController extends Controller
         $pth = DB::table('tbl_phieutrahang')
                 ->join('tbl_taikhoan', 'tbl_phieutrahang.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
                 ->join('tbl_nhacungcap', 'tbl_phieutrahang.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
-                ->select('tbl_phieutrahang.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+                ->leftJoin('tbl_chitietphieutrahang', 'tbl_phieutrahang.MaPhieuTraHang', '=', 'tbl_chitietphieutrahang.MaPhieuTraHang')
+                ->select('tbl_phieutrahang.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieutrahang.MaCTPTH) as soCTPTH'))
+                ->groupBy('tbl_phieutrahang.MaPhieuTraHang')
                 ->orderByDesc('tbl_phieutrahang.ThoiGianTao')
                 ->paginate(5);
 
@@ -23,9 +26,10 @@ class PhieuTraHangController extends Controller
     } 
 
     public function xemCTPTH($id){
-        $pth = DB::select("SELECT pth.*, tk.TenTaiKhoan
+        $pth = DB::select("SELECT pth.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
                         FROM tbl_phieutrahang pth 
                         JOIN tbl_taikhoan tk ON pth.MaTaiKhoan = tk.MaTaiKhoan
+                        JOIN tbl_nhacungcap ncc ON pth.MaNhaCungCap = ncc.MaNhaCungCap
                         WHERE MaPhieuTraHang = '{$id}'");
         $ctth = DB::select("SELECT ct.*, sp.TenSanPham
                         FROM tbl_chitietphieutrahang ct
@@ -35,22 +39,29 @@ class PhieuTraHangController extends Controller
     }
 
     public function luuPTH($id){
-        $ct = DB::select("SELECT * FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$id}'");
+
+        $ctpth = DB::select("SELECT * FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$id}'");
         $tongTien = 0;
-        foreach($ct as $i){
-            $tien = $i->SoLuong * $i->GiaSanPham;
+        
+        foreach($ctpth as $t){
+            $tien = $t->SoLuong * $t->GiaSanPham;
             $tongTien += $tien;
         }
         PhieuTraHang::where('MaPhieuTraHang', $id)->update([
             'TongTien' => $tongTien,
         ]);
-        return redirect()->route('xemCTPTH', ['id' => $id]);
+        $pth = DB::select("SELECT * FROM tbl_phieutrahang WHERE MaPhieuTraHang = '{$id}'");
+        $maPN = $pth[0]->MaPhieuNhap;
+        return redirect()->route('xemCTPN', ['id' => $maPN]);
     }
     public function xoaPTH($id){
+        $pth = DB::select("SELECT * FROM tbl_phieutrahang WHERE MaPhieuTraHang = '{$id}'");
         DB::delete("DELETE FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$id}'");
         DB::delete("DELETE FROM tbl_phieutrahang WHERE MaPhieuTraHang = '{$id}'");
 
-        return redirect()->route('xemPTH');
+        
+        $maPN = $pth[0]->MaPhieuNhap;
+        return redirect()->route('xemCTPN', ['id' => $maPN]);
     }
 
     public function suaPTH($id){
@@ -73,13 +84,24 @@ class PhieuTraHangController extends Controller
 
     public function xuLySuaPTH(Request $request){
         $maPTH = $request->maPTH;
+        $maPN = $request->maPNSua;
+        $tgSua = date('Y-m-d H:i:s');
         $ctpth = DB::select("SELECT * FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$maPTH}'");
+        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
         $tongTien = 0;
-        foreach($ctpth as $i){
-            $tien = $i->SoLuong * $i->GiaSanPham;
+
+        foreach($ctpth as $t){
+            foreach($ctpn as $n){
+                if($t->MaSanPham == $n->MaSanPham){
+                    if($t->SoLuong > $n->SoLuong){
+                        return redirect()->back()->with('error', 'Mời bạn kiểm tra lại số lượng sản phẩm!. Số lượng hiện tại không khớp với số lượng trong phiếu nhập!');
+                    }
+                    
+                }
+            }
+            $tien = $t->SoLuong * $t->GiaSanPham;
             $tongTien += $tien;
         }
-        $tgSua = date('Y-m-d H:i:s');
         
         $trangThai1 = $request->trangThaiTruoc;
         $trangThai2 = $request->trangThai;
@@ -130,14 +152,14 @@ class PhieuTraHangController extends Controller
             'TrangThai' => $request->trangThai,
             'ThoiGianSua' => $tgSua,
         ]);
-        return redirect()->route('xemPTH');
+        return redirect()->route('xemCTPN', ['id' => $maPN]);
     }
 
     public function xuLyLapTHCT(Request $request){
         $messages = [
-            'maSP.required' => 'vui lòng chọn sản phẩm',
-            'soLuong.required' => 'vui lòng nhập số lượng',
-            'lyDo' => 'vui lòng nhập lý do trả hàng',
+            'maSP.required' => 'Vui lòng chọn sản phẩm',
+            'soLuong.required' => 'Vui lòng nhập số lượng',
+            'lyDo' => 'Vui lòng nhập lý do trả hàng',
         ];
         $valid = $request->validate([
             'maSP' => 'required',
@@ -180,6 +202,7 @@ class PhieuTraHangController extends Controller
             if($ktSanPhamTonTai){
                 $ktSanPhamTonTai->SoLuong += $soLuong;
                 $ktSanPhamTonTai->save();
+                $message = 'Cập nhật thành công';
             }else{
                 $ctth = new ChiTietPhieuTraHang();
                 $ctth->MaCTPTH = $maCTTH;
@@ -189,9 +212,10 @@ class PhieuTraHangController extends Controller
                 $ctth->GiaSanPham = $gia;
                 $ctth->LyDoTraHang = $lyDo;
                 $ctth->save();
+                $message = 'Thêm thành công';
             }
         }
-        return redirect()->route('suaPTH', ['id' => $maPTH]);  
+        return redirect()->route('suaPTH', ['id' => $maPTH])->with('success', $message);  
     }
 
     public function updateSoLuong(Request $request)

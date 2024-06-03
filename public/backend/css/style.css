@@ -3149,3 +3149,22 @@ div#graph1, div#graph4, div#graph5, div#graph6, div#graph7, div#graph8, div#grap
 .cot-an{
     display: none;
 }
+
+.r1{
+    padding: 10px 12px;
+}
+
+.head1{
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 15px;
+    color: #000;
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.boi-mau{
+    background-color: #f8d7da; 
+    color: #721c24;
+}

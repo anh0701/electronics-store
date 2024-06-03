@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 29, 2024 lúc 04:19 AM
+-- Thời gian đã tạo: Th5 30, 2024 lúc 04:30 PM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `thuctaptest`
+-- Cơ sở dữ liệu: `thuctaptotnghiep`
 --
 
 -- --------------------------------------------------------
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_baiviet` (
   `MaBaiViet` int NOT NULL,
-  `TenBaiViet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugBaiViet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenBaiViet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugBaiViet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `MaDanhMucBV` int NOT NULL,
-  `NoiDung` text COLLATE utf8mb4_general_ci NOT NULL,
+  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -46,7 +46,7 @@ CREATE TABLE `tbl_baiviet` (
 
 CREATE TABLE `tbl_baocaodoanhthu` (
   `MaBCDT` int NOT NULL,
-  `MaLienKet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaLienKet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaTaiKhoan` int NOT NULL,
   `NgayTao` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -61,7 +61,7 @@ CREATE TABLE `tbl_binhluan` (
   `MaBinhLuan` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
   `MaSanPham` int NOT NULL,
-  `NoiDung` text COLLATE utf8mb4_general_ci NOT NULL,
+  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
@@ -78,9 +78,9 @@ CREATE TABLE `tbl_chitietbaocaodoanhthu` (
   `MaSanPham` int NOT NULL,
   `SoLuongNhap` int NOT NULL,
   `SoLuongBan` int NOT NULL,
-  `GiaNhap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `GiaBan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaLienKet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `GiaNhap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `GiaBan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaLienKet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -91,10 +91,10 @@ CREATE TABLE `tbl_chitietbaocaodoanhthu` (
 
 CREATE TABLE `tbl_chitietdonhang` (
   `MaCTDH` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -105,10 +105,10 @@ CREATE TABLE `tbl_chitietdonhang` (
 
 CREATE TABLE `tbl_chitiethoadon` (
   `MaCTHD` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -122,8 +122,8 @@ CREATE TABLE `tbl_chitietlichsubaohanh` (
   `MaLienKet` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `TinhTrang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `ThoiGianTra` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `TinhTrang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ThoiGianTra` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -134,11 +134,11 @@ CREATE TABLE `tbl_chitietlichsubaohanh` (
 
 CREATE TABLE `tbl_chitietphieubaohanh` (
   `MaCTPBH` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
   `GiaSanPham` int NOT NULL,
-  `ThoiGianBaoHanh` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `ThoiGianBaoHanh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -149,10 +149,10 @@ CREATE TABLE `tbl_chitietphieubaohanh` (
 
 CREATE TABLE `tbl_chitietphieukiemkho` (
   `MaCTPKK` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
-  `SoLuong` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TinhTrang` text COLLATE utf8mb4_general_ci NOT NULL
+  `SoLuong` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TinhTrang` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -162,7 +162,7 @@ CREATE TABLE `tbl_chitietphieukiemkho` (
 --
 
 CREATE TABLE `tbl_chitietphieunhap` (
-  `MaCTPN` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaCTPN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaPhieuNhap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
@@ -174,7 +174,9 @@ CREATE TABLE `tbl_chitietphieunhap` (
 --
 
 INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
-('CTPN66569521b277e', 'PN20240529093813', 25, 6, 200);
+('CTPN66569521b277e', 'PN20240529093813', 25, 6, 200),
+('CTPN66589ef6d27bc', 'PN20240530224334', 25, 1, 200),
+('CTPN66589f1329789', 'PN20240530224334', 26, 1, 200);
 
 -- --------------------------------------------------------
 
@@ -183,7 +185,7 @@ INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuo
 --
 
 CREATE TABLE `tbl_chitietphieutrahang` (
-  `MaCTPTH` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaCTPTH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaPhieuTraHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
@@ -198,10 +200,10 @@ CREATE TABLE `tbl_chitietphieutrahang` (
 --
 
 CREATE TABLE `tbl_chitietphieuxuat` (
-  `MaCTPX` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaCTPX` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaPhieuXuat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
-  `SoLuong` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `SoLuong` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -211,7 +213,9 @@ CREATE TABLE `tbl_chitietphieuxuat` (
 INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuong`) VALUES
 ('CTPX66569880ed43e', 'PX20240529094830', 26, '6'),
 ('CTPX6656989d21e31', 'PX20240529094830', 27, '1'),
-('CTPX665698ae75a58', 'PX20240529094830', 25, '4');
+('CTPX665698ae75a58', 'PX20240529094830', 25, '4'),
+('CTPX6658987d9e78b', 'PX20240530221710', 25, '1'),
+('CTPX66589f364a46c', 'PX20240530221710', 26, '1');
 
 -- --------------------------------------------------------
 
@@ -221,10 +225,10 @@ INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuo
 
 CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `MaCTGG` int NOT NULL,
-  `SlugCTGG` varchar(255) NOT NULL,
-  `TenCTGG` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugCTGG` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenCTGG` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `HinhAnh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL,
@@ -242,9 +246,8 @@ CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
   `MaCTGGSP` int NOT NULL,
   `MaSanPham` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `PhanTramGiam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `PhanTramGiam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 -- --------------------------------------------------------
 
@@ -256,7 +259,7 @@ CREATE TABLE `tbl_danhgia` (
   `MaDanhGia` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
   `MaSanPham` int NOT NULL,
-  `NoiDung` text COLLATE utf8mb4_general_ci NOT NULL,
+  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `SoSao` int NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
@@ -272,9 +275,9 @@ CREATE TABLE `tbl_danhgia` (
 
 CREATE TABLE `tbl_danhmuc` (
   `MaDanhMuc` int NOT NULL,
-  `TenDanhMuc` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDanhMuc` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDanhMuc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugDanhMuc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `DanhMucCha` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
@@ -316,10 +319,10 @@ INSERT INTO `tbl_danhmuc` (`MaDanhMuc`, `TenDanhMuc`, `SlugDanhMuc`, `MoTa`, `Tr
 
 CREATE TABLE `tbl_danhmucbaiviet` (
   `MaDanhMucBV` int NOT NULL,
-  `TenDanhMucBV` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDanhMucBV` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDanhMucBV` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugDanhMucBV` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -332,10 +335,10 @@ CREATE TABLE `tbl_danhmucbaiviet` (
 
 CREATE TABLE `tbl_danhmuctskt` (
   `MaDMTSKT` int NOT NULL,
-  `TenDMTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDMTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDMTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugDMTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaDanhMuc` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -393,7 +396,7 @@ CREATE TABLE `tbl_donhang` (
   `MaTaiKhoan` int NOT NULL,
   `MaGiaoHang` int NOT NULL,
   `MaGiamGia` int DEFAULT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -406,9 +409,9 @@ CREATE TABLE `tbl_donhang` (
 
 CREATE TABLE `tbl_giaohang` (
   `MaGiaoHang` int NOT NULL,
-  `TenNguoiNhan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TienGiaoHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenNguoiNhan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TienGiaoHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `SoDienThoai` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -421,9 +424,9 @@ CREATE TABLE `tbl_giaohang` (
 CREATE TABLE `tbl_hoadon` (
   `MaHoaDon` int NOT NULL,
   `MaDonHang` int NOT NULL,
-  `TenKhachHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `ThongTinThanhToan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenKhachHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ThongTinThanhToan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaGiamGia` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -440,7 +443,7 @@ CREATE TABLE `tbl_lichsubaohanh` (
   `MaPhieuBaoHanh` int NOT NULL,
   `NgayBaoHanh` timestamp NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `MaLienKet` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `MaLienKet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -463,11 +466,11 @@ CREATE TABLE `tbl_magiamgiannguoidung` (
 --
 
 CREATE TABLE `tbl_nhacungcap` (
-  `MaNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SoDienThoai` int DEFAULT NULL,
-  `Email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MaNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `SoDienThoai` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -478,9 +481,10 @@ CREATE TABLE `tbl_nhacungcap` (
 --
 
 INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp1', 12, 'ztech1@gmail', 0, '2024-05-20 14:17:18', '2024-05-26 06:57:29'),
-('NCC20240521230116', 'Ztech 4', '22 ly tu trong, hong bang, hp', 1111, 'ztech4@gmail', 1, '2024-05-21 16:01:16', '2024-05-26 10:26:26'),
-('NCC20240526172247', 'Ztech 2', '22 ly tu trong, hong bang, hp', 111, 'ztech2@gmail.com', 1, '2024-05-26 10:22:47', NULL);
+('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp1', '01234567891', 'ztech1@gmail', 0, '2024-05-20 14:17:18', '2024-05-30 15:06:35'),
+('NCC20240521230116', 'Ztech 4', '22 ly tu trong, hong bang, hp', '0968666234', 'ztech4@gmail', 1, '2024-05-21 16:01:16', '2024-05-30 15:07:18'),
+('NCC20240526172247', 'Ztech 2', '22 ly tu trong, hong bang, hp', '0123456789', 'ztech2@gmail.com', 1, '2024-05-26 10:22:47', '2024-05-30 15:06:48'),
+('NCC20240530220431', 'Ztech 3', '22 ly tu trong', '01334567292', 'ztech3@gmail.com', 1, '2024-05-30 15:04:31', '2024-05-30 15:06:42');
 
 -- --------------------------------------------------------
 
@@ -565,9 +569,9 @@ CREATE TABLE `tbl_phieubaohanh` (
   `MaPhieuBaoHanh` int NOT NULL,
   `MaDonHang` int NOT NULL,
   `NgayTao` timestamp NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenKhachHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenNhanVien` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenKhachHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenNhanVien` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `SoDienThoai` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -579,13 +583,13 @@ CREATE TABLE `tbl_phieubaohanh` (
 
 CREATE TABLE `tbl_phieugiamgia` (
   `MaGiamGia` int NOT NULL,
-  `TenMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugMaGiamGia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenMaGiamGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugMaGiamGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `DonViTinh` int NOT NULL,
-  `TrangThai` int NOT NULL DEFAULT 1,
+  `TrangThai` int NOT NULL DEFAULT '1',
   `BacNguoiDung` int NOT NULL,
   `TriGia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `MaCode` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ThoiGianBatDau` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ThoiGianKetThuc` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -599,7 +603,7 @@ CREATE TABLE `tbl_phieugiamgia` (
 CREATE TABLE `tbl_phieukiemkho` (
   `MaPKK` int NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -611,13 +615,13 @@ CREATE TABLE `tbl_phieukiemkho` (
 --
 
 CREATE TABLE `tbl_phieunhap` (
-  `MaPhieuNhap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaPhieuNhap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaTaiKhoan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TongTien` float NOT NULL,
   `TienTra` float DEFAULT NULL,
   `TienNo` float DEFAULT NULL,
-  `PhuongThucThanhToan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `PhuongThucThanhToan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -628,7 +632,9 @@ CREATE TABLE `tbl_phieunhap` (
 --
 
 INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240529093813', 'NCC20240521230116', 'TKNV20240428002556', 1200, 0, 1200, '0', '1', '2024-05-29 02:38:16', '2024-05-29 03:36:55');
+('PN20240529093813', 'NCC20240521230116', 'TKNV20240428002556', 1200, 1200, 0, '0', '1', '2024-05-29 02:38:16', '2024-05-30 16:29:24'),
+('PN20240530224334', 'NCC20240526172247', 'TKNV20240428002556', 400, 0, 400, '0', '0', '2024-05-30 15:43:37', '2024-05-30 16:27:58'),
+('PN20240530225633', 'NCC20240526172247', 'TKNV20240428002556', 0, 0, 0, '0', '0', '2024-05-30 15:56:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -637,10 +643,10 @@ INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongT
 --
 
 CREATE TABLE `tbl_phieutrahang` (
-  `MaPhieuTraHang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaNhaCungCap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaPhieuNhap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaPhieuTraHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaPhieuNhap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaTaiKhoan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `TongTien` double DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
@@ -654,8 +660,8 @@ CREATE TABLE `tbl_phieutrahang` (
 --
 
 CREATE TABLE `tbl_phieuxuat` (
-  `MaPhieuXuat` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaPhieuXuat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaTaiKhoan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TongSoLuong` int NOT NULL,
   `TrangThai` int NOT NULL,
   `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -668,7 +674,9 @@ CREATE TABLE `tbl_phieuxuat` (
 --
 
 INSERT INTO `tbl_phieuxuat` (`MaPhieuXuat`, `MaTaiKhoan`, `TongSoLuong`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PX20240529094830', 'TKNV20240428002556', 11, 0, NULL, '2024-05-29 02:48:32', '2024-05-29 03:14:21');
+('PX20240529094830', 'TKNV20240428002556', 11, 0, NULL, '2024-05-29 02:48:32', '2024-05-30 15:18:44'),
+('PX20240530221710', 'TKNV20240428002556', 2, 0, NULL, '2024-05-30 15:17:12', '2024-05-30 15:46:34'),
+('PX20240530230257', 'TKNV20240428002556', 0, 0, NULL, '2024-05-30 16:02:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -681,7 +689,7 @@ CREATE TABLE `tbl_phigiaohang` (
   `MaThanhPho` int DEFAULT NULL,
   `MaQuanHuyen` int DEFAULT NULL,
   `MaXaPhuong` int DEFAULT NULL,
-  `SoTien` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `SoTien` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1434,7 +1442,7 @@ INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`
 
 CREATE TABLE `tbl_quyen` (
   `MaPhanQuyen` int NOT NULL,
-  `TenPhanQuyen` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `TenPhanQuyen` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1463,11 +1471,11 @@ CREATE TABLE `tbl_sanpham` (
   `MaDanhMuc` int DEFAULT NULL,
   `HinhAnh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `SoLuongHienTai` int DEFAULT NULL,
   `SoLuongBan` int DEFAULT NULL,
   `SoLuongTrongKho` int DEFAULT NULL,
-  `GiaSanPham` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ThongSoKyThuat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
@@ -1492,19 +1500,19 @@ INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHi
 --
 
 CREATE TABLE `tbl_taikhoan` (
-  `MaTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `Email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `TenTaiKhoan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `TenNguoiDung` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `DiaChi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SoDienThoai` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MaTaiKhoan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenTaiKhoan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenNguoiDung` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `SoDienThoai` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `MatKhau` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `HinhAnh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
   `BacNguoiDung` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL,
-  `Quyen` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Quyen` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Pin` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1529,9 +1537,9 @@ INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`
 CREATE TABLE `tbl_thanhtruot` (
   `MaThanhTruot` int NOT NULL,
   `MaCTGG` int NOT NULL,
-  `SlugThanhTruot` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `SlugThanhTruot` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `HinhAnh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NOT NULL
@@ -1545,11 +1553,11 @@ CREATE TABLE `tbl_thanhtruot` (
 
 CREATE TABLE `tbl_thongsokythuat` (
   `MaTSKT` int NOT NULL,
-  `TenTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `TenTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaDMTSKT` int DEFAULT NULL,
   `TrangThai` int NOT NULL,
-  `SlugTSKT` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci,
+  `SlugTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1644,11 +1652,11 @@ INSERT INTO `tbl_thongsokythuatsp` (`MaTSKTSP`, `MaSanPham`, `MaTSKT`, `ThoiGian
 
 CREATE TABLE `tbl_thuonghieu` (
   `MaThuongHieu` int NOT NULL,
-  `TenThuongHieu` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SlugThuongHieu` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `HinhAnh` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenThuongHieu` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `SlugThuongHieu` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `HinhAnh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -13580,12 +13588,12 @@ ALTER TABLE `tbl_chitietphieuxuat`
   ADD CONSTRAINT `tbl_chitietphieuxuat_ibfk_1` FOREIGN KEY (`MaPhieuXuat`) REFERENCES `tbl_phieuxuat` (`MaPhieuXuat`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
---
 -- Các ràng buộc cho bảng `tbl_chuongtrinhgiamgiasp`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgiasp`
   ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_1` FOREIGN KEY (`MaCTGG`) REFERENCES `tbl_chuongtrinhgiamgia` (`MaCTGG`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 --
 -- Các ràng buộc cho bảng `tbl_danhgia`
 --

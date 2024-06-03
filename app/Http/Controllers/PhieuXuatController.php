@@ -15,7 +15,10 @@ class PhieuXuatController extends Controller
     public function xem(){
         $pxs = DB::table('tbl_phieuxuat')
                 ->join('tbl_taikhoan', 'tbl_phieuxuat.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
-                ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan')
+                ->leftJoin('tbl_chitietphieuxuat', 'tbl_phieuxuat.MaPhieuXuat', '=', 'tbl_chitietphieuxuat.MaPhieuXuat')
+                ->select('tbl_phieuxuat.*', 'tbl_taikhoan.TenTaiKhoan',
+                        DB::raw('COUNT(tbl_chitietphieuxuat.MaCTPX) as soCTPX'))
+                ->groupBy('tbl_phieuxuat.MaPhieuXuat')
                 ->orderByDesc('tbl_phieuxuat.ThoiGianTao')
                 ->paginate(5);
 
@@ -48,7 +51,7 @@ class PhieuXuatController extends Controller
     public function xoaPX($id){
         DB::delete("DELETE FROM tbl_chitietphieuxuat WHERE MaPhieuXuat = '{$id}'");
         DB::delete("DELETE FROM tbl_phieuxuat WHERE MaPhieuXuat = '{$id}'");
-        return redirect()->route('xemPX');
+        return redirect()->route('xemPX')->with('success', 'Xóa thành công!');
     }
 
     public function taoPX(){
@@ -127,8 +130,8 @@ class PhieuXuatController extends Controller
    
     public function taoPXCT(Request $request){
         $messages = [
-            'maSP.required' => 'vui lòng chọn sản phẩm',
-            'soLuong.required' => 'vui lòng nhập số lượng',
+            'maSP.required' => 'Vui lòng chọn sản phẩm',
+            'soLuong.required' => 'Vui lòng nhập số lượng',
         ];
         $valid = $request->validate([
             'maSP' => 'required',
@@ -151,6 +154,7 @@ class PhieuXuatController extends Controller
         if($ktSanPhamTonTai){
             $ktSanPhamTonTai->SoLuong += $soLuong;
             $ktSanPhamTonTai->save();
+            $message = 'Cập nhật thành công';
         }else{
             $ctpx = new ChiTietPhieuXuat();
             $ctpx->MaCTPX = $maCTPX;
@@ -158,8 +162,9 @@ class PhieuXuatController extends Controller
             $ctpx->MaSanPham = $maSP;
             $ctpx->SoLuong = $soLuong;
             $ctpx->save();
+            $message = 'Thêm thành công';
         }
-        return redirect()->route('suaPX', ['id' => $maPX]);
+        return redirect()->route('suaPX', ['id' => $maPX])->with('success', $message);
         
         
     }
@@ -171,7 +176,7 @@ class PhieuXuatController extends Controller
 
     public function xoaCTPXS($id, $maPX){
         DB::delete("DELETE FROM tbl_chitietphieuxuat WHERE MaCTPX = '{$id}'");      
-        return redirect()->route('suaPX', ['id' => $maPX]);   
+        return redirect()->route('suaPX', ['id' => $maPX])->with('success', 'Xóa thành công');   
     }
 
     public function luuPX($id){

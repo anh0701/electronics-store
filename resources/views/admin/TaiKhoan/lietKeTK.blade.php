@@ -6,22 +6,22 @@
             Liệt kê tài khoản
         </div>
         <div class="row w3-res-tb">
-            <div class="col-sm-4">
+            <div class="col-sm-5 m-b-xs">
             </div>
-            <div class="col-sm-3">
-                <div class="input-group">
-                    <form action="{{ route('timKiemTK') }}" method="get">
-                        <div class="input-group">
-                            <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
-                            <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
-                            </span>
-                            <span class="input-group-btn">
-                                <a class="btn btn-sm btn-default" href="{{ Route('lietKeTK') }}">Xem tất cả</a>
-                            </span>
-                        </div>
-                    </form>
-                </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-5">
+                <form action="{{ route('timKiemTK') }}" method="get">
+                    <div class="input-group">
+                        <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                        </span>
+                        <span class="input-group-btn">
+                            <a class="btn btn-sm btn-default" href="{{ Route('lietKeTK') }}">Xem tất cả</a>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="table-responsive">

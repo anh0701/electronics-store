@@ -11,7 +11,6 @@
             @endphp 
             <div class="panel-body">
                 <div class="position-center">
-                    <div id="responseMessage"></div>
 
                     <form id="phieuNhapForm" role="form" action="{{ route('xuLyLapTH') }}" method="POST">
                         {{ csrf_field() }}
@@ -35,7 +34,7 @@
                         <button type="submit" class="btn btn-info update-btn">Lập phiếu trả hàng</button>
                     </form>
                     <div class="table-responsive" id="table2" style="display:none; margin:5px">
-                        <p>Danh sách sản phẩm trong phiếu nhập</p>
+                        <p class="head1">Danh sách sản phẩm trong phiếu nhập</p>
                         <table class="table table-striped b-t b-light">
                             <thead>
                                 <tr>
@@ -56,7 +55,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="responseMessageCT"></div>
 
                     <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapTHCT1')}}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
                         {{ csrf_field() }}
@@ -85,14 +83,15 @@
                         <a href="{{ route('xoaPTH', ['id' => $maTH]) }}"><button class="btn btn-info">Hủy</button></a>
                     </div>
                     <div class="table-responsive" id="table1" style="display:none; margin:5px">
-                        <p>Danh sách sản phẩm trong phiếu trả hàng</p>
+                        <p class="head1">Danh sách sản phẩm trong phiếu trả hàng</p>
                         <table id="phieuNhapTable" class="table table-striped b-t b-light">
                             <thead>
                                 <tr>
-                                    <th>Mã phiếu nhập</th>
+                                    
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>
                                     <th>Giá</th>
+                                    <th>Lý do trả hàng</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -104,6 +103,7 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function() {
     // Xử lý form phiếu nhập
@@ -118,7 +118,13 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessage').text('Lập phiếu trả hàng thành công').css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: 'Lập phiếu trả hàng thành công',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
                     $('#phieuNhapForm').hide();
                     $('#phieuNhapCTForm').show();
@@ -126,12 +132,23 @@ $(document).ready(function() {
                     $('#table1').show();
                     $('#table2').show();
                 } else {
-                    $('#responseMessage').text('Lập phiếu trả hàng thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Lập phiếu trả hàng thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
+                   
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessage').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!').css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });
@@ -148,7 +165,14 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 if (data.success) {
-                    $('#responseMessageCT').text(data.message).css('color', 'green');
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        
                     var kt = false;
 
                     $('#phieuNhapTable tbody tr').each(function() {
@@ -179,20 +203,33 @@ $(document).ready(function() {
                     // Reset form chi tiết phiếu nhập
                     $('#phieuNhapCTForm')[0].reset();
                 } else {
-                    $('#responseMessageCT').text('Thêm sản phẩm thất bại: ' + data.message).css('color', 'red');
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: 'Thêm sản phẩm thất bại: ' + data.message,
+                            showConfirmButton: true
+                        });
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                $('#responseMessageCT').text('Có lỗi xảy ra: Mời bạn kiểm tra lại thông tin!!!' + error).css('color', 'red');
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Thất bại',
+                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
+                        showConfirmButton: true
+                    });
             }
         });
     });
 
     // Ẩn form chi tiết phiếu nhập lúc đầu
     $('#phieuNhapCTForm').hide();
+    
 });
 </script>
+
+    
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
