@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChuongTrinhGiamGiaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post(
-    '/forgot-password',
-    [App\Http\Controllers\QuenMatKhau::class, 'QuenMatKhau']
-);
-Route::post(
-    '/verify/pin',
-    [App\Http\Controllers\QuenMatKhau::class, 'XacThucPin']
-);
-Route::post(
-    '/reset-password',
-    [App\Http\Controllers\DoiMatKhau::class, 'doiMatKhau']
-);
+Route::get('san-pham/{categoryId}', [ChuongTrinhGiamGiaController::class, 'danhSachSanPham']);

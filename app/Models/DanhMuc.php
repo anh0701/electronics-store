@@ -14,4 +14,9 @@ class DanhMuc extends Model
     ];
     protected $primaryKey = 'MaDanhMuc';
     protected $table = 'tbl_danhmuc';
+
+    public function SanPham()
+    {
+        return $this->hasMany(SanPham::class, 'MaDanhMuc');
+    }
 }
