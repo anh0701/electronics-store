@@ -24,7 +24,7 @@
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-                        <th colspan="4" style="text-align:center;">Thời gian: {{ date_format(date_create($tgDau), 'd-m-Y') }} - {{ date_format(date_create($tgCuoi), 'd-m-Y') }}</th>
+                        <th colspan="4" style="text-align:center;">Thời gian: {{ date_format(date_create($tgDau), 'd/m/Y') }} - {{ date_format(date_create($tgCuoi), 'd/m/Y') }}</th>
                     </tr>
                     <tr>
                         <th></th>

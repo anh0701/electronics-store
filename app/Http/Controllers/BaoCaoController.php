@@ -14,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BaoCaoController extends Controller
 {
@@ -41,12 +42,21 @@ class BaoCaoController extends Controller
         });
 
         $dataSanPham = collect($dataSP);
+        
         $labels = $dataSanPham->pluck(1);
         $dataNhap = $dataSanPham->pluck(3);
         $dataXuat = $dataSanPham->pluck(4);
         $dataTon = $dataSanPham->pluck(5);
 
-        return view('admin.BaoCao.xemCT', ['data' => $dataSP, 'fileName' => $fileName], compact('dataNhap', 'dataXuat', 'dataTon', 'labels'));
+        $page = 10;
+        $pageHienTai = LengthAwarePaginator::resolveCurrentPage();
+        $sanPhamHienTai = $dataSanPham->slice(($pageHienTai - 1) * $page, $page)->all();
+
+        $trangSanPham = new LengthAwarePaginator($sanPhamHienTai, $dataSanPham->count(), $page, $pageHienTai, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+
+        return view('admin.BaoCao.xemCT', ['data' => $trangSanPham, 'fileName' => $fileName], compact('dataNhap', 'dataXuat', 'dataTon', 'labels'));
     }
 
     public function xuLyTaoBaoCao(Request $request){
