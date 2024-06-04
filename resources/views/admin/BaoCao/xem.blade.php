@@ -14,7 +14,7 @@
                     {{ csrf_field() }}
                         <p class="" for="">Thời gian bắt đầu: </p><input class="input-sm form-control" type="date" name="thoiGianDau">
                         <p class="" for="">Thời gian kết thúc: </p><input class="input-sm form-control" type="date" name="thoiGianCuoi" id="" >
-                        <button  class="btn btn-sm btn-default" type="submit" style="margin:5px;">Tạo báo cáo</button>
+                        <button  class="btn btn-sm btn-info" type="submit" style="margin:5px;">Tạo báo cáo</button>
                     </form>
                 </div>
                 <div class="col-sm-5">

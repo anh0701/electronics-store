@@ -15,6 +15,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class BaoCaoController extends Controller
 {
@@ -43,11 +44,24 @@ class BaoCaoController extends Controller
 
         $dataSanPham = collect($dataSP);
         
-        $labels = $dataSanPham->pluck(1);
-        $dataNhap = $dataSanPham->pluck(3);
-        $dataXuat = $dataSanPham->pluck(4);
-        $dataTon = $dataSanPham->pluck(5);
+        
+        $danhMuc = collect(DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc"));
+        
+        $bieuDo = $dataSanPham->groupBy(2)
+        ->mapWithKeys(function($item, $maDanhMuc) use ($danhMuc){
+            $tongNhap = $item->sum(4);
+            $tongXuat = $item->sum(5);
+            $tongTon = $item->sum(6);
 
+            $tenDanhMuc = $danhMuc->firstWhere('MaDanhMuc', $maDanhMuc)->TenDanhMuc;
+            return [$tenDanhMuc => [
+                'tongNhap' => $tongNhap,
+                'tongXuat' => $tongXuat,
+                'tongTon' => $tongTon,
+            ]];
+        });
+        
+        
         $page = 10;
         $pageHienTai = LengthAwarePaginator::resolveCurrentPage();
         $sanPhamHienTai = $dataSanPham->slice(($pageHienTai - 1) * $page, $page)->all();
@@ -56,7 +70,7 @@ class BaoCaoController extends Controller
             'path' => LengthAwarePaginator::resolveCurrentPath()
         ]);
 
-        return view('admin.BaoCao.xemCT', ['data' => $trangSanPham, 'fileName' => $fileName], compact('dataNhap', 'dataXuat', 'dataTon', 'labels'));
+        return view('admin.BaoCao.xemCT', ['data' => $trangSanPham, 'fileName' => $fileName], compact('bieuDo'));
     }
 
     public function xuLyTaoBaoCao(Request $request){
@@ -88,6 +102,7 @@ class BaoCaoController extends Controller
             $data->push([
                 'maSanPham' => $maSanPham,
                 'tenSanPham' => $sanPham->TenSanPham,
+                'maDanhMuc' => $sanPham->MaDanhMuc,
                 'soLuongSP' => $sanPham->SoLuongTrongKho,
                 'tongSLNhap' => $tongSLNhap->get($maSanPham, 0),
                 'tongSLXuat' => $tongSLXuat->get($maSanPham, 0),
@@ -113,7 +128,7 @@ class BaoCaoController extends Controller
         $sheet->setCellValue('A1', 'Báo cáo xuất nhập tồn');
         $sheet->mergeCells('A1:B1');
         $sheet->setCellValue('C1', 'Thời gian:  ' . $tg);
-        $sheet->mergeCells('C1:F1');
+        $sheet->mergeCells('C1:G1');
 
         $sheet->getColumnDimension('A')->setWidth(10);
         $sheet->getColumnDimension('B')->setWidth(40);
@@ -121,22 +136,25 @@ class BaoCaoController extends Controller
         $sheet->getColumnDimension('D')->setWidth(10);
         $sheet->getColumnDimension('E')->setWidth(10); 
         $sheet->getColumnDimension('F')->setWidth(10); 
-        
+        $sheet->getColumnDimension('G')->setWidth(10); 
+
         $sheet->setCellValue('A2', 'Mã sản phẩm')
               ->setCellValue('B2', 'Tên sản phẩm')
-              ->setCellValue('C2', 'Tồn đầu kỳ')
-              ->setCellValue('D2', 'Số lượng nhập')
-              ->setCellValue('E2', 'Số lượng xuất')
-              ->setCellValue('F2', 'Tồn cuối kỳ');
+              ->setCellValue('C2', 'Mã danh mục')
+              ->setCellValue('D2', 'Tồn đầu kỳ')
+              ->setCellValue('E2', 'Số lượng nhập')
+              ->setCellValue('F2', 'Số lượng xuất')
+              ->setCellValue('G2', 'Tồn cuối kỳ');
         $row = 3;
         foreach ($data as $item) {
             $sltd = $item['soLuongSP'] + $item['tongSLXuat'] - $item['tongSLNhap'];
             $sheet->setCellValue('A' . $row, $item['maSanPham'])
                   ->setCellValue('B' . $row, $item['tenSanPham'])
-                  ->setCellValue('C' . $row, $sltd)
-                  ->setCellValue('D' . $row, $item['tongSLNhap'])
-                  ->setCellValue('E' . $row, $item['tongSLXuat'])
-                  ->setCellValue('F' . $row, $item['soLuongSP']);
+                  ->setCellValue('C' . $row, $item['maDanhMuc'])
+                  ->setCellValue('D' . $row, $sltd)
+                  ->setCellValue('E' . $row, $item['tongSLNhap'])
+                  ->setCellValue('F' . $row, $item['tongSLXuat'])
+                  ->setCellValue('G' . $row, $item['soLuongSP']);
             $row++;
         }
 

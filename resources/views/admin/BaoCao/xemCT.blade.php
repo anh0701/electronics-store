@@ -10,13 +10,14 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
-                        <th>Mã sản phẩm</th>
-                        <th>Tên sản phẩm</th>
+                        <th></th>
+                        <th></th>
                         <th colspan="4" style="text-align:center;">{{ basename($fileName, ".xlsx") }}</th>
                     </tr>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        
                         <th>Tồn đầu kỳ</th>
                         <th>Số lượng nhập</th>
                         <th>Số lượng xuất</th>
@@ -26,8 +27,19 @@
                 <tbody>
                     @foreach ($data as $row)
                         <tr>
+                            @php
+                             $n = 0;
+
+                            @endphp
                             @foreach ($row as $cell)
-                                <td>{{ $cell }}</td>
+                                @php
+                                 $n += 1; 
+                                @endphp
+                                @if ($n != 3)
+                                    <td>{{ $cell }}</td>
+                                @endif
+                                
+                                
                             @endforeach
                         </tr>
                     @endforeach
@@ -60,7 +72,6 @@
                         </div>
                     </div>
                 </div>
-
         </div>
     </div>
     <a href="{{ url()->previous() }}"><button class="btn btn-sm btn-info">Quay lại</button></a>
@@ -69,54 +80,39 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var ctx = document.getElementById('myChart2').getContext('2d');
-        var labels = {!! json_encode($labels) !!};
-        var data = {!! json_encode($dataNhap) !!};
-        var data2 = {!! json_encode($dataXuat) !!};
-        var data3 = {!! json_encode($dataTon) !!};
-
-        console.log(labels); 
-        console.log(data); 
-        console.log(data2);
-        console.log(data3);
-
-        var n = 3;
-        var labelN = labels.slice(0, n);
-        var dataN = data.slice(0, n);
-        var data2N = data2.slice(0, n);
-        var data3N = data3.slice(0, n);
-
-        var labelNN = 'Khác';
-        var dataNN = data.slice(n).reduce((a,b) => a + b, 0);
-        var data2NN = data2.slice(n).reduce((a,b) => a + b, 0);
-        var data3NN = data3.slice(n).reduce((a,b) => a + b, 0);
+        var data = {!! json_encode($bieuDo) !!};
         
-        labelN.push(labelNN);
-        dataN.push(dataNN);
-        data2N.push(data2NN);
-        data3N.push(data3NN);
+        console.log(data); 
+
+        var tenDanhMuc =Object.keys(data);
+        var tong =Object.values(data);
+
+        var tongNhap =tong.map(function(item){ return item.tongNhap; });
+        var tongXuat =tong.map(function(item){ return item.tongXuat; });
+        var tongTon =tong.map(function(item){ return item.tongTon; });
 
         var myChart = new Chart(ctx, {
             type: 'bar', // Hoặc 'doughnut'
             data: {
-                labels: labelN,
+                labels: tenDanhMuc,
                 datasets: [
                     {
                         label: 'Số Lượng Nhập',
-                        data: dataN,
+                        data: tongNhap,
                         backgroundColor: '#FFCCCC',
                         borderColor: '#FF3333',
                         borderWidth: 1
                     },
                     {
                         label: 'Số Lượng Xuất',
-                        data: data2N,
+                        data: tongXuat,
                         backgroundColor: '#CCFFCC',
                         borderColor: '#00FF00',
                         borderWidth: 1
                     },
                     {
                         label: 'Số Lượng Tồn',
-                        data: data3N,
+                        data: tongTon,
                         backgroundColor: '#FFFFCC',
                         borderColor: '#FFFF00',
                         borderWidth: 1
