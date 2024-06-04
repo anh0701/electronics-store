@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('san-pham/{categoryId}', [ChuongTrinhGiamGiaController::class, 'danhSachSanPham']);
+Route::post('san-pham/chi-tiet', [ChuongTrinhGiamGiaController::class, 'layThongTinChiTiet']);

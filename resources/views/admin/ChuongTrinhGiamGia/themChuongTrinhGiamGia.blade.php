@@ -114,7 +114,7 @@
                                 </tbody>
                             </table>
 
-                            <input type="hidden" name="selectedProducts" id="selectedProducts">
+                            <input type="hidden" name="selectedProducts" id="selectedProducts" value="{{ old('selectedProducts', session('selectedProducts')) }}">
 
                             <button type="submit" class="btn btn-info">Thêm chương trình giảm giá</button>
                         </form>
@@ -201,6 +201,42 @@
                 });
                 $('#selectedProducts').val(JSON.stringify(selectedProducts));
                 console.log(JSON.stringify(selectedProducts))
+            }
+
+            // Hiển thị lại sản phẩm đã chọn khi load trang
+            var selectedProductsFromSession =  @json(session('selectedProducts', []));
+            try {
+                selectedProductsFromSession = JSON.parse(selectedProductsFromSession);
+            } catch (e) {
+                selectedProductsFromSession = [];
+            }
+            console.log(selectedProductsFromSession);
+            if (selectedProductsFromSession.length > 0) {
+                var productIds = selectedProductsFromSession.map(function(product) { return product.id; });
+                $.ajax({
+                    url: '/api/san-pham/chi-tiet',  // API endpoint để lấy thông tin chi tiết sản phẩm
+                    method: 'POST',
+                    data: { ids: productIds },
+                    success: function(data) {
+                        selectedProductsFromSession.forEach(function(product) {
+                            var productDetail = data.find(function(detail) { return detail.id == product.id; });
+                            if (productDetail) {
+                                var row = `
+                        <tr data-id="${product.id}">
+                            <td>${productDetail.TenSanPham}</td>
+                            <td>${productDetail.GiaSanPham}</td>
+                            <td>${product.phanTramGiam}</td>
+                            <td><button type="button" class="btn btn-danger remove-product-btn">Xóa</button></td>
+                        </tr>
+                        `;
+                                $('#selected-products-table tbody').append(row);
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
             }
         });
     </script>

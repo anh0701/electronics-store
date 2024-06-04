@@ -56,6 +56,8 @@ class ChuongTrinhGiamGiaController extends Controller
 
         if ($validator->fails()) {
 //            dd($validator->errors());
+            // Lưu trữ dữ liệu bảng vào session
+            session()->flash('selectedProducts', $request->input('selectedProducts'));
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors($validator->errors());
@@ -214,6 +216,16 @@ class ChuongTrinhGiamGiaController extends Controller
     {
         $discountProgram = ChuongTrinhGiamGia::findOrFail($MaCT);
         return view('admin.ChuongTrinhGiamGia.xemCT', compact('discountProgram'));
+    }
+
+    public function layThongTinChiTiet(Request $request)
+    {
+        $ids = $request->input('ids');
+        $products = SanPham::whereIn('MaSanPham', $ids)
+            ->select('MaSanPham as id', 'TenSanPham', 'GiaSanPham')
+            ->get();
+
+        return response()->json($products);
     }
 
     public function list(Request $request)
