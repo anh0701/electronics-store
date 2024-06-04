@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaoCaoController;
 use App\Http\Controllers\ChuongTrinhGiamGiaController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuGiamGiaController;
@@ -20,6 +21,14 @@ use App\Http\Controllers\ThongSoKyThuatController;
 
 
 // Trang admin
+
+//BaoCao
+Route::get('/bao-cao', [BaoCaoController::class, 'xem'])->name('xemBaoCao');
+Route::get('/bao-cao-chi-tiet/{fileName}', [BaoCaoController::class, 'xemCT'])->name('xemBaoCaoCT');
+Route::get('/tai-xuong/{fileName}', [BaoCaoController:: class, 'taiXuong'])->name('taiXuong');
+Route::post('/tao-bao-cao', [BaoCaoController::class, 'xuLyTaoBaoCao'])->name('xuLyTaoBaoCao');
+Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile');
+
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
 Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
@@ -42,13 +51,14 @@ Route::post('/update-soluong-pth', [PhieuTraHangController::class, 'updateSoLuon
 Route::get('/lap-phieu-tra-hang/{id}/{maNCC}', [PhieuTraHangController::class, 'lapTH'])->name('lapTH');
 Route::post('/lap-phieu-tra-hang', [PhieuTraHangController::class, 'xuLyLapTH'])->name('xuLyLapTH');
 Route::post('/lap-phieu-tra-hang-chi-tiet1', [PhieuTraHangController::class, 'xuLyLapTHCT1'])->name('xuLyLapTHCT1');
-Route::get('/api/san-pham-th', [PhieuTraHangController::class, 'danhSachSanPham'])->name('api.san-pham-th');
+// Route::get('/api/san-pham-th', [PhieuTraHangController::class, 'danhSachSanPham'])->name('api.san-pham-th');
 
 
 //PhieuXuat
 Route::get('/xem-phieu-xuat', [PhieuXuatController::class, 'xem'])->name('xemPX');
 Route::get('/xem-chi-tiet-phieu-xuat/{id}', [PhieuXuatController::class, 'xemCT'])->name('xemCT');
 Route::get('/tim-kiem-phieu-xuat', [PhieuXuatController::class, 'timKiemPX'])->name('timKiemPX');
+Route::get('/phieu-xuat.loc', [PhieuXuatController::class, 'locPX'])->name('phieu-xuat.loc');
 
 Route::get('/lap-phieu-xuat', [PhieuXuatController::class, 'taoPX'])->name('taoPX');
 Route::post('/lap-phieu-xuat', [PhieuXuatController::class, 'xuLyLapPX'])->name('xuLyLapPX');
@@ -64,12 +74,13 @@ Route::get('/sua-phieu-xuat/{id}', [PhieuXuatController::class, 'suaPX'])->name(
 Route::post('/sua-phieu-xuat', [PhieuXuatController::class, 'suaPXP'])->name('suaPXP');
 Route::post('/update-soluong-px', [PhieuXuatController::class, 'updateSoLuong'])->name('update.soluong-px');
 
-Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])->name('api.san-pham-px');
+// Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])->name('api.san-pham-px');
 
 //PhieuNhap
 Route::get('/liet-ke-phieu-nhap', [PhieuNhapController::class, 'trangXemPhieuNhap'])->name('xemPN');
 Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
 Route::get('/tim-kiem-phieu-nhap', [PhieuNhapController::class, 'timKiemPN'])->name('timKiemPN');
+Route::get('/phieu-nhap.loc', [PhieuNhapController::class, 'locPN'])->name('phieu-nhap.loc');
 
 Route::get('/lap-phieu-nhap', [PhieuNhapController::class, 'lapPN'])->name('lapPN');
 Route::post('/lap-phieu-nhap', [PhieuNhapController::class, 'xuLyPN'])->name('xuLyLapPN');

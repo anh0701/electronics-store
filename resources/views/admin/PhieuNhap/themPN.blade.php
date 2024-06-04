@@ -54,8 +54,17 @@
                         <input type="text" class="form-control" name="maPN" value="{{$maPN}}" readonly>
                     </div>
                     <div class="form-group">
+                        <label for="">Loại sản phẩm</label>
+                        <select class="form-control input-lg m-bot15" id="loaiSP" name="loaiSP">
+                            <option value="">Chọn loại sản phẩm</option>
+                            @foreach($listLSP as $dm)
+                                <option value="{{ $dm->MaDanhMuc }}">{{ $dm->TenDanhMuc }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="MaSanPham">Sản phẩm</label>
-                        <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"></select>
+                        <select class="form-control @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" style="width:100%"></select>
                     </div>
 
                     <div class="form-group">
@@ -114,7 +123,7 @@ $(document).ready(function() {
                             title: 'Thành công',
                             text: 'Lập phiếu nhập thành công',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 800
                         });
                     
                     // Ẩn form phiếu nhập và hiển thị form chi tiết phiếu nhập
@@ -160,9 +169,8 @@ $(document).ready(function() {
                             title: 'Thành công',
                             text: data.message,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 800
                         });
-                        
                     var kt = false;
 
                     $('#phieuNhapTable tbody tr').each(function() {
@@ -219,6 +227,12 @@ $(document).ready(function() {
 <script>
     $(document).ready(function () {
         var selectedValues = {!! json_encode(old('MaSanPham')) !!};
+        var selectedLoaiSP = $('#loaiSP').val();
+
+        $('#loaiSP').on('change', function() {
+            selectedLoaiSP = $(this).val();
+            $('#MaSanPham').val(null).trigger('change');
+        });
 
         $('#MaSanPham').select2({
             placeholder: 'Chọn sản phẩm',
@@ -229,7 +243,8 @@ $(document).ready(function() {
                 delay: 250,
                 data: function (params) {
                     return {
-                        q: params.term // từ khóa tìm kiếm
+                        q: params.term, // từ khóa tìm kiếm
+                        loaiSP:selectedLoaiSP
                     };
                 },
                 processResults: function (data) {
@@ -240,7 +255,7 @@ $(document).ready(function() {
                 cache: true
             }
         });
-
+        
         // Khởi tạo lại giá trị đã chọn nếu có
         if (selectedValues) {
             $.ajax({

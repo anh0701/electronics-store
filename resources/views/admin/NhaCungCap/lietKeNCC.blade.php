@@ -34,7 +34,7 @@
                             <th>Email</th>
                             <th>Trạng thái</th>
                             <th>Thời gian tạo</th>
-                            <th style="width:100px">Quản lý</th>
+                            <th>Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,8 +54,8 @@
                                 <td>{{ $ncc->ThoiGianTao }}</td>
                                 <!-- <td>{{ $ncc->ThoiGianSua }}</td> -->
                                 <td>
-                                    <a href="{{ route('suaNCC', ['id' => $ncc->MaNhaCungCap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                    <a onclick="return confirm('Bạn có muốn xóa nhà cung cấp {{ $ncc->TenNhaCungCap }} không?')" href="{{ route('xoaNCC', ['id' => $ncc->MaNhaCungCap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                    <a href="{{ route('suaNCC', ['id' => $ncc->MaNhaCungCap]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    <a onclick="return confirm('Bạn có muốn xóa nhà cung cấp {{ $ncc->TenNhaCungCap }} không?')" href="{{ route('xoaNCC', ['id' => $ncc->MaNhaCungCap]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
                                 </td>
                             </tr>
                         @endforeach
