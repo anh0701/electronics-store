@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="{{ asset('backend/images/2.png') }}">
+                <img alt="" src="{{ asset('backend/images/user.png') }}">
                 <span class="username">
                   @php
                     $tenTaiKhoan = Session::get('TenTaiKhoan');
@@ -83,144 +83,149 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <ul class="sidebar-menu" id="nav-accordion">
           <li>
             <a class="active" href="{{ route('/dashboard') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Dashboard</span>
+                <span>Trang quản lý</span>
             </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-money-bill-wave"></i>
+
               <span>Quản lý thương hiệu</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemThuongHieu') }}">Thêm thương hiệu sản phẩm</a></li>
-              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">Liệt kê thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangThemThuongHieu') }}">+ Thêm thương hiệu sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeThuongHieu') }}">+ Liệt kê thương hiệu sản phẩm</a></li>
             </ul>
           </li>
+        
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-warehouse"></i>
+
               <span>Quản lý nhà cung cấp</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('themNCC') }}">Thêm nhà cung cấp</a></li>
-              <li><a href="{{ route('lietKeNCC') }}">Liệt kê nhà cung cấp</a></li>
+              <li><a href="{{ route('themNCC') }}">+ Thêm nhà cung cấp</a></li>
+              <li><a href="{{ route('lietKeNCC') }}">+ Liệt kê nhà cung cấp</a></li>
               
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-warehouse"></i>
+
               <span>Quản lý phiếu nhập</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('lapPN') }}">Lập phiếu nhập</a></li>
-              <li><a href="{{ route('xemPN') }}">Liệt kê phiếu nhập</a></li>             
+              <li><a href="{{ route('lapPN') }}">+ Lập phiếu nhập</a></li>
+              <li><a href="{{ route('xemPN') }}">+ Liệt kê phiếu nhập</a></li>             
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-warehouse"></i>
+
               <span>Quản lý phiếu xuất</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('taoPX') }}">Lập phiếu xuất</a></li>
-              <li><a href="{{ route('xemPX') }}">Liệt kê phiếu xuất</a></li>
+              <li><a href="{{ route('taoPX') }}">+ Lập phiếu xuất</a></li>
+              <li><a href="{{ route('xemPX') }}">+ Liệt kê phiếu xuất</a></li>
               
             </ul>
           </li>
+
+      
+
+          
+
+          
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-warehouse"></i>
               <span>Quản lý tồn kho</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('lietKeTonKho') }}">Liệt kê tồn kho</a></li>
-              <li><a href="{{ route('xemPTH') }}">Liệt kê phiếu trả hàng</a></li>
+              <li><a href="{{ route('lietKeTonKho') }}">+ Liệt kê tồn kho</a></li>
+              <li><a href="{{ route('xemPTH') }}">+ Liệt kê phiếu trả hàng</a></li>
+              <li><a href="{{ route('xemBaoCao') }}">+ Tạo báo cáo xuất nhập tồn</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-warehouse"></i>
+
               <span>Quản lý loại sản phẩm</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemDanhMuc') }}">Thêm loại sản phẩm</a></li>
-              <li><a href="{{ route('/TrangLietKeDanhMuc') }}">Liệt kê loại sản phẩm</a></li>
+              <li><a href="{{ route('/TrangThemDanhMuc') }}">+ Thêm loại sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMuc') }}">+ Liệt kê loại sản phẩm</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-signature"></i>
+
               <span>Quản lý THDM</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/trang-them-thdm') }}">Thêm thương hiệu vào danh mục</a></li>
-              <li><a href="{{ route('/trang-liet-ke-thtdm') }}">Liệt kê thương hiệu thuộc danh mục</a></li>
+              <li><a href="{{ route('/trang-them-thdm') }}">+ Thêm thương hiệu vào danh mục</a></li>
+              <li><a href="{{ route('/trang-liet-ke-thtdm') }}">+ Liệt kê thương hiệu thuộc danh mục</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-store"></i>
               <span>Quản lý sản phẩm</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemSanPham') }}">Thêm sản phẩm</a></li>
-              <li><a href="{{ route('/TrangLietKeSanPham') }}">Liệt kê sản phẩm</a></li>
+              <li><a href="{{ route('/TrangThemSanPham') }}">+ Thêm sản phẩm</a></li>
+              <li><a href="{{ route('/TrangLietKeSanPham') }}">+ Liệt kê sản phẩm</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-                <i class="fa-solid fa-user"></i>
+
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('taoTK') }}">Tạo tài khoản</a>
-              <li><a href="{{ route('lietKeTK') }}">Liệt kê tài khoản</a>
+              <li><a href="{{ route('taoTK') }}">+ Tạo tài khoản</a>
+              <li><a href="{{ route('lietKeTK') }}">+ Liệt kê tài khoản</a>
               {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
 {{--              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>--}}
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-th"></i>
+
               <span>Quản lý danh mục TSKT</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemDanhMucTSKT') }}">Thêm danh mục TSKT</a></li>
-              <li><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">Liệt kê danh mục TSKT</a></li>
+              <li><a href="{{ route('/TrangThemDanhMucTSKT') }}">+ Thêm danh mục TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">+ Liệt kê danh mục TSKT</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-boxes-stacked"></i>
+
               <span>Quản lý TSKT</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemTSKT') }}">Thêm TSKT</a></li>
-              <li><a href="{{ route('/TrangLietKeTSKT') }}">Liệt kê TSKT</a></li>
+              <li><a href="{{ route('/TrangThemTSKT') }}">+ Thêm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKeTSKT') }}">+ Liệt kê TSKT</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-                <i class="fa-solid fa-sack-dollar"></i>
+
                 <span>Quản lý phí giao hàng</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ route('/TrangThemPhiGiaoHang') }}">Thêm sản phẩm TSKT</a></li>
-              <li><a href="{{ route('/TrangLietKePhiGiaoHang') }}">Liệt kê sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangThemPhiGiaoHang') }}">+ Thêm sản phẩm TSKT</a></li>
+              <li><a href="{{ route('/TrangLietKePhiGiaoHang') }}">+ Liệt kê sản phẩm TSKT</a></li>
             </ul>
           </li>
           <li class="sub-menu">
               <a href="javascript:;">
-                  <i class="fa-solid fa-money-bill"></i>
+
                   <span>Quản lý giảm giá</span>
               </a>
               <ul class="sub">
-                  <li><a href="{{ Route('/them-phieu-giam-gia') }}">Thêm phiếu giảm giá</a></li>
-                  <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">Liệt kê phiếu giảm giá</a></li>
-                  <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">Thêm chương trình giảm giá</a></li>
-                  <li><a href="{{ Route('/chuong-trinh-giam-gia') }}">Liệt kê chương trình giảm giá</a></li>
+                  <li><a href="{{ Route('/them-phieu-giam-gia') }}">+ Thêm phiếu giảm giá</a></li>
+                  <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">+ Liệt kê phiếu giảm giá</a></li>
+                  <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">+ Thêm chương trình giảm giá</a></li>
+                  <li><a href="{{ Route('/chuong-trinh-giam-gia') }}">+ Liệt kê chương trình giảm giá</a></li>
               </ul>
           </li>
         </ul>

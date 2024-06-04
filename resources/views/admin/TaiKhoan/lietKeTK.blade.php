@@ -34,7 +34,7 @@
                         <th>Quyền</th>
                         <th>Trạng thái</th>
                         <th>Thời gian tạo</th>
-                        <th style="width:100px">Quản lý</th>
+                        <th>Quản lý</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +55,10 @@
                             <td>{{ $tk->ThoiGianTao }}</td>
                             <td>
                                 @if ($tk->Quyen != 'Khách hàng')
-                                <a href="{{ route('suaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                <a href="{{ route('suaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
                                 @else
-                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
                                 @endif   
                             </td>
                         </tr>

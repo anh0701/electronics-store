@@ -6,9 +6,19 @@
                 Liệt kê phiếu xuất
             </div>
             <div class="row w3-res-tb">
-                <div class="col-sm-5 m-b-xs">
+            <div class="col-sm-4 m-b-xs">
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
+                    
+                    <form action="{{ route('phieu-xuat.loc') }}" method="get">
+                        <div class="input-group">  
+                            <input type="month" class="input-sm form-control" name="thoiGian" value="{{old('thoiGian')}}"> 
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-default" type="submit">Lọc</button>
+                            </span>  
+                        </div>
+                    </form>
+                    
                 </div>
                 <div class="col-sm-5">
                     <form action="{{ Route('timKiemPX') }}" method="get">
@@ -33,7 +43,7 @@
                             <th>Tổng số lượng xuất</th>
                             <th>Thời gian lập</th>
                             <th>Trạng thái</th>                           
-                            <th style="width:100px">Quản lý</th>
+                            <th >Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,11 +69,11 @@
                                 <td class="{{ $i->soCTPX == 0 ? 'boi-mau' : '' }}">{{ $trangthai }}</td>                               
                                 <td>
                                     <a href="{{ route('xemCT', ['id' => $i->MaPhieuXuat]) }}">
-                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
+                                    <i style="font-size: 20px; padding: 5px; color: purple;" class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('suaPX', ['id' => $i->MaPhieuXuat]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    <a href="{{ route('suaPX', ['id' => $i->MaPhieuXuat]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
                                     @if ($i->TrangThai == 0)
-                                        <a onclick="return confirm('Bạn có muốn xóa phiếu xuất {{ $i->MaPhieuXuat }} không?')" href="{{ route('xoaPX', [$i->MaPhieuXuat]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                        <a onclick="return confirm('Bạn có muốn xóa phiếu xuất {{ $i->MaPhieuXuat }} không?')" href="{{ route('xoaPX', [$i->MaPhieuXuat]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -94,7 +104,7 @@
                 title: 'Thành công',
                 text: '{{ session('success') }}',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 800
             });
             @endif
         });

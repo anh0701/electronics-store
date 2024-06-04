@@ -49,11 +49,19 @@
                             <label for="">Mã phiếu xuất:</label>
                             <input type="text" class="form-control" name="maPXSua" value="{{$px->MaPhieuXuat}}" readonly>
                         </div>
-                        
+                        <div class="form-group">
+                            <label for="">Loại sản phẩm</label>
+                            <select class="form-control input-lg m-bot15" id="loaiSP" name="loaiSP">
+                                <option value="">Chọn loại sản phẩm</option>
+                                @foreach($listLSP as $dm)
+                                    <option value="{{ $dm->MaDanhMuc }}">{{ $dm->TenDanhMuc }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="MaSanPham">Sản phẩm</label>
                             <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
-                            >
+                            style="width: 100%;">
                             </select>
                         </div>
                         @error('maSP')
@@ -137,7 +145,7 @@ $(document).ready(function() {
             title: 'Thành công',
             text: '{{ session('success') }}',
             showConfirmButton: false,
-            timer: 1500
+            timer: 800
         });
         @endif
     });
@@ -163,7 +171,7 @@ $(document).ready(function() {
                             title: 'Thành công',
                             text: 'Cập nhật thành công',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 800
                         });
                 } else {
                     Swal.fire({
@@ -194,16 +202,24 @@ $(document).ready(function() {
         $(document).ready(function () {
             var selectedValues = {!! json_encode(old('MaSanPham')) !!};
 
+            var selectedLoaiSP = '';
+
+            $('#loaiSP').on('change', function() {
+                selectedLoaiSP = $(this).val();
+                $('#MaSanPham').val(null).trigger('change');
+            });
+
             $('#MaSanPham').select2({
                 placeholder: 'Chọn sản phẩm',
                 allowClear: true,
                 ajax: {
-                    url: '{{ route("api.san-pham-px") }}',
+                    url: '{{ route("api.san-pham-pn") }}',
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
                         return {
-                            q: params.term // từ khóa tìm kiếm
+                            q: params.term, // từ khóa tìm kiếm
+                            loaiSP:selectedLoaiSP
                         };
                     },
                     processResults: function (data) {
@@ -218,7 +234,7 @@ $(document).ready(function() {
             // Khởi tạo lại giá trị đã chọn nếu có
             if (selectedValues) {
                 $.ajax({
-                    url: '{{ route("api.san-pham-px") }}',
+                    url: '{{ route("api.san-pham-pn") }}',
                     dataType: 'json',
                     data: {
                         ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin

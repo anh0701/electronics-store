@@ -72,13 +72,26 @@
         console.log(labels); // Kiểm tra dữ liệu labels
         console.log(data); // Kiểm tra dữ liệu data
 
+        var n = 10;
+        var labelN = labels.slice(0, n);
+        var dataN = data.slice(0, n);
+
+
+        var labelNN = 'Khác';
+        var dataNN = data.slice(n).reduce((a,b) => a + b, 0);
+
+        
+        labelN.push(labelNN);
+        dataN.push(dataNN);
+
+
         var myChart = new Chart(ctx, {
-            type: 'pie', // Hoặc 'doughnut'
+            type: 'bar', // Hoặc 'doughnut'
             data: {
-                labels: labels,
+                labels: labelN,
                 datasets: [{
                     label: 'Số Lượng Trong Kho',
-                    data: data,
+                    data: dataN,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
