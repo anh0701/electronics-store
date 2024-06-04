@@ -15,8 +15,16 @@ class TonKhoController extends Controller
                 ->orderByDesc('tbl_sanpham.SoLuongTrongKho')
                 ->paginate(10);
 
-        $labels = $dataTK ->pluck('TenSanPham');
-        $data = $dataTK ->pluck('SoLuongTrongKho');
+        $dataDM = DB::table('tbl_sanpham')
+                ->join('tbl_danhmuc', 'tbl_danhmuc.MaDanhMuc', '=', 'tbl_sanpham.MaDanhMuc')
+                ->select('tbl_danhmuc.MaDanhMuc', 'tbl_danhmuc.TenDanhMuc', 
+                DB::raw('SUM(tbl_sanpham.SoLuongTrongKho) as tongSLTK'))
+                ->groupBy('tbl_danhmuc.MaDanhMuc')
+                ->orderByDesc('tongSLTK');
+
+        $labels = $dataDM ->pluck('TenDanhMuc');
+        
+        $data = $dataDM ->pluck('tongSLTK');
 //        dd($data);
 //        dd($labels);
         return view('admin.TonKho.lietKeTK', compact('data', 'labels', 'dataTK' ));

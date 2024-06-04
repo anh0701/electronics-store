@@ -35,7 +35,7 @@
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
                             
-                            <th style="width:100px">Quản lý</th>
+                            <th>Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,11 +63,11 @@
                                 
                                 <td>
                                     <a href="{{ route('xemCTPTH', ['id' => $pth->MaPhieuTraHang]) }}">
-                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
+                                    <i style="font-size: 20px; padding: 5px; color: purple;" class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('suaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    <a href="{{ route('suaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
                                     @if ($pth->TrangThai == 0)
-                                        <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pth->MaPhieuTraHang }} không?')" href="{{ route('xoaPTH', [$pth->MaPhieuTraHang]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                        <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $pth->MaPhieuTraHang }} không?')" href="{{ route('xoaPTH', [$pth->MaPhieuTraHang]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
                                     @endif
                                 </td>
                             </tr>

@@ -136,7 +136,7 @@
                                     @endphp
                                 </p>
                             </a>
-                            <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                            <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                             data-id_product="{{ $sanPham->MaSanPham }}">
                                 <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                             </button>
@@ -281,5 +281,79 @@
             </a>			
         </div>
     </div>
-</div>
+@endif
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function showAllProducts(button) {
+            const container = $(button).closest('.item').find('.products-container');
+            const hiddenItems = container.find('.product-item.hidden');
+            if (hiddenItems.length) {
+                hiddenItems.removeClass('hidden');
+                $(button).find('i').removeClass('fa-angle-down').addClass('fa-angle-up');
+            } else {
+                container.find('.product-item').each(function (index) {
+                    if (index >= 4) {
+                        $(this).addClass('hidden');
+                    }
+                });
+                $(button).find('i').removeClass('fa-angle-up').addClass('fa-angle-down');
+            }
+        }
+
+        window.showAllProducts = showAllProducts; // Expose the function to the global scope
+
+        function slideProducts(direction) {
+            $('.item.active').each(function () {
+                const container = $(this).find('.products-container');
+                const items = container.find('.product-item');
+                const visibleItems = container.find('.product-item:visible');
+                let startIndex = items.index(visibleItems.first());
+
+                if (direction === 'prev') {
+                    startIndex = Math.max(startIndex - 4, 0);
+                } else if (direction === 'next') {
+                    startIndex = Math.min(startIndex + 4, items.length - 4);
+                }
+
+                items.addClass('hidden').slice(startIndex, startIndex + 4).removeClass('hidden');
+            });
+        }
+
+        window.slideProducts = slideProducts; // Expose the function to the global scope
+    });
+</script>
+
+<style>
+    .discount-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .discount-image {
+        margin-bottom: 15px;
+        margin-top: 2%;
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+
+    /*.products-container {*/
+    /*    display: flex;*/
+    /*    flex-wrap: wrap;*/
+    /*}*/
+
+    .product-item.hidden {
+        display: none;
+    }
+
+    .recommended-item-control {
+        cursor: pointer;
+    }
+</style>
 @endsection
+

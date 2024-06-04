@@ -79,7 +79,8 @@ class PhieuTraHangController extends Controller
                     JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
                     WHERE MaPhieuTraHang = '{$id}'");
         $products = SanPham::all();
-        return view('admin.PhieuTraHang.suaTH', ['pth' => $pth[0], 'ctpn' => $ctpn, 'ctpth' => $ctpth], compact('products'));
+        $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
+        return view('admin.PhieuTraHang.suaTH', ['pth' => $pth[0], 'ctpn' => $ctpn, 'ctpth' => $ctpth, 'listLSP' => $listLSP], compact('products'));
     }
 
     public function xuLySuaPTH(Request $request){
@@ -264,7 +265,8 @@ class PhieuTraHangController extends Controller
                         FROM tbl_chitietphieunhap ct
                         JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
                         WHERE MaPhieuNhap = '{$id}'");
-        return view('admin.PhieuTraHang.themTh', ['maTH' => $maTH, 'maPN' => $id, 'maNCC' => $maNCC, 'ctpn' => $ctpn], compact('products'));
+        $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
+        return view('admin.PhieuTraHang.themTh', ['maTH' => $maTH, 'maPN' => $id, 'maNCC' => $maNCC, 'ctpn' => $ctpn, 'listLSP' => $listLSP], compact('products'));
     }
 
     public function xuLyLapTH(Request $request)
@@ -364,20 +366,20 @@ class PhieuTraHangController extends Controller
         
     }
 
-    public function danhSachSanPham(Request $request)
-    {
-        $search = $request->input('q');
-        $ids = $request->input('ids');
+    // public function danhSachSanPham(Request $request)
+    // {
+    //     $search = $request->input('q');
+    //     $ids = $request->input('ids');
 
-        if ($ids) {
-            $products = SanPham::whereIn('MaSanPham', $ids)->get(['MaSanPham as id', 'TenSanPham as text']);
-            return response()->json($products);
-        }
+    //     if ($ids) {
+    //         $products = SanPham::whereIn('MaSanPham', $ids)->get(['MaSanPham as id', 'TenSanPham as text']);
+    //         return response()->json($products);
+    //     }
 
-        $products = SanPham::where('TenSanPham', 'LIKE', "%{$search}%")
-            ->get(['MaSanPham as id', 'TenSanPham as text']);
+    //     $products = SanPham::where('TenSanPham', 'LIKE', "%{$search}%")
+    //         ->get(['MaSanPham as id', 'TenSanPham as text']);
 
-        return response()->json($products);
-    }
+    //     return response()->json($products);
+    // }
 
 }

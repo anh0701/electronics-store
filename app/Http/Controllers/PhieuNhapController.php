@@ -31,20 +31,34 @@ class PhieuNhapController extends Controller
     } 
 
     public function timKiemPN(Request $request){
+
         $data = PhieuNhap::join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
             ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
-            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap')
+            ->leftJoin('tbl_chitietphieunhap', 'tbl_phieunhap.MaPhieuNhap', '=', 'tbl_chitietphieunhap.MaPhieuNhap')
+            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieunhap.MaCTPN) as soChiTietPN'))
             ->where(function($query) use ($request) {
                 $query->where('tbl_taikhoan.TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
                     ->orWhere('tbl_nhacungcap.TenNhaCungCap', 'LIKE', "%{$request->timKiem}%")
-                    ->orWhere('tbl_phieunhap.ThoiGianTao', 'LIKE', "%{$request->timKiem}%");
+                    ->orWhere(DB::raw("DATE_FORMAT(tbl_phieunhap.ThoiGianTao, '%Y-%m')"), '=', "{$request->thoiGian}");
             })
+            ->groupBy('tbl_phieunhap.MaPhieuNhap')
             ->paginate(5);
         return view('admin.PhieuNhap.lietKePN', compact('data'));
     }
 
-    
+    public function locPN(Request $request){
 
+        $data = PhieuNhap::join('tbl_taikhoan', 'tbl_phieunhap.MaTaiKhoan', '=', 'tbl_taikhoan.MaTaiKhoan')
+            ->join('tbl_nhacungcap', 'tbl_phieunhap.MaNhaCungCap', '=', 'tbl_nhacungcap.MaNhaCungCap')
+            ->leftJoin('tbl_chitietphieunhap', 'tbl_phieunhap.MaPhieuNhap', '=', 'tbl_chitietphieunhap.MaPhieuNhap')
+            ->select('tbl_phieunhap.*', 'tbl_taikhoan.TenTaiKhoan', 'tbl_nhacungcap.TenNhaCungCap',
+                        DB::raw('COUNT(tbl_chitietphieunhap.MaCTPN) as soChiTietPN'))
+            ->where(DB::raw("DATE_FORMAT(tbl_phieunhap.ThoiGianTao, '%Y-%m')"), '=', "{$request->thoiGian}")
+            ->groupBy('tbl_phieunhap.MaPhieuNhap')
+            ->paginate(5);
+        return view('admin.PhieuNhap.lietKePN', compact('data'));
+    }
     public function xemCTPN($id){
         $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
                         FROM tbl_phieunhap pn 
@@ -83,35 +97,43 @@ class PhieuNhapController extends Controller
                         JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
                         WHERE MaPhieuNhap = '{$id}'");
         $products = SanPham::all();
-
+        $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
         $ctpn = DB::table('tbl_chitietphieunhap')
                 ->join('tbl_sanpham', 'tbl_chitietphieunhap.MaSanPham', '=', 'tbl_sanpham.MaSanPham')
                 ->select('tbl_chitietphieunhap.*', 'tbl_sanpham.TenSanPham')
                 ->where('tbl_chitietphieunhap.MaPhieuNhap', $id)
                 ->paginate(5);
 
-        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn], compact('products'));
+        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP], compact('products'));
     }
 
     public function lapPN(){
         $maPN = 'PN' . date('YmdHis');
         $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap WHERE TrangThai = 1");
+        $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
         $products = SanPham::all();
-        return view('admin.PhieuNhap.themPN', ['listNCC' => $listNCC, 'maPN' => $maPN], compact('products'));
+        return view('admin.PhieuNhap.themPN', ['listNCC' => $listNCC, 'maPN' => $maPN, 'listLSP' => $listLSP], compact('products'));
     }
 
     public function danhSachSanPham(Request $request)
     {
         $search = $request->input('q');
         $ids = $request->input('ids');
+        $loaiSP = $request->input('loaiSP');
 
         if ($ids) {
             $products = SanPham::whereIn('MaSanPham', $ids)->get(['MaSanPham as id', 'TenSanPham as text']);
             return response()->json($products);
         }
+        $query = SanPham::query();
+        if($loaiSP){
+            $query->where('MaDanhMuc', $loaiSP);
+        }
 
-        $products = SanPham::where('TenSanPham', 'LIKE', "%{$search}%")
-            ->get(['MaSanPham as id', 'TenSanPham as text']);
+        if($search){
+            $query->where('TenSanPham', 'LIKE', "%{$search}%");
+        }
+        $products = $query->get(['MaSanPham as id', 'TenSanPham as text']);
 
         return response()->json($products);
     }
@@ -152,7 +174,7 @@ class PhieuNhapController extends Controller
                 'maSP' => $maSP,
                 'tenSP' => $tenSP1,
                 'soLuong' => $ktSanPhamTonTai ? $ktSanPhamTonTai->SoLuong : $soLuong,
-                'gia' => $gia
+                'gia' => $gia,
             ]);
         }
 

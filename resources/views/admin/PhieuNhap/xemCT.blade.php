@@ -22,7 +22,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Thông tin phiếu nhập
+            Chi tiết phiếu nhập
         </div>
         <div class="container">
             <div class="row r1">
@@ -85,11 +85,11 @@
                         <tr>
                             <td>{{ $matHang->TenSanPham }}</td>
                             <td>{{ $matHang->SoLuong }}</td>
-                            <td>{{ $matHang->GiaSanPham }}</td>
+                            <td>{{ number_format($matHang->GiaSanPham, 0, '', '.') }}</td>
                             @php
                                 $thanhTien = $matHang->SoLuong * $matHang->GiaSanPham;
                             @endphp
-                            <td>{{ $thanhTien }}</td>
+                            <td>{{ number_format($thanhTien, 0, '', '.') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -102,26 +102,26 @@
                     <p><strong>Tổng tiền:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p>{{ $pn->TongTien }}</p>
+                    <p>{{ number_format($pn->TongTien, 0, '', '.') }}</p>
                 </div>
                 
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Tiền trả:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p>{{ $pn->TienTra }}</p>
+                    <p>{{ $pn->TienTra == null ? 0 : number_format($pn->TienTra, 0, '', '.')  }}</p>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Tiền nợ:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p>{{ $pn->TienNo }}</p>
+                    <p>{{ number_format($pn->TienNo, 0, '', '.')}}</p>
                 </div>
             </div>
         </div>
         
     </div>
-    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Trở lại</button></a>
+    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Quay lại danh sách</button></a>
     
     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa phiếu nhập</button></a>
     
@@ -191,7 +191,7 @@
                         <tr>
                             <td>{{ $matHang->TenSanPham }}</td>
                             <td>{{ $matHang->SoLuong }}</td>
-                            <td>{{ $matHang->GiaSanPham }}</td>
+                            <td>{{ number_format($matHang->GiaSanPham, 0, '', '.') }}</td>
                             <td>{{ $matHang->LyDoTraHang }}</td>
                         </tr>
                     @endforeach
@@ -205,7 +205,7 @@
                     <p><strong></strong><strong>Tổng tiền:</strong></p>
                 </div>
                 <div class="col-sm-6">
-                    <p><strong></strong>{{ $pth->TongTien }}</p>
+                    <p><strong></strong>{{ number_format($pth->TongTien, 0, '', '.') }}</p>
                 </div>
             </div>
         </div>

@@ -1,19 +1,30 @@
 @extends('admin_layout')
 @section('admin_content')
+
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
                 Liệt kê phiếu nhập
             </div>
             <div class="row w3-res-tb">
-                <div class="col-sm-5 m-b-xs">
+                <div class="col-sm-4 m-b-xs">
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
+                    
+                    <form action="{{ route('phieu-nhap.loc') }}" method="get">
+                        <div class="input-group">  
+                            <input type="month" class="input-sm form-control" name="thoiGian" value="{{old('thoiGian')}}"> 
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-default" type="submit">Lọc</button>
+                            </span>  
+                        </div>
+                    </form>
+                    
                 </div>
                 <div class="col-sm-5">
                     <form action="{{ Route('timKiemPN') }}" method="get">
-                        <div class="input-group">
-                            <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
+                        <div class="input-group">                                                 
+                            <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem" >                           
                             <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
                             </span>
@@ -38,7 +49,8 @@
                             <th>Tổng tiền</th>
                             <th>Số tiền nợ</th>
                             <th>Trạng thái</th>
-                            <th style="width:100px">Quản lý</th>
+                            <th>Thời gian tạo</th>
+                            <th >Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,8 +60,8 @@
                                 <td>{{ $pn->TenTaiKhoan }}</td>
                                 <td>{{ $pn->TenNhaCungCap }}</td>
                                 
-                                <td>{{ $pn->TongTien }}</td>
-                                <td>{{ $pn->TienNo }}</td>
+                                <td>{{ number_format($pn->TongTien, 0, '', '.') }} đ</td>
+                                <td>{{ number_format($pn->TienNo, 0, '', '.') }} đ</td>
                                 @php 
                                     if($pn->soChiTietPN == 0){
                                         $trangthai = "Không có sản phẩm được nhập!";
@@ -68,17 +80,18 @@
                                     
 
                                 @endphp 
-                                <td class="{{ $pn->soChiTietPN == 0 ? 'boi-mau' : '' }}">{{ $trangthai }}</td>
+                                <td class="{{ $pn->soChiTietPN == 0 ? 'boi-mau' : '' }}"><p>{{ $trangthai }}</p></td>
+                                <td>{{ $pn->ThoiGianTao }}</td>
                                 <td>
                                     <a href="{{ route('xemCTPN', ['id' => $pn->MaPhieuNhap]) }}">
-                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>
+                                    <i style="font-size: 20px; padding: 5px; color: purple;" class="fa-solid fa-eye"></i>
                                     </a>
                                     
-                                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                    <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
                                     
                                     
                                     @if ($pn->TrangThai == 0)
-                                        <a onclick="return confirm('Bạn có muốn xóa phiếu {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                                        <a onclick="return confirm('Bạn có muốn xóa phiếu {{ $pn->MaPhieuNhap }} không?')" href="{{ route('xoaPN', [$pn->MaPhieuNhap]) }}"><i style="font-size: 20px; padding: 5px;  color: red;" class="fa fa-times text-danger text"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -110,7 +123,7 @@
                 title: 'Thành công',
                 text: '{{ session('success') }}',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 800
             });
             @elseif(session('error'))
             Swal.fire({
@@ -118,7 +131,7 @@
                 title: 'Thất bại',
                 text: '{{ session('error') }}',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 800
             });
             @endif
         });

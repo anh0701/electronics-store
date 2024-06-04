@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChuongTrinhGiamGia;
 use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
