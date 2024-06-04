@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChuongTrinhGiamGia;
 use App\Models\ChuongTrinhGiamGiaSP;
+use App\Models\DanhMuc;
 use App\Models\SanPham;
 use App\Rules\KiemTraTGCTGG;
 use Carbon\Carbon;
@@ -16,20 +17,21 @@ class ChuongTrinhGiamGiaController extends Controller
     //
     public function giaoDienTao()
     {
-        $products = SanPham::all();
-        return view('admin.ChuongTrinhGiamGia.themChuongTrinhGiamGia', compact('products'));
+        $categories = DanhMuc::where('TrangThai', '1')->get();
+        return view('admin.ChuongTrinhGiamGia.themChuongTrinhGiamGia', compact( 'categories'));
     }
 
     public function taoChuongTrinhGiamGia(Request $request)
     {
-//        dd($request);
+//        dd($request->all());
         $validator = Validator::make($request->all(), [
             'TenCTGG' => 'required',
             'SlugCTGG' => ['required', 'unique:tbl_chuongtrinhgiamgia'],
             'HinhAnh' => ['required', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             'MoTa' => 'required',
-            'MaSanPham' => 'required|array',
+//            'MaSanPham' => 'required|array',
             'PhanTramGiam' => 'required',
+            'selectedProducts' => 'required|json',
             'ThoiGianKetThuc' => ['required','date','after:ThoiGianBatDau'],
             'ThoiGianBatDau' => [
                 'required',
@@ -40,8 +42,9 @@ class ChuongTrinhGiamGiaController extends Controller
             'TenCTGG.required' => "Vui lòng nhập tên chương trình giảm giá.",
             'SlugCTGG.required' => "Vui lòng nhập slug.",
             'SlugCTGG.unique' => "Slug đã tồn tại.",
+            'selectedProducts.required' => 'Vui lòng chọn sản phẩm',
             'MoTa.required' => "Vui lòng nhập mô tả.",
-            "MaSanPham.required" => "Vui lòng chọn sản phẩm",
+//            "MaSanPham.required" => "Vui lòng chọn sản phẩm",
             'PhanTramGiam.required' => "Vui lòng nhập phần trăm giảm",
             'HinhAnh.required' => 'Vui lòng nhập hình ảnh.',
             'HinhAnh.image' => 'Vui lòng chọn đúng định dạng file hình ảnh',
@@ -52,12 +55,15 @@ class ChuongTrinhGiamGiaController extends Controller
         ]);
 
         if ($validator->fails()) {
+//            dd($validator->errors());
+            // Lưu trữ dữ liệu bảng vào session
+            session()->flash('selectedProducts', $request->input('selectedProducts'));
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors($validator->errors());
         }
+//        dd($request->all());
 
-        $imagePath = null;
         // Xử lý upload hình ảnh
         $imagePath = null;
         if ($request->hasFile('HinhAnh')) {
@@ -74,43 +80,35 @@ class ChuongTrinhGiamGiaController extends Controller
 
 //        dd($imagePath);
         // Lưu thông tin chương trình giảm giá vào cơ sở dữ liệu
-        $discountProgram = ChuongTrinhGiamGia::create([
-            'TenCTGG' => $request->TenCTGG,
-            'SlugCTGG' => $request->SlugCTGG,
-            'HinhAnh' => $imagePath,
-            'MoTa' => $request->MoTa,
-            'TrangThai' => $trangThai,
-            'ThoiGianTao' => Carbon::now(), // Chèn giá trị ThoiGianTao
-            'ThoiGianBatDau' => $request->ThoiGianBatDau,
-            'ThoiGianKetThuc' => $request->ThoiGianKetThuc
-        ]);
-//            dd($discountProgram);
+        // Process the selected products
+        $selectedProducts = json_decode($request->selectedProducts, true);
 
-        // Lưu thông tin các sản phẩm liên quan
-        foreach ($request->MaSanPham as $maSanPham) {
-            ChuongTrinhGiamGiaSP::create([
-                'MaCTGG' => $discountProgram->MaCTGG,
-                'MaSanPham' => $maSanPham,
-                'PhanTramGiam' => $request->PhanTramGiam,
-            ]);
+        // Save the discount program
+        $discountProgram = new ChuongTrinhGiamGia();
+        $discountProgram->TenCTGG = $request->TenCTGG;
+        $discountProgram->SlugCTGG = $request->SlugCTGG;
+        $discountProgram->HinhAnh = $imagePath;
+        $discountProgram->TrangThai = 0;
+        $discountProgram->ThoiGianTao = Carbon::now();
+        $discountProgram->MoTa = $request->MoTa;
+        $discountProgram->ThoiGianBatDau = $request->ThoiGianBatDau;
+        $discountProgram->ThoiGianKetThuc = $request->ThoiGianKetThuc;
+        $discountProgram->save();
+
+        // Save the related products
+        foreach ($selectedProducts as $product) {
+            $discountProgram->SanPham()->attach($product['id'], ['PhanTramGiam' => $product['phanTramGiam']]);
         }
 
         return redirect()->route('/chuong-trinh-giam-gia')->with('success', 'Discount program created successfully!');
     }
 
-    public function danhSachSanPham(Request $request)
+    public function danhSachSanPham($categoryId)
     {
-        $search = $request->input('q');
-        $ids = $request->input('ids');
+        // Lấy danh sách sản phẩm theo danh mục
+        $products = SanPham::where('MaDanhMuc', $categoryId)->get(['MaSanPham as id', 'GiaSanPham', 'TenSanPham']);
 
-        if ($ids) {
-            $products = SanPham::whereIn('MaSanPham', $ids)->get(['MaSanPham as id', 'TenSanPham as text']);
-            return response()->json($products);
-        }
-
-        $products = SanPham::where('TenSanPham', 'LIKE', "%{$search}%")
-            ->get(['MaSanPham as id', 'TenSanPham as text']);
-
+        // Trả về dữ liệu dưới dạng JSON
         return response()->json($products);
     }
 
@@ -133,11 +131,12 @@ class ChuongTrinhGiamGiaController extends Controller
 
     public function giaoDienSua($MaCT)
     {
-        $suaCT = ChuongTrinhGiamGia::with('chuongTrinhGiamGiaSPs.SanPham')->findOrFail($MaCT);
-        $SanPham = SanPham::all();
-        $ChuongTrinhGiamGiaSP = ChuongTrinhGiamGiaSP::where('MaCTGG', $MaCT)->get()->first();
+        $chuongTrinh = ChuongTrinhGiamGia::findOrFail($MaCT);
+        $categories = DanhMuc::where('TrangThai', 1)->get();
+        $selectedProducts = $chuongTrinh->SanPham()->get(['tbl_sanpham.MaSanPham as id', 'tbl_sanpham.GiaSanPham', 'tbl_sanpham.TenSanPham', 'tbl_chuongtrinhgiamgiasp.PhanTramGiam']);
+
 //        dd($ChuongTrinhGiamGiaSP);
-        return view('admin.ChuongTrinhGiamGia.suaChuongTrinhGiamGia', compact('suaCT', 'SanPham', 'ChuongTrinhGiamGiaSP'));
+        return view('admin.ChuongTrinhGiamGia.suaChuongTrinhGiamGia', compact('categories', 'selectedProducts', 'chuongTrinh'));
     }
 
     public function suaChuongTrinhGiamGia(Request $request, $MaCT)
@@ -151,8 +150,8 @@ class ChuongTrinhGiamGiaController extends Controller
             'HinhAnh' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             'MoTa' => 'required',
             'TrangThai' => 'required',
-            'MaSanPham' => 'required|array',
-            'PhanTramGiam' => 'required',
+//            'MaSanPham' => 'required|array',
+//            'PhanTramGiam' => 'required',
 //            'ThoiGianBatDau' => '',
 //            'ThoiGianKetThuc' => ''
         ], [
@@ -161,13 +160,14 @@ class ChuongTrinhGiamGiaController extends Controller
             'SlugCTGG.unique' => "Slug đã tồn tại.",
             'MoTa.required' => "Vui lòng nhập mô tả.",
             'TrangThai.required' => "Vui lòng chọn trạng thái.",
-            "MaSanPham.required" => "Vui lòng chọn sản phẩm",
-            'PhanTramGiam.required' => "Vui lòng nhập phần trăm giảm",
+//            "MaSanPham.required" => "Vui lòng chọn sản phẩm",
+//            'PhanTramGiam.required' => "Vui lòng nhập phần trăm giảm",
             'HinhAnh.required' => 'Vui lòng nhập hình ảnh.',
             'HinhAnh.image' => 'Vui lòng chọn đúng định dạng file hình ảnh'
         ]);
 
         if ($validator->fails()) {
+            session()->flash('selectedProducts', $request->input('selectedProducts'));
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors($validator->errors());
@@ -198,13 +198,15 @@ class ChuongTrinhGiamGiaController extends Controller
 //        dd($discountProgram->SanPham());
 
         // Cập nhật các sản phẩm trong chương trình giảm giá
-        $discountProgram->chuongTrinhGiamGiaSPs()->delete(); // Xóa tất cả sản phẩm cũ
-        foreach ($request->MaSanPham as $maSanPham) {
-            ChuongTrinhGiamGiaSP::create([
-                'MaCTGG' => $discountProgram->MaCTGG,
-                'MaSanPham' => $maSanPham,
-                'PhanTramGiam' => $request->PhanTramGiam,
-            ]);
+        // Cập nhật sản phẩm liên quan
+        $selectedProducts = json_decode($request->selectedProducts, true);
+//        dd($selectedProducts);
+        if($selectedProducts !== null){
+
+            $discountProgram->SanPham()->detach();
+            foreach ($selectedProducts as $product) {
+                $discountProgram->SanPham()->attach($product['id'], ['PhanTramGiam' => $product['phanTramGiam']]);
+            }
         }
 
         return redirect()->route('/chuong-trinh-giam-gia')->with('success', 'Chương trình giảm giá đã được cập nhật thành công!');
@@ -214,6 +216,16 @@ class ChuongTrinhGiamGiaController extends Controller
     {
         $discountProgram = ChuongTrinhGiamGia::findOrFail($MaCT);
         return view('admin.ChuongTrinhGiamGia.xemCT', compact('discountProgram'));
+    }
+
+    public function layThongTinChiTiet(Request $request)
+    {
+        $ids = $request->input('ids');
+        $products = SanPham::whereIn('MaSanPham', $ids)
+            ->select('MaSanPham as id', 'TenSanPham', 'GiaSanPham')
+            ->get();
+
+        return response()->json($products);
     }
 
     public function list(Request $request)

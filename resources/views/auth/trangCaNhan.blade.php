@@ -5,6 +5,7 @@
             <div class="row">
                 <form action="{{route('/thongTinTaiKhoan')}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="quyen" value="{{$tk[0]->Quyen}}">
                     <div class="col-lg-4 col-md-6 mb-3">
                         <div class="card text-center sidebar">
                             <div class="card-body">
