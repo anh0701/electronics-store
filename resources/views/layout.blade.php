@@ -247,6 +247,41 @@
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	<script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			var MaDanhMuc = $('.tabs_pro').data('id');
+			//alert(MaDanhMuc);
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: '{{ route('/product-tabs') }}',
+				method: "POST",
+				data: {
+					MaDanhMuc:MaDanhMuc,
+					_token:_token,
+				},
+				success:function(data){
+					$('#tabs_product').html(data);
+				}
+			});
+
+			$('.tabs_pro').click(function(){
+				var MaDanhMuc = $(this).data('id');
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					url: '{{ route('/product-tabs') }}',
+					method: "POST",
+					data: {
+						MaDanhMuc:MaDanhMuc,
+						_token:_token,
+					},
+					success:function(data){
+						$('#tabs_product').html(data);
+					}
+				});
+			});
+		});
+	</script>
 	{{-- Tính tiền giao hàng --}}
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -317,8 +352,9 @@
 				var cart_product_width = $('.cart_product_width_' + id).val();
 				var cart_product_thick = $('.cart_product_thick_' + id).val();
 				var cart_product_weight = $('.cart_product_weight_' + id).val();
+				var cart_product_guarantee = $('.cart_product_guarantee_' + id).val();
 				var _token = $('input[name="_token"]').val();
-
+				
 				$.ajax({
 					url: '{{ route('/ThemGioHang') }}',
 					method: 'POST',
@@ -332,6 +368,7 @@
 						cart_product_width:cart_product_width,
 						cart_product_thick:cart_product_thick,
 						cart_product_weight:cart_product_weight,
+						cart_product_guarantee:cart_product_guarantee,
 						_token:_token
 					},
 					success:function(data){

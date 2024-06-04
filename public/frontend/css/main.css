@@ -1102,9 +1102,9 @@ h2.title {
 	color:#FE980F;
 }
 
-.category-tab {
+/* .category-tab {
   overflow: hidden;
-}
+} */
 
 .category-tab ul {
   background: #40403E;
@@ -1219,11 +1219,23 @@ h2.title {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   margin-left: 0;
+  background: #F0F0E9;
+  border: 0 none;
+  border-radius: 0;
+  color: #696763;
+  margin-right: 5px;
+  padding: 4px 12px;
 }
 
 .pagination  li:last-child  a, .pagination  li:last-child  span {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  background: #F0F0E9;
+  border: 0 none;
+  border-radius: 0;
+  color: #696763;
+  margin-right: 5px;
+  padding: 4px 12px;
 }
 
 .pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
@@ -1231,7 +1243,8 @@ h2.title {
   border-color: #FE980F;
   color: #FFFFFF;
   cursor: default;
-  z-index: 2;
+  height: 28px;
+  
 }
 
 .pagination  li  a, .pagination  li  span {
@@ -1240,7 +1253,7 @@ h2.title {
   float: left;
   line-height: 1.42857;
   margin-left: -1px;
-  padding: 6px 12px;
+  padding: 4px 12px;
   position: relative;
   text-decoration: none;
   margin-right: 5px;
@@ -1331,9 +1344,9 @@ h2.title {
 .product-information {
   border: 1px solid #F7F7F0;
   overflow: hidden;
-  padding-bottom: 60px;
-  padding-left: 60px;
-  padding-top: 60px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  padding-top: 30px;
   position: relative;
 }
 
@@ -1368,7 +1381,7 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   font-weight: 700;
-  margin-right: 20px;
+  margin-right: 10px;
   margin-top: 0px;
 }
 .product-information span input {
@@ -2704,7 +2717,7 @@ h2.title {
   background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);
 }
 
-.shopping-trends strong.name-box {
+.name-box {
   display: block;
   overflow: hidden;
   padding: 15px 22px;
@@ -2764,6 +2777,29 @@ h2.title {
   color: #2f80ed;
   font-weight: 500;
 }
+
+.daily-sg {
+  display: block;
+  overflow: hidden;
+  margin: 0 0 10px;
+  margin: 0 0 30px;
+}
+
+.daily-sg .name-box {
+  padding: 0 0 10px;
+}
+
+.daily-sg a {
+  display: inline-block;
+  vertical-align: middle;
+  width: 285px;
+  margin: 0 20px 0 0;
+  background: #fff;
+  border-radius: 8px;
+  height: 70px;
+  padding: 8px 0;
+}
+
 
 .carousel-head {
   display: block;
@@ -2845,6 +2881,39 @@ h2.title {
 @media (min-width: 1200px) {
   .col-lg-15 {
       width: 20%;
+      float: left;
+  }
+}
+
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-3 {
+  width: 25%;
+  float: left;
+}
+@media (min-width: 768px) {
+.col-sm-3 {
+      width: 25%;
+      float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-3 {
+      width: 25%;
+      float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-3 {
+      width: 25%;
       float: left;
   }
 }

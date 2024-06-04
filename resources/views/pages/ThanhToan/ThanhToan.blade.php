@@ -62,7 +62,7 @@
                                     $TienVanChuyen = $TySo * 4000;
                                 }
                             }
-                            $total_after_fee += $TienVanChuyen;
+                            $total_after_fee += $TienVanChuyen * $cart['SoLuong'];
                         @endphp
                         <tr>
                             <td class="HinhAnh">
@@ -139,15 +139,18 @@
                                                 $PhiGiaoHang = Session::get('PhiGiaoHang');
                                                 $total_after_fee += $PhiGiaoHang['SoTien'];
                                             @endphp
-                                            {{ number_format($total_after_fee, 0,',','.') }} đ
+                                            {{ number_format($total_after_fee, 0,',','.') }} đ + {{ number_format($PhiGiaoHang['SoTien'], 0,',','.') }} đ
                                         @elseif (!Session::get('PhiGiaoHang'))
                                             {{ number_format($total_after_fee, 0,',','.') }} đ
                                         @endif
                                     </td>										
                                 </tr>
                                 <tr>
-                                    <td>Tổng tiền</td>
                                     <td>
+                                        <p class="cart_total_price">Tổng tiền</p>
+                                    </td>
+                                    <td>
+                                        <p class="cart_total_price">
                                         @php
                                             if(Empty(Session('PhieuGiamGia')) && Empty(Session('PhiGiaoHang'))){
                                                 $total_after = $total + $total_after_fee;
@@ -163,6 +166,7 @@
                                                 echo number_format($total_after,0,',','.').'đ';
                                             }
                                         @endphp
+                                        </p>
                                     </td>
                                 </tr>
                             </table>
@@ -190,9 +194,10 @@
                     <div class="col-sm-3">
                         <div class="shopper-info">
                             <p>Thông tin người nhận hàng</p>
-                            <input type="text" name="TenNguoiNhan" placeholder="Tên người nhận">
-                            <input type="text" name="SoDienThoai" placeholder="Số điện thoại">
-                            <input type="text" name="DiaChi" placeholder="Địa chỉ">
+                            <input type="text" name="TenNguoiNhan" value="{{old('TenNguoiNhan')}}" placeholder="Tên người nhận">
+                            <input type="text" name="SoDienThoai" value="{{old('SoDienThoai')}}" placeholder="Số điện thoại">
+                            <input type="text" name="DiaChi" value="{{old('DiaChi')}}" placeholder="Địa chỉ">
+                            <input type="hidden" name="PhiGiaoHang" value="{{ $total_after_fee }}">
                             <button class="btn btn-primary DatHang" type="submit" name="DatHang">Đặt hàng</button>
                         </div>
                     </div>

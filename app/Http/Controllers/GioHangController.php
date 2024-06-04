@@ -15,11 +15,14 @@ use App\Models\PhieuGiamGia;
 use App\Models\PhieuGiamGiaNguoiDung;
 use App\Models\DonHang;
 use App\Models\ChiTietDonHang;
+use App\Models\PhieuBaoHanh;
+use App\Models\ChiTietPhieuBaoHanh;
 use App\Models\GiaoHang;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class GioHangController extends Controller
@@ -47,6 +50,7 @@ class GioHangController extends Controller
                     'ChieuNgang' => $data['cart_product_width'],
                     'ChieuDay' => $data['cart_product_thick'],
                     'CanNang' => $data['cart_product_weight'],
+                    'ThoiGianBaoHanh' => $data['cart_product_guarantee'],
                 );
                 Session::put('cart', $cart);
             }
@@ -62,6 +66,7 @@ class GioHangController extends Controller
                 'ChieuNgang' => $data['cart_product_width'],
                 'ChieuDay' => $data['cart_product_thick'],
                 'CanNang' => $data['cart_product_weight'],
+                'ThoiGianBaoHanh' => $data['cart_product_guarantee'],
             );
         }
         Session::put('cart', $cart);
@@ -214,8 +219,11 @@ class GioHangController extends Controller
             $sanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
             foreach($sanPham as $key => $value){
                 foreach($gioHangSession as $key => $gioHang){
-                    if($value->SoLuongHienTai < $gioHang['SoLuong']){
-                        return Redirect()->back()->with('error', 'Sản phẩm '.$value->TenSanPham.' không đủ số lượng so với đơn hàng của bạn'); 
+                    if($value->MaSanPham == $gioHang['MaSanPham']){
+                        if($value->SoLuongHienTai < $gioHang['SoLuong']){
+                            return Redirect()->back()->with('error', 'Sản phẩm '.$value->TenSanPham.' không đủ số lượng so với đơn hàng của bạn'); 
+                        }
+
                     }
                 }
             }
@@ -225,6 +233,7 @@ class GioHangController extends Controller
                 'SoDienThoai' => 'required',
                 'DiaChi' => 'required',
                 'GhiChu' => '',
+                'PhiGiaoHang' => '',
             ],
             [
                 'TenNguoiNhan.required' => 'Bạn chưa điền tên người nhận hàng',
@@ -241,7 +250,7 @@ class GioHangController extends Controller
             $giaoHang = new GiaoHang;
             $giaoHang->TenNguoiNhan = $data['TenNguoiNhan'];
             $giaoHang->DiaChi = $diaChiGiaoHang;
-            $giaoHang->TienGiaoHang = $phiGiaoHangSession['SoTien'];
+            $giaoHang->TienGiaoHang = $data['PhiGiaoHang'];
             $giaoHang->SoDienThoai = $data['SoDienThoai'];
             $giaoHang->GhiChu = $data['GhiChu'];
             $giaoHang->save();
@@ -272,6 +281,25 @@ class GioHangController extends Controller
                 $chiTietDonHang->GiaSanPham = $valueGioHang['GiaSanPham'];
                 $chiTietDonHang->save();
             }
+
+            $phieuBaoHanh = new PhieuBaoHanh();
+            $phieuBaoHanh->order_code = $thanhToan_code;
+            $phieuBaoHanh->TenKhachHang = $data['TenNguoiNhan'];
+            $phieuBaoHanh->SoDienThoai = $data['SoDienThoai'];
+            $phieuBaoHanh->ThoiGianTao = now();
+            $phieuBaoHanh->save();
+
+            foreach(Session('cart') as $key => $valueGioHang){
+                $chiTietPhieuBaoHanh = new ChiTietPhieuBaoHanh;
+                $chiTietPhieuBaoHanh->order_code = $thanhToan_code;
+                $chiTietPhieuBaoHanh->MaSanPham = $valueGioHang['MaSanPham'];
+                $chiTietPhieuBaoHanh->SoLuong = $valueGioHang['SoLuong'];
+                $chiTietPhieuBaoHanh->ThoiGianBaoHanh = $valueGioHang['ThoiGianBaoHanh'];
+                $chiTietPhieuBaoHanh->ThoiGianBatDau = Carbon::now();
+                $chiTietPhieuBaoHanh->ThoiGianKetThuc = Carbon::now()->addMonths($valueGioHang['ThoiGianBaoHanh']);
+                $chiTietPhieuBaoHanh->save();
+            }
+
             Session::forget('PhieuGiamGia');
             Session::forget('PhiGiaoHang');
             Session::forget('cart');

@@ -149,6 +149,10 @@
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
                             <input type="text" value="{{ $value->GiaSanPham }}" class="form-control" name="GiaSanPham" >
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thời gian bảo hành (theo tháng)</label>
+                            <input type="text" class="form-control" value="{{ $value->ThoiGianBaoHanh }}" name="ThoiGianBaoHanh" placeholder="Thời hạn bảo hành (Theo tháng)">
+                        </div>
                         <button type="submit" name="SuaSanPham" class="btn btn-info">Cập nhật sản phẩm</button>
                     </form>
                     @endforeach

@@ -111,6 +111,7 @@ class SanPhamController extends Controller
         $sanPham->ChieuNgang = $data['ChieuNgang'];
         $sanPham->ChieuDay = $data['ChieuDay'];
         $sanPham->CanNang = $data['CanNang'];
+        $sanPham->ThoiGianBaoHanh = $data['ThoiGianBaoHanh'];
 
         $get_image = $request->HinhAnh;
         $path = 'upload/SanPham/';
@@ -214,6 +215,7 @@ class SanPhamController extends Controller
         }
         $sanPham->MaThuongHieu = $data['MaThuongHieu'];
         $sanPham->GiaSanPham = $data['GiaSanPham'];
+        $sanPham->ThoiGianBaoHanh = $data['ThoiGianBaoHanh'];
         $sanPham->MoTa = $data['MoTa'];
         $sanPham->TrangThai = $data['TrangThai'];
         date_default_timezone_set('Asia/Ho_Chi_Minh');

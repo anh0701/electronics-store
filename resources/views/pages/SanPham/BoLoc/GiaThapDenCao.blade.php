@@ -183,7 +183,7 @@
     </div>
     {{ $allSanPham->links('vendor.pagination.custom') }}
 </div>
-<div class="col-sm-12">
+{{-- <div class="col-sm-12">
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <img src="{{ asset('frontend/im') }}" style="margin-bottom: 15px; width: 100%" alt="">    
@@ -263,5 +263,5 @@
             </a>			
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

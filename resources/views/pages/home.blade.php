@@ -101,6 +101,7 @@
                             <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                             <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                 <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
@@ -146,13 +147,68 @@
         </div>
         @endforeach
     </div>
+    {{ $allSanPham->links('vendor.pagination.custom') }}
+</div>
+<div class="category-tab"><!--category-tab-->
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+            @php
+                $i = 0;
+            @endphp
+            @foreach ($allDanhMuc as $key => $danhMuc)
+                @if ($danhMuc->DanhMucCha == 0)
+                    @php
+                        $i++;
+                    @endphp
+                    <li class="tabs_pro {{ $i==1 ? 'active' : ''}}" data-id="{{ $danhMuc->MaDanhMuc }}"><a href="#tshirt" data-toggle="tab">{{ $danhMuc->TenDanhMuc }}</a></li>
+                @endif
+            @endforeach
+        </ul>
+    </div>
+    <div id="tabs_product">
+    </div>
+</div><!--/category-tab-->
+<div class="col-sm-12 padding-right">
+    <div class="shopping-trends">
+        <strong class="name-box">Xu hướng mua sắm</strong>
+        <ul>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [17]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam1.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam2.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam3.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam4.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="col-sm-12">
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <img src="{{ asset('frontend/images/shop/discount-program.gif') }}" style="margin-bottom: 15px; width: 100%" alt="">    
+            <img src="{{ asset('frontend/images/shop/Frame-de-1200x80 (1).png') }}" style="margin-bottom: 15px; width: 100%" alt="">    
             <div class="carousel-inner">
-                @foreach ($allSanPham->chunk(5) as $valueSanpham)
+                @foreach ($sanPhamNoiBat->chunk(10) as $valueSanpham)
                     <div class="item {{ $loop->first ? 'active' : '' }}">	
                         @foreach ($valueSanpham as $sanPham)
                             <div class="col-sm-15">
@@ -169,6 +225,7 @@
                                                 <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                                                <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                                 <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                                     <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
@@ -223,41 +280,6 @@
             <i class="fa fa-angle-right"></i>
             </a>			
         </div>
-    </div>
-</div>
-<div class="col-sm-12 padding-right">
-    <div class="shopping-trends">
-        <strong class="name-box">Xu hướng mua sắm</strong>
-        <ul>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [17]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam1.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam2.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam3.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam4.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-        </ul>
     </div>
 </div>
 @endsection

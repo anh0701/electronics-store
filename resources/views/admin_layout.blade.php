@@ -17,7 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="{{ asset('backend/css/font.css') }}" type="text/css"/>
 <link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
+{{-- <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/> --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css') }}">
@@ -25,13 +25,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //font-awesome icons -->
 <script src="{{ asset('backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('backend/js/raphael-min.js') }}"></script>
-<script src="{{ asset('backend/js/morris.js') }}"></script>
+{{-- <script src="{{ asset('backend/js/morris.js') }}"></script> --}}
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <!-- morris JavaScript -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+{{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"> --}}
+
 </head>
 <body>
 <section id="container">
@@ -256,12 +259,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa-solid fa-handshake-angle"></i>
-              <span>Quản lý giảm giá</span>
+              <i class="fa-solid fa-shield"></i>
+              <span>Quản lý bảo hành</span>
             </a>
             <ul class="sub">
-              <li><a href="{{ Route('/TrangThemCTGG') }}">Thêm chương trình giảm giá</a></li>
-              <li><a href="{{ Route('/TrangThemCTGGSP') }}">Thêm chương trình giảm giá</a></li>
+              <li><a href="{{ Route('/TrangLietKeBaoHanh') }}">Liệt kê bảo hành sản phẩm</a></li>
+              <li><a href="{{ Route('/TrangLietKePhieuBaoHanh') }}">Liệt kê phiếu bảo hành</a></li>
+              <li><a href="{{ Route('/TrangLietKeLichSuBaoHanh') }}">Liệt kê lịch sử bảo hành</a></li>
             </ul>
           </li>
         </ul>
@@ -274,11 +278,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <section class="wrapper">
 		@yield('admin_content')
   </section>
-  <div class="footer">
+  {{-- <div class="footer">
     <div class="wthree-copyright">
       <p>Sản phẩm của nhóm số 59<a href=""> Đồ án tốt nghiệp</a></p>
     </div>
-  </div>
+  </div> --}}
 </section>
   <!--main content end-->
   </section>
@@ -289,6 +293,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
   <script src="{{ asset('backend/js/monthly.js') }}"></script>
   <script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
+  <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  {{-- datepicker --}}
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        prevText: "Tháng trước",
+        nextText: "Tháng sau",
+        dateFormat: "yy-mm-dd",
+        dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+        duration: "slow",
+      });
+
+      $( "#datepicker2" ).datepicker({
+        prevText: "Tháng trước",
+        nextText: "Tháng sau",
+        dateFormat: "yy-mm-dd",
+        dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+        duration: "slow",
+      });
+    } );
+  </script>
+  {{--  --}}
+  <script type="text/javascript">
+		$(document).ready(function(){
+
+      var chart = new Morris.Bar({
+        element: 'chart',
+        lineColors: ['#819C79', '#fc8710', '#FF6541', '#A4ADD3', '#766B56'],
+        parseTime: false,
+        hideHover: 'auto',
+        // data: [
+        //   { period: '2008', order: 20, sales: 40, profit: 80, quantity: 70 },
+        //   { period: '2009', order: 10, sales: 60, profit: 120, quantity: 100 },
+        // ],
+        data
+        xkey: 'period',
+        ykeys: ['order', 'sales', 'profit', 'quantity'],
+        labels: ['Đơn hàng', 'doanh thu', 'lợi nhuận', 'số lượng'],
+      });
+
+      $('#btn-dashboard-filter').ready(function(){
+				var from_date = $('#datepicker').val();
+				var to_date = $('#datepicker2').val();
+				var _token = $('input[name="_token"]').val();
+				$.ajax({
+					method: 'POST',
+          url: '{{ route('/fillter-by-date') }}',
+          dataType: 'JSON',
+					data: {
+            from_date : from_date,
+            to_date : to_date,
+            _token : _token
+          },
+					success:function(data){
+						chart.setData(data);
+					}
+        });
+		  });
+
+			// $('#btn-dashboard-filter').click(function(){
+			// 	var from_date = $('#datepicker').val();
+			// 	var to_date = $('#datepicker2').val();
+			// 	var _token = $('input[name="_token"]').val();
+			// 	$.ajax({
+			// 		method: 'POST',
+      //     url: '{{ route('/fillter-by-date') }}',
+      //     dataType: 'JSON',
+			// 		data: {
+      //       from_date : from_date,
+      //       to_date : to_date,
+      //       _token : _token
+      //     },
+			// 		success:function(data){
+			// 			chart.setData(data);
+			// 		}
+      //   });
+		  // });
+		});
+	</script>
   {{-- Chọn địa điểm giao hàng --}}
   <script type="text/javascript">
 		$(document).ready(function(){

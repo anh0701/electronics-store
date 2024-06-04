@@ -9,19 +9,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordian" href="#{{ $danhMuc->MaDanhMuc }}">
-                                <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            </a>
-                            <a href="">{{ $danhMuc->TenDanhMuc }}</a>
-                        </h4>
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $danhMuc->MaDanhMuc }}">
+                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                        </a>
+                        <a href="{{ route('/HienThiDanhMucCha', $danhMuc->MaDanhMuc) }}">{{ $danhMuc->TenDanhMuc }}</a>                        </h4>
                     </div>
                     <div id="{{ $danhMuc->MaDanhMuc }}" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
-                                @foreach ($allDanhMuc as $key => $chiTietSanPhamDanhMuc)
-                                    @if($chiTietSanPhamDanhMuc->DanhMucCha == $danhMuc->MaDanhMuc)
-                                    <li><a href="{{ route('/HienThiDanhMucCon', $chiTietSanPhamDanhMuc->MaDanhMuc) }}">{{ $chiTietSanPhamDanhMuc->TenDanhMuc }}</a></li>
-                                    @endif
+                                @foreach ($allDanhMuc as $key => $valueDanhMuc)
+                                @if($valueDanhMuc->DanhMucCha == $danhMuc->MaDanhMuc)
+                                    <li><a href="{{ route('/HienThiDanhMucCon', $valueDanhMuc->MaDanhMuc) }}">{{ $valueDanhMuc->TenDanhMuc }}</a></li>
+                                @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -39,39 +38,11 @@
                 <div class="view-product">
                     <img src="{{ asset('upload/SanPham/'.$chiTietSanPham->HinhAnh) }}" alt="" />
                 </div>
-                <div id="similar-product" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar1.jpg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar2.jpg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar3.jpg') }}" alt=""></a>
-                        </div>
-                        <div class="item">
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar1.jpg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar2.jpg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar3.jpg') }}" alt=""></a>
-                        </div>
-                        <div class="item">
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar1.jpg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar2.jpg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('frontend/images/product-details/similar3.jpg') }}" alt=""></a>
-                        </div>
-                    </div>
-                    <a class="left item-control" href="#similar-product" data-slide="prev">
-                    <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="right item-control" href="#similar-product" data-slide="next">
-                    <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-
             </div>
             <div class="col-sm-7">
                 <div class="product-information">
                     <img src="{{ asset('frontend/images/product-details/new.jpg') }}" class="newarrival" alt="" />
                     <h2>{{ $chiTietSanPham->TenSanPham }}</h2>
-                    <p>Mã sản phẩm: {{ $chiTietSanPham->MaSanPham }}</p>
-                    <img src="images/product-details/rating.png" alt="" />
                     <form>
                         <input type="hidden" value="{{$chiTietSanPham->MaSanPham}}" class="cart_product_id_{{$chiTietSanPham->MaSanPham}}">
                         <input type="hidden" value="{{$chiTietSanPham->TenSanPham}}" class="cart_product_name_{{$chiTietSanPham->MaSanPham}}">
@@ -91,7 +62,7 @@
                         data-id_product="{{$chiTietSanPham->MaSanPham}}">
                     </form>
                     <p><b>Còn hàng:</b> Tại cửa hàng</p>
-                    <p><b>Tình trạng:</b> Mới</p>
+                    <p><b>Thời hạn bảo hành:</b> {{ $chiTietSanPham->ThoiGianBaoHanh }} tháng</p>
                     <p><b>Thương hiệu:</b> {{ $chiTietSanPham->ThuongHieu->TenThuongHieu }}</p>
                     <p><b>Danh mục:</b> {{ $chiTietSanPham->DanhMuc->TenDanhMuc }}</p>
                 </div>
@@ -116,18 +87,66 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="companyprofile" >
+                    @foreach ($sanPhamLienQuan as $key => $valueSanPham)
                     <div class="col-sm-3">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <img src="images/home/gallery1.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    <form>
+                                        {{ csrf_field() }}
+                                        <input type="hidden" value="{{ $valueSanPham->MaSanPham }}" class="cart_product_id_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->TenSanPham }}" class="cart_product_name_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->HinhAnh }}" class="cart_product_image_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->GiaSanPham }}" class="cart_product_price_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->ChieuCao }}" class="cart_product_height_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->ChieuNgang }}" class="cart_product_width_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->ChieuDay }}" class="cart_product_thick_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->CanNang }}" class="cart_product_weight_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="{{ $valueSanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $valueSanPham->MaSanPham }}">
+                                        <input type="hidden" value="1" class="cart_product_qty_{{ $valueSanPham->MaSanPham }}">
+                                        <a href="{{ route('/ChiTietSanPham', $valueSanPham->MaSanPham) }}">
+                                            <img src="{{ asset('upload/SanPham/'.$valueSanPham->HinhAnh) }}" alt="" />
+                                            <p class="product-name">{{ $valueSanPham->TenSanPham }}</p>
+                                            <h2 class="">{{  number_format($valueSanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
+                                            <p class="vote-txt">
+                                                @php
+                                                $count = 0;
+                                                $tongSoSao = 0;
+                                                    foreach($allDanhGia as $key => $danhGia){
+                                                        if($danhGia->MaSanPham == $valueSanPham->MaSanPham){
+                                                            $count++;
+                                                            $tongSoSao += $danhGia->SoSao;
+                                                        }
+                                                    }
+                                                @endphp
+                                                @php
+                                                    if($count > 0){
+                                                    $tongSoSao = $tongSoSao/$count
+                                                @endphp
+                                                    <b>{{ number_format($tongSoSao, 1); }}</b>
+                                                    <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                                    <b>({{ $count }})</b>
+                                                @php
+                                                    }elseif($count == 0){
+                                                @endphp
+                                                    <b>0</b>
+                                                    <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                                    <b>(0)</b>
+                                                @php
+                                                    }
+                                                @endphp
+                                            </p>
+                                        </a>
+                                        <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                        data-id_product="{{ $valueSanPham->MaSanPham }}">
+                                            <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="tag" >
                     <div class="col-sm-12">
@@ -228,7 +247,7 @@
                             <ul class="media-list">
                             @foreach ($allDanhGia as $key => $danhGia)
                                 @foreach ($allTaiKhoan as $key => $taiKhoan)
-                                    @if ($taiKhoan->Email == $danhGia->Email)
+                                    @if ($taiKhoan->Email == $danhGia->Email && $danhGia->MaSanPham == $chiTietSanPham->MaSanPham)
                                     <li class="media col-sm-12">
                                         <a class="pull-left" href="#">
                                             <img class="media-object" src="{{ asset('upload/TaiKhoan/'.$taiKhoan->HinhAnh) }}" alt="Ảnh đại diện">
@@ -236,7 +255,7 @@
                                         <div class="media-body">
                                             <ul class="sinlge-post-meta">
                                                 <li><i class="fa fa-user"></i>{{ $taiKhoan->TenTaiKhoan }}</li>
-                                                {{-- <li><i class="fa fa-clock-o"></i><td>{{  date("d M Y", strtotime($danhGia->ThoiGianTao)) }}</td></li> --}}
+                                                <li><i class="fa fa-clock-o"></i><td>{{  date("s:i:H", strtotime($danhGia->ThoiGianTao)) }}</td></li>
                                                 <li><i class="fa fa-calendar"></i><td>{{  date("d M Y", strtotime($danhGia->ThoiGianTao)) }}</td></li>
                                             </ul>
                                             <p>{{ $danhGia->NoiDung }}</p>

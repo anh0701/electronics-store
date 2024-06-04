@@ -12,7 +12,7 @@ class BinhLuan extends Model
     protected $fillable = [
         'Email', 'MaBaiViet', 'BaiVietCha', 'NoiDung', 'TrangThai', 'ThoiGianTao', 'ThoiGianSua',
     ];
-    protected $primaryKey = 'MaDanhGia';
+    protected $primaryKey = 'MaBinhLuan';
     protected $table = 'tbl_binhluan';
 
     public function TaiKhoan(){

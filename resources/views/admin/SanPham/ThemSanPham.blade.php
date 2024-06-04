@@ -95,6 +95,10 @@
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
                             <input type="text" class="form-control" name="SoTien" placeholder="Giá sản phẩm">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thời gian bảo hành (theo tháng)</label>
+                            <input type="text" class="form-control" name="ThoiGianBaoHanh" placeholder="Thời hạn bảo hành (Theo tháng)">
+                        </div>
                         <button type="submit" name="ThemSanPham" class="btn btn-info">Thêm sản phẩm</button>
                     </form>
                 </div>

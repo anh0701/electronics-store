@@ -90,9 +90,9 @@
         <ul class="nav navbar-nav collapse navbar-collapse">
             <li class="dropdown"><a href="#">Bộ lọc<i class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
-                    <li class="pull-left"><a href="#">Giá thấp đến cao</a></li>
-                    <li class="pull-left"><a href="#">Giá cao đến thấy</a></li>
-                    <li class="pull-left"><a href="#">Bán chạy</a></li>
+                    <li class="pull-left"><a href="{{ route('/HienThiSanPhamTheoGiaTang', [$MaDanhMuc]) }}">Giá thấp đến cao</a></li>
+                    <li class="pull-left"><a href="{{ route('/HienThiSanPhamTheoGiaGiam', [$MaDanhMuc]) }}">Giá cao đến thấp</a></li>
+                    <li class="pull-left"><a href="{{ route('/HienThiSanPhamTheoSoLuongBan', [$MaDanhMuc]) }}">Bán chạy</a></li>
                     <li class="pull-left"><a href="#">Giảm theo %</a></li>
                 </ul>
             </li>
@@ -137,11 +137,12 @@
                                     <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                     <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                         <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
-                                        <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
-                                        <p>{{ $sanPham->TenSanPham }}</p>
+                                        <p class="product-name">{{ $sanPham->TenSanPham }}</p>
+                                        <h2 class="">{{  number_format($sanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
                                         <p class="vote-txt">
                                             @php
                                             $count = 0;
@@ -197,11 +198,12 @@
                                 <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
                                 <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                 <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                                <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
                                 <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                 <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                     <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
-                                    <h2>{{  number_format($sanPham->GiaSanPham,0,',','.').' đ'  }}</h2>
-                                    <p>{{ $sanPham->TenSanPham }}</p>
+                                    <p class="product-name">{{ $sanPham->TenSanPham }}</p>
+                                    <h2 class="">{{  number_format($sanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
                                     <p class="vote-txt">
                                         @php
                                         $count = 0;

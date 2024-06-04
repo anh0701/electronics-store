@@ -12,8 +12,8 @@ class SanPham extends Model
     protected $fillable = [
         'TenSanPham', 'SlugSanPham', 'MaThuongHieu', 'MaDanhMuc',
         'HinhAnh', 'TrangThai', 'MoTa', 'SoLuongHienTai', 'SoLuongBan', 'SoLuongTrongKho',
-        'GiaSanPham', 'ThoiGianTao', 'ThoiGianSua',
-        'ChieuCao', 'ChieuNgang', 'ChieuDay', 'CanNang'
+        'GiaSanPham', 'ThoiGianTao', 'ThoiGianSua', 'ThongSoKyThuat',
+        'ChieuCao', 'ChieuNgang', 'ChieuDay', 'CanNang', 'ThoiGianBaoHanh',
     ];
     protected $primaryKey = 'MaSanPham';
     protected $table = 'tbl_sanpham';

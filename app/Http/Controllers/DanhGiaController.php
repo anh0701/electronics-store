@@ -109,13 +109,13 @@ class DanhGiaController extends Controller
         return view('admin.DanhGia.LietKeBinhLuan')->with(compact('allBinhLuan'));
     }
 
-    public function KoKichHoatKoKichHoatBinhLuan($MaBinhLuan){
+    public function KoKichHoatBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->update(['TrangThai'=>0]);
         return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
     }
 
-    public function KichHoatBinhLian($MaBinhLuan){
+    public function KichHoatBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->update(['TrangThai'=>1]);
         return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');

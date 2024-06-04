@@ -54,7 +54,7 @@
                 @php
                 }else{
                 @endphp
-                  <a href="{{ route('/KickHoatBinhLuan', $binhLuan->MaBinhLuan) }}" ><span 
+                  <a href="{{ route('/KichHoatBinhLuan', $binhLuan->MaBinhLuan) }}" ><span 
                     style="font-size: 28px; color: red; ; content: \f164" class="fa-solid fa-toggle-off"></span></a>
                 @php
                 }
