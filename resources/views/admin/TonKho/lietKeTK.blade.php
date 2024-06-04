@@ -72,26 +72,26 @@
         console.log(labels); // Kiểm tra dữ liệu labels
         console.log(data); // Kiểm tra dữ liệu data
 
-        var n = 10;
-        var labelN = labels.slice(0, n);
-        var dataN = data.slice(0, n);
+        // var n = 10;
+        // var labelN = labels.slice(0, n);
+        // var dataN = data.slice(0, n);
 
 
-        var labelNN = 'Khác';
-        var dataNN = data.slice(n).reduce((a,b) => a + b, 0);
+        // var labelNN = 'Khác';
+        // var dataNN = data.slice(n).reduce((a,b) => a + b, 0);
 
         
-        labelN.push(labelNN);
-        dataN.push(dataNN);
+        // labelN.push(labelNN);
+        // dataN.push(dataNN);
 
 
         var myChart = new Chart(ctx, {
             type: 'bar', // Hoặc 'doughnut'
             data: {
-                labels: labelN,
+                labels: labels,
                 datasets: [{
                     label: 'Số Lượng Trong Kho',
-                    data: dataN,
+                    data: data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

@@ -22,13 +22,13 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
-                        <th>Mã sản phẩm</th>
-                        <th>Tên sản phẩm</th>
+                        <th></th>
+                        <th></th>
                         <th colspan="4" style="text-align:center;">Thời gian: {{ date_format(date_create($tgDau), 'd/m/Y') }} - {{ date_format(date_create($tgCuoi), 'd/m/Y') }}</th>
                     </tr>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
                         <th>Tồn đầu kỳ</th>
                         <th>Số lượng nhập</th>
                         <th>Số lượng xuất</th>
