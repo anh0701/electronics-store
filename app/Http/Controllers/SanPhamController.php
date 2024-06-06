@@ -10,6 +10,7 @@ use App\Models\DanhMucTSKT;
 use App\Models\ThongSoKyThuat;
 use App\Models\SanPhamTSKT;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class SanPhamController extends Controller
 {
@@ -63,32 +64,37 @@ class SanPhamController extends Controller
 
     public function ThemSanPham(Request $request){
         $data = $request->all();
+         $validate = Validator::make( $request->all() ,[
+                 'TenSanPham' => 'required|max:250',
+                 'SlugSanPham' => 'required',
+                 'MaThuongHieu' => 'required',
+                 'MoTa' => 'required',
+                 'DanhMucCha' => 'required',
+                 'DanhMucCon' => '',
+                 'TrangThai' => 'required',
+                 'GiaSanPham' => 'required',
+                 'HinhAnh' => ['required', 'image','mimes:jpeg,png,jpg,gif|max:2048'],
+//                 'ThongSoKyThuat' => 'required',
+             ],
+             [
+                 'TenSanPham.required' => 'Vui lòng điền tên sản phẩm',
+                 'TenSanPham.max' => 'Tên sản phẩm dài quá 250 ký tự',
+                 'SlugSanPham.required' => 'Vui lòng điền slug cho sản phẩm',
+                 'DanhMucCha.required' => 'Vui lòng điền Danh mục cho sản phẩm',
+                 'MaThuongHieu.required' => 'Vui lòng điền Thương hiệu cho sản phẩm',
+                 'MoTa.required' => 'Vui lòng điền Mô tả cho sản phẩm',
+                 'TrangThai.required' => 'Vui lòng điền Trạng thái cho sản phẩm',
+                 'GiaSanPham.required' => 'Vui lòng điền giá cho sản phẩm',
+                 'HinhAnh.required' => 'Vui lòng chọn hình ảnh cho sản phẩm',
+                 'HinhAnh.image' => 'Vui lòng chọn đúng định dạng hình ảnh.'
+             ]);
 
-        // foreach($data as $key => $thongSoKyThuat){
-        //     $data = $request->validate([
-        //         'TenSanPham' => 'required|max:250',
-        //         'SlugSanPham' => 'required',
-        //         'MaThuongHieu' => 'required',
-        //         'MoTa' => 'required',
-        //         'DanhMucCha' => 'required',
-        //         'DanhMucCon' => '',
-        //         'TrangThai' => 'required',
-        //         'GiaSanPham' => 'required',
-        //         'HinhAnh' => 'required',
-        //         'ThongSoKyThuat'.$key => 'required',
-        //     ],
-        //     [
-        //         'TenSanPham.required' => 'Chưa điền tên sản phẩm',
-        //         'TenSanPham.max' => 'Tên sản phẩm dài quá 250 ký tự',
-        //         'SlugSanPham.required' => 'Chưa điền slug cho sản phẩm',
-        //         'DanhMucCha.required' => 'Chưa điền Danh mục cho sản phẩm',
-        //         'MaThuongHieu.required' => 'Chưa điền Thương hiệu cho sản phẩm',
-        //         'MoTa.required' => 'Chưa điền Mô tả cho sản phẩm',
-        //         'TrangThai.required' => 'Chưa điền Trạng thái cho sản phẩm',
-        //         'GiaSanPham.required' => 'Chưa điền giá cho sản phẩm',
-        //         'HinhAnh.required' => 'Chưa chọn hình ảnh cho sản phẩm',
-        //     ]);
-        // }
+         if($validate->fails()){
+             return redirect()->back()
+                 ->withInput($request->input())
+                 ->withErrors($validate->errors());
+         }
+
         $maDanhMuc = '';
         $sanPham = new SanPham();
         $sanPham->TenSanPham = $data['TenSanPham'];
@@ -115,7 +121,7 @@ class SanPhamController extends Controller
 
         $get_image = $request->HinhAnh;
         $path = 'upload/SanPham/';
-        $get_name_image = $get_image->getClientOriginalName(); 
+        $get_name_image = $get_image->getClientOriginalName();
         $name_image = current(explode('.', $get_name_image));
         $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
         $get_image->move($path, $new_image);
@@ -146,7 +152,7 @@ class SanPhamController extends Controller
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
         $allSanPhamTSKT = SanPhamTSKT::orderBy('MaTSKTSP', 'DESC')->where('MaSanPham', $MaSanPham)->get();
         return view('admin.SanPham.SuaSanPham')
-        ->with(compact('sanPham', 'allThuongHieu', 'allDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'danhMuc', 'allSanPhamTSKT')); 
+        ->with(compact('sanPham', 'allThuongHieu', 'allDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'danhMuc', 'allSanPhamTSKT'));
     }
 
     public function TrangSanPhamTSKT($MaSanPham){
@@ -156,7 +162,7 @@ class SanPhamController extends Controller
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
         $allSanPhamTSKT = SanPhamTSKT::where('MaSanPham', $MaSanPham)->get();
         return view('admin.SanPham.LietKeSanPhamTSKT')
-        ->with(compact('allDanhMucTSKT', 'allTSKT', 'allSanPhamTSKT')); 
+        ->with(compact('allDanhMucTSKT', 'allTSKT', 'allSanPhamTSKT'));
     }
 
     public function SuaTSKTChoSanPham(Request $request){
