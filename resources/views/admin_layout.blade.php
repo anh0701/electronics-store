@@ -17,7 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="{{ asset('backend/css/font.css') }}" type="text/css"/>
 <link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
+{{-- <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/> --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css') }}">
@@ -25,13 +25,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //font-awesome icons -->
 <script src="{{ asset('backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('backend/js/raphael-min.js') }}"></script>
-<script src="{{ asset('backend/js/morris.js') }}"></script>
+{{-- <script src="{{ asset('backend/js/morris.js') }}"></script> --}}
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <!-- morris JavaScript -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
 </head>
 <body>
 <section id="container">
@@ -69,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="{{ route('/Test') }}"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
                 <li><a href="{{ route('dangXuat') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
             </ul>
@@ -88,7 +91,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý thương hiệu</span>
             </a>
             <ul class="sub">
@@ -99,7 +101,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý nhà cung cấp</span>
             </a>
             <ul class="sub">
@@ -110,7 +111,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý phiếu nhập</span>
             </a>
             <ul class="sub">
@@ -120,21 +120,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý phiếu xuất</span>
             </a>
             <ul class="sub">
               <li><a href="{{ route('taoPX') }}">+ Lập phiếu xuất</a></li>
               <li><a href="{{ route('xemPX') }}">+ Liệt kê phiếu xuất</a></li>
-              
             </ul>
           </li>
-
-      
-
-          
-
-          
           <li class="sub-menu">
             <a href="javascript:;">
               <span>Quản lý tồn kho</span>
@@ -147,7 +139,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý loại sản phẩm</span>
             </a>
             <ul class="sub">
@@ -157,7 +148,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý THDM</span>
             </a>
             <ul class="sub">
@@ -176,19 +166,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
                 <span>Quản lý tài khoản</span>
             </a>
             <ul class="sub">
               <li><a href="{{ route('taoTK') }}">+ Tạo tài khoản</a>
               <li><a href="{{ route('lietKeTK') }}">+ Liệt kê tài khoản</a>
-              {{-- <li><a href="{{ route('/PhanQuyenTaiKhoan') }}">Phân quyền cho tài khoản</a></li> --}}
-{{--              <li><a href="{{ route('/TrangLietKeTaiKhoan') }}">Quản lý tài khoản</a></li>--}}
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý danh mục TSKT</span>
             </a>
             <ul class="sub">
@@ -198,7 +184,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
               <span>Quản lý TSKT</span>
             </a>
             <ul class="sub">
@@ -208,7 +193,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-
                 <span>Quản lý phí giao hàng</span>
             </a>
             <ul class="sub">
@@ -218,15 +202,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </li>
           <li class="sub-menu">
               <a href="javascript:;">
-
                   <span>Quản lý giảm giá</span>
               </a>
               <ul class="sub">
-                  <li><a href="{{ Route('/them-phieu-giam-gia') }}">+ Thêm phiếu giảm giá</a></li>
-                  <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">+ Liệt kê phiếu giảm giá</a></li>
-                  <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">+ Thêm chương trình giảm giá</a></li>
-                  <li><a href="{{ Route('/chuong-trinh-giam-gia') }}">+ Liệt kê chương trình giảm giá</a></li>
+                <li><a href="{{ Route('/them-phieu-giam-gia') }}">+ Thêm phiếu giảm giá</a></li>
+                <li><a href="{{ Route('/liet-ke-phieu-giam-gia') }}">+ Liệt kê phiếu giảm giá</a></li>
+                <li><a href="{{ Route('/tao-chuong-trinh-giam-gia') }}">+ Thêm chương trình giảm giá</a></li>
+                <li><a href="{{ Route('/chuong-trinh-giam-gia') }}">+ Liệt kê chương trình giảm giá</a></li>
               </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Quản lý đơn hàng</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ Route('/TrangLietKeDonHang') }}">+ Liệt kê đơn hàng</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Quản lý phản hồi khách hàng</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ Route('/TrangLietKeDanhGia') }}">+ Liệt kê đánh giá sản phẩm</a></li>
+              <li><a href="{{ Route('/TrangLietKeBinhLuan') }}">+ Liệt kê đánh giá sản phẩm</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Quản lý bài viết</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ Route('/TrangLietKeBaiViet') }}">+ Liệt kê bài viết</a></li>
+              <li><a href="{{ Route('/TrangThemBaiViet') }}">+ Thêm bài viết</a></li>
+              <li><a href="{{ Route('/TrangLietKeDanhMucBV') }}">+ Liệt kê danh mục bài viết</a></li>
+              <li><a href="{{ Route('/TrangThemDanhMucBV') }}">+ Thêm danh mục bài viết</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+                <span>Quản lý báo cáo doanh thu</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ Route('/TrangLietKeBCDT') }}">+ Liệt kê báo cáo doanh thu</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -235,17 +254,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
-    <section class="wrapper">
+  <section class="wrapper">
 		@yield('admin_content')
-    </section>
- <!-- footer -->
-		  <div class="footer">
-        <div class="wthree-copyright">
-          <p>Đây là trang admin</a></p>
-        </div>
-		  </div>
-  <!-- / footer -->
   </section>
+  {{-- <div class="footer">
+    <div class="wthree-copyright">
+      <p>Sản phẩm của nhóm số 59<a href=""> Đồ án tốt nghiệp</a></p>
+    </div>
+  </div> --}}
+</section>
   <!--main content end-->
   </section>
   <script src="{{ asset('backend/js/bootstrap.js') }}"></script>
@@ -254,6 +271,112 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
   <script src="{{ asset('backend/js/monthly.js') }}"></script>
+  <script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
+  <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  {{--  --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var chart = new Morris.Bar({
+        element: 'chart',
+        data: [
+          { 
+            period: '2024-05-05', 
+            order: 10,
+            sales: 20,
+            profit: 40,
+            quantity: 60,
+          },{
+            period: '2024-06-05',  
+            order: 70,
+            sales: 60,
+            profit: 90,
+            quantity: 120,
+          }
+        ],
+        xkey: 'period',
+        ykeys: ['order', 'sales', 'profit', 'quantity'],
+        ykeys: ['order', 'sales', 'profit', 'quantity'],
+      });
+
+
+      // $(function() {
+      //   $( "#datepicker" ).datepicker({
+      //     prevText: "Tháng trước",
+      //     nextText: "Tháng sau",
+      //     dateFormat: "yy-mm-dd",
+      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+      //     duration: "slow",
+      //   });
+
+      //   $( "#datepicker2" ).datepicker({
+      //     prevText: "Tháng trước",
+      //     nextText: "Tháng sau",
+      //     dateFormat: "yy-mm-dd",
+      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+      //     duration: "slow",
+      //   });
+      // });
+
+      var from_date = $('#datepicker').val();
+      var to_date = $('#datepicker2').val();
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        method: "POST",
+        url: '{{ route('/Test') }}',
+        dataType: "JSON",
+        data: {
+          from_date : from_date,
+          to_date : to_date,
+          _token : _token
+        },
+        success:function(data){
+          chart.setData(data);
+        }
+      });
+
+      $('#btn-dashboard-filter').click(function(){
+        var from_date = $('#datepicker').val();
+        var to_date = $('#datepicker2').val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          method: 'POST',
+          url: '{{ route('/fillter-by-date') }}',
+          dataType: 'JSON',
+          data: {
+            from_date : from_date,
+            to_date : to_date,
+            _token : _token
+          },
+          success: function (result){
+            chart.setData(data);
+          }
+        });
+      });
+
+    });
+  </script>
+  {{-- datepicker --}}
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        prevText: "Tháng trước",
+        nextText: "Tháng sau",
+        dateFormat: "yy-mm-dd",
+        dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+        duration: "slow",
+      });
+
+      $( "#datepicker2" ).datepicker({
+        prevText: "Tháng trước",
+        nextText: "Tháng sau",
+        dateFormat: "yy-mm-dd",
+        dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+        duration: "slow",
+      });
+    } );
+  </script>
   {{-- Chọn địa điểm giao hàng --}}
   <script type="text/javascript">
 		$(document).ready(function(){
@@ -279,9 +402,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           success:function(data){
               $('#'+result).html(data);
           }
+        });
       });
-    });
-	});
+	  });
 	</script>
   {{-- Chọn danh thông số kỹ thuật --}}
   <script type="text/javascript">

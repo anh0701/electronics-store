@@ -76,7 +76,7 @@
               {{ $allThuongHieu->links('vendor.pagination.bootstrap-4') }}
             </ul>
           </div>
-      </div>
+        </div>
       </footer>
     </div>
 </div>

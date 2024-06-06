@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-
 class PhieuGiamGiaController extends Controller
 {
     /**
@@ -17,7 +16,6 @@ class PhieuGiamGiaController extends Controller
      */
     public function phieuGiamGia()
     {
-        //
         $phieuGiamGia = PhieuGiamGia::orderBy('MaGiamGia', 'DESC')->paginate(5);
         return view('admin.PhieuGiamGia.lietKePhieuGiamGia')->with(compact("phieuGiamGia"));
     }

@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TaiKhoan extends Model
 {
     use HasFactory;
-    
-    protected $table = 'tbl_taikhoan';
     public $timestamps = false;
+    protected $fillable = [
+        'Email', 'TenTaiKhoan', 'SoDienThoai', 'MatKhau', 'HinhAnh',
+        'TrangThai', 'BacNguoiDung', 'ThoiGianTao', 'ThoiGianSua', 'Quyen', 'Pin'
+    ];
     protected $primaryKey = 'MaTaiKhoan';
+    protected $table = 'tbl_taikhoan';
 }

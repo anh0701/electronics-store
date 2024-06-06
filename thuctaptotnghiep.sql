@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 30, 2024 lúc 04:30 PM
--- Phiên bản máy phục vụ: 8.0.30
--- Phiên bản PHP: 8.1.10
+-- Host: localhost:3306
+-- Generation Time: Jun 06, 2024 at 01:58 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,59 +18,103 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `thuctaptotnghiep`
+-- Database: `thunghiem2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_baiviet`
+-- Table structure for table `tbl_baiviet`
 --
 
 CREATE TABLE `tbl_baiviet` (
   `MaBaiViet` int NOT NULL,
-  `TenBaiViet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugBaiViet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenBaiViet` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `SlugBaiViet` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `TrangThai` int NOT NULL,
   `MaDanhMucBV` int NOT NULL,
-  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `ThoiGianTao` timestamp NOT NULL,
-  `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `HinhAnh` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_baiviet`
+--
+
+INSERT INTO `tbl_baiviet` (`MaBaiViet`, `TenBaiViet`, `SlugBaiViet`, `TrangThai`, `MaDanhMucBV`, `MoTa`, `HinhAnh`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(1, 'Có nên mua quạt điều hòa thay cho máy lạnh?', 'co-nen-mua-quat-dieu-hoa-thay-cho-may-lanh', 1, 4, '<h3>1Quạt điều hòa là gì? Cấu tạo, nguyên lý hoạt động</h3><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa\">Quạt điều hòa</a> còn được gọi là quạt hơi nước hay quạt làm mát không khí, làm mát không gian phòng nhanh chóng so với các loại <a href=\"https://www.dienmayxanh.com/quat\">quạt</a> thông thường. Nhờ khả năng <strong>làm mát bằng hơi nước</strong> nên đảm bảo an toàn sức khỏe cho người dùng và mang đến không khí tươi mát, trong lành như pha lê.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/7498/272138/Slider/ava-rpd-80637892556899521529.gif\" alt=\"Quạt điều hòa AVA RPD-80\" width=\"1020\" height=\"570\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/ava-rpd-80\"><i>Quạt điều hòa AVA RPD-80</i></a><i> làm mát nhanh chóng, giá rẻ chất lượng cao</i></p><p>Cấu tạo của quạt điều hòa phức tạp hơn nhiều so với các loại quạt khác. Mỗi bộ phận đảm nhận vai trò khác nhau và đều quan trọng như nhau. Gồm các bộ phận như sau:</p><ul><li>Tấm làm mát Cooling Pad.</li><li>Bình chứa nước.</li><li>Hệ thống bơm nước.</li><li>Quạt gió.</li><li>Tấm lưới chắn bụi, lọc không khí.</li><li>Bảng điều khiển và bánh xe di động.</li></ul><p>Quạt điều hòa <strong>hoạt động dựa trên nguyên lý vận hành hơi nước bằng cách</strong> <strong>bốc hơi nước tự nhiên </strong>(để dễ hiểu bạn có thể liên tưởng đến việc ao hồ, thác bốc hơi lên cao). Khi khởi động quạt, không khí bên ngoài sẽ đi vào tấm lọc bụi rồi qua tấm làm mát, sau đó trả không khí ra bên ngoài.</p><p><strong>Xem thêm</strong>:</p><ul><li><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/quat-dieu-hoa-la-gi-962985\">Quạt điều hòa là gì? Cấu tạo và nguyên lý hoạt động của quạt điều hòa</a></li><li><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/thuong-hieu-quat-dieu-hoa-pho-bien-tren-thi-tru-1336367\">10 thương hiệu quạt điều hoà phổ biến trên thị trường</a></li></ul><figure class=\"image\"><img style=\"aspect-ratio:730/550;\" src=\"https://cdn.tgdd.vn/Files/2016/05/10/826753/8-ly-do-ban-nen-chon-quat-dieu-hoa-thay-cho-may-la.gif\" alt=\"Quạt điều hòa hoạt động dựa trên nguyên lý vận hành hơi nước\" width=\"730\" height=\"550\"></figure><h3>2Lý do nên mua quạt điều hòa thay cho máy lạnh</h3><h4><strong>Tiết kiệm tiền hơn</strong></h4><p>Quạt điều hòa có mức giá thấp hơn <a href=\"https://www.dienmayxanh.com/may-lanh\">máy lạnh</a> nhưng sẽ có giá cao hơn một chiếc <a href=\"https://www.dienmayxanh.com/quat\">quạt</a> làm mát thông thường.</p><p>Chỉ cần ngân sách từ <strong>1.5 đến 3 triệu đồng</strong>, người dùng đã có thể sở hữu được một chiếc quạt điều hòa có công suất phù hợp cho một căn phòng có diện tích trung bình 15 - 20 mét vuông.</p><p>Với các phòng có diện tích lớn hơn, hoặc phục vụ cho loại hình dịch vụ, các loại quạt công suất lớn với giá từ <strong>8 đến 15 triệu</strong> đồng sẽ phù hợp.</p><p><strong>Xem thêm:</strong> <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tu-van-chon-mua-quat-dieu-hoa-chat-luong-1297883\">Tư vấn chọn mua quạt điều hòa chất lượng, tiết kiệm cho cả nhà</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/680;\" src=\"https://cdn.tgdd.vn/Products/Images/7498/324895/quat-dieu-hoa-daikiosan-dm201-1.jpg\" alt=\"Quạt điều hoà Daikiosan DM201\" width=\"1020\" height=\"680\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/quat-dieu-hoa-daikiosan-dm201\"><i>Quạt điều hoà Daikiosan DM201</i></a><i> chất lượng cao, được nhiều người chọn mua</i></p><h4><strong>Tiết kiệm điện hơn</strong></h4><p>Về điện năng tiêu thụ, quạt điều hòa có hệ thống làm mát có cấu tạo khá đơn giản, thiết bị này tiêu tốn điện năng không quá nhiều, chỉ khoảng 1/7 đến 1/10 so với điều hòa nhiệt độ.</p><p>Hệ thống bơm nước, phun sương hay các tính năng khử khuẩn, <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-ion-am-la-gi-vi-sao-nhieu-hang-su-dung-c-1227318\">tạo ion âm</a>,... và bảng mạch điều khiển tiêu tốn khá ít điện năng so với hiệu quả làm mát mang lại.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/680;\" src=\"https://cdn.tgdd.vn/Products/Images/7498/321978/quat-dieu-hoa-sunhouse-shd7745-1.jpg\" alt=\"Quạt điều hoà Sunhouse SHD7745\" width=\"1020\" height=\"680\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/quat-dieu-hoa-sunhouse-shd7745\"><i>Quạt điều hoà Sunhouse SHD7745</i></a><i> là sản phẩm chất lượng, đáp ứng đầy đủ nhu cầu sử dụng của người tiêu dùng.</i></p><h4><strong>Phù hợp không gian kiến trúc của người Việt Nam</strong></h4><p>Khác với cách xây nhà của người phương Tây và các quốc gia khác trên thế giới, <strong>người Việt xây nhà với không gian kiến trúc mở</strong>, nhà có nhiều cửa sổ, cửa chính thì lớn, thoáng mát. Tại nhiều vùng quê thì còn có nhà sàn, nhà gỗ rất thoáng mát.</p><p>Việc căn nhà không có cửa kín sẽ khiến việc lắp đặt máy lạnh trở nên khó khăn. Chính vì lý do đó mà lựa chọn quạt điều hoà sẽ phù hợp hơn trong tình huống này, vừa tiết kiệm được chi phí đóng kín không gian.</p><figure class=\"image\"><img style=\"aspect-ratio:780/433;\" src=\"https://cdn.tgdd.vn/Products/Images/7498/218312/Slider/vi-vn-may-lam-mat-khong-khi-kangaroo-kg50f62-(8).jpg\" alt=\"Quạt điều hoà Kangaroo KG50F62\" width=\"780\" height=\"433\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/may-lam-mat-khong-khi-kangaroo-kg50f62\"><i>Quạt điều hoà Kangaroo KG50F62</i></a><i> phù hợp không gian kiến trúc mở</i></p><h4><strong>Vẫn làm mát hiệu quả trên diện tích rộng</strong></h4><p><strong>Quạt điều hòa giúp</strong> <strong>giảm nhiệt độ phòng từ 4 - 8 độ C</strong> tuỳ vào độ ẩm không khí và nhiệt độ môi trường. Quạt điều hòa sẽ làm mát hiệu quả trong thời tiết mùa hè nóng bức.</p><p>Chế độ tản gió quay sang trái phải hay trên dưới, cùng động cơ mạnh của quạt điều hòa giúp làm mát nhanh và hiệu quả khu vực khoảng 15 - 50 mét vuông (tuỳ công suất).</p><figure class=\"image\"><img style=\"aspect-ratio:780/433;\" src=\"https://cdn.tgdd.vn/Files/2016/05/10/826753/8-ly-do-ban-nen-chon-quat-dieu-hoa-thay-cho-may-la-3.jpg\" alt=\"Quạt làm mát hiệu quả trên diện tích rộng\" width=\"780\" height=\"433\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/quat-dieu-hoa-delites-fls-l20kg?src=osp#top-featured-images-gallery-0\"><i>Quạt điều hòa Delites FLS-L20KG</i></a><i> sở hữu công suất 160W phù hợp với phòng 30 - 35 mét vuông</i></p><h4><strong>Cân bằng độ ẩm không khí không gây khô da</strong></h4><p>Nếu việc sử dụng máy lạnh thông thường sẽ giảm độ ẩm trong phòng làm khô da, cơ thể mất nước thì quạt điều hòa lại khắc phục được nhược điểm này.</p><p>Quạt điều hòa sử dụng hơi nước để hấp thụ nhiệt và làm giảm nhiệt độ không khí, do vậy cũng có tác dụng tăng độ ẩm cho căn phòng khô nóng mà không làm hư hại thiết bị điện tử.</p><figure class=\"image\"><img style=\"aspect-ratio:730/408;\" src=\"https://cdn.tgdd.vn/Files/2016/05/10/826753/8-ly-do-ban-nen-chon-quat-dieu-hoa-thay-cho-may-la-13.jpg\" alt=\"Quạt điều hòa Kachi MK-202\" width=\"730\" height=\"408\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/kachi-mk-202\"><i>Quạt điều hòa Kachi MK-202</i></a></p><h4><strong>Làm sạch không khí</strong></h4><p>Nếu máy lạnh có màng lọc khuẩn thì quạt điều hòa nhờ tấm chắn và tấm làm mát trong hệ thống quạt giúp không khí đi qua được lọc sạch bụi bẩn trước khi được làm mát và đẩy trở lại môi trường ngoài. Nhờ đó không gian sử dụng không chỉ mát mẻ hơn mà còn trong lành hơn.</p><p>Thêm vào đó, quạt còn trang bị thêm chức năng tạo ion âm giúp làm sạch không khí (các hạt bụi mang điện tích dương gặp <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/ion-la-gi-loi-ich-cua-ion-doi-voi-suc-khoe-1369559\">ion âm</a> sẽ bị hút và rơi xuống).</p><p>Không gian sử dụng quạt điều hòa sẽ sạch hơn, trong lành hơn, mát mẻ và thư thái hơn, cho tinh thần gia đình bạn thư giãn và sảng khoái mỗi ngày.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/7498/307875/Slider/quat-dieu-hoa-hoa-phat-hpcf1-012638441085713386273.jpg\" alt=\"Quạt điều hòa Hòa Phát HPCF1-012\" width=\"1020\" height=\"570\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/quat-dieu-hoa-hoa-phat-hpcf1-012\"><i>Quạt điều hòa Hòa Phát HPCF1-012</i></a><i> thiết kế tinh tế, công suất 165W, có chế độ đảo gió tự động cho gió mát tản đều trong không gian</i></p><h4><strong>An toàn hơn cho sức khỏe</strong></h4><p>Sử dụng máy lạnh thường xuyên và không đúng cách mang nhiều tác hại:</p><ul><li>Máy lạnh thường sử dụng trong phòng kín, tạo sự chênh lệch nhiệt độ lớn giữa trong nhà và ngoài trời gây hại cho cơ thể. Biểu hiện là cảm giác choáng váng, đau đầu, mệt mỏi hay cảm lạnh khi đột ngột di chuyển từ phòng máy lạnh ra môi trường ngoài.</li><li>Sử dụng máy lạnh thông thường liên tục không chỉ làm khô da mà còn khiến các mạch máu co lại do nhiệt độ làm máu lưu thông kém và gây tình trạng đau khớp.</li><li>Trẻ em ngủ dưới hướng phà gió trực tiếp của máy lạnh dễ bị cảm cúm và các bệnh về đường hô hấp.</li></ul><p>Trong đó, nếu gia đình sử dụng quạt điều hòa sẽ khắc phục được những yếu điểm của máy lạnh:</p><ul><li>Quạt điều hòa có thể sử dụng trong không gian mở kết hợp với chế độ tản gió cùng các chức năng làm sạch không khí giúp cho không gian dùng an toàn.</li><li>Không tạo sự chênh lệch nhiệt độ quá lớn giữa trong và ngoài phòng, không gây khô da, đau đầu, đau khớp và trẻ em khỏe mạnh hơn, không sợ ốm đau khi gia đình dùng quạt điều hòa thay máy lạnh nhé.</li></ul><figure class=\"image\"><img style=\"aspect-ratio:780/433;\" src=\"https://cdn.tgdd.vn/Files/2016/05/10/826753/8-ly-do-ban-nen-chon-quat-dieu-hoa-thay-cho-may-la-7.jpg\" alt=\"Quạt điều hòa an toàn cho sức khỏe người dùng\" width=\"780\" height=\"433\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/quat-dieu-hoa-delites-del-ac07cr?src=osp#top-featured-images-gallery-0\"><i>Quạt điều hòa Delites DEL-AC07CR</i></a><i> lọc sạch không khí, an toàn đối với sức khỏe người dùng nhờ chức năng tạo ion</i></p><h4><strong>Sử dụng linh hoạt</strong></h4><p>Máy lạnh cần lắp ráp một hệ thống đồng bộ trong và ngoài phòng để có thể sử dụng và chỉ sử dụng cố định, 1 phòng/1 máy. Trong khi <strong>quạt điều hòa có các bánh xe dưới chân đế</strong> giúp quạt <strong>có thể di chuyển dễ dàng</strong> và sử dụng linh hoạt cho nhiều vị trí, nhiều không gian, không cần lắp đặt.</p><figure class=\"image\"><img style=\"aspect-ratio:780/433;\" src=\"https://cdn.tgdd.vn/Files/2016/05/10/826753/8-ly-do-ban-nen-chon-quat-dieu-hoa-thay-cho-may-la-5.jpg\" alt=\"Quạt điều hòa có các bánh xe dưới chân đế giúp quạt có thể di chuyển dễ dàng\" width=\"780\" height=\"433\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/dmax-zlf-2804rc?src=osp#top-featured-images-gallery-0\"><i>Quạt điều hòa Dmax ZLF-2804RC</i></a><i> trang bị bánh xe di chuyển dễ dàng, thuận tiện</i></p><h4><strong>Dễ vệ sinh hơn</strong></h4><p>Máy lạnh sử dụng lâu sẽ là nơi sinh sống của nhiều vi khuẩn, tăng mật độ các khí độc hại cho cơ thể con người khi hoạt động. Tuy nhiên nó lại được lắp cố định ở trên cao nên gây khó khăn khi người dùng muốn vệ sinh, thường phải thuê <a href=\"https://www.dienmayxanh.com/tho-dien-may-xanh/ve-sinh-may-lanh-tu-1-hp-2-5-hp\">dịch vụ vệ sinh máy lạnh</a>.</p><p><strong>Quạt điều hòa thiết kế có thể tháo rời các bộ phận</strong>: Tấm chắn bụi, bình chứa nước, tấm làm mát giúp bạn <strong>dễ dàng vệ sinh </strong>nhanh chóng, hiệu quả. Khi vệ sinh định kỳ, thường xuyên không những giúp quạt hoạt động ổn định hơn mà còn giúp hạn chế vi khuẩn gây hại tích tụ và sinh bệnh cho người dùng.</p><figure class=\"image\"><img style=\"aspect-ratio:780/433;\" src=\"https://cdn.tgdd.vn/Files/2016/05/10/826753/8-ly-do-ban-nen-chon-quat-dieu-hoa-thay-cho-may-la-10.jpg\" alt=\"Quạt dễ vệ sinh hơn khi sử dụng lâu ngày\" width=\"780\" height=\"433\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/quat-dieu-hoa/quat-dieu-hoa-midea-ac375-19crh?src=osp#top-featured-images-gallery-0\"><i>Quạt điều hòa Midea AC375-19CRH</i></a><i> có thiết kế sang trọng, đơn giản dễ dàng tháo rời để vệ sinh</i></p><p><strong>Xem thêm</strong>: <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cach-ve-sinh-quat-dieu-hoa-970804\">Hướng dẫn vệ sinh quạt điều hòa đúng cách</a></p><h3>3Có nên mua quạt điều hòa thay cho máy lạnh</h3><p>Để trả lời cho câu hỏi liệu có nên mua quạt điều hòa thay cho máy lạnh <strong>sẽ phụ thuộc vào</strong> <strong>nhu cầu sử dụng của người dùng và điều kiện tài chính</strong> có đủ để đáp ứng. Mỗi sản phẩm điều có những ưu điểm nổi bật riêng và phù hợp cho từng nhu cầu sử dụng khác nhau. Chính vì thế, người dùng nên cân nhắc, xem xét kỹ lưỡng trước khi mua sắm.</p><p>Chắc chắn rằng, trường hợp nếu gia đình<strong> vừa có quạt điều hòa, vừa có máy lạnh</strong> thì sẽ là giải pháp tốt, nhất là vào những ngày nắng nóng oi bức, khó chịu. Thiết bị sẽ đáp ứng tốt mọi nhu cầu sử dụng của gia đình bạn.</p><p>Nếu bạn có phòng kín và nóng bức nhiều thì nên mua máy lạnh, còn không gian sống của bạn thoáng mát có gió trời, cửa sổ hứng nắng thì nên mua quạt điều hoà.</p><figure class=\"image image-style-side\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/320848/Slider/aqua-inverter-1-hp-aqa-rv10qa2638421356447018180.jpg\" alt=\"Điều hòa AQUA Inverter 1 HP AQA-RV10QA2\" width=\"1020\" height=\"570\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/dieu-hoa/aqua-inverter-1-hp-aqa-rv10qa2\"><i>Điều hòa AQUA Inverter 9000 BTU AQA-RV10QA2</i></a><i> giá rẻ chất lượng, làm mát nhanh</i></p>', 'BaiViet112.jpg', '2024-05-26 22:43:36', '2024-05-27 10:07:11'),
+(2, 'Bếp hồng ngoại loại nào tốt? Nên mua bếp hồng ngoại của hãng nào?', 'bep-hong-ngoai-loai-nao-tot-nen-mua-bep-hong-ngoai-cua-hang-nao', 1, 1, '<h3>1Bếp hồng ngoại Sunhouse</h3><p><strong>Sunhouse</strong> là một trong những tập đoàn chuyên sản xuất đồ <a href=\"https://www.dienmayxanh.com/gia-dung\">gia dụng</a> nổi tiếng ở <strong>Việt Nam</strong>, được thành lập vào <strong>năm 2004</strong>. Thương hiệu cung cấp cho người dùng các dòng sản phẩm gia dụng có chất lượng cao, hoạt động bền bỉ như: <a href=\"https://www.dienmayxanh.com/noi-chien-khong-dau-sunhouse\">nồi chiên không dầu</a>, <a href=\"https://www.dienmayxanh.com/noi-com-dien-sunhouse\">nồi cơm điện</a>, <a href=\"https://www.dienmayxanh.com/may-loc-nuoc-sunhouse\">máy lọc nước</a>,...</p><p><strong>Thông tin sản phẩm</strong> <a href=\"https://www.dienmayxanh.com/bep-hong-ngoai-sunhouse\">bếp hồng ngoại Sunhouse</a>:</p><ul><li><strong>Thương hiệu:</strong> Việt Nam.</li><li><strong>Sản xuất:</strong> Trung Quốc.</li><li><strong>Bảo hành chính hãng:</strong> 1 năm.</li><li><strong>Tầm giá:</strong> 800.000 - 3.960.000 đồng (giá được cập nhật vào tháng 08/2023, có thể thay đổi theo thời gian).</li></ul><figure class=\"image\"><img style=\"aspect-ratio:730/450;\" src=\"https://cdn.tgdd.vn//News/923885//Myproject-1-2023-08-08T145724.167-730x450.jpg\" alt=\"Bếp hồng ngoại Sunhouse SHD 6017(EMC) sở hữu mặt kính cường lực giúp bếp chịu nhiệt, chịu lực tốt\" width=\"730\" height=\"450\"></figure><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai/sunhouse-shd-6017-emc\">Bếp hồng ngoại Sunhouse SHD 6017(EMC)</a> sở hữu mặt kính cường lực giúp bếp chịu nhiệt, chịu lực tốt</p><p><strong>Một số đặc điểm nổi bật:</strong></p><ul><li>Bếp hồng ngoại sở hữu thiết kế an toàn, chất lượng và công nghệ tiên tiến hàng đầu của Hàn Quốc.</li><li>Bếp được lắp đặt với công suất lên tới <strong>3600W</strong>, khi sử dụng bếp có <strong>hai vùng nấu</strong> giúp cho người dùng tiết kiệm được thời gian đáng kể.</li><li>Chất liệu của bề mặt bếp hồng ngoại có khả năng <strong>chống nứt vỡ, bền bỉ</strong> theo thời gian đặc biệt dễ dàng vệ sinh cùng với bề mặt chịu nhiệt lên đến <strong>800 độ C </strong>và chịu lực tốt.</li><li>Bếp được thiết kế bảng điều khiển cảm ứng hiển thị bằng <strong>ngôn ngữ tiếng Việt</strong> giúp người dùng dễ dàng điều chỉnh chế độ nấu ăn.</li><li>Có chức năng đảm bảo an toàn cho người dùng như: <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/mot-so-tien-ich-cua-bep-dien-hien-nay-848448#hmenuid3\">khóa bảng điều khiển</a>, <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tim-hieu-nhung-loi-ich-cua-bep-hong-ngoai-588417#hmenuid6\">tự ngắt khi lượng nhiệt quá tải</a>.</li></ul><p><strong>Xem thêm: </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/bep-hong-ngoai-sunhouse-co-tot-khong-co-nen-mua-ha-1443616\">Bếp hồng ngoại Sunhouse có tốt không? Có nên mua hay không?</a></p><p>&nbsp;</p><p><strong>Mời bạn tham khảo thêm một số bếp hồng ngoại Sunhouse bán chạy nhất tại Điện máy XANH:</strong></p><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai?itm_source=knh&amp;itm_medium=shortcode&amp;itm_content=productlist\">Xem thêm sản phẩm Bếp hồng ngoại</a></p><h3>2Bếp hồng ngoại Sanaky</h3><p>Thương hiệu <strong>Sanaky</strong> được thành lập vào<strong> năm 1995</strong>, chủ yếu hoạt động trong các lĩnh vực phân phối các sản phẩm điện lạnh và điện gia dụng. Sanaky có hơn<strong> 22 năm</strong> kinh nghiệm và phát triển trong lĩnh vực điện lạnh, <a href=\"https://www.dienmayxanh.com/gia-dung\">gia dụng</a> như: <a href=\"https://www.dienmayxanh.com/tu-dong-sanaky\">tủ đông</a>, <a href=\"https://www.dienmayxanh.com/lo-nuong-sanaky\">lò nướng</a>,...</p><p><strong>Thông tin sản phẩm</strong> <a href=\"https://www.dienmayxanh.com/bep-hong-ngoai-sanaky\">bếp hồng ngoại Sanaky</a>:</p><ul><li><strong>Thương hiệu:</strong> Việt Nam.</li><li><strong>Sản xuất:</strong> Trung Quốc.</li><li><strong>Bảo hành chính hãng:</strong> 1 năm.</li><li><strong>Tầm giá: </strong>950.000 - 2.910.000 đồng (giá được cập nhật vào tháng 08/2023, có thể thay đổi theo thời gian).</li></ul><figure class=\"image\"><img style=\"aspect-ratio:730/404;\" src=\"https://cdn.tgdd.vn/News/923885/be%CC%82%CC%81pho%CC%82%CC%80ngngoa%CC%A3isanaky-730x404-1.jpeg\" alt=\"Bếp hồng ngoại Sanaky SNK-2101HG thiết kế nhỏ gọn, sang đẹp, tiết kiệm diện tích sử dụng và tô điểm bếp nấu gia đình\" width=\"730\" height=\"404\"></figure><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai/sanaky-snk-2101hg\">Bếp hồng ngoại Sanaky SNK-2101HG</a> thiết kế nhỏ gọn, sang đẹp, tiết kiệm diện tích sử dụng và tô điểm bếp nấu gia đình</p><p><strong>Một số đặc điểm nổi bật:</strong></p><ul><li>Bếp hồng ngoại Sanaky sở hữu thiết kế sang trọng, âm tường giúp tăng tính thẩm mỹ, đa dạng về mẫu mã cho người dùng lựa chọn.</li><li>Công suất của bếp hồng ngoại Sanaky lên tới <strong>4000W</strong>, <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/phan-loai-cac-chat-lieu-mat-bep-cua-bep-dien-587035#hmenuid4\">mặt kính Ceramic</a> có khả năng chịu lực tốt, chống trầy xước, dễ dàng vệ sinh sau khi nấu ăn.</li><li><strong>Chế độ nấu ăn đa dạng</strong>: nướng, đun nước, nấu canh, nấu lẩu, chiên/xào. Người dùng chỉ cần chọn menu, bếp sẽ tự động điều chỉnh mức nhiệt phù hợp.</li><li>Sở hữu bảng điều khiển cảm ứng có <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tim-hieu-nhung-loi-ich-cua-bep-hong-ngoai-588417#hmenuid8\">khóa an toàn</a> bảo vệ trẻ nhỏ cùng với <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/mot-so-tien-ich-cua-bep-dien-hien-nay-848448#hmenuid8\">chức năng hẹn giờ</a> rất nhạy, ngôn ngữ tiếng Việt dễ hiểu giúp cho người dùng dễ dàng sử dụng.</li></ul><p><strong>Xem thêm: </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/bep-hong-ngoai-sanaky-co-tot-khong-896003\">Bếp hồng ngoại Sanaky của nước nào? Có tốt không?</a></p><p>&nbsp;</p><p><strong>Mời bạn tham khảo thêm một số bếp hồng ngoại Sanaky bán chạy nhất tại Điện máy XANH:</strong></p><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai?itm_source=knh&amp;itm_medium=shortcode&amp;itm_content=productlist\">Xem thêm sản phẩm Bếp hồng ngoại</a></p><h3>3Bếp hồng ngoại Kangaroo</h3><p><strong>Kangaroo</strong> là một thương hiệu của <strong>Việt Nam</strong> thuộc<strong> tập đoàn Kangaroo</strong>, được thành lập vào <strong>năm 2003</strong> có trụ sở tại <strong>thủ đô Hà Nội</strong>. Sau <strong>hơn 10 năm</strong> hoạt động và phát triển, thương hiệu Kangaroo ngày càng khẳng định vị thế tại thị trường Việt Nam với những dòng sản phẩm như: <a href=\"https://www.dienmayxanh.com/may-loc-nuoc-kangaroo\">máy lọc nước</a>, <a href=\"https://www.dienmayxanh.com/quat-dieu-hoa-kangaroo\">quạt điều hòa</a>,...</p><p><strong>Thông tin sản phẩm</strong> <a href=\"https://www.dienmayxanh.com/bep-hong-ngoai-kangaroo\">bếp hồng ngoại Kangaroo</a>:</p><ul><li><strong>Thương hiệu:</strong> Việt Nam.</li><li><strong>Sản xuất: </strong>Trung Quốc.</li><li><strong>Bảo hành chính hãng: </strong>1 năm.</li><li><strong>Tầm giá:</strong> 720.000 - 3.190.000 đồng (giá được cập nhật vào tháng 08/2023, có thể thay đổi theo thời gian).</li></ul><figure class=\"image\"><img style=\"aspect-ratio:730/450;\" src=\"https://cdn.tgdd.vn//News/923885//Myproject-1-2023-08-08T150248.432-730x450.jpg\" alt=\"Bếp hồng ngoại Kangaroo KG20IFP1 có thiết kế nhỏ gọn với 1 vùng nấu, phù hợp sử dụng trong mọi không gian\" width=\"730\" height=\"450\"></figure><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai/kangaroo-kg20ifp1\">Bếp hồng ngoại Kangaroo KG20IFP1</a> có thiết kế nhỏ gọn với 1 vùng nấu, phù hợp sử dụng trong mọi không gian</p><p><strong>Một số đặc điểm nổi bật:</strong></p><ul><li>Thiết kế của <strong>bếp hồng ngoại Kangaroo</strong> hiện đại, phù hợp với mọi không gian có thể lắp đặt âm tường sang trọng.</li><li><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tim-hieu-nhung-loi-ich-cua-bep-hong-ngoai-588417#hmenuid3\">Đa dạng chế độ nấu</a> tự động như: lẩu, chiên/xào, nấu cháo, nấu súp, đun nước, hầm, chưng,...</li><li>Sở hữu vùng nấu từ <strong>190mm</strong> và vùng nấu hồng ngoại <strong>200mm</strong>, giúp người dùng nấu được nhiều món ăn với đa dạng loại <a href=\"https://www.dienmayxanh.com/noi\">nồi</a>, <a href=\"https://www.dienmayxanh.com/chao-chong-dinh\">chảo</a>.</li><li>Bếp hồng ngoại còn có <strong>chức năng bảng khóa điều chỉnh</strong>, <strong>tự động ngắt khi quá tải</strong>, giúp an toàn cho người sử dụng cùng với <strong>chế độ nấu hẹn giờ</strong> riêng. Ngoài ra, bếp còn có <strong>hệ thống cảnh báo an toàn </strong>giúp yên tâm sử dụng.</li></ul><p><strong>Xem thêm: </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/kangaroo-thuong-hieu-cua-nuoc-nao-co-tot-khong-1435163\">Kangaroo - Thương hiệu của nước nào? Có tốt không</a></p><p>&nbsp;</p><p><strong>Mời bạn tham khảo thêm một số bếp hồng ngoại Kangaroo bán chạy nhất tại Điện máy XANH:</strong></p><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai?itm_source=knh&amp;itm_medium=shortcode&amp;itm_content=productlist\">Xem thêm sản phẩm Bếp hồng ngoại</a></p><h3><strong>4Bếp hồng ngoại Junger</strong></h3><p>Junger là một thương hiệu gia dụng cao cấp, chất lượng đến từ Đức và gia nhập vào thị trường Việt Nam từ năm 2009. Hãng chuyên sản xuất thiết bị nhà bếp và các sản phẩm tiện ích trong gia đình tại Thái Lan. Thương hiệu chuyên cung cấp các sản phẩm như: <a href=\"https://www.dienmayxanh.com/bep-hong-ngoai-junger\">bếp hồng ngoại</a>, lò vi sóng, <a href=\"https://www.dienmayxanh.com/bep-tu-junger\">bếp từ</a>, <a href=\"https://www.dienmayxanh.com/may-hut-mui-junger\">máy hút mùi</a>,... với các thiết kế tinh tế, đẳng cấp.</p><ul><li><strong>Thông tin sản phẩm</strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/%20https:/www.dienmayxanh.com/bep-hong-ngoai-junger\"><strong> bếp hồng ngoại Junger</strong></a>:</li><li><strong>Thương hiệu</strong>: Junger (Đức).</li><li><strong>Sản xuất</strong>: Thái Lan.</li><li><strong>Bảo hành chính hãng</strong>: Chính hãng 3 năm tại nhà (cập nhật tháng 04/2024, có thể thay đổi theo thời gian).</li><li><strong>Tầm giá</strong>: 2 - 30 triệu đồng.</li><li><strong>Thiết kế nhỏ gọn với gam màu đen sang trọng </strong>bếp hồng ngoại Junger không chỉ là thiết bị nấu nướng mà còn là điểm nhấn cho không gian bếp của bạn.</li><li><strong>Chất liệu mặt kính cao cấp, dễ dàng vệ sinh</strong>: <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/phan-loai-cac-chat-lieu-mat-bep-cua-bep-dien-587035#hmenuid4\">Mặt kính Ceramic</a> - Junger (Đức) bền bỉ, chịu lực, chống trầy xước và nứt vỡ, đảm bảo an toàn khi sử dụng.</li><li><strong>Công suất lớn, nấu nướng nhanh chóng</strong>: 2200 - 4800W (tùy từng loại sản phẩm sẽ có công suất khác nhau) giúp bạn tiết kiệm thời gian nấu nướng tối đa.</li><li><strong>Tính năng phong phú, an toàn tuyệt đối</strong>: Junger trang bị cho bếp hồng ngoại nhiều <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-bao-ve-an-toan-cua-bep-hong-ngoai-588125#hmenuid7\">tính năng thông minh như khóa trẻ em</a>, hẹn giờ nấu lên đến 480 phút. tự ngắt khi quá tải và hệ thống quạt tản nhiệt, đảm bảo an toàn cho cả người dùng và thiết bị.</li><li><strong>Mâm nhiệt HI-LIGHT sử dụng hợp kim Carbon kết hợp hệ thống cảm biến nhiệt E.G.O </strong>đáp ứng tối đa nhu cầu nấu nướng đa dạng với các loại <a href=\"https://www.dienmayxanh.com/noi-inox\">nồi inox</a>, <a href=\"https://www.dienmayxanh.com/noi-thuy-tinh\">nồi thủy tinh</a>, <a href=\"https://www.dienmayxanh.com/noi?g=noi-gang-duc\">nồi gang</a>, <a href=\"https://www.dienmayxanh.com/noi-dat\">nồi đất</a>,... mang đến sự tiện lợi tối đa cho người nội trợ.</li></ul><figure class=\"image\"><img style=\"aspect-ratio:730/450;\" src=\"https://cdn.tgdd.vn/Files/2021/06/19/1361572/bep-hong-ngoai-junger-cua-nuoc-nao-co-tot-khong--11.jpg\" alt=\"Bếp hồng ngoại Junger MT-21 sở hữu thiết kế sang trọng, có 2 tay cầm cách nhiệt\" width=\"730\" height=\"450\"></figure><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai/junger-mt-21\">Bếp hồng ngoại Junger MT-21</a> sở hữu thiết kế sang trọng, có 2 tay cầm cách nhiệt</p><p>&nbsp;</p><p>&nbsp;</p><h3>5Bếp hồng ngoại Malloca</h3><p><strong>Malloca</strong> là thương hiệu thiết bị nhà bếp của<strong> Tây Ban Nha</strong> được đăng ký bản quyền vào <strong>năm 2006</strong>. Trải qua gần <strong>20 năm</strong> phát triển tại thị trường Việt Nam, Malloca đã và đang được nhiều người biết đến với những dòng sản phẩm nhà bếp cao cấp, sản xuất theo tiêu chuẩn của châu Âu như: <a href=\"https://www.dienmayxanh.com/bep-tu-malloca\">bếp từ</a>, <a href=\"https://www.dienmayxanh.com/may-hut-mui-malloca\">máy hút mùi</a>,...</p><p><strong>Thông tin sản phẩm</strong> <a href=\"https://www.dienmayxanh.com/bep-hong-ngoai-malloca\">bếp hồng ngoại Malloca</a>:</p><ul><li><strong>Thương hiệu: </strong>Tây Ban Nha.</li><li><strong>Sản xuất:</strong> Việt Nam.</li><li><strong>Bảo hành chính hãng: </strong>3 năm.</li><li><strong>Tầm giá:</strong> 6.670.000 - 17.590.000 đồng (giá được cập nhật vào tháng 08/2023, có thể thay đổi theo thời gian).</li></ul><figure class=\"image\"><img style=\"aspect-ratio:730/450;\" src=\"https://cdn.tgdd.vn//News/923885//Myproject-1-2023-08-09T014840.408-730x450.jpg\" alt=\"Bếp hồng ngoại đôi lắp âm Malloca MR 732 đến từ thương hiệu uy tín, chất lượng tại Tây Ban Nha\" width=\"730\" height=\"450\"></figure><p><a href=\"https://www.dienmayxanh.com/bep-hong-ngoai/bep-hong-ngoai-doi-lap-am-malloca-mr-732\">Bếp hồng ngoại đôi lắp âm Malloca MR 732</a> đến từ thương hiệu uy tín, chất lượng tại Tây Ban Nha</p><p><strong>Một số đặc điểm nổi bật:</strong></p><ul><li>Thiết kế lắp âm mang vẻ đẹp hiện đại, sang trọng mà không chiếm nhiều diện tích không gian bếp.</li><li>Mặt bếp làm bằng <strong>kính Vitroceramic</strong> có độ cứng cao, chịu nhiệt, chịu lực tốt, giúp sử dụng bền lâu hơn.</li><li>Trang bị nhiều tiện ích thông minh, bảo vệ người dùng như: tự ngắt khi bếp nóng quá tải, <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/mot-so-tien-ich-cua-bep-dien-hien-nay-848448#hmenuid4\">đèn báo dư nhiệt</a>, khóa an toàn trẻ em, hẹn giờ nấu,...</li></ul>', 'BEP-1200x62883.jpg', '2024-05-26 22:52:17', NULL),
+(3, 'Cách chỉnh máy lạnh Panasonic mát nhất, tiết kiệm điện nhất', 'cach-chinh-may-lanh-panasonic-mat-nhat-tiet-kiem-dien-nhat', 1, 4, '<h3>1Các nút chức năng trên điều khiển máy lạnh Panasonic</h3><p><strong>(1) Nút nguồn (ON/OFF): </strong>Khởi động máy.</p><p><strong>(2) </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-lam-lanh-khu-mui-tren-may-lanh-panasonic-588201#hmenuid1\"><strong>ECONAVI</strong></a><strong>: </strong>Tiết kiệm năng lượng một cách tối ưu nhất bằng tích hợp các tính năng.</p><p><strong>(3) </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-iauto-x-tren-may-lanh-panasonic-la-gi-624400\"><strong>iAuto-X</strong></a><strong>: </strong>Công nghệ giúp máy làm lạnh nhanh ngay sau khi khởi động.</p><p><strong>(4) MODE (Chọn chế độ): </strong>Có 3 chế độ vận hành - <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/huong-dan-su-dung-phim-auto-on-off-de-bat-tat-may-1347637\">chế độ tự động</a> (Auto), <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/nen-de-dieu-hoa-o-che-do-cool-hay-dry-che-do-nao-t-1128235#hmenuid2\">chế độ làm lạnh</a> (Cool), <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/che-do-lam-kho-tren-dieu-hoa-la-gi-948007#hmenuid1\">chế độ khử ẩm</a> (Dry).</p><p><strong>(5) </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/co-che-hoat-dong-cua-chuc-nang-nanoe-g-khi-tat-ngu-1362674\"><strong>Nanoe-G</strong></a><strong>: </strong>Lọc sạch không khí, loại bỏ hơi ẩm, nấm mốc và vi khuẩn trong không khí, có khả năng vô hiệu hóa <strong>99%</strong> vi khuẩn và virus giữ lại trên màng lọc.</p><p><strong>(6) Nút TEMP (Chỉnh nhiệt độ): </strong>Cho phép bạn điều chỉnh nhiệt độ lên xuống.</p><figure class=\"image\"><img style=\"aspect-ratio:730/500;\" src=\"https://cdn.tgdd.vn/Files/2022/03/31/1423299/huong-dan-cach-chinh-may-lanh-panasonic-mat-nhat-4.jpg\" alt=\"Các nút chức năng trên điều khiển Panasonic\" width=\"730\" height=\"500\"></figure><p><strong>(7) AUTO COMFORT: </strong>Máy sẽ tự động xác định điều kiện trong phòng và tối ưu hóa chế độ tiết kiệm điện năng và làm mát mang lại cảm giác thoải mái, dễ chịu.</p><p><strong>(8) AIR SWING (Chỉnh đảo gió): </strong>Giúp bạn chỉnh hướng gió như mong muốn.</p><p><strong>(9) </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#hmenuid2\"><strong>QUIET</strong></a><strong>: </strong>Giúp giảm tiếng ồn động cơ của máy xuống tối đa nhất. Chế độ này rất thích hợp cho những gia đình có gười già, trẻ em nhỏ, hoặc những người khó ngủ.</p><p><strong>(10) SET (Thiết lập): </strong>Thiết lập/Hủy các tùy chọn hoặc các thiết lập đã chọn.</p><p><strong>(11) Timer ON: </strong>Hẹn giờ mở máy.</p><p><strong>(12) Timer OFF: </strong>Hẹn giờ tắt máy.</p><p><strong>(13) Nút lên xuống: </strong>Dùng để di chuyển giữa các chế độ với nhau và thay đổi chế độ.</p><p><strong>(14) CANCEL : </strong>Xóa cài đặt hẹn giờ.</p><p><strong>(15) </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#hmenuid15\"><strong>ClOCK</strong></a><strong>: </strong>Điều chỉnh đồng hồ của remote.</p><p><strong>Xem chi tiết: </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/giai-ma-cac-ky-hieu-la-tren-remote-may-dieu-hoa-1056921\">Các ký hiệu trên remote máy lạnh và những chế độ bạn cần biết</a></p><h3>2Cách chỉnh máy lạnh Panasonic mát nhất</h3><p><strong>Bước 1:</strong> Đóng kín cửa phòng trước và sau khi bật máy.</p><p><strong>Bước 2:</strong> Hạ nhiệt độ về mức thấp nhất (<strong>16 độ</strong>) trong <strong>5 phút</strong>.</p><p><strong>Bước 3: </strong>Sau đó, tăng nhiệt độ lên <strong>25 độ</strong>.</p><p><strong>Bước 4: </strong>Tăng tốc độ quạt gió lên mạnh nhất.</p><p><strong>Bước 5: </strong>Sau <strong>10 phút</strong>, tăng dần lên nhiệt độ phù hợp (trong thời gian bật điều hoà hạn chế mở cửa phòng).</p><p>Cách điều chỉnh trên sẽ <strong>không phù hợp</strong> nếu tình trạng máy lạnh của bạn thuộc những trường hợp sau:</p><ul><li>Công suất máy không phù hợp với không gian (công suất nhỏ trong khi không gian quá rộng).</li><li>Nguồn điện không ổn định.</li><li>Máy quá cũ, <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tai-sao-dieu-hoa-khong-mat-nguyen-nhan-va-cach-kha-906509#hmenuid8\">block máy lạnh không chạy</a>, máy làm tốn điện.</li><li>Máy lạnh dơ, không được vệ sinh định kỳ.</li></ul><figure class=\"image\"><img style=\"aspect-ratio:780/457;\" src=\"https://cdn.tgdd.vn/Files/2015/07/30/676566/cach-dieu-khien-remote-may-lanh-panasonic-cu-cs-s1-3.jpg\" alt=\"Cách chỉnh máy lạnh Panasonic mát nhất\" width=\"780\" height=\"457\"></figure><h3>3Chỉnh nhiệt độ máy lạnh Panasonic bao nhiêu là phù hợp?</h3><p>Nhiều người thường có thói quen hạ nhiệt độ xuống thấp để lấy hơi lạnh nhanh và giữ nhiệt độ thấp trong khoảng thời gian dài dẫn đến <strong>chênh lệch nhiệt độ giữa dàn lạnh và dàn nóng lớn</strong>. Khi tình trạng này diễn ra trong thời gian dài, người dùng có thể bị ốm, cơ thể không thích ứng kịp dẫn đến cảm lạnh.</p><p>Bạn nên chỉnh nhiệt độ máy lạnh Panasonic sao cho <strong>chênh lệch nhiệt độ giữa nhiệt độ trong nhà và ngoài trời từ 5 - 10 độ C</strong> là phù hợp nhất. Điều này giúp bạn vừa tiết kiệm được điện năng tiêu thụ của gia đình, vừa đảm bảo sức khỏe cho các thành viên, đồng thời tạo ra không khí mát mẻ.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/321382/panasonic-inverter-1-hp-cu-cs-pu9akh-8-200224-045533.jpg\" alt=\"Điều hòa Panasonic Inverter 9040 BTU CU/CS-PU9AKH-8 - điều khiển lên xuống tự động\" width=\"1020\" height=\"570\"></figure><p>&nbsp;</p><p><a href=\"https://www.dienmayxanh.com/dieu-hoa/panasonic-inverter-1-hp-cu-cs-pu9akh-8\"><i>Điều hòa Panasonic Inverter 9040 BTU CU/CS-PU9AKH-8</i></a><i> làm lạnh nhanh và có nhiều tiện ích hiện đại</i></p>', 'NEW---Hướng-dẫn-sử-dụng--1200-x-628-px---7--1200x62862.jpg', '2024-05-26 22:54:21', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_baocaodoanhthu`
+-- Table structure for table `tbl_baocaodoanhthu`
 --
 
 CREATE TABLE `tbl_baocaodoanhthu` (
   `MaBCDT` int NOT NULL,
-  `MaLienKet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
-  `NgayTao` timestamp NOT NULL
+  `order_date` date NOT NULL,
+  `sales` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `profit` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `quantity` int NOT NULL,
+  `total_order` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_baocaodoanhthu`
+--
+
+INSERT INTO `tbl_baocaodoanhthu` (`MaBCDT`, `order_date`, `sales`, `profit`, `quantity`, `total_order`) VALUES
+(1, '2024-05-19', '20000000', '7000000', 90, 10),
+(2, '2024-05-20', '68000000', '9000000', 60, 8),
+(3, '2024-05-21', '30000000', '3000000', 45, 7),
+(4, '2024-05-22', '45000000', '3800000', 30, 9),
+(5, '2024-05-23', '30000000', '1500000', 15, 12),
+(6, '2024-05-24', '8000000', '700000', 65, 30),
+(7, '2024-05-25', '28000000', '23000000', 32, 20),
+(8, '2024-05-26', '25000000', '20000000', 7, 6),
+(9, '2024-05-27', '36000000', '28000000', 40, 15),
+(10, '2024-05-28', '50000000', '13000000', 89, 19),
+(11, '2024-05-29', '20000000', '15000000', 63, 11),
+(12, '2024-05-30', '25000000', '16000000', 94, 14),
+(13, '2024-05-31', '32000000', '17000000', 16, 10),
+(14, '2024-06-02', '14000000', '2000000', 15, 3),
+(71, '2024-06-06', '26470000', '5294000', 3, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_binhluan`
+-- Table structure for table `tbl_binhluan`
 --
 
 CREATE TABLE `tbl_binhluan` (
   `MaBinhLuan` int NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
-  `MaSanPham` int NOT NULL,
-  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `MaBaiViet` int DEFAULT NULL,
+  `BaiVietCha` int DEFAULT NULL,
+  `NoiDung` text NOT NULL,
   `TrangThai` int NOT NULL,
-  `ThoiGianTao` timestamp NOT NULL,
-  `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_binhluan`
+--
+
+INSERT INTO `tbl_binhluan` (`MaBinhLuan`, `Email`, `MaBaiViet`, `BaiVietCha`, `NoiDung`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(1, 'binh@gmail.com', 3, 0, 'Bài viết rất hay rất có ý nghĩa.', 1, '2024-05-27 19:19:06', NULL),
+(2, 'admin1@gmail.com', 3, 1, 'Mình đồng ý với bạn', 1, '2024-05-27 20:02:31', NULL),
+(3, 'binh@gmail.com', 2, 0, 'Nhà mình cũng dùng bếp từ như này. Hôm nay shop lên bài viết rất hay mình đã thử với sản phẩm tại nhà thấy rất ổn', 1, '2024-06-03 02:47:00', NULL),
+(4, 'admin1@gmail.com', 2, 0, 'Các bạn ra thêm bài viết như này được không.', 1, '2024-06-03 02:48:45', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietbaocaodoanhthu`
+-- Table structure for table `tbl_chitietbaocaodoanhthu`
 --
 
 CREATE TABLE `tbl_chitietbaocaodoanhthu` (
@@ -86,50 +130,70 @@ CREATE TABLE `tbl_chitietbaocaodoanhthu` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietdonhang`
+-- Table structure for table `tbl_chitietdonhang`
 --
 
 CREATE TABLE `tbl_chitietdonhang` (
   `MaCTDH` int NOT NULL,
-  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SoLuong` int DEFAULT NULL,
+  `GiaSanPham` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_chitietdonhang`
+--
+
+INSERT INTO `tbl_chitietdonhang` (`MaCTDH`, `order_code`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
+(28, 'ae6e1', 43, 1, '5990000'),
+(29, 'ae6e1', 39, 2, '5990000'),
+(30, 'ae6e1', 44, 2, '6990000'),
+(31, 'ae6e1', 25, 1, '14990000'),
+(38, '31eb4', 48, 1, '10490000'),
+(39, '31eb4', 47, 2, '7990000');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitiethoadon`
+-- Table structure for table `tbl_chitiethoadon`
 --
 
 CREATE TABLE `tbl_chitiethoadon` (
   `MaCTHD` int NOT NULL,
-  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `GiaSanPham` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietlichsubaohanh`
+-- Table structure for table `tbl_chitietlichsubaohanh`
 --
 
 CREATE TABLE `tbl_chitietlichsubaohanh` (
   `MaCTLSBH` int NOT NULL,
-  `MaLienKet` int NOT NULL,
+  `order_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
   `TinhTrang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `NgayBaoHanh` timestamp NOT NULL,
   `ThoiGianTra` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_chitietlichsubaohanh`
+--
+
+INSERT INTO `tbl_chitietlichsubaohanh` (`MaCTLSBH`, `order_code`, `MaSanPham`, `SoLuong`, `TinhTrang`, `NgayBaoHanh`, `ThoiGianTra`) VALUES
+(1, '31eb4', 47, 2, 'abc xyz', '2024-06-02 16:22:23', '2024-06-05');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieubaohanh`
+-- Table structure for table `tbl_chitietphieubaohanh`
 --
 
 CREATE TABLE `tbl_chitietphieubaohanh` (
@@ -137,14 +201,23 @@ CREATE TABLE `tbl_chitietphieubaohanh` (
   `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaSanPham` int NOT NULL,
   `SoLuong` int NOT NULL,
-  `GiaSanPham` int NOT NULL,
-  `ThoiGianBaoHanh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `ThoiGianBaoHanh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ThoiGianBatDau` timestamp NULL DEFAULT NULL,
+  `ThoiGianKetThuc` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_chitietphieubaohanh`
+--
+
+INSERT INTO `tbl_chitietphieubaohanh` (`MaCTPBH`, `order_code`, `MaSanPham`, `SoLuong`, `ThoiGianBaoHanh`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
+(5, '31eb4', 48, 1, '12', '2024-06-02 05:21:56', '2025-06-02 05:21:56'),
+(6, '31eb4', 47, 2, '12', '2024-06-02 05:21:56', '2025-06-02 05:21:56');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieukiemkho`
+-- Table structure for table `tbl_chitietphieukiemkho`
 --
 
 CREATE TABLE `tbl_chitietphieukiemkho` (
@@ -158,7 +231,7 @@ CREATE TABLE `tbl_chitietphieukiemkho` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieunhap`
+-- Table structure for table `tbl_chitietphieunhap`
 --
 
 CREATE TABLE `tbl_chitietphieunhap` (
@@ -170,18 +243,16 @@ CREATE TABLE `tbl_chitietphieunhap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_chitietphieunhap`
+-- Dumping data for table `tbl_chitietphieunhap`
 --
 
 INSERT INTO `tbl_chitietphieunhap` (`MaCTPN`, `MaPhieuNhap`, `MaSanPham`, `SoLuong`, `GiaSanPham`) VALUES
-('CTPN66569521b277e', 'PN20240529093813', 25, 6, 200),
-('CTPN66589ef6d27bc', 'PN20240530224334', 25, 1, 200),
-('CTPN66589f1329789', 'PN20240530224334', 26, 1, 200);
+('CTPN66569521b277e', 'PN20240529093813', 25, 6, 11000000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieutrahang`
+-- Table structure for table `tbl_chitietphieutrahang`
 --
 
 CREATE TABLE `tbl_chitietphieutrahang` (
@@ -196,7 +267,7 @@ CREATE TABLE `tbl_chitietphieutrahang` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chitietphieuxuat`
+-- Table structure for table `tbl_chitietphieuxuat`
 --
 
 CREATE TABLE `tbl_chitietphieuxuat` (
@@ -207,20 +278,18 @@ CREATE TABLE `tbl_chitietphieuxuat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_chitietphieuxuat`
+-- Dumping data for table `tbl_chitietphieuxuat`
 --
 
 INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuong`) VALUES
 ('CTPX66569880ed43e', 'PX20240529094830', 26, '6'),
 ('CTPX6656989d21e31', 'PX20240529094830', 27, '1'),
-('CTPX665698ae75a58', 'PX20240529094830', 25, '4'),
-('CTPX6658987d9e78b', 'PX20240530221710', 25, '1'),
-('CTPX66589f364a46c', 'PX20240530221710', 26, '1');
+('CTPX665698ae75a58', 'PX20240529094830', 25, '4');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chuongtrinhgiamgia`
+-- Table structure for table `tbl_chuongtrinhgiamgia`
 --
 
 CREATE TABLE `tbl_chuongtrinhgiamgia` (
@@ -239,7 +308,7 @@ CREATE TABLE `tbl_chuongtrinhgiamgia` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_chuongtrinhgiamgiasp`
+-- Table structure for table `tbl_chuongtrinhgiamgiasp`
 --
 
 CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
@@ -252,173 +321,240 @@ CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhgia`
+-- Table structure for table `tbl_danhgia`
 --
 
 CREATE TABLE `tbl_danhgia` (
   `MaDanhGia` int NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
+  `Email` varchar(50) NOT NULL,
   `MaSanPham` int NOT NULL,
-  `NoiDung` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SoSao` int NOT NULL,
+  `NoiDung` text NOT NULL,
+  `SoSao` int DEFAULT NULL,
   `TrangThai` int NOT NULL,
-  `ThoiGianTao` timestamp NOT NULL,
-  `ThoiGianSua` timestamp NOT NULL,
-  `MaDonHang` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_danhgia`
+--
+
+INSERT INTO `tbl_danhgia` (`MaDanhGia`, `Email`, `MaSanPham`, `NoiDung`, `SoSao`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(2, 'binh@gmail.com', 26, 'Sản phẫm tốt nhân viên nhiệt tình giao nhanh . Nói chung là ok', 4, 1, '2024-05-22 00:43:25', NULL),
+(3, 'admin1@gmail.com', 31, 'Xem mô tả sản phẩm và thông số kĩ thuật quảng cáo về tivi Toshiba 55E330MP tôi tưởng là đúng như vậy nên tôi mua. Nhưng khi đem tivi về thì chân đế ko phải bằng kim loại ma được làm bằng nhựa. Khi để tivi lên bàn thì ko được chắc chắn, chỉ cần chạm nhẹ vào là tivi rung lắc, lung lay. Nhà sản xuất nghĩ sao mà tivi 55 inch, mà chân đế lại làm toàn bằng chất liệu nhựa thì làm sao gánh nổi trọng lượng tivi 11,3kg Mô tả sản phẩm và thông số kĩ thuật ko đúng với thực tế làm tôi bị hụt hẫng. Một điều nữa là tìm giọng nói bằng tiếng Việt lúc được lúc ko và thiếu chính xác. Mỗi lần chuyển từ kênh này sang kênh khác thì cứ hiện dòng chữ không có chương trình phải chờ ít nhất từ 5 đến 10 giây thì mới nhận ra kênh mới. Cảm thấy hơi bất ổn khi sử dụng tivi này.', 5, 1, '2024-05-22 00:53:46', NULL),
+(4, 'binh@gmail.com', 25, 'Đã sử dụng hình ảnh âm thanh tốt tuy nhiên hệ điều hành vidaa V6 bị hạn chế nhiều ứng dụng điển hình với gói TV360 của nhà mạng Viettel, nên ai đã sử dụng mạng internet Viettel thì căn nhắc lựa chọn.', 3, 1, '2024-05-22 00:55:09', NULL),
+(6, 'admin1@gmail.com', 26, 'Sản phẩm không còn nét như khi còn ở cửa hàng, mấy bạn nhân viên giúp mình khắc phục tình trạng này với', 2, 1, '2024-05-23 06:38:38', NULL),
+(7, 'anhnx286@gmail.com', 25, 'Sản phẩm có độ nét không đúng với khi ở cửa hàng, mấy bạn nhân viên tư vấn giúp mình khắc phục vấn đề này với', 1, 1, '2024-05-23 06:54:47', NULL),
+(8, 'admin2@gmail.com', 25, 'Tivi này có chức năng điều khiển bằng giọng nói và kết nối qua điện thoại rất hay. Nhưng con mình cũng hay chơi game trên tivi mấy bạn chỉ mình cách xóa game với.', 4, 1, '2024-05-23 06:56:56', NULL),
+(9, 'binh@gmail.com', 27, 'Tivi này đẹp quá mua về nhà mình dùng rất ưng', 5, 1, '2024-05-23 19:22:47', NULL),
+(10, 'binh@gmail.com', 28, 'Thật sự phải nói điện máy xanh bây giờ cực kỳ tệ, cực kỳ thất vọng khi gần 10 năm qua vẫn mua sản phẩm ủng hộ. Nhưng bây giờ Cskh bảo hành CỰC TỆ HẠI, ngày 26/4 có đánh giá có cskh gọi hỏi xong tới giờ chẳng thấy 1 ai xuống bảo hành hay ngó ngàng gì đến sản phẩm bán ra như thế nào, không bao giờ giớii thiệu hay ủng hộ nữa', 1, 1, '2024-05-23 20:04:33', NULL),
+(12, 'binh@gmail.com', 26, 'Sản phẩm này không tốt như ở cửa hàng\nChê nhé', 4, 1, '2024-05-23 21:35:34', NULL),
+(13, 'binh@gmail.com', 28, 'Sản phẫm tốt nhân viên nhiệt tình giao nhanh . Nói chung là ok .', 5, 1, '2024-05-23 21:37:55', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhmuc`
+-- Table structure for table `tbl_danhmuc`
 --
 
 CREATE TABLE `tbl_danhmuc` (
   `MaDanhMuc` int NOT NULL,
-  `TenDanhMuc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDanhMuc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDanhMuc` varchar(50) NOT NULL,
+  `SlugDanhMuc` varchar(50) NOT NULL,
+  `MoTa` text NOT NULL,
   `TrangThai` int NOT NULL,
   `DanhMucCha` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_danhmuc`
+-- Dumping data for table `tbl_danhmuc`
 --
 
 INSERT INTO `tbl_danhmuc` (`MaDanhMuc`, `TenDanhMuc`, `SlugDanhMuc`, `MoTa`, `TrangThai`, `DanhMucCha`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(1, 'Tivi', 'tivi', 'Tivi hay còn được gọi với nhiều tên khác như TV, vô tuyến truyền hình (truyền hình không dây), máy thu hình, máy phát hình, hay vô tuyến... là hệ thống điện tử viễn thông có khả năng thu nhận tín hiệu sóng và tín hiệu vô tuyến/hữu tuyến để chuyển thành hình ảnh và âm thanh (truyền thanh truyền hình) truyền tải đến người xem.', 1, 0, '2024-04-01 13:23:09', NULL),
-(2, 'Laptop', 'laptop', 'Laptop hay còn gọi là máy tính xách tay là một chiếc máy tính cá nhân giúp dễ dàng mang đi và làm việc ở những địa điểm và địa hình khác nhau. Những chiếc máy tính xách tay đã được thiết kế đầy đủ chức năng giống như một máy tính để bàn, có nghĩa là chúng cũng có thể chạy những phần mềm tương tự và mở những tập tin cùng loại như chiếc máy tính để bàn.Tuy nhiên, một số loại máy tính xách tay như Netbook, lại bỏ đi một số chức năng để có thể cầm tay nhiều hơn.', 1, 0, '2024-04-01 13:24:06', NULL),
-(3, 'Máy giặt', 'may-giat', 'Máy giặt (tiếng Anh: washing machine, laundry machine, clothes washer, washer) là một thiết bị gia đình được sử dụng để giặt đồ giặt. Thuật ngữ này chủ yếu được áp dụng cho các máy sử dụng nước thay vì giặt khô (sử dụng chất lỏng làm sạch thay thế và được thực hiện bởi các doanh nghiệp chuyên nghiệp) hoặc chất tẩy rửa siêu âm. Người dùng thêm hóa chất giặt tẩy, có thể ở dạng lỏng hoặc bột, vào ngăn đựng nước giặt của máy.', 1, 0, '2024-04-01 13:25:15', NULL),
-(4, 'Camera', 'camera', 'Camare', 1, 0, '2024-04-02 14:08:27', NULL),
-(5, 'Camera trong nhà', 'Camera-trong-nha', 'Camera ngoài trời là thiết bị ghi hình an ninh chống trộm hiện đại, tích hợp nhiều công nghệ nhất hiện nay như sử dụng công nghệ kín, giúp sản phẩm hoạt động bền bỉ, ổn định dưới tác động xấu của thời tiết, khói bụi, độ ẩm.', 1, 4, '2024-04-01 13:51:20', '2024-04-04 15:29:42'),
-(6, 'Camera ngoài trời', 'Camera-ngoai-troi', 'Camera trong nhà (indoor): là loại camera chỉ được lắp đặt ở trong nhà những nơi có mái che để thuận lợi nhất cho việc quan sát của thiết bị này. Camera trong nhà thường là loại camera có hình bán cầu, hình cầu được lắp đặt trên tường hoặc trần nhà nơi có những góc quan sát rộng thuận tiện cho việc quan sát.', 1, 4, '2024-04-01 13:51:20', '2024-04-05 08:10:06'),
-(7, 'Phụ kiện điện thoại', 'phu-kien-dien-thoai', 'Phụ kiện điện thoại', 1, 0, '2024-04-01 14:14:28', '2024-04-01 14:25:51'),
-(8, 'Điện thoại', 'dien-thoai', 'Điện thoại', 1, 0, '2024-04-01 14:14:56', NULL),
-(9, 'HeadPhones', 'headphones', 'HeadPhone còn gọi là tai nghe to vì không biết tiếng Anh nên đặt tạm', 1, 7, '2024-04-01 14:27:40', '2024-04-01 14:37:44'),
-(10, 'Sạc dự phòng', 'sac-du-phong', 'Pin sạc dự phòng là phụ kiện dành cho các thiết bị công nghệ sử dụng pin như điện thoại, máy tính bảng, đồng hồ thông minh, loa Bluetooth, … Nó có khả năng lưu trữ điện năng để cung cấp cho các thiết bị ở bất kỳ nơi đâu mà không cần có nguồn điện trực tiếp.', 1, 7, '2024-04-01 14:28:19', '2024-04-04 15:30:59'),
-(12, 'Ốp lưng điện thoại', 'op-lung-dien-thoai', 'Ốp lưng', 1, 7, '2024-04-01 14:36:57', NULL),
-(13, 'Giá đỡ điện thoại', 'gia-do-dien-thoai', 'Cáp điện thoại', 1, 7, '2024-04-01 14:39:27', '2024-04-05 09:01:02'),
-(15, 'Tủ lạnh', 'tu-lanh', 'Tủ lạnh là một thiết bị làm mát. Thiết bị gia dụng này bao gồm một ngăn cách nhiệt và nhiệt một máy bơm hóa chất phương tiện cơ khí phương tiện để truyền nhiệt từ nó ra môi trường bên ngoài, làm mát bên trong đến một nhiệt độ thấp hơn môi trường xung quanh.', 1, 0, '2024-04-04 14:49:10', NULL),
-(16, 'Cáp sạc điện thoại', 'cap-sac-dien-thoai', 'Cáp sạc điện thoại', 1, 7, '2024-04-05 08:59:13', NULL),
-(17, 'Máy lạnh', 'may-lanh', 'Máy lạnh', 1, 0, '2024-04-05 09:17:11', NULL),
-(18, 'Loa', 'loa', 'Loa', 1, 0, '2024-04-05 09:18:12', NULL),
-(19, 'Máy sấy', 'may-say', 'Mấy sấy', 1, 0, '2024-04-05 09:18:57', NULL),
-(20, 'Máy xay', 'may-xay', 'Máy xay', 1, 0, '2024-04-05 09:19:33', NULL),
-(21, 'Tai nghe điện thoại', 'tai-nghe-dien-thoai', 'tai nghe điện thoại', 1, 7, '2024-04-08 02:20:59', NULL),
-(22, 'Máy rửa bát', 'may-rua-bat', 'Cấu tạo của máy rửa bát (cơ bản)\r\nHệ thống điều khiển: Đặt ngoài cánh cửa ngay phần phía điều khiển dùng để điều khiển chu trình hoạt động, thời gian. Đồng thời, bộ phận này còn đảm nhận chức năng phun nước, xả nước tẩy ở mỗi quy trình làm việc.\r\nPhần van nạp: Có nhiệm vụ dẫn nước trực tiếp vào bên trong máy máy bằng cách mở van nạp, lúc này van nạp sẽ sinh ra áp lực và đẩy nước vào bên trong thân máy.\r\nPhần bơm: Có chức năng bơm nước vào bên trong thân máy, đẩy nước vào phần hệ thống tay phun với các chu trình bơm, xả, trực tiếp từ ống thoát nước.\r\nTrên thị trường hiện nay gồm các loại máy rửa như sau: Máy rửa chén độc lập, máy rửa chén để bàn, máy rửa chén âm tủ, máy rửa chén mini, máy rửa chén có sấy,…', 1, 0, '2024-04-28 06:02:08', '2024-04-28 06:08:22'),
-(23, 'Webcam', 'webcam', 'Webcam là từ viết tắt của Website Camera, đây là loại thiết bị ghi hình kỹ thuật số được kết nối với máy tính để truyền trực tiếp hình ảnh mà nó ghi được đến một máy tính khác hoặc truyền lên một website nào đó thông qua mạng Internet.\r\n\r\nWebcam là viết tắt của Website camera\r\n\r\nWebcam là viết tắt của Website camera\r\n\r\nVề cơ bản, webcam gần giống như máy ảnh kỹ thuật số nhưng khác ở chỗ các chức năng chính của nó sẽ do phần mềm cài đặt trên máy tính điều khiển và xử lý.\r\n\r\nWebcam gần giống như máy ảnh kỹ thuật số\r\n\r\nWebcam gần giống như máy ảnh kỹ thuật số\r\nCác dữ liệu mà webcam thu được sẽ được lưu vào máy tính, dùng như thiết bị liên lạc hình ảnh giữa con người với nhau (nói chuyện qua webcam truyền hình ảnh bằng internet).\r\nNgoài ra nó còn sử dụng cho các công tác an ninh, ví dụ như truyền hình ảnh nó ghi được đến trung tâm kiểm soát từ xa.', 1, 4, '2024-05-13 13:44:15', NULL);
+(1, 'Tivi', 'tivi', 'Tivi hay còn được gọi với nhiều tên khác như TV, vô tuyến truyền hình (truyền hình không dây), máy thu hình, máy phát hình, hay vô tuyến... là hệ thống điện tử viễn thông có khả năng thu nhận tín hiệu sóng và tín hiệu vô tuyến/hữu tuyến để chuyển thành hình ảnh và âm thanh (truyền thanh truyền hình) truyền tải đến người xem.', 1, 0, '2024-04-01 06:23:09', NULL),
+(2, 'Laptop', 'laptop', 'Laptop hay còn gọi là máy tính xách tay là một chiếc máy tính cá nhân giúp dễ dàng mang đi và làm việc ở những địa điểm và địa hình khác nhau. Những chiếc máy tính xách tay đã được thiết kế đầy đủ chức năng giống như một máy tính để bàn, có nghĩa là chúng cũng có thể chạy những phần mềm tương tự và mở những tập tin cùng loại như chiếc máy tính để bàn.Tuy nhiên, một số loại máy tính xách tay như Netbook, lại bỏ đi một số chức năng để có thể cầm tay nhiều hơn.', 1, 0, '2024-04-01 06:24:06', NULL),
+(3, 'Máy giặt', 'may-giat', 'Máy giặt (tiếng Anh: washing machine, laundry machine, clothes washer, washer) là một thiết bị gia đình được sử dụng để giặt đồ giặt. Thuật ngữ này chủ yếu được áp dụng cho các máy sử dụng nước thay vì giặt khô (sử dụng chất lỏng làm sạch thay thế và được thực hiện bởi các doanh nghiệp chuyên nghiệp) hoặc chất tẩy rửa siêu âm. Người dùng thêm hóa chất giặt tẩy, có thể ở dạng lỏng hoặc bột, vào ngăn đựng nước giặt của máy.', 1, 0, '2024-04-01 06:25:15', NULL),
+(4, 'Camera', 'camera', 'Camare', 1, 0, '2024-04-02 07:08:27', NULL),
+(5, 'Camera trong nhà', 'Camera-trong-nha', 'Camera ngoài trời là thiết bị ghi hình an ninh chống trộm hiện đại, tích hợp nhiều công nghệ nhất hiện nay như sử dụng công nghệ kín, giúp sản phẩm hoạt động bền bỉ, ổn định dưới tác động xấu của thời tiết, khói bụi, độ ẩm.', 1, 4, '2024-04-01 06:51:20', '2024-04-04 08:29:42'),
+(6, 'Camera ngoài trời', 'Camera-ngoai-troi', 'Camera trong nhà (indoor): là loại camera chỉ được lắp đặt ở trong nhà những nơi có mái che để thuận lợi nhất cho việc quan sát của thiết bị này. Camera trong nhà thường là loại camera có hình bán cầu, hình cầu được lắp đặt trên tường hoặc trần nhà nơi có những góc quan sát rộng thuận tiện cho việc quan sát.', 1, 4, '2024-04-01 06:51:20', '2024-04-05 01:10:06'),
+(7, 'Phụ kiện', 'phu-kien', 'Phụ kiện điện thoại, laptop, tablet', 1, 0, '2024-04-01 07:14:28', '2024-05-29 23:42:42'),
+(8, 'Điện thoại', 'dien-thoai', 'Điện thoại', 1, 0, '2024-04-01 07:14:56', NULL),
+(9, 'HeadPhones', 'headphones', 'HeadPhone còn gọi là tai nghe to vì không biết tiếng Anh nên đặt tạm', 1, 7, '2024-04-01 07:27:40', '2024-04-01 07:37:44'),
+(10, 'Sạc dự phòng', 'sac-du-phong', 'Pin sạc dự phòng là phụ kiện dành cho các thiết bị công nghệ sử dụng pin như điện thoại, máy tính bảng, đồng hồ thông minh, loa Bluetooth, … Nó có khả năng lưu trữ điện năng để cung cấp cho các thiết bị ở bất kỳ nơi đâu mà không cần có nguồn điện trực tiếp.', 1, 7, '2024-04-01 07:28:19', '2024-04-04 08:30:59'),
+(12, 'Ốp lưng điện thoại', 'op-lung-dien-thoai', 'Ốp lưng', 1, 7, '2024-04-01 07:36:57', NULL),
+(13, 'Giá đỡ điện thoại', 'gia-do-dien-thoai', 'Cáp điện thoại', 1, 7, '2024-04-01 07:39:27', '2024-04-05 02:01:02'),
+(15, 'Tủ lạnh', 'tu-lanh', 'Tủ lạnh là một thiết bị làm mát. Thiết bị gia dụng này bao gồm một ngăn cách nhiệt và nhiệt một máy bơm hóa chất phương tiện cơ khí phương tiện để truyền nhiệt từ nó ra môi trường bên ngoài, làm mát bên trong đến một nhiệt độ thấp hơn môi trường xung quanh.', 1, 0, '2024-04-04 07:49:10', NULL),
+(16, 'Cáp sạc điện thoại', 'cap-sac-dien-thoai', 'Cáp sạc điện thoại', 1, 7, '2024-04-05 01:59:13', NULL),
+(17, 'Máy lạnh', 'may-lanh', 'Máy lạnh', 1, 0, '2024-04-05 02:17:11', NULL),
+(18, 'Loa', 'loa', 'Loa', 1, 0, '2024-04-05 02:18:12', NULL),
+(19, 'Máy sấy', 'may-say', 'Mấy sấy', 1, 24, '2024-04-05 02:18:57', '2024-05-29 23:33:16'),
+(20, 'Máy xay', 'may-xay', 'Máy xay', 1, 24, '2024-04-05 02:19:33', '2024-05-29 23:29:19'),
+(21, 'Tai nghe điện thoại', 'tai-nghe-dien-thoai', 'tai nghe điện thoại', 1, 7, '2024-04-07 19:20:59', NULL),
+(22, 'Máy rửa bát', 'may-rua-bat', 'Cấu tạo của máy rửa bát (cơ bản)\r\nHệ thống điều khiển: Đặt ngoài cánh cửa ngay phần phía điều khiển dùng để điều khiển chu trình hoạt động, thời gian. Đồng thời, bộ phận này còn đảm nhận chức năng phun nước, xả nước tẩy ở mỗi quy trình làm việc.\r\nPhần van nạp: Có nhiệm vụ dẫn nước trực tiếp vào bên trong máy máy bằng cách mở van nạp, lúc này van nạp sẽ sinh ra áp lực và đẩy nước vào bên trong thân máy.\r\nPhần bơm: Có chức năng bơm nước vào bên trong thân máy, đẩy nước vào phần hệ thống tay phun với các chu trình bơm, xả, trực tiếp từ ống thoát nước.\r\nTrên thị trường hiện nay gồm các loại máy rửa như sau: Máy rửa chén độc lập, máy rửa chén để bàn, máy rửa chén âm tủ, máy rửa chén mini, máy rửa chén có sấy,…', 1, 24, '2024-04-27 23:02:08', '2024-05-29 23:28:58'),
+(23, 'Webcam', 'webcam', 'Webcam là từ viết tắt của Website Camera, đây là loại thiết bị ghi hình kỹ thuật số được kết nối với máy tính để truyền trực tiếp hình ảnh mà nó ghi được đến một máy tính khác hoặc truyền lên một website nào đó thông qua mạng Internet.\r\n\r\nWebcam là viết tắt của Website camera\r\n\r\nWebcam là viết tắt của Website camera\r\n\r\nVề cơ bản, webcam gần giống như máy ảnh kỹ thuật số nhưng khác ở chỗ các chức năng chính của nó sẽ do phần mềm cài đặt trên máy tính điều khiển và xử lý.\r\n\r\nWebcam gần giống như máy ảnh kỹ thuật số\r\n\r\nWebcam gần giống như máy ảnh kỹ thuật số\r\nCác dữ liệu mà webcam thu được sẽ được lưu vào máy tính, dùng như thiết bị liên lạc hình ảnh giữa con người với nhau (nói chuyện qua webcam truyền hình ảnh bằng internet).\r\nNgoài ra nó còn sử dụng cho các công tác an ninh, ví dụ như truyền hình ảnh nó ghi được đến trung tâm kiểm soát từ xa.', 1, 4, '2024-05-13 06:44:15', NULL),
+(24, 'Gia dụng', 'gia-dung', 'Đồ dùng gia dụng', 1, 0, '2024-05-29 23:28:37', NULL),
+(26, 'Máy lọc nước', 'may-loc-nuoc', 'Máy lọc nước', 1, 0, '2024-05-29 23:32:13', NULL),
+(27, 'Quạt', 'quat', 'Quạt', 1, 0, '2024-05-29 23:34:31', NULL),
+(29, 'Quạt treo tường', 'quat-treo-tuong', 'Quạt', 1, 27, '2024-05-29 23:36:59', '2024-05-29 23:40:22'),
+(30, 'Quạt đứng', 'quat-dung', 'Quạt', 1, 27, '2024-05-29 23:36:59', '2024-05-29 23:40:10'),
+(31, 'Quạt trần', 'quat-tran', 'Quạt', 1, 27, '2024-05-29 23:36:59', '2024-05-29 23:39:59'),
+(32, 'Quạt sạc điện', 'quat-sac-dien', 'Quạt', 1, 27, '2024-05-29 23:36:59', '2024-05-29 23:39:51'),
+(33, 'Quạt lửng', 'quat-lung', 'Quạt', 1, 27, '2024-05-29 23:36:59', '2024-05-29 23:39:41'),
+(34, 'Máy ép hoa quả', 'may-ep-hoa-qua', 'Máy ép hoa quả', 1, 24, '2024-05-29 23:48:29', '2024-05-29 23:51:28'),
+(35, 'nồi cơm', 'noi-com', 'Máy ép hoa quả', 1, 24, '2024-05-29 23:48:29', '2024-05-29 23:51:44'),
+(36, 'Bình đun nước', 'binh-dun-nuoc', 'Máy ép hoa quả', 1, 24, '2024-05-29 23:48:29', '2024-05-29 23:51:15'),
+(38, 'Loa kéo', 'loa-keo', 'Loa keo', 1, 18, '2024-05-29 23:54:58', '2024-05-29 23:56:32'),
+(39, 'Loa cầm tay', 'Loa-cam-tay', 'Loa cầm tay', 1, 18, '2024-05-29 23:54:58', '2024-05-29 23:56:15'),
+(40, 'Loa vi tính', 'Loa-vi-tinh', 'Loa vi tính', 1, 18, '2024-05-29 23:57:02', '2024-05-29 23:57:40');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhmucbaiviet`
+-- Table structure for table `tbl_danhmucbaiviet`
 --
 
 CREATE TABLE `tbl_danhmucbaiviet` (
   `MaDanhMucBV` int NOT NULL,
-  `TenDanhMucBV` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDanhMucBV` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDanhMucBV` varchar(50) NOT NULL,
+  `SlugDanhMucBV` varchar(50) NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `ThoiGianTao` timestamp NOT NULL,
-  `ThoiGianSua` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MoTa` text NOT NULL,
+  `ThoiGianTao` timestamp NULL DEFAULT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_danhmucbaiviet`
+--
+
+INSERT INTO `tbl_danhmucbaiviet` (`MaDanhMucBV`, `TenDanhMucBV`, `SlugDanhMucBV`, `TrangThai`, `MoTa`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(1, 'Tư vấn chọn mua', 'tu-van-chon-mua', 1, 'Tư vấn chọn mua sản phẩm', '2024-05-26 19:16:12', NULL),
+(2, 'Hàng cao cấp', 'hang-cao-cap', 1, 'Bài viết về hàng cao cấp', '2024-05-26 20:19:34', NULL),
+(3, 'Top sản phẩm bán chạy', 'top-san-pham-ban-chay', 1, 'Top sản phẩm bán chạy', '2024-05-26 20:22:22', NULL),
+(4, 'Mùa hè nắng nóng', 'mua-he-nang-nong', 1, 'Mùa hè nắng nóng', '2024-05-26 20:23:04', '2024-05-27 00:21:03'),
+(5, 'Mùa nồm không lo ngại', 'mua-nom-khong-lo-ngai', 1, 'Mùa nồm không lo ngại', '2024-05-26 20:23:34', NULL),
+(6, 'Chọn mua thiết bị điện tử', 'chon-mua-thiet-bi-dien-tu', 1, 'Chọn mua thiết bị điện tử', '2024-05-26 20:29:02', NULL),
+(7, 'Chọn mua thiết bị nhà cửa', 'chon-mua-thiet-bi-nha-cua', 1, 'Chọn mua thiết bị nhà cửa', '2024-05-26 20:29:23', NULL),
+(8, 'Sức khỏe và làm đẹp', 'suc-khoe-va-lam-dep', 1, 'Sức khỏe và làm đẹp', '2024-05-26 20:29:44', NULL),
+(9, 'Mẹo vặt', 'meo-vat', 1, 'Mẹo vặt', '2024-05-26 20:30:02', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_danhmuctskt`
+-- Table structure for table `tbl_danhmuctskt`
 --
 
 CREATE TABLE `tbl_danhmuctskt` (
   `MaDMTSKT` int NOT NULL,
-  `TenDMTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SlugDMTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenDMTSKT` varchar(50) NOT NULL,
+  `SlugDMTSKT` varchar(50) NOT NULL,
   `TrangThai` int NOT NULL,
-  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text NOT NULL,
   `MaDanhMuc` int NOT NULL,
   `ThoiGianTao` timestamp NOT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_danhmuctskt`
+-- Dumping data for table `tbl_danhmuctskt`
 --
 
 INSERT INTO `tbl_danhmuctskt` (`MaDMTSKT`, `TenDMTSKT`, `SlugDMTSKT`, `TrangThai`, `MoTa`, `MaDanhMuc`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(1, 'RAM', 'ram', 1, 'RAM được viết tắt từ Random Access Memory - một trong những yếu tố hết sức quan trọng bên cạnh vi xử lý. RAM là bộ nhớ tạm của máy giúp lưu trữ thông tin hiện hành để CPU có thể truy xuất và xử lý.\r\n\r\nRAM không thể lưu trữ được dữ liệu khi mất nguồn điện cung cấp. Nếu như thiết bị bị mất nguồn, tắt máy thì dữ liệu trên RAM sẽ bị xóa.', 2, '2024-05-06 00:53:12', '2024-05-06 00:49:34'),
-(2, 'CPU', 'cpu', 1, 'CPU viết tắt của chữ Central Processing Unit, tạm dịch là bộ xử lý trung tâm, là các mạch điện tử trong một máy tính, thực hiện các câu lệnh của chương trình máy tính bằng cách thực hiện các phép tính số học, logic, so sánh và các hoạt động nhập/xuất dữ liệu cơ bản do mã lệnh chỉ ra.', 2, '2024-05-06 00:55:49', NULL),
-(3, 'Card màn hình', 'card-man-hinh', 1, 'Kích cỡ màn hình', 2, '2024-05-06 13:51:18', NULL),
-(4, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải', 2, '2024-05-06 00:57:54', NULL),
-(6, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của tivi', 1, '2024-05-06 00:59:07', NULL),
-(7, 'Kích cỡ màn hình', 'kich-cu-man-hinh', 1, 'Kích cỡ màn hình của tivi', 1, '2024-05-06 13:08:53', NULL),
-(8, 'Hệ điều hành', 'he-dieu-hanh', 1, 'Hệ điều hành của tivi', 1, '2024-05-06 01:00:14', NULL),
-(9, 'Dung tích', 'dung-tich', 1, 'Dung tích của tủ lạnh', 15, '2024-05-06 01:01:13', NULL),
-(10, 'Số cánh cửa', 'so-canh-cua', 1, 'Số cánh cửa của tủ lạnh', 15, '2024-05-06 01:01:43', NULL),
-(11, 'Kiểu tủ', 'kieu-tu', 1, 'Kiểu tủ lạnh', 15, '2024-05-06 01:02:35', NULL),
-(12, 'Chất lượng cửa', 'chat-luong-cua', 1, 'Chất lượng cửa tủ lạnh', 15, '2024-05-06 01:04:19', NULL),
-(13, 'Độ dài cáp sạc', 'do-dai-cap-sac', 1, 'Độ dài của cáp sạc điện thoại', 16, '2024-05-06 07:55:45', NULL),
-(14, 'Dung lượng pin', 'dung-luong-pin', 1, 'Dung lượng pin của sạc dự phòng', 10, '2024-05-06 07:56:54', NULL),
-(15, 'Công xuất sạc', 'cong-xuat-sac', 1, 'Công xuất sạc của điện thoại', 10, '2024-05-06 07:57:39', NULL),
-(16, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của Camera ngoài trời', 6, '2024-05-13 14:06:34', NULL),
-(17, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của camera trong nhà', 5, '2024-05-13 14:07:11', NULL),
-(18, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của webcam', 23, '2024-05-13 14:07:32', NULL),
-(19, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của camera khi dùng', 23, '2024-05-13 14:09:07', NULL),
-(20, 'Khối lượng giặt', 'khoi-luong-giat', 1, 'Khối lượng giặt của máy giặt trong 1 lần sử dụng', 3, '2024-05-13 14:11:22', NULL),
-(21, 'Kích thước', 'kich-thuoc', 1, 'Kích thước của máy giặt', 3, '2024-05-13 14:12:00', NULL),
-(22, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của máy giặt', 3, '2024-05-13 14:12:30', NULL),
-(23, 'Số chén bát rửa được', 'so-chen-bat-rua-duoc', 1, 'Số chén bát rửa được trong 1 lần chạy', 22, '2024-05-13 14:13:52', NULL),
-(24, 'Bảng điều khiển', 'bang-dieu-khien', 1, 'Bảng điều khiển của máy rửa bát', 22, '2024-05-13 14:14:33', NULL),
-(25, 'Nơi sản xuất', 'noi-san-xuat', 1, 'Nơi sản xuất của máy rửa bát', 22, '2024-05-13 14:15:00', NULL),
-(26, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của máy rửa bát', 22, '2024-05-13 14:15:33', NULL),
-(27, 'Công xuất làm lạnh', 'cong-xuat-lam-lanh', 1, 'Công xuất làm lạnh của máy lạnh', 17, '2024-05-13 14:18:24', NULL),
-(28, 'Loại máy', 'loai-may', 1, 'Loại máy lạnh', 17, '2024-05-13 14:19:21', NULL),
-(29, 'Kiểu dáng', 'kieu-dang', 1, 'Kiểu dáng của máy lạnh', 17, '2024-05-13 14:20:25', NULL),
-(30, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của máy lạnh', 17, '2024-05-13 14:21:06', NULL),
-(31, 'Loại điện thoại', 'loai-dien-thoai', 1, 'Loại điện thoại bạn sử dụng', 8, '2024-05-13 14:22:32', NULL),
-(32, 'Nhu cầu', 'nhu-cau', 1, 'Nhu cầu sử dụng điện thoại', 8, '2024-05-13 14:22:59', NULL),
-(33, 'RAM', 'ram', 1, 'RAM của điện thoại', 8, '2024-05-13 14:24:38', NULL),
-(34, 'Dung lượng lưu trữ', 'dung-luong-luu-tru', 1, 'Dung lượng lưu trữ của điện thoại', 8, '2024-05-13 14:25:13', NULL),
-(35, 'Tính năng sạc', 'tinh-nang-sac', 1, 'Tính năng sạc của điện thoại', 8, '2024-05-13 14:25:41', NULL),
-(36, 'Tính năng đặc biệt', 'tinh-nang-dac-biet', 1, 'Tính năng đặc biệt của điện thoại', 8, '2024-05-13 14:26:11', NULL);
+(1, 'RAM', 'ram', 1, 'RAM được viết tắt từ Random Access Memory - một trong những yếu tố hết sức quan trọng bên cạnh vi xử lý. RAM là bộ nhớ tạm của máy giúp lưu trữ thông tin hiện hành để CPU có thể truy xuất và xử lý.\r\n\r\nRAM không thể lưu trữ được dữ liệu khi mất nguồn điện cung cấp. Nếu như thiết bị bị mất nguồn, tắt máy thì dữ liệu trên RAM sẽ bị xóa.', 2, '2024-05-05 17:53:12', '2024-05-05 17:49:34'),
+(2, 'CPU', 'cpu', 1, 'CPU viết tắt của chữ Central Processing Unit, tạm dịch là bộ xử lý trung tâm, là các mạch điện tử trong một máy tính, thực hiện các câu lệnh của chương trình máy tính bằng cách thực hiện các phép tính số học, logic, so sánh và các hoạt động nhập/xuất dữ liệu cơ bản do mã lệnh chỉ ra.', 2, '2024-05-05 17:55:49', NULL),
+(3, 'Card màn hình', 'card-man-hinh', 1, 'Kích cỡ màn hình', 2, '2024-05-06 06:51:18', NULL),
+(4, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải', 2, '2024-05-05 17:57:54', NULL),
+(6, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của tivi', 1, '2024-05-05 17:59:07', NULL),
+(7, 'Kích cỡ màn hình', 'kich-cu-man-hinh', 1, 'Kích cỡ màn hình của tivi', 1, '2024-05-06 06:08:53', NULL),
+(8, 'Hệ điều hành', 'he-dieu-hanh', 1, 'Hệ điều hành của tivi', 1, '2024-05-05 18:00:14', NULL),
+(9, 'Dung tích', 'dung-tich', 1, 'Dung tích của tủ lạnh', 15, '2024-05-05 18:01:13', NULL),
+(10, 'Số cánh cửa', 'so-canh-cua', 1, 'Số cánh cửa của tủ lạnh', 15, '2024-05-05 18:01:43', NULL),
+(11, 'Kiểu tủ', 'kieu-tu', 1, 'Kiểu tủ lạnh', 15, '2024-05-05 18:02:35', NULL),
+(12, 'Chất lượng cửa', 'chat-luong-cua', 1, 'Chất lượng cửa tủ lạnh', 15, '2024-05-05 18:04:19', NULL),
+(13, 'Độ dài cáp sạc', 'do-dai-cap-sac', 1, 'Độ dài của cáp sạc điện thoại', 16, '2024-05-06 00:55:45', NULL),
+(14, 'Dung lượng pin', 'dung-luong-pin', 1, 'Dung lượng pin của sạc dự phòng', 10, '2024-05-06 00:56:54', NULL),
+(15, 'Công xuất sạc', 'cong-xuat-sac', 1, 'Công xuất sạc của điện thoại', 10, '2024-05-06 00:57:39', NULL),
+(16, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của Camera ngoài trời', 6, '2024-05-13 07:06:34', NULL),
+(17, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của camera trong nhà', 5, '2024-05-13 07:07:11', NULL),
+(18, 'Độ phân giải', 'do-phan-giai', 1, 'Độ phân giải của webcam', 23, '2024-05-13 07:07:32', NULL),
+(19, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của camera khi dùng', 23, '2024-05-13 07:09:07', NULL),
+(20, 'Khối lượng giặt', 'khoi-luong-giat', 1, 'Khối lượng giặt của máy giặt trong 1 lần sử dụng', 3, '2024-05-13 07:11:22', NULL),
+(21, 'Kích thước', 'kich-thuoc', 1, 'Kích thước của máy giặt', 3, '2024-05-13 07:12:00', NULL),
+(22, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của máy giặt', 3, '2024-05-13 07:12:30', NULL),
+(23, 'Số chén bát rửa được', 'so-chen-bat-rua-duoc', 1, 'Số chén bát rửa được trong 1 lần chạy', 22, '2024-05-13 07:13:52', NULL),
+(24, 'Bảng điều khiển', 'bang-dieu-khien', 1, 'Bảng điều khiển của máy rửa bát', 22, '2024-05-13 07:14:33', NULL),
+(25, 'Nơi sản xuất', 'noi-san-xuat', 1, 'Nơi sản xuất của máy rửa bát', 22, '2024-05-13 07:15:00', NULL),
+(26, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của máy rửa bát', 22, '2024-05-13 07:15:33', NULL),
+(27, 'Công xuất làm lạnh', 'cong-xuat-lam-lanh', 1, 'Công xuất làm lạnh của máy lạnh', 17, '2024-05-13 07:18:24', NULL),
+(28, 'Loại máy', 'loai-may', 1, 'Loại máy lạnh', 17, '2024-05-13 07:19:21', NULL),
+(29, 'Kiểu dáng', 'kieu-dang', 1, 'Kiểu dáng của máy lạnh', 17, '2024-05-13 07:20:25', NULL),
+(30, 'Tiện ích máy lạnh', 'tien-ich', 1, 'Tiện ích của máy lạnh', 17, '2024-05-29 06:27:23', NULL),
+(31, 'Loại điện thoại', 'loai-dien-thoai', 1, 'Loại điện thoại bạn sử dụng', 8, '2024-05-13 07:22:32', NULL),
+(32, 'Nhu cầu', 'nhu-cau', 1, 'Nhu cầu sử dụng điện thoại', 8, '2024-05-13 07:22:59', NULL),
+(33, 'RAM', 'ram', 1, 'RAM của điện thoại', 8, '2024-05-13 07:24:38', NULL),
+(34, 'Dung lượng lưu trữ', 'dung-luong-luu-tru', 1, 'Dung lượng lưu trữ của điện thoại', 8, '2024-05-13 07:25:13', NULL),
+(35, 'Tính năng sạc', 'tinh-nang-sac', 1, 'Tính năng sạc của điện thoại', 8, '2024-05-13 07:25:41', NULL),
+(36, 'Tính năng đặc biệt', 'tinh-nang-dac-biet', 1, 'Tính năng đặc biệt của điện thoại', 8, '2024-05-13 07:26:11', NULL),
+(37, 'Loại Tivi', 'loai-tivi', 1, 'Loại tivi', 1, '2024-05-20 20:04:14', NULL),
+(38, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của tivi', 1, '2024-05-20 20:04:39', NULL),
+(39, 'Công nghệ Inventor', 'cong-nghe-inventor', 1, 'Công nghệ Inventor của máy lạnh', 17, '2024-05-29 06:10:07', NULL),
+(40, 'Tiện ích', 'tiện ích', 1, 'Độ phân giải của camera ngoài trời', 6, '2024-06-04 09:04:53', NULL),
+(41, 'Tiện ích', 'tien-ich', 1, 'Tiện ích của camera trong nhà', 5, '2024-06-04 09:15:07', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_donhang`
+-- Table structure for table `tbl_donhang`
 --
 
 CREATE TABLE `tbl_donhang` (
   `MaDonHang` int NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
-  `MaGiaoHang` int NOT NULL,
+  `Email` varchar(50) NOT NULL,
   `MaGiamGia` int DEFAULT NULL,
-  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaGiaoHang` int NOT NULL,
+  `TrangThai` int NOT NULL,
+  `order_code` varchar(50) NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_donhang`
+--
+
+INSERT INTO `tbl_donhang` (`MaDonHang`, `Email`, `MaGiamGia`, `MaGiaoHang`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(8, 'binh@gmail.com', NULL, 10, 1, 'ae6e1', '2024-06-02 00:08:23', NULL),
+(11, 'binh@gmail.com', NULL, 13, 2, '31eb4', '2024-06-02 05:21:56', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_giaohang`
+-- Table structure for table `tbl_giaohang`
 --
 
 CREATE TABLE `tbl_giaohang` (
   `MaGiaoHang` int NOT NULL,
-  `TenNguoiNhan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `TienGiaoHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SoDienThoai` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `TenNguoiNhan` varchar(50) NOT NULL,
+  `TienGiaoHang` varchar(50) NOT NULL,
+  `DiaChi` varchar(255) NOT NULL,
+  `SoDienThoai` varchar(10) DEFAULT NULL,
+  `GhiChu` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_giaohang`
+--
+
+INSERT INTO `tbl_giaohang` (`MaGiaoHang`, `TenNguoiNhan`, `TienGiaoHang`, `DiaChi`, `SoDienThoai`, `GhiChu`) VALUES
+(10, 'Nguyễn Thanh Bình', '409326.2144', '345 Đà Nẵng Phường Đông Hải 2 Quận Hải An Thành phố Hải Phòng', '88090', NULL),
+(13, 'Vũ Minh Quang', '645315.0816', '345 Đà Nẵng Phường Đằng Lâm Quận Hải An Thành phố Hải Phòng', '88090', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_hoadon`
+-- Table structure for table `tbl_hoadon`
 --
 
 CREATE TABLE `tbl_hoadon` (
@@ -435,7 +571,7 @@ CREATE TABLE `tbl_hoadon` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_lichsubaohanh`
+-- Table structure for table `tbl_lichsubaohanh`
 --
 
 CREATE TABLE `tbl_lichsubaohanh` (
@@ -443,33 +579,20 @@ CREATE TABLE `tbl_lichsubaohanh` (
   `MaPhieuBaoHanh` int NOT NULL,
   `NgayBaoHanh` timestamp NOT NULL,
   `MaTaiKhoan` int NOT NULL,
-  `MaLienKet` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_magiamgiannguoidung`
---
-
-CREATE TABLE `tbl_magiamgiannguoidung` (
-  `MaGGND` int NOT NULL,
-  `MaGiamGia` int NOT NULL,
-  `MaTaiKhoan` int NOT NULL,
-  `SoLuong` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_nhacungcap`
+-- Table structure for table `tbl_nhacungcap`
 --
 
 CREATE TABLE `tbl_nhacungcap` (
   `MaNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TenNhaCungCap` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SoDienThoai` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `SoDienThoai` int DEFAULT NULL,
   `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
@@ -477,19 +600,18 @@ CREATE TABLE `tbl_nhacungcap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_nhacungcap`
+-- Dumping data for table `tbl_nhacungcap`
 --
 
 INSERT INTO `tbl_nhacungcap` (`MaNhaCungCap`, `TenNhaCungCap`, `DiaChi`, `SoDienThoai`, `Email`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp1', '01234567891', 'ztech1@gmail', 0, '2024-05-20 14:17:18', '2024-05-30 15:06:35'),
-('NCC20240521230116', 'Ztech 4', '22 ly tu trong, hong bang, hp', '0968666234', 'ztech4@gmail', 1, '2024-05-21 16:01:16', '2024-05-30 15:07:18'),
-('NCC20240526172247', 'Ztech 2', '22 ly tu trong, hong bang, hp', '0123456789', 'ztech2@gmail.com', 1, '2024-05-26 10:22:47', '2024-05-30 15:06:48'),
-('NCC20240530220431', 'Ztech 3', '22 ly tu trong', '01334567292', 'ztech3@gmail.com', 1, '2024-05-30 15:04:31', '2024-05-30 15:06:42');
+('NCC20240520211718', 'Ztech 1', '22 ly tu trong, hong bang, hp1', 12, 'ztech1@gmail', 0, '2024-05-20 14:17:18', '2024-05-26 06:57:29'),
+('NCC20240521230116', 'Ztech 4', '22 ly tu trong, hong bang, hp', 1111, 'ztech4@gmail', 1, '2024-05-21 16:01:16', '2024-05-26 10:26:26'),
+('NCC20240526172247', 'Ztech 2', '22 ly tu trong, hong bang, hp', 111, 'ztech2@gmail.com', 1, '2024-05-26 10:22:47', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phanquyen`
+-- Table structure for table `tbl_phanquyen`
 --
 
 CREATE TABLE `tbl_phanquyen` (
@@ -498,7 +620,7 @@ CREATE TABLE `tbl_phanquyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phanquyen`
+-- Dumping data for table `tbl_phanquyen`
 --
 
 INSERT INTO `tbl_phanquyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
@@ -530,7 +652,7 @@ INSERT INTO `tbl_phanquyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phanquyennguoidung`
+-- Table structure for table `tbl_phanquyennguoidung`
 --
 
 CREATE TABLE `tbl_phanquyennguoidung` (
@@ -540,7 +662,7 @@ CREATE TABLE `tbl_phanquyennguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phanquyennguoidung`
+-- Dumping data for table `tbl_phanquyennguoidung`
 --
 
 INSERT INTO `tbl_phanquyennguoidung` (`MaPQND`, `MaPhanQuyen`, `MaTaiKhoan`) VALUES
@@ -562,23 +684,29 @@ INSERT INTO `tbl_phanquyennguoidung` (`MaPQND`, `MaPhanQuyen`, `MaTaiKhoan`) VAL
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieubaohanh`
+-- Table structure for table `tbl_phieubaohanh`
 --
 
 CREATE TABLE `tbl_phieubaohanh` (
   `MaPhieuBaoHanh` int NOT NULL,
-  `MaDonHang` int NOT NULL,
-  `NgayTao` timestamp NOT NULL,
   `order_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TenKhachHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `TenNhanVien` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SoDienThoai` int NOT NULL
+  `SoDienThoai` int NOT NULL,
+  `ThoiGianTao` timestamp NOT NULL,
+  `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_phieubaohanh`
+--
+
+INSERT INTO `tbl_phieubaohanh` (`MaPhieuBaoHanh`, `order_code`, `TenKhachHang`, `SoDienThoai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(2, '31eb4', 'Vũ Minh Quang', 88090, '2024-06-02 05:21:56', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieugiamgia`
+-- Table structure for table `tbl_phieugiamgia`
 --
 
 CREATE TABLE `tbl_phieugiamgia` (
@@ -594,10 +722,31 @@ CREATE TABLE `tbl_phieugiamgia` (
   `ThoiGianKetThuc` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_phieugiamgia`
+--
+
+INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TrangThai`, `BacNguoiDung`, `TriGia`, `MaCode`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
+(2, 'Giảm giá mừng sinh nhật', 'giam-gia-mung-sinh-nhat', 1, 1, 1, '100000', 'CMSN', '2024-06-06 01:22:03', '2024-06-06 01:22:03'),
+(3, 'Giảm giá tạo tài khoản lần đầu', 'giam-gia-tao-tai-khoan-lan-dau', 2, 1, 1, '5', 'TTKLD', '2024-06-06 01:24:23', '2024-06-06 01:24:23');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieukiemkho`
+-- Table structure for table `tbl_phieugiamgiannguoidung`
+--
+
+CREATE TABLE `tbl_phieugiamgiannguoidung` (
+  `MaGGND` int NOT NULL,
+  `MaGiamGia` int NOT NULL,
+  `MaTaiKhoan` int NOT NULL,
+  `SoLuong` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_phieukiemkho`
 --
 
 CREATE TABLE `tbl_phieukiemkho` (
@@ -611,7 +760,7 @@ CREATE TABLE `tbl_phieukiemkho` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieunhap`
+-- Table structure for table `tbl_phieunhap`
 --
 
 CREATE TABLE `tbl_phieunhap` (
@@ -628,18 +777,16 @@ CREATE TABLE `tbl_phieunhap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phieunhap`
+-- Dumping data for table `tbl_phieunhap`
 --
 
 INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240529093813', 'NCC20240521230116', 'TKNV20240428002556', 1200, 1200, 0, '0', '1', '2024-05-29 02:38:16', '2024-05-30 16:29:24'),
-('PN20240530224334', 'NCC20240526172247', 'TKNV20240428002556', 400, 0, 400, '0', '0', '2024-05-30 15:43:37', '2024-05-30 16:27:58'),
-('PN20240530225633', 'NCC20240526172247', 'TKNV20240428002556', 0, 0, 0, '0', '0', '2024-05-30 15:56:40', NULL);
+('PN20240529093813', 'NCC20240521230116', 'TKNV20240428002556', 1200, 0, 1200, '0', '1', '2024-05-29 02:38:16', '2024-05-29 03:36:55');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieutrahang`
+-- Table structure for table `tbl_phieutrahang`
 --
 
 CREATE TABLE `tbl_phieutrahang` (
@@ -656,7 +803,7 @@ CREATE TABLE `tbl_phieutrahang` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieuxuat`
+-- Table structure for table `tbl_phieuxuat`
 --
 
 CREATE TABLE `tbl_phieuxuat` (
@@ -670,18 +817,16 @@ CREATE TABLE `tbl_phieuxuat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phieuxuat`
+-- Dumping data for table `tbl_phieuxuat`
 --
 
 INSERT INTO `tbl_phieuxuat` (`MaPhieuXuat`, `MaTaiKhoan`, `TongSoLuong`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PX20240529094830', 'TKNV20240428002556', 11, 0, NULL, '2024-05-29 02:48:32', '2024-05-30 15:18:44'),
-('PX20240530221710', 'TKNV20240428002556', 2, 0, NULL, '2024-05-30 15:17:12', '2024-05-30 15:46:34'),
-('PX20240530230257', 'TKNV20240428002556', 0, 0, NULL, '2024-05-30 16:02:58', NULL);
+('PX20240529094830', 'TKNV20240428002556', 11, 0, NULL, '2024-05-29 02:48:32', '2024-05-29 03:14:21');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_phigiaohang`
+-- Table structure for table `tbl_phigiaohang`
 --
 
 CREATE TABLE `tbl_phigiaohang` (
@@ -689,11 +834,11 @@ CREATE TABLE `tbl_phigiaohang` (
   `MaThanhPho` int DEFAULT NULL,
   `MaQuanHuyen` int DEFAULT NULL,
   `MaXaPhuong` int DEFAULT NULL,
-  `SoTien` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SoTien` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_phigiaohang`
+-- Dumping data for table `tbl_phigiaohang`
 --
 
 INSERT INTO `tbl_phigiaohang` (`MaPhiGiaoHang`, `MaThanhPho`, `MaQuanHuyen`, `MaXaPhuong`, `SoTien`) VALUES
@@ -705,7 +850,7 @@ INSERT INTO `tbl_phigiaohang` (`MaPhiGiaoHang`, `MaThanhPho`, `MaQuanHuyen`, `Ma
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_quanhuyen`
+-- Table structure for table `tbl_quanhuyen`
 --
 
 CREATE TABLE `tbl_quanhuyen` (
@@ -716,7 +861,7 @@ CREATE TABLE `tbl_quanhuyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_quanhuyen`
+-- Dumping data for table `tbl_quanhuyen`
 --
 
 INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`) VALUES
@@ -1437,7 +1582,7 @@ INSERT INTO `tbl_quanhuyen` (`MaQuanHuyen`, `TenQuanHuyen`, `type`, `MaThanhPho`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_quyen`
+-- Table structure for table `tbl_quyen`
 --
 
 CREATE TABLE `tbl_quyen` (
@@ -1446,7 +1591,7 @@ CREATE TABLE `tbl_quyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_quyen`
+-- Dumping data for table `tbl_quyen`
 --
 
 INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
@@ -1460,7 +1605,7 @@ INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_sanpham`
+-- Table structure for table `tbl_sanpham`
 --
 
 CREATE TABLE `tbl_sanpham` (
@@ -1475,28 +1620,58 @@ CREATE TABLE `tbl_sanpham` (
   `SoLuongHienTai` int DEFAULT NULL,
   `SoLuongBan` int DEFAULT NULL,
   `SoLuongTrongKho` int DEFAULT NULL,
-  `GiaSanPham` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `GiaSanPham` int DEFAULT NULL,
+  `ChieuCao` double DEFAULT NULL,
+  `ChieuNgang` double DEFAULT NULL,
+  `ChieuDay` double DEFAULT NULL,
+  `CanNang` double DEFAULT NULL,
   `ThongSoKyThuat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `ThoiGianBaoHanh` int DEFAULT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_sanpham`
+-- Dumping data for table `tbl_sanpham`
 --
 
-INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ThongSoKyThuat`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(25, 'Smart Tivi QLED 4K 55 inch Samsung QA55Q60C', 'smart-tivi-qled-4k-55-inch-samsung-qa55q60c', 8, 1, 'vi-vn-google-sony-32-inch-kd-32w830k-152.jpg', 1, '<p><a href=\"https://www.dienmayxanh.com/tivi/smart-tivi-qled-4k-55-inch-samsung-qa55q60c\"><i><strong>Smart Tivi QLED 4K 55 inch Samsung QA55Q60C</strong></i></a><i><strong> tinh giản trong thiết kế, khung hình 55 inch với độ phân giải 4K sắc nét, bộ xử lý Quantum 4K Lite, công nghệ OTS Lite mang đến trải nghiệm hình ảnh và âm thanh chân thật, hệ điều hành Tizen™ giao diện trực quan dễ sử dụng, tìm kiếm bằng giọng nói tiếng Việt, gọi video qua Google Duo,…</strong></i></p><h3>Tổng quan thiết kế</h3><p>- Màn hình tivi kích thước <strong>55 inch</strong>, thiết kế liền mạch, cạnh viền thanh thoát góp phần tô điểm cho không gian nội thất.</p><p>- Chân đế đỡ <a href=\"https://www.dienmayxanh.com/tivi\"><strong>tivi </strong></a>được làm bằng chất liệu nhựa, nâng đỡ chắc chắn, là sự tuyệt vời cho không gian phòng khách, phòng làm việc, phòng ngủ,…</p>', 6, NULL, 6, '14990000', NULL, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(26, 'Smart Tivi Toshiba 43 inch 43V31MP', 'smart-tivi-toshiba-43-inch-43v31mp', 12, 1, 'vi-vn-google-tivi-sony-4k-43-inch-kd-43x77l-0125.jpg', 1, 'Smart Tivi Toshiba 43 inch 43V31MP mang đến hình ảnh Full HD rõ đẹp, sống động với bộ xử lý Regza Engine HG, công nghệ Essential PQ tái tạo chi tiết, màu sắc trung thực, công nghệ Dolby Audio cho âm thanh vòm mạnh mẽ, hệ điều hành Vidaa U7 cùng thư viện ứng dụng đa dạng, dễ dàng sử dụng.\r\n\r\nTổng quan thiết kế\r\n- Mẫu Smart tivi Toshiba này có kiểu dáng đơn giản, 3 cạnh viền trên được làm thanh mảnh hơn cạnh viền dưới cho không gian hiển thị rộng rãi, tầm nhìn của người xem tập trung hơn vào nội dung trình chiếu mà không sợ bị xao nhãng. \r\n\r\n- Chân đế bằng kim loại được chế tạo dạng chữ V úp ngược giữ cho màn hình tivi đặt ổn định trên bề mặt kệ tủ. \r\n\r\n- Màn hình 43 inch hài hòa và vừa vặn trong không gian có diện tích nhỏ. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ hình ảnh \r\n- Độ phân giải Full HD hiển thị hình ảnh nét gấp đôi màn hình HD.\r\n\r\n- Bộ xử lý Regza Engine HG cùng với công nghệ hình ảnh Essential PQ, tấm nền chất lượng tái tạo nên khung hình mang độ nét Full HD sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Bộ xử lý Regza Engine HG\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\n- Công nghệ Color Re-Master khôi phục đầy đủ và nguyên bản những sắc màu tự nhiên trên nội dung gốc mang đến trải nghiệm xem với màu sắc tuyệt đẹp.\r\n\r\n- Chức năng Contrast Booster kiểm soát tối ưu độ tương phản màu sắc, xử lý chống chói cho cảnh phim hiển thị với màu sắc sinh động, chân thực.\r\n\r\n- Auto Signal Booster tái hiện hình ảnh rõ nét nhờ khả năng khuếch đại tín hiệu truyền hình mạnh mẽ một cách tự động, cho người xem được tận hưởng các nội dung liền mạch, cuốn hút hơn.\r\n\r\nXem thêm: Các công nghệ hình ảnh nổi bật trên tivi Toshiba\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ hình ảnh \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ âm thanh\r\n- Dolby Audio, công nghệ giả lập âm thanh vòm, cải thiện độ chi tiết của âm thanh phụ cùng với giải mã âm thanh DTS HD cho mọi nội dung bạn xem từ chương trình thể thao, phim ảnh đến âm nhạc đều trở nên chân thật, lôi cuốn trong từng khoảnh khắc. \r\n\r\n- Công nghệ Regza Power Audio cùng với 2 loa và tổng công suất 24W truyền tải chất âm trung thực, tạo cảm giác như bạn đang ở trong cảnh phim gay cấn mình đang thưởng thức.\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nHệ điều hành\r\n- Mẫu Smart tivi này sử dụng hệ điều hành Vidaa U7 có giao diện hiện đại, có khả năng đề xuất cho người xem những nội dung phù hợp với sở thích, đem đến cho bạn những giờ phút giải trí hấp dẫn hơn.\r\n\r\n- Kho ứng dụng phong phú, có nhiều ứng dụng phổ biến như YouTube, Netflix, FPT Play,...\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nTiện ích \r\n- Tìm kiếm bằng giọng nói thông qua ứng dụng VIDAA được thiết lập trên điện thoại. Bên cạnh đó, VIDAA còn giúp người dùng tùy chỉnh tivi linh hoạt như remote điều khiển từ xa.\r\n\r\n- Các tính năng DLNA, Miracast hỗ trợ bạn chiếu màn hình thiết bị di động lên tivi Toshiba để thưởng thức các video, hình ảnh với khung hình lớn hơn, rõ ràng hơn. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tiện ích \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP là mẫu tivi được Toshiba ra mắt vào năm 2023, sản xuất tại Thái Lan mang đến trải nghiệm nghe nhìn và giải trí hấp dẫn với các công nghệ hình ảnh, âm thanh tiên tiến, đi kèm hệ điều hành hiện đại, tiện ích thú vị cho bạn sử dụng tivi dễ dàng mọi lúc.\r\n\r\nXem thêm: Tư vấn chọn mua tivi phù hợp với gia đình có người lớn tuổi', 0, NULL, 0, '5490000', NULL, '2024-05-13 15:31:11', NULL),
-(27, 'Google Tivi Sony 4K 55 inch KD-55X77L', 'google-tivi-sony-4k-55-inch-kd-55x77l', 11, 1, 'vi-vn-smart-samsung-4k-55-inch-ua55au7002-188.jpg', 1, 'Google Tivi Sony 4K KD-55X77L sở hữu kích thước 55 inch cùng bộ xử lý mạnh mẽ X1 4K cho hình ảnh hiển thị chất lượng 4K sắc nét, công nghệ tạo màu Live Colour, công nghệ S-Master Digital Amplifier thu hút người xem ngay từ cái nhìn đầu tiên, đem đến những thước phim, bản nhạc kịch tính, sống động. Bên cạnh đó, tivi còn trang bị nhiều tính năng giúp ích cho người dùng trong quá trình sử dụng như: trợ lý ảo Google Assistant, AirPlay 2 (iPhone) và Chromecast,...\r\n\r\n\r\nThiết kế\r\n- Google Tivi Sony sở hữu kiểu dáng thanh lịch, sang trọng, chân đế chữ V úp ngược được làm từ nhựa chắc chắn, mặt sau tối giản giúp tivi dễ dàng hòa nhập cùng không gian gia đình.\r\n\r\n- Tivi trang bị màn hình 55 inch thích hợp cho những không gian vừa phải, sử dụng đa năng cho nhiều mục đích giải trí, dạy học hoặc trang trí cho không gian căn phòng đều được.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ hình ảnh \r\n- Tivi trang bị độ phân giải 4K đem lại sự sắc nét trong từng khung hình, giúp hình ảnh trở nên sống động, thu hút người xem.\r\n\r\n- Công nghệ 4K X-Reality PRO hỗ trợ hình ảnh có độ sắc nét cao, nâng cấp nội dung hiển thị, giúp hình ảnh được điều chỉnh độ tương phản, đậm nhạt hài hòa, hoàn hảo.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Bộ xử lý X1 4K làm giảm độ nhiễu, xử lý từng chi tiết nhỏ, giúp nội dung hiển thị đạt chất lượng 4K khi nguồn vào chỉ là chất lượng SD, HD hay 2K.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n- Công nghệ tạo màu Live Colour giúp tối ưu hóa bộ lọc màu, mang lại không gian màu rộng hơn, giúp hình ảnh chuyển động chân thật, có màu sắc tươi sáng.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Chuyển động mượt Motionflow XR 200 cho phép kiểm soát được khung hình, tránh tình trạng rung lắc mạnh, đem lại độ ổn định trong những phân khúc hành động, đua xe đỉnh cao.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ âm thanh\r\n- Tổng công suất loa là 20W giúp âm thanh trở nên chân thật, thu hút người nghe.\r\n\r\n- Dolby Audio mang cơ chế âm thanh vòm, giúp âm thanh được truyền tải đi mọi hướng, chân thật và chi tiết không khác gì trong rạp chiếu phim.\r\n\r\n- Công nghệ X-Balanced hỗ trợ tăng cường chất lượng âm thanh to rõ, âm trầm phong phú, giúp bạn tận hưởng những bộ phim hành động trở nên cuốn hút hơn.\r\n\r\n- Công nghệ S-Master Digital Amplifier hỗ trợ âm thanh được khuếch đại lớn nhưng không bị ồn và nhiễu, đem lại âm thanh tinh khiết, dễ dàng thu hút người nghe.\r\n\r\n- Công nghệ Clear Phase bảo vệ âm thanh tránh được tình trạng méo tiếng, nhiễu âm ở công suất loa tối đa, đem lại những phút giây thưởng thức âm thanh sống động.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nHệ điều hành\r\n- Với mong muốn gần gũi, thân thiện với người dùng, sản phẩm thiết lập hệ điều hành Google TV có giao diện dễ nhìn, được sắp xếp gọn gàng giúp bạn có thể lựa chọn được những chương trình yêu thích.\r\n\r\n- Không chỉ thân thiện, Google TV còn trang bị kho ứng dụng đồ sộ đáp ứng đầy đủ các nhu cầu xem phim, giải trí đến người dùng như: YouTube, FPT Play, Galaxy Play, VieON,...\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nTiện ích\r\n- Tivi Sony trang bị tính năng điều khiển bằng giọng nói tiếng Việt nhờ trợ lý ảo Google Assistant, tích hợp cùng micro trên tivi (có thể nói trực tiếp không cần remote) giúp quá trình sử dụng trở nên thuận tiện, nhanh chóng. Đây là một điểm cộng của tính năng, giúp những bậc phụ huynh không thông thạo công nghệ vẫn có thể dễ dàng sử dụng tivi.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tiện ích\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\n- Tính năng AirPlay 2 (iPhone) và Chromecast giúp bạn dễ dàng chia sẻ hình ảnh, video từ điện thoại lên tivi, thích hợp cho những buổi họp cũng như giải trí trong gia đình.\r\n\r\nGoogle Tivi Sony 4K 65 inch KD-65X77L - Tiện ích\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nGoogle Tivi Sony 4K 55 inch KD-55X77L sở hữu màn hình có kích thước 55 inch, độ phân giải 4K, trang bị công nghệ nâng cấp hình ảnh 4K X-Reality PRO, công nghệ chuyển động mượt Motionflow XR 200, loa X-Balanced đem đến âm thanh rõ nét và âm trầm phong phú cho từng thước phim và giai điệu âm nhạc,... giúp bạn có thể tận hưởng những thước phim sắc nét không khác gì đang xem tại rạp chiếu phim. Đây là sản phẩm không thể thiếu khi vừa có thể làm vật trang trí trong không gian gia đình, vừa đem đến nhiều tính năng giải trí cho bạn.', 0, NULL, 0, '14590000', NULL, '2024-05-13 15:32:58', NULL),
-(28, 'Google Tivi QLED TCL 4K 65 inch 65Q646', 'google-tivi-qled-tcl-4k-65-inch-65q646', 12, 1, 'vi-vn-acer-nitro-5-gaming-an515-57-5669-i5-nhqehsv001-138.jpg', 1, 'Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. \r\n\r\nTổng quan thiết kế\r\n- Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh.\r\n\r\n- Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,…\r\n\r\n- Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết.\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ hình ảnh\r\n- Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. \r\n\r\n- Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét.\r\n\r\n- Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. \r\n\r\n- Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản.\r\n\r\n- Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ âm thanh\r\n- Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. \r\n\r\n- Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. \r\n\r\n- Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nHệ điều hành\r\n- Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nTiện ích\r\n- Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói.\r\n\r\n- Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast.\r\n\r\n- Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,…\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nVới thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.', 0, NULL, 0, '11990000', NULL, '2024-05-13 15:34:40', NULL),
-(30, 'Google Tivi TCL 43 inch 43S5400', 'google-tivi-tcl-43-inch-43s5400', 13, 1, 'led-4k-samsung-ua75au8100-280.jpg', 1, 'Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. \r\n\r\nTổng quan thiết kế\r\n- Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh.\r\n\r\n- Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,…\r\n\r\n- Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết.\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ hình ảnh\r\n- Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. \r\n\r\n- Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét.\r\n\r\n- Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. \r\n\r\n- Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản.\r\n\r\n- Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nCông nghệ âm thanh\r\n- Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. \r\n\r\n- Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. \r\n\r\n- Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nHệ điều hành\r\n- Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nTiện ích\r\n- Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói.\r\n\r\n- Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast.\r\n\r\n- Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,…\r\n\r\nGoogle Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích\r\n\r\n* Hình ảnh chỉ mang tính chất minh họa\r\n\r\nVới thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.', 0, NULL, 0, '14990000', NULL, '2024-05-13 15:41:32', NULL),
-(31, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC', 'smart-tivi-lg-4k-55-inch-55uq8000psc', 14, 1, 'android-sony-4k-55-inch-kd-55x80k-180322-022717-550x34097.png', 1, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC tinh giản trong thiết kế thanh mảnh, sang đẹp, mang khung hình 4K rực rỡ, tương phản cao ấn tượng hòa mình vào không gian nội thất hiện đại, cùng chất âm sống động tinh chỉnh qua AI Sound và AI Acoustic Tuning cho người dùng trải nghiệm đầy lý thú trên từng ứng dụng giải trí từ webOS 22.\r\n\r\nTổng quan thiết kế\r\n- Smart Tivi LG 4K 55 inch 55UQ8000PSC sở hữu kích thước màn hình 55 inch thích hợp dùng cho các phòng có diện tích trung bình như phòng khách gia đình, phòng họp, sảnh nhỏ,...\r\n\r\n- Thiết kế tinh tế, thanh mảnh với các cạnh viền siêu mỏng, tinh giản mà sang trọng, phá vỡ giới hạn tầm nhìn trên khung hình trình chiếu.\r\n\r\n- Tivi có chân đế bằng nhựa lõi kim loại đảm bảo độ bền chắc để nâng đỡ tốt màn hình khi lắp đặt trên kệ tủ, dễ dàng tháo rời chân để bố trí treo tường tiết kiệm không gian.\r\n\r\nSmart Tivi LG 4K 55 inch 55UQ8000PSC - Thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ hình ảnh\r\n- Chất lượng hiển thị sắc nét ấn tượng với độ phân giải 4K (3.840 x 2.160).\r\n\r\n- Bộ xử lý α5 Gen5 AI 4K tối ưu hình ảnh và màu sắc chuẩn xác, chân thực, cùng với khả năng nâng cấp nội dung đầu vào lên chuẩn gần 4K từ công nghệ 4K AI Upscaling cho người xem thưởng thức những khung hình hoàn hảo về độ sắc nét chi tiết.\r\n\r\n- Chất lượng tương phản cũng được gia tăng nhờ công nghệ HDR10 Pro và HDR Dynamic Tone Mapping, độ sáng và độ rõ nét được tối ưu, màn hình xem trở nên rực rỡ hơn, các chi tiết ẩn rõ ràng hơn, đưa người xem hòa mình vào khung cảnh và nội dung đang chiếu.\r\n\r\n- Màn hình game mượt mà nhờ chế độ game HGIG và phản hồi tức thì với công nghệ giảm độ trễ Auto Low Latency Mode (ALLM).\r\n\r\n- Trải nghiệm phim điện ảnh theo đúng mong muốn từ nhà làm phim nhờ chế độ FilmMaker Mode. \r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi LG 4K 55 inch 55UQ8000PSC - Công nghệ hình ảnh\r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nCông nghệ âm thanh\r\n- Tổng công suất loa 20W cho âm thanh mạnh mẽ.\r\n\r\n- Chất âm được tinh chỉnh theo nội dung xem với AI Sound và tối ưu theo không gian phòng nhờ công nghệ AI Acoustic Tuning, đồng thời chế độ lọc thoại Clear Voice Pro cho thông điệp nội dung thật rõ ràng, giúp người dùng nắm bắt dễ dàng và trọn vẹn hơn.\r\n\r\n- Liên kết hoàn hảo smart tivi LG với dàn âm thanh qua kết nối Bluetooth, khuấy động không gian giải trí với LG Sound Sync.\r\n\r\nÂm thanh tinh chỉnh lôi cuốn - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nHệ điều hành\r\n- Smart tivi sử dụng hệ điều hành webOS 22 có giao diện thân thiện, dễ dàng sử dụng, kho ứng dụng phong phú gồm: YouTube, Netflix, Clip TV, FPT Play, Galaxy Play (Fim+), MyTV, Nhaccuatui, POPS Kids, Spotify, Trình duyệt web, TV 360, VieON, VTVcab ON, YouTube Kids, Zing TV, Apple TV,… phục vụ tốt cho nhu cầu của mọi thành viên.\r\n\r\nXem thêm: Cách xem phim bằng trình duyệt web trên tivi \r\n\r\nWebOS 6.0  - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n*Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nTiện ích\r\n- Chia sẻ nội dung trên điện thoại lên màn hình tivi qua tính năng AirPlay 2 (iPhone), Screen Share.\r\n\r\n- Magic Remote và AI ThinQ hoạt động thông minh, cho phép kết nối và điều khiển toàn bộ hệ sinh thái trong ngôi nhà.\r\n\r\n- Tivi LG hỗ trợ tìm kiếm giọng nói bằng tiếng Việt qua Magic Remote, LG Voice Search với Google Assistant (chưa hỗ trợ tiếng Việt), điều khiển đơn giản, nhanh chóng hơn, tiện lợi hơn.\r\n\r\nXem thêm: 9 cách kết nối điện thoại Android với tivi LG đơn giản, hiệu quả nhất\r\n\r\nChia sẻ nội dung điện thoại lên tivi  - Smart Tivi LG 4K 55 inch 55UQ8000PSC \r\n\r\n *Hình ảnh chỉ mang tính chất minh họa sản phẩm\r\n\r\nNhìn chung, Smart Tivi LG 4K 55 inch 55UQ8000PSC với chất lượng khung hình 4K tương phản vượt trội, cùng âm thanh mạnh mẽ được tinh chỉnh tốt theo nội dung AI Sound sẽ mang đến những trải nghiệm thật lý thú cho người cả khi xem phim, video, thể thao hay các kênh thông tin,... thỏa mãn khung giờ giải trí của các thành viên trong gia đình.', 0, NULL, 0, '20490000', NULL, '2024-05-13 15:44:44', NULL);
+INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ChieuCao`, `ChieuNgang`, `ChieuDay`, `CanNang`, `ThongSoKyThuat`, `ThoiGianBaoHanh`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(25, 'Smart Tivi QLED 4K 55 inch Samsung QA55Q60C', 'smart-tivi-qled-4k-55-inch-samsung-qa55q60c', 8, 1, 'vi-vn-google-sony-32-inch-kd-32w830k-152.jpg', 1, '<p><a href=\"https://www.dienmayxanh.com/tivi/smart-tivi-qled-4k-55-inch-samsung-qa55q60c\"><i><strong>Smart Tivi QLED 4K 55 inch Samsung QA55Q60C</strong></i></a><i><strong> tinh giản trong thiết kế, khung hình 55 inch với độ phân giải 4K sắc nét, bộ xử lý Quantum 4K Lite, công nghệ OTS Lite mang đến trải nghiệm hình ảnh và âm thanh chân thật, hệ điều hành Tizen™ giao diện trực quan dễ sử dụng, tìm kiếm bằng giọng nói tiếng Việt, gọi video qua Google Duo,…</strong></i></p><h3>Tổng quan thiết kế</h3><p>- Màn hình tivi kích thước <strong>55 inch</strong>, thiết kế liền mạch, cạnh viền thanh thoát góp phần tô điểm cho không gian nội thất.</p><p>- Chân đế đỡ <a href=\"https://www.dienmayxanh.com/tivi\"><strong>tivi </strong></a>được làm bằng chất liệu nhựa, nâng đỡ chắc chắn, là sự tuyệt vời cho không gian phòng khách, phòng làm việc, phòng ngủ,…</p>', 10, 4, 6, 14990000, 60.3, 100.4, 12.6, 12, NULL, 12, '2024-05-13 04:53:28', '2024-06-02 00:00:53'),
+(26, 'Smart Tivi Toshiba 43 inch 43V31MP', 'smart-tivi-toshiba-43-inch-43v31mp', 12, 1, 'vi-vn-google-tivi-sony-4k-43-inch-kd-43x77l-0125.jpg', 1, 'Smart Tivi Toshiba 43 inch 43V31MP mang đến hình ảnh Full HD rõ đẹp, sống động với bộ xử lý Regza Engine HG, công nghệ Essential PQ tái tạo chi tiết, màu sắc trung thực, công nghệ Dolby Audio cho âm thanh vòm mạnh mẽ, hệ điều hành Vidaa U7 cùng thư viện ứng dụng đa dạng, dễ dàng sử dụng.\r\n\r\nTổng quan thiết kế\r\n- Mẫu Smart tivi Toshiba này có kiểu dáng đơn giản, 3 cạnh viền trên được làm thanh mảnh hơn cạnh viền dưới cho không gian hiển thị rộng rãi, tầm nhìn của người xem tập trung hơn vào nội dung trình chiếu mà không sợ bị xao nhãng. \r\n\r\n- Chân đế bằng kim loại được chế tạo dạng chữ V úp ngược giữ cho màn hình tivi đặt ổn định trên bề mặt kệ tủ. \r\n\r\n- Màn hình 43 inch hài hòa và vừa vặn trong không gian có diện tích nhỏ. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tổng quan thiết kế\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ hình ảnh \r\n- Độ phân giải Full HD hiển thị hình ảnh nét gấp đôi màn hình HD.\r\n\r\n- Bộ xử lý Regza Engine HG cùng với công nghệ hình ảnh Essential PQ, tấm nền chất lượng tái tạo nên khung hình mang độ nét Full HD sống động.\r\n\r\nMời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Bộ xử lý Regza Engine HG\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\n- Công nghệ Color Re-Master khôi phục đầy đủ và nguyên bản những sắc màu tự nhiên trên nội dung gốc mang đến trải nghiệm xem với màu sắc tuyệt đẹp.\r\n\r\n- Chức năng Contrast Booster kiểm soát tối ưu độ tương phản màu sắc, xử lý chống chói cho cảnh phim hiển thị với màu sắc sinh động, chân thực.\r\n\r\n- Auto Signal Booster tái hiện hình ảnh rõ nét nhờ khả năng khuếch đại tín hiệu truyền hình mạnh mẽ một cách tự động, cho người xem được tận hưởng các nội dung liền mạch, cuốn hút hơn.\r\n\r\nXem thêm: Các công nghệ hình ảnh nổi bật trên tivi Toshiba\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ hình ảnh \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nCông nghệ âm thanh\r\n- Dolby Audio, công nghệ giả lập âm thanh vòm, cải thiện độ chi tiết của âm thanh phụ cùng với giải mã âm thanh DTS HD cho mọi nội dung bạn xem từ chương trình thể thao, phim ảnh đến âm nhạc đều trở nên chân thật, lôi cuốn trong từng khoảnh khắc. \r\n\r\n- Công nghệ Regza Power Audio cùng với 2 loa và tổng công suất 24W truyền tải chất âm trung thực, tạo cảm giác như bạn đang ở trong cảnh phim gay cấn mình đang thưởng thức.\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Công nghệ âm thanh\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nHệ điều hành\r\n- Mẫu Smart tivi này sử dụng hệ điều hành Vidaa U7 có giao diện hiện đại, có khả năng đề xuất cho người xem những nội dung phù hợp với sở thích, đem đến cho bạn những giờ phút giải trí hấp dẫn hơn.\r\n\r\n- Kho ứng dụng phong phú, có nhiều ứng dụng phổ biến như YouTube, Netflix, FPT Play,...\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Hệ điều hành\r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nTiện ích \r\n- Tìm kiếm bằng giọng nói thông qua ứng dụng VIDAA được thiết lập trên điện thoại. Bên cạnh đó, VIDAA còn giúp người dùng tùy chỉnh tivi linh hoạt như remote điều khiển từ xa.\r\n\r\n- Các tính năng DLNA, Miracast hỗ trợ bạn chiếu màn hình thiết bị di động lên tivi Toshiba để thưởng thức các video, hình ảnh với khung hình lớn hơn, rõ ràng hơn. \r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP - Tiện ích \r\n\r\n*Hình ảnh chỉ mang tính chất minh hoạ\r\n\r\nSmart Tivi Toshiba 43 inch 43V31MP là mẫu tivi được Toshiba ra mắt vào năm 2023, sản xuất tại Thái Lan mang đến trải nghiệm nghe nhìn và giải trí hấp dẫn với các công nghệ hình ảnh, âm thanh tiên tiến, đi kèm hệ điều hành hiện đại, tiện ích thú vị cho bạn sử dụng tivi dễ dàng mọi lúc.\r\n\r\nXem thêm: Tư vấn chọn mua tivi phù hợp với gia đình có người lớn tuổi', 10, 1, 0, 5490000, 65.5, 98.4, 11.5, 12.4, NULL, 12, '2024-05-13 15:31:11', NULL),
+(27, 'Google Tivi Sony 4K 55 inch KD-55X77L', 'google-tivi-sony-4k-55-inch-kd-55x77l', 11, 1, 'vi-vn-smart-samsung-4k-55-inch-ua55au7002-188.jpg', 1, '<p>Google Tivi Sony 4K KD-55X77L sở hữu kích thước 55 inch cùng bộ xử lý mạnh mẽ X1 4K cho hình ảnh hiển thị chất lượng 4K sắc nét, công nghệ tạo màu Live Colour, công nghệ S-Master Digital Amplifier thu hút người xem ngay từ cái nhìn đầu tiên, đem đến những thước phim, bản nhạc kịch tính, sống động. Bên cạnh đó, tivi còn trang bị nhiều tính năng giúp ích cho người dùng trong quá trình sử dụng như: trợ lý ảo Google Assistant, AirPlay 2 (iPhone) và Chromecast,... Thiết kế - Google Tivi Sony sở hữu kiểu dáng thanh lịch, sang trọng, chân đế chữ V úp ngược được làm từ nhựa chắc chắn, mặt sau tối giản giúp tivi dễ dàng hòa nhập cùng không gian gia đình. - Tivi trang bị màn hình 55 inch thích hợp cho những không gian vừa phải, sử dụng đa năng cho nhiều mục đích giải trí, dạy học hoặc trang trí cho không gian căn phòng đều được. Google Tivi Sony 4K 65 inch KD-65X77L - Tổng quan thiết kế *Hình ảnh chỉ mang tính chất minh họa sản phẩm Công nghệ hình ảnh - Tivi trang bị độ phân giải 4K đem lại sự sắc nét trong từng khung hình, giúp hình ảnh trở nên sống động, thu hút người xem. - Công nghệ 4K X-Reality PRO hỗ trợ hình ảnh có độ sắc nét cao, nâng cấp nội dung hiển thị, giúp hình ảnh được điều chỉnh độ tương phản, đậm nhạt hài hòa, hoàn hảo. Mời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi Google Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh *Hình ảnh chỉ mang tính chất minh họa sản phẩm - Bộ xử lý X1 4K làm giảm độ nhiễu, xử lý từng chi tiết nhỏ, giúp nội dung hiển thị đạt chất lượng 4K khi nguồn vào chỉ là chất lượng SD, HD hay 2K. Google Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh - Công nghệ tạo màu Live Colour giúp tối ưu hóa bộ lọc màu, mang lại không gian màu rộng hơn, giúp hình ảnh chuyển động chân thật, có màu sắc tươi sáng. Google Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh *Hình ảnh chỉ mang tính chất minh họa sản phẩm - Chuyển động mượt Motionflow XR 200 cho phép kiểm soát được khung hình, tránh tình trạng rung lắc mạnh, đem lại độ ổn định trong những phân khúc hành động, đua xe đỉnh cao. Google Tivi Sony 4K 65 inch KD-65X77L - Công nghệ hình ảnh *Hình ảnh chỉ mang tính chất minh họa sản phẩm Công nghệ âm thanh - Tổng công suất loa là 20W giúp âm thanh trở nên chân thật, thu hút người nghe. - Dolby Audio mang cơ chế âm thanh vòm, giúp âm thanh được truyền tải đi mọi hướng, chân thật và chi tiết không khác gì trong rạp chiếu phim. - Công nghệ X-Balanced hỗ trợ tăng cường chất lượng âm thanh to rõ, âm trầm phong phú, giúp bạn tận hưởng những bộ phim hành động trở nên cuốn hút hơn. - Công nghệ S-Master Digital Amplifier hỗ trợ âm thanh được khuếch đại lớn nhưng không bị ồn và nhiễu, đem lại âm thanh tinh khiết, dễ dàng thu hút người nghe. - Công nghệ Clear Phase bảo vệ âm thanh tránh được tình trạng méo tiếng, nhiễu âm ở công suất loa tối đa, đem lại những phút giây thưởng thức âm thanh sống động. Google Tivi Sony 4K 65 inch KD-65X77L - Công nghệ âm thanh *Hình ảnh chỉ mang tính chất minh họa sản phẩm Hệ điều hành - Với mong muốn gần gũi, thân thiện với người dùng, sản phẩm thiết lập hệ điều hành Google TV có giao diện dễ nhìn, được sắp xếp gọn gàng giúp bạn có thể lựa chọn được những chương trình yêu thích. - Không chỉ thân thiện, Google TV còn trang bị kho ứng dụng đồ sộ đáp ứng đầy đủ các nhu cầu xem phim, giải trí đến người dùng như: YouTube, FPT Play, Galaxy Play, VieON,... Xem thêm: Cách xem phim bằng trình duyệt web trên tivi Google Tivi Sony 4K 65 inch KD-65X77L - Hệ điều hành *Hình ảnh chỉ mang tính chất minh họa sản phẩm Tiện ích - Tivi Sony trang bị tính năng điều khiển bằng giọng nói tiếng Việt nhờ trợ lý ảo Google Assistant, tích hợp cùng micro trên tivi (có thể nói trực tiếp không cần remote) giúp quá trình sử dụng trở nên thuận tiện, nhanh chóng. Đây là một điểm cộng của tính năng, giúp những bậc phụ huynh không thông thạo công nghệ vẫn có thể dễ dàng sử dụng tivi. Google Tivi Sony 4K 65 inch KD-65X77L - Tiện ích *Hình ảnh chỉ mang tính chất minh họa sản phẩm - Tính năng AirPlay 2 (iPhone) và Chromecast giúp bạn dễ dàng chia sẻ hình ảnh, video từ điện thoại lên tivi, thích hợp cho những buổi họp cũng như giải trí trong gia đình. Google Tivi Sony 4K 65 inch KD-65X77L - Tiện ích *Hình ảnh chỉ mang tính chất minh họa sản phẩm Google Tivi Sony 4K 55 inch KD-55X77L sở hữu màn hình có kích thước 55 inch, độ phân giải 4K, trang bị công nghệ nâng cấp hình ảnh 4K X-Reality PRO, công nghệ chuyển động mượt Motionflow XR 200, loa X-Balanced đem đến âm thanh rõ nét và âm trầm phong phú cho từng thước phim và giai điệu âm nhạc,... giúp bạn có thể tận hưởng những thước phim sắc nét không khác gì đang xem tại rạp chiếu phim. Đây là sản phẩm không thể thiếu khi vừa có thể làm vật trang trí trong không gian gia đình, vừa đem đến nhiều tính năng giải trí cho bạn.</p>', 10, 3, 0, 14590000, 65.7, 115, 13.7, 14, NULL, 12, '2024-05-13 15:32:58', '2024-06-02 00:01:21'),
+(28, 'Google Tivi QLED TCL 4K 65 inch 65Q646', 'google-tivi-qled-tcl-4k-65-inch-65q646', 12, 1, 'vi-vn-acer-nitro-5-gaming-an515-57-5669-i5-nhqehsv001-138.jpg', 1, '<p>Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. Tổng quan thiết kế - Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh. - Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,… - Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết. Google Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế * Hình ảnh chỉ mang tính chất minh họa Công nghệ hình ảnh - Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. - Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét. - Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. - Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản. - Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động. Mời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi Google Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh * Hình ảnh chỉ mang tính chất minh họa Công nghệ âm thanh - Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. - Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. - Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. Google Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh * Hình ảnh chỉ mang tính chất minh họa Hệ điều hành - Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích. Xem thêm: Cách xem phim bằng trình duyệt web trên tivi Google Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành * Hình ảnh chỉ mang tính chất minh họa Tiện ích - Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói. - Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast. - Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,… Google Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích * Hình ảnh chỉ mang tính chất minh họa Với thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.</p>', 10, 10, 0, 11990000, 56, 98, 13.5, 10.8, NULL, 12, '2024-05-13 15:34:40', '2024-06-02 00:02:06'),
+(30, 'Google Tivi TCL 43 inch 43S5400', 'google-tivi-tcl-43-inch-43s5400', 13, 1, 'led-4k-samsung-ua75au8100-280.jpg', 1, '<p>Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu màn hình 65 inch độ phân giải 4K sắc nét. Trang bị các công nghệ hình ảnh và âm thanh nổi bật như Dolby Vision cho độ sáng vượt trội, hình ảnh chi tiết và trung thực, Micro Dimming kiểm soát đèn nền hay âm thanh vòm Dolby Atmos nâng cấp trải nghiệm nghe nhìn. Bên cạnh đó, tivi TCL được trang bị hệ điều hành Google TV với giao diện thân thiện, dễ sử dụng cùng kho ứng dụng phong phú. Tổng quan thiết kế - Tivi TCL này sở hữu kích thước màn hình 65 inch, kiểu dáng tối giản với đường viền siêu mỏng đem lại trải nghiệm xem tuyệt đỉnh. - Phù hợp lắp đặt cho những không gian rộng và vừa, như phòng khách, phòng làm việc, phòng ngủ, phòng họp,… - Chân đế chữ V úp ngược, được làm bằng hợp kim cao cấp, nâng đỡ màn hình chắc chắn trên kệ tủ, đồng thời có thể tháo rời để treo tường, biến không gian nội thất trở nên sang trọng, hút mắt hơn bao giờ hết. Google Tivi QLED TCL 4K 65 inch 65Q646 - Thiết kế * Hình ảnh chỉ mang tính chất minh họa Công nghệ hình ảnh - Hình ảnh sắc nét, rõ ràng nhờ độ phân giải 4K với gần 8.3 triệu điểm ảnh, độ nét gấp 4 lần Full HD. - Bộ xử lý AiPQ Gen 3 tự động điều chỉnh và tối ưu hóa màu sắc, đem lại chất lượng hình ảnh hiển thị đẹp sắc nét. - Công nghệ Dolby Vision tăng cường khả năng hiển thị HDR cho độ tương phản tốt, hình ảnh có chiều sâu và chân thực hơn. - Công nghệ HDR10 tăng cường độ hiển thị cho phân cảnh, đem lại chiều sâu hoàn hảo và chi tiết hơn khi không làm thay đổi màu sắc nguyên bản. - Micro Dimming phân tích từng nội dung video ở từng khu vực riêng biệt, sau đó điều chỉnh độ sáng tối chi tiết, tăng cường độ tương phản, mang đến hình ảnh chân thực và sống động. Mời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi Google Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ hình ảnh * Hình ảnh chỉ mang tính chất minh họa Công nghệ âm thanh - Tivi sở hữu 2 loa với tổng công suất loa 20W cho chất âm mạnh mẽ, vang dội. - Công nghệ Dolby Atmos cho ra hiệu ứng giả lập âm thanh vòm, mang đến trải nghiệm xem chân thực như đang ngồi trong rạp chiếu phim. - Hệ thống loa Onkyo với loa hướng về trước giúp âm thanh hướng về trực diện người xem, đem đến trải nghiệm âm thanh rõ và hay hơn. Đồng thời loa trầm tăng bass được trang bị ở sau tivi giúp âm thanh phát ra đánh hắt vào tường rồi truyền ra ngoài. Google Tivi QLED TCL 4K 65 inch 65Q646 - Công nghệ âm thanh * Hình ảnh chỉ mang tính chất minh họa Hệ điều hành - Hệ điều hành Google TV có giao diện trực quan, dễ sử dụng. Bên cạnh đó là kho ứng dụng phong phú với nhiều ứng dụng phổ biến như YouTube, Netflix, Clip TV, FPT Play, VieON, trình duyệt web,… cho người dùng thoải mái lựa chọn theo sở thích. Xem thêm: Cách xem phim bằng trình duyệt web trên tivi Google Tivi QLED TCL 4K 65 inch 65Q646 - Hệ điều hành * Hình ảnh chỉ mang tính chất minh họa Tiện ích - Điều khiển tivi bằng giọng nói linh hoạt trên YouTube, hỗ trợ tiếng Việt với Google Assistant và Bixby. Bên cạnh đó, tivi TCL này còn được trang bị remote tích hợp micro tìm kiếm bằng giọng nói. - Dễ dàng quản lý tivi bằng điện thoại qua AirPlay 2, Chromecast. - Hỗ trợ đa dạng các kết nối như Wifi, Bluetooth không dây và có dây như HDMI, HDMI eARC, Composite, Optical, cổng 3.5 mm,… Google Tivi QLED TCL 4K 65 inch 65Q646 - Tiện ích * Hình ảnh chỉ mang tính chất minh họa Với thành công từ sản phẩm Google Tivi QLED TCL 4K 65 inch 65Q636 được ra mắt năm 2022, TCL ra mắt phiên bản năm 2023 Google Tivi QLED TCL 4K 65 inch 65Q646 sở hữu kiểu dáng sang trọng, tinh tế, màn hình 65 inch độ phân giải 4K sắc nét, trang bị công nghệ hình ảnh và âm thanh tiên tiến, hệ điều hành Google TV thân thiện dễ sử dụng cùng các tiện ích thông minh khác hứa hẹn mang đến những phút giây thư giãn cho bạn và cả gia đình.</p>', 10, NULL, 0, 14990000, 55.7, 92.6, 14.6, 9.5, NULL, 12, '2024-05-13 15:41:32', '2024-06-02 00:02:57'),
+(31, 'Smart Tivi LG 4K 55 inch 55UQ8000PSC', 'smart-tivi-lg-4k-55-inch-55uq8000psc', 14, 1, 'android-sony-4k-55-inch-kd-55x80k-180322-022717-550x34097.png', 1, '<p>Smart Tivi LG 4K 55 inch 55UQ8000PSC tinh giản trong thiết kế thanh mảnh, sang đẹp, mang khung hình 4K rực rỡ, tương phản cao ấn tượng hòa mình vào không gian nội thất hiện đại, cùng chất âm sống động tinh chỉnh qua AI Sound và AI Acoustic Tuning cho người dùng trải nghiệm đầy lý thú trên từng ứng dụng giải trí từ webOS 22. Tổng quan thiết kế - Smart Tivi LG 4K 55 inch 55UQ8000PSC sở hữu kích thước màn hình 55 inch thích hợp dùng cho các phòng có diện tích trung bình như phòng khách gia đình, phòng họp, sảnh nhỏ,... - Thiết kế tinh tế, thanh mảnh với các cạnh viền siêu mỏng, tinh giản mà sang trọng, phá vỡ giới hạn tầm nhìn trên khung hình trình chiếu. - Tivi có chân đế bằng nhựa lõi kim loại đảm bảo độ bền chắc để nâng đỡ tốt màn hình khi lắp đặt trên kệ tủ, dễ dàng tháo rời chân để bố trí treo tường tiết kiệm không gian. Smart Tivi LG 4K 55 inch 55UQ8000PSC - Thiết kế *Hình ảnh chỉ mang tính chất minh họa sản phẩm Công nghệ hình ảnh - Chất lượng hiển thị sắc nét ấn tượng với độ phân giải 4K (3.840 x 2.160). - Bộ xử lý α5 Gen5 AI 4K tối ưu hình ảnh và màu sắc chuẩn xác, chân thực, cùng với khả năng nâng cấp nội dung đầu vào lên chuẩn gần 4K từ công nghệ 4K AI Upscaling cho người xem thưởng thức những khung hình hoàn hảo về độ sắc nét chi tiết. - Chất lượng tương phản cũng được gia tăng nhờ công nghệ HDR10 Pro và HDR Dynamic Tone Mapping, độ sáng và độ rõ nét được tối ưu, màn hình xem trở nên rực rỡ hơn, các chi tiết ẩn rõ ràng hơn, đưa người xem hòa mình vào khung cảnh và nội dung đang chiếu. - Màn hình game mượt mà nhờ chế độ game HGIG và phản hồi tức thì với công nghệ giảm độ trễ Auto Low Latency Mode (ALLM). - Trải nghiệm phim điện ảnh theo đúng mong muốn từ nhà làm phim nhờ chế độ FilmMaker Mode. Mời bạn xem thêm: Những độ phân giải màn hình phổ biến hiện nay trên tivi Smart Tivi LG 4K 55 inch 55UQ8000PSC - Công nghệ hình ảnh *Hình ảnh chỉ mang tính chất minh họa sản phẩm Công nghệ âm thanh - Tổng công suất loa 20W cho âm thanh mạnh mẽ. - Chất âm được tinh chỉnh theo nội dung xem với AI Sound và tối ưu theo không gian phòng nhờ công nghệ AI Acoustic Tuning, đồng thời chế độ lọc thoại Clear Voice Pro cho thông điệp nội dung thật rõ ràng, giúp người dùng nắm bắt dễ dàng và trọn vẹn hơn. - Liên kết hoàn hảo smart tivi LG với dàn âm thanh qua kết nối Bluetooth, khuấy động không gian giải trí với LG Sound Sync. Âm thanh tinh chỉnh lôi cuốn - Smart Tivi LG 4K 55 inch 55UQ8000PSC *Hình ảnh chỉ mang tính chất minh họa sản phẩm Hệ điều hành - Smart tivi sử dụng hệ điều hành webOS 22 có giao diện thân thiện, dễ dàng sử dụng, kho ứng dụng phong phú gồm: YouTube, Netflix, Clip TV, FPT Play, Galaxy Play (Fim+), MyTV, Nhaccuatui, POPS Kids, Spotify, Trình duyệt web, TV 360, VieON, VTVcab ON, YouTube Kids, Zing TV, Apple TV,… phục vụ tốt cho nhu cầu của mọi thành viên. Xem thêm: Cách xem phim bằng trình duyệt web trên tivi WebOS 6.0 - Smart Tivi LG 4K 55 inch 55UQ8000PSC *Hình ảnh chỉ mang tính chất minh họa sản phẩm Tiện ích - Chia sẻ nội dung trên điện thoại lên màn hình tivi qua tính năng AirPlay 2 (iPhone), Screen Share. - Magic Remote và AI ThinQ hoạt động thông minh, cho phép kết nối và điều khiển toàn bộ hệ sinh thái trong ngôi nhà. - Tivi LG hỗ trợ tìm kiếm giọng nói bằng tiếng Việt qua Magic Remote, LG Voice Search với Google Assistant (chưa hỗ trợ tiếng Việt), điều khiển đơn giản, nhanh chóng hơn, tiện lợi hơn. Xem thêm: 9 cách kết nối điện thoại Android với tivi LG đơn giản, hiệu quả nhất Chia sẻ nội dung điện thoại lên tivi - Smart Tivi LG 4K 55 inch 55UQ8000PSC *Hình ảnh chỉ mang tính chất minh họa sản phẩm Nhìn chung, Smart Tivi LG 4K 55 inch 55UQ8000PSC với chất lượng khung hình 4K tương phản vượt trội, cùng âm thanh mạnh mẽ được tinh chỉnh tốt theo nội dung AI Sound sẽ mang đến những trải nghiệm thật lý thú cho người cả khi xem phim, video, thể thao hay các kênh thông tin,... thỏa mãn khung giờ giải trí của các thành viên trong gia đình.</p>', 10, NULL, 0, 20490000, 56.3, 90.8, 15.3, 10.2, NULL, 12, '2024-05-13 15:44:44', '2024-06-02 00:03:27'),
+(32, 'Điện thoại Samsung Galaxy S23 Ultra 5G 8GB/256GB', 'dien-thoai-samsung-galaxy-s23-ultra-5g-8gb256gb', 8, 8, 'samsung-galaxy-a15-5g-xanh-thumb-600x60080.jpg', 1, '<h3><a href=\"https://www.dienmayxanh.com/dien-thoai/samsung-galaxy-s23-ultra\">Samsung Galaxy S23 Ultra</a>&nbsp;được xác nhận sẽ ra mắt trong sự kiện Galaxy Unpacked diễn ra vào đầu tháng 2 năm nay, theo thông tin từ hãng thì đây sẽ là mẫu điện thoại được nâng cấp mạnh về khả năng chụp ảnh nhờ camera 200 MP cũng như hiệu năng vô đối với con chip Snapdragon 8 Gen 2 for Galaxy.</h3><h3>Bảng so sánh thông số phiên bản S23 Ultra và S22 Ultra</h3><figure class=\"table\"><table><thead><tr><th>Tiêu chí</th><th>Samsung Galaxy S23 Ultra</th><th>Samsung Galaxy S22 Ultra</th></tr></thead><tbody><tr><td>Kích thước</td><td>Dài 163.4 mm - Ngang 78.1 mm - Dày 8.9 mm</td><td>Dài 163.3 mm - Ngang 77.9 mm - Dày 8.9 mm</td></tr><tr><td>Trọng lượng</td><td>223 g</td><td>228 g</td></tr><tr><td>Màn hình</td><td>Dynamic AMOLED 2X, 6.8 inch</td><td>Dynamic AMOLED 2X, 6.8 inch</td></tr><tr><td>CPU</td><td><strong>Snapdragon 8 Gen 2 for Galaxy 8 nhân</strong></td><td>Snapdragon 8 Gen 1 8 nhân</td></tr><tr><td>Camera sau</td><td>Chính 200 MP &amp; Phụ 12 MP, 10 MP, 10 MP</td><td>Chính 108 MP &amp; Phụ 12 MP, 10 MP, 10 MP</td></tr><tr><td>Camera trước</td><td>12 MP</td><td>40 MP</td></tr><tr><td>ROM</td><td><strong>256 GB, 512 GB, 1 TB</strong></td><td>128 GB, 256 GB, 512GB</td></tr><tr><td>Pin</td><td>5000 mAh</td><td>5000 mAh</td></tr><tr><td>Màu sắc</td><td>Tím, kem, xanh, đen</td><td>Hồng, trắng, đen, xanh lá</td></tr><tr><td>Tốc độ sạc</td><td>45 W</td><td>45 W</td></tr></tbody></table></figure><h3>Thiết kế đậm chất Samsung</h3><p>Tổng quan thiết kế của S23 Ultra năm nay sẽ không có quá nhiều thay đổi, máy vẫn sở hữu khung nhôm cứng cáp kèm mặt lưng được hoàn thiện từ kính cường lực giúp thiết bị trở nên bền bỉ hơn trong quá trình sử dụng.</p><p>Màn hình sẽ có phần cạnh cong tràn về hai bên như trên <a href=\"https://www.dienmayxanh.com/dien-thoai/samsung-galaxy-s22-ultra\">S22 Ultra</a>, đem lại cảm giác sang trọng cũng như tăng khả năng hiển thị cho cảm giác liền mạch khi sử dụng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/2023/02/timerseo/1-1020x570-7.jpg\" alt=\"Thiết kế sang trọng - Samsung Galaxy S23 Ultra\" width=\"1020\" height=\"570\"></figure><p>Samsung Galaxy S23 Ultra sử dụng màn hình Dynamic AMOLED 2X có độ phân giải (3088 x 1400 Pixels) kết hợp tần số quét 120 Hz, cùng khả năng tối ưu của hãng nhà Samsung trên thì máy tiếp tục sẽ là một trong những thiết bị di động có khả năng hiển thị tốt nhất trên thị trường ngay thời điểm ra mắt.</p><p>Nhờ hỗ trợ tấm nền hiện đại nên chất lượng ảnh cho ra có màu sắc rực rỡ, màu đen tái hiện sâu cùng khả năng tối ưu năng lượng giúp duy trì thời lượng sử dụng dài lâu.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/2023/02/timerseo/2-1020x570-7.jpg\" alt=\"Màn hình cao cấp - Samsung Galaxy S23 Ultra\" width=\"1020\" height=\"570\"></figure><p>Một điều đặc biệt tiếp theo là trên phiên bản này hãng vẫn tiếp tục trang bị cho Galaxy S23 Ultra cây&nbsp;bút S-Pen trong thân máy, điều này đem đến tiện ích cho bạn mỗi khi cần phác thảo ý tưởng hay ghi chú nhanh được thuận tiện.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/249948/samsung-galaxy-s23-ultra-080223-044834.jpg\" alt=\"Hỗ trợ bút S-Pen - Samsung Galaxy S23 Ultra 5G 256GB\" width=\"1020\" height=\"570\"></figure><h3>Hiệu năng đầu bảng với chip nhà Rồng</h3><p>Con chip đến từ nhà Qualcomm sẽ là lựa chọn để cung cấp sức mạnh cho Samsung Galaxy S23 Ultra, cụ thể là máy trang bị con chip Snapdragon 8 Gen 2 for Galaxy mạnh mẽ và sẽ chạy trên nền tảng Android 13, điều này mang lại cho người dùng nhiều trải nghiệm mới vô cùng ổn định và mượt mà.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/249948/samsung-galaxy-s23-ultra-080223-044932.jpg\" alt=\"Hiệu năng mạnh mẽ - Samsung Galaxy S23 Ultra 5G 256GB\" width=\"1020\" height=\"570\"></figure><p>Theo như Samsung cho biết thì&nbsp;con chip Snapdragon 8 Gen 2 for Galaxy lần này là phiên bản đặc biệt chuyên dùng cho dòng Galaxy, nhờ đó mà chip có hiệu năng tốt hơn cũng như tương thích với thiết bị để đem lại hiệu suất vượt trội.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/2023/02/timerseo/4-1020x570-8.jpg\" alt=\"Hiệu năng mạnh mẽ - Samsung Galaxy S23 Ultra\" width=\"1020\" height=\"570\"></figure><p>Và đây là chiếc <a href=\"https://www.dienmayxanh.com/dien-thoai-ram-8gb\">điện thoại RAM 8 GB</a>, dung lượng lưu trữ 256 GB ở phiên bản tiêu chuẩn,ở phiên bản cao hơn thì máy sẽ có phiên bản dung lượng RAM đến 12 GB và dung lượng lưu trữ 1 TB.</p><p>Samsung Galaxy S23 Ultra là chiếc <a href=\"https://www.dienmayxanh.com/dien-thoai-5g\">điện thoại 5G</a>, đây là chuẩn kết nối mà các hãng đang hướng đến và trang bị trên dòng máy từ tầm trung trở lên, nhằm nâng cấp trải nghiệm của người dùng trên không gian mạng.</p><h3>Camera đã tốt nay còn tốt hơn</h3><p>Điện thoại sở hữu độ phân giải camera cực khủng khi cảm biến chính lên đến 200 MP. Năm nay hãng <a href=\"https://www.dienmayxanh.com/dien-thoai-samsung\">điện thoại Samsung</a> sẽ tập trung vào nâng cấp khả năng chỉnh tay của chế độ chuyên nghiệp cũng như chế độ chụp đêm, chụp ảnh RAW, góc siêu rộng...</p><p>Nhờ trang bị bốn ống kính phía sau chất lượng nên khả năng quay video cũng đã được tăng cường độ sắc nét hơn với chuẩn 8K, kèm theo đó sẽ là khả năng thu sáng tốt và thuật toán xử lý thông minh giúp cho thước phim quay trong điều kiện ánh sáng yếu trở nên dễ dàng và mịn màng hơn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/2023/02/timerseo/3-1020x570-7.jpg\" alt=\"Camera xịn sò - Samsung Galaxy S23 Ultra\" width=\"1020\" height=\"570\"></figure><p>Camera trước 12 MP sẽ mang lại bức ảnh selfie chất lượng cao nhất cũng như hỗ trợ quay video sắc nét, cùng bạn ghi lại mọi khoảnh khắc ở mọi thời điểm một cách dễ dàng.</p><p>Ngoài ra, camera trước cũng sẽ giúp bạn thực hiện tính năng mở khoá khuôn mặt một cách nhanh chóng, để bạn thuận tiện mở khoá thiết bị cũng như bảo mật thông tin của mình.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/249948/samsung-galaxy-s23-ultra-080223-045156.jpg\" alt=\"Camera trước hỗ trợ mở khóa khuôn mặt - Samsung Galaxy S23 Ultra 5G 256GB\" width=\"1020\" height=\"570\"></figure><h3>Pin lớn, hỗ trợ nhiều tính năng sạc</h3><p>Cung cấp năng lượng cho máy là viên pin 5000 mAh, với một thiết bị có hiệu suất cao như S23 Ultra thì viên pin này mang lại thời lượng dùng đủ có thể sử dụng trong một ngày với đa tác vụ từ nhắn tin, xem phim cho đến chơi game.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/2023/02/timerseo/5-1020x570-4.jpg\" alt=\"Sạc pin nhanh chóng - Samsung Galaxy S23 Ultra\" width=\"1020\" height=\"570\"></figure><p>Về khả năng sạc thì đây còn là <a href=\"https://www.dienmayxanh.com/dien-thoai-sac-sieu-nhanh\">điện thoại sạc siêu nhanh</a> có công suất tối đa 45 W, điều này giúp rút ngắn thời gian chờ đợi sạc mỗi khi bạn đang cần dùng gấp. Ngoài ra, máy còn hỗ trợ sạc không dây, sạc ngược không dây, cung cấp cho bạn nhiều tùy chọn khi sử dụng.</p><h3><strong>Vì sao bạn nên chọn mua Samsung Galaxy S23 Ultra tại Điện máy XANH?</strong></h3><p>Điện máy XANH luôn được người dùng tin tưởng chọn làm điểm đến khi có nhu cầu mua sản phẩm di động mới, bởi đây là điểm kinh doanh những sản phẩm chính hãng có khuyến mãi, hậu mãi cũng như nhiều ưu đãi lớn dành cho khách hàng.</p><p>Hiện tại khi quý khách hàng cọc trước sản phẩm Samsung Galaxy S23 Ultra tại Điện máy XANH thì sẽ nhận được ưu đãi giảm giá 5 triệu, một gói Microsoft Office 365 Personal 1 năm, có cơ hội trúng gói bảo hành 2 năm dành cho 2000 suất đặt sớm nhất cùng 600 suất giảm giá 2 triệu qua VNPAY. Ngoài ra thì còn có một vài chính sách dành cho những bạn muốn lên đời sản phẩm như tài trợ 3 triệu khi thu cũ đổi mới hay hỗ trợ trả góp 0% hết sức hấp dẫn.</p><p>Đến hết ngày 28/02/2023, khi mua Samsung Galaxy S23 series tại Thế Giới Di Động bạn sẽ được giảm ngay 3 triệu với Galaxy S23, 4 triệu với Galaxy S23+ và 5 triệu cho Galaxy S23 Ultra. Nhanh tay đặt ngay!</p><h4><strong>Samsung Galaxy S23 Ultra có bao nhiêu màu?</strong></h4><p>Màu sắc của các sản phẩm nhà Samsung luôn được cải tiến sau mỗi năm, nhằm thay đổi để phù hợp với thị hiếu của khách hàng, năm nay Samsung S23 Ultra mang 4 màu sắc đặc trưng như: Tím, kem, xanh và đen.</p><h4><strong>Samsung Galaxy S23 Ultra có mấy loại dung lượng?</strong></h4><p>Samsung Galaxy S23 Ultra có 3 phiên bản dung lượng, với phiên bản tiêu chuẩn sẽ là 8 GB RAM, 256 GB ROM, các phiên bản còn lại có dung lượng như 12 GB RAM, 512 GB ROM và phiên bản dung lượng lớn nhất là RAM 12 GB và ROM 1 TB.</p><h4><strong>Bút S-Pen có đi kèm với Samsung Galaxy S23 Ultra?</strong></h4><p>Samsung Galaxy S23 Ultra sẽ kèm bút S Pen bên trong thân máy tương tự Samsung Galaxy S22 Ultra, điều này sẽ đáp ứng tốt nhu cầu như: Ghi chú nhanh, viết, vẽ ngay trên chính chiếc điện thoại của mình.</p><h4><strong>Samsung Galaxy S23 Ultra khi nào ra mắt?</strong></h4><p>Máy sẽ được ra mắt trong sự kiện Galaxy Unpacked diễn ra vào ngày 01/02/2023 tại Hoa Kỳ theo hình thức trực tuyến, đây sẽ là dịp để Samsung giới thiệu đến người dùng những sản phẩm mới của mình trong năm mới này.</p><p>Samsung Galaxy S23 Ultra có nhiều ưu điểm được thừa kế từ thế hệ tiền nhiệm cũng như được nâng cấp về phần tính năng, điều này giúp máy đứng vững hơn trên con đường trở thành “Siêu phẩm đầu năm 2023”.</p>', 10, NULL, NULL, 24990000, 16.34, 7.81, 8.9, 0.223, NULL, 12, '2024-05-29 00:20:51', NULL),
+(34, 'Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP', 'smart-tivi-oled-toshiba-4k-55-inch-55x9900lp', 12, 1, 'smart-tivi-toshiba-43-inch-43v31mp6383429964306985283.jpg', 1, '<p><a href=\"https://www.dienmayxanh.com/tivi/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp\"><i><strong>Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP</strong></i></a><i><strong>&nbsp;trang bị màn hình OLED tái tạo màu đen hoàn hảo,&nbsp;bộ xử lý Regza Engine OLED đem đến chất lượng hình ảnh 4K sống động,&nbsp;công nghệ Dolby Vision IQ hiển thị hình ảnh chân thật, âm thanh đa chiều mạnh mẽ với công nghệ Dolby Atmos,&nbsp;Regza Power Audio Extreme cho bạn thưởng thức âm thanh đa dạng, lôi cuốn,&nbsp;hệ điều hành Vidaa U6 nâng tầm giải trí.</strong></i></p><h3>Tổng quan thiết kế</h3><p>- Toshiba 55X9900LP thiết kế tối giản, thân tivi thanh mảnh, các góc cạnh chế tác tỉ mỉ, cạnh viền siêu mỏng cho vẻ ngoài sang trọng, hoàn thiện, đẹp tựa như tuyệt tác nghệ thuật điện tử điểm tô cho phong cách nội thất của mọi căn phòng trở nên thời thượng, cao cấp hơn.&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/tivi?g=ultra-hd-4k\">Tivi 4K</a>&nbsp;trang bị&nbsp;<strong>chân đế chữ L </strong>chắc chắn, được làm từ kim loại nguyên khối giúp nâng cao khả năng chống chịu, cho bạn dễ dàng lắp đặt ở nhiều nơi mà không lo tivi đổ vỡ, hư hỏng.&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/tivi?g=55-inch\">Màn hình 55 inch</a>, lựa chọn lý tưởng để bày trí kiểu treo tường hoặc để bàn trong không gian phòng khách, phòng ngủ, phòng làm việc có diện tích vừa và lớn.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-102112.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ</i></p><h3>Công nghệ hình ảnh&nbsp;</h3><p>- <strong>Màn hình OLED</strong> với 8 triệu điểm ảnh tự phát sáng tái hiện màu sắc chính xác, độ sáng vượt trội, cho màu đen sâu thẳm. <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tivi-uhd-tivi-4k-la-gi-co-khac-gi-so-voi-tivi-full-578555\">Độ phân giải&nbsp;4K</a>&nbsp;mang đến khung hình chi tiết, sắc nét gấp 4 lần Full HD.</p><p>-<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tong-hop-cac-bo-xu-ly-co-tren-tivi-toshiba-1508387#regza-engine-oled\"> <strong>Bộ xử lý Regza Engine OLED</strong></a>, công nghệ A.I cùng nhiều công nghệ tiên tiến khác có khả năng nâng tầm vẻ đẹp khung hình, biến căn phòng của bạn trở thành rạp chiếu phim đích thực với chất lượng hình ảnh 4K chân thực đến từng chi tiết nhỏ.</p><p>- Công nghệ <strong>Dolby Vision IQ</strong> bằng cách sử dụng metadata của Dolby Vision kết hợp cùng cảm biến ánh sáng trên thiết bị để nhận biết ánh sáng trong phòng, tối ưu điểm ảnh, màu sắc, đèn nền để có được độ tương phản tối đa cho hình ảnh hiển thị sống động, rực rỡ hơn.</p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tivi-oled-la-gi-575930\">Tivi OLED là gì? Sự khác biệt giữa tivi OLED với tivi LED, tivi QLED và tivi 4K</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-102119.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - Công nghệ Dolby Vision IQ\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ</i></p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/so-sanh-hdr10-hdr10-va-dolby-vision-co-gi-khac-1173256#hdr10plus\"><strong>HDR10+</strong></a>&nbsp;tăng độ chi tiết, độ sâu thước phim mà không thay đổi đặc tính ban đầu của hình ảnh để bạn có cơ hội được thưởng thức màu sắc với chất lượng tốt nhất.&nbsp;<strong>Super Contrast Booster</strong> có khả năng tối ưu độ sâu của màu sắc, độ tương phản cao giúp tái hiện mọi nội dung trông sinh động như thật.&nbsp;</p><p>-&nbsp;<strong>Color Re-Master Pro</strong> khôi phục lại màu sắc nguyên bản của hình ảnh gốc để đem đến cho bạn nội dung với màu sắc tự nhiên, trung thực.</p><p>- Công nghệ&nbsp;<strong>Clearer Motion OLED </strong>cho tốc độ&nbsp;phản hồi nhanh, bạn có thể tận hưởng được những thước phim với cảnh chuyển động mượt mà, uyển chuyển. <strong>MEMC 120 Hz</strong> dự toán trước từng pha hành động bằng thuật toán đặc biệt, tăng tốc độ khung hình, hiển thị hình ảnh rõ nét, hạn chế xảy ra tình trạng&nbsp;xé hình, nhoè hình.</p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tong-hop-cac-cong-nghe-hinh-anh-noi-bat-tren-tivi-1507634\">Các công nghệ hình ảnh nổi bật trên tivi Toshiba.</a>&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-102117.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - MEMC 120 Hz\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ</i></p><h3>Công nghệ âm thanh</h3><p>- Hệ thống 8 loa&nbsp;với tổng công suất lên đến <strong>113W</strong> cho âm thanh mạnh mẽ, vang dội.</p><p>- Công nghệ&nbsp;<strong>Tru Screen Sound</strong>&nbsp;đồng bộ âm thanh với môi trường xung quanh bạn bằng cách phân tích, nhận diện chuyển động của âm thanh phát ra từ vật thể, từ đó đem lại cảm giác như mọi thứ đang diễn ra ngay trước mắt bạn.</p><p>-&nbsp;<strong>Tru Bass Processor</strong>&nbsp;tăng âm trầm một cách tự nhiên, kích thích các giác quan, cho bạn cảm nhận chân thật từ bản nhạc bolero đến nhạc trẻ.</p><p>-&nbsp;<strong>Regza Power Audio Extreme</strong>&nbsp;kết hợp công nghệ&nbsp;Tru Screen Sound,&nbsp;Tru Bass Processor, Regza 3.1.2 tạo ra những tần số âm thanh khác nhau, thay đổi trong mỗi âm điệu, phát ra âm thanh phong phú, mới mẻ.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-102115.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - Regza Power Audio Extreme\" width=\"1020\" height=\"570\"></figure><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-am-thanh-dolby-la-gi-827752\"><strong>Dolby Atmos</strong></a>&nbsp;tái tạo âm thanh đa chiều sống động, chất âm như di chuyển từ khắp mọi hướng, truyền tải âm thanh chi tiết, cuốn hút. <strong>Dolby Audio</strong> giả lập hiệu ứng âm vòm, lọc bỏ tạp âm tái tạo âm thanh trong trẻo, chân thật.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-103020.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - Dolby Atmos\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ</i></p><h3>Hệ điều hành</h3><p>- Hệ điều hành&nbsp;<strong>Vidaa U6</strong> ghi nhớ và đề xuất những nội dung ấn tượng, các bộ phim phù hợp với sở thích của bạn, giúp nâng cao tính giải trí và sự thú vị cho bạn khi trải nghiệm <a href=\"https://www.dienmayxanh.com/tivi-toshiba?g=smart-tivi\">Smart tivi Toshiba</a>.</p><p>- Thư viện ứng dụng đa dạng, có nhiều ứng dụng được tích hợp sẵn như: YouTube, Netflix, trình duyệt web, Prime Video,... phục vụ tốt cho nhu cầu xem <a href=\"https://www.dienmayxanh.com/tivi-toshiba\">tivi Toshiba</a>&nbsp;của mọi thành viên trong gia đình bạn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-102114.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ</i></p><h3>Tiện ích&nbsp;</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/tivi?g=smart-tivi\">Smart tivi</a>&nbsp;cho phép bạn chọn trợ lý ảo Google Assistant (có tiếng Việt) hoặc Alexa (chưa có tiếng Việt) để dễ dàng tìm kiếm các chương trình yêu thích trực tiếp bằng giọng nói thông qua remote có tích hợp micro.</p><p>- Các tính năng Miracast, AirPlay 2, DLNA,&nbsp;Chromecast, Content Sharing hỗ trợ chia sẻ màn hình điện thoại lên&nbsp;<a href=\"https://www.dienmayxanh.com/tivi\">tivi</a>&nbsp;cho bạn theo dõi các video, xem tin tức, hình ảnh với khung hình lớn, rõ ràng hơn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/297332/vidaa-u6-tivi-oled-toshiba-4k-55-inch-55x9900lp-011222-102122.jpg\" alt=\"Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP - Tiện ích \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ</i></p><p><i>Smart Tivi OLED Toshiba 4K 55 inch 55X9900LP thiết kế đơn giản, thời trang, màn hình OLED hiển thị hình ảnh độ tương phản cao, bộ xử lý Regza Engine OLED tái tạo hình ảnh 4K chất lượng cao, công nghệ Dolby Vision IQ mang đến hình ảnh sinh động, trung thực, công nghệ Dolby Atmos tái tạo không gian âm thanh đa chiều cuốn hút, Regza Power Audio Extreme cho chất âm đa dạng, mới mẻ, điều khiển bằng giọng nói tiếng Việt dễ dàng với&nbsp;Google Assistant.</i></p>', 10, NULL, NULL, 4990000, 95.5, 60.6, 20, 8.95, NULL, 12, '2024-05-29 05:48:54', NULL);
+INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ChieuCao`, `ChieuNgang`, `ChieuDay`, `CanNang`, `ThongSoKyThuat`, `ThoiGianBaoHanh`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(35, 'Điện thoại iPhone 15 Pro Max 256GB', 'dien-thoai-iphone-15-pro-max-256gb', 2, 8, 'iphone-15-pro-max-blue-1-157.jpg', 1, '<figure class=\"image\"><img style=\"aspect-ratio:1020/606;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-131023-034959.jpg\" alt=\"iPhone 15 Pro Max Tổng quan\" width=\"1020\" height=\"606\"></figure><figure class=\"image\"><img style=\"aspect-ratio:1020/2639;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-131023-035001.jpg\" alt=\"iPhone 15 Pro Max Thông số kỹ thuật và tính năng\" width=\"1020\" height=\"2639\"></figure><figure class=\"image\"><img style=\"aspect-ratio:1020/2196;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-131023-035003.jpg\" alt=\"iPhone 15 Pro Max So sánh\" width=\"1020\" height=\"2196\"></figure><figure class=\"image\"><img style=\"aspect-ratio:1020/1180;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-131023-035005.jpg\" alt=\"iPhone 15 Pro Max Chuyển đổi\" width=\"1020\" height=\"1180\"></figure><figure class=\"image\"><img style=\"aspect-ratio:1020/1774;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-131023-035007.jpg\" alt=\"iPhone 15 Pro Max Phụ kiện\" width=\"1020\" height=\"1774\"></figure><h3>Lý do nên mua iPhone 15 Pro Max tại Điện máy XANH</h3><p>iPhone 15 Pro&nbsp;Max là một trong những chiếc điện thoại thông minh cao cấp nằm trong bộ sản phẩm <a href=\"https://www.dienmayxanh.com/dien-thoai-apple-iphone-15-series\">iPhone 15 series</a> của Apple, sở hữu nhiều tính năng và công nghệ tiên tiến. Nếu bạn đang có ý định mua iPhone 15 Pro&nbsp;Max, Điện máy XANH là một lựa chọn đáng cân nhắc.</p><p><strong>•&nbsp;Sản phẩm chính hãng, chất lượng cao:</strong> Điện máy XANH cam kết cung cấp sản phẩm iPhone 15 Pro&nbsp;Max chính hãng, có nguồn gốc xuất xứ rõ ràng, được kiểm tra kỹ lưỡng trước khi bán ra thị trường.</p><p><strong>•&nbsp;Giá cả cạnh tranh: </strong>Điện máy XANH thường xuyên có các chương trình khuyến mãi, giảm giá và tặng quà kèm theo khi mua iPhone 15 Pro&nbsp;Max. Điều này giúp bạn tiết kiệm chi phí khi mua sắm.</p><p><strong>•&nbsp;Dịch vụ hậu mãi chu đáo: </strong>Điện máy XANH cung cấp dịch vụ bảo hành chính hãng cho iPhone 15 Pro&nbsp;Max với thời gian dài lâu. Ngoài ra, bạn còn có thể sử dụng dịch vụ sửa chữa, hỗ trợ kỹ thuật chuyên nghiệp của Điện máy XANH.</p><p><strong>•&nbsp;Tùy chọn trả góp linh hoạt:</strong> Điện máy XANH cung cấp các lựa chọn trả góp phù hợp với nhu cầu và khả năng tài chính của bạn. Điều này giúp bạn mua được sản phẩm mong muốn mà không cần thanh toán toàn bộ số tiền một lúc.</p><p><strong>•&nbsp;Tiện lợi khi mua sắm: </strong>Điện máy XANH có hệ thống cửa hàng rộng khắp cả nước, giúp bạn dễ dàng mua sắm trực tiếp. Ngoài ra, bạn cũng có thể mua sắm online qua website của Điện máy XANH một cách tiện lợi và nhanh chóng.</p><h3>Bảng so sánh thông số&nbsp;phiên bản iPhone 15 Pro Max và iPhone 14 Pro Max</h3><p>Dưới đây sẽ là bảng tổng hợp thông số kỹ thuật giữa hai thế hệ <a href=\"https://www.dienmayxanh.com/dien-thoai-apple-iphone\">điện thoại iPhone</a>:</p><figure class=\"table\"><table><tbody><tr><td><strong>Thuộc tính</strong></td><td><strong>iPhone 15 Pro Max</strong></td><td><strong>iPhone 14 Pro Max</strong></td></tr><tr><td><strong>Màn hình chính</strong></td><td><p>OLED 6.7\"</p><p>Super Retina XDR</p><p>2000 nits</p></td><td><p>OLED 6.7\"</p><p>Super Retina XDR</p><p>2000 nits</p></td></tr><tr><td><strong>Chip xử lý</strong></td><td><strong>Apple A17 Pro 6 nhân</strong></td><td>Apple A16 Bionic 6 nhân</td></tr><tr><td><strong>Camera trước</strong></td><td>12 MP</td><td>12 MP</td></tr><tr><td><strong>Camera sau</strong></td><td>Chính 48 MP, Phụ 12 MP &amp; Phụ 12 MP</td><td>Chính 48 MP, Phụ 12 MP &amp; Phụ 12 MP</td></tr><tr><td><strong>RAM</strong></td><td>8 GB</td><td>6 GB</td></tr><tr><td><strong>Kiểu hình notch</strong></td><td>Dynamic Island</td><td>Dynamic Island</td></tr><tr><td><strong>Kiểu mặt lưng</strong></td><td>Kính nhám</td><td>Kính nhám</td></tr><tr><td><strong>Chất liệu khung</strong></td><td><strong>Titanium</strong></td><td>Thép không gỉ</td></tr><tr><td><strong>Cổng kết nối</strong></td><td><strong>Type-C</strong></td><td>Lightning</td></tr><tr><td><strong>Màu sắc</strong></td><td><strong>Titan tự nhiên (Natural Titanium), Titan trắng (White&nbsp;Titanium), Titan đen (Black Titanium), Titan xanh (Blue Titanium)</strong></td><td>Đen, Trắng, Tím Nhạt, Đỏ, Xanh Dương</td></tr><tr><td><strong>Bộ nhớ trong</strong></td><td>256 GB, 512 GB, 1 TB</td><td><strong>128 GB</strong>, 256 GB, 512 GB, 1 TB</td></tr><tr><td><strong>Hệ điều hành</strong></td><td><strong>iOS 17</strong></td><td>iOS 16</td></tr><tr><td><strong>Dung lượng pin</strong></td><td><strong>4422 mAh</strong></td><td>4323 mAh</td></tr><tr><td><strong>Công suất sạc</strong></td><td>20 W</td><td>20 W</td></tr></tbody></table></figure><h3>Apple đã chào đón <a href=\"https://www.dienmayxanh.com/dien-thoai/iphone-15-pro-max\">iPhone 15 Pro Max</a> vào thị trường với một diện mạo thiết kế đẳng cấp, sức mạnh vượt trội và khả năng chụp ảnh, quay phim chuyên nghiệp. Sản phẩm này sẽ chắc chắn là tâm điểm của sự chú ý trong thời gian tới và thu hút nhiều tín đồ công nghệ.</h3><h3>Vẻ ngoài cứng cáp - sang trọng</h3><p>Về kiểu dáng thiết kế, iPhone 15 Pro Max tiếp tục sẽ là mẫu điện thoại có tạo hình vuông vức bắt trend. Mặt trước và mặt sau của điện thoại được làm phẳng, từ đó giúp máy trở nên thanh mảnh hơn, tinh tế và sang trọng hơn.</p><p>iPhone 15 Pro Max vẫn duy trì sự kết hợp hoàn hảo giữa khung kim loại rắn chắc và mặt lưng kính cường lực đẹp mắt. Kim loại ở đây sẽ không còn là thép không gỉ như thế hệ trước mà thay vào đó là Titanium với độ cứng cáp tốt hơn. Thiết kế này không chỉ tạo nên sự sang trọng mà còn đảm bảo tính chắc chắn và bền bỉ của chiếc điện thoại.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-102854.jpg\" alt=\"Thiết kế điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>iPhone 15 Pro Max tiếp tục sử dụng hình dạng notch viên thuốc nhằm tối ưu hóa để tối đa hóa không gian màn hình. Điều này giúp cải thiện trải nghiệm khi sử dụng điện thoại để xem phim và chơi game, đồng thời nó cũng ít chiếm quá nhiều diện tích trên vùng hiển thị, mang lại một giao diện đẹp và thú vị cho người dùng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-103025.jpg\" alt=\"Thiết kế điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>iPhone 15 Pro Max ấn tượng với viền màn hình sáng bóng và mỏng đều, tạo ra một trải nghiệm xem video và chơi game tuyệt vời. Thiết kế này không chỉ thể hiện sự hiện đại và thời thượng, mà còn mang lại sự thích thú khi bạn đắm chìm vào thế giới của mình trên màn hình lớn và sắc nét.</p><h3>Nâng cấp cổng sạc thành Type-C</h3><p>Một trong những thay đổi lớn nhất trong thiết kế của iPhone 15 Pro Max là việc thay cổng Lightning bằng cổng Type-C. Điều này mang lại lợi ích lớn về tốc độ truyền dữ liệu và sạc nhanh hơn. Apple đã lắng nghe ý kiến của người dùng và quyết định thực hiện sự đổi mới này.</p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tim-hieu-ve-usb-type-c-815571\">USB Type C là gì? Có giúp sạc và truyền dữ liệu nhanh hơn không?</a></p><h3>Thay đổi cơ chế phím hành động</h3><p>Apple đã thực hiện một sự thay đổi thông minh bằng việc thay đổi phím gạt bật/tắt âm thành nút bấm tiện ích. Nút này mang đến sự linh hoạt cho người dùng, cho phép họ dễ dàng điều chỉnh âm thanh trên thiết bị một cách tùy chỉnh hơn bao giờ hết.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-103428.jpg\" alt=\"Thiết kế điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>Ngoài ra, Apple còn nâng cấp thêm khi cho phép người dùng có thể gán một vài chức năng cho phím, giờ đây chỉ cần việc giữ nút trong một vài giây là đã có thể sử dụng nhanh ứng dụng mà không cần tốn quá nhiều thời gian để truy cập app.</p><h3>Trang bị camera 48 MP đi cùng công nghệ chống rung</h3><p>Camera chính của iPhone 15 Pro Max có độ phân giải đến 48 MP, cho phép bạn chụp ảnh với chi tiết sắc nét và màu sắc chân thực. Kể cả khi phóng to thì ảnh vẫn trông chất lượng mà không bị bể quá nhiều, từ đó người dùng có thể thoải mái trong việc hậu kỳ chỉnh sửa và thay đổi kích cỡ ảnh.</p><p>Đi cùng với đó là camera góc siêu rộng 12 MP, cảm biến này cho phép bạn bắt góc nhìn rộng hơn, tạo ra những bức ảnh với khung cảnh đầy đủ. Điều này làm cho việc chụp ảnh cảnh đẹp, kiến trúc và bất kỳ tình huống nào cũng trở nên dễ dàng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-103905.jpg\" alt=\"Camera điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>Cảm biến cuối cùng sẽ là camera tele 12 MP nó giúp bạn chụp ảnh từ xa với chất lượng tuyệt vời. Bạn có thể zoom vào chi tiết mà không lo sợ mất độ nét. Điều này đặc biệt hữu ích khi bạn muốn chụp ảnh từ xa hoặc trong các sự kiện thể thao.</p><p>iPhone 15 Pro Max không chỉ là một chiếc điện thoại chụp ảnh xuất sắc mà còn là một công cụ mạnh mẽ cho việc quay video. Bạn có thể quay video 4K với tốc độ khung hình 60fps, giúp tái hiện chân thực cảnh quan và sự kiện.</p><p>Để đảm bảo video của bạn luôn mượt mà và không bị rung lắc quá nhiều, vì thế Apple trang bị cho chiếc <a href=\"https://www.dienmayxanh.com/dien-thoai-chup-anh-quay-phim\">điện toại chụp ảnh quay phim</a> này những công nghệ và tính năng chống rung tiên tiến. Bất kể bạn đứng yên hay di chuyển, video của bạn sẽ luôn đẹp và ổn định.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-103910.jpg\" alt=\"Camera điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>Không chỉ camera sau, camera trước của iPhone 15 Pro Max cũng ấn tượng với độ phân giải 12 MP và khả năng quay video 4K. Bạn có thể tự tin thực hiện các cuộc gọi video chất lượng cao và chia sẻ những khoảnh khắc đáng nhớ trực tiếp từ mặt trước của điện thoại.</p><h3>Trang bị màn hình OLED kích thước lớn</h3><p>Với tấm nền OLED, màn hình của iPhone 15 Pro Max mang lại độ sâu màu sắc và độ tương phản vượt trội. Công nghệ này cho phép màu sắc trở nên rực rỡ và chân thực hơn, làm cho mọi hình ảnh và video càng trở nên sống động.</p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/man-hinh-oled-la-gi-1060968\">Màn hình OLED là gì? Cấu tạo và đặc điểm nổi bật của màn hình OLED</a></p><p>Độ phân giải trên iPhone 15 Pro Max là một bước đột phá, đưa chất lượng hình ảnh lên một tầm cao mới. Với 1290 x 2796 pixels, mọi chi tiết trên màn hình sẽ được hiển thị sắc nét và chính xác, từ các chữ cái nhỏ đến các hình ảnh phức tạp trong trò chơi hay hình ảnh.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-104241.jpg\" alt=\"Màn hình điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>Với kích thước màn hình hoàn hảo của 6.7 inch, iPhone 15 Pro Max mang đến một trải nghiệm trực quan tuyệt vời khi mọi thứ đều được hiển thị to rõ, dễ nhìn. Ngoài ra, màn hình lớn còn giúp cho tác vụ chơi game trở nên thoải mái khi người dùng có thể thao tác chơi game được dễ dàng hơn.</p><p>Tần số quét 120 Hz trên iPhone 15 Pro Max đảm bảo rằng mọi chuyển động trên màn hình diễn ra mượt mà và tự nhiên. Điều này cực kỳ quan trọng đối với người dùng yêu thích chơi game và xem video, giúp trải nghiệm trở nên sống động và thú vị.</p><p>iPhone 15 Pro Max thậm chí còn cải thiện độ sáng lên đến 2000 nits, cho phép bạn dễ dàng đọc dưới ánh nắng mặt trời và tận hưởng hình ảnh chất lượng cao ở mọi điều kiện ánh sáng.</p><h3>Cấu hình khủng nhờ trang bị chip Apple A17 Pro</h3><p>Sự tiến bộ đáng kinh ngạc của bộ vi xử lý Apple A17 Pro đưa hiệu năng của iPhone 15 Pro Max lên một tầm cao mới. Với kiến trúc mạnh mẽ và hiệu suất vượt trội, bạn có thể chạy mọi ứng dụng và game yêu thích mà không gặp trở ngại. Tốc độ xử lý nhanh chóng và tiết kiệm năng lượng cũng làm cho thiết bị trở thành chiếc&nbsp;<a href=\"https://www.dienmayxanh.com/dien-thoai-choi-game\">điện thoại chơi game cấu hình cao</a>&nbsp;đáng sắm.</p><p>Với bộ nhớ RAM lớn, iPhone 15 Pro Max giúp bạn xử lý nhiều tác vụ cùng lúc mà không phải lo lắng về tình trạng hoạt động của điện thoại. Thậm chí khi bạn đang sử dụng các ứng dụng nặng hoặc làm việc trên nhiều tác vụ khác nhau, chiếc điện thoại này vẫn duy trì hiệu suất mạnh mẽ.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-104358.jpg\" alt=\"Cấu hình điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>iOS 17 không chỉ đánh bại mọi đối thủ về tính năng và bảo mật mà còn mang đến giao diện người dùng mượt mà và thân thiện. Hệ điều hành này cung cấp các tính năng độc đáo như cải tiến Siri, ứng dụng mới và nhiều cải tiến về tối ưu hóa hoạt động.</p><h3>Sử dụng pin lớn và có trang bị công nghệ sạc nhanh</h3><p>iPhone 15 Pro Max được trang bị một viên pin dung lượng lớn, mang đến thời lượng sử dụng ấn tượng. Dung lượng pin này đủ để bạn có thể duyệt web, xem video, chơi game và thậm chí làm việc cả ngày mà không cần phải nghĩ đến việc sạc lại. Điều này đặc biệt hữu ích khi bạn đang di chuyển hoặc không có nguồn điện dự phòng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/299033/iphone-15-pro-130923-104602.jpg\" alt=\"Pin và sạc điện thoại - iPhone 15 Pro Max\" width=\"1020\" height=\"570\"></figure><p>Khả năng sạc nhanh của iPhone 15 Pro Max với công suất 20 W giúp bạn tiết kiệm thời gian. Chỉ cần một thời gian ngắn để sạc lại pin, bạn có thể sử dụng lại <a href=\"https://www.dienmayxanh.com/dien-thoai\">điện thoại</a> một cách nhanh chóng và hiệu quả. Điều này cực kỳ tiện lợi khi bạn cần sử dụng điện thoại ngay lập tức.</p><h3>Có nên mua iPhone 15 Pro Max?</h3><p>iPhone 15 Pro Max là một chiếc điện thoại thông minh cao cấp với nhiều ưu điểm nổi bật, bao gồm thiết kế đẹp mắt, hiệu năng mạnh mẽ, camera tuyệt vời và mức giá cạnh tranh. Nếu bạn đang tìm kiếm một chiếc điện thoại có thể đáp ứng tốt mọi nhu cầu sử dụng, thì iPhone 15 Pro Max là một lựa chọn đáng cân nhắc.</p><h3>Câu hỏi thường gặp trước khi mua iPhone 15 Pro Max</h3><p><strong>iPhone 15 Pro Max có mấy màu?</strong></p><p>iPhone 15 Pro Max được ra mắt với 4 màu sắc: Titan tự nhiên (Natural Titanium), Titan trắng (White Titanium), Titan đen (Black Titanium), Titan xanh (Blue Titanium).</p><p><strong>Camera của iPhone 15 Pro Max có chụp ảnh tốt không?</strong></p><p>Câu trả lời là có. Camera của iPhone 15 Pro Max có độ phân giải lên đến 48 MP, khẩu độ lớn và nhiều tính năng chụp ảnh tiên tiến. Điều này giúp iPhone 15 Pro Max có thể chụp ảnh sắc nét, sống động và chuyên nghiệp.</p><p><strong>iPhone 15 Pro Max chạy chip gì và mạnh mẽ ra sao?</strong></p><p>iPhone 15 Pro Max sử dụng con chip A17 Pro, là con chip mạnh mẽ nhất hiện nay của Apple. A17 Pro mang đến hiệu năng xử lý vượt trội, giúp iPhone 15 Pro Max có thể chạy mượt mà mọi ứng dụng và game.</p>', 10, NULL, NULL, 29590000, 16, 7.67, 0.825, 0.221, NULL, 12, '2024-05-29 05:53:01', NULL),
+(36, 'Google Tivi TCL 4K 55 inch 55P635', 'google-tivi-tcl-4k-55-inch-55p635', 13, 1, 'google-tcl-4k-55-inch-55p635-171.jpg', 1, '<p><i><strong>Google Tivi TCL 4K 55 inch 55P635 cho trải nghiệm xem tuyệt vời với thiết kế tràn viền, hình ảnh chất lượng 4K sắc nét,&nbsp;công nghệ&nbsp;HDR10 cho hình ảnh chi tiết, công nghệ Smart HDR hiển thị khung hình sống động, chế độ Game Mode giúp hiển thị các màn game mượt mà, công nghệ&nbsp;Dolby Audio tái tạo âm thanh mạnh mẽ, trung thực, Google Assistant hỗ trợ tiếng Việt, gọi video miễn phí qua màn hình tivi với&nbsp;Google Duo.</strong></i></p><h3>Tổng quan thiết kế</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/tivi/google-tcl-4k-55-inch-55p635\">Google Tivi TCL 4K 55 inch 55P635</a>&nbsp;có vẻ ngoài sang trọng với đường viền siêu mỏng mang đến trải nghiệm xem toàn màn hình đặc sắc, cho bạn tận hưởng các nội dung giải trí đắm chìm hơn.&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-tcl?g=55-inch\">Màn hình 55 inch</a>, kích cỡ hoàn hảo để bạn trang trí trong các phòng khách, phòng làm việc, phòng hội nghị có diện tích vừa và rộng.</p><p>- Cặp chân đế&nbsp;<strong>chữ V úp ngược</strong>&nbsp;thiết kế để bố trí ở 2 đầu của tivi, giúp nâng đỡ tivi cân bằng, vững chắc. Chân đế dễ dàng tháo lắp cho phép gia chủ lựa chọn cách lắp đặt để bàn hay treo tường linh hoạt tùy theo phong cách nội thất của ngôi nhà.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/281936/google-tcl-4k-55-inch-55p635-010622-124252.jpg\" alt=\"Google Tivi TCL 4K 55 inch 55P635 - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Công nghệ hình ảnh</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/tivi?g=ultra-hd-4k\">Tivi</a><a href=\"https://www.dienmayxanh.com/tivi-tcl?g=ultra-hd-4k\">&nbsp;4K</a>&nbsp;có 8 triệu điểm ảnh trên màn hình cho hình ảnh được tái hiện sắc nét, màu sắc tự nhiên.&nbsp;</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/so-sanh-hdr10-hdr10-va-dolby-vision-co-gi-khac-1173256#hdr-10\">Công nghệ&nbsp;HDR10</a>&nbsp;tăng độ chi tiết màu sắc trên từng điểm ảnh, cho màu sắc rực rỡ,&nbsp;khung hình sáng hơn, chi tiết hơn.</p><p>- <strong>Smart HDR</strong>&nbsp;nâng cấp nội dung SDR lên chất lượng hình ảnh tương đương chuẩn HDR, tự động điều chỉnh nội dung HDR gốc phù hợp với khả năng của màn hình. Bên cạnh đó, công nghệ còn&nbsp;cải thiện các cảnh tối và cảnh sáng để tạo nên khung hình chi tiết, sống động như bước ra từ đời thật.</p><p>- Chế độ&nbsp;<strong>Game Mode</strong>&nbsp;giúp giảm thiểu độ trễ đầu vào, tăng cường hiển thị đồ họa để bạn được thoải mái chiến các tựa game yêu thích với khung hình mượt đẹp, rõ nét.&nbsp;</p><p>Mời bạn xem thêm:<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/diem-mat-nhung-do-phan-giai-pho-bien-hien-nay-tren-577178\">&nbsp;Những độ phân giải màn hình phổ biến hiện nay trên tivi</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/680;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/281936/google-tcl-4k-55-inch-55p635-020622-120010.jpg\" alt=\"Google Tivi TCL 4K 55 inch 55P635 - Công nghệ hình ảnh\" width=\"1020\" height=\"680\"></figure><p>&nbsp;</p><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Công nghệ âm thanh</h3><p>-&nbsp;Tổng công suất loa<strong>&nbsp;20W</strong>,&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-dolby-audio-la-gi-865079\">công nghệ Dolby Audio</a>&nbsp;tạo ra âm thanh phát ra từ nhiều hướng, loại bỏ tạp âm cho bạn tận hưởng âm thanh mạnh mẽ, rõ ràng, cuốn hút trong từng phân cảnh.</p><p>- Công nghệ giải mã âm thanh&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-am-thanh-dts-la-gi-843161#DTS\">DTS</a>&nbsp;điều chỉnh, tối ưu chất âm để mang lại âm thanh phong phú, trung thực hơn.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/281936/google-tcl-4k-55-inch-55p635-010622-124255.jpg\" alt=\"Google Tivi TCL 4K 55 inch 55P635 - Công nghệ âm thanh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Hệ điều hành</h3><p>- Hệ điều hành&nbsp;<strong>Google TV</strong>&nbsp;có thiết kế giao diện hiện đại, sắp xếp các nội dung vào những tab riêng để bạn theo dõi, tìm kiếm, truy cập tiện lợi.</p><p>- Kho ứng dụng đồ sộ với nhiều ứng dụng phổ biến như Clip TV, FPT Play, Netflix,&nbsp;VieON,&nbsp;YouTube,... bạn còn có thể tải thêm các ứng dụng khác theo nhu cầu của mình qua Google Play chứa hơn 700.000 nội dung và ứng dụng cho bạn tha hồ tải xuống và giải trí tùy thích.</p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cach-xem-phim-online-tren-tivi-887946#xem-phim-tren-trinh-duyet-web\">Cách xem phim bằng trình duyệt web trên tivi</a>&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/281936/google-tcl-4k-55-inch-55p635-010622-124257.jpg\" alt=\"Google Tivi TCL 4K 55 inch 55P635 - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><h3>Tiện ích</h3><p>- Google Assistant có tiếng Việt.&nbsp;</p><p>- Thực hiện các cuộc đàm thoại video chất lượng cao trên <a href=\"https://www.dienmayxanh.com/tivi\">tivi</a>&nbsp;cho cảm giác như đang ngồi đối diện với nhau trực tiếp nhờ ứng dụng&nbsp;<strong>Google Duo</strong>&nbsp;(mua thêm camera).&nbsp;</p><p>- Tính năng&nbsp;<strong>Chromecast</strong>,&nbsp;<strong>T-Cast</strong> đáp ứng nhu cầu giải trí đa dạng của người dùng, khi bạn có thể thoải mái chiếu nội dung từ&nbsp;<a href=\"https://www.dienmayxanh.com/dien-thoai\">điện thoại</a>&nbsp;lên&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-tcl\">tivi TCL</a>&nbsp;theo dõi dễ dàng.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/281936/google-tcl-4k-55-inch-55p635-010622-124259.jpg\" alt=\"Google Tivi TCL 4K 55 inch 55P635 - Tiện ích\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><p><i>Tóm lại, Google Tivi TCL 4K 55 inch 55P635 với thiết kế tinh tế tạo điểm nhấn sang trọng cho mọi không gian, hiển thị hình ảnh 4K rõ nét, tối ưu chất lượng khung hình qua công nghệ HDR10, Smart HDR, tái tạo âm thanh sống động với công nghệ Dolby Audio, hệ điều hành thân thiện người dùng, hỗ trợ đàm thoại màn hình rộng chân thực với Google Duo, sản phẩm đích thực là thiết bị nghe nhìn tiện ích mà bạn không nên bỏ qua.</i></p>', 10, NULL, NULL, 7990000, 65.7, 105.6, 12.3, 11.9, NULL, 12, '2024-05-29 05:55:54', NULL),
+(37, 'Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28', 'may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28', 24, 17, 'may-lanh-nagakawa-inverter-1-hp-nis-c09r2t2863811469394664507644.jpg', 1, '<h3><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/danh-gia-chi-tiet-may-lanh-nagakawa-inverter-1-hp-1537694\">Đánh giá chi tiết máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28</a></h3><p><a href=\"https://www.dienmayxanh.com/may-lanh/nagakawa-inverter-1-hp-nis-c09r2t28\"><i><strong>Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28</strong></i></a><i><strong> có khả năng làm lạnh nhanh nhưng vẫn đảm bảo được hiệu quả tiết kiệm điện. Hơn nữa, mẫu máy lạnh này còn có thể hút ẩm độc lập, giúp căn phòng trở nên khô thoáng cho những ngày trời ẩm ướt.</strong></i></p><h3>Thiết kế</h3><p><strong>Dàn lạnh:</strong></p><p>Được thiết kế&nbsp;<strong>hình chữ nhật nằm ngang </strong>quen thuộc với chất liệu vỏ nhựa cao cấp và sở hữu gam <strong>màu trắng tinh tế</strong>.</p><p><strong>Dàn nóng:</strong></p><p>- Được thiết kế <strong>hình hộp chữ nhật </strong>với chất liệu vỏ nhựa bền bỉ.</p><p>- Chất liệu <strong>dàn tản nhiệt được làm bằng đồng nguyên chất</strong> với kiểu <strong>thiết kế hình rãnh xoắn</strong>, đồng thời còn được <strong>phủ lớp Golden Fin màu vàng</strong> có khả năng chống ăn mòn tốt, giúp tăng độ bền cho máy trong suốt thời gian hoạt động.</p><p>- Cả dàn lạnh và dàn nóng của <a href=\"https://www.dienmayxanh.com/may-lanh-nagakawa\">máy lạnh Nagakawa</a> đều <strong>sử dụng ống dẫn gas được làm bằng đồng</strong>, cho khả năng làm lạnh nhanh và sâu.</p><p>- Máy lạnh <strong>sử dụng gas R32</strong> thân thiện với môi trường và mang lại hiệu quả làm mát tối ưu.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299824/may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28-2.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28 - Thiết kế hiện đại, dàn tản nhiệt bằng đồng nguyên chất và có phủ lớp Golden Fin\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh</h3><p>- <a href=\"https://www.dienmayxanh.com/may-lanh\">Máy lạnh</a> sở hữu <strong>công suất 1 HP</strong>, đáp ứng khả năng làm lạnh cho những căn phòng có diện tích <strong>dưới 15m²</strong>.</p><p>- <strong>Chế độ làm lạnh nhanh Turbo</strong>: Động cơ máy nén sẽ hoạt động với công suất tối đa, giúp nhiệt độ trong căn phòng được hạ nhanh chóng đến mức nhiệt độ mà người dùng cài đặt, nhờ đó người dùng <strong>cảm thấy mát lạnh gần như ngay lập tức</strong> sau khi kích hoạt chế độ này.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299824/may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28-3b.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28 - Công suất 1 HP, phù hợp phòng dưới 15m2, trang bị tính năng làm lạnh nhanh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Cơ chế thổi gió</h3><p><strong>Cảm biến nhiệt độ I Feel</strong>: Cho phép người dùng có thể tự động điều chỉnh chế độ hoạt động của máy lạnh tại vị trí remote nhờ bộ phận cảm biến được tích hợp, từ đó giúp người dùng <strong>cảm thấy mát mẻ và thoải mái dù ngồi bất kì vị trí nào gần remote máy lạnh</strong> trong căn phòng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299824/may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28-090123-022627.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28 - Cơ chế thổi gió\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Các công nghệ tiết kiệm điện</h3><p>- <strong>Công nghệ Inverter</strong>: Có khả năng điều chỉnh linh hoạt vòng quay máy nén, giúp máy lạnh <strong>duy trì nhiệt độ ổn định</strong> bên trong căn phòng mà vẫn<strong> tiêu thụ điện năng ít nhất</strong> có thể.</p><p>- <strong>Chức năng tiết kiệm năng lượng (Economy)</strong>: Hỗ trợ máy lạnh có khả năng <strong>tiết kiệm điện đến mức tối ưu</strong>, góp phần làm giảm chi phí tiền điện mỗi tháng cho người sử dụng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299824/may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28-5.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28 - Tiết kiệm điện hiệu quả với công nghệ Inverter và chế độ Economy \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Khả năng lọc không khí - sức khoẻ</h3><p><strong>Màng lọc 6 trong 1</strong>: Được cấu tạo từ 6 tấm lọc gồm có Photocatalyst, Ion Silver, Active Carbon, Catechin, Vitamin C và Catalyst, nhờ đó mang lại khả năng <strong>lọc sạch bụi bẩn và các chất gây dị ứng tối ưu</strong>, đồng thời <strong>khử mùi hôi hiệu quả</strong>, trả lại <strong>bầu không khí tươi mát</strong> cho căn phòng, thậm chí còn <strong>hỗ trợ làm đẹp da</strong> cho người sử dụng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299824/may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28-7.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28 - Màng lọc 6 trong 1 loại bỏ bụi bẩn, khử mùi hôi hiệu quả và hỗ trợ làm đẹp da cho người sử dụng \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Tiện ích</h3><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#hmenuid4\">Hẹn giờ bật tắt máy</a>: Có khả năng hẹn giờ bật hoặc tắt máy lên đến 24 tiếng, giúp người dùng <strong>kiểm soát thời gian sử dụng máy lạnh</strong>, tiện lợi cho việc sử dụng vào ban đêm.</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#hmenuid9\">Tự khởi động lại khi có điện</a>: Có khả năng tự khởi động lại khi xảy ra tình trạng cúp điện đột ngột, mà người dùng không cần phải cài đặt lại chế độ làm lạnh như ban đầu.</p><p>-&nbsp;<strong>Chế độ cài đặt yêu thích I-set</strong>: <a href=\"https://www.dienmayxanh.com/may-lanh-nagakawa?g=may-lanh-inverter\">Máy lạnh Nagakawa Inverter</a>&nbsp;này có khả năng ghi nhớ cài đặt yêu thích của người sử dụng, từ đó&nbsp;<strong>giảm bớt thao tác và thời gian cài đặt&nbsp;</strong>máy lạnh mỗi khi dùng.</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/che-do-ngu-dem-tren-may-lanh-la-gi-631348\">Chế độ vận hành khi ngủ</a>:&nbsp;<a href=\"https://www.dienmayxanh.com/may-lanh-nagakawa?g=1-hp\">Máy lạnh Nagakawa 1 HP</a>&nbsp;này có thể tự động tăng nhiệt độ vào ban đêm,&nbsp;<strong>tránh gây cảm giác lạnh buốt</strong>&nbsp;và giúp cho người dùng có được giấc ngủ ngon hơn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299824/may-lanh-nagakawa-inverter-1-hp-nis-c09r2t28-6.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1 HP NIS-C09R2T28 - Hẹn giờ bật tắt tiện lợi cho việc sử dụng \" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 4990000, 71.01, 25.9, 27.6, 11.3, NULL, 12, '2024-05-29 07:00:07', '2024-05-30 18:30:01'),
+(38, 'Máy lạnh Casper Inverter 1 HP GC-09IS35', 'may-lanh-casper-inverter-1-hp-gc-09is35', 17, 17, 'may-lanh-casper-inverter-1-hp-gc-09is3563822359512863951631.jpg', 1, '<h3>Tổng quan thiết kế</h3><p>- Máy lạnh Casper Inverter 1 HP GC-09IS35 là dòng <a href=\"https://www.dienmayxanh.com/may-lanh-casper?g=may-lanh-1-chieu-chi-lam-lanh\">máy lạnh 1 chiều</a> sở hữu gam màu trắng sang trọng, các cạnh được bo tròn tinh tế.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307333/may-lanh-casper-inverter-1-hp-gc-09is35-180523-110121.jpg\" alt=\"Máy lạnh Casper Inverter 1 HP GC-09IS35 - Thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><p>- Dàn nóng có <strong>ống dẫn gas bằng đồng mạ vàng</strong>&nbsp;bền bỉ, giúp máy làm lạnh nhanh chóng kết hợp với <strong>lá tản nhiệt bằng nhôm</strong> gọn nhẹ, dễ dàng lắp đặt.</p><h3>Công nghệ làm lạnh</h3><p>- <a href=\"https://www.dienmayxanh.com/may-lanh-casper\">Máy lạnh Casper</a> có công suất làm lạnh&nbsp;<strong>1 HP - 9.300 BTU</strong>&nbsp;nên phù hợp với diện tích phòng&nbsp;<strong>dưới 15m² (từ 30 đến 45m³)</strong>.</p><p>- Công nghệ làm lạnh nhanh Turbo,&nbsp;<a href=\"https://www.dienmayxanh.com/may-lanh\">máy lạnh</a>&nbsp;sẽ hoạt động với công suất lớn để có thể làm lạnh không gian theo nhiệt độ cài đặt của người dùng nhanh nhất có thể.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307333/may-lanh-casper-inverter-1-hp-gc-09is35-180523-110227.jpg\" alt=\"Máy lạnh Casper Inverter 1 HP GC-09IS35 - Turbo\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Cơ chế thổi gió</h3><p><strong>Điều khiển lên xuống tự động, trái phải tùy chỉnh tay</strong>&nbsp;giúp hơi lạnh lan tỏa đều khắp phòng, tạo cảm giác dễ chịu và mát lạnh.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307333/may-lanh-casper-inverter-1-hp-gc-09is35-180523-110111.jpg\" alt=\"Máy lạnh Casper Inverter 1 HP GC-09IS35 - Đảo gió\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ tiết kiệm</h3><p>-&nbsp;Công nghệ I-saving&nbsp;sẽ đem lại khả năng tiết kiệm điện hiệu quả, máy hoạt động êm ái và ổn định.</p><p>- <a href=\"https://www.dienmayxanh.com/may-lanh-casper?g=may-lanh-treo-tuong\">Máy lạnh treo tường</a> này chỉ tiêu thụ điện bình quân khoảng 1.01 kW/h.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307333/may-lanh-casper-inverter-1-hp-gc-09is35-180523-110340.jpg\" alt=\"Máy lạnh Casper Inverter 1 HP GC-09IS35 - Tiết kiệm điện\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Khả năng lọc không khí</h3><p>Lưới lọc bụi loại bỏ các hạt li ti, bụi bẩn. Từ đó bảo vệ sức khỏe cho bạn và cả nhà.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307333/may-lanh-casper-inverter-1-hp-gc-09is35-180523-111057.jpg\" alt=\"Máy lạnh Casper Inverter 1 HP GC-09IS35 - Lưới lọc bụi\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Đa dạng tiện ích sử dụng</h3><p>- <strong>Cảm biến nhiệt độ iFeel</strong> tự động điều chỉnh nhiệt độ phù hợp, tạo cảm giác thoải mái cho người sử dụng.</p><p>-&nbsp;<strong>Chức năng tự động làm sạch dàn lạnh</strong>&nbsp;sẽ nâng cao tuổi thọ của máy, tăng hiệu quả lọc bụi và làm lạnh mang đến sự an toàn cho người dùng.</p><p>-&nbsp;<strong>Tự khởi động lại khi có điện</strong>&nbsp;cho phép&nbsp;<a href=\"https://www.dienmayxanh.com/may-lanh-casper?g=may-lanh-inverter\">máy lạnh Casper Inverter&nbsp;</a>này tự động vận hành lại khi nguồn điện được phục hồi.</p><p>- <strong>Cơ chế bảo vệ an toàn kép phát hiện rò rỉ thông minh</strong> đảm bảo an toàn cho gia đình bạn và các thiết bị xung quanh.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307333/may-lanh-casper-inverter-1-hp-gc-09is35638223595135459673.jpg\" alt=\"Máy lạnh Casper Inverter 1 HP GC-09IS35 - Ifeel\" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 6890000, 70.3, 45.5, 23.3, 13.2, NULL, 12, '2024-05-29 07:02:06', '2024-05-30 18:29:47'),
+(39, 'Máy lạnh TCL Inverter 1.5 HP TAC-13CSD/XAB1I', 'may-lanh-tcl-inverter-15-hp-tac-13csdxab1i', 13, 17, 'vi-vn-bo-loc-tcl-inverter-15-hp-tac-13csd-xab1i-295.jpg', 1, '<h3>Thiết kế&nbsp;</h3><p><strong>Dàn lạnh:&nbsp;</strong></p><p><a href=\"https://www.dienmayxanh.com/may-lanh/tcl-inverter-15-hp-tac-13csd-xab1i\">Máy lạnh TCL Inverter 1.5 HP TAC-13CSD/XAB1I</a> là mẫu máy lạnh treo tường, sở hữu thiết kế đơn giản với các bo góc tạo nên sự mềm mại cho sản phẩm. Cùng với đó là tone trắng trang nhã, phù hợp với nhiều không gian nội thất khác nhau.</p><p><a href=\"https://www.dienmayxanh.com/may-lanh-man-hinh-hien-thi-nhiet-do-tren-dan-lanh\">Màn hình hiển thị nhiệt độ</a> ngay trên dàn lạnh, giúp bạn dễ dàng quan sát, đồng thời cũng tạo điểm nhấn sang trọng cho sản phẩm.</p><p><strong>Dàn nóng:</strong></p><p><a href=\"https://www.dienmayxanh.com/may-lanh-tcl?g=15-hp\">Máy lạnh TCL 1.5 HP</a> này có thiết kế hình chữ nhật quen thuộc, nhìn chắc chắn với chất liệu cứng cáp. Dàn tản nhiệt có độ bền cao và hạn chế được sự ăn mòn hiệu quả từ các tác nhân bên ngoài và tăng hiệu quả về tuổi thọ.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307168/thiet-ke-may-lanh-tcl-inverter-15-hp-tac-13csd-xab1i.jpg\" alt=\"Thiết kế máy lạnh TCL Inverter 1.5 HP TAC-13CSD/XAB1I\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh</h3><p><a href=\"https://www.dienmayxanh.com/may-lanh?g=15-hp\">Máy lạnh 1.5 HP</a> TCL Inverter TAC-13CSD/XAB1I vận hành với công suất <strong>1.5 HP</strong> nên phù hợp làm mát cho diện tích phòng <strong>từ 15 - 20m²</strong>.</p><p>Chế độ làm lạnh nhanh Turbo: giúp bạn có thể nhanh chóng tận hưởng được sự mát mẻ trong thời tiết oi bức. Thông qua việc giảm nhiệt độ phòng xuống 18°C&nbsp;trong 30 giây. Thực hiện đơn giản, nhanh chóng và tiện lợi thông qua phím Turbo trên remote.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307168/lam-lanh-nhanh-tcl-inverter-15-hp-tac-13csd-xab1i-4.jpg\" alt=\"Chế độ Turbo trên máy lạnh TCL Inverter 1.5 HP TAC-13CSD/XAB1I\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ tiết kiệm điện</h3><p>- Công nghệ tiết kiệm điện <strong>AI Inverter</strong>&nbsp;trên <a href=\"https://www.dienmayxanh.com/may-lanh?g=may-lanh-inverter\">máy lạnh Inverter</a> TCL này giúp tiết kiệm điện năng tiêu thụ, hoạt động êm ái thông qua việc cảm biến nhiệt độ phòng và giảm công suất hoạt động nhưng vẫn giữ lại độ mát cho căn phòng của bạn.</p><p>-&nbsp;Chế độ Eco: tăng thêm hiệu quả tiết kiệm đến đến 25% nhờ khả năng tự điều chỉnh nhiệt độ tối ưu nhưng vẫn giữ mức làm mát phù hợp.</p><p>-&nbsp;Đạt chuẩn 5 sao với hiệu suất năng lượng 4.41 cùng lượng điện tiêu thụ khoảng 1.13 kW/h.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307168/cong-nghe-inverter-tcl-inverter-15-hp-tac-13csd-xab1i-6.jpg\" alt=\"Máy lạnh inverter TCL 1.5 HP TAC-13CSD/XAB1I\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Làm sạch không khí với bộ lọc HD</h3><p>Với bộ lọc HD giúp <a href=\"https://www.dienmayxanh.com/may-lanh\">máy lạnh</a> TCL Inverter 1.5 HP TAC-13CSD/XAB1I có thể lọc được bụi bẩn, vi khuẩn, mùi hôi,... tồn tại trong không gian nhà. Trả lại bầu không khí trong lành, giảm tình trạng kích ứng, dị ứng,...</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/307168/bo-loc-tcl-inverter-15-hp-tac-13csd-xab1i-2.jpg\" alt=\"Bộ lọc HD trên máy lạnh inverter TCL 1.5 HP TAC-13CSD/XAB1I\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Tiện ích&nbsp;</h3><p>- Cảm biến nhiệt độ <strong>I Feel</strong>: hoạt động thông qua một cảm biến được tích hợp trong remote, giúp máy lạnh có thể cảm nhận được thân nhiệt độ xung quanh remote. Từ đó máy sẽ cho bạn được nhiệt độ chính xác mà bạn cài đặt, mang lại hiệu quả tối đa về sự thư giãn.</p><p>-&nbsp;Chế độ <strong>kiểm soát độ ẩm</strong>: giảm tình trạng khô da và hỗ trợ cung cấp độ ẩm cho da, duy trì làn da căng trẻ.</p><p><br>&nbsp;</p>', 10, NULL, NULL, 5990000, 74.5, 44, 25.6, 12.6, NULL, 12, '2024-05-29 07:04:41', '2024-05-30 18:29:30'),
+(40, 'Máy lạnh tủ đứng LG Inverter 4 HP ZPNQ36GR5A0', 'may-lanh-tu-dung-lg-inverter-4-hp-zpnq36gr5a0', 14, 17, 'may-lanh-tu-dung-lg-zpnq36gr5a063808601480740717574.jpg', 1, '<h3>Tổng quan thiết kế&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><p><strong>Dàn lạnh</strong></p><p>- LG ZPNQ36GR5A0 thiết kế hình dạng chữ nhật đứng đơn giản, tông màu trắng thanh lịch, phối hợp liền mạch với bất kỳ phong cách nội thất nào của gia đình. Kiểu dáng tủ đứng cho phép bạn di chuyển, lựa chọn vị trí lắp đặt linh hoạt, tiện lợi.&nbsp;</p><p><strong>Dàn nóng</strong></p><p>- Kiểu dáng hình hộp quen thuộc, vỏ ngoài rắn chắc đảm bảo an toàn cho các linh kiện bên trong, tăng khả năng chống chịu trước các điều kiện thời tiết khác nhau.</p><p>- Trang bị <strong>ống dẫn gas làm từ chất liệu đồng</strong>, dàn lá tản nhiệt bằng nhôm truyền nhiệt nhanh, có <strong>phủ lớp Gold-Fin</strong> màu vàng giúp bảo vệ bề mặt của lá tản nhiệt, duy trì hiệu suất làm mát đồng thời chống lại sự ăn mòn từ các tác nhân có trong môi trường bên ngoài.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299813/may-lanh-tu-dung-lg-zpnq36gr5a0-281222-034328.jpg\" alt=\"Máy lạnh tủ đứng LG Inverter 4 HP ZPNQ36GR5A0 - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><p>- Hoạt động với công suất <strong>4 HP - 36.000 BTU</strong> cho khả năng làm lạnh mạnh mẽ, nhanh chóng trong&nbsp;phòng có diện tích từ <strong>40 - 60m² (từ 120 - 180m³)</strong>.</p><p>- Có <strong>công nghệ&nbsp;làm lạnh nhanh</strong> cho thiết bị làm lạnh đến nhiệt độ cài đặt trong thời gian ngắn, giúp bạn cảm nhận được sự mát mẻ trong tích tắc khi bước vào phòng.&nbsp;</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/may-lanh-lg\">Máy lạnh LG</a>&nbsp;vận hành êm ái với độ ồn thấp ở <strong>khoảng 41/44/47/52 dB</strong> tương đương như tiếng thì thầm, tiếng mưa vừa phải, không gây ảnh hưởng đến thời gian sinh hoạt, nghỉ ngơi của gia đình.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299813/may-lanh-tu-dung-lg-zpnq36gr5a0-281222-034330.jpg\" alt=\"Máy lạnh tủ đứng LG Inverter 4 HP ZPNQ36GR5A0 - Công nghệ làm lạnh \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ tiết kiệm điện</h3><p>- Tích hợp&nbsp;<a href=\"https://www.dienmayxanh.com/may-lanh?g=may-lanh-inverter\">công nghệ Smart Inverter</a>&nbsp;với động cơ hoạt động mượt mà, bền bỉ, mang đến hiệu năng làm lạnh cao, tiết kiệm&nbsp;điện năng lên đến 36%.</p><p>- Dùng <strong>gas R32 </strong>thân thiện môi trường, giảm lượng khí thải tới 75%, giúp làm lạnh nhanh, sâu, giảm chi phí&nbsp;năng lượng.</p><p>- Sản phẩm tiêu thụ điện&nbsp;<strong>2.4 kW/h</strong>.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299813/may-lanh-tu-dung-lg-zpnq36gr5a0-281222-034332.jpg\" alt=\"Máy lạnh tủ đứng LG Inverter 4 HP ZPNQ36GR5A0 - Công nghệ tiết kiệm điện\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Khả năng lọc không khí&nbsp;</h3><p>- Bộ lọc sơ bộ của <a href=\"https://www.dienmayxanh.com/may-lanh\">máy lạnh</a>&nbsp;có tuổi thọ cao giúp loại bỏ chất bẩn trong không khí hiệu quả, trả lại cho bạn không gian trong lành, sạch sẽ mỗi ngày.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299813/may-lanh-tu-dung-lg-zpnq36gr5a0-281222-034334.jpg\" alt=\"Máy lạnh tủ đứng LG Inverter 4 HP ZPNQ36GR5A0 - Khả năng lọc không khí \" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 39490000, 95, 83.3, 60, 60.8, NULL, 12, '2024-05-29 07:06:57', NULL),
+(41, 'Máy lạnh âm trần LG Inverter 3 HP ZTNQ30GNLE0', 'may-lanh-am-tran-lg-inverter-3-hp-ztnq30gnle0', 14, 17, 'may-lanh-am-tran-lg-ztnq30gnle063808361184926194413.jpg', 1, '<h3>Tổng quan thiết kế&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><p><strong>Dàn lạnh</strong></p><p>- <a href=\"https://www.dienmayxanh.com/may-lanh-lg\">Máy lạnh LG</a>&nbsp;có vẻ ngoài tối giản, kết cấu dạng hình vuông với các góc cạnh được thiết kế bo cong mềm mại phối hợp với gam màu trắng tươi sáng tạo nên sự liên kết hài hòa với mọi phong cách trang trí nội thất của căn phòng lắp đặt. Chế tác kiểu bố trí âm trần cho không gian phòng trở nên rộng mở, thông thoáng hơn.</p><p><strong>Dàn nóng</strong></p><p>- Thiết kế hình khối cứng cáp, chất liệu vỏ chắc chắn, tăng cường bảo vệ các bộ phận nằm bên trong, bảo vệ máy trước các tác động từ môi trường bên ngoài.</p><p>- Có&nbsp;<strong>ống dẫn gas bằng đồng</strong>, dàn tản nhiệt lá nhôm dẫn nhiệt hiệu quả, bề mặt&nbsp;<strong>phủ lớp Gold-Fin</strong>&nbsp;độc quyền của LG giúp hạn chế ăn mòn, tăng hiệu suất làm lạnh và tuổi thọ của sản phẩm.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299819/may-lanh-am-tran-lg-ztnq30gnle0-291222-082602.jpg\" alt=\"Máy lạnh âm trần LG Inverter 3 HP ZTNQ30GNLE0 - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><p>- Công suất làm lạnh lên đến <strong>3 HP - 30.000 BTU, </strong><a href=\"https://www.dienmayxanh.com/may-lanh-am-tran\">máy lạnh âm trần</a>&nbsp;tạo luồng khí lạnh cho toàn bộ không gian phòng&nbsp;từ&nbsp;<strong>35 - 50m²</strong> nhanh chóng.</p><p>- <strong>Công nghệ&nbsp;làm lạnh nhanh</strong>&nbsp;đẩy nhanh tốc độ làm lạnh, mang đến cho bạn cảm giác mát mẻ thoải mái trong thời gian ngắn.&nbsp;</p><p>-&nbsp;Với độ ồn khi hoạt động chỉ&nbsp;<strong>khoảng 37/41/45 dB</strong>&nbsp;như âm thanh tiếng thì thầm, lượng mưa vừa phải, giữ bé yêu của bạn ngủ ngon giấc suốt đêm.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299819/may-lanh-am-tran-lg-ztnq30gnle0-291222-082604.jpg\" alt=\"Máy lạnh âm trần LG Inverter 3 HP ZTNQ30GNLE0 - Công nghệ làm lạnh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Cơ chế thổi gió</h3><p>- <a href=\"https://www.dienmayxanh.com/may-lanh\">Máy lạnh</a>&nbsp;có khả năng<strong> thổi gió 4 hướng</strong> kết hợp thiết kế âm trần cho luồng gió lan tỏa rộng khắp không gian phòng,&nbsp;làn gió thổi với độ cao trần có thể đạt đến<strong> 4.2m</strong>.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299819/may-lanh-am-tran-lg-ztnq30gnle0-291222-082608.jpg\" alt=\"Máy lạnh âm trần LG Inverter 3 HP ZTNQ30GNLE0 - Cơ chế thổi gió\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ tiết kiệm điện</h3><p>- Công nghệ Smart Inverter&nbsp;điều chỉnh tốc độ vòng quay của động cơ duy trì hiệu quả làm mát tốt, đảm bảo thiết bị vận hành bền bỉ, tiết kiệm&nbsp;điện tối ưu tới 36%.</p><p>- Sử dụng <strong>gas R32&nbsp;</strong>có khả năng làm giảm lượng khí thải đến 75%, cho hiệu quả làm lạnh cao, nhanh chóng, tiết kiệm chi phí và bảo vệ môi trường sống tốt hơn.</p><p>- LG ZTNQ30GNLE0&nbsp;có lượng điện năng tiêu thụ <strong>2.16 kW/h</strong>.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299819/may-lanh-am-tran-lg-ztnq30gnle0-291222-082606.jpg\" alt=\"Máy lạnh âm trần LG Inverter 3 HP ZTNQ30GNLE0 - Công nghệ tiết kiệm điện\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Khả năng lọc không khí&nbsp;</h3><p>- Tích hợp <strong>bộ lọc sơ bộ tuổi thọ cao</strong> lọc sạch các bụi bẩn giữ cho không khí trong phòng luôn tinh khiết, trong lành, tốt cho sức khỏe của gia đình.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299819/may-lanh-am-tran-lg-ztnq30gnle0-291222-082609.jpg\" alt=\"Máy lạnh âm trần LG Inverter 3 HP ZTNQ30GNLE0 - Khả năng lọc không khí \" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 29690000, 87, 65, 33, 45.5, NULL, 12, '2024-05-29 07:09:06', NULL);
+INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ChieuCao`, `ChieuNgang`, `ChieuDay`, `CanNang`, `ThongSoKyThuat`, `ThoiGianBaoHanh`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(42, 'Máy lạnh Daikin Inverter 1 HP ATKF25YVMV', 'may-lanh-daikin-inverter-1-hp-atkf25yvmv', 21, 17, 'daikin-inverter-1-hp-atkf25yvmv63847788441283619137.jpg', 1, '<h3>Tổng quan thiết kế</h3><p><strong>Dàn lạnh</strong></p><p>- Daikin ATKF25YVMV có kiểu dáng hiện đại, đường viền màu xanh bo theo cạnh bên của thân máy giúp tạo nên nét mềm mại góp phần mang đến điểm nhấn khác biệt cho sản phẩm so với những mẫu máy có tông màu trắng thường gặp khác.</p><p>- Trang bị remote thiết kế gọn nhẹ, cầm nắm thuận tay nên người dùng dễ dàng thao tác. Hơn nữa, phím tắt/mở tích hợp dạ quang nên việc điều khiển trong phòng tối hoàn toàn tiện lợi, không gặp trở ngại gì.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-1-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Dàn lạnh\" width=\"1020\" height=\"570\"></figure><p><strong>Dàn nóng</strong></p><p>- Thiết kế vỏ ngoài được cải tiến, thay đổi cấu trúc của nắp van dịch vụ, ở tấm kim loại giúp giảm khoảng hở, thay đổi hình dạng của lỗ thoát nước ở đế dàn nóng thành hình oval. Bổ sung miếng đệm vào vỏ máy bên phải và nắp van chặn để làm bít khe hở. Nhờ đó giúp <strong>ngăn chặn được sự xâm nhập của thằn lằn</strong>, tăng cường bảo vệ bo mạch, loại bỏ một trong những nguyên nhân gây ra tình trạng hư hỏng bảng mạch biến tần ở dàn nóng.&nbsp;</p><p>- Mẫu <a href=\"https://www.dienmayxanh.com/may-lanh-daikin\">máy lạnh Daikin</a> này tích hợp 1 mạch điện tử bền bỉ, chịu được điện áp đến 440V, giúp thiết bị chạy bền kể cả ở các khu vực có nguồn điện không ổn định mà không cần lắp thêm ổn áp.&nbsp;</p><p>- <strong>Ống dẫn gas bằng đồng, lá tản nhiệt bằng nhôm</strong> đảm bảo hiệu suất làm lạnh. Cánh dàn tản nhiệt được <strong>phủ</strong> <strong>2 lớp tĩnh điện</strong> gồm 1 lớp nhựa acrylic và 1 lớp chống thấm nước giúp nâng cao khả năng chống mưa axit, chống ăn mòn từ muối cho thiết bị dùng bền hơn.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-2-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Dàn nóng\" width=\"1020\" height=\"570\"></figure><h3>Công nghệ làm lạnh</h3><p>- Công suất làm lạnh&nbsp;<strong>1 HP - 9.200 BTU</strong>, thích hợp dùng trong phạm vi<strong>&nbsp;dưới 15m² (từ 30 đến 45 m³)</strong>.</p><p>- Công nghệ <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-lam-lanh-nhanh-thuong-gap-tren-may-lanh-837183#powerful-daikin\">Powerful</a> và máy nén được cải tiến cho tốc độ làm lạnh nhanh gấp 2 lần chế độ làm lạnh thông thường ở các mẫu máy tiền nhiệm. Nhờ đó giúp căn phòng đạt đến nhiệt độ cài đặt nhanh chóng để bạn cảm nhận được sự sảng khoái ngay lập tức.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-3-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Công nghệ làm lạnh\" width=\"1020\" height=\"570\"></figure><h3>Cơ chế thổi gió</h3><p>- Hỗ trợ chế độ<strong> tùy chỉnh điều khiển lên xuống trái phải tự động</strong> kết hợp cùng <strong>cánh quạt đảo gió 3D</strong> tạo luồng gió 3D lưu thông khí lạnh đến mọi ngóc ngách giúp làm mát đồng đều cả không gian phòng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-4-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Cơ chế thổi gió\" width=\"1020\" height=\"570\"></figure><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tac-dung-cua-cac-che-do-gio-tren-may-lanh-588239#coanda\">Luồng gió thoải mái Coanda</a>: hướng gió lên trên, thổi dọc theo trần nhà, đưa gió tới những góc trong phòng rồi thả xuống giúp không gian được làm mát thoải mái, tránh được tình trạng gió thổi trực tiếp vào thân mình gây ảnh hưởng đến sức khỏe của mọi người.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-5-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Luồng gió thoải mái Coanda\" width=\"1020\" height=\"570\"></figure><h3>Công nghệ tiết kiệm điện</h3><p>-&nbsp;Công nghệ <a href=\"https://www.dienmayxanh.com/may-lanh?g=may-lanh-inverter\">Inverter</a> sử dụng máy nén hiệu suất cao, tăng tải đến tần số tối đa ngay khi vừa bật máy, giúp làm lạnh nhanh, vận hành êm ái, giảm hao phí điện năng nhờ đó giúp tiết kiệm chi phí cho hóa đơn tiền điện hàng tháng.</p><p>- Nhãn năng lượng&nbsp;<strong>5 sao</strong>&nbsp;(hiệu suất năng lượng 5.38). Lượng điện năng tiêu thụ khoảng <strong>0.93 kW/h</strong>.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-10-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Công nghệ tiết kiệm điện\" width=\"1020\" height=\"570\"></figure><h3>Khả năng lọc không khí</h3><p>- Công nghệ <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-streamer-tren-may-lanh-va-may-loc-khong-1342892\">Streamer</a> độc quyền của thương hiệu Daikin với cơ chế giải phóng những electron tốc độ cao tiếp xúc với oxy, Nitơ, hơi nước có trong không khí để tạo các phân tử có đặc tính phân hủy mạnh mẽ, giúp ức chế những chất gây mùi, tác nhân gây ô nhiễm có trong không khí như virus, vi khuẩn, nấm mốc, phấn hoa, mạt bụi, bụi mịn PM2.5.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-6-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Công nghệ Streamer\" width=\"1020\" height=\"570\"></figure><p><i>(*) Dựa trên kết quả thử nghiệm đối với một số loại vi khuẩn, vi rút, nấm mốc và các chất gây hại. Tham khảo chi tiết tại&nbsp;</i><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/xac-minh-hieu-qua-cong-nghe-may-lanh-khong-khi-may-1553981\"><i>link</i></a><i>.</i></p><p>Thử nghiệm được Daikin phối hợp với một nhóm các giáo sư nghiên cứu từ Khoa Vi sinh thuộc Khoa Thú y của Đại học Khoa học Okayama, do Giáo sư Shigeru Morikawa đứng đầu, đã chứng minh rằng công nghệ Streamer sẽ làm bất hoạt hơn 93.6% SARS-CoV-2 sau 1 giờ chiếu xạ Streamer. Sau 2 giờ bất hoạt hơn 99,7%, đạt hơn 99,9% sau 3 giờ chiếu Streamer.</p><figure class=\"image\"><img style=\"aspect-ratio:1031/738;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-7-1031x738.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Công nghệ Streamer 1\" width=\"1031\" height=\"738\"></figure><p><i>* Okayama University of Science là trường đại học hoạt động từ giữa thế kỉ 20 chuyên đào tạo các chuyên ngành về kĩ thuật và lĩnh vực khoa học. Thuộc top 121 các trường đại học hàng đầu của Nhật Bản và chuyên hợp tác với nhiều trường đại học hàng đầu khác như Đại học Hawaii ( Hoa Kỳ), Đại học Oxford ( Anh),...</i><br><i>Xem thêm các giấy chứng nhận công nghệ Streamer có thể loại bỏ nhiều loại vi khuẩn khác&nbsp;</i><a href=\"https://www.daikin-streamer.com/en/result/\"><i>tại đây</i></a><i>.</i></p><p>- <strong>Phin lọc Enzyme Blue tích hợp PM2.5</strong> cho hiệu quả kép vừa loại bỏ các hạt bụi mịn PM2.5 vừa loại bỏ những tác nhân gây mùi, chất gây dị ứng, vi khuẩn, virus, nấm mốc cho không khí trong lành hơn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-12-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Phin lọc Enzyme Blue tích hợp PM2.5\" width=\"1020\" height=\"570\"></figure><p>- Chế độ <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-cong-nghe-noi-bat-tren-may-lanh-daikin-885166#chong-am-moc\">chống ẩm mốc</a> với công nghệ Streamer có tác dụng khi thiết bị tắt hoặc là ngưng chức năng làm lạnh, khử ẩm thì máy tự động chạy ở chế độ chỉ chạy quạt trong 60 phút giúp sấy khô bên trong dàn lạnh, giảm sinh sôi, phát triển nấm mốc, mùi hôi mang đến luồng khí mát mẻ, tinh khiết. Trong khi luồng điện Streamer được phóng ra giúp làm vô hiệu hóa những chất độc hại, sự kết hợp này giúp duy trì hiệu quả làm lạnh tối ưu và độ bền cho máy.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-9-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Chế độ chống ẩm mốc với công nghệ Streamer\" width=\"1020\" height=\"570\"></figure><h3>Tiện ích</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#hen-gio\">Hẹn giờ bật tắt máy</a>: kiểm soát thời gian sử dụng <a href=\"https://www.dienmayxanh.com/may-lanh\">máy lạnh</a> linh hoạt tùy theo nhu cầu, không cần thức dậy giữa đêm để tắt máy, giúp bạn ngủ ngon giấc hơn.&nbsp;</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#tu-khoi-dong\">Tự khởi động lại khi có điện</a>: máy lưu lại cài đặt trước khi sự cố mất điện phát sinh một cách tự động để khi có điện thì máy tự khôi phục theo thiết lập đã ghi nhớ.</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tinh-nang-hoat-dong-sieu-em-cua-may-lanh-la-gi-1061527\">Hoạt động siêu êm Quiet</a>: ở chế độ này, dàn lạnh hoạt động yên tĩnh, giảm âm thanh vận hành xuống cỡ 19 dB(A) tựa như tiếng lá rơi, nhờ đó không gây khó chịu cho mọi người trong khi thiết bị chạy.</p><p>-&nbsp;<strong>Tùy chọn mua thêm bộ điều khiển không dây Daikin Mobile</strong>: cung cấp thêm phương tiện để bạn tùy chỉnh nhiệt độ, theo dõi tình trạng của thiết bị dễ dàng bất cứ lúc nào.</p><p><strong>Lưu ý:</strong> Để dùng được app D-Mobile, ATKF-Y series cần thêm phụ kiện bao gồm: Remote Control PC-board set (BRP067A42) và Bộ chuyển đổi kết nối mạng LAN không dây (BRP072C42).</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/322932/daikin-inverter-1-hp-atkf25yvmv-11-1020x570.jpg\" alt=\"Máy lạnh Daikin Inverter 1 HP ATKF25YVMV - Tiện ích\" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 10990000, 77, 26.8, 24.2, 9, NULL, 12, '2024-05-29 07:11:12', NULL),
+(43, 'Máy lạnh Nagakawa Inverter 1.5 HP NIS-C12R2T28', 'may-lanh-nagakawa-inverter-15-hp-nis-c12r2t28', 24, 17, 'may-lanh-nagakawa-inverter-15-hp-nis-c12r2t2863811634024399649398.jpg', 1, '<h3>Tổng quan thiết kế</h3><p><strong>Dàn lạnh</strong></p><p>- <a href=\"https://www.dienmayxanh.com/may-lanh-nagakawa\">Máy lạnh Nagakawa</a> sở hữu gam màu trắng sang trọng, tinh tế, phù hợp với hầu hết không gian nội thất trong gia đình.</p><p><strong>Dàn nóng</strong></p><p>- <strong>Dàn tản nhiệt ống đồng nguyên chất rãnh xoắn Golden Fin</strong>: khả năng chống ăn mòn tốt, bảo vệ bề mặt dàn tản nhiệt, đặc biệt phù hợp với những khu vực gần biển.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299825/may-lanh-nagakawa-inverter-15-hp-nis-c12r2t28-080123-083717.png\" alt=\"Máy lạnh Nagakawa Inverter 1.5 HP NIS-C12R2T28 - Thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>* Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh</h3><p>- Máy hoạt động với công suất&nbsp;<a href=\"https://www.dienmayxanh.com/may-lanh?g=15-hp\"><strong>1.5 HP – 12.000 BTU</strong></a>, phù hợp với không gian phòng có diện tích <strong>từ 15 - 20m² (từ 40 đến 60 m³)</strong>.</p><p>- Công nghệ làm lạnh <strong>Turbo </strong>hoạt động với công suất lớn, khả năng làm lạnh nhanh theo nhiệt độ cài đặt trong 20 – 30 phút, giúp bạn tận hưởng không gian mát lạnh tức thì mà không mất quá nhiều thời gian chờ đợi.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299825/may-lanh-nagakawa-inverter-15-hp-nis-c12r2t28-080123-083803.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1.5 HP NIS-C12R2T28 - Công nghệ làm lạnh\" width=\"1020\" height=\"570\"></figure><p><i>* Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ tiết kiệm điện</h3><p>- Công nghệ <a href=\"https://www.dienmayxanh.com/may-lanh?g=may-lanh-inverter\"><strong>Inverter</strong></a>: với công nghệ này, máy sẽ được tăng hiệu suất hoạt động, tốc độ quạt cũng được thay đổi ở nhiều cấp độ cho khả năng vận hành êm ái, độ rung và tiếng ồn giảm đáng kể, từ đó tiết kiệm điện năng tiêu thụ.&nbsp;</p><p>Đồng thời công nghệ <strong>Economy </strong>giúp giảm tiêu tốn điện năng nhưng vẫn đảm bảo mang lại cho bạn một luồng không khí mát lạnh.&nbsp;</p><p>- Sản phẩm đạt tem năng lượng <strong>chuẩn 5 sao</strong> với hiệu suất năng lượng <strong>4.57</strong>.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299825/may-lanh-nagakawa-inverter-15-hp-nis-c12r2t28-080123-083824.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1.5 HP NIS-C12R2T28 - Công nghệ tiết kiệm điện\" width=\"1020\" height=\"570\"></figure><p><i>* Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Khả năng lọc không khí</h3><p>- <strong>Màng lọc 6 trong 1</strong>: có tác dụng làm sạch không khí, loại bỏ các tác nhân gây ảnh hưởng đến sức khỏe của người dùng như bụi bẩn, vi khuẩn, nấm mốc,… một cách hiệu quả.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299825/may-lanh-nagakawa-inverter-15-hp-nis-c12r2t28-080123-083943.jpg\" alt=\"Máy lạnh Nagakawa Inverter 1.5 HP NIS-C12R2T28 - Màng lọc 6 trong 1\" width=\"1020\" height=\"570\"></figure><p><i>* Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Đa dạng tiện ích sử dụng</h3><p>- <strong>Chế độ cài đặt yêu thích I-set</strong>: người dùng cài đặt chế độ nhiệt độ yêu thích của gia đình một lần, mỗi khi bật máy, bạn chỉ cần nhấn “I-set” trên remote là <a href=\"https://www.dienmayxanh.com/may-lanh\">máy lạnh</a> sẽ tự động vận hành theo chương trình cài đặt sẵn trước đó.&nbsp;</p><p>- <strong>Cảm biến nhiệt độ I Feel</strong>: cảm biến này có khả năng truyền tín hiệu đến dàn lạnh về nhiệt độ môi trường xung quanh nơi đặt remote. Nhờ đó, bạn chỉ cần đặt remote bên người là có thể tận hưởng không khí mát lạnh như mong muốn.</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#lam-kho\"><strong>Chức năng hút ẩm</strong></a>: có tác dụng hút bớt hơi ẩm trong không khí, giúp căn phòng luôn khô ráo, thoáng đãng.&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#hen-gio\"><strong>Hẹn giờ bật tắt máy</strong></a>: người dùng dễ dàng bật/tắt máy một cách chủ động, hạn chế tình trạng lãng phí điện năng khi quên tắt máy.&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-thuong-thay-tren-may-lanh-795107#tu-khoi-dong\"><strong>Tự khởi động lại khi có điện</strong></a>: chức năng này có khả năng ghi nhớ chế độ đã được cài đặt trước đó, khi có sự cố mất điện đột ngột, bạn không cần điều chỉnh lại cài đặt, phù hợp sử dụng vào ban đêm, không ảnh hưởng đến giấc ngủ ngon của cả gia đình.&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/che-do-ngu-dem-tren-may-lanh-la-gi-631348\"><strong>Chế độ vận hành khi ngủ</strong></a>: khi kích hoạt chế độ Sleep trên remote, máy lạnh sẽ tự động vận hành với công suất thấp, hạn chế tối đa tiếng ồn để tránh ảnh hưởng đến giấc ngủ của cả gia đình.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/571;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/299825/may-lanh-nagakawa-inverter-15-hp-nis-c12r2t28-080123-084412.png\" alt=\"Máy lạnh Nagakawa Inverter 1.5 HP NIS-C12R2T28 - Chế độ vận hành khi ngủ\" width=\"1020\" height=\"571\"></figure>', 10, NULL, NULL, 5990000, 80, 25.6, 24.2, 10.8, NULL, 12, '2024-05-29 07:13:07', NULL),
+(44, 'Android Tivi AQUA 4K 55 inch AQT55D67UG', 'android-tivi-aqua-4k-55-inch-aqt55d67ug', 26, 1, 'android-tivi-aqua-4k-55-inch-aqt55d67ug-0030.jpg', 1, '<h3>Tổng quan thiết kế</h3><p>- Android Tivi AQUA 4K 55 inch AQT55D67UG thiết kế liền mạch, viền đen mỏng, kiểu dáng tối giản giúp làm nổi bật <a href=\"https://www.dienmayxanh.com/tivi-55-inch\"><strong>màn hình 55 inch</strong></a><strong> </strong>của tivi AQUA, cho người xem hoàn toàn đắm chìm vào nội dung đang trình chiếu trên màn hình.</p><p>- Chân đế được làm bằng nhựa chắc chắn, có hình dạng chữ V ở 2 bên giúp tivi đứng vững trên mặt bàn, kệ tủ. Ngoài ra, chân đế<a href=\"https://www.dienmayxanh.com/tivi\"> tivi</a> có thể tháo rời giúp tiết kiệm được không gian phòng nhà bạn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310791/android-tivi-aqua-43-inch-aqt43d67fg-200723-014259.jpg\" alt=\"Android Tivi AQUA 4K 55 inch AQT55D67UG - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ hình ảnh</h3><p><strong>- Công nghệ Wide Colour Gamut </strong>giúp hình ảnh trên tivi nhiều màu sắc hơn so với dải 3 màu cơ bản bằng cách bổ sung thêm màu trắng vào 3 màu (Đỏ, Xanh lá, Xanh dương). Công nghệ này hỗ trợ ngay cả trên các nội dung quay bị thiếu sáng, hay các bộ phim cũ trước đây khi chất lượng ánh sáng không cao, mang đến trải nghiệm hình ảnh đẹp mắt, mới lạ.</p><p><strong>- </strong><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/so-sanh-hdr10-hdr10-va-dolby-vision-co-gi-khac-1173256#hdr-10\"><strong>HDR10</strong></a> tăng thêm độ tương phản và màu sắc trên tivi, cho phép tivi thể hiện được đầy đủ chi tiết vùng sáng lẫn vùng tối trên cùng một khung hình.</p><p><strong>- Công nghệ HLG </strong>cho phép hình ảnh đạt độ tương phản cao hơn, giúp cho hình ảnh chân thật hơn.</p><p>Mời bạn xem thêm:<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/diem-mat-nhung-do-phan-giai-pho-bien-hien-nay-tren-577178\">&nbsp;Những độ phân giải màn hình phổ biến hiện nay trên tivi</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310791/android-tivi-aqua-43-inch-aqt43d67fg-200723-014301.jpg\" alt=\"Android Tivi AQUA 4K 55 inch AQT55D67UG - Công nghệ hình ảnh \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ âm thanh</h3><p>Trang bị <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/nhung-dieu-can-biet-ve-cong-nghe-am-thanh-dolby-di-795833\"><strong>công nghệ Dolby Digital</strong></a> âm thanh sẽ được khuếch đại mạnh mẽ hơn, đem đến cho bạn trải nghiệm âm thanh đa chiều sống động, liền mạch, lan tỏa khắp căn phòng, cho người xem chạm đến cảm giác mãn nhãn như đang ngồi tại rạp hát.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310791/android-tivi-aqua-43-inch-aqt43d67fg-200723-014304.jpg\" alt=\"Android Tivi AQUA 4K 55 inch AQT55D67UG  - Công nghệ âm thanh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Hệ điều hành</h3><p>- Tivi AQUA sở hữu <strong>hệ điều hành Android 11.0</strong> sở hữu kho ứng dụng khủng với giao diện đơn giản dễ dùng, dễ dàng truy cập các ứng dụng giải trí quen thuộc trên tivi như YouTube, Google Play, Netflix,… tivi AQUA có thể đáp ứng nhu cầu giải trí của từng thành viên trong gia đình.</p><p>Mời bạn tìm hiểu thêm về&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/ung-dung-tiktok-da-chinh-thuc-co-mat-tren-tv-andro-1367589\">ứng dụng Tiktok đã chính thức có mặt trên TV Android</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310791/android-tivi-aqua-43-inch-aqt43d67fg-200723-014314.jpg\" alt=\"Android Tivi AQUA 4K 55 inch AQT55D67UG  - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Tiện ích</h3><p>- Hỗ trợ tìm kiếm tiếng Việt qua<strong> remote thông minh tích hợp micro</strong> và<strong> </strong><a href=\"https://www.dienmayxanh.com/tivi-tro-ly-ao-google-assistant\"><strong>trợ lý ảo Google Assistant.</strong></a></p><p>- Trình chiếu chương trình ca nhạc, thể thao, phim ảnh lên tivi tiện gọn thông qua<strong> Chromecast.</strong></p><p>- Ngoài remote, bạn còn có thể điều khiển tivi AQUA 4K bằng điện thoại thông qua <strong>ứng dụng Android TV.</strong></p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/chromecast-la-gi-lam-sao-de-ket-noi-voi-tivi-850041#ket-noi-len-tivi\">Cách chiếu màn hình điện thoại lên TV Android bằng Chromecast</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310791/android-tivi-aqua-43-inch-aqt43d67fg-200723-014317.jpg\" alt=\"Android Tivi AQUA 4K 55 inch AQT55D67UG  - Tiện ích \" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 6990000, 123.1, 24.2, 26.4, 12, NULL, 12, '2024-05-29 07:17:00', NULL),
+(45, 'Google Tivi Xiaomi A 4K 55 inch L55M8-P2SEA', 'google-tivi-xiaomi-a-4k-55-inch-l55m8-p2sea', 19, 1, 'google-tivi-xiaomi-4k-55-inch-l55m8-p2sea63830038524755230145.jpg', 1, '<h3>Tổng quan thiết kế</h3><p>-&nbsp;Mẫu&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-xiaomi-google-tivi\">Google Tivi Xiaomi</a>&nbsp;này góp phần tạo điểm nhấn cho không gian phòng khách của gia đình với kết cấu gọn gàng, thiết kế 3 cạnh viền trên được làm thanh mảnh cho cảm giác như không viền giúp thu hút và cho tầm nhìn của bạn hoàn toàn tập trung vào nội dung hấp dẫn đang chiếu trên tivi.&nbsp;</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/tivi?g=55-inch\">Kích thước màn hình 55 inch</a>&nbsp;phù hợp để trang trí trong những căn phòng có diện tích vừa và rộng. Chân đế kiểu chữ V úp ngược, được làm bằng kim loại và nhựa cho độ bền chắc cao, giữ&nbsp;<a href=\"https://www.dienmayxanh.com/tivi\">tivi</a>&nbsp;đứng ổn định, không bị nghiêng, đổ trong suốt thời gian sử dụng.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/312857/google-tivi-xiaomi-4k-55-inch-l55m8-p2sea-100823-070816.jpg\" alt=\"Google Tivi Xiaomi A 4K 55 inch L55M8-P2SEA - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Công nghệ hình ảnh&nbsp;</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tivi-uhd-tivi-4k-la-gi-co-khac-gi-so-voi-tivi-full-578555\">Độ phân giải&nbsp;4K</a>&nbsp;tái tạo cảnh phim sắc nét gấp 4 lần màn hình Full HD, cùng với tính năng làm mượt chuyển động đem đến cho người xem những khung hình 4K bắt mắt.</p><p>-&nbsp;<strong>Bộ xử lý Mali-G52 MC1</strong>&nbsp;hoạt động hiệu quả, giải quyết các tác vụ trơn tru, tối ưu hóa chất lượng hình ảnh, âm thanh, cho bạn có được trải nghiệm nghe nhìn tuyệt vời.&nbsp;</p><p>-&nbsp;<strong>Wide Color Gamut&nbsp;</strong>với dải màu rộng giúp tái hiện hình ảnh có màu sắc rực rỡ, chân thực hơn.&nbsp;</p><p>- Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/dolby-vision-la-gi-809287\">Dolby Vision</a>&nbsp;điều chỉnh độ sáng, màu sắc, độ tương phản một cách tự động nhằm tạo nên khung hình chuẩn điện ảnh, sống động như thật.&nbsp;</p><p>Mời bạn xem thêm:<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/diem-mat-nhung-do-phan-giai-pho-bien-hien-nay-tren-577178\">&nbsp;Những độ phân giải màn hình phổ biến hiện nay trên tivi</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/312857/google-tivi-xiaomi-4k-55-inch-l55m8-p2sea-100823-070817.jpg\" alt=\"Google Tivi Xiaomi A 4K 55 inch L55M8-P2SEA - Công nghệ hình ảnh \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Công nghệ âm thanh</h3><p>- Hệ thống 2 loa, tổng công suất&nbsp;<strong>20W</strong>.</p><p>- Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-dolby-audio-la-gi-865079\">Dolby Audio</a>&nbsp;giả lập âm thanh vòm với chất âm phát ra từ nhiều hướng, cải thiện độ chi tiết của âm thanh phụ, lọc tạp âm để người nghe được thưởng thức bản nhạc, bộ phim với âm thanh mạnh mẽ, lôi cuốn hơn.&nbsp;</p><p>-&nbsp;Công nghệ<strong>&nbsp;DTS-X,&nbsp;DTS Virtual:X</strong>&nbsp;tạo nên không gian âm thanh đa chiều lan tỏa rộng, cho cảm giác âm thanh chân thực đến bất ngờ.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/312857/google-tivi-xiaomi-4k-55-inch-l55m8-p2sea-100823-070819.jpg\" alt=\"Google Tivi Xiaomi A 4K 55 inch L55M8-P2SEA - Công nghệ âm thanh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Hệ điều hành</h3><p>- Chiếc&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-xiaomi\">tivi Xiaomi</a>&nbsp;này cài đặt hệ điều hành&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/android-tv-nang-cap-thanh-thanh-google-tv-trong-na-1350893\">Google TV</a>&nbsp;với thiết kế giao diện trực quan, cho bạn theo dõi, lựa chọn các nội dung nhanh chóng để có thêm nhiều thời gian trải nghiệm những bộ phim, chương trình giải trí yêu thích.&nbsp;</p><p>- Thư viện ứng dụng đồ sộ, có nhiều ứng dụng phổ biến: Netflix, Prime Video, YouTube,... đáp ứng nhu cầu giải trí của tất cả các thành viên trong gia đình bạn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/312857/google-tivi-xiaomi-4k-55-inch-l55m8-p2sea-100823-070821.jpg\" alt=\"Google Tivi Xiaomi A 4K 55 inch L55M8-P2SEA - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Tiện ích&nbsp;</h3><p>-&nbsp;Xiaomi A L55M8-P2SEA hỗ trợ tính năng&nbsp;<strong>tìm kiếm bằng giọng nói tiếng Việt trên&nbsp;YouTube</strong>, tích hợp&nbsp;<strong>Google Assistant hỗ trợ tiếng Việt,</strong>&nbsp;mang đến giải pháp điều khiển tivi đơn giản bắt đầu bằng câu lệnh \"Ok Google\".</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/remote-thong-minh-tim-kiem-giong-noi-tieng-viet-la-1190444\">Remote tích hợp micro</a>&nbsp;cho phép người dùng sử dụng giọng nói tìm kiếm thông tin tiện lợi. Hoặc cũng có thể thao tác trên các phím bấm để tùy chỉnh tivi thủ công.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/312857/google-tivi-xiaomi-4k-55-inch-l55m8-p2sea-100823-070824.jpg\" alt=\"Google Tivi Xiaomi A 4K 55 inch L55M8-P2SEA - Tiện ích \" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 8990000, 100.5, 24.56, 20.4, 10.5, NULL, 12, '2024-05-29 07:23:57', NULL),
+(46, 'Google Tivi Sony 4K 65 inch KD-65X75K', 'google-tivi-sony-4k-65-inch-kd-65x75k', 11, 1, 'vi-vn-google-sony-4k-65-inch-kd-65x75k-194.jpg', 1, '<h3>Tổng quan thiết kế</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/tivi/google-sony-4k-65-inch-kd-65x75k\">Google Tivi Sony 4K 65 inch KD-65X75K</a>&nbsp;có thiết kế hình chữ nhật quen thuộc, đường nét sắc sảo, tinh tế, góp phần tạo sự sang trọng, cao cấp cho mọi không gian sống.&nbsp;</p><p>- Với kích cỡ&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-65-inch\"><strong>65&nbsp;inch</strong></a>, màn hình tivi cho tầm nhìn rộng, trải nghiệm xem mãn nhãn, lựa chọn phù hợp với các gian phòng khách, phòng hội nghị, phòng ngủ có diện tích vừa và lớn.&nbsp;</p><p>- Thiết kế&nbsp;<strong>chân đế chữ V úp ngược</strong>, lắp đặt ở 2 phía của&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-sony\">tivi Sony</a>&nbsp;cân bằng, giúp bố trí tivi ổn định khi để bàn. Bạn cũng có thể lắp đặt kiểu treo tường biến tivi thành vật trang trí, hoàn thiện ý tưởng thiết kế nội thất của mình.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/275510/google-sony-4k-65-inch-kd-65x75k-010422-084647.jpg\" alt=\"Google Tivi Sony 4K 65 inch KD-65X75K - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Công nghệ hình ảnh</h3><p>- Hình ảnh có độ phân giải&nbsp;<a href=\"https://www.dienmayxanh.com/tivi?g=ultra-hd-4k\"><strong>4K</strong></a>&nbsp;hiển thị sắc nét gấp 4 lần so với Full HD.&nbsp;</p><p>-&nbsp;Bộ xử lý&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tong-hop-cac-cong-nghe-hinh-anh-tren-tivi-sony-201-1107501#4k-hdr-processor\"><strong>X1 4K HDR</strong></a><strong>&nbsp;</strong>tích hợp thuật toán cao cấp tăng cường chi tiết cho khung hình, giảm độ nhiễu để hình ảnh hiển thị rõ ràng, cảnh chuyển động mượt mà, sinh động như bước ra từ cuộc sống.</p><p>- Công nghệ&nbsp;<strong>Motionflow XR 200</strong>&nbsp;chèn thêm khung hình vào giữa các khung hình gốc giúp làm rõ hơn những cảnh chuyển động nhanh.&nbsp;</p><p>Mời bạn xem thêm:<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/diem-mat-nhung-do-phan-giai-pho-bien-hien-nay-tren-577178\">&nbsp;Những độ phân giải màn hình phổ biến hiện nay trên tivi</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/275510/google-sony-4k-65-inch-kd-65x75k-280622-102116.gif\" alt=\"Google Tivi Sony 4K 65 inch KD-65X75K -  Bộ xử lý X1 4K HDR tích hợp thuật toán cao cấp tăng cường chi tiết cho khung hình\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Công nghệ âm thanh</h3><p>-&nbsp;<strong>DTS Digital Surround</strong>&nbsp;tái tạo âm thanh vòm sinh động, lan tỏa rộng khắp không gian cho bạn đắm chìm vào chương trình giải trí đang theo dõi.&nbsp;</p><p>- Bộ khuếch đại âm thanh&nbsp;<strong>S-Master Digital Amplifier</strong>&nbsp;loại bỏ tiếng ồn, độ nhiễu tối đa để tạo ra chất âm mạnh mẽ, lôi cuốn trên <a href=\"https://www.dienmayxanh.com/tivi-google-tivi\">Google Tivi</a>.</p><p>- Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-am-thanh-tren-tivi-sony-576180#s-force-front-surround\"><strong>S-Force Front Surround</strong></a><strong>&nbsp;</strong>giả lập trường âm thanh đa chiều cho bạn được thưởng thức chất âm 360° chân thật như đang ngồi trong rạp chiếu phim thực sự.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1021/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/275510/google-sony-4k-65-inch-kd-65x75k-220722-040420.jpg\" alt=\"Google Tivi Sony 4K 65 inch KD-65X75K - Công nghệ âm thanh\" width=\"1021\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Hệ điều hành</h3><p>- Giao diện hệ điều hành&nbsp;<strong>Google TV</strong>&nbsp;hướng đến sự thân thiện nên người dùng mới làm quen cũng dễ dàng sử dụng, tùy chọn ứng dụng yêu thích để trải nghiệm.&nbsp;</p><p>- Phục vụ tốt cho nhu cầu giải trí đa dạng của các thành viên trong gia đình bạn với thư viện ứng dụng phong phú, có các ứng dụng phổ biến như Netflix, Youtube, VieON, Galaxy Play (Fim+), FPT Play,...</p><p>Xem thêm:&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cach-xem-phim-online-tren-tivi-887946#xem-phim-tren-trinh-duyet-web\">Cách xem phim bằng trình duyệt web trên tivi</a>&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/275510/google-sony-4k-65-inch-kd-65x75k-010422-084652.jpg\" alt=\"Google Tivi Sony 4K 65 inch KD-65X75K - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Tiện ích</h3><p>- Tìm kiếm thông tin, điều khiển tivi bằng giọng nói tiếng Việt với trợ lý ảo&nbsp;<strong>Google Assistant</strong>.</p><p>- Chia sẻ các hình ảnh, video, tài liệu từ điện thoại lên&nbsp;<a href=\"https://www.dienmayxanh.com/tivi\">tivi</a>&nbsp;dễ dàng thông qua tính năng&nbsp;<strong>Chromecast</strong>.</p><figure class=\"image\"><img style=\"aspect-ratio:1021/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/275510/google-sony-4k-65-inch-kd-65x75k-220722-040425.jpg\" alt=\"Google Tivi Sony 4K 65 inch KD-65X75K - Tìm kiếm bằng giọng nói\" width=\"1021\" height=\"570\"></figure>', 10, NULL, NULL, 16890000, 146.3, 91.4, 33.7, 15, NULL, 12, '2024-05-29 07:44:37', NULL),
+(47, 'Google Tivi AQUA 4K 50 inch AQT50P750UG', 'google-tivi-aqua-4k-50-inch-aqt50p750ug', 26, 1, 'google-tivi-aqua-4k-50-inch-aqt50p750ug63834299562387391169.jpg', 1, '<h3>Tổng quan thiết kế</h3><p>- Mẫu <a href=\"https://www.dienmayxanh.com/tivi-aqua-google-tivi\">Google Tivi AQUA</a>&nbsp;này có đường nét tinh xảo, hoàn thiện trong từng chi tiết nhỏ, thiết kế màn hình&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-50-inch\">tivi 50 inch</a>&nbsp;hài hòa với không gian phòng khách, phòng làm việc hay phòng ngủ có diện tích vừa phải.&nbsp;</p><p>- <strong>Chân đế kim loại độ bền cao</strong>, kiểu dáng chữ V úp ngược, lắp đặt cân bằng ở 2 cạnh của&nbsp;<a href=\"https://www.dienmayxanh.com/tivi\">tivi</a>&nbsp;giúp thiết bị đứng ổn định trên mặt bàn, kệ tủ. Nếu không thích bố trí kiểu để bàn, bạn có thể tháo chân đế và treo lên tường, biến tivi trở thành một món đồ trang trí cao cấp góp phần nâng tầm cho không gian sống.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310793/google-tivi-aqua-4k-50-inch-aqt50p750ug-200723-081356.jpg\" alt=\"Google Tivi AQUA 4K 50 inch AQT50P750UG - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Công nghệ hình ảnh&nbsp;</h3><p>- <a href=\"https://www.dienmayxanh.com/tivi?g=ultra-hd-4k\">Độ phân giải 4K</a>&nbsp;hiển thị hình ảnh sắc nét gấp 4 lần màn hình Full&nbsp;HD.</p><p>- Công nghệ <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/dolby-vision-la-gi-809287\">Dolby Vision</a>&nbsp;cải thiện chất lượng điểm ảnh cho khả năng hiển thị hình ảnh tốt hơn, màu sắc tái tạo chuẩn xác mang đến khung hình tuyệt đẹp trong từng khoảnh khắc.&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/so-sanh-hdr10-hdr10-va-dolby-vision-co-gi-khac-bie-1173256#hdr-10\">HDR10</a>&nbsp;tăng độ sáng, độ tương phản cho cảnh phim được tái hiện chân thật, chi tiết hơn. Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-cong-nghe-hinh-anh-dac-biet-tren-tivi-sony-1127776#hlg\">HLG</a>&nbsp;thích hợp cho môi trường xem, hiển thị hình ảnh trung thực, cuốn hút.&nbsp;</p><p>-&nbsp;Với dải màu rộng&nbsp;<strong>Wide Color Gamut </strong>màu sắc của hình ảnh trở nên phong phú, sống động đầy ấn tượng.</p><p>- Công nghệ&nbsp;<strong>MEMC</strong> tăng số lượng khung hình, tốc độ chuyển động giữa&nbsp;những khung hình giúp các cảnh phim hành động mượt mà, hạn chế rung lắc, bóng mờ.&nbsp;</p><p>Mời bạn xem thêm:<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/diem-mat-nhung-do-phan-giai-pho-bien-hien-nay-tren-577178\">&nbsp;Những độ phân giải màn hình phổ biến hiện nay trên tivi</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310793/google-tivi-aqua-4k-50-inch-aqt50p750ug-200723-081356-1.jpg\" alt=\"Google Tivi AQUA 4K 50 inch AQT50P750UG - Công nghệ hình ảnh \" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Công nghệ âm thanh</h3><p>-&nbsp;Mẫu&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-aqua\">tivi AQUA</a>&nbsp;này trang bị&nbsp;2 loa với tổng công suất<strong>&nbsp;20W</strong>.</p><p>- Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-am-thanh-dolby-la-gi-827752\">Dolby Atmos</a>&nbsp;là công nghệ âm thanh vòm được phát triển bởi Dolby vào năm 2012.&nbsp;Hiệu ứng âm thanh của hệ thống sẽ được thiết kế để trở nên đắm chìm hơn nhiều so với hệ thống âm thanh nổi thông thường và hơn cả thiết lập âm thanh vòm 5.1 và 7.1, nhờ vào việc tăng thêm chiều sâu, chiều rộng và độ cao cho âm trường có trải nghiệm âm thanh phong phú hơn.</p><p>- <strong>DBX-TV</strong> giúp xử lý âm thanh AQUA AQT50P750UG tinh tế cho người nghe được thưởng thức âm thanh chất lượng cao.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310793/google-tivi-aqua-4k-50-inch-aqt50p750ug-200723-081358.jpg\" alt=\"Google Tivi AQUA 4K 50 inch AQT50P750UG - Công nghệ âm thanh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Hệ điều hành</h3><p>- Chiếc&nbsp;<a href=\"https://www.dienmayxanh.com/tivi-google-tivi\">Google Tivi</a>&nbsp;này cài đặt&nbsp;hệ điều hành&nbsp;<strong>Android 11.0</strong>&nbsp;có giao diện màn hình thiết kế thân thiện cho phép người dùng quan sát, lựa chọn các nội dung, ứng dụng yêu thích tiện lợi.&nbsp;</p><p>- Kho ứng dụng đồ sộ với loạt ứng dụng quen thuộc như YouTube, Netflix, FPT Play, VieON, MP3 Zing,&nbsp;Clip TV, Spotify,... đáp ứng tối ưu mọi nhu cầu giải trí hằng ngày của gia đình bạn.&nbsp;</p><p>Mời bạn tìm hiểu thêm về&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/ung-dung-tiktok-da-chinh-thuc-co-mat-tren-tv-andro-1367589\">ứng dụng Tiktok đã chính thức có mặt trên TV Android</a></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310793/google-tivi-aqua-4k-50-inch-aqt50p750ug-200723-081401.jpg\" alt=\"Google Tivi AQUA 4K 50 inch AQT50P750UG - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh hoạ sản phẩm</i></p><h3>Tiện ích&nbsp;</h3><p>- Dễ dàng tìm kiếm video bằng giọng nói trên YouTube với ngôn ngữ tiếng Việt. Hơn nữa, tivi còn trang bị remote tích hợp micro kết hợp cùng trợ lý Google Assistant có tiếng Việt cho bạn điều khiển tivi với những câu lệnh thoại nhanh chóng.&nbsp;</p><p>- Tích hợp ứng dụng&nbsp;<strong>Android TV&nbsp;</strong>trên điện thoại, người dùng có thể thao tác với tivi dễ dàng mà không cần sử dụng đến điều khiển từ xa.</p><p>- Sử dụng tính năng&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cach-chieu-man-hinh-dien-thoai-android-len-tivi-so-1172420\">Chromecast</a>&nbsp;để truyền phát nhạc, video hoặc hình ảnh từ điện thoại lên màn hình rộng của tivi để bạn trải nghiệm thuận tiện hơn.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310793/google-tivi-aqua-4k-50-inch-aqt50p750ug-200723-081403.jpg\" alt=\"Google Tivi AQUA 4K 50 inch AQT50P750UG - Tiện ích \" width=\"1020\" height=\"570\"></figure>', 8, 2, NULL, 7990000, 114.2, 78.6, 25.3, 14, NULL, 12, '2024-05-29 17:51:20', NULL),
+(48, 'Google Tivi AQUA 4K 65 inch AQT65P750UG', 'google-tivi-aqua-4k-65-inch-aqt65p750ug', 26, 1, 'google-tivi-aqua-4k-65-inch-aqt65p750ug63834299100573728712.jpg', 1, '<h3>Tổng quan thiết kế</h3><p>- <a href=\"https://www.dienmayxanh.com/tivi-aqua\">Tivi Aqua</a> có kích thước 65 inch thiết kế tràn viền giúp bạn tập trung dễ dàng vào nội dung đang chiếu.</p><p>- <a href=\"https://www.dienmayxanh.com/tivi\">Tivi</a> có thiết kế hình chữ V úp ngược tạo sự chắc chắn khi đặt lên kệ hoặc bàn. Bên cạnh đó, chân đế tivi có thể tháo rời và lắp đặt lên tường tăng tính thẩm mỹ cho không gian phòng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310795/google-tivi-aqua-4k-65-inch-aqt65p750ug-190723-035341.jpg\" alt=\"Google Tivi AQUA 4K 65 inch AQT65P750UG - Tổng quan\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><p><strong>Xem thêm video: Hướng dẫn tăng tuổi thọ tivi nhà bạn</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3>Công nghệ hình ảnh</h3><p>- Độ phân giải <a href=\"https://www.dienmayxanh.com/tivi?g=ultra-hd-4k\">4K</a> tạo ra hình ảnh sắc nét gấp 4 lần Full HD.</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/so-sanh-hdr10-hdr10-va-dolby-vision-co-gi-khac-1173256#hdr-10\">Công nghệ HDR10</a> tăng cường độ tương phản mang đến hình ảnh sắc nét và chi tiết.</p><p><strong>Mời bạn tìm hiểu thêm về \"Mật độ điểm ảnh và độ phân giải trên màn hình TV là gì?\"</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>- <a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/dolby-vision-la-gi-809287\">Công nghệ Dolby Vision</a> mang đến nội dung hình ảnh chất lượng với dải tương phản động mở rộng (HDR) và dải sắc màu hiển thị mở rộng.</p><p>- <strong>Dải màu rộng Wide Color Gamut</strong> tái tạo đa dạng màu sắc giúp hình ảnh trên tivi nhiều màu sắc hơn so với dải 3 màu cơ bản.</p><p>- <strong>Tăng cường chuyển động MEMC</strong> dự đoán được chuyển động để bù trừ chuyển động bằng thuật toán đặc biệt mang lại những khung hình chuyển động nhanh với tốc độ cao siêu mượt mà và dịu mắt hơn, giảm thiểu tối đa tình trạng mờ nhòe.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310795/google-tivi-aqua-4k-65-inch-aqt65p750ug-200723-105416.jpg\" alt=\"Google Tivi AQUA 4K 65 inch AQT65P750UG - Công nghệ hình ảnh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Công nghệ âm thanh</h3><p><a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-am-thanh-dolby-la-gi-827752\">Dolby Atmos</a> mang đến âm thanh đa chiều tràn ngập khắp không gian, vượt qua những hạn chế của kênh truyền thống, cho bạn cảm nhận được độ sắc nét, chân thật của âm thanh đang thưởng thức. Kết hợp với tổng công suất loa 30W, giúp bạn thưởng thức những chương trình giải trí, xem phim với âm thanh sống động và mạnh mẽ.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310795/google-tivi-aqua-4k-65-inch-aqt65p750ug-200723-110316.jpg\" alt=\"Google Tivi AQUA 4K 65 inch AQT65P750UG - Công nghệ âm thanh\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Hệ điều hành</h3><p>- Tivi Aqua sử dụng hệ điều hành <a href=\"https://www.dienmayxanh.com/tivi-google-tivi\">Google TV</a> thiết kế giao diện bắt mắt, dễ dàng sử dụng.</p><p>- Google TV tích hợp nhiều ứng dụng giải trí phổ biến như: <strong>MyTV, FPT Play, Netflix, Clip TV, YouTube,...</strong></p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310795/google-tivi-aqua-4k-65-inch-aqt65p750ug-200723-105514.jpg\" alt=\"Google Tivi AQUA 4K 65 inch AQT65P750UG - Hệ điều hành\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Tiện ích</h3><p>- Điều khiển tivi dễ dàng bằng điện thoại thông qua ứng dụng <strong>ứng dụng Android TV.</strong></p><p>- Điều khiển tivi bằng giọng nói dễ dàng với trợ lý ảo <strong>Google Assistant (có tiếng Việt).</strong></p><p>- <strong>Chromecast</strong> cho phép bạn chiếu nội dung hình ảnh, video,... từ điện thoại lên màn hình tivi.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/310794/google-tivi-aqua-4k-55-inch-aqt55p750ug-200723-111659.jpg\" alt=\"Google Tivi AQUA 4K 65 inch AQT65P750UG - Tiện ích\" width=\"1020\" height=\"570\"></figure>', 9, 1, NULL, 10490000, 125.45, 86.5, 29.6, 15, NULL, 12, '2024-05-29 17:53:17', '2024-06-01 23:47:21'),
+(49, 'Smart Tivi QLED 4K 43 inch Samsung QA43Q60B', 'smart-tivi-qled-4k-43-inch-samsung-qa43q60b', 8, 1, 'smart-qled-4k-43-inch-samsung-qa43q60b63789504742098440446.jpg', 1, '<p><i><strong>Smart Tivi QLED 4K 43 inch Samsung QA43Q60B thiết kế sang trọng, màn hình siêu mỏng đi cùng độ phân giải&nbsp;4K sắc nét, công nghệ OTS Lite âm thanh chuyển động theo hình ảnh sống động, hệ điều hành Tizen™ giao diện thân thiện, sử dụng dễ dàng và các tiện ích thú vị hỗ trợ nhu cầu giải trí cơ bản của người dùng.</strong></i></p><h3>Tổng quan thiết kế</h3><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/tivi/smart-qled-4k-43-inch-samsung-qa43q60b\"><strong>Smart Tivi QLED 4K 43 inch Samsung QA43Q60B</strong></a>&nbsp;được thiết kế với những đường nét cứng cáp nhưng không thô cứng, <strong>màn hình siêu mỏng</strong>, chân đế chữ L thanh mảnh, chắc chắn, <strong>tổng thể hài hòa quyện với mọi không gian</strong>. Cạnh viền mỏng giúp người dùng thưởng thức những khung hình không giới hạn.</p><p>- Với kích thước màn hình <strong>43 inch </strong><a href=\"https://www.dienmayxanh.com/tivi\">tivi</a> sẽ là điểm xuyết tuyệt vời cho không gian phòng khách và phòng ngủ.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/1942/273928/smart-qled-4k-43-inch-samsung-qa43q60b-260322-084454.jpg\" alt=\"Smart Tivi QLED 4K 43 inch Samsung QA43Q60B - Thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa sản phẩm</i></p><h3>Công nghệ hình ảnh</h3><p>- Độ phân giải&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/tivi-uhd-tivi-4k-la-gi-co-khac-gi-so-voi-tivi-full-578555\"><strong>4K</strong></a>&nbsp;hình ảnh sắc nét đến từng chi tiết.</p><p>-&nbsp;Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-cong-nghe-noi-bat-cua-tivi-samsung-20-1339340#man-hinh-cham-luong-tu-quantum-dot\"><strong>Quantum Dot</strong></a>&nbsp;tái hiện <strong>100%</strong> dải màu sắc nhờ đó màu sắc sống động, độ sáng hoàn hảo.</p><p>-&nbsp;Bộ xử lý&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-cong-nghe-hinh-anh-noi-bat-tren-tivi-samsung-2-1343084#bo-xu-ly-quantum-lite\"><strong>Quantum 4K Lite</strong></a>&nbsp;cải thiện chất lượng hình ảnh bằng <strong>trí thông minh nhân tạo AI</strong>, mang đến độ phân giải <strong>gần chuẩn 4K</strong> bất kể nguồn vào là SD, HD hay 2K.</p><p>- Công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cong-nghe-hinh-anh-tren-tivi-samsung-838738#quantum-hdr\"><strong>Quantum HDR</strong></a>&nbsp;tối ưu chi tiết và độ tương phản của hình ảnh,&nbsp;cho những thước phim <strong>có chiều sâu, màu sắc chuẩn xác</strong>.</p><p>-&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-cong-nghe-noi-bat-cua-tivi-samsung-20-1339340#motion-xcelerator-turbo+\"><strong>Motion Xcelerator Turbo+</strong></a><strong>&nbsp;</strong>giảm độ mờ và chống xé hình, từ đó các phân cảnh chuyển động trở nên rõ ràng, mượt mà nhờ khả năng&nbsp;<strong>thêm hình ảnh vào chuyển động</strong>.</p><p>Mời bạn xem thêm:<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/diem-mat-nhung-do-phan-giai-pho-bien-hien-nay-tren-577178\">&nbsp;Những độ phân giải màn hình phổ biến hiện nay trên tivi</a></p>', 10, NULL, NULL, 12400000, 97, 67.5, 18.3, 12, NULL, 18, '2024-06-03 00:08:10', NULL),
+(50, 'Máy lạnh Panasonic Inverter 1 HP CU/CS-XU9ZKH-8', 'may-lanh-panasonic-inverter-1-hp-cucs-xu9zkh-8', 15, 17, 'may-lanh-panasonic-inverter-1-hp-cu-cs-xu9zkh-863816386178198703754.jpg', 1, '<h3>Tổng quan thiết kế&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><p>Dàn lạnh</p><p>- <a href=\"https://www.dienmayxanh.com/may-lanh-panasonic\">Máy lạnh Panasonic</a> có vẻ ngoài thời thượng với tông màu trắng thuần khiết, đường viền màu bạc nổi bật tạo điểm nhấn cho tổng thể thiết kế thêm đẹp mắt, sang trọng. Kiểu dáng hình chữ nhật thích hợp lắp đặt trong không gian phòng khách, phòng ngủ, phòng làm việc của bạn.</p><p>Dàn nóng</p><p>- Kiểu dáng tối giản, có lớp vỏ máy chất liệu tốt cho độ bền cao, rắn chắc, bảo vệ các chi tiết an toàn khỏi tác động của các yếu tố từ môi trường bên ngoài.</p><p>- Trang bị <strong>ống dẫn gas bằng đồng, lá tản nhiệt làm từ nhôm</strong>&nbsp;dẫn nhiệt tốt, hạn chế ăn mòn, duy trì hiệu quả làm lạnh tối ưu, sử dụng dài lâu.&nbsp;</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/303867/may-lanh-panasonic-inverter-1-hp-cu-cs-xu9zkh-8-190323-115519.jpg\" alt=\"Máy lạnh Panasonic Inverter 1 HP CU/CS-XU9ZKH-8 - Tổng quan thiết kế\" width=\"1020\" height=\"570\"></figure><p><i>*Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><p>- Đáp ứng nhu cầu làm lạnh trong phạm vi dưới 15m² (từ 30 đến 45m³) với công suất&nbsp;<strong>1 HP.</strong></p><p>-&nbsp;Hỗ trợ công nghệ&nbsp;<a href=\"https://www.dienmayxanh.com/kinh-nghiem-hay/cac-che-do-lam-lanh-nhanh-thuong-gap-tren-may-lanh-837183#iauto-x\">iAuto-X</a>&nbsp;với sự kết hợp của công nghệ P-TECH đẩy công suất máy nén và quạt thổi gió lên cao, cho nhiệt độ trong phòng nhanh chóng đạt đến mức nhiệt bạn đã thiết lập trong thời gian ngắn, cho bạn cảm thấy mát mẻ tức thì.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/2002/303867/may-lanh-panasonic-inverter-1-hp-cu-cs-xu9zkh-8-190323-115541.jpg\" alt=\"Máy lạnh Panasonic Inverter 1 HP CU/CS-XU9ZKH-8 - Công nghệ làm lạnh  \" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 13990000, 72, 51.06, 26.8, 18, NULL, 24, '2024-06-03 02:15:16', NULL);
+INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHieu`, `MaDanhMuc`, `HinhAnh`, `TrangThai`, `MoTa`, `SoLuongHienTai`, `SoLuongBan`, `SoLuongTrongKho`, `GiaSanPham`, `ChieuCao`, `ChieuNgang`, `ChieuDay`, `CanNang`, `ThongSoKyThuat`, `ThoiGianBaoHanh`, `ThoiGianTao`, `ThoiGianSua`) VALUES
+(51, 'Máy lạnh Panasonic Inverter 1 HP CU/CS-PU9AKH-8', 'may-lanh-panasonic-inverter-1-hp-cucs-pu9akh-8', 15, 17, 'panasonic-inverter-1-hp-cu-cs-pu9akh-863844990590229030456.jpg', 1, '<h3>Tổng quan thiết kế</h3><p><strong>Dàn lạnh</strong></p><p>Đây là sản phẩm được thiết kế thanh lịch với sắc trắng trung tính dễ dàng kết hợp hài hòa với nội thất không gian. Nhìn chung máy có kiểu dáng vuông vắn với bốn góc được bo cong nhẹ tạo được tổng thể thiết bị hài hòa hơn.</p><p><strong>Dàn nóng</strong></p><p>- <a href=\"https://www.dienmayxanh.com/may-lanh-panasonic\">Máy lạnh Panasonic</a> có <strong>ống dẫn gas bằng đồng</strong> giúp quá trình truyền dẫn nhiệt nhanh đảm bảo hiệu quả làm lạnh và gia tăng độ bền cho máy. <strong>Lá tản nhiệt bằng nhôm phủ BlueFin</strong> tăng khả năng chống chịu, hạn chế tình trạng ăn mòn, độ bền cao nên có thể để ở không gian ngoài trời mà không lo đến các tác động của thời tiết.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/321382/1-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure><p><i>* Hình ảnh chỉ mang tính chất minh họa</i></p><h3>Công nghệ làm lạnh</h3><p>- Chiếc <a href=\"https://www.dienmayxanh.com/may-lanh-panasonic?g=may-lanh-1-chieu-chi-lam-lanh\">máy lạnh Panasonic 1 chiều</a> này có công suất làm lạnh là <strong>1 HP - 9.040 BTU</strong>, phù hợp phòng có diện tích dưới 15m² như phòng ngủ, phòng khách, phòng đọc sách, studio, phòng làm việc…</p><p>- <strong>Chế độ Powerful</strong> khi được kích hoạt sẽ cho máy nén hoạt động ở tần suất tối đa để nhanh chóng đạt được mức nhiệt đã cài đặt, từ đó làm mát căn phòng một cách nhanh chóng.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/2002/321382/2-1020x570.jpg\" alt=\"\" width=\"1020\" height=\"570\"></figure>', 10, NULL, NULL, 11690000, 74.2, 51.8, 26.2, 17.8, NULL, 16, '2024-06-03 02:17:27', NULL),
+(52, 'Điện thoại Xiaomi Redmi Note 13 8GB/128GB', 'dien-thoai-xiaomi-redmi-note-13-8gb128gb', 19, 8, 'xiaomi-rdmi-note-13-1-1020x57074.jpg', 1, '<h3>Khi được giới thiệu tại thị trường Việt Nam, chiếc điện thoại&nbsp;<a href=\"https://www.dienmayxanh.com/dien-thoai/xiaomi-redmi-note-13\">Xiaomi Redmi Note 13 (8GB/128GB)</a> đã nhanh chóng thu hút sự chú ý của người tiêu dùng. Điều này không chỉ bởi việc sở hữu con chip Snapdragon 685 mạnh mẽ, mà còn nhờ vào camera 108 MP nổi bật trong phân khúc.</h3><h3>Hiển thị sắc nét với tấm nền AMOLED</h3><p><a href=\"https://www.dienmayxanh.com/dien-thoai-xiaomi-redmi\">Điện thoại Xiaomi Redmi</a> này được trang bị tấm nền AMOLED với độ phân giải Full HD+ (1080 x 2400 Pixels). Nhờ vào điều này, chất lượng hiển thị của nó đạt độ chi tiết cao, màu sắc sinh động và khả năng tái tạo nội dung có chiều sâu, tạo nên trải nghiệm chân thực cho mọi thước phim.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/309831/xiaomi-redmi-note-13-8gb-4.jpg\" alt=\"Hiển thị sắc nét hình ảnh - Xiaomi Redmi Note 13\" width=\"1020\" height=\"570\"></figure><p>Điểm đặc biệt khác là chiếc điện thoại này còn hỗ trợ tần số quét 120 Hz và độ sáng tối đa lên đến 1800 nits. Những ưu điểm này không chỉ nâng cao trải nghiệm vuốt chạm mà còn mang lại nhiều tiện ích khi sử dụng ngoài trời, giảm thiểu tình trạng tối màn hình và tạo điều kiện thuận lợi cho việc sử dụng trong môi trường ánh sáng mạnh.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/42/309831/xiaomi-redmi-note-13-8gb-5.jpg\" alt=\"Tần số quét cao - Xiaomi Redmi Note 13\" width=\"1020\" height=\"570\"></figure>', NULL, NULL, NULL, 4790000, 16.24, 7.55, 0.8, 1.885, NULL, 8, '2024-06-03 02:23:59', NULL),
+(53, 'Camera IP 360 Độ 2MP Ezviz C6N', 'camera-ip-360-do-2mp-ezviz-c6n', 30, 5, 'camera-ip-360-do-3mp-tiandy-tc-h332n-thumb-2-600x60037.jpg', 1, '<h3><a href=\"https://www.dienmayxanh.com/camera-giam-sat/camera-ip-360-do-1080p-ezviz-c6n-trang\">Camera IP 360 Độ 2MP Ezviz C6N</a> có thiết kế&nbsp;hình dạng tròn tinh tế, hiện đại,&nbsp;sang trọng với tông màu trắng nổi bật và kích thước nhỏ gọn.</h3><p>•&nbsp;Nhờ cụm ống kính góc rộng và có thể xoay ngang dọc giúp <a href=\"https://www.dienmayxanh.com/camera-giam-sat-ezviz-hikvision\">camera Ezviz</a> có thể quay video và chụp hình toàn cảnh với góc nhìn bao quát tổng thể và hầu như không có điểm mù trong các góc quay của camera.</p><p>•&nbsp;<a href=\"https://www.dienmayxanh.com/camera-giam-sat\">Camera</a> có khả năng quan sát cho hình ảnh rõ nét vào ban đêm và thậm chí trong môi trường ánh sáng yếu, thiết bị này sẽ hiển thị màu sắc trong video nhờ đèn LED hồng ngoại được đặt xung quanh ống kính của máy ảnh sẽ tự động bật khi phát hiện ra môi trường ánh sáng yếu như ban đêm.&nbsp;</p><p>•&nbsp;Thực hiện các cuộc trò chuyện 2 chiều dễ dàng với loa và mic gắn trên camera.</p><p>• Bạn có thể&nbsp;điều khiển từ xa <a href=\"https://www.dienmayxanh.com/camera-giam-sat?g=camera-giam-sat\">camera giám sát</a> qua ứng dụng Ezviz trên thiết bị di động.</p>', NULL, NULL, NULL, 450000, 8.82, 8, 11.9, 0.218, NULL, 6, '2024-06-04 09:36:22', NULL),
+(54, 'Camera IP 360 Độ 5MP EZVIZ H6', 'camera-ip-360-do-5mp-ezviz-h6', 30, 5, 'camera-ip-360-do-5mp-ezviz-h6-539.jpg', 1, '<h3><a href=\"https://www.dienmayxanh.com/camera-giam-sat/camera-ip-360-do-5mp-ezviz-h6\">Camera IP 360 Độ 5MP EZVIZ H6</a> sở hữu thiết kế nhỏ gọn, có thể quan sát toàn cảnh với độ nét cao lên đến 5 MP cùng nhiều tính năng hấp dẫn như theo dõi chuyển động con người, vật nuôi, tự động thu phóng cho đến nhận diện và điều khiển bằng cử chỉ vẫy tay,... mang đến cho người dùng khả năng quan sát và bảo vệ tốt nhất.</h3><h3>Thiết kế đẹp mắt, màu sắc thanh lịch</h3><p>Được thiết kế nhỏ gọn và cấu trúc chắc chắn, camera chỉ nặng 255 g phù hợp để bạn có thể đặt ở bất cứ vị trí nào trong nhà từ phòng khách, phòng ngủ, phòng ăn cho đến phòng bếp. Một điểm thu hút khác của sản phẩm là khả năng hoạt động ổn định trong một khoảng nhiệt độ rộng, từ - 10 đến 45 độ C và độ ẩm có thể đạt đến 95%.</p><figure class=\"image\"><img style=\"aspect-ratio:1020/570;\" src=\"https://cdn.tgdd.vn/Products/Images/4728/323202/camera-ip-360-do-5mp-ezviz-h6-1.jpg\" alt=\"Camera IP 360 Độ 5MP EZVIZ H6 - Thiết kế nhỏ gọn, đẹp mắt\" width=\"1020\" height=\"570\"></figure><p>Mặt sau của&nbsp;<a href=\"https://www.dienmayxanh.com/camera-giam-sat\">camera</a> được trang bị cổng sạc và cổng kết nối cần thiết, bao gồm cổng Type C và cổng LAN. Các cổng này được bố trí một cách khoa học và gọn gàng, giúp người dùng dễ dàng thao tác, cắm và rút cáp kết nối tương ứng mà không gặp rắc rối.</p>', NULL, NULL, NULL, 430000, 11.55, 11.6, 16, 0.255, NULL, 6, '2024-06-04 13:08:07', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_taikhoan`
+-- Table structure for table `tbl_taikhoan`
 --
 
 CREATE TABLE `tbl_taikhoan` (
@@ -1517,12 +1692,15 @@ CREATE TABLE `tbl_taikhoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_taikhoan`
+-- Dumping data for table `tbl_taikhoan`
 --
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`, `DiaChi`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
+('TK1', 'binh@gmail.com', 'binhdz', NULL, NULL, NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', 'anhDaiDien23.png', 1, NULL, '2024-05-16 17:20:55', NULL, 'KH', NULL),
 ('TK20240526100025', 'anhKH1@gmail.com', 'anhKH1', NULL, NULL, NULL, '$2y$12$H6HJwWwttDY2dnewoCPtm.gvv/yNsFjloZZE2UJ1HT6V.4cBQpZVS', NULL, 0, '1', '2024-05-26 03:00:25', NULL, 'Khách hàng', NULL),
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', '', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
+('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', NULL, NULL, '1', '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', 'anhDaiDien43.jpg', 1, NULL, '2024-04-26 20:31:10', NULL, NULL, NULL),
+('TKNV20240428223447', 'admin2@gmail.com', 'binh', NULL, NULL, '1', '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', 'anhDaiDien36.jpg', NULL, NULL, '2024-04-27 18:34:47', NULL, 'NVKT', NULL),
 ('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 0, NULL, '2024-05-21 07:53:52', '2024-05-29 04:09:27', 'Nhân viên kho', NULL),
 ('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-05-29 04:18:09', 'Nhân viên', NULL),
 ('TKNV20240529111627', 'anh12@gmail.com', 'anh12', NULL, NULL, '012345678912345', '$2y$12$Xlbsm3Hb.G2/sjcjhjR6pO.9IA.1vKEXe8riUgZKzdq7X4TmCtLMy', NULL, 1, NULL, '2024-05-29 04:16:27', NULL, 'Nhân viên', NULL),
@@ -1531,7 +1709,7 @@ INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thanhtruot`
+-- Table structure for table `tbl_thanhtruot`
 --
 
 CREATE TABLE `tbl_thanhtruot` (
@@ -1548,68 +1726,121 @@ CREATE TABLE `tbl_thanhtruot` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thongsokythuat`
+-- Table structure for table `tbl_thongsokythuat`
 --
 
 CREATE TABLE `tbl_thongsokythuat` (
   `MaTSKT` int NOT NULL,
-  `TenTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `TenTSKT` varchar(50) NOT NULL,
   `MaDMTSKT` int DEFAULT NULL,
   `TrangThai` int NOT NULL,
-  `SlugTSKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `SlugTSKT` varchar(50) NOT NULL,
+  `MoTa` text,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thongsokythuat`
+-- Dumping data for table `tbl_thongsokythuat`
 --
 
 INSERT INTO `tbl_thongsokythuat` (`MaTSKT`, `TenTSKT`, `MaDMTSKT`, `TrangThai`, `SlugTSKT`, `MoTa`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(1, '48 inch', 7, 1, '48-inch', 'Tivi có khích cỡ 32 inch', '2024-05-06 13:02:27', '2024-05-06 13:47:32'),
-(2, '40 inch', 7, 1, '40-inch', 'Tivi có kích cỡ màn hành là 40 inch', '2024-05-06 13:10:19', NULL),
-(4, '42 inch', 7, 1, '42-inch', 'Kích cỡ màn hình tivi là 42 inch', '2024-05-06 13:12:49', NULL),
-(5, '43 inch', 7, 1, '43-inch', 'Kích cỡ 43 inch của màn hành tivi', '2024-05-06 13:14:24', NULL),
-(6, '60 inch', 7, 1, '60-inch', 'Tivi có kích cỡ màn hình 60 inch', '2024-05-06 13:52:04', NULL),
-(7, 'Full HD', 6, 1, 'full-hd', 'Độ phân giải của tivi', '2024-05-06 13:53:20', NULL),
-(8, 'HD', 6, 1, 'hd', 'Độ phân giải Tivi là HD', '2024-05-06 13:53:46', NULL),
-(9, '4K', 6, 1, '4k', 'Độ phân giải của tivi là 4k', '2024-05-06 13:54:20', NULL),
-(10, '8K', 6, 1, '8k', 'Độ phân giải tivi là 8K', '2024-05-06 13:55:11', '2024-05-07 23:54:35'),
-(11, 'Android', 8, 1, 'android', 'Hệ điều hành Android', '2024-05-12 02:52:25', NULL),
-(12, 'WebOS', 8, 1, 'webos', 'Hệ điều hành Tivi là WebOS', '2024-05-12 02:52:59', NULL),
-(13, 'Google TV', 8, 1, 'google-tv', 'Hệ điều hành của Tivi là Google TV', '2024-05-12 02:53:39', NULL),
-(14, '2 GB', 33, 1, '2-gb', 'RAM của điện thoại là 2GB', '2024-05-13 14:27:06', NULL),
-(15, '3 GB', 33, 1, '3-gb', 'RAM của điện thoại là 3GB', '2024-05-13 14:27:06', NULL),
-(16, '4 GB', 33, 1, '4-gb', 'RAM của điện thoại là 4GB', '2024-05-13 14:27:06', NULL),
-(17, '6 GB', 33, 1, '6-gb', 'RAM của điện thoại là 6GB', '2024-05-13 14:27:06', NULL),
-(18, '8 GB', 33, 1, '8-gb', 'RAM của điện thoại là 8GB', '2024-05-13 14:27:06', NULL),
-(19, '12 GB', 33, 1, '12-gb', 'RAM của điện thoại là 12GB', '2024-05-13 14:27:06', NULL),
-(20, 'Android', 31, 1, 'android', 'Hệ điều hành Android', '2024-05-13 14:32:15', NULL),
-(21, 'iPhone', 31, 1, 'iPhone', 'Hệ điều hành IOS', '2024-05-13 14:32:15', NULL),
-(22, 'Điện thoại phổ thông', 31, 1, 'dien-thoai-pho-thong', 'Hệ điều hành của điện thoại phổ thông', '2024-05-13 14:32:15', NULL),
-(23, 'Chơi game / Cấu hình cao', 32, 1, 'nhu-cau-su-dung', 'Nhu cầu chơi game', '2024-05-13 14:40:20', NULL),
-(24, 'Pin khủng trên 5000mAh', 32, 1, 'pin-khung', 'Nhu cầu chơi game', '2024-05-13 14:40:20', NULL),
-(25, 'Chụp ảnh / Quay phim', 32, 1, 'chup-anh-quay-phim', 'Nhu cầu chơi game', '2024-05-13 14:40:20', NULL),
-(26, 'Livestream', 32, 1, 'livestream', 'Nhu cầu chơi game', '2024-05-13 14:40:20', NULL),
-(27, 'Mỏng nhẹ', 32, 1, 'mong-nhe', 'Nhu cầu chơi game', '2024-05-13 14:40:20', NULL),
-(28, '32 GB', 34, 1, '32-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 14:43:59', NULL),
-(29, '64 GB', 34, 1, '64-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 14:43:59', NULL),
-(30, '128 GB', 34, 1, '128-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 14:43:59', NULL),
-(31, '256 GB', 34, 1, '256-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 14:43:59', NULL),
-(32, '512 GB', 34, 1, '512-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 14:43:59', NULL),
-(33, '1 TB', 34, 1, '1-TB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 14:43:59', NULL),
-(34, 'Sạc không dây', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 14:47:12', NULL),
-(35, 'Sạc nhanh (từ 20W)', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 14:47:12', NULL),
-(36, 'Sạc siêu nhanh (từ 60W)', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 14:47:12', NULL),
-(37, 'Kháng bụi', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL),
-(38, 'Hỗ trợ khuôn mặt', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL),
-(39, 'Hỗ trợ 5G', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 14:48:56', NULL);
+(1, '48 inch', 7, 1, '48-inch', 'Tivi có khích cỡ 32 inch', '2024-05-06 06:02:27', '2024-05-06 06:47:32'),
+(2, '40 inch', 7, 1, '40-inch', 'Tivi có kích cỡ màn hành là 40 inch', '2024-05-06 06:10:19', NULL),
+(4, '42 inch', 7, 1, '42-inch', 'Kích cỡ màn hình tivi là 42 inch', '2024-05-06 06:12:49', NULL),
+(5, '43 inch', 7, 1, '43-inch', 'Kích cỡ 43 inch của màn hành tivi', '2024-05-06 06:14:24', NULL),
+(6, '60 inch', 7, 1, '60-inch', 'Tivi có kích cỡ màn hình 60 inch', '2024-05-06 06:52:04', NULL),
+(7, 'Full HD', 6, 1, 'full-hd', 'Độ phân giải của tivi', '2024-05-06 06:53:20', NULL),
+(8, 'HD', 6, 1, 'hd', 'Độ phân giải Tivi là HD', '2024-05-06 06:53:46', NULL),
+(9, '4K', 6, 1, '4k', 'Độ phân giải của tivi là 4k', '2024-05-06 06:54:20', NULL),
+(10, '8K', 6, 1, '8k', 'Độ phân giải tivi là 8K', '2024-05-06 06:55:11', '2024-05-07 16:54:35'),
+(11, 'Android', 8, 1, 'android', 'Hệ điều hành Android', '2024-05-11 19:52:25', NULL),
+(12, 'WebOS', 8, 1, 'webos', 'Hệ điều hành Tivi là WebOS', '2024-05-11 19:52:59', NULL),
+(13, 'Google TV', 8, 1, 'google-tv', 'Hệ điều hành của Tivi là Google TV', '2024-05-11 19:53:39', NULL),
+(14, '2 GB', 33, 1, '2-gb', 'RAM của điện thoại là 2GB', '2024-05-13 07:27:06', NULL),
+(15, '3 GB', 33, 1, '3-gb', 'RAM của điện thoại là 3GB', '2024-05-13 07:27:06', NULL),
+(16, '4 GB', 33, 1, '4-gb', 'RAM của điện thoại là 4GB', '2024-05-13 07:27:06', NULL),
+(17, '6 GB', 33, 1, '6-gb', 'RAM của điện thoại là 6GB', '2024-05-13 07:27:06', NULL),
+(18, '8 GB', 33, 1, '8-gb', 'RAM của điện thoại là 8GB', '2024-05-13 07:27:06', NULL),
+(19, '12 GB', 33, 1, '12-gb', 'RAM của điện thoại là 12GB', '2024-05-13 07:27:06', NULL),
+(20, 'Android', 31, 1, 'android', 'Hệ điều hành Android', '2024-05-13 07:32:15', NULL),
+(21, 'iPhone', 31, 1, 'iPhone', 'Hệ điều hành IOS', '2024-05-13 07:32:15', NULL),
+(22, 'Điện thoại phổ thông', 31, 1, 'dien-thoai-pho-thong', 'Hệ điều hành của điện thoại phổ thông', '2024-05-13 07:32:15', NULL),
+(23, 'Chơi game / Cấu hình cao', 32, 1, 'nhu-cau-su-dung', 'Nhu cầu chơi game', '2024-05-13 07:40:20', NULL),
+(24, 'Pin khủng trên 5000mAh', 32, 1, 'pin-khung', 'Nhu cầu chơi game', '2024-05-13 07:40:20', NULL),
+(25, 'Chụp ảnh / Quay phim', 32, 1, 'chup-anh-quay-phim', 'Nhu cầu chơi game', '2024-05-13 07:40:20', NULL),
+(26, 'Livestream', 32, 1, 'livestream', 'Nhu cầu chơi game', '2024-05-13 07:40:20', NULL),
+(27, 'Mỏng nhẹ', 32, 1, 'mong-nhe', 'Nhu cầu chơi game', '2024-05-13 07:40:20', NULL),
+(28, '32 GB', 34, 1, '32-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 07:43:59', NULL),
+(29, '64 GB', 34, 1, '64-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 07:43:59', NULL),
+(30, '128 GB', 34, 1, '128-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 07:43:59', NULL),
+(31, '256 GB', 34, 1, '256-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 07:43:59', NULL),
+(32, '512 GB', 34, 1, '512-GB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 07:43:59', NULL),
+(33, '1 TB', 34, 1, '1-TB', 'Dung lượng lưu trữ điện thoại là 32 GB', '2024-05-13 07:43:59', NULL),
+(34, 'Sạc không dây', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 07:47:12', NULL),
+(35, 'Sạc nhanh (từ 20W)', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 07:47:12', NULL),
+(36, 'Sạc siêu nhanh (từ 60W)', 35, 1, 'Tinh-nang-sac', 'Tính năng sạc của điện thoại', '2024-05-13 07:47:12', NULL),
+(37, 'Kháng bụi', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 07:48:56', NULL),
+(38, 'Hỗ trợ khuôn mặt', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 07:48:56', NULL),
+(39, 'Hỗ trợ 5G', 36, 1, 'Tinh-nang-dac-biet', 'Tính năng đặc biệt', '2024-05-13 07:48:56', NULL),
+(40, 'Smart Tivi', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(41, 'Tivi OLED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(42, 'Tivi Android', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(43, 'Google Tivi', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(44, 'Tivi QLED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(45, 'Tivi NanoCell', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(46, 'Tivi ULED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(47, 'Tivi MiniLED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(48, 'Tivi Thiết kế đặc biệt', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(49, 'Tivi Micro LED', 37, 1, 'smart-tivi', 'Smart-tivi', '2024-05-20 20:11:26', NULL),
+(50, 'Tìm kiếm bằng giọng nói', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-20 20:14:55', NULL),
+(51, 'Chơi game trên tivi', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-20 20:14:55', NULL),
+(52, 'Kết nối với điện thoại', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-20 20:14:55', NULL),
+(53, 'Điều khiển bằng điện thoại', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-20 20:14:55', NULL),
+(54, 'Trợ lý Google Assistant', 38, 1, 'tim-kiem-bang-giong-noi', 'Tìm kiếm bằng giọng nói ', '2024-05-20 20:14:55', NULL),
+(55, '32 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(56, '55 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(57, '58 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(58, '60 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(59, '65 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(60, '70 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(61, '75 - 85 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(62, 'trên 85 inch', 7, 1, '32-inch', 'Tivi có kích thước màn hình 32 inch', '2024-05-29 06:10:58', NULL),
+(63, 'Vidaa', 8, 1, 'vidda', 'Hệ điều hành Vidda', '2024-05-29 06:15:16', NULL),
+(64, 'TizenOS', 8, 1, 'TizenOS', 'Hệ điều hành Vidda', '2024-05-29 06:15:16', NULL),
+(65, '1 HP | Phòng 15 m2', 27, 1, 'android', 'Công xuất làm lạnh trong phòng 15 m2', '2024-05-29 06:18:06', NULL),
+(66, '1.5 HP | Phòng 15 - 20 m2', 27, 1, 'android', 'Công xuất làm lạnh trong phòng 15 m2', '2024-05-29 06:18:06', NULL),
+(67, '2 HP | Phòng 20 - 30 m2', 27, 1, 'android', 'Công xuất làm lạnh trong phòng 15 m2', '2024-05-29 06:18:06', NULL),
+(68, '2.5 HP | Phòng 30 - 40 m2', 27, 1, 'android', 'Công xuất làm lạnh trong phòng 15 m2', '2024-05-29 06:18:06', NULL),
+(69, '> 2.5 HP | Phòng > 40 m2', 27, 1, 'android', 'Công xuất làm lạnh trong phòng 15 m2', '2024-05-29 06:18:06', NULL),
+(70, 'Máy lạnh Inventor', 39, 1, 'android', 'Máy lạnh công nghệ Inventor', '2024-05-29 06:21:22', NULL),
+(71, 'Máy lạnh thường', 39, 1, 'android', 'Máy lạnh công nghệ Inventor', '2024-05-29 06:21:22', NULL),
+(72, '1 chiều (chỉ làm lạnh)', 28, 1, 'android', 'Máy lạnh làm lạnh 1 chiều', '2024-05-29 06:22:43', NULL),
+(73, '2 chiều (có cả sưởi ấm)', 28, 1, 'android', 'Máy lạnh làm lạnh 1 chiều', '2024-05-29 06:22:43', NULL),
+(74, 'Máy lạnh treo tường', 29, 1, 'android', 'Máy lạnh treo tường', '2024-05-29 06:23:57', NULL),
+(75, 'Máy lạnh âm tường', 29, 1, 'android', 'Máy lạnh treo tường', '2024-05-29 06:23:57', NULL),
+(76, 'Máy lạnh kiểu đứng', 29, 1, 'android', 'Máy lạnh treo tường', '2024-05-29 06:23:57', NULL),
+(77, 'Có wifi, điều chỉnh bằng điện thoại', 30, 1, 'android', 'Có wifi', '2024-05-29 06:27:33', NULL),
+(78, 'Tạo ion trên không khí', 30, 1, 'android', 'Có wifi', '2024-05-29 06:27:33', NULL),
+(79, 'Hiển thị nhiệt độ trên dàn', 30, 1, 'android', 'Có wifi', '2024-05-29 06:27:33', NULL),
+(80, 'Đảo chiều 4 gió', 30, 1, 'android', 'Có wifi', '2024-05-29 06:27:33', NULL),
+(81, 'Phát hiện chuyển động', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(82, 'Phát hiện con người', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(83, 'Theo dõi chuyển động', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(84, 'Cảnh báo âm thanh', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(85, 'Đàm thoại 2 chiều', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(86, 'Chế độ quan sát đêm', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(87, 'Gửi cảnh báo', 41, 1, 'phat-hien-chuyen-dong', 'Phát hiện chuyển động của camera trong nhà', '2024-06-04 09:16:53', NULL),
+(88, 'Full HD 1080p', 17, 1, 'full-hd-1080p', 'Độ phân giải của camera là 1080p', '2024-06-04 09:24:33', NULL),
+(89, '2 MP', 17, 1, 'full-hd-1080p', 'Độ phân giải của camera là 1080p', '2024-06-04 09:24:33', NULL),
+(90, '3 MP', 17, 1, 'full-hd-1080p', 'Độ phân giải của camera là 1080p', '2024-06-04 09:24:33', NULL),
+(91, '4 MP', 17, 1, 'full-hd-1080p', 'Độ phân giải của camera là 1080p', '2024-06-04 09:24:33', NULL),
+(92, '5 MP', 17, 1, 'full-hd-1080p', 'Độ phân giải của camera là 1080p', '2024-06-04 09:24:33', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thongsokythuatsp`
+-- Table structure for table `tbl_thongsokythuatsp`
 --
 
 CREATE TABLE `tbl_thongsokythuatsp` (
@@ -1618,87 +1849,220 @@ CREATE TABLE `tbl_thongsokythuatsp` (
   `MaTSKT` int NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thongsokythuatsp`
+-- Dumping data for table `tbl_thongsokythuatsp`
 --
 
 INSERT INTO `tbl_thongsokythuatsp` (`MaTSKTSP`, `MaSanPham`, `MaTSKT`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-(10, 25, 13, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(11, 25, 5, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(12, 25, 10, '2024-05-13 04:53:28', '2024-05-14 14:19:15'),
-(13, 26, 13, '2024-05-13 15:31:11', NULL),
-(14, 26, 5, '2024-05-13 15:31:11', NULL),
-(15, 26, 7, '2024-05-13 15:31:11', NULL),
-(16, 27, 13, '2024-05-13 15:32:58', NULL),
-(17, 27, 6, '2024-05-13 15:32:58', NULL),
-(18, 27, 9, '2024-05-13 15:32:58', NULL),
-(19, 28, 11, '2024-05-13 15:34:40', NULL),
-(20, 28, 1, '2024-05-13 15:34:40', NULL),
-(21, 28, 9, '2024-05-13 15:34:40', NULL),
-(22, 30, 12, '2024-05-13 15:41:32', NULL),
-(23, 30, 2, '2024-05-13 15:41:32', NULL),
-(24, 30, 7, '2024-05-13 15:41:32', NULL),
-(25, 31, 13, '2024-05-13 15:44:44', NULL),
-(26, 31, 6, '2024-05-13 15:44:44', NULL),
-(27, 31, 7, '2024-05-13 15:44:44', NULL);
+(10, 25, 50, '2024-05-12 21:53:28', '2024-06-02 00:00:53'),
+(11, 25, 44, '2024-05-12 21:53:28', '2024-06-02 00:00:53'),
+(12, 25, 13, '2024-05-12 21:53:28', '2024-06-02 00:00:53'),
+(13, 26, 13, '2024-05-13 08:31:11', NULL),
+(14, 26, 5, '2024-05-13 08:31:11', NULL),
+(15, 26, 7, '2024-05-13 08:31:11', NULL),
+(16, 27, 51, '2024-05-13 08:32:58', '2024-06-02 00:01:21'),
+(17, 27, 45, '2024-05-13 08:32:58', '2024-06-02 00:01:21'),
+(18, 27, 13, '2024-05-13 08:32:58', '2024-06-02 00:01:21'),
+(19, 28, 54, '2024-05-13 08:34:40', '2024-06-02 00:02:06'),
+(20, 28, 42, '2024-05-13 08:34:40', '2024-06-02 00:02:06'),
+(21, 28, 11, '2024-05-13 08:34:40', '2024-06-02 00:02:06'),
+(22, 30, 51, '2024-05-13 08:41:32', '2024-06-02 00:02:57'),
+(23, 30, 48, '2024-05-13 08:41:32', '2024-06-02 00:02:57'),
+(24, 30, 12, '2024-05-13 08:41:32', '2024-06-02 00:02:57'),
+(25, 31, 51, '2024-05-13 08:44:44', '2024-06-02 00:03:27'),
+(26, 31, 40, '2024-05-13 08:44:44', '2024-06-02 00:03:27'),
+(27, 31, 13, '2024-05-13 08:44:44', '2024-06-02 00:03:27'),
+(28, 28, 1, '2024-05-20 22:09:51', '2024-06-02 00:02:06'),
+(29, 28, 8, '2024-05-20 22:13:36', '2024-06-02 00:02:06'),
+(30, 28, 54, '2024-05-20 22:13:36', NULL),
+(31, 25, 5, '2024-05-20 22:14:48', '2024-06-02 00:00:53'),
+(32, 25, 10, NULL, '2024-06-02 00:00:53'),
+(33, 26, 48, '2024-05-20 22:16:50', NULL),
+(34, 26, 54, '2024-05-20 22:16:50', NULL),
+(35, 27, 6, '2024-05-20 22:17:46', '2024-06-02 00:01:21'),
+(36, 27, 9, '2024-05-20 22:17:46', '2024-06-02 00:01:21'),
+(37, 30, 2, '2024-05-20 22:18:25', '2024-06-02 00:02:57'),
+(38, 30, 7, '2024-05-20 22:18:25', '2024-06-02 00:02:57'),
+(39, 31, 6, '2024-05-20 22:18:57', '2024-06-02 00:03:27'),
+(40, 31, 7, '2024-05-20 22:18:57', '2024-06-02 00:03:27'),
+(41, 32, 39, '2024-05-29 00:20:51', NULL),
+(42, 32, 36, '2024-05-29 00:20:51', NULL),
+(43, 32, 31, '2024-05-29 00:20:51', NULL),
+(44, 32, 18, '2024-05-29 00:20:51', NULL),
+(45, 32, 26, '2024-05-29 00:20:51', NULL),
+(46, 32, 20, '2024-05-29 00:20:51', NULL),
+(47, 34, 54, '2024-05-29 05:48:54', NULL),
+(48, 34, 49, '2024-05-29 05:48:54', NULL),
+(49, 34, 13, '2024-05-29 05:48:54', NULL),
+(50, 34, 6, '2024-05-29 05:48:54', NULL),
+(51, 34, 7, '2024-05-29 05:48:54', NULL),
+(52, 35, 39, '2024-05-29 05:53:01', NULL),
+(53, 35, 34, '2024-05-29 05:53:01', NULL),
+(54, 35, 31, '2024-05-29 05:53:01', NULL),
+(55, 35, 18, '2024-05-29 05:53:01', NULL),
+(56, 35, 24, '2024-05-29 05:53:01', NULL),
+(57, 35, 21, '2024-05-29 05:53:01', NULL),
+(58, 36, 52, '2024-05-29 05:55:54', NULL),
+(59, 36, 43, '2024-05-29 05:55:54', NULL),
+(60, 36, 13, '2024-05-29 05:55:54', NULL),
+(61, 36, 6, '2024-05-29 05:55:54', NULL),
+(62, 36, 9, '2024-05-29 05:55:54', NULL),
+(63, 37, 71, '2024-05-29 07:00:07', '2024-05-30 18:30:01'),
+(64, 37, 78, '2024-05-29 07:00:07', '2024-05-30 18:30:01'),
+(65, 37, 75, '2024-05-29 07:00:07', '2024-05-30 18:30:01'),
+(66, 37, 72, '2024-05-29 07:00:07', '2024-05-30 18:30:01'),
+(67, 37, 65, '2024-05-29 07:00:07', '2024-05-30 18:30:01'),
+(68, 38, 70, '2024-05-29 07:02:06', '2024-05-30 18:29:47'),
+(69, 38, 77, '2024-05-29 07:02:06', '2024-05-30 18:29:47'),
+(70, 38, 75, '2024-05-29 07:02:06', '2024-05-30 18:29:47'),
+(71, 38, 72, '2024-05-29 07:02:06', '2024-05-30 18:29:47'),
+(72, 38, 65, '2024-05-29 07:02:06', '2024-05-30 18:29:47'),
+(73, 39, 70, '2024-05-29 07:04:41', '2024-05-30 18:29:30'),
+(74, 39, 77, '2024-05-29 07:04:41', '2024-05-30 18:29:30'),
+(75, 39, 75, '2024-05-29 07:04:41', '2024-05-30 18:29:30'),
+(76, 39, 72, '2024-05-29 07:04:41', '2024-05-30 18:29:30'),
+(77, 39, 65, '2024-05-29 07:04:41', '2024-05-30 18:29:30'),
+(78, 40, 71, '2024-05-29 07:06:57', NULL),
+(79, 40, 78, '2024-05-29 07:06:57', NULL),
+(80, 40, 76, '2024-05-29 07:06:57', NULL),
+(81, 40, 72, '2024-05-29 07:06:57', NULL),
+(82, 40, 66, '2024-05-29 07:06:57', NULL),
+(83, 41, 70, '2024-05-29 07:09:06', NULL),
+(84, 41, 79, '2024-05-29 07:09:06', NULL),
+(85, 41, 74, '2024-05-29 07:09:06', NULL),
+(86, 41, 73, '2024-05-29 07:09:06', NULL),
+(87, 41, 66, '2024-05-29 07:09:06', NULL),
+(88, 42, 70, '2024-05-29 07:11:12', NULL),
+(89, 42, 77, '2024-05-29 07:11:12', NULL),
+(90, 42, 75, '2024-05-29 07:11:12', NULL),
+(91, 42, 72, '2024-05-29 07:11:12', NULL),
+(92, 42, 65, '2024-05-29 07:11:12', NULL),
+(93, 43, 70, '2024-05-29 07:13:07', NULL),
+(94, 43, 77, '2024-05-29 07:13:07', NULL),
+(95, 43, 75, '2024-05-29 07:13:07', NULL),
+(96, 43, 72, '2024-05-29 07:13:07', NULL),
+(97, 43, 65, '2024-05-29 07:13:07', NULL),
+(98, 44, 50, '2024-05-29 07:17:00', NULL),
+(99, 44, 45, '2024-05-29 07:17:00', NULL),
+(100, 44, 11, '2024-05-29 07:17:00', NULL),
+(101, 44, 56, '2024-05-29 07:17:00', NULL),
+(102, 44, 7, '2024-05-29 07:17:00', NULL),
+(103, 45, 50, '2024-05-29 07:23:57', NULL),
+(104, 45, 40, '2024-05-29 07:23:57', NULL),
+(105, 45, 13, '2024-05-29 07:23:57', NULL),
+(106, 45, 56, '2024-05-29 07:23:57', NULL),
+(107, 45, 10, '2024-05-29 07:23:57', NULL),
+(108, 46, 54, '2024-05-29 07:44:37', NULL),
+(109, 46, 43, '2024-05-29 07:44:37', NULL),
+(110, 46, 13, '2024-05-29 07:44:37', NULL),
+(111, 46, 59, '2024-05-29 07:44:37', NULL),
+(112, 46, 10, '2024-05-29 07:44:37', NULL),
+(113, 47, 50, '2024-05-29 17:51:20', NULL),
+(114, 47, 43, '2024-05-29 17:51:20', NULL),
+(115, 47, 13, '2024-05-29 17:51:20', NULL),
+(116, 47, 57, '2024-05-29 17:51:20', NULL),
+(117, 47, 9, '2024-05-29 17:51:20', NULL),
+(118, 48, 51, '2024-05-29 17:53:17', '2024-06-01 23:47:21'),
+(119, 48, 47, '2024-05-29 17:53:17', '2024-06-01 23:47:21'),
+(120, 48, 13, '2024-05-29 17:53:17', '2024-06-01 23:47:21'),
+(121, 48, 59, '2024-05-29 17:53:17', '2024-06-01 23:47:21'),
+(122, 48, 9, '2024-05-29 17:53:17', '2024-06-01 23:47:21'),
+(123, 49, 51, '2024-06-03 00:08:10', NULL),
+(124, 49, 48, '2024-06-03 00:08:10', NULL),
+(125, 49, 64, '2024-06-03 00:08:10', NULL),
+(126, 49, 5, '2024-06-03 00:08:10', NULL),
+(127, 49, 9, '2024-06-03 00:08:10', NULL),
+(128, 50, 70, '2024-06-03 02:15:17', NULL),
+(129, 50, 78, '2024-06-03 02:15:17', NULL),
+(130, 50, 75, '2024-06-03 02:15:17', NULL),
+(131, 50, 72, '2024-06-03 02:15:17', NULL),
+(132, 50, 66, '2024-06-03 02:15:17', NULL),
+(133, 51, 70, '2024-06-03 02:17:27', NULL),
+(134, 51, 77, '2024-06-03 02:17:27', NULL),
+(135, 51, 75, '2024-06-03 02:17:27', NULL),
+(136, 51, 72, '2024-06-03 02:17:27', NULL),
+(137, 51, 65, '2024-06-03 02:17:27', NULL),
+(138, 52, 39, '2024-06-03 02:23:59', NULL),
+(139, 52, 34, '2024-06-03 02:23:59', NULL),
+(140, 52, 30, '2024-06-03 02:23:59', NULL),
+(141, 52, 18, '2024-06-03 02:23:59', NULL),
+(142, 52, 27, '2024-06-03 02:23:59', NULL),
+(143, 52, 20, '2024-06-03 02:23:59', NULL),
+(144, 53, 81, '2024-06-04 09:36:22', NULL),
+(145, 53, 89, '2024-06-04 09:36:22', NULL),
+(146, 54, 87, '2024-06-04 13:08:07', NULL),
+(147, 54, 92, '2024-06-04 13:08:07', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thuonghieu`
+-- Table structure for table `tbl_thuonghieu`
 --
 
 CREATE TABLE `tbl_thuonghieu` (
   `MaThuongHieu` int NOT NULL,
-  `TenThuongHieu` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `SlugThuongHieu` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `HinhAnh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TenThuongHieu` varchar(50) DEFAULT NULL,
+  `SlugThuongHieu` varchar(50) DEFAULT NULL,
+  `HinhAnh` varchar(255) DEFAULT NULL,
   `TrangThai` int DEFAULT NULL,
-  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `MoTa` text,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thuonghieu`
+-- Dumping data for table `tbl_thuonghieu`
 --
 
 INSERT INTO `tbl_thuonghieu` (`MaThuongHieu`, `TenThuongHieu`, `SlugThuongHieu`, `HinhAnh`, `TrangThai`, `MoTa`, `ThoiGianTao`, `ThoiGianSua`) VALUES
 (2, 'Apple', 'Apple', 'apple93.png', 1, 'Apple (hoặc Apple Inc.) là một công ty công nghệ đa quốc gia có trụ sở tại Cupertino, California, Hoa Kỳ. Được thành lập vào ngày 1 tháng 4 năm 1976 bởi Steve Jobs, Steve Wozniak và Ronald Wayne. Apple đã trở thành một trong những công ty công nghệ lớn trên toàn thế giới, nổi tiếng với việc sản xuất và phân phối các sản phẩm công nghệ như iPhone, Mac, iPad, Apple Watch và các dịch vụ như App Store, iTunes và Apple Music.', NULL, NULL),
 (4, 'Dell', 'dell', 'Dell66.png', 1, 'Dell bán các sản phẩm như máy tính cá nhân (PC), máy chủ, thiết bị lưu trữ dữ liệu, bộ chuyển mạng, phần mềm máy tính, thiết bị ngoại vi máy tính, HDTV, máy ảnh, máy in và điện tử được sản xuất bởi các nhà sản xuất khác.', NULL, NULL),
 (5, 'Lenovo', 'lenovo', 'Lenovo54.png', 1, 'Lenovo Group Ltd. /lɛnˈoʊvoʊ/ là tập đoàn đa quốc gia về công nghệ máy tính có trụ sở chính ở Bắc Kinh, Trung Quốc và Morrisville, Bắc Carolina, Mỹ.[2] Tập đoàn thiết kế, phát triển, sản xuất và bán các sản phẩm như máy tính cá nhân, máy tính bảng, smartphone, các trạm máy tính, server, thiết bị lưu trữ điện tử, phần mềm quản trị IT và ti vi thông minh.', NULL, NULL),
-(7, 'Asus', 'Asus', 'Asus57.png', 1, 'Asus là gì ai biết', NULL, '2024-03-31 04:49:51'),
-(8, 'Samsung', 'samsung', 'Samsung7.png', 1, 'Samsung là một danh hiệu lắm', '2024-04-01 07:16:29', NULL),
-(9, 'Acer', 'acer', 'Acer89.png', 1, 'acer', '2024-04-01 08:08:46', NULL),
-(10, 'Mitsubishi', 'mitubishi', 'Mitsubishi30.png', 1, 'Công ty Mitsubishi đầu tiên là một công ty chuyển hàng thành lập bởi Iwasaki Yatarō vào năm 1870. Năm 1873, tên công ty được đổi thành Mitsubishi Shoukai (三菱商会: Tam Lăng thương hội). Tên Mitsubishi (三菱 (Tam Lăng)?) có nghĩa là \"3 củ ấu\", loại củ có hai đầu nhọn. Từ nguồn gốc đó mà Mitsubishi xếp ba củ ấu cách điệu làm biểu tượng (logo) cho hãng.\r\nCông ty chuyển sang lĩnh vực khai thác than năm 1881 sau khi mua mỏ than Takashima [1] và đảo Hashima năm 1890, sử dụng sản phẩm làm nguyên liệu cho đội tàu thủy hơi nước. Công ty cũng bắt đầu đa dạng hóa kinh doanh sang các lĩnh vực đóng tàu, bảo hiểm, xếp gỡ hàng và thương mại. Sau này sự đa dạng hóa được tiếp tục với việc Mitsubishi xâm nhập thêm vào các lĩnh vực khác như sản xuất giấy, thép, thủy tinh, hàng điện tử, tàu sân bay, khai thác dầu mỏ và bất động sản. Khi Mitsubishi xây dựng thành một nghiệp đoàn lớn, nó đóng vai trò quan trọng trong quá trình hiện đại hóa công nghiệp Nhật Bản.', '2024-04-01 08:09:23', '2024-04-28 05:40:36'),
-(11, 'Sony', 'sony', 'sony80.png', 0, 'Công ty công nghiệp Sony (ソニーグループ株式会社 (Sonī Gurūpu Chu Thức Hội Xã) Sonī Gurūpu kabushiki gaisha?, tiếng Anh: Sony Corporation), cách điệu SONY, là một tập đoàn đa quốc gia của Nhật Bản, với trụ sở chính nằm tại Minato, Tokyo, Nhật Bản, và là tập đoàn điện tử đứng thứ 5 thế giới với 81,64 tỉ USD (2011). Sony là một trong những công ty hàng đầu thế giới về điện tử, sản xuất tivi, điện thoại, máy ảnh, máy tính xách tay và đồ dân dụng khác.\r\nĐược thành lập vào tháng 5/1946 tại Nihonbashi, Chūō, Tokyo, được mang tên là Tokyo Tsushin Kogyo K.K (東京通信工業株式会社, Đông Kinh Thông tin Công nghiệp Chu Thức Hội Xã) với số vốn ban đầu là 190.000 yên. Công ty này đổi tên thành Sony vào tháng 1/1958.\r\nTừ \"Sony\" là kết hợp của từ \"sonus\" trong tiếng La-tinh (âm thanh) và từ \"sonny\" trong tiếng Anh (cậu bé nhanh nhẹn thông minh) theo cách gọi tên thân mật. Những nhà sáng lập hy vọng tên \"Sony\" thể hiện tinh thần nhiệt huyết và sáng tạo của giới trẻ.', '2024-04-01 08:09:46', '2024-04-28 05:37:00'),
-(12, 'Toshiba', 'toshiba', 'TOSHIBA_Logo98.png', 0, 'Toshiba được thành lập vào năm 1939 dưới tên Tokyo Shibaura Electric K.K. qua sự hợp nhất của Shibaura Seisaku-sho (thành lập năm 1875) và Tokyo Denki (thành lập năm 1890). Tên tập đoàn đã được chình thức thay đổi sang Toshiba Corporation vào năm 1978.\r\nToshiba được tổ chức thành bốn nhóm thương mại chính: Nhóm Sản Phẩm Số, Nhóm Thiết Bị Điện Tử, Nhóm Đồ Dùng Gia Dụng và Nhóm Cơ Sở Hạ Tầng Xã hội. Vào năm 2010, Toshiba là công ty máy tính cá nhân lớn thứ năm thế giới về doanh thu (xếp phía sau Hewlett-Packard, Dell, Acer và Lenovo). Vào cùng năm, nó cũng là công ty sản xuất chất bán dẫn lớn thứ tư thế giới về doanh thu (xếp phía sau Intel Corporation, Samsung và Texas Instruments).', '2024-04-28 05:31:44', '2024-05-08 01:03:51'),
-(13, 'TCL', 'tcl', 'TCL96.png', 1, 'Thương hiệu TCL', '2024-05-13 15:37:41', NULL),
-(14, 'LG', 'lg', 'LG1.png', 1, 'Thương hiệu LG', '2024-05-13 15:38:41', NULL),
-(15, 'Panasonic', 'panasonic', 'Panasonic32.png', 1, 'Thương hiệu Panasonic', '2024-05-15 00:34:57', NULL),
-(16, 'Hitachi', 'hitachi', 'Hitachi51.png', 1, 'Thương hiệu Hitachi', '2024-05-15 00:35:23', NULL);
+(7, 'Asus', 'Asus', 'Asus57.png', 1, 'Asus là gì ai biết', NULL, '2024-03-30 21:49:51'),
+(8, 'Samsung', 'samsung', 'Samsung7.png', 1, 'Samsung là một danh hiệu lắm', '2024-04-01 00:16:29', NULL),
+(9, 'Acer', 'acer', 'Acer89.png', 1, 'acer', '2024-04-01 01:08:46', NULL),
+(10, 'Mitsubishi', 'mitubishi', 'Mitsubishi30.png', 1, 'Công ty Mitsubishi đầu tiên là một công ty chuyển hàng thành lập bởi Iwasaki Yatarō vào năm 1870. Năm 1873, tên công ty được đổi thành Mitsubishi Shoukai (三菱商会: Tam Lăng thương hội). Tên Mitsubishi (三菱 (Tam Lăng)?) có nghĩa là \"3 củ ấu\", loại củ có hai đầu nhọn. Từ nguồn gốc đó mà Mitsubishi xếp ba củ ấu cách điệu làm biểu tượng (logo) cho hãng.\r\nCông ty chuyển sang lĩnh vực khai thác than năm 1881 sau khi mua mỏ than Takashima [1] và đảo Hashima năm 1890, sử dụng sản phẩm làm nguyên liệu cho đội tàu thủy hơi nước. Công ty cũng bắt đầu đa dạng hóa kinh doanh sang các lĩnh vực đóng tàu, bảo hiểm, xếp gỡ hàng và thương mại. Sau này sự đa dạng hóa được tiếp tục với việc Mitsubishi xâm nhập thêm vào các lĩnh vực khác như sản xuất giấy, thép, thủy tinh, hàng điện tử, tàu sân bay, khai thác dầu mỏ và bất động sản. Khi Mitsubishi xây dựng thành một nghiệp đoàn lớn, nó đóng vai trò quan trọng trong quá trình hiện đại hóa công nghiệp Nhật Bản.', '2024-04-01 01:09:23', '2024-04-27 22:40:36'),
+(11, 'Sony', 'sony', 'sony80.png', 0, 'Công ty công nghiệp Sony (ソニーグループ株式会社 (Sonī Gurūpu Chu Thức Hội Xã) Sonī Gurūpu kabushiki gaisha?, tiếng Anh: Sony Corporation), cách điệu SONY, là một tập đoàn đa quốc gia của Nhật Bản, với trụ sở chính nằm tại Minato, Tokyo, Nhật Bản, và là tập đoàn điện tử đứng thứ 5 thế giới với 81,64 tỉ USD (2011). Sony là một trong những công ty hàng đầu thế giới về điện tử, sản xuất tivi, điện thoại, máy ảnh, máy tính xách tay và đồ dân dụng khác.\r\nĐược thành lập vào tháng 5/1946 tại Nihonbashi, Chūō, Tokyo, được mang tên là Tokyo Tsushin Kogyo K.K (東京通信工業株式会社, Đông Kinh Thông tin Công nghiệp Chu Thức Hội Xã) với số vốn ban đầu là 190.000 yên. Công ty này đổi tên thành Sony vào tháng 1/1958.\r\nTừ \"Sony\" là kết hợp của từ \"sonus\" trong tiếng La-tinh (âm thanh) và từ \"sonny\" trong tiếng Anh (cậu bé nhanh nhẹn thông minh) theo cách gọi tên thân mật. Những nhà sáng lập hy vọng tên \"Sony\" thể hiện tinh thần nhiệt huyết và sáng tạo của giới trẻ.', '2024-04-01 01:09:46', '2024-04-27 22:37:00'),
+(12, 'Toshiba', 'toshiba', 'TOSHIBA_Logo98.png', 0, 'Toshiba được thành lập vào năm 1939 dưới tên Tokyo Shibaura Electric K.K. qua sự hợp nhất của Shibaura Seisaku-sho (thành lập năm 1875) và Tokyo Denki (thành lập năm 1890). Tên tập đoàn đã được chình thức thay đổi sang Toshiba Corporation vào năm 1978.\r\nToshiba được tổ chức thành bốn nhóm thương mại chính: Nhóm Sản Phẩm Số, Nhóm Thiết Bị Điện Tử, Nhóm Đồ Dùng Gia Dụng và Nhóm Cơ Sở Hạ Tầng Xã hội. Vào năm 2010, Toshiba là công ty máy tính cá nhân lớn thứ năm thế giới về doanh thu (xếp phía sau Hewlett-Packard, Dell, Acer và Lenovo). Vào cùng năm, nó cũng là công ty sản xuất chất bán dẫn lớn thứ tư thế giới về doanh thu (xếp phía sau Intel Corporation, Samsung và Texas Instruments).', '2024-04-27 22:31:44', '2024-05-07 18:03:51'),
+(13, 'TCL', 'tcl', 'TCL96.png', 1, 'Thương hiệu TCL', '2024-05-13 08:37:41', NULL),
+(14, 'LG', 'lg', 'LG1.png', 1, 'Thương hiệu LG', '2024-05-13 08:38:41', NULL),
+(15, 'Panasonic', 'panasonic', 'Panasonic32.png', 1, 'Thương hiệu Panasonic', '2024-05-14 17:34:57', NULL),
+(16, 'Hitachi', 'hitachi', 'Hitachi51.png', 1, 'Thương hiệu Hitachi', '2024-05-14 17:35:23', NULL),
+(17, 'capser', 'capser', 'capser_logo54.png', 1, 'Thương hiệu capser', '2024-05-29 06:37:30', NULL),
+(18, 'oppo', 'oppo', 'oppo_logo0.png', 1, 'oppo', '2024-05-29 06:38:00', NULL),
+(19, 'xiaomi', 'xiaomi', 'xiaomi_logo25.png', 1, 'xiaomi', '2024-05-29 06:38:24', NULL),
+(20, 'realme', 'realme', 'realme_logo23.png', 1, 'realme', '2024-05-29 06:38:47', NULL),
+(21, 'Daikin', 'daikin', 'DaiKin_logo79.png', 1, 'Daikin', '2024-05-29 06:39:16', NULL),
+(22, 'itel', 'itel', 'itel_logo82.png', 1, 'itel', '2024-05-29 06:40:03', NULL),
+(23, 'media', 'media', 'media_logo34.png', 1, 'media', '2024-05-29 06:40:22', NULL),
+(24, 'nakagawa', 'nakagawa', 'nagakawa_logo36.png', 1, 'nakagawa', '2024-05-29 06:40:57', NULL),
+(25, 'nokia', 'nokia', 'nokia_logo78.png', 1, 'nokia', '2024-05-29 06:41:37', NULL),
+(26, 'aqua', 'aqua', 'aqua_logo6.png', 1, 'aqua', '2024-05-29 06:42:18', NULL),
+(27, 'tecno', 'tecno', 'tecno_logo93.png', 1, 'tecno', '2024-05-29 06:49:12', NULL),
+(28, 'masstel', 'masstel', 'masstel_logo47.png', 1, 'masstel', '2024-05-29 06:50:26', NULL),
+(30, 'ezviz', 'ezviz', 'ezviz80.png', 1, 'Thương hiệu ezviz', '2024-06-04 09:32:17', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_thuonghieudanhmuc`
+-- Table structure for table `tbl_thuonghieudanhmuc`
 --
 
 CREATE TABLE `tbl_thuonghieudanhmuc` (
   `MaTHDM` int NOT NULL,
   `MaThuongHieu` int NOT NULL,
   `MaDanhMuc` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_thuonghieudanhmuc`
+-- Dumping data for table `tbl_thuonghieudanhmuc`
 --
 
 INSERT INTO `tbl_thuonghieudanhmuc` (`MaTHDM`, `MaThuongHieu`, `MaDanhMuc`) VALUES
 (1, 8, 1),
-(2, 4, 5),
+(2, 11, 5),
 (3, 7, 2),
 (4, 11, 1),
 (5, 10, 12),
@@ -1711,12 +2075,31 @@ INSERT INTO `tbl_thuonghieudanhmuc` (`MaTHDM`, `MaThuongHieu`, `MaDanhMuc`) VALU
 (13, 14, 15),
 (14, 8, 15),
 (15, 9, 2),
-(16, 5, 2);
+(16, 5, 2),
+(17, 12, 1),
+(18, 21, 17),
+(19, 26, 17),
+(20, 15, 17),
+(21, 24, 17),
+(22, 17, 17),
+(23, 23, 17),
+(24, 19, 8),
+(25, 18, 8),
+(26, 20, 8),
+(27, 13, 8),
+(28, 27, 8),
+(29, 28, 8),
+(30, 22, 8),
+(31, 13, 17),
+(32, 17, 1),
+(33, 19, 1),
+(34, 26, 1),
+(36, 30, 5);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tichdiem`
+-- Table structure for table `tbl_tichdiem`
 --
 
 CREATE TABLE `tbl_tichdiem` (
@@ -1729,7 +2112,7 @@ CREATE TABLE `tbl_tichdiem` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tinhthanhpho`
+-- Table structure for table `tbl_tinhthanhpho`
 --
 
 CREATE TABLE `tbl_tinhthanhpho` (
@@ -1739,7 +2122,7 @@ CREATE TABLE `tbl_tinhthanhpho` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_tinhthanhpho`
+-- Dumping data for table `tbl_tinhthanhpho`
 --
 
 INSERT INTO `tbl_tinhthanhpho` (`MaThanhPho`, `TenThanhPho`, `type`) VALUES
@@ -1810,7 +2193,7 @@ INSERT INTO `tbl_tinhthanhpho` (`MaThanhPho`, `TenThanhPho`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_xaphuongthitran`
+-- Table structure for table `tbl_xaphuongthitran`
 --
 
 CREATE TABLE `tbl_xaphuongthitran` (
@@ -1821,7 +2204,7 @@ CREATE TABLE `tbl_xaphuongthitran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_xaphuongthitran`
+-- Dumping data for table `tbl_xaphuongthitran`
 --
 
 INSERT INTO `tbl_xaphuongthitran` (`MaXaPhuong`, `TenXaPhuong`, `type`, `MaQuanHuyen`) VALUES
@@ -12997,33 +13380,30 @@ INSERT INTO `tbl_xaphuongthitran` (`MaXaPhuong`, `TenXaPhuong`, `type`, `MaQuanH
 ('32248', 'Xã Đất Mũi', 'Xã', 973);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `tbl_baiviet`
+-- Indexes for table `tbl_baiviet`
 --
 ALTER TABLE `tbl_baiviet`
   ADD PRIMARY KEY (`MaBaiViet`),
   ADD KEY `MaDanhMucBV` (`MaDanhMucBV`);
 
 --
--- Chỉ mục cho bảng `tbl_baocaodoanhthu`
+-- Indexes for table `tbl_baocaodoanhthu`
 --
 ALTER TABLE `tbl_baocaodoanhthu`
-  ADD PRIMARY KEY (`MaBCDT`),
-  ADD UNIQUE KEY `MaLienKet` (`MaLienKet`);
+  ADD PRIMARY KEY (`MaBCDT`);
 
 --
--- Chỉ mục cho bảng `tbl_binhluan`
+-- Indexes for table `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
-  ADD PRIMARY KEY (`MaBinhLuan`),
-  ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
+  ADD PRIMARY KEY (`MaBinhLuan`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietbaocaodoanhthu`
+-- Indexes for table `tbl_chitietbaocaodoanhthu`
 --
 ALTER TABLE `tbl_chitietbaocaodoanhthu`
   ADD PRIMARY KEY (`MaCTBCDT`),
@@ -13031,7 +13411,7 @@ ALTER TABLE `tbl_chitietbaocaodoanhthu`
   ADD KEY `MaLienKet` (`MaLienKet`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietdonhang`
+-- Indexes for table `tbl_chitietdonhang`
 --
 ALTER TABLE `tbl_chitietdonhang`
   ADD PRIMARY KEY (`MaCTDH`),
@@ -13039,33 +13419,34 @@ ALTER TABLE `tbl_chitietdonhang`
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitiethoadon`
+-- Indexes for table `tbl_chitiethoadon`
 --
 ALTER TABLE `tbl_chitiethoadon`
   ADD PRIMARY KEY (`MaCTHD`),
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietlichsubaohanh`
+-- Indexes for table `tbl_chitietlichsubaohanh`
 --
 ALTER TABLE `tbl_chitietlichsubaohanh`
+  ADD PRIMARY KEY (`MaCTLSBH`),
   ADD KEY `MaSanPham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieubaohanh`
+-- Indexes for table `tbl_chitietphieubaohanh`
 --
 ALTER TABLE `tbl_chitietphieubaohanh`
   ADD PRIMARY KEY (`MaCTPBH`),
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieukiemkho`
+-- Indexes for table `tbl_chitietphieukiemkho`
 --
 ALTER TABLE `tbl_chitietphieukiemkho`
   ADD KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieunhap`
+-- Indexes for table `tbl_chitietphieunhap`
 --
 ALTER TABLE `tbl_chitietphieunhap`
   ADD PRIMARY KEY (`MaCTPN`),
@@ -13073,7 +13454,7 @@ ALTER TABLE `tbl_chitietphieunhap`
   ADD KEY `order_code` (`MaPhieuNhap`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieutrahang`
+-- Indexes for table `tbl_chitietphieutrahang`
 --
 ALTER TABLE `tbl_chitietphieutrahang`
   ADD PRIMARY KEY (`MaCTPTH`),
@@ -13081,21 +13462,21 @@ ALTER TABLE `tbl_chitietphieutrahang`
   ADD KEY `order_code` (`MaPhieuTraHang`);
 
 --
--- Chỉ mục cho bảng `tbl_chitietphieuxuat`
+-- Indexes for table `tbl_chitietphieuxuat`
 --
 ALTER TABLE `tbl_chitietphieuxuat`
   ADD PRIMARY KEY (`MaCTPX`),
   ADD KEY `order_code` (`MaPhieuXuat`);
 
 --
--- Chỉ mục cho bảng `tbl_chuongtrinhgiamgia`
+-- Indexes for table `tbl_chuongtrinhgiamgia`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgia`
   ADD PRIMARY KEY (`MaCTGG`),
   ADD UNIQUE KEY `SlugCTGG` (`SlugCTGG`);
 
 --
--- Chỉ mục cho bảng `tbl_chuongtrinhgiamgiasp`
+-- Indexes for table `tbl_chuongtrinhgiamgiasp`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgiasp`
   ADD PRIMARY KEY (`MaCTGGSP`),
@@ -13103,52 +13484,47 @@ ALTER TABLE `tbl_chuongtrinhgiamgiasp`
   ADD KEY `MaSanPham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `tbl_danhgia`
+-- Indexes for table `tbl_danhgia`
 --
 ALTER TABLE `tbl_danhgia`
   ADD PRIMARY KEY (`MaDanhGia`),
-  ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`),
-  ADD KEY `MaDonHang` (`MaDonHang`);
+  ADD KEY `Email` (`Email`),
+  ADD KEY `MaSanPham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `tbl_danhmuc`
+-- Indexes for table `tbl_danhmuc`
 --
 ALTER TABLE `tbl_danhmuc`
   ADD PRIMARY KEY (`MaDanhMuc`),
   ADD UNIQUE KEY `SlugDanhMuc` (`SlugDanhMuc`);
 
 --
--- Chỉ mục cho bảng `tbl_danhmucbaiviet`
+-- Indexes for table `tbl_danhmucbaiviet`
 --
 ALTER TABLE `tbl_danhmucbaiviet`
   ADD PRIMARY KEY (`MaDanhMucBV`);
 
 --
--- Chỉ mục cho bảng `tbl_danhmuctskt`
+-- Indexes for table `tbl_danhmuctskt`
 --
 ALTER TABLE `tbl_danhmuctskt`
   ADD PRIMARY KEY (`MaDMTSKT`),
   ADD KEY `MaDanhMuc` (`MaDanhMuc`);
 
 --
--- Chỉ mục cho bảng `tbl_donhang`
+-- Indexes for table `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  ADD PRIMARY KEY (`MaDonHang`),
-  ADD UNIQUE KEY `order_code` (`order_code`),
-  ADD KEY `MaGiamGia` (`MaGiamGia`),
-  ADD KEY `MaGiaoHang` (`MaGiaoHang`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
+  ADD PRIMARY KEY (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_giaohang`
+-- Indexes for table `tbl_giaohang`
 --
 ALTER TABLE `tbl_giaohang`
   ADD PRIMARY KEY (`MaGiaoHang`);
 
 --
--- Chỉ mục cho bảng `tbl_hoadon`
+-- Indexes for table `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
   ADD PRIMARY KEY (`MaHoaDon`),
@@ -13157,30 +13533,22 @@ ALTER TABLE `tbl_hoadon`
   ADD KEY `MaDonHang` (`MaDonHang`);
 
 --
--- Chỉ mục cho bảng `tbl_lichsubaohanh`
+-- Indexes for table `tbl_lichsubaohanh`
 --
 ALTER TABLE `tbl_lichsubaohanh`
   ADD PRIMARY KEY (`MaLSBH`),
-  ADD UNIQUE KEY `MaLienKet` (`MaLienKet`),
+  ADD UNIQUE KEY `MaLienKet` (`order_code`),
   ADD KEY `MaPhieuBaoHanh` (`MaPhieuBaoHanh`);
 
 --
--- Chỉ mục cho bảng `tbl_magiamgiannguoidung`
---
-ALTER TABLE `tbl_magiamgiannguoidung`
-  ADD PRIMARY KEY (`MaGGND`),
-  ADD KEY `MaGiamGia` (`MaGiamGia`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
-
---
--- Chỉ mục cho bảng `tbl_nhacungcap`
+-- Indexes for table `tbl_nhacungcap`
 --
 ALTER TABLE `tbl_nhacungcap`
   ADD PRIMARY KEY (`MaNhaCungCap`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Chỉ mục cho bảng `tbl_phanquyennguoidung`
+-- Indexes for table `tbl_phanquyennguoidung`
 --
 ALTER TABLE `tbl_phanquyennguoidung`
   ADD PRIMARY KEY (`MaPQND`),
@@ -13188,21 +13556,28 @@ ALTER TABLE `tbl_phanquyennguoidung`
   ADD KEY `MaPhanQuyen` (`MaPhanQuyen`);
 
 --
--- Chỉ mục cho bảng `tbl_phieubaohanh`
+-- Indexes for table `tbl_phieubaohanh`
 --
 ALTER TABLE `tbl_phieubaohanh`
   ADD PRIMARY KEY (`MaPhieuBaoHanh`),
-  ADD UNIQUE KEY `order_code` (`order_code`),
-  ADD KEY `MaDonHang` (`MaDonHang`);
+  ADD UNIQUE KEY `order_code` (`order_code`);
 
 --
--- Chỉ mục cho bảng `tbl_phieugiamgia`
+-- Indexes for table `tbl_phieugiamgia`
 --
 ALTER TABLE `tbl_phieugiamgia`
   ADD PRIMARY KEY (`MaGiamGia`);
 
 --
--- Chỉ mục cho bảng `tbl_phieukiemkho`
+-- Indexes for table `tbl_phieugiamgiannguoidung`
+--
+ALTER TABLE `tbl_phieugiamgiannguoidung`
+  ADD PRIMARY KEY (`MaGGND`),
+  ADD KEY `MaGiamGia` (`MaGiamGia`),
+  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
+
+--
+-- Indexes for table `tbl_phieukiemkho`
 --
 ALTER TABLE `tbl_phieukiemkho`
   ADD PRIMARY KEY (`MaPKK`),
@@ -13210,7 +13585,7 @@ ALTER TABLE `tbl_phieukiemkho`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_phieunhap`
+-- Indexes for table `tbl_phieunhap`
 --
 ALTER TABLE `tbl_phieunhap`
   ADD PRIMARY KEY (`MaPhieuNhap`),
@@ -13218,7 +13593,7 @@ ALTER TABLE `tbl_phieunhap`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_phieutrahang`
+-- Indexes for table `tbl_phieutrahang`
 --
 ALTER TABLE `tbl_phieutrahang`
   ADD PRIMARY KEY (`MaPhieuTraHang`),
@@ -13227,7 +13602,7 @@ ALTER TABLE `tbl_phieutrahang`
   ADD KEY `MaPhieuNhap` (`MaPhieuNhap`);
 
 --
--- Chỉ mục cho bảng `tbl_phieuxuat`
+-- Indexes for table `tbl_phieuxuat`
 --
 ALTER TABLE `tbl_phieuxuat`
   ADD PRIMARY KEY (`MaPhieuXuat`),
@@ -13236,7 +13611,7 @@ ALTER TABLE `tbl_phieuxuat`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_phigiaohang`
+-- Indexes for table `tbl_phigiaohang`
 --
 ALTER TABLE `tbl_phigiaohang`
   ADD PRIMARY KEY (`MaPhiGiaoHang`),
@@ -13245,19 +13620,19 @@ ALTER TABLE `tbl_phigiaohang`
   ADD KEY `MaXaPhuong` (`MaXaPhuong`);
 
 --
--- Chỉ mục cho bảng `tbl_quanhuyen`
+-- Indexes for table `tbl_quanhuyen`
 --
 ALTER TABLE `tbl_quanhuyen`
   ADD PRIMARY KEY (`MaQuanHuyen`);
 
 --
--- Chỉ mục cho bảng `tbl_quyen`
+-- Indexes for table `tbl_quyen`
 --
 ALTER TABLE `tbl_quyen`
   ADD PRIMARY KEY (`MaPhanQuyen`);
 
 --
--- Chỉ mục cho bảng `tbl_sanpham`
+-- Indexes for table `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
   ADD PRIMARY KEY (`MaSanPham`),
@@ -13266,13 +13641,13 @@ ALTER TABLE `tbl_sanpham`
   ADD KEY `MaThuongHieu` (`MaThuongHieu`);
 
 --
--- Chỉ mục cho bảng `tbl_taikhoan`
+-- Indexes for table `tbl_taikhoan`
 --
 ALTER TABLE `tbl_taikhoan`
   ADD PRIMARY KEY (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_thanhtruot`
+-- Indexes for table `tbl_thanhtruot`
 --
 ALTER TABLE `tbl_thanhtruot`
   ADD PRIMARY KEY (`MaThanhTruot`),
@@ -13280,14 +13655,14 @@ ALTER TABLE `tbl_thanhtruot`
   ADD KEY `MaCTGG` (`MaCTGG`);
 
 --
--- Chỉ mục cho bảng `tbl_thongsokythuat`
+-- Indexes for table `tbl_thongsokythuat`
 --
 ALTER TABLE `tbl_thongsokythuat`
   ADD PRIMARY KEY (`MaTSKT`),
   ADD KEY `MaDMTSKT` (`MaDMTSKT`);
 
 --
--- Chỉ mục cho bảng `tbl_thongsokythuatsp`
+-- Indexes for table `tbl_thongsokythuatsp`
 --
 ALTER TABLE `tbl_thongsokythuatsp`
   ADD PRIMARY KEY (`MaTSKTSP`),
@@ -13295,14 +13670,14 @@ ALTER TABLE `tbl_thongsokythuatsp`
   ADD KEY `MaTSKT` (`MaTSKT`);
 
 --
--- Chỉ mục cho bảng `tbl_thuonghieu`
+-- Indexes for table `tbl_thuonghieu`
 --
 ALTER TABLE `tbl_thuonghieu`
   ADD PRIMARY KEY (`MaThuongHieu`),
   ADD UNIQUE KEY `SlugThuongHieu` (`SlugThuongHieu`);
 
 --
--- Chỉ mục cho bảng `tbl_thuonghieudanhmuc`
+-- Indexes for table `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_thuonghieudanhmuc`
   ADD PRIMARY KEY (`MaTHDM`),
@@ -13310,338 +13685,273 @@ ALTER TABLE `tbl_thuonghieudanhmuc`
   ADD KEY `MaThuongHieu` (`MaThuongHieu`);
 
 --
--- Chỉ mục cho bảng `tbl_tichdiem`
+-- Indexes for table `tbl_tichdiem`
 --
 ALTER TABLE `tbl_tichdiem`
   ADD PRIMARY KEY (`MaTichDiem`),
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `tbl_tinhthanhpho`
+-- Indexes for table `tbl_tinhthanhpho`
 --
 ALTER TABLE `tbl_tinhthanhpho`
   ADD PRIMARY KEY (`MaThanhPho`);
 
 --
--- Chỉ mục cho bảng `tbl_xaphuongthitran`
+-- Indexes for table `tbl_xaphuongthitran`
 --
 ALTER TABLE `tbl_xaphuongthitran`
   ADD PRIMARY KEY (`MaXaPhuong`),
   ADD KEY `MaQuanHuyen` (`MaQuanHuyen`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `tbl_baiviet`
+-- AUTO_INCREMENT for table `tbl_baiviet`
 --
 ALTER TABLE `tbl_baiviet`
-  MODIFY `MaBaiViet` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaBaiViet` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_baocaodoanhthu`
+-- AUTO_INCREMENT for table `tbl_baocaodoanhthu`
 --
 ALTER TABLE `tbl_baocaodoanhthu`
-  MODIFY `MaBCDT` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaBCDT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_binhluan`
+-- AUTO_INCREMENT for table `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
-  MODIFY `MaBinhLuan` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaBinhLuan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietbaocaodoanhthu`
+-- AUTO_INCREMENT for table `tbl_chitietbaocaodoanhthu`
 --
 ALTER TABLE `tbl_chitietbaocaodoanhthu`
   MODIFY `MaCTBCDT` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietdonhang`
+-- AUTO_INCREMENT for table `tbl_chitietdonhang`
 --
 ALTER TABLE `tbl_chitietdonhang`
-  MODIFY `MaCTDH` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaCTDH` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitiethoadon`
+-- AUTO_INCREMENT for table `tbl_chitiethoadon`
 --
 ALTER TABLE `tbl_chitiethoadon`
   MODIFY `MaCTHD` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chitietphieubaohanh`
+-- AUTO_INCREMENT for table `tbl_chitietlichsubaohanh`
 --
-ALTER TABLE `tbl_chitietphieubaohanh`
-  MODIFY `MaCTPBH` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_chitietlichsubaohanh`
+  MODIFY `MaCTLSBH` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chuongtrinhgiamgia`
+-- AUTO_INCREMENT for table `tbl_chitietphieubaohanh`
+--
+ALTER TABLE `tbl_chitietphieubaohanh`
+  MODIFY `MaCTPBH` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_chuongtrinhgiamgia`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgia`
   MODIFY `MaCTGG` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_chuongtrinhgiamgiasp`
+-- AUTO_INCREMENT for table `tbl_chuongtrinhgiamgiasp`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgiasp`
   MODIFY `MaCTGGSP` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhgia`
+-- AUTO_INCREMENT for table `tbl_danhgia`
 --
 ALTER TABLE `tbl_danhgia`
-  MODIFY `MaDanhGia` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDanhGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhmuc`
+-- AUTO_INCREMENT for table `tbl_danhmuc`
 --
 ALTER TABLE `tbl_danhmuc`
-  MODIFY `MaDanhMuc` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `MaDanhMuc` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhmucbaiviet`
+-- AUTO_INCREMENT for table `tbl_danhmucbaiviet`
 --
 ALTER TABLE `tbl_danhmucbaiviet`
-  MODIFY `MaDanhMucBV` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDanhMucBV` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_danhmuctskt`
+-- AUTO_INCREMENT for table `tbl_danhmuctskt`
 --
 ALTER TABLE `tbl_danhmuctskt`
-  MODIFY `MaDMTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `MaDMTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_donhang`
+-- AUTO_INCREMENT for table `tbl_donhang`
 --
 ALTER TABLE `tbl_donhang`
-  MODIFY `MaDonHang` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDonHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_giaohang`
+-- AUTO_INCREMENT for table `tbl_giaohang`
 --
 ALTER TABLE `tbl_giaohang`
-  MODIFY `MaGiaoHang` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaGiaoHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_hoadon`
+-- AUTO_INCREMENT for table `tbl_hoadon`
 --
 ALTER TABLE `tbl_hoadon`
   MODIFY `MaHoaDon` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_magiamgiannguoidung`
---
-ALTER TABLE `tbl_magiamgiannguoidung`
-  MODIFY `MaGGND` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `tbl_phanquyennguoidung`
+-- AUTO_INCREMENT for table `tbl_phanquyennguoidung`
 --
 ALTER TABLE `tbl_phanquyennguoidung`
   MODIFY `MaPQND` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieubaohanh`
+-- AUTO_INCREMENT for table `tbl_phieubaohanh`
 --
 ALTER TABLE `tbl_phieubaohanh`
-  MODIFY `MaPhieuBaoHanh` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MaPhieuBaoHanh` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieugiamgia`
+-- AUTO_INCREMENT for table `tbl_phieugiamgia`
 --
 ALTER TABLE `tbl_phieugiamgia`
-  MODIFY `MaGiamGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaGiamGia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phieukiemkho`
+-- AUTO_INCREMENT for table `tbl_phieugiamgiannguoidung`
+--
+ALTER TABLE `tbl_phieugiamgiannguoidung`
+  MODIFY `MaGGND` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_phieukiemkho`
 --
 ALTER TABLE `tbl_phieukiemkho`
   MODIFY `MaPKK` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_phigiaohang`
+-- AUTO_INCREMENT for table `tbl_phigiaohang`
 --
 ALTER TABLE `tbl_phigiaohang`
   MODIFY `MaPhiGiaoHang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_quyen`
+-- AUTO_INCREMENT for table `tbl_quyen`
 --
 ALTER TABLE `tbl_quyen`
   MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_sanpham`
+-- AUTO_INCREMENT for table `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
-  MODIFY `MaSanPham` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `MaSanPham` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thanhtruot`
+-- AUTO_INCREMENT for table `tbl_thanhtruot`
 --
 ALTER TABLE `tbl_thanhtruot`
   MODIFY `MaThanhTruot` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thongsokythuat`
+-- AUTO_INCREMENT for table `tbl_thongsokythuat`
 --
 ALTER TABLE `tbl_thongsokythuat`
-  MODIFY `MaTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `MaTSKT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thongsokythuatsp`
+-- AUTO_INCREMENT for table `tbl_thongsokythuatsp`
 --
 ALTER TABLE `tbl_thongsokythuatsp`
-  MODIFY `MaTSKTSP` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `MaTSKTSP` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thuonghieu`
+-- AUTO_INCREMENT for table `tbl_thuonghieu`
 --
 ALTER TABLE `tbl_thuonghieu`
-  MODIFY `MaThuongHieu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `MaThuongHieu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_thuonghieudanhmuc`
+-- AUTO_INCREMENT for table `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_thuonghieudanhmuc`
-  MODIFY `MaTHDM` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `MaTHDM` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_tichdiem`
+-- AUTO_INCREMENT for table `tbl_tichdiem`
 --
 ALTER TABLE `tbl_tichdiem`
   MODIFY `MaTichDiem` int NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `tbl_baiviet`
---
-ALTER TABLE `tbl_baiviet`
-  ADD CONSTRAINT `tbl_baiviet_ibfk_1` FOREIGN KEY (`MaDanhMucBV`) REFERENCES `tbl_danhmucbaiviet` (`MaDanhMucBV`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_binhluan`
---
-ALTER TABLE `tbl_binhluan`
-  ADD CONSTRAINT `tbl_binhluan_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitietbaocaodoanhthu`
---
-ALTER TABLE `tbl_chitietbaocaodoanhthu`
-  ADD CONSTRAINT `tbl_chitietbaocaodoanhthu_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_chitietbaocaodoanhthu_ibfk_2` FOREIGN KEY (`MaLienKet`) REFERENCES `tbl_baocaodoanhthu` (`MaLienKet`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitietdonhang`
---
-ALTER TABLE `tbl_chitietdonhang`
-  ADD CONSTRAINT `tbl_chitietdonhang_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_chitietdonhang_ibfk_2` FOREIGN KEY (`order_code`) REFERENCES `tbl_donhang` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitiethoadon`
---
-ALTER TABLE `tbl_chitiethoadon`
-  ADD CONSTRAINT `tbl_chitiethoadon_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_hoadon` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitietlichsubaohanh`
---
-ALTER TABLE `tbl_chitietlichsubaohanh`
-  ADD CONSTRAINT `tbl_chitietlichsubaohanh_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitietphieubaohanh`
---
-ALTER TABLE `tbl_chitietphieubaohanh`
-  ADD CONSTRAINT `tbl_chitietphieubaohanh_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieubaohanh` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_chitietphieukiemkho`
+-- Constraints for table `tbl_chitietphieukiemkho`
 --
 ALTER TABLE `tbl_chitietphieukiemkho`
   ADD CONSTRAINT `tbl_chitietphieukiemkho_ibfk_1` FOREIGN KEY (`order_code`) REFERENCES `tbl_phieukiemkho` (`order_code`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieunhap`
+-- Constraints for table `tbl_chitietphieunhap`
 --
 ALTER TABLE `tbl_chitietphieunhap`
   ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chitietphieunhap_ibfk_2` FOREIGN KEY (`MaPhieuNhap`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieutrahang`
+-- Constraints for table `tbl_chitietphieutrahang`
 --
 ALTER TABLE `tbl_chitietphieutrahang`
   ADD CONSTRAINT `tbl_chitietphieutrahang_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chitietphieutrahang_ibfk_2` FOREIGN KEY (`MaPhieuTraHang`) REFERENCES `tbl_phieutrahang` (`MaPhieuTraHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chitietphieuxuat`
+-- Constraints for table `tbl_chitietphieuxuat`
 --
 ALTER TABLE `tbl_chitietphieuxuat`
   ADD CONSTRAINT `tbl_chitietphieuxuat_ibfk_1` FOREIGN KEY (`MaPhieuXuat`) REFERENCES `tbl_phieuxuat` (`MaPhieuXuat`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_chuongtrinhgiamgiasp`
+-- Constraints for table `tbl_chuongtrinhgiamgiasp`
 --
 ALTER TABLE `tbl_chuongtrinhgiamgiasp`
   ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_1` FOREIGN KEY (`MaCTGG`) REFERENCES `tbl_chuongtrinhgiamgia` (`MaCTGG`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_chuongtrinhgiamgiasp_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_danhgia`
---
-ALTER TABLE `tbl_danhgia`
-  ADD CONSTRAINT `tbl_danhgia_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_danhgia_ibfk_3` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_danhmuctskt`
+-- Constraints for table `tbl_danhmuctskt`
 --
 ALTER TABLE `tbl_danhmuctskt`
   ADD CONSTRAINT `tbl_danhmuctskt_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_donhang`
---
-ALTER TABLE `tbl_donhang`
-  ADD CONSTRAINT `tbl_donhang_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_donhang_ibfk_2` FOREIGN KEY (`MaGiaoHang`) REFERENCES `tbl_giaohang` (`MaGiaoHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_hoadon`
---
-ALTER TABLE `tbl_hoadon`
-  ADD CONSTRAINT `tbl_hoadon_ibfk_1` FOREIGN KEY (`MaGiamGia`) REFERENCES `tbl_phieugiamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_hoadon_ibfk_2` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_lichsubaohanh`
+-- Constraints for table `tbl_lichsubaohanh`
 --
 ALTER TABLE `tbl_lichsubaohanh`
   ADD CONSTRAINT `tbl_lichsubaohanh_ibfk_1` FOREIGN KEY (`MaPhieuBaoHanh`) REFERENCES `tbl_phieubaohanh` (`MaPhieuBaoHanh`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_phieubaohanh`
---
-ALTER TABLE `tbl_phieubaohanh`
-  ADD CONSTRAINT `tbl_phieubaohanh_ibfk_1` FOREIGN KEY (`MaDonHang`) REFERENCES `tbl_donhang` (`MaDonHang`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_phieunhap`
+-- Constraints for table `tbl_phieunhap`
 --
 ALTER TABLE `tbl_phieunhap`
   ADD CONSTRAINT `tbl_phieunhap_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_phieunhap_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_phieutrahang`
+-- Constraints for table `tbl_phieutrahang`
 --
 ALTER TABLE `tbl_phieutrahang`
   ADD CONSTRAINT `tbl_phieutrahang_ibfk_1` FOREIGN KEY (`MaNhaCungCap`) REFERENCES `tbl_nhacungcap` (`MaNhaCungCap`) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -13649,43 +13959,36 @@ ALTER TABLE `tbl_phieutrahang`
   ADD CONSTRAINT `tbl_phieutrahang_ibfk_3` FOREIGN KEY (`MaPhieuNhap`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_phieuxuat`
+-- Constraints for table `tbl_phieuxuat`
 --
 ALTER TABLE `tbl_phieuxuat`
   ADD CONSTRAINT `tbl_phieuxuat_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_sanpham`
+-- Constraints for table `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
-  ADD CONSTRAINT `tbl_sanpham_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_sanpham_ibfk_2` FOREIGN KEY (`MaThuongHieu`) REFERENCES `tbl_thuonghieu` (`MaThuongHieu`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tbl_sanpham_ibfk_1` FOREIGN KEY (`MaThuongHieu`) REFERENCES `tbl_thuonghieu` (`MaThuongHieu`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_sanpham_ibfk_2` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_thanhtruot`
+-- Constraints for table `tbl_thanhtruot`
 --
 ALTER TABLE `tbl_thanhtruot`
   ADD CONSTRAINT `tbl_thanhtruot_ibfk_1` FOREIGN KEY (`MaCTGG`) REFERENCES `tbl_chuongtrinhgiamgia` (`MaCTGG`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_thongsokythuat`
+-- Constraints for table `tbl_thongsokythuat`
 --
 ALTER TABLE `tbl_thongsokythuat`
   ADD CONSTRAINT `tbl_thongsokythuat_ibfk_1` FOREIGN KEY (`MaDMTSKT`) REFERENCES `tbl_danhmuctskt` (`MaDMTSKT`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `tbl_thongsokythuatsp`
+-- Constraints for table `tbl_thongsokythuatsp`
 --
 ALTER TABLE `tbl_thongsokythuatsp`
   ADD CONSTRAINT `tbl_thongsokythuatsp_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `tbl_sanpham` (`MaSanPham`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_thongsokythuatsp_ibfk_2` FOREIGN KEY (`MaTSKT`) REFERENCES `tbl_thongsokythuat` (`MaTSKT`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `tbl_thuonghieudanhmuc`
---
-ALTER TABLE `tbl_thuonghieudanhmuc`
-  ADD CONSTRAINT `tbl_thuonghieudanhmuc_ibfk_1` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_thuonghieudanhmuc_ibfk_2` FOREIGN KEY (`MaThuongHieu`) REFERENCES `tbl_thuonghieu` (`MaThuongHieu`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

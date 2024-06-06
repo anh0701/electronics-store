@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class DanhMucController extends Controller
 {
-    // Quản lý danh mục
-
     public function TrangThemDanhMuc(){
         $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->where('DanhMucCha', 0)->get();
         return view('admin.DanhMuc.QuanlyDanhMuc.ThemDanhMuc')->with(compact('allDanhMuc'));
@@ -174,5 +172,4 @@ class DanhMucController extends Controller
         $thuongHieuDanhMuc = ThuongHieuDanhMuc::find($MaTHDM)->delete();
         return Redirect::to('trang-liet-ke-thtdm')->with('status', 'Xóa thương hiệu thuộc danh mục thành công');
     }
-
 }
