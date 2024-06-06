@@ -10,7 +10,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Thông tin phiếu xuất
+            Chi tiết phiếu xuất
         </div>
         <div class="container">
             <div class="row r1">
