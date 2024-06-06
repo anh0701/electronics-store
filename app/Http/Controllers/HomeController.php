@@ -57,7 +57,7 @@ class HomeController extends Controller
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
                     $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->get();
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->take(12)->get();
                 }
                 return view('pages.SanPham.DanhMuc.HienThiDanhMucCha')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -120,7 +120,7 @@ class HomeController extends Controller
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
                     $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->get();
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->take(12)->get();
                 }
                 return view('pages.SanPham.DanhMuc.HienThiDanhMucCha')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -130,7 +130,7 @@ class HomeController extends Controller
         
         return view('pages.SanPham.ThuongHieu.HienThiSanPhamTheoTH')
         ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allDanhMucTSKT', 'allTSKT', 'allTHDM', 'MaDanhMuc', 'thuongHieu'))
-        ->with(compact('allDanhGia', 'sanPhamNoiBat'));;
+        ->with(compact('allDanhGia', 'sanPhamNoiBat'));
     }
 
     public function ChiTietSanPham($MaSanPham){
@@ -150,20 +150,21 @@ class HomeController extends Controller
     }
 
     public function TimKiem(Request $request){
-        $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->get();
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'ASC')->where('TrangThai', '1')->get();
+        $allDanhGia = DanhGia::orderBy('MaDanhGia', 'ASC')->where('TrangThai', 1)->get();
         $keywords = $request->keywords_submit;
 
         if($keywords == ''){
             return Redirect::to('/');
         }
 
-        $timKiemSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')
-        ->where('TenSanPham', 'like', '%'.$keywords.'%')->get();
-        return view('pages.SanPham.TimKiem')
-        ->with(compact('allDanhMuc', 'allThuongHieu', 'timKiemSanPham', 'keywords'))
-        ->with(compact('allDanhGia'));
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->paginate(20);
+        $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->take(12)->get();;
+
+        return view('pages.SanPham.timkiem')
+        ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham'))
+        ->with(compact('allDanhGia', 'sanPhamNoiBat'));
     }
 
     public function ThanhToan(){

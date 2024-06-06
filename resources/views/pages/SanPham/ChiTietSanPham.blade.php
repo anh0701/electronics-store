@@ -52,6 +52,7 @@
                         <input type="hidden" value="{{$chiTietSanPham->ChieuNgang}}" class="cart_product_width_{{$chiTietSanPham->MaSanPham}}">
                         <input type="hidden" value="{{$chiTietSanPham->ChieuDay}}" class="cart_product_thick_{{$chiTietSanPham->MaSanPham}}">
                         <input type="hidden" value="{{$chiTietSanPham->CanNang}}" class="cart_product_weight_{{$chiTietSanPham->MaSanPham}}">
+                        <input type="hidden" value="{{$chiTietSanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{$chiTietSanPham->MaSanPham}}">
                         <span>
                             <span>{{number_format($chiTietSanPham->GiaSanPham,0,',','.').' đ'}}</span>
                             <label>Số lượng:</label>
