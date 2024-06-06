@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li><a href="{{ route('/TrangLietKeThuongHieu') }}">+ Liệt kê thương hiệu sản phẩm</a></li>
             </ul>
           </li>
-        
+
           <li class="sub-menu">
             <a href="javascript:;">
               <span>Quản lý nhà cung cấp</span>
@@ -106,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="sub">
               <li><a href="{{ route('themNCC') }}">+ Thêm nhà cung cấp</a></li>
               <li><a href="{{ route('lietKeNCC') }}">+ Liệt kê nhà cung cấp</a></li>
-              
+
             </ul>
           </li>
           <li class="sub-menu">
@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </a>
             <ul class="sub">
               <li><a href="{{ route('lapPN') }}">+ Lập phiếu nhập</a></li>
-              <li><a href="{{ route('xemPN') }}">+ Liệt kê phiếu nhập</a></li>             
+              <li><a href="{{ route('xemPN') }}">+ Liệt kê phiếu nhập</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -276,87 +276,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
   {{--  --}}
-  <script type="text/javascript">
-    $(document).ready(function(){
-      var chart = new Morris.Bar({
-        element: 'chart',
-        data: [
-          { 
-            period: '2024-05-05', 
-            order: 10,
-            sales: 20,
-            profit: 40,
-            quantity: 60,
-          },{
-            period: '2024-06-05',  
-            order: 70,
-            sales: 60,
-            profit: 90,
-            quantity: 120,
-          }
-        ],
-        xkey: 'period',
-        ykeys: ['order', 'sales', 'profit', 'quantity'],
-        ykeys: ['order', 'sales', 'profit', 'quantity'],
-      });
+{{--  <script type="text/javascript">--}}
+{{--    $(document).ready(function(){--}}
+{{--      var chart = new Morris.Bar({--}}
+{{--        element: 'chart',--}}
+{{--        data: [--}}
+{{--          { --}}
+{{--            period: '2024-05-05', --}}
+{{--            order: 10,--}}
+{{--            sales: 20,--}}
+{{--            profit: 40,--}}
+{{--            quantity: 60,--}}
+{{--          },{--}}
+{{--            period: '2024-06-05',  --}}
+{{--            order: 70,--}}
+{{--            sales: 60,--}}
+{{--            profit: 90,--}}
+{{--            quantity: 120,--}}
+{{--          }--}}
+{{--        ],--}}
+{{--        xkey: 'period',--}}
+{{--        ykeys: ['order', 'sales', 'profit', 'quantity'],--}}
+{{--        ykeys: ['order', 'sales', 'profit', 'quantity'],--}}
+{{--      });--}}
 
 
-      // $(function() {
-      //   $( "#datepicker" ).datepicker({
-      //     prevText: "Tháng trước",
-      //     nextText: "Tháng sau",
-      //     dateFormat: "yy-mm-dd",
-      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
-      //     duration: "slow",
-      //   });
+{{--      // $(function() {--}}
+{{--      //   $( "#datepicker" ).datepicker({--}}
+{{--      //     prevText: "Tháng trước",--}}
+{{--      //     nextText: "Tháng sau",--}}
+{{--      //     dateFormat: "yy-mm-dd",--}}
+{{--      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],--}}
+{{--      //     duration: "slow",--}}
+{{--      //   });--}}
 
-      //   $( "#datepicker2" ).datepicker({
-      //     prevText: "Tháng trước",
-      //     nextText: "Tháng sau",
-      //     dateFormat: "yy-mm-dd",
-      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
-      //     duration: "slow",
-      //   });
-      // });
+{{--      //   $( "#datepicker2" ).datepicker({--}}
+{{--      //     prevText: "Tháng trước",--}}
+{{--      //     nextText: "Tháng sau",--}}
+{{--      //     dateFormat: "yy-mm-dd",--}}
+{{--      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],--}}
+{{--      //     duration: "slow",--}}
+{{--      //   });--}}
+{{--      // });--}}
 
-      var from_date = $('#datepicker').val();
-      var to_date = $('#datepicker2').val();
-      var _token = $('input[name="_token"]').val();
-      $.ajax({
-        method: "POST",
-        url: '{{ route('/Test') }}',
-        dataType: "JSON",
-        data: {
-          from_date : from_date,
-          to_date : to_date,
-          _token : _token
-        },
-        success:function(data){
-          chart.setData(data);
-        }
-      });
+{{--      var from_date = $('#datepicker').val();--}}
+{{--      var to_date = $('#datepicker2').val();--}}
+{{--      var _token = $('input[name="_token"]').val();--}}
+{{--      $.ajax({--}}
+{{--        method: "POST",--}}
+{{--        url: '{{ route('/Test') }}',--}}
+{{--        dataType: "JSON",--}}
+{{--        data: {--}}
+{{--          from_date : from_date,--}}
+{{--          to_date : to_date,--}}
+{{--          _token : _token--}}
+{{--        },--}}
+{{--        success:function(data){--}}
+{{--          chart.setData(data);--}}
+{{--        }--}}
+{{--      });--}}
 
-      $('#btn-dashboard-filter').click(function(){
-        var from_date = $('#datepicker').val();
-        var to_date = $('#datepicker2').val();
-        var _token = $('input[name="_token"]').val();
-        $.ajax({
-          method: 'POST',
-          url: '{{ route('/fillter-by-date') }}',
-          dataType: 'JSON',
-          data: {
-            from_date : from_date,
-            to_date : to_date,
-            _token : _token
-          },
-          success: function (result){
-            chart.setData(data);
-          }
-        });
-      });
+{{--      $('#btn-dashboard-filter').click(function(){--}}
+{{--        var from_date = $('#datepicker').val();--}}
+{{--        var to_date = $('#datepicker2').val();--}}
+{{--        var _token = $('input[name="_token"]').val();--}}
+{{--        $.ajax({--}}
+{{--          method: 'POST',--}}
+{{--          url: '{{ route('/fillter-by-date') }}',--}}
+{{--          dataType: 'JSON',--}}
+{{--          data: {--}}
+{{--            from_date : from_date,--}}
+{{--            to_date : to_date,--}}
+{{--            _token : _token--}}
+{{--          },--}}
+{{--          success: function (result){--}}
+{{--            chart.setData(data);--}}
+{{--          }--}}
+{{--        });--}}
+{{--      });--}}
 
-    });
-  </script>
+{{--    });--}}
+{{--  </script>--}}
   {{-- datepicker --}}
   <script>
     $( function() {

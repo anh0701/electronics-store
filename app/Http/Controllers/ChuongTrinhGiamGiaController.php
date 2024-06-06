@@ -6,7 +6,6 @@ use App\Models\ChuongTrinhGiamGia;
 use App\Models\ChuongTrinhGiamGiaSP;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
-use App\Models\DanhMuc;
 use App\Rules\KiemTraTGCTGG;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
