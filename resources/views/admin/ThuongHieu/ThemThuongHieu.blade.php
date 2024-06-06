@@ -8,33 +8,40 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
                     <form role="form" action="{{ Route('/ThemThuongHieu') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên thương hiệu</label>
-                            <input type="text" class="form-control" name="TenThuongHieu" placeholder="Tên thương hiệu" onkeyup="ChangeToSlug();" id="slug" >
+                            <input type="text" class="form-control @error('TenThuongHieu') is-invalid @enderror" name="TenThuongHieu" placeholder="Tên thương hiệu" onkeyup="ChangeToSlug();" id="slug" value="{{old('TenThuongHieu')}}" >
                         </div>
+                        @error('TenThuongHieu')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug</label>
-                            <input type="text" class="form-control" name="SlugThuongHieu" placeholder="Slug" id="convert_slug">
+                            <input type="text" class="form-control @error('SlugThuongHieu') is-invalid @enderror" name="SlugThuongHieu" value="{{old('SlugThuongHieu')}}" placeholder="Slug" id="convert_slug">
                         </div>
+                        @error('SlugThuongHieu')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea id="editor1" style="resize: none" rows="5" class="form-control" name="MoTa" placeholder="Mô tả"></textarea>
+                            <textarea id="editor1" style="resize: none" rows="5" class="form-control @error('MoTa') is-invalid @enderror" name="MoTa" placeholder="Mô tả">{{old('MoTa')}}</textarea>
                         </div>
+                        @error('MoTa')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Chọn hình ảnh</label>
-                            <input type="file" class="form-control" name="HinhAnh" placeholder="Hình ảnh">
+                            <input type="file" class="form-control @error('HinhAnh') is-invalid @enderror" name="HinhAnh" placeholder="Hình ảnh">
                         </div>
+                        @error('HinhAnh')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Trạng thái thương hiệu</label>
                             <select name="TrangThai" class="form-control input-lg m-bot15">
@@ -42,6 +49,7 @@
                                 <option value="0" >Ẩn</option>
                             </select>
                         </div>
+
                         <button type="submit" name="ThemThuongHieu" class="btn btn-info">Thêm thương hiệu</button>
                     </form>
                 </div>

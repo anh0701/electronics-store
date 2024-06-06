@@ -27,12 +27,12 @@ class ThuongHieuController extends Controller
         ],
         [
             'TenThuongHieu.unique' => 'Trùng tên thương hiệu với một thương hiệu khác',
-            'TenThuongHieu.required' => 'Chưa điền tên thương hiệu',
+            'TenThuongHieu.required' => 'Vui lòng điền tên thương hiệu',
             'TenThuongHieu.max' => 'Tên thương hiệu dài quá 50 ký tự',
-            'SlugThuongHieu.required' => 'Chưa điền slug cho thương hiệu',
-            'MoTa.required' => 'Chưa điền Mô tả cho thương hiệu',
-            'TrangThai.required' => 'Chưa điền Trạng thái cho thương hiệu',
-            'HinhAnh.required' => 'Chưa chọn hình ảnh cho thương hiệu',
+            'SlugThuongHieu.required' => 'Vui lòng điền slug cho thương hiệu',
+            'MoTa.required' => 'Vui lòng điền Mô tả cho thương hiệu',
+            'TrangThai.required' => 'Vui lòng điền Trạng thái cho thương hiệu',
+            'HinhAnh.required' => 'Vui lòng chọn hình ảnh cho thương hiệu',
         ]);
         $thuongHieu = new ThuongHieu();
         $thuongHieu->TenThuongHieu = $data['TenThuongHieu'];
@@ -44,14 +44,14 @@ class ThuongHieuController extends Controller
 
         $get_image = $request->HinhAnh;
         $path = 'upload/ThuongHieu/';
-        $get_name_image = $get_image->getClientOriginalName(); 
+        $get_name_image = $get_image->getClientOriginalName();
         $name_image = current(explode('.', $get_name_image));
         $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
         $get_image->move($path, $new_image);
 
         $thuongHieu->HinhAnh = $new_image;
         $thuongHieu->save();
-        
+
         return Redirect::to('TrangLietKeThuongHieu')->with('status', 'Thêm thương hiệu sản phẩm thành công');
     }
 
@@ -69,7 +69,7 @@ class ThuongHieuController extends Controller
 
     public function TrangSuaThuongHieu($MaThuongHieu){
         $thuongHieu = ThuongHieu::where('MaThuongHieu' ,$MaThuongHieu)->get();
-        return view('admin.ThuongHieu.SuaThuongHieu', compact('thuongHieu')); 
+        return view('admin.ThuongHieu.SuaThuongHieu', compact('thuongHieu'));
     }
 
     public function SuaThuongHieu(Request $request, $MaThuongHieu){
@@ -80,10 +80,10 @@ class ThuongHieuController extends Controller
             'TrangThai' => 'required',
         ],
         [
-            'TenThuongHieu.required' => 'Chưa điền tên thương hiệu',
+            'TenThuongHieu.required' => 'Vui lòng điền tên thương hiệu mới',
             'TenThuongHieu.max' => 'Tên thương hiệu dài quá 50 ký tự',
-            'SlugThuongHieu.required' => 'Chưa điền slug cho thương hiệu',
-            'MoTa.required' => 'Chưa điền Mô tả cho thương hiệu',
+            'SlugThuongHieu.required' => 'Vui lòng điền slug cho thương hiệu mới',
+            'MoTa.required' => 'Vui lòng điền Mô tả cho thương hiệu mới',
             'TrangThai.required' => 'Chưa điền Trạng thái cho thương hiệu',
         ]);
         $thuongHieu = ThuongHieu::find($MaThuongHieu);
