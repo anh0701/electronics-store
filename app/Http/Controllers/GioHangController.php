@@ -3,20 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Exception;
 use Session;
+use App\Models\TaiKhoan;
 use App\Models\SanPham;
 use App\Models\DanhMuc;
 use App\Models\ThuongHieu;
 use App\Models\PhiGiaoHang;
 use App\Models\TinhThanhPho;
+use App\Models\PhieuGiamGia;
+use App\Models\PhieuGiamGiaNguoiDung;
+use App\Models\DonHang;
+use App\Models\ChiTietDonHang;
+use App\Models\PhieuBaoHanh;
+use App\Models\ChiTietPhieuBaoHanh;
+use App\Models\GiaoHang;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class GioHangController extends Controller
 {
-
     public function ThemGioHang(Request $request){
         $data = $request->all();
-        // khi mỗi sp dc thêm vào giỏ hàng thì tạo 1 $session_id làm vc thic dựa vào $session_id đó
         $session_id = substr(md5(microtime()), rand(0, 26), 5);
         $cart = Session::get('cart');
         if($cart == true){
@@ -34,6 +46,11 @@ class GioHangController extends Controller
                     'HinhAnh' => $data['cart_product_image'],
                     'SoLuong' => $data['cart_product_qty'],
                     'GiaSanPham' => $data['cart_product_price'],
+                    'ChieuCao' => $data['cart_product_height'],
+                    'ChieuNgang' => $data['cart_product_width'],
+                    'ChieuDay' => $data['cart_product_thick'],
+                    'CanNang' => $data['cart_product_weight'],
+                    'ThoiGianBaoHanh' => $data['cart_product_guarantee'],
                 );
                 Session::put('cart', $cart);
             }
@@ -45,6 +62,11 @@ class GioHangController extends Controller
                 'HinhAnh' => $data['cart_product_image'],
                 'SoLuong' => $data['cart_product_qty'],
                 'GiaSanPham' => $data['cart_product_price'],
+                'ChieuCao' => $data['cart_product_height'],
+                'ChieuNgang' => $data['cart_product_width'],
+                'ChieuDay' => $data['cart_product_thick'],
+                'CanNang' => $data['cart_product_weight'],
+                'ThoiGianBaoHanh' => $data['cart_product_guarantee'],
             );
         }
         Session::put('cart', $cart);
@@ -100,7 +122,6 @@ class GioHangController extends Controller
         $cart = Session::get('cart');
         if($cart){
             Session::forget('cart');
-            Session::forget('coupon');
             return Redirect()->back()->with('message', 'Xóa toàn bộ giỏ hàng'); 
         }else{
             return Redirect()->back()->with('message', 'Giỏ hàng đang trống'); 
@@ -114,24 +135,175 @@ class GioHangController extends Controller
             if($phiGiaoHang){
                 if($phiGiaoHang->isNotEmpty()){
                     foreach($phiGiaoHang as $key => $value){
-                        Session::put('fee', $value->SoTien);
+                        $array = array(
+                            'MaPhiGiaoHang' => $value->MaPhiGiaoHang,
+                            'SoTien' => $value->SoTien,
+                        );
+                        Session::put('PhiGiaoHang', $array);
                         Session::save();
                     }
                 }else{
-                    Session::put('fee', 15000);
-                    Session::save();
+                    return Redirect()->back()->with('message', 'Chọn địa điểm khác để giao hàng'); 
                 }
+            }
+        }else{
+            return Redirect()->back()->with('message', 'Hãy chọn thành phố khác'); 
+        }
+    }
+
+    public function HuyPhiGiaoHang(){
+        $phiGiaoHang = Session::get('PhiGiaoHang');
+        if($phiGiaoHang){
+            Session::forget('PhiGiaoHang');
+            return Redirect()->back()->with('message', 'Xóa Phí giao hàng thành công'); 
+        }else{
+            return Redirect()->back()->with('message', 'Chưa tính phí giao hàng'); 
+        }
+    }
+
+    public function ApDungPhieuGiamGia(Request $request){
+        $data = $request->all();
+        if($data['MaCode'] == null){
+            return Redirect()->back()->with('error', 'Bạn hãy điền Mã code của phiếu giảm giá'); 
+        }elseif(Empty(Session('cart'))){
+            return Redirect()->back()->with('error', 'Bạn hãy thêm sản phẩm vào giỏ hàng'); 
+        }elseif(Empty(Session('user'))){
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để dùng phiếu giảm giá này'); 
+        }else{
+            $user = Session::get('user');
+            $phieuGiamGia = PhieuGiamGia::where('MaCode', $data['MaCode'])->first();
+            $taiKhoan = TaiKhoan::where('Email', $user['Email'])->first();
+            if($phieuGiamGia){
+                $phieuGiamGiaND = PhieuGiamGiaNguoiDung::where('Email', $taiKhoan['Email'])->where('MaGiamGia', $phieuGiamGia['MaGiamGia'])->first();
+                if($phieuGiamGiaND['SoLuong'] > 0){
+                    $array = array(
+                        'MaGiamGia' => $phieuGiamGiaND->MaGiamGia,
+                        'SoLuong' => $phieuGiamGiaND->SoLuong,
+                        'MaCode' => $phieuGiamGiaND->PhieuGiamGia->MaCode,
+                        'DonViTinh' => $phieuGiamGiaND->PhieuGiamGia->DonViTinh,
+                        'TriGia' => $phieuGiamGiaND->PhieuGiamGia->TriGia,
+                    );
+                    Session::put('PhieuGiamGia', $array);
+                    return Redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
+                }elseif($phieuGiamGiaND['SoLuong'] == 0){
+                    return Redirect()->back()->with('error', 'Bạn đã dùng hết số lượng phiếu giảm giá này');
+                }
+            }else{
+                return Redirect()->back()->with('error', 'Không tồn tại phiếu giảm giá này');
             }
         }
     }
 
-    public function XoaPhiGiaoHang(){
-        $phiGiaoHang = Session::get('fee');
-        if($phiGiaoHang){
-            Session::forget('fee');
-            return Redirect()->back()->with('message', 'Xóa Phí giao hàng thành công'); 
+    public function HuyPhieuGiamGia(){
+        $phieuGiamGia = Session::get('PhieuGiamGia');
+        if($phieuGiamGia){
+            Session::forget('PhieuGiamGia');
+            return Redirect()->back()->with('message', 'Xóa Phiếu giảm giá thành công'); 
         }else{
-            return Redirect()->back()->with('message', 'Chưa tính phí giao hàng'); 
+            return Redirect()->back()->with('message', 'Chưa áp dụng phiếu giảm giá nào'); 
+        }
+        // echo '<pre>';
+        // print_r($phieuGiamGia['MaGiamGia']);
+        // echo '</pre>';
+    }
+
+    public function DatHang(Request $request){
+        if(Empty(Session('cart'))){
+            return Redirect()->back()->with('error', 'Bạn hãy thêm sản phẩm vào giỏ hàng trước khi thanh toán'); 
+        }elseif(Empty(Session('user'))){
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể thực hiện thanh toán'); 
+        }elseif(Empty(Session('PhiGiaoHang'))){
+            return Redirect()->back()->with('error', 'Bạn hãy chọn địa điểm để tính tiền giao hàng'); 
+        }else{
+            $gioHangSession = Session::get('cart');
+            $sanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
+            foreach($sanPham as $key => $value){
+                foreach($gioHangSession as $key => $gioHang){
+                    if($value->MaSanPham == $gioHang['MaSanPham']){
+                        if($value->SoLuongHienTai < $gioHang['SoLuong']){
+                            return Redirect()->back()->with('error', 'Sản phẩm '.$value->TenSanPham.' không đủ số lượng so với đơn hàng của bạn'); 
+                        }
+
+                    }
+                }
+            }
+
+            $data = $request->validate([
+                'TenNguoiNhan' => 'required',
+                'SoDienThoai' => 'required',
+                'DiaChi' => 'required',
+                'GhiChu' => '',
+                'PhiGiaoHang' => '',
+            ],
+            [
+                'TenNguoiNhan.required' => 'Bạn chưa điền tên người nhận hàng',
+                'SoDienThoai.required' => 'Bạn chưa điền số điện thoại',
+                'DiaChi.required' => 'Bạn chưa điền địa chỉ giao hàng',
+            ]);
+            $phieuGiamGiaSession = Session::get('PhieuGiamGia');
+            $taiKhoanSession = Session::get('user');
+            $phiGiaoHangSession = Session::get('PhiGiaoHang');
+
+            $phiGiaoHang = PhiGiaoHang::where('MaPhiGiaoHang', $phiGiaoHangSession['MaPhiGiaoHang'])->first();
+            $diaChiGiaoHang = $data['DiaChi'].' '.$phiGiaoHang->XaPhuongThiTran->TenXaPhuong.' '.
+            $phiGiaoHang->QuanHuyen->TenQuanHuyen.' '.$phiGiaoHang->TinhThanhPho->TenThanhPho;
+            $giaoHang = new GiaoHang;
+            $giaoHang->TenNguoiNhan = $data['TenNguoiNhan'];
+            $giaoHang->DiaChi = $diaChiGiaoHang;
+            $giaoHang->TienGiaoHang = $data['PhiGiaoHang'];
+            $giaoHang->SoDienThoai = $data['SoDienThoai'];
+            $giaoHang->GhiChu = $data['GhiChu'];
+            $giaoHang->save();
+            $MaGiaoHang = $giaoHang->MaGiaoHang;
+
+            $thanhToan_code = substr(md5(microtime()),rand(0,26),5);
+
+            $donHang = new DonHang;
+            $donHang->Email = $taiKhoanSession['Email'];
+            $donHang->MaGiaoHang = $MaGiaoHang;
+            $donHang->order_code = $thanhToan_code;
+            if(Empty($phieuGiamGiaSession)){
+                $donHang->MaGiamGia = null;
+            }else{
+                $donHang->MaGiamGia = $phieuGiamGiaSession['MaGiamGia'];
+                
+            }
+            $donHang->TrangThai = 1;
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $donHang->ThoiGianTao = now();
+            $donHang->save();
+
+            foreach(Session('cart') as $key => $valueGioHang){
+                $chiTietDonHang = new ChiTietDonHang;
+                $chiTietDonHang->order_code = $thanhToan_code;
+                $chiTietDonHang->MaSanPham = $valueGioHang['MaSanPham'];
+                $chiTietDonHang->SoLuong = $valueGioHang['SoLuong'];
+                $chiTietDonHang->GiaSanPham = $valueGioHang['GiaSanPham'];
+                $chiTietDonHang->save();
+            }
+
+            $phieuBaoHanh = new PhieuBaoHanh();
+            $phieuBaoHanh->order_code = $thanhToan_code;
+            $phieuBaoHanh->TenKhachHang = $data['TenNguoiNhan'];
+            $phieuBaoHanh->SoDienThoai = $data['SoDienThoai'];
+            $phieuBaoHanh->ThoiGianTao = now();
+            $phieuBaoHanh->save();
+
+            foreach(Session('cart') as $key => $valueGioHang){
+                $chiTietPhieuBaoHanh = new ChiTietPhieuBaoHanh;
+                $chiTietPhieuBaoHanh->order_code = $thanhToan_code;
+                $chiTietPhieuBaoHanh->MaSanPham = $valueGioHang['MaSanPham'];
+                $chiTietPhieuBaoHanh->SoLuong = $valueGioHang['SoLuong'];
+                $chiTietPhieuBaoHanh->ThoiGianBaoHanh = $valueGioHang['ThoiGianBaoHanh'];
+                $chiTietPhieuBaoHanh->ThoiGianBatDau = Carbon::now();
+                $chiTietPhieuBaoHanh->ThoiGianKetThuc = Carbon::now()->addMonths($valueGioHang['ThoiGianBaoHanh']);
+                $chiTietPhieuBaoHanh->save();
+            }
+
+            Session::forget('PhieuGiamGia');
+            Session::forget('PhiGiaoHang');
+            Session::forget('cart');
+            return Redirect()->back()->with('message', 'Đặt hành thành công'); 
         }
     }
 }

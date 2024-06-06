@@ -55,6 +55,24 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều cao</label>
+                                <input type="text" class="form-control" name="ChieuCao" placeholder="Chiều cao">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều ngang</label>
+                                <input type="text" class="form-control" name="ChieuNgang" placeholder="Chiều ngang">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều dày</label>
+                                <input type="text" class="form-control" name="ChieuDay" placeholder="Chiều dày">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Cân nặng</label>
+                                <input type="text" class="form-control" name="CanNang" placeholder="Cân nặng">
+                            </div>
+                        </div>
                         <div class="form-group DanhMucTSKT" id="DanhMucTSKT" name="DanhMucTSKT">
                         </div>
                         <div class="form-group">
@@ -76,6 +94,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
                             <input type="text" class="form-control" name="SoTien" placeholder="Giá sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thời gian bảo hành (theo tháng)</label>
+                            <input type="text" class="form-control" name="ThoiGianBaoHanh" placeholder="Thời hạn bảo hành (Theo tháng)">
                         </div>
                         <button type="submit" name="ThemSanPham" class="btn btn-info">Thêm sản phẩm</button>
                     </form>

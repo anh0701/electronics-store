@@ -6,11 +6,13 @@ use App\Models\ChuongTrinhGiamGia;
 use App\Models\ChuongTrinhGiamGiaSP;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
+use App\Models\DanhMuc;
 use App\Rules\KiemTraTGCTGG;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Session;
 
 class ChuongTrinhGiamGiaController extends Controller
 {
@@ -254,6 +256,5 @@ class ChuongTrinhGiamGiaController extends Controller
             ->get();
 //        dd($phieuGiamGia);
         return view('admin.ChuongTrinhGiamGia.lietKeChuongTrinhGiamGia')->with(compact("discountPrograms"));
-
     }
 }

@@ -106,6 +106,24 @@
                                 </select>
                             @endforeach
                         </div>
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều cao (Đơn vị cm)</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuCao }}" name="ChieuCao" placeholder="Chiều cao">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều ngang (Đơn vị cm)</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuNgang }}" name="ChieuNgang" placeholder="Chiều ngang">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Chiều dày (Đơn vị cm)</label>
+                                <input type="text" class="form-control" value="{{ $value->ChieuDay }}" name="ChieuDay" placeholder="Chiều dày">
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="exampleInputPassword1">Cân nặng (Đơn vị kg)</label>
+                                <input type="text" class="form-control" value="{{ $value->CanNang }}" name="CanNang" placeholder="Cân nặng">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
                             <textarea id="MoTa" style="resize: none" value="" rows="10" class="form-control" name="MoTa" placeholder="Mô tả sản phẩm">{{ $value->MoTa }}</textarea>
@@ -130,6 +148,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
                             <input type="text" value="{{ $value->GiaSanPham }}" class="form-control" name="GiaSanPham" >
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thời gian bảo hành (theo tháng)</label>
+                            <input type="text" class="form-control" value="{{ $value->ThoiGianBaoHanh }}" name="ThoiGianBaoHanh" placeholder="Thời hạn bảo hành (Theo tháng)">
                         </div>
                         <button type="submit" name="SuaSanPham" class="btn btn-info">Cập nhật sản phẩm</button>
                     </form>

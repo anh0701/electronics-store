@@ -9,18 +9,12 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use App\Models\TaiKhoan;
-use App\Models\PhanQuyen;
-use App\Models\PhanQuyenNguoiDung;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class TaiKhoanController extends Controller
 {
-    public function dashboard(){
-        return view('admin_layout');
-    }
-
     public function dangNhap(Request $request){
         session::forget('user');
         return view('auth.dangNhap');
@@ -52,6 +46,7 @@ class TaiKhoanController extends Controller
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
+                    'Email' => $taikhoan->Email,
                 ]);
                 return redirect('/');
             }
@@ -64,8 +59,9 @@ class TaiKhoanController extends Controller
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
+                    'Email' => $taikhoan->Email,
                 ]);
-                return redirect('/trang-quan-ly');
+                return redirect('/dashboard');
             }
         }else {
             return redirect()->back()->withInput()->withErrors([
@@ -198,6 +194,9 @@ class TaiKhoanController extends Controller
 
     public function dangXuat(){
         session::forget('user');
+        session::forget('cart');
+        session::forget('PhiGiaoHang');
+        session::forget('PhieuGiamGia');
         return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
     }
 
@@ -310,7 +309,7 @@ class TaiKhoanController extends Controller
         if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
             return redirect('/');
         }else{
-            return view('admin_layout', compact('user'));
+            return view('admin.dashboard', compact('user'));
         }
     }
 
