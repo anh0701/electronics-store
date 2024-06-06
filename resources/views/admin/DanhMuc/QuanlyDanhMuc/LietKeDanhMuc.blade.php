@@ -6,9 +6,9 @@
          Liệt kê danh mục sản phẩm
       </div>
       <div class="row w3-res-tb">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="input-group">
             <input type="text" class="input-sm form-control" placeholder="Search">
             <span class="input-group-btn">
@@ -16,6 +16,7 @@
             </span>
           </div>
         </div>
+          <div class="col-sm-2"></div>
       </div>
       <div class="table-responsive">
         <?php
@@ -56,7 +57,7 @@
                   @foreach ($allDanhMucCha as $key => $danhMucCha)
                     @if ($danhMuc->DanhMucCha == $danhMucCha->MaDanhMuc)
                     <span style="color: rgb(25, 174, 25)">{{ $danhMucCha->TenDanhMuc }}</span>
-                    @endif                    
+                    @endif
                   @endforeach
                 @endif
               </td>
@@ -64,12 +65,12 @@
                 <?php
                 if ($danhMuc->TrangThai == 1){
                 ?>
-                  <a href="{{ route('/KoKichHoatDanhMuc', $danhMuc->MaDanhMuc) }}" ><span 
+                  <a href="{{ route('/KoKichHoatDanhMuc', $danhMuc->MaDanhMuc) }}" ><span
                     style="font-size: 28px; color: green; content: \f164" class="fa-solid fa-thumbs-up"></span></a>
                 <?php
                 }else{
                 ?>
-                  <a href="{{ route('/KichHoatDanhMuc', $danhMuc->MaDanhMuc) }}" ><span 
+                  <a href="{{ route('/KichHoatDanhMuc', $danhMuc->MaDanhMuc) }}" ><span
                     style="font-size: 28px; color: red; ; content: \f164" class="fa-thumb-styling-down fa fa-thumbs-down"></span></a>
                 <?php
                 }
@@ -88,7 +89,7 @@
         <div class="row">
           <div class="col-sm-5 text-center">
           </div>
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
               {{ $allDanhMuc->links('vendor.pagination.bootstrap-4') }}
             </ul>
