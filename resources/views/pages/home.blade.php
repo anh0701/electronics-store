@@ -84,134 +84,14 @@
     </div>
 </div>
 <div class="col-sm-9 padding-right">
-    <div class="features_items">
-        <h2 class="title text-center">Sản phẩm nổi bật</h2>
-        @foreach ($allSanPham as $key => $sanPham)
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <form>
-                            {{ csrf_field() }}
-                            <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->ChieuCao }}" class="cart_product_height_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
-                            <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
-                            <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
-                                <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
-                                <p class="product-name">{{ $sanPham->TenSanPham }}</p>
-                                <h2 class="">{{  number_format($sanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
-                                <p class="vote-txt">
-                                    @php
-                                    $count = 0;
-                                    $tongSoSao = 0;
-                                        foreach($allDanhGia as $key => $danhGia){
-                                            if($danhGia->MaSanPham == $sanPham->MaSanPham){
-                                                $count++;
-                                                $tongSoSao += $danhGia->SoSao;
-                                            }
-                                        }
-                                    @endphp
-                                    @php
-                                        if($count > 0){
-                                        $tongSoSao = $tongSoSao/$count
-                                    @endphp
-                                        <b>{{ number_format($tongSoSao, 1); }}</b>
-                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
-                                        <b>({{ $count }})</b>
-                                    @php
-                                        }elseif($count == 0){
-                                    @endphp
-                                        <b>0</b>
-                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
-                                        <b>(0)</b>
-                                    @php
-                                        }
-                                    @endphp
-                                </p>
-                            </a>
-                            <button type="button" class="btn btn-default add-to-cart ThemGioHang"
-                            data-id_product="{{ $sanPham->MaSanPham }}">
-                                <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-    {{ $allSanPham->links('vendor.pagination.custom') }}
-</div>
-<div class="category-tab"><!--category-tab-->
-    <div class="col-sm-12">
-        <ul class="nav nav-tabs">
-            @php
-                $i = 0;
-            @endphp
-            @foreach ($allDanhMuc as $key => $danhMuc)
-                @if ($danhMuc->DanhMucCha == 0)
-                    @php
-                        $i++;
-                    @endphp
-                    <li class="tabs_pro {{ $i==1 ? 'active' : ''}}" data-id="{{ $danhMuc->MaDanhMuc }}"><a href="#tshirt" data-toggle="tab">{{ $danhMuc->TenDanhMuc }}</a></li>
-                @endif
-            @endforeach
-        </ul>
-    </div>
-    <div id="tabs_product">
-    </div>
-</div><!--/category-tab-->
-<div class="col-sm-12 padding-right">
-    <div class="shopping-trends">
-        <strong class="name-box">Xu hướng mua sắm</strong>
-        <ul>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [17]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam1.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam2.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam3.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
-                    <img src="{{ asset('backend/images/xuhuongmuasam4.png') }}" alt="">
-                    <span>Máy lạnh</span>
-                    <strong>Giá từ 4.999.000 đ</strong>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="col-sm-12">
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <img src="{{ asset('frontend/images/shop/Frame-de-1200x80 (1).png') }}" style="margin-bottom: 15px; width: 100%" alt="">    
             <div class="carousel-inner">
-                @foreach ($sanPhamNoiBat->chunk(10) as $valueSanpham)
+                @foreach ($sanPhamNoiBat->chunk(4) as $valueSanpham)
                     <div class="item {{ $loop->first ? 'active' : '' }}">	
                         @foreach ($valueSanpham as $sanPham)
-                            <div class="col-sm-15">
+                            <div class="col-sm-3">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
@@ -281,7 +161,128 @@
             </a>			
         </div>
     </div>
-@endif
+</div>
+<div class="category-tab"><!--category-tab-->
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+            @php
+                $i = 0;
+            @endphp
+            @foreach ($allDanhMuc as $key => $danhMuc)
+                @if ($danhMuc->DanhMucCha == 0)
+                    @php
+                        $i++;
+                    @endphp
+                    <li class="tabs_pro {{ $i==1 ? 'active' : ''}}" data-id="{{ $danhMuc->MaDanhMuc }}"><a href="#tshirt" data-toggle="tab">{{ $danhMuc->TenDanhMuc }}</a></li>
+                @endif
+            @endforeach
+        </ul>
+    </div>
+    <div id="tabs_product">
+    </div>
+</div><!--/category-tab-->
+<div class="col-sm-12">
+    <div class="features_items">
+        <h2 class="title text-center">Sản phẩm nổi bật</h2>
+        @foreach ($allSanPham as $key => $sanPham)
+        <div class="col-sm-15">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <form>
+                            {{ csrf_field() }}
+                            <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->ChieuCao }}" class="cart_product_height_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
+                            <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
+                                <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
+                                <p class="product-name">{{ $sanPham->TenSanPham }}</p>
+                                <h2 class="">{{  number_format($sanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
+                                <p class="vote-txt">
+                                    @php
+                                    $count = 0;
+                                    $tongSoSao = 0;
+                                        foreach($allDanhGia as $key => $danhGia){
+                                            if($danhGia->MaSanPham == $sanPham->MaSanPham){
+                                                $count++;
+                                                $tongSoSao += $danhGia->SoSao;
+                                            }
+                                        }
+                                    @endphp
+                                    @php
+                                        if($count > 0){
+                                        $tongSoSao = $tongSoSao/$count
+                                    @endphp
+                                        <b>{{ number_format($tongSoSao, 1); }}</b>
+                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                        <b>({{ $count }})</b>
+                                    @php
+                                        }elseif($count == 0){
+                                    @endphp
+                                        <b>0</b>
+                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                        <b>(0)</b>
+                                    @php
+                                        }
+                                    @endphp
+                                </p>
+                            </a>
+                            <button type="button" class="btn btn-default add-to-cart ThemGioHang"
+                            data-id_product="{{ $sanPham->MaSanPham }}">
+                                <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    {{ $allSanPham->links('vendor.pagination.custom') }}
+</div>
+<div class="col-sm-12 padding-right">
+    <div class="shopping-trends">
+        <strong class="name-box">Xu hướng mua sắm</strong>
+        <ul>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [17]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam1.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam2.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam3.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('/HienThiDanhMucCha', [1]) }}">
+                    <img src="{{ asset('backend/images/xuhuongmuasam4.png') }}" alt="">
+                    <span>Máy lạnh</span>
+                    <strong>Giá từ 4.999.000 đ</strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -324,7 +325,6 @@
         window.slideProducts = slideProducts; // Expose the function to the global scope
     });
 </script>
-
 <style>
     .discount-image-container {
         display: flex;

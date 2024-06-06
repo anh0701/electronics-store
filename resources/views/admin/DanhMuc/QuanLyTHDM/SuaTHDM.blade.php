@@ -35,7 +35,7 @@
                         <div class="form-group row">
                             <div class="col-lg-6">
                                 <label for="exampleInputPassword1">Chọn danh mục cha</label>
-                                <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 choose DanhMucCha">
+                                <select name="DanhMucCha" id="DanhMucCha" class="form-control input-lg m-bot15 chonDanhMucTSKT DanhMucCha">
                                     @foreach ($allDanhMuc as $key => $valueDanhMuc)
                                         @if ($value->MaDanhMuc == $valueDanhMuc->MaDanhMuc)
                                             <option selected value="{{ $valueDanhMuc->MaDanhMuc }}" >---{{ $valueDanhMuc->TenDanhMuc }}---</option>

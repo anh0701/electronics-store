@@ -38,6 +38,8 @@ Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKe
 Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
 Route::post('/fillter-by-date', [TonKhoController::class, 'fillter_by_date'])->name('/fillter-by-date');
 Route::get('/Test', [TonKhoController::class, 'Test'])->name('/Test');
+Route::get('/TrangLietKeBCDT', [TonKhoController::class, 'TrangLietKeBCDT'])->name('/TrangLietKeBCDT');
+
 
 
 

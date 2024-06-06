@@ -10,6 +10,8 @@ use App\Models\PhieuGiamGiaNguoiDung;
 use App\Models\DonHang;
 use App\Models\GiaoHang;
 use App\Models\ChiTietDonHang;
+use App\Models\ChiTietPhieuNhap;
+use App\Models\BaoCaoDoanhThu;
 use Illuminate\Support\Facades\Redirect;
 
 class DonHangController extends Controller
@@ -118,10 +120,7 @@ class DonHangController extends Controller
         $allChiTietDonHang = ChiTietDonHang::where('order_code', $order_code)->get();
         $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
         $donHang = DonHang::where('MaDonHang', $MaDonHang)->first();
-
-        // echo '<pre>';
-        // print_r(count($allChiTietDonHang));
-        // echo '</pre>';
+        $allChiTietPhieuNhap = ChiTietPhieuNhap::orderBy('MaCTPN', 'DESC')->get();
 
         if($donHang['TrangThai'] == 1){
             if($data['TrangThaiDonHang'] != 2){
@@ -142,8 +141,59 @@ class DonHangController extends Controller
             if($data['TrangThaiDonHang'] == 1){
                 return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật sai trạng thái đơn hàng');
             }elseif($data['TrangThaiDonHang'] == 3){
-                DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 3]);
-                return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng thanh toán đơn hàng');
+                //DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 3]);
+                // echo '<pre>';
+                // print_r($donHang['MaGiaoHang']);
+                // echo '</pre>';
+                $doanhThu = 0;
+                $loiNhuan = 0;
+                $soLuongSanPham = 0;
+
+                foreach($allChiTietDonHang as $key => $value){
+                    $soLuongSanPham += $value['SoLuong'];
+                    if(Empty($donHang['MaGiamGia'])){
+                        $doanhThu += $value['SoLuong'] * $value['GiaSanPham'];
+                    }elseif($donHang['MaGiamGia']){
+                        $PhieuGiamGia = PhieuGiamGia::where('MaGiamGia', $MaGiamGia)->first();
+                        if($PhieuGiamGia['DonViTinh'] == 1){
+                            $doanhThu = $doanhThu - $PhieuGiamGia['TriGia'];
+                        }elseif($PhieuGiamGia['DonViTinh'] == 1){
+                            $doanhThu = $doanhThu*(100 - $PhieuGiamGia['TriGia'])/100;
+                        }
+                    }
+                }
+
+                foreach($allChiTietDonHang as $key => $value1){
+                    foreach($allChiTietPhieuNhap as $key => $value2){
+                        if($value1['MaSanPham'] == $value2['MaSanPham']){
+                            $loiNhuan = $doanhThu - $value2['GiaSanPham']*$value1['SoLuong'];
+                        }else{
+                            $loiNhuan = $doanhThu*(100 - 80)/100;
+                        }
+                    }
+                }
+
+                $ngayThangNam = date("Y-m-d", strtotime($donHang['ThoiGianTao']));
+                $baoCaoDoanhThu = BaoCaoDoanhThu::where('order_date', $ngayThangNam)->first();
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $today = now();
+                if($baoCaoDoanhThu){
+                    $themBCDT = new BaoCaoDoanhThu();
+                    $themBCDT->order_date = date("Y-m-d", strtotime($today));
+                    $themBCDT->sales = $doanhThu;
+                    $themBCDT->profit = $loiNhuan;
+                    $themBCDT->quantity = $soLuongSanPham;
+                    $themBCDT->total_order = 1;
+                    $themBCDT->save();
+                }elseif(Empty($baoCaoDoanhThu)){
+                    $suaBCDT = BaoCaoDoanhThu::find($ngayThangNam);
+                    $themBCDT->sales += $doanhThu;
+                    $themBCDT->profit += $loiNhuan;
+                    $themBCDT->quantity += $soLuongSanPham;
+                    $themBCDT->total_order += 1;
+                    $themBCDT->save();
+                }
+            return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng thanh toán đơn hàng');
             }elseif($data['TrangThaiDonHang'] == 4){
                 foreach($allChiTietDonHang as $key => $chiTietDonHang){
                     foreach($allSanPham as $key => $sanPham){

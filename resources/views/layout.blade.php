@@ -249,9 +249,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
-
 			var MaDanhMuc = $('.tabs_pro').data('id');
-			//alert(MaDanhMuc);
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
 				url: '{{ route('/product-tabs') }}',
