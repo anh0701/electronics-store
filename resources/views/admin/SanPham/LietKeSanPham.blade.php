@@ -6,19 +6,23 @@
          Liệt kê sản phẩm
       </div>
       <div class="row w3-res-tb">
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-3">
-          <div class="input-group">
-              <form action="{{Route('tim-kiem-san-pham')}}" method="get">
-
-                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
-                <span class="input-group-btn">
-                  <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-                </span>
-              </form>
+          <div class="col-sm-6">
           </div>
+        <div class="col-sm-5">
+              <form action="{{Route('tim-kiem-san-pham')}}" method="get">
+                  <div class="input-group">
+                        <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Tìm kiếm">
+                          <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                        </span>
+                      <span class="input-group-btn">
+                          <a class="btn btn-sm btn-default" href="{{ Route('/TrangLietKeSanPham') }}">Xem tất cả</a>
+                      </span>
+                  </div>
+              </form>
         </div>
+          <div class="col-sm-2">
+          </div>
       </div>
       <div class="table-responsive">
         <?php
@@ -76,7 +80,10 @@
         <div class="row">
           <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allSanPham->links('vendor.pagination.bootstrap-4') }}
+                @if ($allSanPham instanceof \Illuminate\Pagination\LengthAwarePaginator)
+
+                    {{ $allSanPham->links('vendor.pagination.bootstrap-4') }}
+                @endif
             </ul>
           </div>
       </div>

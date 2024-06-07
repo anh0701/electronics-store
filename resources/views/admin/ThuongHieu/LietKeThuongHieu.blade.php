@@ -9,12 +9,18 @@
         <div class="col-sm-6">
         </div>
         <div class="col-sm-4">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
-          </div>
+            <form action="{{route('timKiemThuongHieu')}}" method="get">
+
+              <div class="input-group">
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                </span>
+                  <span class="input-group-btn">
+                          <a class="btn btn-sm btn-default" href="{{ Route('/TrangLietKeThuongHieu') }}">Xem tất cả</a>
+                  </span>
+              </div>
+            </form>
         </div>
           <div class="col-sm-2"></div>
       </div>
@@ -63,7 +69,7 @@
               </span></td>
               <td>
                 <a href="{{ route('/TrangSuaThuongHieu', $thuongHieu->MaThuongHieu) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
-                <a onclick="return confirm('Bạn có muốn xóa thương hiệu {{ $thuongHieu->TenThuongHieu }} không?')" href="{{ route('/XoaThuongHieu', [$thuongHieu->MaThuongHieu]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
+                <a onclick="return confirm('Bạn có muốn vô hiệu hóa thương hiệu {{ $thuongHieu->TenThuongHieu }} không?')" href="{{ route('/XoaThuongHieu', [$thuongHieu->MaThuongHieu]) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i></a>
               </td>
             </tr>
             @endforeach
@@ -74,7 +80,10 @@
         <div class="row">
           <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allThuongHieu->links('vendor.pagination.bootstrap-4') }}
+                @if ($allThuongHieu instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                     {{ $allThuongHieu->links('vendor.pagination.bootstrap-4') }}
+
+                @endif
             </ul>
           </div>
         </div>
