@@ -160,7 +160,7 @@
                                                             if($count > 0){
                                                             $tongSoSao = $tongSoSao/$count
                                                         @endphp
-                                                            <b>{{ number_format($tongSoSao, 1); }}</b>
+                                                            <b>{{ number_format($tongSoSao, 1) }}</b>
                                                             <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
                                                             <b>({{ $count }})</b>
                                                         @php
@@ -235,7 +235,7 @@
                                             if($count > 0){
                                             $tongSoSao = $tongSoSao/$count
                                         @endphp
-                                            <b>{{ number_format($tongSoSao, 1); }}</b>
+                                            <b>{{ number_format($tongSoSao, 1) }}</b>
                                             <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
                                             <b>({{ $count }})</b>
                                         @php
