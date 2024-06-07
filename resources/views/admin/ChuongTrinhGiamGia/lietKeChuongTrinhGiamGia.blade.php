@@ -1,3 +1,4 @@
+@php use Illuminate\Pagination\LengthAwarePaginator; @endphp
 @extends('admin_layout')
 @section('admin_content')
     <div class="table-agile-info">
@@ -67,7 +68,8 @@
                                         style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;"
                                         class="fa fa-times text-danger text"></i></a>
                                 <a href="{{ route('/xem-chi-tiet-ctgg', $program->MaCTGG) }}">
-                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i></a>
+                                    <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px"
+                                       class="fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -80,7 +82,7 @@
                     </div>
                     <div class="col-sm-7 text-right text-center-xs">
                         <ul class="pagination pagination-sm m-t-none m-b-none">
-                            @if ($discountPrograms instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                            @if ($discountPrograms instanceof LengthAwarePaginator)
                                 {{ $discountPrograms->links('vendor.pagination.bootstrap-4') }}
                             @endif
                         </ul>

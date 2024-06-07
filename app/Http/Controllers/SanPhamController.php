@@ -155,7 +155,7 @@ class SanPhamController extends Controller
             $sanPhamTSKT->ThoiGianTao = now();
             $sanPhamTSKT->save();
         }
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Thêm sản phẩm mới thành công');
+        return Redirect::to('trang-liet-ke-san-pham')->with('status', 'Thêm sản phẩm mới thành công');
     }
 
     public function TrangSuaSanPham($MaSanPham){
@@ -299,7 +299,7 @@ class SanPhamController extends Controller
             $sanPhamTSKT->ThoiGianSua = now();
             $sanPhamTSKT->save();
         }
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Cập nhật sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-san-pham')->with('status', 'Cập nhật sản phẩm thành công');
     }
 
     public function XoaSanPham($MaSanPham){
@@ -307,24 +307,27 @@ class SanPhamController extends Controller
         $sanPham = SanPham::find($MaSanPham);
         $sanPham->update(['TrangThai'=>0]);
 
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Xóa sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-san-pham')->with('status', 'Xóa sản phẩm thành công');
     }
 
     public function KoKichHoatSanPham($MaSanPham){
         $sanPham = SanPham::find($MaSanPham);
         $sanPham->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Không kích hoạt sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-san-pham')->with('status', 'Không kích hoạt sản phẩm thành công');
     }
 
     public function KichHoatSanPham($MaSanPham){
         $sanPham = SanPham::find($MaSanPham);
         $sanPham->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Kích hoạt sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-san-pham')->with('status', 'Kích hoạt sản phẩm thành công');
     }
 
     public function timKiem(Request $request)
     {
-        $kq = SanPham::where('TenSanPham', 'LIKE', $request->TuKhoa)
-                    ->orWhere('');
+        $allSanPham = SanPham::where('TenSanPham', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('SlugSanPham', 'LIKE', "%{$request->TuKhoa}%")
+        ->get();
+//        dd($kq);
+        return view('admin.SanPham.LietKeSanPham')->with(compact('allSanPham'));
     }
 }
