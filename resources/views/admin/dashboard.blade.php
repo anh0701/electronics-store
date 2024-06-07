@@ -54,7 +54,7 @@
         </div>
     </div>
    <div class="clearfix"> </div>
-</div>	
+</div>
 <div class="container-fluid">
     <style type="text/css">
         p.title_thongke {
@@ -77,11 +77,12 @@
             <div class="col-md-2">
                 <p>
                     Lọc theo:
-                    <select class="dashoard-fillter form-control">
+                    <select class="dashoard-filter form-control">
                         <option value="">---Chọn---</option>
                         <option value="7ngay">7 ngày qua</option>
                         <option value="thangtruoc">tháng trước</option>
                         <option value="thangnay">tháng ngày</option>
+                        <option value="3thangtruoc">3 tháng trước</option>
                         <option value="365ngayqua">365 ngày qua</option>
                     </select>
                 </p>
@@ -89,7 +90,12 @@
         </form>
     </div>
     <div class="col-sm-12">
+        <p class="title_thongke">Biểu đồ thống kê doanh số và lợi nhuận</p>
         <div id="chart" style="height: 350px;"></div>
+    </div>
+    <div class="col-sm-12">
+        <p class="title_thongke">Biểu đồ thống kê số đơn hàng và số sản phẩm</p>
+        <div id="chart2" style="height: 350px;"></div>
     </div>
 </div>
 @endsection

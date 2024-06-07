@@ -36,9 +36,11 @@ Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
 Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
-Route::post('/fillter-by-date', [TonKhoController::class, 'fillter_by_date'])->name('/fillter-by-date');
+Route::post('/filter-by-date', [TonKhoController::class, 'filter_by_date'])->name('/filter-by-date');
 Route::get('/Test', [TonKhoController::class, 'Test'])->name('/Test');
 Route::get('/TrangLietKeBCDT', [TonKhoController::class, 'TrangLietKeBCDT'])->name('/TrangLietKeBCDT');
+Route::post('/dashboard-filter', [TonKhoController::class, 'dashboard_filter'])->name('/dashboard-filter');
+Route::post('/days-order', [TonKhoController::class, 'days_order'])->name('/days-order');
 
 
 

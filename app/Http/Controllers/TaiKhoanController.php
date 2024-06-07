@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use App\Models\TaiKhoan;
+use App\Models\BaoCaoDoanhThu;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -123,6 +124,7 @@ class TaiKhoanController extends Controller
     public function trangAdmin(){
         $user = session('user');
         $quyen = $user['Quyen'];
+
         if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
             return redirect('/');
         }else{
@@ -309,7 +311,10 @@ class TaiKhoanController extends Controller
         if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
             return redirect('/');
         }else{
-            return view('admin.dashboard', compact('user'));
+            $dauThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
+            $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+            $baoCaoDoanhThu = BaoCaoDoanhThu::orderBy('MaBCDT', 'DESC')->whereBetween('order_date', [$dauThangTruoc, $now])->get();
+            return view('admin.dashboard', compact('user', 'baoCaoDoanhThu'));
         }
     }
 
