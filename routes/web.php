@@ -126,6 +126,7 @@ Route::get('/KoKichHoatThuongHieu/{MaThuongHieu}', [ThuongHieuController::class,
 Route::get('/trang-sua-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'TrangSuaThuongHieu'])->name('/TrangSuaThuongHieu');
 Route::get('/xoa-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'XoaThuongHieu'])->name('/XoaThuongHieu');
 Route::post('/sua-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'SuaThuongHieu'])->name('/SuaThuongHieu');
+Route::get('/tim-kiem-thuong-hieu',[ThuongHieuController::class, 'timKiem'])->name('timKiemThuongHieu');
 
 //TaiKhoan
 Route::get('/dang-nhap', [TaiKhoanController::class, 'dangNhap'])->name('dangNhap');

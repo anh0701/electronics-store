@@ -13,7 +13,7 @@ class ThuongHieuController extends Controller
     }
 
     public function TrangLietKeThuongHieu(){
-        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->paginate(20);
+        $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->paginate(5);
         return view('admin.ThuongHieu.LietKeThuongHieu')->with(compact('allThuongHieu'));
     }
 
@@ -116,11 +116,15 @@ class ThuongHieuController extends Controller
 
     public function XoaThuongHieu($MaThuongHieu){
         $thuongHieu = ThuongHieu::find($MaThuongHieu);
-        $path_unlink = 'upload/ThuongHieu/'.$thuongHieu->HinhAnh;
-        if (file_exists($path_unlink)){
-            unlink($path_unlink);
-        }
-        $thuongHieu->delete();
-        return Redirect::to('trang-liet-ke-thuong-hieu')->with('status', 'Xóa thương hiệu sản phẩm thành công');
+        $thuongHieu->update(['TrangThai'=>0]);
+        return Redirect::to('trang-liet-ke-thuong-hieu')->with('status', 'Vô hiệu hóa thương hiệu sản phẩm thành công');
+    }
+
+    public function timKiem(Request $request)
+    {
+        $allThuongHieu = ThuongHieu::where('SlugThuongHieu', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('SlugThuongHieu', 'LIKE', "%{$request->TuKhoa}%")
+            ->get();
+        return view('admin.ThuongHieu.LietKeThuongHieu')->with(compact('allThuongHieu'));
     }
 }
