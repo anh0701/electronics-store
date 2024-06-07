@@ -10,10 +10,13 @@
         </div>
         <div class="col-sm-3">
           <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
+              <form action="{{Route('tim-kiem-san-pham')}}" method="get">
+
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
+                </span>
+              </form>
           </div>
         </div>
       </div>
@@ -34,6 +37,7 @@
               <th>Thuộc danh mục</th>
               <th>Hình ảnh</th>
               <th>Giá</th>
+                <th>Trạng Thái</th>
               <th style="width:100px;">Quản lý</th>
             </tr>
           </thead>
@@ -46,6 +50,12 @@
               <td>{{ $sanPham->DanhMuc->TenDanhMuc }}</td>
               <td><img src="{{ asset('upload/sanPham/'.$sanPham->HinhAnh) }}" height="100px" width="150px"></td>
               <td>{{ number_format($sanPham->GiaSanPham, 0, '', '.') }} đ</td>
+                @if($sanPham->TrangThai == 1)
+                    <td style="color: #0a8a0a!important;">Đang bán</td>
+                @else
+                    <td style="color: orange!important;">Ngừng bán</td>
+                @endif
+
               <td>
                 <a href="{{ route('/TrangSuaSanPham', $sanPham->MaSanPham) }}">
                   <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green; margin-bottom: 15px" class="fa fa-pencil-square-o text-success text-active"></i>
@@ -64,7 +74,7 @@
       </div>
       <footer class="panel-footer">
         <div class="row">
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
               {{ $allSanPham->links('vendor.pagination.bootstrap-4') }}
             </ul>

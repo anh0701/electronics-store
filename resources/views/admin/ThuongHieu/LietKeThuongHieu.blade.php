@@ -6,9 +6,9 @@
          Liệt kê thương hiệu sản phẩm
       </div>
       <div class="row w3-res-tb">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="input-group">
             <input type="text" class="input-sm form-control" placeholder="Search">
             <span class="input-group-btn">
@@ -16,6 +16,7 @@
             </span>
           </div>
         </div>
+          <div class="col-sm-2"></div>
       </div>
       <div class="table-responsive">
         <?php
@@ -49,12 +50,12 @@
                 <?php
                 if ($thuongHieu->TrangThai == 1){
                 ?>
-                  <a href="{{ route('/KoKichHoatThuongHieu', $thuongHieu->MaThuongHieu) }}" ><span 
+                  <a href="{{ route('/KoKichHoatThuongHieu', $thuongHieu->MaThuongHieu) }}" ><span
                     style="font-size: 28px; color: green; content: \f164" class="fa-solid fa-thumbs-up"></span></a>
                 <?php
                 }else{
                 ?>
-                  <a href="{{ route('/KichHoatThuongHieu', $thuongHieu->MaThuongHieu) }}" ><span 
+                  <a href="{{ route('/KichHoatThuongHieu', $thuongHieu->MaThuongHieu) }}" ><span
                     style="font-size: 28px; color: red; ; content: \f164" class="fa-thumb-styling-down fa fa-thumbs-down"></span></a>
                 <?php
                 }
@@ -71,7 +72,7 @@
       </div>
       <footer class="panel-footer">
         <div class="row">
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
               {{ $allThuongHieu->links('vendor.pagination.bootstrap-4') }}
             </ul>

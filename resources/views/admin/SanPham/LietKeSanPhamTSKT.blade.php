@@ -3,7 +3,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
       <div class="panel-heading">
-         Liệt kê thông số kỹ thuật sản phẩm
+         Chi tiết thông số kĩ thuật của sản phẩm
       </div>
       <div class="row w3-res-tb">
         <div class="col-sm-4">
@@ -41,7 +41,7 @@
               <td>{{ $valueSanPhamTSKT->ThongSoKyThuat->TenTSKT }}</td>
             </tr>
             @endforeach
-          </tbody> 
+          </tbody>
         </table>
       </div>
     </div>

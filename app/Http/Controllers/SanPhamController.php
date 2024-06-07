@@ -10,6 +10,7 @@ use App\Models\DanhMucTSKT;
 use App\Models\ThongSoKyThuat;
 use App\Models\SanPhamTSKT;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class SanPhamController extends Controller
 {
@@ -21,7 +22,7 @@ class SanPhamController extends Controller
     }
 
     public function TrangLietKeSanPham(){
-        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->orderBy('MaThuongHieu', 'DESC')->paginate(20);
+        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->orderBy('MaThuongHieu', 'DESC')->paginate(5);
         return view('admin.SanPham.LietKeSanPham')->with(compact('allSanPham'));
     }
 
@@ -63,32 +64,55 @@ class SanPhamController extends Controller
 
     public function ThemSanPham(Request $request){
         $data = $request->all();
+         $validate = Validator::make( $request->all() ,[
+             'TenSanPham' => 'required|max:250',
+             'SlugSanPham' => 'required',
+             'MaThuongHieu' => 'required',
+             'MoTa' => 'required',
+             'DanhMucCha' => 'required',
+             'DanhMucCon' => '',
+             'TrangThai' => 'required',
+             'SoTien' => ['required', 'integer'],
+             'HinhAnh' => ['required', 'image','mimes:jpeg,png,jpg,gif|max:2048'],
+//                 'ThongSoKyThuat' => 'required',
+              'ThoiGianBaoHanh' => ['required', 'integer'],
+             'CanNang' =>['required', 'integer'],
+             'ChieuDay'=>['required', 'integer'],
+             'ChieuNgang'=>['required', 'integer'],
+             'ChieuCao'=>['required', 'integer'],
 
-        // foreach($data as $key => $thongSoKyThuat){
-        //     $data = $request->validate([
-        //         'TenSanPham' => 'required|max:250',
-        //         'SlugSanPham' => 'required',
-        //         'MaThuongHieu' => 'required',
-        //         'MoTa' => 'required',
-        //         'DanhMucCha' => 'required',
-        //         'DanhMucCon' => '',
-        //         'TrangThai' => 'required',
-        //         'GiaSanPham' => 'required',
-        //         'HinhAnh' => 'required',
-        //         'ThongSoKyThuat'.$key => 'required',
-        //     ],
-        //     [
-        //         'TenSanPham.required' => 'Chưa điền tên sản phẩm',
-        //         'TenSanPham.max' => 'Tên sản phẩm dài quá 250 ký tự',
-        //         'SlugSanPham.required' => 'Chưa điền slug cho sản phẩm',
-        //         'DanhMucCha.required' => 'Chưa điền Danh mục cho sản phẩm',
-        //         'MaThuongHieu.required' => 'Chưa điền Thương hiệu cho sản phẩm',
-        //         'MoTa.required' => 'Chưa điền Mô tả cho sản phẩm',
-        //         'TrangThai.required' => 'Chưa điền Trạng thái cho sản phẩm',
-        //         'GiaSanPham.required' => 'Chưa điền giá cho sản phẩm',
-        //         'HinhAnh.required' => 'Chưa chọn hình ảnh cho sản phẩm',
-        //     ]);
-        // }
+             ],
+             [
+                 'TenSanPham.required' => 'Vui lòng điền tên sản phẩm',
+                 'TenSanPham.max' => 'Tên sản phẩm dài quá 250 ký tự',
+                 'SlugSanPham.required' => 'Vui lòng điền slug cho sản phẩm',
+                 'DanhMucCha.required' => 'Vui lòng chọn Danh mục cho sản phẩm',
+                 'MaThuongHieu.required' => 'Vui lòng chọn Thương hiệu cho sản phẩm',
+                 'MoTa.required' => 'Vui lòng điền Mô tả cho sản phẩm',
+                 'TrangThai.required' => 'Vui lòng chọn Trạng thái cho sản phẩm',
+                 'SoTien.required' => 'Vui lòng điền giá cho sản phẩm',
+                 'SoTien.integer' => 'Vui lòng điền số.',
+                 'HinhAnh.required' => 'Vui lòng chọn hình ảnh cho sản phẩm',
+                 'HinhAnh.image' => 'Vui lòng chọn đúng định dạng hình ảnh.',
+                 'ThoiGianBaoHanh.integer' => 'Vui lòng điền số',
+                 'ThoiGianBaoHanh.required' => 'Vui lòng điền thời gian bảo hành',
+                 'CanNang.integer' =>'Vui lòng điền số',
+                 'CanNang.required' =>'Vui lòng điền cân nặng',
+                 'ChieuDay.integer'=>'Vui lòng điền số',
+                 'ChieuDay.required'=>'Vui lòng điền chiều dày',
+                 'ChieuNgang.integer'=>'Vui lòng điền số',
+                 'ChieuNgang.required'=>'Vui lòng điền chiều ngang',
+                 'ChieuCao.integer'=>'Vui lòng điền số',
+                 'ChieuCao.required'=>'Vui lòng điền chiều cao',
+             ]);
+
+         if($validate->fails()){
+//             dd($validate->errors());
+             return redirect()->back()
+                 ->withInput($request->input())
+                 ->withErrors($validate->errors());
+         }
+
         $maDanhMuc = '';
         $sanPham = new SanPham();
         $sanPham->TenSanPham = $data['TenSanPham'];
@@ -115,7 +139,7 @@ class SanPhamController extends Controller
 
         $get_image = $request->HinhAnh;
         $path = 'upload/SanPham/';
-        $get_name_image = $get_image->getClientOriginalName(); 
+        $get_name_image = $get_image->getClientOriginalName();
         $name_image = current(explode('.', $get_name_image));
         $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
         $get_image->move($path, $new_image);
@@ -146,7 +170,7 @@ class SanPhamController extends Controller
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
         $allSanPhamTSKT = SanPhamTSKT::orderBy('MaTSKTSP', 'DESC')->where('MaSanPham', $MaSanPham)->get();
         return view('admin.SanPham.SuaSanPham')
-        ->with(compact('sanPham', 'allThuongHieu', 'allDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'danhMuc', 'allSanPhamTSKT')); 
+        ->with(compact('sanPham', 'allThuongHieu', 'allDanhMuc', 'allDanhMucTSKT', 'allTSKT', 'danhMuc', 'allSanPhamTSKT'));
     }
 
     public function TrangSanPhamTSKT($MaSanPham){
@@ -156,7 +180,7 @@ class SanPhamController extends Controller
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
         $allSanPhamTSKT = SanPhamTSKT::where('MaSanPham', $MaSanPham)->get();
         return view('admin.SanPham.LietKeSanPhamTSKT')
-        ->with(compact('allDanhMucTSKT', 'allTSKT', 'allSanPhamTSKT')); 
+        ->with(compact('allDanhMucTSKT', 'allTSKT', 'allSanPhamTSKT'));
     }
 
     public function SuaTSKTChoSanPham(Request $request){
@@ -182,27 +206,54 @@ class SanPhamController extends Controller
     }
 
     public function SuaSanPham(Request $request, $MaSanPham){
-        // $data = $request->validate([
-        //     'TenSanPham' => 'required|max:250',
-        //     'SlugSanPham' => 'required',
-        //     'MaThuongHieu' => 'required',
-        //     'MoTa' => 'required',
-        //     'DanhMucCha' => 'required',
-        //     'DanhMucCon' => '',
-        //     'TrangThai' => 'required',
-        //     'GiaSanPham' => 'required',
-        // ],
-        // [
-        //     'TenSanPham.required' => 'Chưa điền tên sản phẩm',
-        //     'TenSanPham.max' => 'Tên sản phẩm dài quá 250 ký tự',
-        //     'SlugSanPham.required' => 'Chưa điền slug cho sản phẩm',
-        //     'DanhMucCha.required' => 'Chưa điền Danh mục cha sản phẩm',
-        //     'DanhMucCon.required' => 'Chưa điền Danh mục con sản phẩm',
-        //     'MaThuongHieu.required' => 'Chưa điền Thương hiệu cho sản phẩm',
-        //     'MoTa.required' => 'Chưa điền Mô tả cho sản phẩm',
-        //     'TrangThai.required' => 'Chưa điền Trạng thái cho sản phẩm',
-        //     'GiaSanPham.required' => 'Chưa điền giá cho sản phẩm',
-        // ]);
+        $validate = Validator::make( $request->all() ,[
+            'TenSanPham' => 'required|max:250',
+            'SlugSanPham' => 'required',
+            'MaThuongHieu' => 'required',
+            'MoTa' => 'required',
+            'DanhMucCha' => 'required',
+            'DanhMucCon' => '',
+            'TrangThai' => 'required',
+            'GiaSanPham' => ['required', 'integer'],
+            'HinhAnh' => ['nullable', 'image','mimes:jpeg,png,jpg,gif|max:2048'],
+//                 'ThongSoKyThuat' => 'required',
+            'ThoiGianBaoHanh' => ['required', 'integer'],
+            'CanNang' =>['required', 'integer'],
+            'ChieuDay'=>['required', 'integer'],
+            'ChieuNgang'=>['required', 'integer'],
+            'ChieuCao'=>['required', 'integer'],
+
+        ],
+            [
+                'TenSanPham.required' => 'Vui lòng điền tên sản phẩm',
+                'TenSanPham.max' => 'Tên sản phẩm dài quá 250 ký tự',
+                'SlugSanPham.required' => 'Vui lòng điền slug cho sản phẩm',
+                'DanhMucCha.required' => 'Vui lòng chọn Danh mục cho sản phẩm',
+                'MaThuongHieu.required' => 'Vui lòng chọn Thương hiệu cho sản phẩm',
+                'MoTa.required' => 'Vui lòng điền Mô tả cho sản phẩm',
+                'TrangThai.required' => 'Vui lòng chọn Trạng thái cho sản phẩm',
+                'GiaSanPham.required' => 'Vui lòng điền giá cho sản phẩm',
+                'GiaSanPham.integer' => 'Vui lòng điền số.',
+                'HinhAnh.image' => 'Vui lòng chọn đúng định dạng hình ảnh.',
+                'ThoiGianBaoHanh.integer' => 'Vui lòng điền số',
+                'ThoiGianBaoHanh.required' => 'Vui lòng điền thời gian bảo hành',
+                'CanNang.integer' =>'Vui lòng điền số',
+                'CanNang.required' =>'Vui lòng điền cân nặng',
+                'ChieuDay.integer'=>'Vui lòng điền số',
+                'ChieuDay.required'=>'Vui lòng điền chiều dày',
+                'ChieuNgang.integer'=>'Vui lòng điền số',
+                'ChieuNgang.required'=>'Vui lòng điền chiều ngang',
+                'ChieuCao.integer'=>'Vui lòng điền số',
+                'ChieuCao.required'=>'Vui lòng điền chiều cao',
+            ]);
+
+        if($validate->fails()){
+//             dd($validate->errors());
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors($validate->errors());
+        }
+
         $data = $request->all();
         $sanPham = SanPham::find($MaSanPham);
         $sanPham->TenSanPham = $data['TenSanPham'];
@@ -252,20 +303,16 @@ class SanPhamController extends Controller
     }
 
     public function XoaSanPham($MaSanPham){
-        SanPhamTSKT::where('MaSanPham', $MaSanPham)->delete();
 
         $sanPham = SanPham::find($MaSanPham);
-        $path_unlink = 'upload/SanPham/'.$sanPham->HinhAnh;
-        if (file_exists($path_unlink)){
-            unlink($path_unlink);
-        }
-        $sanPham->delete();
+        $sanPham->update(['TrangThai'=>0]);
+
         return Redirect::to('TrangLietKeSanPham')->with('status', 'Xóa sản phẩm thành công');
     }
 
     public function KoKichHoatSanPham($MaSanPham){
         $sanPham = SanPham::find($MaSanPham);
-        $sanPham->update(['TranThai'=>0]);
+        $sanPham->update(['TrangThai'=>0]);
         return Redirect::to('TrangLietKeSanPham')->with('status', 'Không kích hoạt sản phẩm thành công');
     }
 
@@ -273,5 +320,11 @@ class SanPhamController extends Controller
         $sanPham = SanPham::find($MaSanPham);
         $sanPham->update(['TrangThai'=>1]);
         return Redirect::to('TrangLietKeSanPham')->with('status', 'Kích hoạt sản phẩm thành công');
+    }
+
+    public function timKiem(Request $request)
+    {
+        $kq = SanPham::where('TenSanPham', 'LIKE', $request->TuKhoa)
+                    ->orWhere('');
     }
 }

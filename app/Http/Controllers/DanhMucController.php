@@ -14,7 +14,7 @@ class DanhMucController extends Controller
         $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->where('DanhMucCha', 0)->get();
         return view('admin.DanhMuc.QuanlyDanhMuc.ThemDanhMuc')->with(compact('allDanhMuc'));
     }
-    
+
     public function TrangLietKeDanhMuc(){
         $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->orderBy('MaDanhMuc', 'DESC')->paginate(15);
         $allDanhMucCha = DanhMuc::where('DanhMucCha', 0)->get();
@@ -31,12 +31,12 @@ class DanhMucController extends Controller
         ],
         [
             'TenDanhMuc.unique' => 'Trùng tên danh mục với một danh mục khác',
-            'TenDanhMuc.required' => 'Chưa điền tên danh mục',
+            'TenDanhMuc.required' => 'Vui lòng điền tên danh mục',
             'TenDanhMuc.max' => 'Tên danh mục dài quá 50 ký tự',
-            'SlugDanhMuc.required' => 'Chưa điền slug cho danh mục',
-            'MoTa.required' => 'Chưa điền Mô tả cho danh mục',
-            'TrangThai.required' => 'Chưa điền Trạng thái cho danh mục',
-            'DanhMucCha.required' => 'Chưa chọn cấp độ cho danh mục',
+            'SlugDanhMuc.required' => 'Vui lòng điền slug cho danh mục',
+            'MoTa.required' => 'Vui lòng điền Mô tả cho danh mục',
+            'TrangThai.required' => 'Vui lòng chọn Trạng thái cho danh mục',
+            'DanhMucCha.required' => 'Vui lòng chọn cấp độ cho danh mục',
         ]);
         $danhMuc = new DanhMuc();
         $danhMuc->TenDanhMuc = $data['TenDanhMuc'];
@@ -65,7 +65,7 @@ class DanhMucController extends Controller
     public function TrangSuaDanhMuc($MaDanhMuc){
         $suaDanhMuc = DanhMuc::where('MaDanhMuc', $MaDanhMuc)->get();
         $danhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
-        return view('admin.DanhMuc.QuanlyDanhMuc.SuaDanhMuc', compact('suaDanhMuc', 'danhMuc')); 
+        return view('admin.DanhMuc.QuanlyDanhMuc.SuaDanhMuc', compact('suaDanhMuc', 'danhMuc'));
     }
 
     public function SuaDanhMuc(Request $request, $MaDanhMuc){
@@ -77,12 +77,12 @@ class DanhMucController extends Controller
             'DanhMucCha' => 'required',
         ],
         [
-            'TenDanhMuc.required' => 'Chưa điền tên danh mục',
+            'TenDanhMuc.required' => 'Vui lòng điền tên danh mục mới',
             'TenDanhMuc.max' => 'Tên danh mục dài quá 50 ký tự',
-            'SlugDanhMuc.required' => 'Chưa điền slug cho danh mục',
-            'MoTa.required' => 'Chưa điền Mô tả cho danh mục',
-            'TrangThai.required' => 'Chưa điền Trạng thái cho danh mục',
-            'DanhMucCha.required' => 'Chưa chọn cấp độ cho danh mục',
+            'SlugDanhMuc.required' => 'Vui lòng điền slug cho danh mục mới',
+            'MoTa.required' => 'Vui lòng điền Mô tả cho danh mục mới',
+            'TrangThai.required' => 'Vui lòng chọn Trạng thái cho danh mục',
+            'DanhMucCha.required' => 'Vui lòng chọn cấp độ cho danh mục',
         ]);
         $danhMuc = DanhMuc::find($MaDanhMuc);
         $danhMuc->TenDanhMuc = $data['TenDanhMuc'];
@@ -143,7 +143,7 @@ class DanhMucController extends Controller
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
         $thuongHieuDanhMuc = ThuongHieuDanhMuc::where('MaTHDM', $MaTHDM)->get();
-        return view('admin.DanhMuc.QuanLyTHDM.SuaTHDM', compact('thuongHieuDanhMuc', 'allThuongHieu', 'allDanhMuc')); 
+        return view('admin.DanhMuc.QuanLyTHDM.SuaTHDM', compact('thuongHieuDanhMuc', 'allThuongHieu', 'allDanhMuc'));
     }
 
     public function suaTHDM(Request $request, $MaTHDM){
