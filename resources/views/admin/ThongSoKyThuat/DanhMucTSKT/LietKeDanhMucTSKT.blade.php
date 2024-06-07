@@ -64,7 +64,7 @@
               <td>
                 <a href="{{ route('/TrangSuaDanhMucTSKT', $danhMucTSKT->MaDMTSKT) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"
                     class="fa fa-pencil-square-o text-success text-active"></i></a>
-                <a onclick="return confirm('Bạn có muốn xóa {{ $danhMucTSKT->TenDMTSKT }} không?')" href="{{ route('/XoaDanhMucTSKT', [$danhMucTSKT->MaDMTSKT]) }}">
+                <a onclick="return confirm('Bạn có muốn vô hiệu hóa {{ $danhMucTSKT->TenDMTSKT }} không?')" href="{{ route('/XoaDanhMucTSKT', [$danhMucTSKT->MaDMTSKT]) }}">
                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                 </a>
               </td>
