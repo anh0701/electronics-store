@@ -61,7 +61,7 @@
 
                         <div class="form-group row">
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Chiều cao</label>
+                                <label for="exampleInputPassword1">Chiều cao (Đơn vị cm)</label>
                                 <input type="text" class="form-control @error('ChieuCao') is-invalid @enderror" value="{{old('ChieuCao')}}" name="ChieuCao" placeholder="Chiều cao">
                             </div>
                             @error('ChieuCao')
@@ -69,7 +69,7 @@
                             @enderror
 
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Chiều ngang</label>
+                                <label for="exampleInputPassword1">Chiều ngang (Đơn vị cm)</label>
                                 <input type="text" class="form-control @error('ChieuNgang') is-invalid @enderror" value="{{old('ChieuNgang')}}" name="ChieuNgang" placeholder="Chiều ngang">
                             </div>
                             @error('ChieuNgang')
@@ -77,7 +77,7 @@
                             @enderror
 
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Chiều dày</label>
+                                <label for="exampleInputPassword1">Chiều dày (Đơn vị cm)</label>
                                 <input type="text" class="form-control @error('ChieuDay') is-invalid @enderror" value="{{old('ChieuDay')}}" name="ChieuDay" placeholder="Chiều dày">
                             </div>
                             @error('ChieuDay')
@@ -85,7 +85,7 @@
                             @enderror
 
                             <div class="col-lg-3">
-                                <label for="exampleInputPassword1">Cân nặng</label>
+                                <label for="exampleInputPassword1">Cân nặng (Đơn vị kg)</label>
                                 <input type="text" class="form-control @error('CanNang') is-invalid @enderror" value="{{old('CanNang')}}" name="CanNang" placeholder="Cân nặng">
                             </div>
                             @error('CanNang')
@@ -112,17 +112,17 @@
                         @enderror
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Trạng thái sản phẩm</label>
-                            <select name="TrangThai" class="form-control input-lg m-bot15">
+                            <label for="TrangThai">Trạng thái sản phẩm</label>
+                            <select id="TrangThai" name="TrangThai" class="form-control input-lg m-bot15">
                                 <option value="" >--Chọn trạng thái--</option>
-                                <option value="1" >Hiển thị</option>
-                                <option value="0" >Ẩn</option>
+                                <option value="1" >Đang bán</option>
+                                <option value="0" >Ngừng bán</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Giá sản phẩm</label>
-                            <input type="text" class="form-control @error('SoTien') is-invalid @enderror" value="{{old('SoTien')}}" name="SoTien" placeholder="Giá sản phẩm">
+                            <label for="SoTien">Giá sản phẩm</label>
+                            <input type="text" id="SoTien" class="form-control @error('SoTien') is-invalid @enderror" value="{{old('SoTien')}}" name="SoTien" placeholder="Giá sản phẩm">
                         </div>
                         @error('SoTien')
                             <div class="alert alert-danger">{{$message}}</div>
