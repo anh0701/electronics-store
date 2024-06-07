@@ -102,4 +102,13 @@ class DanhMucTSKTController extends Controller
         $danhMucTSKT->delete();
         return Redirect::to('TrangLietKeSanPham')->with('status', 'Xóa danh mục thông số kỹ thuật thành công');
     }
+
+    public function timKiem(Request $request)
+    {
+        $allDanhMucTSKT = DanhMucTSKT::where('MoTa', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('SlugDMTSKT', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('TenDMTSKT', 'LIKE', "%{$request->TuKhoa}%")
+            ->get();
+        return view('admin.ThongSoKyThuat.DanhMucTSKT.LietKeDanhMucTSKT')->with(compact('allDanhMucTSKT'));
+    }
 }

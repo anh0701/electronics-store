@@ -9,12 +9,15 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
-          </div>
+            <form action="{{Route('tim-kiem-dmtskt')}}" method="get">
+              <div class="input-group">
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                </span>
+              </div>
+
+            </form>
         </div>
       </div>
       <div class="table-responsive">
@@ -47,19 +50,19 @@
                 <?php
                 if ($danhMucTSKT->TrangThai == 1){
                 ?>
-                  <a href="" ><span 
+                  <a href="" ><span
                     style="font-size: 28px; color: green; content: \f164" class="fa-solid fa-thumbs-up"></span></a>
                 <?php
                 }else{
                 ?>
-                  <a href="" ><span 
+                  <a href="" ><span
                     style="font-size: 28px; color: red; ; content: \f164" class="fa-thumb-styling-down fa fa-thumbs-down"></span></a>
                 <?php
                 }
                 ?>
               </span></td>
               <td>
-                <a href="{{ route('/TrangSuaDanhMucTSKT', $danhMucTSKT->MaDMTSKT) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" 
+                <a href="{{ route('/TrangSuaDanhMucTSKT', $danhMucTSKT->MaDMTSKT) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"
                     class="fa fa-pencil-square-o text-success text-active"></i></a>
                 <a onclick="return confirm('Bạn có muốn xóa {{ $danhMucTSKT->TenDMTSKT }} không?')" href="{{ route('/XoaDanhMucTSKT', [$danhMucTSKT->MaDMTSKT]) }}">
                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
@@ -72,9 +75,13 @@
       </div>
       <footer class="panel-footer">
         <div class="row">
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allDanhMucTSKT->links('vendor.pagination.bootstrap-4') }}
+                @if ($allDanhMucTSKT instanceof \Illuminate\Pagination\LengthAwarePaginator)
+
+                    {{ $allDanhMucTSKT->links('vendor.pagination.bootstrap-4') }}
+                @endif
+
             </ul>
           </div>
       </div>
