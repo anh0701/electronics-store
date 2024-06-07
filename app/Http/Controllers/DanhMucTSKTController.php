@@ -15,7 +15,7 @@ class DanhMucTSKTController extends Controller
     }
 
     public function TrangLietKeDanhMucTSKT(){
-        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDanhMuc', 'DESC')->paginate(20);
+        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDanhMuc', 'DESC')->paginate(5);
         return view('admin.ThongSoKyThuat.DanhMucTSKT.LietKeDanhMucTSKT')->with(compact('allDanhMucTSKT'));
     }
 
@@ -58,7 +58,7 @@ class DanhMucTSKTController extends Controller
     public function TrangSuaDanhMucTSKT($MaDMTSKT){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
         $danhMucTSKT = DanhMucTSKT::where('MaDMTSKT', $MaDMTSKT)->get();
-        return view('admin.ThongSoKyThuat.DanhMucTSKT.SuaDanhMucTSKT', compact('danhMucTSKT', 'allDanhMuc')); 
+        return view('admin.ThongSoKyThuat.DanhMucTSKT.SuaDanhMucTSKT', compact('danhMucTSKT', 'allDanhMuc'));
     }
 
     public function SuaDanhMucTSKT(Request $request, $MaDMTSKT){
