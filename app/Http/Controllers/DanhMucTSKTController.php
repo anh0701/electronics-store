@@ -15,7 +15,7 @@ class DanhMucTSKTController extends Controller
     }
 
     public function TrangLietKeDanhMucTSKT(){
-        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDanhMuc', 'DESC')->paginate(20);
+        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDanhMuc', 'DESC')->paginate(5);
         return view('admin.ThongSoKyThuat.DanhMucTSKT.LietKeDanhMucTSKT')->with(compact('allDanhMucTSKT'));
     }
 
@@ -52,13 +52,13 @@ class DanhMucTSKTController extends Controller
         $danhMucTSKT->ThoiGianTao = now();
 
         $danhMucTSKT->save();
-        return Redirect::to('TrangLietKeDanhMucTSKT')->with('status', 'Tạo danh mục thông số kỹ thuật thành công');
+        return Redirect::to('trang-liet-ke-danh-muc-tskt')->with('status', 'Tạo danh mục thông số kỹ thuật thành công');
     }
 
     public function TrangSuaDanhMucTSKT($MaDMTSKT){
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'DESC')->get();
         $danhMucTSKT = DanhMucTSKT::where('MaDMTSKT', $MaDMTSKT)->get();
-        return view('admin.ThongSoKyThuat.DanhMucTSKT.SuaDanhMucTSKT', compact('danhMucTSKT', 'allDanhMuc')); 
+        return view('admin.ThongSoKyThuat.DanhMucTSKT.SuaDanhMucTSKT', compact('danhMucTSKT', 'allDanhMuc'));
     }
 
     public function SuaDanhMucTSKT(Request $request, $MaDMTSKT){
@@ -94,12 +94,22 @@ class DanhMucTSKTController extends Controller
         $danhMucTSKT->ThoiGianTao = now();
 
         $danhMucTSKT->save();
-        return Redirect::to('TrangLietKeDanhMucTSKT')->with('status', 'Cập nhật danh mục thông số kỹ thuật thành công');
+        return Redirect::to('trang-liet-ke-danh-muc-tskt')->with('status', 'Cập nhật danh mục thông số kỹ thuật thành công');
     }
 
     public function XoaDanhMucTSKT($MaDMTSKT){
         $danhMucTSKT = DanhMucTSKT::find($MaDMTSKT);
-        $danhMucTSKT->delete();
-        return Redirect::to('TrangLietKeSanPham')->with('status', 'Xóa danh mục thông số kỹ thuật thành công');
+        $danhMucTSKT->TrangThai = 0;
+        $danhMucTSKT->save();
+        return Redirect::to('trang-liet-ke-danh-muc-tskt')->with('status', 'Vô hiệu hóa danh mục thông số kỹ thuật thành công');
+    }
+
+    public function timKiem(Request $request)
+    {
+        $allDanhMucTSKT = DanhMucTSKT::where('MoTa', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('SlugDMTSKT', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('TenDMTSKT', 'LIKE', "%{$request->TuKhoa}%")
+            ->get();
+        return view('admin.ThongSoKyThuat.DanhMucTSKT.LietKeDanhMucTSKT')->with(compact('allDanhMucTSKT'));
     }
 }

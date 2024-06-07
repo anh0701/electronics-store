@@ -8,30 +8,33 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div>
-                @endif
                 @foreach ($suaDanhMuc as $key => $value)
                     <form role="form" action="{{ Route('/SuaDanhMuc', [$value->MaDanhMuc]) }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên danh mục</label>
-                            <input type="text" value="{{ $value->TenDanhMuc }}" class="form-control" name="TenDanhMuc" placeholder="Tên danh mục" onkeyup="ChangeToSlug();" id="slug" >
+                            <input type="text" value="{{ $value->TenDanhMuc }}" class="form-control @error('TenDanhMuc') is-invalid @enderror" name="TenDanhMuc" placeholder="Tên danh mục" onkeyup="ChangeToSlug();" id="slug" >
                         </div>
+                        @error('TenDanhMuc')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug</label>
-                            <input type="text" value="{{ $value->SlugDanhMuc }}" class="form-control" name="SlugDanhMuc" placeholder="Slug" id="convert_slug">
+                            <input type="text" value="{{ $value->SlugDanhMuc }}" class="form-control @error('SlugDanhMuc') is-invalid @enderror" name="SlugDanhMuc" placeholder="Slug" id="convert_slug">
                         </div>
+                        @error('SlugDanhMuc')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea id="editor2" style="resize: none" value="" rows="5" class="form-control" name="MoTa" placeholder="Mô tả danh mục">{{ $value->MoTa }}</textarea>
+                            <textarea id="editor2" style="resize: none" value="" rows="5" class="form-control @error('MoTa') is-invalid @enderror" name="MoTa" placeholder="Mô tả danh mục">{{ $value->MoTa }}</textarea>
                         </div>
+                        @error('MoTa')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Thuộc danh mục</label>
                             <select name="DanhMucCha" class="form-control input-lg m-bot15">
@@ -49,6 +52,7 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Trạng thái danh mục</label>
                             <select name="TrangThai" class="form-control input-lg m-bot15">
@@ -61,6 +65,7 @@
                             @endif
                             </select>
                         </div>
+
                         <button type="submit" name="SuaDanhMuc" class="btn btn-info">Cập nhật danh mục</button>
                     </form>
                 @endforeach

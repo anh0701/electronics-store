@@ -141,10 +141,7 @@ class DonHangController extends Controller
             if($data['TrangThaiDonHang'] == 1){
                 return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật sai trạng thái đơn hàng');
             }elseif($data['TrangThaiDonHang'] == 3){
-                //DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 3]);
-                // echo '<pre>';
-                // print_r($donHang['MaGiaoHang']);
-                // echo '</pre>';
+                DonHang::where('MaDonHang', $MaDonHang)->update(['TrangThai' => 3]);
                 $doanhThu = 0;
                 $loiNhuan = 0;
                 $soLuongSanPham = 0;
@@ -174,10 +171,15 @@ class DonHangController extends Controller
                 }
 
                 $ngayThangNam = date("Y-m-d", strtotime($donHang['ThoiGianTao']));
-                $baoCaoDoanhThu = BaoCaoDoanhThu::where('order_date', $ngayThangNam)->first();
-                date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $today = now();
-                if($baoCaoDoanhThu){
+                $baoCaoDoanhThu = BaoCaoDoanhThu::where('order_date', $today)->first();
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+                echo '<pre>';
+                print_r($baoCaoDoanhThu);
+                echo '</pre>';
+
+                if(Empty($baoCaoDoanhThu)){
                     $themBCDT = new BaoCaoDoanhThu();
                     $themBCDT->order_date = date("Y-m-d", strtotime($today));
                     $themBCDT->sales = $doanhThu;
@@ -185,8 +187,8 @@ class DonHangController extends Controller
                     $themBCDT->quantity = $soLuongSanPham;
                     $themBCDT->total_order = 1;
                     $themBCDT->save();
-                }elseif(Empty($baoCaoDoanhThu)){
-                    $suaBCDT = BaoCaoDoanhThu::find($ngayThangNam);
+                }elseif($baoCaoDoanhThu){
+                    $suaBCDT = BaoCaoDoanhThu::find($baoCaoDoanhThu['MaBCDT']);
                     $themBCDT->sales += $doanhThu;
                     $themBCDT->profit += $loiNhuan;
                     $themBCDT->quantity += $soLuongSanPham;

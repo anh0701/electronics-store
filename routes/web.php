@@ -36,9 +36,11 @@ Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
 Route::get('tim-kiem-san-pham-ton-kho', [TonKhoController::class, 'timKiemSPTK'])->name('timKiemSPTK');
-Route::post('/fillter-by-date', [TonKhoController::class, 'fillter_by_date'])->name('/fillter-by-date');
+Route::post('/filter-by-date', [TonKhoController::class, 'filter_by_date'])->name('/filter-by-date');
 Route::get('/Test', [TonKhoController::class, 'Test'])->name('/Test');
 Route::get('/TrangLietKeBCDT', [TonKhoController::class, 'TrangLietKeBCDT'])->name('/TrangLietKeBCDT');
+Route::post('/dashboard-filter', [TonKhoController::class, 'dashboard_filter'])->name('/dashboard-filter');
+Route::post('/days-order', [TonKhoController::class, 'days_order'])->name('/days-order');
 
 
 
@@ -116,14 +118,15 @@ Route::get('/xoa-nha-cung-cap/{id}', [NhaCungCapController::class, 'xoaNCC'])->n
 Route::get('/tim-kiem-nha-cung-cap', [NhaCungCapController::class, 'timkiemNCC'])->name('timkiemNCC');
 
 // Thuong Hieu San Pham
-Route::get('/TrangThemThuongHieu', [ThuongHieuController::class, 'TrangThemThuongHieu'])->name('/TrangThemThuongHieu');
-Route::get('/TrangLietKeThuongHieu', [ThuongHieuController::class, 'TrangLietKeThuongHieu'])->name('/TrangLietKeThuongHieu');
-Route::post('/ThemThuongHieu', [ThuongHieuController::class, 'ThemThuongHieu'])->name('/ThemThuongHieu');
-Route::get('/KichHoatThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'KichHoatThuongHieu'])->name('/KichHoatThuongHieu');
+Route::get('/trang-them-thuong-hieu', [ThuongHieuController::class, 'TrangThemThuongHieu'])->name('/TrangThemThuongHieu');
+Route::get('/trang-liet-ke-thuong-hieu', [ThuongHieuController::class, 'TrangLietKeThuongHieu'])->name('/TrangLietKeThuongHieu');
+Route::post('/them-thuong-hieu', [ThuongHieuController::class, 'ThemThuongHieu'])->name('/ThemThuongHieu');
+Route::get('/kich-hoat-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'KichHoatThuongHieu'])->name('/KichHoatThuongHieu');
 Route::get('/KoKichHoatThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'KoKichHoatThuongHieu'])->name('/KoKichHoatThuongHieu');
-Route::get('/TrangSuaThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'TrangSuaThuongHieu'])->name('/TrangSuaThuongHieu');
-Route::get('/XoaThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'XoaThuongHieu'])->name('/XoaThuongHieu');
-Route::post('/SuaThuongHieu/{MaThuongHieu}', [ThuongHieuController::class, 'SuaThuongHieu'])->name('/SuaThuongHieu');
+Route::get('/trang-sua-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'TrangSuaThuongHieu'])->name('/TrangSuaThuongHieu');
+Route::get('/xoa-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'XoaThuongHieu'])->name('/XoaThuongHieu');
+Route::post('/sua-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'SuaThuongHieu'])->name('/SuaThuongHieu');
+Route::get('/tim-kiem-thuong-hieu',[ThuongHieuController::class, 'timKiem'])->name('timKiemThuongHieu');
 
 //TaiKhoan
 Route::get('/dang-nhap', [TaiKhoanController::class, 'dangNhap'])->name('dangNhap');
@@ -177,14 +180,15 @@ Route::get('/KichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KichH
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard')->middleware('DangNhap');
 
 // Danh muc
-Route::get('/TrangThemDanhMuc', [DanhMucController::class, 'TrangThemDanhMuc'])->name('/TrangThemDanhMuc');
-Route::get('/TrangLietKeDanhMuc', [DanhMucController::class, 'TrangLietKeDanhMuc'])->name('/TrangLietKeDanhMuc');
-Route::post('/ThemDanhMuc', [DanhMucController::class, 'ThemDanhMuc'])->name('/ThemDanhMuc');
-Route::get('/KichHoatDanhMuc/{MaDanhMuc}', [DanhMucController::class, 'KichHoatDanhMuc'])->name('/KichHoatDanhMuc');
-Route::get('/KoKichHoatDanhMuc/{MaDanhMuc}', [DanhMucController::class, 'KoKichHoatDanhMuc'])->name('/KoKichHoatDanhMuc');
-Route::get('/TrangSuaDanhMuc/{MaDanhMuc}', [DanhMucController::class, 'TrangSuaDanhMuc'])->name('/TrangSuaDanhMuc');
-Route::get('/XoaDanhMuc/{MaDanhMuc}', [DanhMucController::class, 'XoaDanhMuc'])->name('/XoaDanhMuc');
-Route::post('/SuaDanhMuc/{MaDanhMuc}', [DanhMucController::class, 'SuaDanhMuc'])->name('/SuaDanhMuc');
+Route::get('/trang-them-danh-muc', [DanhMucController::class, 'TrangThemDanhMuc'])->name('/TrangThemDanhMuc');
+Route::get('/trang-liet-ke-danh-muc', [DanhMucController::class, 'TrangLietKeDanhMuc'])->name('/TrangLietKeDanhMuc');
+Route::post('/them-danh-muc', [DanhMucController::class, 'ThemDanhMuc'])->name('/ThemDanhMuc');
+Route::get('/kich-hoat-danh-muc/{MaDanhMuc}', [DanhMucController::class, 'KichHoatDanhMuc'])->name('/KichHoatDanhMuc');
+Route::get('/khong-kich-hoat-danh-muc/{MaDanhMuc}', [DanhMucController::class, 'KoKichHoatDanhMuc'])->name('/KoKichHoatDanhMuc');
+Route::get('/trang-sua-danh-muc/{MaDanhMuc}', [DanhMucController::class, 'TrangSuaDanhMuc'])->name('/TrangSuaDanhMuc');
+Route::get('/xoa-danh-muc/{MaDanhMuc}', [DanhMucController::class, 'XoaDanhMuc'])->name('/XoaDanhMuc');
+Route::post('/sua-danh-muc/{MaDanhMuc}', [DanhMucController::class, 'SuaDanhMuc'])->name('/SuaDanhMuc');
+Route::get('/tim-kiem-loai-sp', [DanhMucController::class, 'timKiemLoaiSP'])->name('timKiemLSP');
 
 // Thương hiệu thuộc danh mục
 Route::get('/trang-them-thdm', [DanhMucController::class, 'trangThemTHDM'])->name('/trang-them-thdm');
@@ -195,12 +199,13 @@ Route::get('/trang-sua-thdm//{MaTHDM}', [DanhMucController::class, 'trangSuaTHDM
 Route::post('/sua-thdm/{MaTHDM}', [DanhMucController::class, 'suaTHDM'])->name('/sua-thdm');
 
 // Danh mục TSKT
-Route::get('/TrangThemDanhMucTSKT', [DanhMucTSKTController::class, 'TrangThemDanhMucTSKT'])->name('/TrangThemDanhMucTSKT');
-Route::get('/TrangLietKeDanhMucTSKT', [DanhMucTSKTController::class, 'TrangLietKeDanhMucTSKT'])->name('/TrangLietKeDanhMucTSKT');
-Route::post('/ThemDanhMucTSKT', [DanhMucTSKTController::class, 'ThemDanhMucTSKT'])->name('/ThemDanhMucTSKT');
-Route::get('/TrangSuaDanhMucTSKT/{MaDMTSKT}', [DanhMucTSKTController::class, 'TrangSuaDanhMucTSKT'])->name('/TrangSuaDanhMucTSKT');
-Route::post('/SuaDanhMucTSKT/{MaDMTSKT}', [DanhMucTSKTController::class, 'SuaDanhMucTSKT'])->name('/SuaDanhMucTSKT');
-Route::get('/XoaDanhMucTSKT/{MaDMTSKT}', [DanhMucTSKTController::class, 'XoaDanhMucTSKT'])->name('/XoaDanhMucTSKT');
+Route::get('/trang-them-danh-muc-tskt', [DanhMucTSKTController::class, 'TrangThemDanhMucTSKT'])->name('/TrangThemDanhMucTSKT');
+Route::get('/trang-liet-ke-danh-muc-tskt', [DanhMucTSKTController::class, 'TrangLietKeDanhMucTSKT'])->name('/TrangLietKeDanhMucTSKT');
+Route::post('/them-danh-muc-tskt', [DanhMucTSKTController::class, 'ThemDanhMucTSKT'])->name('/ThemDanhMucTSKT');
+Route::get('/trang-sua-danh-muc-tskt/{MaDMTSKT}', [DanhMucTSKTController::class, 'TrangSuaDanhMucTSKT'])->name('/TrangSuaDanhMucTSKT');
+Route::post('/sua-danh-muc-tskt/{MaDMTSKT}', [DanhMucTSKTController::class, 'SuaDanhMucTSKT'])->name('/SuaDanhMucTSKT');
+Route::get('/xoa-danh-muc-tskt/{MaDMTSKT}', [DanhMucTSKTController::class, 'XoaDanhMucTSKT'])->name('/XoaDanhMucTSKT');
+Route::get('/tim-kiem-dmskt', [DanhMucTSKTController::class, 'timKiem'])->name('tim-kiem-dmtskt');
 
 // TSKT
 Route::get('/TrangThemTSKT', [ThongSoKyThuatController::class, 'TrangThemTSKT'])->name('/TrangThemTSKT');
@@ -212,17 +217,18 @@ Route::get('/XoaTSKT/{MaTSKT}', [ThongSoKyThuatController::class, 'XoaTSKT'])->n
 Route::post('/ChonDanhMucTSKT', [ThongSoKyThuatController::class, 'ChonDanhMucTSKT'])->name('/ChonDanhMucTSKT');
 
 // sản phẩm
-Route::get('/TrangThemSanPham', [SanPhamController::class, 'TrangThemSanPham'])->name('/TrangThemSanPham');
-Route::get('/TrangLietKeSanPham', [SanPhamController::class, 'TrangLietKeSanPham'])->name('/TrangLietKeSanPham');
-Route::post('/ThemSanPham', [SanPhamController::class, 'ThemSanPham'])->name('/ThemSanPham');
-Route::get('/KichHoatSanPham/{MaSanPham}', [SanPhamController::class, 'KichHoatSanPham'])->name('/KichHoatSanPham');
-Route::get('/KoKichHoatSanPham/{MaSanPham}', [SanPhamController::class, 'KoKichHoatSanPham'])->name('/KoKichHoatSanPham');
-Route::get('/TrangSuaSanPham/{MaSanPham}', [SanPhamController::class, 'TrangSuaSanPham'])->name('/TrangSuaSanPham');
-Route::get('/XoaSanPham/{MaSanPham}', [SanPhamController::class, 'XoaSanPham'])->name('/XoaSanPham');
-Route::post('/SuaSanPham/{MaSanPham}', [SanPhamController::class, 'SuaSanPham'])->name('/SuaSanPham');
-Route::post('/ThemTSKTChoSanPham', [SanPhamController::class, 'ThemTSKTChoSanPham'])->name('/ThemTSKTChoSanPham');
-Route::post('/SuaTSKTChoSanPham', [SanPhamController::class, 'SuaTSKTChoSanPham'])->name('/SuaTSKTChoSanPham');
-Route::get('/TrangSanPhamTSKT/{MaSanPham}', [SanPhamController::class, 'TrangSanPhamTSKT'])->name('/TrangSanPhamTSKT');
+Route::get('/trang-them-san-pham', [SanPhamController::class, 'TrangThemSanPham'])->name('/TrangThemSanPham');
+Route::get('/trang-liet-ke-san-pham', [SanPhamController::class, 'TrangLietKeSanPham'])->name('/TrangLietKeSanPham');
+Route::post('/them-san-pham', [SanPhamController::class, 'ThemSanPham'])->name('/ThemSanPham');
+Route::get('/kich-hoat-san-pham/{MaSanPham}', [SanPhamController::class, 'KichHoatSanPham'])->name('/KichHoatSanPham');
+Route::get('/khong-kich-hoat-san-pham/{MaSanPham}', [SanPhamController::class, 'KoKichHoatSanPham'])->name('/KoKichHoatSanPham');
+Route::get('/trang-sua-san-pham/{MaSanPham}', [SanPhamController::class, 'TrangSuaSanPham'])->name('/TrangSuaSanPham');
+Route::get('/xoa-san-pham/{MaSanPham}', [SanPhamController::class, 'XoaSanPham'])->name('/XoaSanPham');
+Route::post('/sua-san-pham/{MaSanPham}', [SanPhamController::class, 'SuaSanPham'])->name('/SuaSanPham');
+Route::post('/them-tskt-cho-san-pham', [SanPhamController::class, 'ThemTSKTChoSanPham'])->name('/ThemTSKTChoSanPham');
+Route::post('/sua-tskt-cho-san-pham', [SanPhamController::class, 'SuaTSKTChoSanPham'])->name('/SuaTSKTChoSanPham');
+Route::get('/trang-san-pham-tskt/{MaSanPham}', [SanPhamController::class, 'TrangSanPhamTSKT'])->name('/TrangSanPhamTSKT');
+Route::get('/tim-kiem', [SanPhamController::class, 'timKiem'])->name('tim-kiem-san-pham');
 
 // Phí giao hàng
 Route::get('/TrangThemPhiGiaoHang', [PhiGiaoHangController::class, 'TrangThemPhiGiaoHang'])->name('/TrangThemPhiGiaoHang');

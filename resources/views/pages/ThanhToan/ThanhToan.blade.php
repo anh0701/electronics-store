@@ -53,7 +53,7 @@
                                 }
                             }elseif ($cart['CanNang'] < $TySo){
                                 if($TySo <= 1){
-                                    $TienVanChuyen = 0;
+                                    $TienVanChuyen = $TySo * 1500;
                                 }elseif ($TySo > 1 && $TySo <= 5){
                                     $TienVanChuyen = $TySo * 2500;
                                 }elseif ($TySo > 5 && $TySo <= 10){
@@ -87,7 +87,7 @@
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">{{ number_format($TienVanChuyen, 0, '', '.') }} đ</p>
+                                <p class="cart_total_price">{{ number_format(($TienVanChuyen * $cart['SoLuong']), 0, '', '.') }} đ</p>
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price">{{ number_format($subtotal, 0, '', '.') }} đ</p>
