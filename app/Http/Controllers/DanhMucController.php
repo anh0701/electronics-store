@@ -16,7 +16,7 @@ class DanhMucController extends Controller
     }
 
     public function TrangLietKeDanhMuc(){
-        $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->orderBy('MaDanhMuc', 'DESC')->paginate(15);
+        $allDanhMuc = DanhMuc::orderBy('DanhMucCha', 'DESC')->orderBy('MaDanhMuc', 'DESC')->paginate(5);
         $allDanhMucCha = DanhMuc::where('DanhMucCha', 0)->get();
         return view('admin.DanhMuc.QuanlyDanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc', 'allDanhMucCha'));
     }
@@ -47,19 +47,19 @@ class DanhMucController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $danhMuc->ThoiGianTao = now();
         $danhMuc->save();
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Thêm danh mục sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-muc')->with('status', 'Thêm danh mục sản phẩm thành công');
     }
 
     public function KoKichHoatDanhMuc($MaDanhMuc){
         $danhMuc = DanhMuc::find($MaDanhMuc);
         $danhMuc->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Cập nhật tình trạng danh mục thành công');
+        return Redirect::to('trang-liet-ke-danh-muc')->with('status', 'Cập nhật tình trạng danh mục thành công');
     }
 
     public function KichHoatDanhMuc($MaDanhMuc){
         $danhMuc = DanhMuc::find($MaDanhMuc);
         $danhMuc->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Cập nhật tình trạng danh mục thành công');
+        return Redirect::to('trang-liet-ke-danh-muc')->with('status', 'Cập nhật tình trạng danh mục thành công');
     }
 
     public function TrangSuaDanhMuc($MaDanhMuc){
@@ -93,12 +93,12 @@ class DanhMucController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $danhMuc->ThoiGianSua = now();
         $danhMuc->save();
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Cập nhật danh mục sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-muc')->with('status', 'Cập nhật danh mục sản phẩm thành công');
     }
 
     public function XoaDanhMuc($MaDanhMuc){
         $danhMuc = DanhMuc::find($MaDanhMuc)->delete();
-        return Redirect::to('TrangLietKeDanhMuc')->with('status', 'Xóa danh mục sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-muc')->with('status', 'Xóa danh mục sản phẩm thành công');
     }
 
     // Quản lý thương hiệu thuộc danh mục
@@ -171,5 +171,15 @@ class DanhMucController extends Controller
     public function xoaTHDM($MaTHDM){
         $thuongHieuDanhMuc = ThuongHieuDanhMuc::find($MaTHDM)->delete();
         return Redirect::to('trang-liet-ke-thtdm')->with('status', 'Xóa thương hiệu thuộc danh mục thành công');
+    }
+
+    public function timKiemLoaiSP(Request $request)
+    {
+        $allDanhMuc = DanhMuc::where('SlugDanhMuc','LIKE', "%{$request->TuKhoa}%")
+            -> orWhere('TenDanhMuc','LIKE', "%{$request->TuKhoa}%")
+            ->get();
+        $allDanhMucCha = DanhMuc::where('DanhMucCha', 0)->get();
+
+        return view('admin.DanhMuc.QuanlyDanhMuc.LietKeDanhMuc')->with(compact('allDanhMuc', 'allDanhMucCha'));
     }
 }
