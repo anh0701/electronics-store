@@ -257,11 +257,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <section class="wrapper">
 		@yield('admin_content')
   </section>
-  {{-- <div class="footer">
+  <div class="footer">
     <div class="wthree-copyright">
       <p>Sản phẩm của nhóm số 59<a href=""> Đồ án tốt nghiệp</a></p>
     </div>
-  </div> --}}
+  </div>
 </section>
   <!--main content end-->
   </section>
@@ -275,86 +275,86 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-  {{--  --}}
+  {{-- Gửi dữ liệu tới biểu đồ --}}
   <script type="text/javascript">
     $(document).ready(function(){
+      
+      chart30daysorder();
       var chart = new Morris.Bar({
         element: 'chart',
-        data: [
-          { 
-            period: '2024-05-05', 
-            order: 10,
-            sales: 20,
-            profit: 40,
-            quantity: 60,
-          },{
-            period: '2024-06-05',  
-            order: 70,
-            sales: 60,
-            profit: 90,
-            quantity: 120,
-          }
-        ],
+        parseTime: false,
+        hideHover: 'auto',
+        fillOpacity: 0.3,
+        lineColors:['#819C79', '#fc8710', '#FF6541', '#766B56'],
         xkey: 'period',
-        ykeys: ['order', 'sales', 'profit', 'quantity'],
-        ykeys: ['order', 'sales', 'profit', 'quantity'],
+        ykeys: ['profit', 'sales'],
+        labels: ['Lợi nhuận', 'Doanh số']
       });
 
-
-      // $(function() {
-      //   $( "#datepicker" ).datepicker({
-      //     prevText: "Tháng trước",
-      //     nextText: "Tháng sau",
-      //     dateFormat: "yy-mm-dd",
-      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
-      //     duration: "slow",
-      //   });
-
-      //   $( "#datepicker2" ).datepicker({
-      //     prevText: "Tháng trước",
-      //     nextText: "Tháng sau",
-      //     dateFormat: "yy-mm-dd",
-      //     dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
-      //     duration: "slow",
-      //   });
-      // });
-
-      var from_date = $('#datepicker').val();
-      var to_date = $('#datepicker2').val();
-      var _token = $('input[name="_token"]').val();
-      $.ajax({
-        method: "POST",
-        url: '{{ route('/Test') }}',
-        dataType: "JSON",
-        data: {
-          from_date : from_date,
-          to_date : to_date,
-          _token : _token
-        },
-        success:function(data){
-          chart.setData(data);
-        }
+      var chart2 = new Morris.Line({
+        element: 'chart2',
+        parseTime: false,
+        hideHover: 'auto',
+        fillOpacity: 0.3,
+        lineColors:['#819C79', '#fc8710', '#FF6541', '#766B56'],
+        xkey: 'period',
+        ykeys: ['order', 'quantity'],
+        labels: ['Số lượng đơn hàng', 'Số lượng sản phẩm']
       });
 
-      $('#btn-dashboard-filter').click(function(){
-        var from_date = $('#datepicker').val();
-        var to_date = $('#datepicker2').val();
+      function chart30daysorder(){
         var _token = $('input[name="_token"]').val();
         $.ajax({
+          url: '{{ Route('/days-order') }}',
           method: 'POST',
-          url: '{{ route('/fillter-by-date') }}',
           dataType: 'JSON',
           data: {
-            from_date : from_date,
-            to_date : to_date,
-            _token : _token
+            _token:_token,
           },
-          success: function (result){
+          success:function(data) {
             chart.setData(data);
-          }
+            chart2.setData(data);
+          },
+        });
+      }
+
+      $('#btn-dashboard-filter').click(function(){
+        var _token = $('input[name="_token"]').val();
+        var from_date = $('#datepicker').val();
+        var to_date = $('#datepicker2').val();
+        $.ajax({
+          url: '{{ Route('/filter-by-date') }}',
+          method: 'POST',
+          dataType: 'JSON',
+          data: {
+            _token:_token,
+            from_date:from_date,
+            to_date:to_date,
+          },
+          success:function(data) {
+            chart.setData(data);
+            chart2.setData(data);
+          },
         });
       });
 
+      $('.dashoard-filter').change(function(){
+        var dashboard_value = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          url: '{{ route('/dashboard-filter') }}',
+          method: 'POST',
+          dataType: 'JSON',
+          data: {
+            dashboard_value:dashboard_value,
+            _token:_token,
+          },
+          success:function(data){
+            chart.setData(data);
+            chart2.setData(data);
+          }
+        });
+      })
     });
   </script>
   {{-- datepicker --}}
@@ -375,7 +375,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
         duration: "slow",
       });
-    } );
+    });
   </script>
   {{-- Chọn địa điểm giao hàng --}}
   <script type="text/javascript">

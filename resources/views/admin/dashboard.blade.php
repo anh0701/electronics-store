@@ -6,10 +6,16 @@
             <div class="col-md-4 market-update-right">
                 <i class="fa fa-eye"> </i>
             </div>
-             <div class="col-md-8 market-update-left">
-             <h4>Visitors</h4>
-            <h3>13,500</h3>
-            <p>Other hand, we denounce</p>
+            <div class="col-md-8 market-update-left">
+            <h3>Đơn hàng</h3>
+            @php
+                $count = 0;
+                foreach($baoCaoDoanhThu as $key => $value){
+                    $count += $value['total_order'];
+                }
+            @endphp
+            <h4>{{ $count }}</h4>
+            <p>Số lượng đơn hàng trong tháng này</p>
           </div>
           <div class="clearfix"> </div>
         </div>
@@ -17,12 +23,18 @@
     <div class="col-md-3 market-update-gd">
         <div class="market-update-block clr-block-1">
             <div class="col-md-4 market-update-right">
-                <i class="fa fa-users" ></i>
+                <i class="fa fa-usd"></i>
             </div>
             <div class="col-md-8 market-update-left">
-            <h4>Users</h4>
-                <h3>1,250</h3>
-                <p>Other hand, we denounce</p>
+                <h3>Lợi nhuận</h3>
+            @php
+                $count = 0;
+                foreach($baoCaoDoanhThu as $key => $value){
+                    $count += $value['profit'];
+                }
+            @endphp
+                <h4>{{ number_format($count, 0, '', '.') }} đ</h4>
+                <p>Lợi nhuận trong tháng này</p>
             </div>
           <div class="clearfix"> </div>
         </div>
@@ -33,9 +45,15 @@
                 <i class="fa fa-usd"></i>
             </div>
             <div class="col-md-8 market-update-left">
-                <h4>Sales</h4>
-                <h3>1,500</h3>
-                <p>Other hand, we denounce</p>
+                <h3>Doanh số</h3>
+            @php
+                $count = 0;
+                foreach($baoCaoDoanhThu as $key => $value){
+                    $count += $value['sales'];
+                }
+            @endphp
+                <h4>{{ number_format($count, 0, '', '.') }} đ</h4>
+                <p>Doanh số trong tháng này</p>
             </div>
           <div class="clearfix"> </div>
         </div>
@@ -46,9 +64,15 @@
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </div>
             <div class="col-md-8 market-update-left">
-                <h4>Orders</h4>
-                <h3>1,500</h3>
-                <p>Other hand, we denounce</p>
+                <h3>Sản phẩm</h3>
+            @php
+                $count = 0;
+                foreach($baoCaoDoanhThu as $key => $value){
+                    $count += $value['quantity'];
+                }
+            @endphp
+                <h4>{{ $count }}</h4>
+                <p>Số lượng sản phẩm đã bán trong tháng này</p>
             </div>
           <div class="clearfix"> </div>
         </div>
@@ -77,11 +101,12 @@
             <div class="col-md-2">
                 <p>
                     Lọc theo:
-                    <select class="dashoard-fillter form-control">
+                    <select class="dashoard-filter form-control">
                         <option value="">---Chọn---</option>
                         <option value="7ngay">7 ngày qua</option>
                         <option value="thangtruoc">tháng trước</option>
                         <option value="thangnay">tháng ngày</option>
+                        <option value="3thangtruoc">3 tháng trước</option>
                         <option value="365ngayqua">365 ngày qua</option>
                     </select>
                 </p>
@@ -89,7 +114,12 @@
         </form>
     </div>
     <div class="col-sm-12">
+        <p class="title_thongke">Biểu đồ thống kê doanh số và lợi nhuận</p>
         <div id="chart" style="height: 350px;"></div>
+    </div>
+    <div class="col-sm-12">
+        <p class="title_thongke">Biểu đồ thống kê số đơn hàng và số sản phẩm</p>
+        <div id="chart2" style="height: 350px;"></div>
     </div>
 </div>
 @endsection
