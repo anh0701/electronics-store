@@ -292,88 +292,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-{{-- Gửi dữ liệu tới biểu đồ --}}
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        chart30daysorder();
-        var chart = new Morris.Bar({
-            element: 'chart',
-            parseTime: false,
-            hideHover: 'auto',
-            fillOpacity: 0.3,
-            lineColors:['#819C79', '#fc8710', '#FF6541', '#766B56'],
-            xkey: 'period',
-            ykeys: ['profit', 'sales'],
-            labels: ['Lợi nhuận', 'Doanh số']
-        });
-
-        var chart2 = new Morris.Line({
-            element: 'chart2',
-            parseTime: false,
-            hideHover: 'auto',
-            fillOpacity: 0.3,
-            lineColors:['#819C79', '#fc8710', '#FF6541', '#766B56'],
-            xkey: 'period',
-            ykeys: ['order', 'quantity'],
-            labels: ['Số lượng đơn hàng', 'Số lượng sản phẩm']
-        });
-
-        function chart30daysorder(){
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '{{ Route('/days-order') }}',
-                method: 'POST',
-                dataType: 'JSON',
-                data: {
-                    _token:_token,
-                },
-                success:function(data) {
-                    chart.setData(data);
-                    chart2.setData(data);
-                },
-            });
-        }
-
-        $('#btn-dashboard-filter').click(function(){
-            var _token = $('input[name="_token"]').val();
-            var from_date = $('#datepicker').val();
-            var to_date = $('#datepicker2').val();
-            $.ajax({
-                url: '{{ Route('/filter-by-date') }}',
-                method: 'POST',
-                dataType: 'JSON',
-                data: {
-                    _token:_token,
-                    from_date:from_date,
-                    to_date:to_date,
-                },
-                success:function(data) {
-                    chart.setData(data);
-                    chart2.setData(data);
-                },
-            });
-        });
-
-        $('.dashoard-filter').change(function(){
-            var dashboard_value = $(this).val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '{{ route('/dashboard-filter') }}',
-                method: 'POST',
-                dataType: 'JSON',
-                data: {
-                    dashboard_value:dashboard_value,
-                    _token:_token,
-                },
-                success:function(data){
-                    chart.setData(data);
-                    chart2.setData(data);
-                }
-            });
-        })
-    });
-</script>
 {{-- datepicker --}}
 <script>
     $( function() {
@@ -515,6 +433,90 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     });
 </script>
+{{-- Gửi dữ liệu tới biểu đồ --}}
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        chart30daysorder();
+        var chart = new Morris.Bar({
+            element: 'chart',
+            parseTime: false,
+            hideHover: 'auto',
+            fillOpacity: 0.3,
+            lineColors:['#819C79', '#fc8710', '#FF6541', '#766B56'],
+            xkey: 'period',
+            ykeys: ['profit', 'sales'],
+            labels: ['Lợi nhuận', 'Doanh số']
+        });
+
+        var chart2 = new Morris.Line({
+            element: 'chart2',
+            parseTime: false,
+            hideHover: 'auto',
+            fillOpacity: 0.3,
+            lineColors:['#819C79', '#fc8710', '#FF6541', '#766B56'],
+            xkey: 'period',
+            ykeys: ['order', 'quantity'],
+            labels: ['Số lượng đơn hàng', 'Số lượng sản phẩm']
+        });
+
+        function chart30daysorder(){
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: '{{ Route('/days-order') }}',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    _token:_token,
+                },
+                success:function(data) {
+                    chart.setData(data);
+                    chart2.setData(data);
+                },
+            });
+        }
+
+        $('#btn-dashboard-filter').click(function(){
+            var _token = $('input[name="_token"]').val();
+            var from_date = $('#datepicker').val();
+            var to_date = $('#datepicker2').val();
+            $.ajax({
+                url: '{{ Route('/filter-by-date') }}',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    _token:_token,
+                    from_date:from_date,
+                    to_date:to_date,
+                },
+                success:function(data) {
+                    chart.setData(data);
+                    chart2.setData(data);
+                },
+            });
+        });
+
+        $('.dashoard-filter').change(function(){
+            var dashboard_value = $(this).val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: '{{ route('/dashboard-filter') }}',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    dashboard_value:dashboard_value,
+                    _token:_token,
+                },
+                success:function(data){
+                    chart.setData(data);
+                    chart2.setData(data);
+                }
+            });
+        })
+    });
+</script>
+
+
 {{-- ChangeToSlug --}}
 <script type="text/javascript">
     function ChangeToSlug(){
