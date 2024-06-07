@@ -77,7 +77,7 @@
         </div>
         
     </div>
-    <a href="{{ route('xemPX') }}"><button class="btn btn-info">Quay lại danh sách</button></a>
+    <!-- <a href="{{ route('xemPX') }}"><button class="btn btn-info">Quay lại danh sách</button></a> -->
     <a href="{{ route('suaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Sửa</button></a>
 </div>
 @endsection

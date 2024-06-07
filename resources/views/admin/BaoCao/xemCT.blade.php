@@ -74,7 +74,7 @@
                 </div>
         </div>
     </div>
-    <a href="{{ url()->previous() }}"><button class="btn btn-sm btn-info">Quay lại</button></a>
+    <a href="{{ route('xemBaoCao') }}"><button class="btn btn-sm btn-info">Quay lại</button></a>
 </div>   
 
 <script>

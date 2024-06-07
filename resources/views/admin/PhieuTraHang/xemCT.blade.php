@@ -98,7 +98,7 @@
         </div>
         
     </div>
-    <a href="{{ route('xemPTH') }}"><button class="btn btn-info">Trở lại</button></a>
+    <!-- <a href="{{ route('xemPTH') }}"><button class="btn btn-info">Trở lại</button></a> -->
     <a href="{{ route('suaPTH', ['id' => $pth->MaPhieuTraHang]) }}"><button class="btn btn-info">Sửa</button></a>
 </div>
 @endsection
