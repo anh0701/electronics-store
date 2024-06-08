@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\BaiViet;
 use App\Models\DanhMucBaiViet;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 
 class BaiVietController extends Controller
@@ -102,7 +102,8 @@ class BaiVietController extends Controller
     }
 
     public function ThemBaiViet(Request $request){
-        $data = $request->validate([
+        $data = $request->all();
+        $validate = Validator::make ($request->all() ,[
             'TenBaiViet' => 'required',
             'SlugBaiViet' => 'required',
             'MaDanhMucBV' => 'required',
@@ -118,6 +119,13 @@ class BaiVietController extends Controller
             'TrangThai.required' => 'Chưa điền Trạng thái cho bài viết',
             'HinhAnh.required' => 'Chưa chọn hình ảnh cho bài viết',
         ]);
+
+        if ($validate->fails()){
+            return Redirect::back()
+                ->withErrors($validate->errors())
+                ->withInput($request->input());
+        }
+
         $baiViet = new BaiViet();
         $baiViet->TenBaiViet = $data['TenBaiViet'];
         $baiViet->SlugBaiViet = $data['SlugBaiViet'];
@@ -149,7 +157,7 @@ class BaiVietController extends Controller
     public function KichHoatBaiViet($MaBaiViet){
         $baiViet = BaiViet::find($MaBaiViet);
         $baiViet->update(['TrangThai'=>1]);
-        return Redirect::to('TrangSuaBaiViet')->with('status', 'Cập nhật tình trạng bài viết thành công');
+        return Redirect::to('TrangLietKeBaiViet')->with('status', 'Cập nhật tình trạng bài viết thành công');
     }
 
     public function TrangSuaBaiViet($MaBaiViet){
