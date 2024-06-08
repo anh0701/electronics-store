@@ -263,7 +263,8 @@ Route::get('/TrangLietKeBinhLuan', [DanhGiaController::class, 'TrangLietKeBinhLu
 Route::get('/KichHoatBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'KichHoatBinhLuan'])->name('/KichHoatBinhLuan');
 Route::get('/KoKichHoatBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'KoKichHoatBinhLuan'])->name('/KoKichHoatBinhLuan');
 Route::get('/XoaBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'XoaBinhLuan'])->name('/XoaBinhLuan');
-
+Route::get('/tim-kiem-danh-gia', [DanhGiaController::class, 'timKiemDanhGia'])->name('timKiemDanhGia');
+Route::get('/tim-kiem-binh-luan', [DanhGiaController::class, 'timKiemBinhLuan'])->name('timKiemBinhLuan');
 
 // Trang bán hàng
 Route::get('/', [HomeController::class, 'index'])->name('/');

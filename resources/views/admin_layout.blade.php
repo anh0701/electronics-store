@@ -240,7 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                         <ul class="sub">
                             <li><a href="{{ Route('/TrangLietKeDanhGia') }}">+ Liệt kê đánh giá sản phẩm</a></li>
-                            <li><a href="{{ Route('/TrangLietKeBinhLuan') }}">+ Liệt kê đánh giá sản phẩm</a></li>
+                            <li><a href="{{ Route('/TrangLietKeBinhLuan') }}">+ Liệt kê bình luận</a></li>
                         </ul>
                     </li>
 
