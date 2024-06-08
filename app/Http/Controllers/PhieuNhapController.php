@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use App\Models\PhieuNhap;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class PhieuNhapController extends Controller
 {
@@ -88,6 +91,89 @@ class PhieuNhapController extends Controller
         }
         
         return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn, 'pth' => $pthKQ, 'ctth' => $ctth]);
+    }
+
+    public function xuatFilePN($id){
+        $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
+                FROM tbl_phieunhap pn 
+                JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
+                JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
+                WHERE MaPhieuNhap = '{$id}'");
+        $ctpn = DB::select("SELECT ct.*, sp.TenSanPham
+                FROM tbl_chitietphieunhap ct
+                JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
+                WHERE MaPhieuNhap = '{$id}'");
+        $tg1 = date_format(date_create($pn[0]->ThoiGianTao), 'd/m/Y');
+        // $tg2 = date_format(date_create($pn[0]->ThoiGianSua), 'd/m/Y');
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Phiếu nhập');
+        $sheet->setCellValue('A2', 'Thời gian:');
+        $sheet->setCellValue('B2', $tg1);
+
+        $sheet->setCellValue('A3', 'Mã phiếu nhập:');
+        $sheet->setCellValue('B3', $id);
+        $sheet->setCellValue('A4', 'Người lập:');
+        $sheet->setCellValue('B4', $pn[0]->TenTaiKhoan);
+        $sheet->setCellValue('C4', 'Tên nhà cung cấp:');
+        $sheet->setCellValue('D4', $pn[0]->TenNhaCungCap);
+        if($pn[0]->TrangThai){
+            $trangThai = 'Đã xác nhận';
+        }else{
+            $trangThai = 'Chưa xác nhận';
+        }
+        if($pn[0]->PhuongThucThanhToan == 0){
+            $thanhToan = 'Chuyển khoản';
+        }elseif($pn[0]->PhuongThucThanhToan == 1){
+            $thanhToan = 'Tiền mặt';
+        }else{
+            $thanhToan = 'Khác';
+        }
+        $sheet->setCellValue('A5', 'Trạng thái:');
+        $sheet->setCellValue('B5', $trangThai);
+        $sheet->setCellValue('C5', 'Phương thức thanh toán:');
+        $sheet->setCellValue('D5', $thanhToan);
+
+        $sheet->setCellValue('A7', 'Mã sản phẩm')
+              ->setCellValue('B7', 'Tên sản phẩm')
+              ->setCellValue('C7', 'Số lượng')
+              ->setCellValue('D7', 'Giá nhập')
+              ->setCellValue('E7', 'Thành tiền');
+        $row = 8;
+        foreach ($ctpn as $item) {
+            $thanhTien = $item->SoLuong * $item->GiaSanPham;
+            $sheet->setCellValue('A' . $row, $item->MaSanPham)
+                  ->setCellValue('B' . $row, $item->TenSanPham)
+                  ->setCellValue('C' . $row, $item->SoLuong)
+                  ->setCellValue('D' . $row, $item->GiaSanPham)
+                  ->setCellValue('E' . $row, $thanhTien);
+            $row++;
+        }
+
+        $sheet->setCellValue('A' . ($row), 'Tổng tiền');
+        $sheet->mergeCells('A' . ($row) . ':D' . ($row));
+        $sheet->setCellValue('E' . ($row), $pn[0]->TongTien);
+
+        $sheet->setCellValue('A' . ($row + 1), 'Số tiền trả');
+        $sheet->mergeCells('A' . ($row + 1) . ':D' . ($row + 1));
+        $sheet->setCellValue('E' . ($row + 1), $pn[0]->TienTra);
+
+        $sheet->setCellValue('A' . ($row + 2), 'Số tiền nợ');
+        $sheet->mergeCells('A' . ($row + 2) . ':D' . ($row + 2));
+        $sheet->setCellValue('E' . ($row + 2), $pn[0]->TienNo);
+
+        $sheet->getColumnDimension('A')->setAutoSize(true);
+        $sheet->getColumnDimension('B')->setAutoSize(true);
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+        $sheet->getColumnDimension('F')->setAutoSize(true);
+
+        $fileName = 'PhieuNhap_' . $id . '.xlsx';
+        $filePath = public_path('phieuNhap/' . $fileName);
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+        return response()->download($filePath, $fileName);
     }
 
     public function suaPN($id){
