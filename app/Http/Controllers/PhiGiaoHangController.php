@@ -13,12 +13,12 @@ class PhiGiaoHangController extends Controller
 {
     public function TrangLietKePhiGiaoHang(){
         $allPhiGiaoHang = PhiGiaoHang::orderBy('MaThanhPho', 'ASC')->paginate();
-        return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang')); 
+        return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang'));
     }
 
     public function TrangThemPhiGiaoHang(){
         $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
-        return view('admin.PhiGiaoHang.ThemPhiGiaoHang')->with(compact('allThanhPho')); 
+        return view('admin.PhiGiaoHang.ThemPhiGiaoHang')->with(compact('allThanhPho'));
     }
 
     public function TrangSuaPhiGiaoHang($MaPhiGiaoHang){
@@ -26,7 +26,7 @@ class PhiGiaoHangController extends Controller
         $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
         $allQuanHuyen = QuanHuyen::orderBy('MaQuanHuyen', 'ASC')->get();
         $allXaPhuong = XaPhuongThiTran::orderBy('MaXaPhuong', 'ASC')->get();
-        return view('admin.PhiGiaoHang.SuaPhiGiaoHang')->with(compact('allThanhPho', 'allQuanHuyen', 'allXaPhuong', 'phiGiaoHang')); 
+        return view('admin.PhiGiaoHang.SuaPhiGiaoHang')->with(compact('allThanhPho', 'allQuanHuyen', 'allXaPhuong', 'phiGiaoHang'));
     }
 
     public function ChonDiaDiem(Request $request){
@@ -98,7 +98,14 @@ class PhiGiaoHangController extends Controller
 
     public function XoaPhiGiaoHang($MaPhiGiaoHang){
         $phiGiaoHang = PhiGiaoHang::find($MaPhiGiaoHang);
-        $phiGiaoHang->delete();
+        $phiGiaoHang->SoTien = 0;
+        $phiGiaoHang->save();
         return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Xóa danh mục phí giao hàng thành công');
+    }
+
+    public function timKiem(Request $request)
+    {
+        $allPhiGiaoHang = PhiGiaoHang::orderBy('MaThanhPho', 'ASC')->paginate();
+        return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang'));
     }
 }
