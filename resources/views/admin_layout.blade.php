@@ -249,10 +249,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <span>Quản lý bài viết</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{ Route('/TrangLietKeBaiViet') }}">+ Liệt kê bài viết</a></li>
                             <li><a href="{{ Route('/TrangThemBaiViet') }}">+ Thêm bài viết</a></li>
-                            <li><a href="{{ Route('/TrangLietKeDanhMucBV') }}">+ Liệt kê danh mục bài viết</a></li>
+                            <li><a href="{{ Route('/TrangLietKeBaiViet') }}">+ Liệt kê bài viết</a></li>
                             <li><a href="{{ Route('/TrangThemDanhMucBV') }}">+ Thêm danh mục bài viết</a></li>
+                            <li><a href="{{ Route('/TrangLietKeDanhMucBV') }}">+ Liệt kê danh mục bài viết</a></li>
                         </ul>
                     </li>
 

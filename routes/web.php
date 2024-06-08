@@ -159,25 +159,27 @@ Route::get('/trangAdmin', [TaiKhoanController::class, 'trangAdmin'])->name('/tra
 
 
 // Bài viết
-Route::get('/TrangThemBaiViet', [BaiVietController::class, 'TrangThemBaiViet'])->name('/TrangThemBaiViet');
-Route::get('/TrangLietKeBaiViet', [BaiVietController::class, 'TrangLietKeBaiViet'])->name('/TrangLietKeBaiViet');
+Route::get('/trang-them-bai-viet', [BaiVietController::class, 'TrangThemBaiViet'])->name('/TrangThemBaiViet');
+Route::get('/trang-liet-ke-bai-viet', [BaiVietController::class, 'TrangLietKeBaiViet'])->name('/TrangLietKeBaiViet');
 Route::post('/ThemBaiViet', [BaiVietController::class, 'ThemBaiViet'])->name('/ThemBaiViet');
-Route::get('/TrangSuaBaiViet/{MaBaiViet}', [BaiVietController::class, 'TrangSuaBaiViet'])->name('/TrangSuaBaiViet');
+Route::get('/trang-sua-bai-viet/{MaBaiViet}', [BaiVietController::class, 'TrangSuaBaiViet'])->name('/TrangSuaBaiViet');
 Route::get('/XoaBaiViet/{MaBaiViet}', [BaiVietController::class, 'XoaBaiViet'])->name('/XoaBaiViet');
 Route::post('/SuaBaiViet/{MaBaiViet}', [BaiVietController::class, 'SuaBaiViet'])->name('/SuaBaiViet');
 Route::get('/KoKichHoatBaiViet/{MaBaiViet}', [BaiVietController::class, 'KoKichHoatBaiViet'])->name('/KoKichHoatBaiViet');
 Route::get('/KichHoatBaiViet/{MaBaiViet}', [BaiVietController::class, 'KichHoatBaiViet'])->name('/KichHoatBaiViet');
+Route::get('/tim-kiem-bai-viet', [BaiVietController::class, 'timKiemBV'])->name('timKiemBV');
 
 // Danh mục bài viết
-Route::get('/TrangThemDanhMucBV', [BaiVietController::class, 'TrangThemDanhMucBV'])->name('/TrangThemDanhMucBV');
-Route::get('/TrangLietKeDanhMucBV', [BaiVietController::class, 'TrangLietKeDanhMucBV'])->name('/TrangLietKeDanhMucBV');
+Route::get('/trang-them-dmbv', [BaiVietController::class, 'TrangThemDanhMucBV'])->name('/TrangThemDanhMucBV');
+Route::get('/trang-liet-ke-dmbv', [BaiVietController::class, 'TrangLietKeDanhMucBV'])->name('/TrangLietKeDanhMucBV');
 Route::post('/ThemDanhMucBV', [BaiVietController::class, 'ThemDanhMucBV'])->name('/ThemDanhMucBV');
-Route::get('/TrangSuaDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'TrangSuaDanhMucBV'])->name('/TrangSuaDanhMucBV');
+Route::get('/trang-sua-dmbv/{MaDanhMucBV}', [BaiVietController::class, 'TrangSuaDanhMucBV'])->name('/TrangSuaDanhMucBV');
 Route::get('/XoaDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'XoaDanhMucBV'])->name('/XoaDanhMucBV');
 Route::post('/SuaDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'SuaDanhMucBV'])->name('/SuaDanhMucBV');
 Route::get('/KoKichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KoKichHoatDanhMucBV'])->name('/KoKichHoatDanhMucBV');
 Route::get('/KichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KichHoatDanhMucBV'])->name('/KichHoatDanhMucBV');
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard')->middleware('DangNhap');
+Route::get('/tim-kiem-dmbv', [BaiVietController::class, 'timKiemDMBV'])->name('timKiemDMBV');
 
 // Danh muc
 Route::get('/trang-them-danh-muc', [DanhMucController::class, 'TrangThemDanhMuc'])->name('/TrangThemDanhMuc');
