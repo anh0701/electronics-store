@@ -207,7 +207,7 @@ class TaiKhoanController extends Controller
                     ->select('tbl_taikhoan.*')
                     ->orderByDesc('tbl_taikhoan.TrangThai')
                     ->orderByDesc('tbl_taikhoan.ThoiGianTao')
-                    ->paginate(10);
+                    ->paginate(5);
         return view('admin.TaiKhoan.lietKeTK', ['data'=>$tk]);
     }
 

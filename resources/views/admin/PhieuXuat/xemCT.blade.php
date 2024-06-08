@@ -10,7 +10,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Thông tin phiếu xuất
+            Chi tiết phiếu xuất
         </div>
         <div class="container">
             <div class="row r1">
@@ -77,7 +77,7 @@
         </div>
         
     </div>
-    <a href="{{ route('xemPX') }}"><button class="btn btn-info">Quay lại danh sách</button></a>
+    <!-- <a href="{{ route('xemPX') }}"><button class="btn btn-info">Quay lại danh sách</button></a> -->
     <a href="{{ route('suaPX', ['id' => $px->MaPhieuXuat]) }}"><button class="btn btn-info">Sửa</button></a>
 </div>
 @endsection
