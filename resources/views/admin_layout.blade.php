@@ -198,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                         <ul class="sub">
                             <li><a href="{{ route('lietKeTonKho') }}">+ Liệt kê tồn kho</a></li>
-                            <li><a href="{{ route('xemPTH') }}">+ Liệt kê phiếu trả hàng</a></li>
+                            <!-- <li><a href="{{ route('xemPTH') }}">+ Liệt kê phiếu trả hàng</a></li> -->
                             <li><a href="{{ route('xemBaoCao') }}">+ Tạo báo cáo xuất nhập tồn</a></li>
                         </ul>
                     </li>

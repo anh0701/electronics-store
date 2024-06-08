@@ -69,24 +69,11 @@
         var labels = {!! json_encode($labels) !!};
         var data = {!! json_encode($data) !!};
 
-        console.log(labels); // Kiểm tra dữ liệu labels
-        console.log(data); // Kiểm tra dữ liệu data
-
-        // var n = 10;
-        // var labelN = labels.slice(0, n);
-        // var dataN = data.slice(0, n);
-
-
-        // var labelNN = 'Khác';
-        // var dataNN = data.slice(n).reduce((a,b) => a + b, 0);
-
-        
-        // labelN.push(labelNN);
-        // dataN.push(dataNN);
-
+        console.log(labels); 
+        console.log(data);
 
         var myChart = new Chart(ctx, {
-            type: 'bar', // Hoặc 'doughnut'
+            type: 'bar', 
             data: {
                 labels: labels,
                 datasets: [{

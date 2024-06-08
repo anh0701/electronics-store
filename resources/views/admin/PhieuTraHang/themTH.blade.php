@@ -49,14 +49,14 @@
                                     <tr>
                                         <td>{{ $ct->TenSanPham }}</td>
                                         <td>{{ $ct->SoLuong }}</td>
-                                        <td>{{ $ct->GiaSanPham }}</td>
+                                        <td>{{ number_format($ct->GiaSanPham, 0, '','.') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
 
-                    <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapTHCT1')}}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                    <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapTHCT1')}}" method="POST">
                         {{ csrf_field() }}
                         
                         <div class="form-group">

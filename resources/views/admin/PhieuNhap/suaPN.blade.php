@@ -47,9 +47,9 @@
                         <div class="form-group">
                             <label for="">Phương thức thanh toán</label>
                             <select name="thanhToan" class="form-control input-lg m-bot15">
-                                <option value="0" >Chuyển khoản</option>
-                                <option value="1" >Tiền mặt</option>
-                                <option value="2" >Khác</option>
+                                <option value="0" {{ $pn->PhuongThucThanhToan == '0' ? 'selected' : '' }}>Chuyển khoản</option>
+                                <option value="1" {{ $pn->PhuongThucThanhToan == '1' ? 'selected' : '' }}>Tiền mặt</option>
+                                <option value="2" {{ $pn->PhuongThucThanhToan == '2' ? 'selected' : '' }}>Khác</option>
                             </select>
                         </div>                      
                         <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
@@ -66,11 +66,12 @@
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
-                    <form id="myLink3" role="form" action="{{ route('xuLyLapPNCT') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                    <form id="myLink3" role="form" action="{{ route('xuLyLapPNCT') }}" method="POST">
                         {{ csrf_field() }}
+                        
                         <div class="form-group">
-                            <label for="">Mã phiếu nhập:</label>
-                            <input type="text" class="form-control" name="maPNSua" value="{{$pn->MaPhieuNhap}}" readonly>
+                            <!-- <label for="">Mã phiếu nhập:</label> -->
+                            <input type="hidden" class="form-control" name="maPNSua" value="{{$pn->MaPhieuNhap}}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Loại sản phẩm</label>
@@ -104,7 +105,7 @@
                         @error('gia')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
+                        <button type="submit" class="btn btn-info">Thêm sản phẩm nhập về?</button>
                     </form>
                     
                     
@@ -136,7 +137,7 @@
 
                                         <td id = "myLink">
                                             <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPN }}">Cập nhật</a>
-                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPN }} không?')" href="{{ route('xoaCTS', ['id' => $ct->MaCTPN]) }}">
+                                            <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $ct->TenSanPham }} trong phiếu nhập không?')" href="{{ route('xoaCTS', ['id' => $ct->MaCTPN]) }}">
                                                 <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                                             </a>
                                         </td>
@@ -183,19 +184,7 @@ $(document).ready(function() {
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            @if(session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Thành công',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 800
-            });
-            @endif
-        });
-    </script>
+    
 <script>
 $(document).ready(function() {
     $('.update-btn').on('click', function() {
