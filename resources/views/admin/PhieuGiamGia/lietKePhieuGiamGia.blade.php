@@ -39,7 +39,7 @@
                         <th>Mã code phiếu giảm giá</th>
                         <th>Slug</th>
                         <th>Cấp bậc thành viên</th>
-{{--                        <th>Số tiền | Phần trămm giảm</th>--}}
+                        <th>Trạng thái</th>
                         <th>Trị giá</th>
                         <th>Thời gian có hiệu lực</th>
                         <th>Thời gian hết hiệu lực</th>
@@ -48,11 +48,8 @@
                     </thead>
                     <tbody>
                     @foreach ($phieuGiamGia as $key => $phieu)
-                        @if($phieu->TrangThai != 0)
 
                             <tr>
-    {{--                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>--}}
-    {{--                            </td>--}}
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $phieu->TenMaGiamGia }}</td>
                                 <td>{{ $phieu->MaCode }}</td>
@@ -66,23 +63,17 @@
                                         Vàng
                                     @endif
                                 </td>
-    {{--                            <td>--}}
-    {{--                                @if($phieu->DonViTinh == 1)--}}
-    {{--                                    Giảm theo tiền--}}
-    {{--                                @else--}}
-    {{--                                    Giảm theo %--}}
-    {{--                                @endif--}}
-    {{--                            </td>--}}
-    {{--                            </td>--}}
+                                @if($phieu->TrangThai == 1)
+                                    <td style="color: #0a8a0a">Được sử dụng</td>
+                                @else
+                                    <td style="color: orange">Không được sử dụng</td>
+
+                                @endif
                                 <td>
                                     @if($phieu->DonViTinh == 1)
-    {{--                                    Giảm {{ number_format($phieu->TriGia).''.''.'' }}đ--}}
-    {{--                                    Giảm {{$phieu->TriGia}}đ--}}
                                         Giảm {{ strpos($phieu->TriGia, ',') === false ? number_format($phieu->TriGia, 0, '', ',') : $phieu->TriGia }}đ
                                     @else
                                         Giảm {{ strpos($phieu->TriGia, ',') === false ? number_format($phieu->TriGia, 0, '', ',') : $phieu->TriGia }}%
-                                        {{--                                    Giảm {{ number_format($phieu->TriGia)}}%--}}
-    {{--                                    Giảm {{$phieu->TriGia}}%--}}
                                     @endif
                                 </td>
                                 <td>{{$phieu->ThoiGianBatDau}}</td>
@@ -97,7 +88,6 @@
                                             class="fa fa-times text-danger text"></i></a>
                                 </td>
                             </tr>
-                        @endif
                     @endforeach
                     </tbody>
                 </table>

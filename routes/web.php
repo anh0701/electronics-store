@@ -232,12 +232,12 @@ Route::get('/trang-san-pham-tskt/{MaSanPham}', [SanPhamController::class, 'Trang
 Route::get('/tim-kiem', [SanPhamController::class, 'timKiem'])->name('tim-kiem-san-pham');
 
 // Phí giao hàng
-Route::get('/TrangThemPhiGiaoHang', [PhiGiaoHangController::class, 'TrangThemPhiGiaoHang'])->name('/TrangThemPhiGiaoHang');
-Route::get('/TrangLietKePhiGiaoHang', [PhiGiaoHangController::class, 'TrangLietKePhiGiaoHang'])->name('/TrangLietKePhiGiaoHang');
-Route::post('/ThemPhiGiaoHang', [PhiGiaoHangController::class, 'ThemPhiGiaoHang'])->name('/ThemPhiGiaoHang');
-Route::get('/TrangSuaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'TrangSuaPhiGiaoHang'])->name('/TrangSuaPhiGiaoHang');
-Route::get('/XoaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'XoaPhiGiaoHang'])->name('/XoaPhiGiaoHang');
-Route::post('/SuaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'SuaPhiGiaoHang'])->name('/SuaPhiGiaoHang');
+Route::get('/trang-them-phi-giao-hang', [PhiGiaoHangController::class, 'TrangThemPhiGiaoHang'])->name('/TrangThemPhiGiaoHang');
+Route::get('/trang-liet-ke-phi-giao-hang', [PhiGiaoHangController::class, 'TrangLietKePhiGiaoHang'])->name('/TrangLietKePhiGiaoHang');
+Route::post('/them-phi-giao-hang', [PhiGiaoHangController::class, 'ThemPhiGiaoHang'])->name('/ThemPhiGiaoHang');
+Route::get('/trang-sua-phi-giao-hang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'TrangSuaPhiGiaoHang'])->name('/TrangSuaPhiGiaoHang');
+Route::get('/xoa-phi-giao-hang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'XoaPhiGiaoHang'])->name('/XoaPhiGiaoHang');
+Route::post('/sua-phi-giao-hang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'SuaPhiGiaoHang'])->name('/SuaPhiGiaoHang');
 Route::post('/ChonDiaDiem', [PhiGiaoHangController::class, 'ChonDiaDiem'])->name('/ChonDiaDiem');
 Route::get('/tim-kiem-phi-giao-hang', [PhiGiaoHangController::class, 'timKiem'])->name('timKiemPhiGiaoHang');
 
@@ -254,16 +254,17 @@ Route::post('/SuaTrangThaiDonHang/{MaDonHang}/{order_code}', [DonHangController:
 
 // Đánh giá
 Route::post('/DanhGia', [DanhGiaController::class, 'DanhGia'])->name('/DanhGia');
-Route::get('/TrangLietKeDanhGia', [DanhGiaController::class, 'TrangLietKeDanhGia'])->name('/TrangLietKeDanhGia');
-Route::get('/KichHoatDanhGia/{MaDanhGia}', [DanhGiaController::class, 'KichHoatDanhGia'])->name('/KichHoatDanhGia');
-Route::get('/KoKichHoatDanhGia/{MaDanhGia}', [DanhGiaController::class, 'KoKichHoatDanhGia'])->name('/KoKichHoatDanhGia');
-Route::get('/XoaDanhGia/{MaDanhGia}', [DanhGiaController::class, 'XoaDanhGia'])->name('/XoaDanhGia');
+Route::get('/trang-liet-ke-danh-gia', [DanhGiaController::class, 'TrangLietKeDanhGia'])->name('/TrangLietKeDanhGia');
+Route::get('/kich-hoat-danh-gia/{MaDanhGia}', [DanhGiaController::class, 'KichHoatDanhGia'])->name('/KichHoatDanhGia');
+Route::get('/khong-kich-hoat-danh-gia/{MaDanhGia}', [DanhGiaController::class, 'KoKichHoatDanhGia'])->name('/KoKichHoatDanhGia');
+Route::get('/xoa-danh-gia/{MaDanhGia}', [DanhGiaController::class, 'XoaDanhGia'])->name('/XoaDanhGia');
 Route::post('/BinhLuan', [DanhGiaController::class, 'BinhLuan'])->name('/BinhLuan');
-Route::get('/TrangLietKeBinhLuan', [DanhGiaController::class, 'TrangLietKeBinhLuan'])->name('/TrangLietKeBinhLuan');
-Route::get('/KichHoatBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'KichHoatBinhLuan'])->name('/KichHoatBinhLuan');
-Route::get('/KoKichHoatBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'KoKichHoatBinhLuan'])->name('/KoKichHoatBinhLuan');
+Route::get('/trang-liet-ke-binh-luan', [DanhGiaController::class, 'TrangLietKeBinhLuan'])->name('/TrangLietKeBinhLuan');
+Route::get('/kich-hoat-binh-luan/{MaBinhLuan}', [DanhGiaController::class, 'KichHoatBinhLuan'])->name('/KichHoatBinhLuan');
+Route::get('/khong-kich-hoat-binh-luan/{MaBinhLuan}', [DanhGiaController::class, 'KoKichHoatBinhLuan'])->name('/KoKichHoatBinhLuan');
 Route::get('/XoaBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'XoaBinhLuan'])->name('/XoaBinhLuan');
-
+Route::get('/tim-kiem-danh-gia', [DanhGiaController::class, 'timKiemDanhGia'])->name('timKiemDanhGia');
+Route::get('/tim-kiem-binh-luan', [DanhGiaController::class, 'timKiemBinhLuan'])->name('timKiemBinhLuan');
 
 // Trang bán hàng
 Route::get('/', [HomeController::class, 'index'])->name('/');

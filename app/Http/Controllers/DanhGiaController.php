@@ -31,7 +31,7 @@ class DanhGiaController extends Controller
             'SoSao.required' => 'Chọn số sao để đánh giá sản phẩm',
         ]);
         if(Empty(Session::get('user'))){
-            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể đánh giá sản phẩm'); 
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể đánh giá sản phẩm');
         }elseif(Session::get('user')){
             $user = Session('user');
             $allDonHang = DonHang::orderBy('MaDonHang', 'DESC')->where('Email', $user['Email'])->get();
@@ -48,7 +48,7 @@ class DanhGiaController extends Controller
                         date_default_timezone_set('Asia/Ho_Chi_Minh');
                         $danhGia->ThoiGianTao = now();
                         $danhGia->save();
-                        return Redirect()->back()->with('message', 'Đánh giá của bạn về sản phẩm được lưu lại'); 
+                        return Redirect()->back()->with('message', 'Đánh giá của bạn về sản phẩm được lưu lại');
                     }
                 }
             }
@@ -57,26 +57,26 @@ class DanhGiaController extends Controller
     }
 
     public function TrangLietKeDanhGia(){
-        $allDanhGia = DanhGia::orderBy('MaSanPham', 'DESC')->paginate(20);
+        $allDanhGia = DanhGia::orderBy('MaSanPham', 'DESC')->paginate(5);
         return view('admin.DanhGia.LietKeDanhGia')->with(compact('allDanhGia'));
     }
 
     public function KoKichHoatDanhGia($MaDanhGia){
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeDanhGia')->with('status', 'Cập nhật tình trạng đánh giá sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-gia')->with('status', 'Cập nhật tình trạng đánh giá sản phẩm thành công');
     }
 
     public function KichHoatDanhGia($MaDanhGia){
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeDanhGia')->with('status', 'Cập nhật tình trạng đánh giá sản phảm thành công');
+        return Redirect::to('trang-liet-ke-danh-gia')->with('status', 'Cập nhật tình trạng đánh giá sản phảm thành công');
     }
 
     public function XoaDanhGia($MaDanhGia){
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->delete();
-        return Redirect::to('TrangLietKeDanhGia')->with('status', 'Xóa đánh giá sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-gia')->with('status', 'Xóa đánh giá sản phẩm thành công');
     }
 
     public function BinhLuan(Request $request){
@@ -88,7 +88,7 @@ class DanhGiaController extends Controller
             'MaBaiViet.required' => 'Chọn bài viết để bình luận',
         ]);
         if(Empty(Session::get('user'))){
-            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể bình luận bài viết'); 
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể bình luận bài viết');
         }elseif(Session::get('user')){
             $user = Session('user');
             $binhLuan = new BinhLuan();
@@ -100,7 +100,7 @@ class DanhGiaController extends Controller
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $binhLuan->ThoiGianTao = now();
             $binhLuan->save();
-            return Redirect()->back()->with('message', 'Bình luận bài viết được lưu lại thành công'); 
+            return Redirect()->back()->with('message', 'Bình luận bài viết được lưu lại thành công');
         }
     }
 
@@ -112,18 +112,36 @@ class DanhGiaController extends Controller
     public function KoKichHoatBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
+        return Redirect::to('trang-liet-ke-binh-luan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
     }
 
     public function KichHoatBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
+        return Redirect::to('trang-liet-ke-binh-luan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
     }
 
     public function XoaBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->delete();
-        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Xóa bình luận bài viết thành công');
+        return Redirect::to('trang-liet-ke-binh-luan')->with('status', 'Xóa bình luận bài viết thành công');
+    }
+
+    public function timKiemDanhGia(Request $request)
+    {
+        $allDanhGia = DanhGia::where('Email','like',"%{$request->TuKhoa}%")
+            ->orWhere('NoiDung','like',"%{$request->TuKhoa}%")
+            ->orWhere('SoSao','like',"%{$request->TuKhoa}%")
+//            ->orWhere('','like',"%{$request->TuKhoa}%")
+            ->get();
+        return view('admin.DanhGia.LietKeDanhGia')->with(compact('allDanhGia'));
+    }
+
+    public function timKiemBinhLuan(Request $request)
+    {
+        $allBinhLuan = BinhLuan::where('Email', 'like', "%{$request->TuKhoa}%")
+            ->orWhere('NoiDung', 'like', "%{$request->TuKhoa}%")
+            ->get();
+        return view('admin.DanhGia.LietKeBinhLuan')->with(compact('allBinhLuan'));
     }
 }
