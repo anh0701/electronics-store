@@ -80,21 +80,9 @@
 									if($maTaiKhoan != ''){}
 								@endphp
 								@if (session('user'))
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-user"></i>
-                                        <span>Tài khoản</span>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}">Thông tin tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-user"></i>Thông tin tài khoản</a>
+                                    </li>
 								@endif
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
 								<li><a href="{{ route('/ThanhToan') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
@@ -122,32 +110,7 @@
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-8">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="{{ route('/') }}" class="active">Home</a></li>
-								<li><a href="{{ route('/HienThiBaiViet') }}" class="active">Bài viết</a></li>
-								<li><a href="{{ route('/') }}" class="active">Liên hệ</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<form action="{{ route('/TimKiem') }}" method="GET">
-							{{ csrf_field() }}
-							<div class="search_box pull-right">
-								<input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
-								<input style="width: 50px" type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm">
-							</div>
-						</form>
-					</div>
+					@yield('header-bottom')
 				</div>
 			</div>
 		</div><!--/header-bottom-->
@@ -352,7 +315,7 @@
 				var cart_product_weight = $('.cart_product_weight_' + id).val();
 				var cart_product_guarantee = $('.cart_product_guarantee_' + id).val();
 				var _token = $('input[name="_token"]').val();
-				
+
 				$.ajax({
 					url: '{{ route('/ThemGioHang') }}',
 					method: 'POST',
@@ -361,7 +324,7 @@
 						cart_product_name:cart_product_name,
 						cart_product_image:cart_product_image,
 						cart_product_price:cart_product_price,
-						cart_product_qty:cart_product_qty, 
+						cart_product_qty:cart_product_qty,
 						cart_product_height:cart_product_height,
 						cart_product_width:cart_product_width,
 						cart_product_thick:cart_product_thick,
@@ -432,7 +395,7 @@
 					url: '{{ route('/DanhGia') }}',
 					method: 'POST',
 					data:{
-						MaSanPham:MaSanPham, 
+						MaSanPham:MaSanPham,
 						NoiDung:NoiDung,
 						SoSao:ratingValue,
 						_token:_token
@@ -447,7 +410,7 @@
 		/* 1. Visualizing things on Hover - See next part for action on click */
 		$('#stars li').on('mouseover', function(){
 			var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-		
+
 			// Now highlight all the stars that's not after the current hovered star
 			$(this).parent().children('li.star').each(function(e){
 			if (e < onStar) {
@@ -457,7 +420,7 @@
 				$(this).removeClass('hover');
 			}
 			});
-			
+
 		}).on('mouseout', function(){
 			$(this).parent().children('li.star').each(function(e){
 			$(this).removeClass('hover');
@@ -467,11 +430,11 @@
 		$('#stars li').on('click', function(){
 			var onStar = parseInt($(this).data('value'), 10); // The star currently selected
 			var stars = $(this).parent().children('li.star');
-			
+
 			for (i = 0; i < stars.length; i++) {
 			$(stars[i]).removeClass('selected');
 			}
-			
+
 			for (i = 0; i < onStar; i++) {
 			$(stars[i]).addClass('selected');
 			}
@@ -488,7 +451,7 @@
 		});
 		});
 		// function responseMessage(msg) {
-		// $('.success-box').fadeIn(200);  
+		// $('.success-box').fadeIn(200);
 		// $('.success-box div.text-message').html("<span>" + msg + "</span>");
 		// }
 	</script>
