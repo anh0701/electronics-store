@@ -40,7 +40,7 @@ class BaiVietController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $danhMucBV->ThoiGianTao = now();
         $danhMucBV->save();
-        return Redirect::to('TrangLietKeDanhMucBV')->with('status', 'Thêm danh mục bài viết thành công');
+        return Redirect::to('trang-liet-ke-dmbv')->with('status', 'Thêm danh mục bài viết thành công');
     }
 
     public function TrangSuaDanhMucBV($MaDanhMucBV){
@@ -69,7 +69,7 @@ class BaiVietController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $danhMucBV->ThoiGianSua = now();
         $danhMucBV->save();
-        return Redirect::to('TrangLietKeDanhMucBV')->with('status', 'Cập nhật danh mục bài viết thành công');
+        return Redirect::to('trang-liet-ke-dmbv')->with('status', 'Cập nhật danh mục bài viết thành công');
     }
 
     public function XoaDanhMucBV($MaDanhMucBV){
@@ -80,13 +80,13 @@ class BaiVietController extends Controller
     public function KoKichHoatDanhMucBV($MaDanhMucBV){
         $danhMucBV = DanhMucBaiViet::find($MaDanhMucBV);
         $danhMucBV->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeDanhMucBV')->with('status', 'Cập nhật tình trạng danh mục bài viết thành công');
+        return Redirect::to('trang-liet-ke-dmbv')->with('status', 'Cập nhật tình trạng danh mục bài viết thành công');
     }
 
     public function KichHoatDanhMucBV($MaDanhMucBV){
         $danhMucBV = DanhMucBaiViet::find($MaDanhMucBV);
         $danhMucBV->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeDanhMucBV')->with('status', 'Cập nhật tình trạng danh mục bài viết thành công');
+        return Redirect::to('trang-liet-ke-dmbv')->with('status', 'Cập nhật tình trạng danh mục bài viết thành công');
     }
 
     // Quản lý bài viết
@@ -145,19 +145,19 @@ class BaiVietController extends Controller
         $baiViet->HinhAnh = $new_image;
         $baiViet->save();
 
-        return Redirect::to('TrangLietKeBaiViet')->with('status', 'Thêm bài viết thành công');
+        return Redirect::to('trang-liet-ke-bai-viet')->with('status', 'Thêm bài viết thành công');
     }
 
     public function KoKichHoatBaiViet($MaBaiViet){
         $baiViet = BaiViet::find($MaBaiViet);
         $baiViet->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeBaiViet')->with('status', 'Cập nhật tình trạng bài viết thành công');
+        return Redirect::to('trang-liet-ke-bai-viet')->with('status', 'Cập nhật tình trạng bài viết thành công');
     }
 
     public function KichHoatBaiViet($MaBaiViet){
         $baiViet = BaiViet::find($MaBaiViet);
         $baiViet->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeBaiViet')->with('status', 'Cập nhật tình trạng bài viết thành công');
+        return Redirect::to('trang-liet-ke-bai-viet')->with('status', 'Cập nhật tình trạng bài viết thành công');
     }
 
     public function TrangSuaBaiViet($MaBaiViet){
@@ -208,7 +208,7 @@ class BaiVietController extends Controller
             $baiViet->HinhAnh = $new_image;
         }
         $baiViet->save();
-        return Redirect::to('TrangLietKeBaiViet')->with('status', 'Cập nhật bài viết thành công');
+        return Redirect::to('trang-liet-ke-bai-viet')->with('status', 'Cập nhật bài viết thành công');
     }
 
     public function XoaBaiViet($MaBaiViet){
