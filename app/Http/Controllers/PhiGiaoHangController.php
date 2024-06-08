@@ -70,7 +70,7 @@ class PhiGiaoHangController extends Controller
         $phiGiaoHang->MaXaPhuong = $data['MaXaPhuong'];
         $phiGiaoHang->SoTien = $data['PhiGiaoHang'];
         $phiGiaoHang->save();
-        return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Thêm phí giao hàng thành công');
+        return Redirect::to('trang-liet-ke-phi-giao-hang')->with('status', 'Thêm phí giao hàng thành công');
     }
 
     public function SuaPhiGiaoHang($MaPhiGiaoHang, Request $request){
@@ -93,19 +93,33 @@ class PhiGiaoHangController extends Controller
         $phiGiaoHang->MaXaPhuong = $data['MaXaPhuong'];
         $phiGiaoHang->SoTien = $data['PhiGiaoHang'];
         $phiGiaoHang->save();
-        return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Cập nhật phí giao hàng thành công');
+        return Redirect::to('trang-liet-ke-phi-giao-hang')->with('status', 'Cập nhật phí giao hàng thành công');
     }
 
     public function XoaPhiGiaoHang($MaPhiGiaoHang){
         $phiGiaoHang = PhiGiaoHang::find($MaPhiGiaoHang);
         $phiGiaoHang->SoTien = 0;
         $phiGiaoHang->save();
-        return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Xóa danh mục phí giao hàng thành công');
+        return Redirect::to('trang-liet-ke-phi-giao-hang')->with('status', 'Xóa danh mục phí giao hàng thành công');
     }
 
     public function timKiem(Request $request)
     {
-        $allPhiGiaoHang = PhiGiaoHang::orderBy('MaThanhPho', 'ASC')->paginate();
+        $keyword = $request->TuKhoa;
+
+        // Tìm kiếm trong các bảng liên quan
+        $allPhiGiaoHang = PhiGiaoHang::query()
+            ->where('SoTien', 'like', "%$keyword%")
+            ->orWhereHas('TinhThanhPho', function ($query) use ($keyword) {
+                $query->where('TenThanhPho', 'like', "%$keyword%");
+            })
+            ->orWhereHas('QuanHuyen', function ($query) use ($keyword) {
+                $query->where('TenQuanHuyen', 'like', "%$keyword%");
+            })
+            ->orWhereHas('XaPhuongThiTran', function ($query) use ($keyword) {
+                $query->where('TenXaPhuong', 'like', "%$keyword%");
+            })
+            ->get();
         return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang'));
     }
 }
