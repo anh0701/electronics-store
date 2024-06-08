@@ -64,19 +64,19 @@ class DanhGiaController extends Controller
     public function KoKichHoatDanhGia($MaDanhGia){
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeDanhGia')->with('status', 'Cập nhật tình trạng đánh giá sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-gia')->with('status', 'Cập nhật tình trạng đánh giá sản phẩm thành công');
     }
 
     public function KichHoatDanhGia($MaDanhGia){
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeDanhGia')->with('status', 'Cập nhật tình trạng đánh giá sản phảm thành công');
+        return Redirect::to('trang-liet-ke-danh-gia')->with('status', 'Cập nhật tình trạng đánh giá sản phảm thành công');
     }
 
     public function XoaDanhGia($MaDanhGia){
         $danhGia = DanhGia::find($MaDanhGia);
         $danhGia->delete();
-        return Redirect::to('TrangLietKeDanhGia')->with('status', 'Xóa đánh giá sản phẩm thành công');
+        return Redirect::to('trang-liet-ke-danh-gia')->with('status', 'Xóa đánh giá sản phẩm thành công');
     }
 
     public function BinhLuan(Request $request){
@@ -112,19 +112,19 @@ class DanhGiaController extends Controller
     public function KoKichHoatBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->update(['TrangThai'=>0]);
-        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
+        return Redirect::to('trang-liet-ke-binh-luan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
     }
 
     public function KichHoatBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->update(['TrangThai'=>1]);
-        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
+        return Redirect::to('trang-liet-ke-binh-luan')->with('status', 'Cập nhật tình trạng bình luận bài viết thành công');
     }
 
     public function XoaBinhLuan($MaBinhLuan){
         $binhLuan = BinhLuan::find($MaBinhLuan);
         $binhLuan->delete();
-        return Redirect::to('TrangLietKeBinhLuan')->with('status', 'Xóa bình luận bài viết thành công');
+        return Redirect::to('trang-liet-ke-binh-luan')->with('status', 'Xóa bình luận bài viết thành công');
     }
 
     public function timKiemDanhGia(Request $request)

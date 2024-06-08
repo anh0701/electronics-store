@@ -254,14 +254,14 @@ Route::post('/SuaTrangThaiDonHang/{MaDonHang}/{order_code}', [DonHangController:
 
 // Đánh giá
 Route::post('/DanhGia', [DanhGiaController::class, 'DanhGia'])->name('/DanhGia');
-Route::get('/TrangLietKeDanhGia', [DanhGiaController::class, 'TrangLietKeDanhGia'])->name('/TrangLietKeDanhGia');
-Route::get('/KichHoatDanhGia/{MaDanhGia}', [DanhGiaController::class, 'KichHoatDanhGia'])->name('/KichHoatDanhGia');
-Route::get('/KoKichHoatDanhGia/{MaDanhGia}', [DanhGiaController::class, 'KoKichHoatDanhGia'])->name('/KoKichHoatDanhGia');
-Route::get('/XoaDanhGia/{MaDanhGia}', [DanhGiaController::class, 'XoaDanhGia'])->name('/XoaDanhGia');
+Route::get('/trang-liet-ke-danh-gia', [DanhGiaController::class, 'TrangLietKeDanhGia'])->name('/TrangLietKeDanhGia');
+Route::get('/kich-hoat-danh-gia/{MaDanhGia}', [DanhGiaController::class, 'KichHoatDanhGia'])->name('/KichHoatDanhGia');
+Route::get('/khong-kich-hoat-danh-gia/{MaDanhGia}', [DanhGiaController::class, 'KoKichHoatDanhGia'])->name('/KoKichHoatDanhGia');
+Route::get('/xoa-danh-gia/{MaDanhGia}', [DanhGiaController::class, 'XoaDanhGia'])->name('/XoaDanhGia');
 Route::post('/BinhLuan', [DanhGiaController::class, 'BinhLuan'])->name('/BinhLuan');
-Route::get('/TrangLietKeBinhLuan', [DanhGiaController::class, 'TrangLietKeBinhLuan'])->name('/TrangLietKeBinhLuan');
-Route::get('/KichHoatBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'KichHoatBinhLuan'])->name('/KichHoatBinhLuan');
-Route::get('/KoKichHoatBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'KoKichHoatBinhLuan'])->name('/KoKichHoatBinhLuan');
+Route::get('/trang-liet-ke-binh-luan', [DanhGiaController::class, 'TrangLietKeBinhLuan'])->name('/TrangLietKeBinhLuan');
+Route::get('/kich-hoat-binh-luan/{MaBinhLuan}', [DanhGiaController::class, 'KichHoatBinhLuan'])->name('/KichHoatBinhLuan');
+Route::get('/khong-kich-hoat-binh-luan/{MaBinhLuan}', [DanhGiaController::class, 'KoKichHoatBinhLuan'])->name('/KoKichHoatBinhLuan');
 Route::get('/XoaBinhLuan/{MaBinhLuan}', [DanhGiaController::class, 'XoaBinhLuan'])->name('/XoaBinhLuan');
 Route::get('/tim-kiem-danh-gia', [DanhGiaController::class, 'timKiemDanhGia'])->name('timKiemDanhGia');
 Route::get('/tim-kiem-binh-luan', [DanhGiaController::class, 'timKiemBinhLuan'])->name('timKiemBinhLuan');

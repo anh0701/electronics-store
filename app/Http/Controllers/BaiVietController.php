@@ -13,7 +13,7 @@ class BaiVietController extends Controller
     public function TrangThemDanhMucBV(){
         return view('admin.BaiViet.DanhMucBaiViet.ThemDanhMucBV');
     }
-    
+
     public function TrangLietKeDanhMucBV(){
         $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->paginate(15);
         return view('admin.BaiViet.DanhMucBaiViet.LietKeDanhMucBV')->with(compact('allDanhMucBV'));
@@ -45,7 +45,7 @@ class BaiVietController extends Controller
 
     public function TrangSuaDanhMucBV($MaDanhMucBV){
         $danhMucBaiViet = DanhMucBaiViet::where('MaDanhMucBV', $MaDanhMucBV)->first();
-        return view('admin.BaiViet.DanhMucBaiViet.SuaDanhMucBV')->with(compact('danhMucBaiViet')); 
+        return view('admin.BaiViet.DanhMucBaiViet.SuaDanhMucBV')->with(compact('danhMucBaiViet'));
     }
 
     public function SuaDanhMucBV(Request $request, $MaDanhMucBV){
@@ -129,14 +129,14 @@ class BaiVietController extends Controller
 
         $get_image = $request->HinhAnh;
         $path = 'upload/BaiViet/';
-        $get_name_image = $get_image->getClientOriginalName(); 
+        $get_name_image = $get_image->getClientOriginalName();
         $name_image = current(explode('.', $get_name_image));
         $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
         $get_image->move($path, $new_image);
 
         $baiViet->HinhAnh = $new_image;
         $baiViet->save();
-        
+
         return Redirect::to('TrangLietKeBaiViet')->with('status', 'Thêm bài viết thành công');
     }
 
@@ -155,7 +155,7 @@ class BaiVietController extends Controller
     public function TrangSuaBaiViet($MaBaiViet){
         $baiViet = BaiViet::where('MaBaiViet' ,$MaBaiViet)->first();
         $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->get();
-        return view('admin.BaiViet.BaiViet.SuaBaiViet')->with(compact('baiViet', 'allDanhMucBV')); 
+        return view('admin.BaiViet.BaiViet.SuaBaiViet')->with(compact('baiViet', 'allDanhMucBV'));
     }
 
     public function SuaBaiViet(Request $request, $MaBaiViet){
@@ -205,11 +205,8 @@ class BaiVietController extends Controller
 
     public function XoaBaiViet($MaBaiViet){
         $baiViet = BaiViet::find($MaBaiViet);
-        $path_unlink = 'upload/BaiViet/'.$baiViet->HinhAnh;
-        if (file_exists($path_unlink)){
-            unlink($path_unlink);
-        }
-        $baiViet->delete();
+       $baiViet->TrangThai = 0;
+       $baiViet->save();
         return Redirect::to('TrangLietKeBaiViet')->with('status', 'Xóa bài viết thành công');
     }
 }
