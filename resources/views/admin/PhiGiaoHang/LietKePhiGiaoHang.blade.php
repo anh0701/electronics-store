@@ -9,12 +9,15 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
-          </div>
+            <form action="{{Route('timKiemPhiGiaoHang')}}" method="get">
+
+              <div class="input-group">
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                </span>
+              </div>
+            </form>
         </div>
       </div>
       <div class="table-responsive">
@@ -55,9 +58,12 @@
       </div>
       <footer class="panel-footer">
         <div class="row">
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allPhiGiaoHang->links('vendor.pagination.bootstrap-4') }}
+                @if ($allPhiGiaoHang instanceof \Illuminate\Pagination\LengthAwarePaginator)
+
+                    {{ $allPhiGiaoHang->links('vendor.pagination.bootstrap-4') }}
+                @endif
             </ul>
           </div>
       </div>

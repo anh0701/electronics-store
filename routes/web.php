@@ -239,6 +239,7 @@ Route::get('/TrangSuaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class
 Route::get('/XoaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'XoaPhiGiaoHang'])->name('/XoaPhiGiaoHang');
 Route::post('/SuaPhiGiaoHang/{MaPhiGiaoHang}', [PhiGiaoHangController::class, 'SuaPhiGiaoHang'])->name('/SuaPhiGiaoHang');
 Route::post('/ChonDiaDiem', [PhiGiaoHangController::class, 'ChonDiaDiem'])->name('/ChonDiaDiem');
+Route::get('/tim-kiem-phi-giao-hang', [PhiGiaoHangController::class, 'timKiem'])->name('timKiemPhiGiaoHang');
 
 // Đơn hàng
 Route::get('/TrangLietKeDonHang', [DonHangController::class, 'TrangLietKeDonHang'])->name('/TrangLietKeDonHang');

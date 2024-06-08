@@ -8,15 +8,6 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
                     @foreach ($phiGiaoHang as $key => $value)
                     <form role="form" action="{{ Route('/SuaPhiGiaoHang', [$value->MaPhiGiaoHang]) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -47,7 +38,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Chọn xã phường</label>
                             <select name="MaXaPhuong" id="MaXaPhuong" class="form-control input-lg m-bot15 MaXaPhuong">
-                                <option value="" >--Chọn xã phường--</option>                               
+                                <option value="" >--Chọn xã phường--</option>
                                 @foreach ($allXaPhuong as $key => $valueXaPhuong)
                                 @if ($value->MaXaPhuong == $valueXaPhuong->MaXaPhuong)
                                     <option selected value="{{ $valueXaPhuong->MaXaPhuong }}" >{{ $valueXaPhuong->TenXaPhuong }}</option>
@@ -57,8 +48,12 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tiền giao hàng</label>
-                            <input type="text" value="{{ $value->SoTien }}" class="form-control" name="PhiGiaoHang" >
+                            <input type="text" value="{{ $value->SoTien }}" class="form-control @error('PhiGiaoHang') is-invalid @enderror" name="PhiGiaoHang" >
                         </div>
+                        @error('PhiGiaoHang')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+
                         <button type="submit" name="SuaPhiGiaoHang" class="btn btn-info">Cập nhật Tiền giao hàng</button>
                     </form>
                     @endforeach
