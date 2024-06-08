@@ -217,4 +217,23 @@ class BaiVietController extends Controller
        $baiViet->save();
         return Redirect::to('TrangLietKeBaiViet')->with('status', 'Xóa bài viết thành công');
     }
+
+    public  function timKiemBV( Request $request)
+    {
+        $keyword = $request->TuKhoa;
+        $allBaiViet = BaiViet::where('TenBaiViet', 'like', "%$keyword%")
+            ->orWhereHas('DanhMucBV', function ($query) use ($keyword) {
+                $query->where('TenDanhMucBV', 'like', "%$keyword%");
+            })
+                ->get();
+        return view('admin.BaiViet.BaiViet.LietKeBaiViet')->with(compact('allBaiViet'));
+    }
+
+    public function timKiemDMBV(Request $request)
+    {
+        $allDanhMucBV = DanhMucBaiViet::where('TenDanhMucBV', 'like', "%{$request->TuKhoa}%")
+                    ->orWhere('MoTa', 'like', "%{$request->TuKhoa}%")
+                    ->get();
+        return view('admin.BaiViet.DanhMucBaiViet.LietKeDanhMucBV')->with(compact('allDanhMucBV'));
+    }
 }

@@ -129,18 +129,25 @@ class DanhGiaController extends Controller
 
     public function timKiemDanhGia(Request $request)
     {
+        $keyword = $request->TuKhoa;
         $allDanhGia = DanhGia::where('Email','like',"%{$request->TuKhoa}%")
             ->orWhere('NoiDung','like',"%{$request->TuKhoa}%")
             ->orWhere('SoSao','like',"%{$request->TuKhoa}%")
-//            ->orWhere('','like',"%{$request->TuKhoa}%")
+            ->orWhereHas('SanPham', function ($query) use ($keyword){
+                $query->where('TenSanPham', 'like', "%$keyword%");
+            })
             ->get();
         return view('admin.DanhGia.LietKeDanhGia')->with(compact('allDanhGia'));
     }
 
     public function timKiemBinhLuan(Request $request)
     {
+        $keyword = $request->TuKhoa;
         $allBinhLuan = BinhLuan::where('Email', 'like', "%{$request->TuKhoa}%")
             ->orWhere('NoiDung', 'like', "%{$request->TuKhoa}%")
+            ->orWhereHas('BaiViet', function ($query) use($keyword){
+                $query->where('TenBaiViet', 'like', "%$keyword%");
+            })
             ->get();
         return view('admin.DanhGia.LietKeBinhLuan')->with(compact('allBinhLuan'));
     }

@@ -9,12 +9,15 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
-          </div>
+            <form action="{{Route('timKiemBV')}}" method="get">
+
+              <div class="input-group">
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                </span>
+              </div>
+            </form>
         </div>
       </div>
       <div class="table-responsive">
@@ -75,7 +78,9 @@
         <div class="row">
           <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allBaiViet->links('vendor.pagination.bootstrap-4') }}
+                @if ($allBaiViet instanceof LengthAwarePaginator)
+                    {{ $allBaiViet->links('vendor.pagination.bootstrap-4') }}
+                @endif
             </ul>
           </div>
       </div>

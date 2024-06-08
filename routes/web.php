@@ -167,6 +167,7 @@ Route::get('/XoaBaiViet/{MaBaiViet}', [BaiVietController::class, 'XoaBaiViet'])-
 Route::post('/SuaBaiViet/{MaBaiViet}', [BaiVietController::class, 'SuaBaiViet'])->name('/SuaBaiViet');
 Route::get('/KoKichHoatBaiViet/{MaBaiViet}', [BaiVietController::class, 'KoKichHoatBaiViet'])->name('/KoKichHoatBaiViet');
 Route::get('/KichHoatBaiViet/{MaBaiViet}', [BaiVietController::class, 'KichHoatBaiViet'])->name('/KichHoatBaiViet');
+Route::get('/tim-kiem-bai-viet', [BaiVietController::class, 'timKiemBV'])->name('timKiemBV');
 
 // Danh mục bài viết
 Route::get('/TrangThemDanhMucBV', [BaiVietController::class, 'TrangThemDanhMucBV'])->name('/TrangThemDanhMucBV');
@@ -178,6 +179,7 @@ Route::post('/SuaDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'SuaDanhMu
 Route::get('/KoKichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KoKichHoatDanhMucBV'])->name('/KoKichHoatDanhMucBV');
 Route::get('/KichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KichHoatDanhMucBV'])->name('/KichHoatDanhMucBV');
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard')->middleware('DangNhap');
+Route::get('/tim-kiem-dmbv', [BaiVietController::class, 'timKiemDMBV'])->name('timKiemDMBV');
 
 // Danh muc
 Route::get('/trang-them-danh-muc', [DanhMucController::class, 'TrangThemDanhMuc'])->name('/TrangThemDanhMuc');
