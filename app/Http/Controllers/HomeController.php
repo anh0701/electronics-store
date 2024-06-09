@@ -7,6 +7,7 @@ use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Carbon\Carbon;
 use App\Models\SanPham;
 use App\Models\DanhMuc;
 use App\Models\BaiViet;
@@ -29,11 +30,16 @@ use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
 {
     public function index(){
+        $currentDate = Carbon::now();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('TrangThai', '1')->paginate(20);
         $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->get();
-        $allCTGG = ChuongTrinhGiamGia::orderBy('MaCTGG', 'DESC')->get();
+        $allCTGG =  ChuongTrinhGiamGia::with(['chuongTrinhGiamGiaSPs.SanPham'])
+            ->where('TrangThai', 1)
+            ->where('ThoiGianBatDau', '<=', $currentDate)
+            ->where('ThoiGianKetThuc', '>=', $currentDate)
+            ->get();
         $allChiTietCTGG = ChuongTrinhGiamGiaSP::orderBy('MaCTGGSP', 'DESC')->get();
         $sanPhamNoiBat = SanPham::orderBy('MaSanPham', 'ASC')->take(20)->get();
         return view('pages.home')
@@ -110,7 +116,7 @@ class HomeController extends Controller
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
         $thuongHieu = ThuongHieu::where('MaThuongHieu', $MaThuongHieu)->first();
         $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->get();
-        
+
         $allDanhMucCon = '';
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
@@ -127,7 +133,7 @@ class HomeController extends Controller
                 ->with(compact('allDanhGia', 'sanPhamNoiBat'));
             }
         }
-        
+
         return view('pages.SanPham.ThuongHieu.HienThiSanPhamTheoTH')
         ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allDanhMucTSKT', 'allTSKT', 'allTHDM', 'MaDanhMuc', 'thuongHieu'))
         ->with(compact('allDanhGia', 'sanPhamNoiBat'));
@@ -406,12 +412,12 @@ class HomeController extends Controller
                                     $output.='
                                             </p>
                                         </a>
-                                        <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                        <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                         data-id_product="'. $sanPham->MaSanPham .'">
                                             <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                         </button>
                                     </form>
-                                </div>             
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -474,12 +480,12 @@ class HomeController extends Controller
                             $output.='
                                     </p>
                                 </a>
-                                <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                 data-id_product="'. $sanPham->MaSanPham .'">
                                     <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                 </button>
                             </form>
-                        </div>             
+                        </div>
                     </div>
                 </div>
             </div>

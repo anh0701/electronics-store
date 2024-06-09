@@ -111,15 +111,23 @@
         </div><!--/category-products-->
     </div>
 </div>
-<div class="col-sm-9 padding-right">
+
+{{--chuong trinh giam gia--}}
+@if(!$allCTGG->isEmpty())
+    <div class="col-sm-9 padding-right">
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <img src="{{ asset('frontend/images/shop/Frame-de-1200x80 (1).png') }}" style="margin-bottom: 15px; width: 100%" alt="">
+
             <div class="carousel-inner">
-                @foreach ($sanPhamNoiBat->chunk(4) as $valueSanpham)
+                @foreach ($allCTGG as $valueSanpham)
+                    <img src="{{ asset($valueSanpham->HinhAnh) }}" class="discount-image" alt="{{ $valueSanpham->TenCTGG }}">
                     <div class="item {{ $loop->first ? 'active' : '' }}">
-                        @foreach ($valueSanpham as $sanPham)
-                            <div class="col-sm-3">
+                        <div class="products-container">
+                        @foreach ($valueSanpham ->chuongTrinhGiamGiaSPs as $index => $sanPhamGG)
+                            @php
+                                $sanPham = $sanPhamGG -> SanPham;
+                             @endphp
+                            <div class="col-sm-3 product-item {{ $index >= 4 ? 'hidden' : '' }}">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
@@ -178,18 +186,22 @@
                                 </div>
                             </div>
                         @endforeach
+                        </div>
                     </div>
                 @endforeach
             </div>
-            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <a class="left recommended-item-control" onclick="slideProducts('prev')" href="javascript:void(0)" data-slide="prev">
             <i class="fa fa-angle-left"></i>
             </a>
-            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <a class="right recommended-item-control" onclick="slideProducts('next')" href="javascript:void(0)" data-slide="next">
             <i class="fa fa-angle-right"></i>
             </a>
         </div>
-    </div>
 </div>
+    </div>
+
+@endif
+
 <div class="category-tab"><!--category-tab-->
     <div class="col-sm-12">
         <ul class="nav nav-tabs">

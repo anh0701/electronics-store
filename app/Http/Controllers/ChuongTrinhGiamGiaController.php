@@ -28,7 +28,7 @@ class ChuongTrinhGiamGiaController extends Controller
         $validator = Validator::make($request->all(), [
             'TenCTGG' => 'required',
             'SlugCTGG' => ['required', 'unique:tbl_chuongtrinhgiamgia'],
-            'HinhAnh' => ['required', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
+            'HinhAnh' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
             'MoTa' => 'required',
 //            'MaSanPham' => 'required|array',
             'PhanTramGiam' => 'required',

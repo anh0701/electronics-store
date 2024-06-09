@@ -314,6 +314,11 @@ CREATE TABLE `tbl_chuongtrinhgiamgia` (
   `ThoiGianKetThuc` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
+INSERT INTO `tbl_chuongtrinhgiamgia` (`MaCTGG`, `SlugCTGG`, `TenCTGG`, `HinhAnh`, `MoTa`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
+    (1, 'giam-gia-mua-he', 'giảm giá mùa hè', 'upload/ChuongTrinhGiamGia/1717901721.gif', '<p>ưu đãi mới</p>', 1, '2024-06-09 02:55:21', '2024-06-09 10:58:12', '2024-06-09 02:53:00', '2024-06-12 02:53:00');
+
 -- --------------------------------------------------------
 
 --
@@ -326,6 +331,23 @@ CREATE TABLE `tbl_chuongtrinhgiamgiasp` (
   `MaCTGG` int NOT NULL,
   `PhanTramGiam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_chuongtrinhgiamgiasp`
+--
+
+INSERT INTO `tbl_chuongtrinhgiamgiasp` (`MaCTGGSP`, `MaSanPham`, `MaCTGG`, `PhanTramGiam`) VALUES
+       (6, 25, 1, '2'),
+       (7, 27, 1, '2'),
+       (8, 30, 1, '2'),
+       (9, 32, 1, '2'),
+       (10, 52, 1, '2'),
+       (11, 25, 1, '2'),
+       (12, 27, 1, '2'),
+       (13, 30, 1, '2'),
+       (14, 32, 1, '2'),
+       (15, 52, 1, '2'),
+       (16, 28, 1, '3');
 
 -- --------------------------------------------------------
 
