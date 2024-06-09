@@ -44,7 +44,7 @@
                         @enderror
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                     </form>
-                    <div class="table-responsive" >
+                    <div id="myLink5" class="table-responsive" >
                         <p class="head1">Danh sách sản phẩm trong phiếu nhập</p>
                         <table class="table table-striped b-t b-light">
                             <thead>

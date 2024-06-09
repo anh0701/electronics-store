@@ -32,6 +32,7 @@ Route::get('/bao-cao-chi-tiet/{fileName}', [BaoCaoController::class, 'xemCT'])->
 Route::get('/tai-xuong/{fileName}', [BaoCaoController:: class, 'taiXuong'])->name('taiXuong');
 Route::post('/tao-bao-cao', [BaoCaoController::class, 'xuLyTaoBaoCao'])->name('xuLyTaoBaoCao');
 Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile');
+Route::get('/xuatFilePN/{id}', [PhieuNhapController::class, 'xuatFilePN'])->name('xuatFilePN');
 
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
