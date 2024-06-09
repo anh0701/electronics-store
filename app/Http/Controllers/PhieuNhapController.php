@@ -16,6 +16,12 @@ use Illuminate\Validation\Rule;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+
+
 
 class PhieuNhapController extends Controller
 {
@@ -103,16 +109,36 @@ class PhieuNhapController extends Controller
                 FROM tbl_chitietphieunhap ct
                 JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
                 WHERE MaPhieuNhap = '{$id}'");
+        $pth = DB::select("SELECT pth.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
+                FROM tbl_phieutrahang pth 
+                JOIN tbl_taikhoan tk ON pth.MaTaiKhoan = tk.MaTaiKhoan
+                JOIN tbl_nhacungcap ncc ON pth.MaNhaCungCap = ncc.MaNhaCungCap
+                WHERE MaPhieuNhap = '{$id}' AND pth.TrangThai = 1 ");
+        if(!empty($pth)){
+            $maPTH = $pth[0]->MaPhieuTraHang;
+            $ctth = DB::select("SELECT ct.*, sp.TenSanPham
+                        FROM tbl_chitietphieutrahang ct
+                        JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
+                        WHERE MaPhieuTraHang = '{$maPTH}'");
+        }
+        
         $tg1 = date_format(date_create($pn[0]->ThoiGianTao), 'd/m/Y');
         // $tg2 = date_format(date_create($pn[0]->ThoiGianSua), 'd/m/Y');
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Phiếu nhập');
-        $sheet->setCellValue('A2', 'Thời gian:');
-        $sheet->setCellValue('B2', $tg1);
+        $sheet->setCellValue('B1', 'PHIẾU NHẬP');
+        $sheet->getStyle('B1')->applyFromArray([
+            'font' => [
+                'bold' => true,
+                'size' => 20,
+            ],
+        ]);
+        
 
         $sheet->setCellValue('A3', 'Mã phiếu nhập:');
         $sheet->setCellValue('B3', $id);
+        $sheet->setCellValue('C3', 'Thời gian:');
+        $sheet->setCellValue('D3', $tg1);
         $sheet->setCellValue('A4', 'Người lập:');
         $sheet->setCellValue('B4', $pn[0]->TenTaiKhoan);
         $sheet->setCellValue('C4', 'Tên nhà cung cấp:');
@@ -134,6 +160,10 @@ class PhieuNhapController extends Controller
         $sheet->setCellValue('C5', 'Phương thức thanh toán:');
         $sheet->setCellValue('D5', $thanhToan);
 
+        foreach(range('A', 'F') as $i){
+            $sheet->getColumnDimension($i)->setAutoSize(true);
+        }
+
         $sheet->setCellValue('A7', 'Mã sản phẩm')
               ->setCellValue('B7', 'Tên sản phẩm')
               ->setCellValue('C7', 'Số lượng')
@@ -150,25 +180,90 @@ class PhieuNhapController extends Controller
             $row++;
         }
 
-        $sheet->setCellValue('A' . ($row), 'Tổng tiền');
-        $sheet->mergeCells('A' . ($row) . ':D' . ($row));
+        $sheet->setCellValue('A' . ($row), 'Tổng tiền nhập hàng');
         $sheet->setCellValue('E' . ($row), $pn[0]->TongTien);
+        $sheet->getStyle('A' . $row . ':E' . $row)->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => Color::COLOR_YELLOW]
+            ]
+        ]);
 
         $sheet->setCellValue('A' . ($row + 1), 'Số tiền trả');
-        $sheet->mergeCells('A' . ($row + 1) . ':D' . ($row + 1));
         $sheet->setCellValue('E' . ($row + 1), $pn[0]->TienTra);
+        $sheet->getStyle('A' . ($row + 1) . ':E' . ($row + 1))->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => Color::COLOR_GREEN]
+            ]
+        ]);
 
-        $sheet->setCellValue('A' . ($row + 2), 'Số tiền nợ');
-        $sheet->mergeCells('A' . ($row + 2) . ':D' . ($row + 2));
-        $sheet->setCellValue('E' . ($row + 2), $pn[0]->TienNo);
+        
 
-        $sheet->getColumnDimension('A')->setAutoSize(true);
-        $sheet->getColumnDimension('B')->setAutoSize(true);
-        $sheet->getColumnDimension('C')->setAutoSize(true);
-        $sheet->getColumnDimension('D')->setAutoSize(true);
-        $sheet->getColumnDimension('E')->setAutoSize(true);
-        $sheet->getColumnDimension('F')->setAutoSize(true);
+        $sheet->getStyle('A7:E' . ($row))->applyFromArray([
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => Color::COLOR_BLACK],
+                ],
+            ],
+        ]);
 
+        $tongTienTraHang = 0;
+        if(!empty($ctth)){
+            $n = $row + 3;
+            $sheet->setCellValue('B'. $n, 'DANH SÁCH SẢN PHẨM TRẢ HÀNG');
+            $sheet->getStyle('B' .$n)->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                    'size' => 16,
+                ],
+            ]);
+            $n++;
+            $sheet->setCellValue('A' . $n, 'Mã sản phẩm')
+              ->setCellValue('B' . $n, 'Tên sản phẩm')
+              ->setCellValue('C' . $n, 'Số lượng')
+              ->setCellValue('D' . $n, 'Giá nhập')
+              ->setCellValue('E' . $n, 'Lý do trả hàng');
+            $row = $n + 1;
+            foreach ($ctth as $j) {
+                $sheet->setCellValue('A' . $row, $j->MaSanPham)
+                    ->setCellValue('B' . $row, $j->TenSanPham)
+                    ->setCellValue('C' . $row, $j->SoLuong)
+                    ->setCellValue('D' . $row, $j->GiaSanPham)
+                    ->setCellValue('E' . $row, $j->LyDoTraHang);
+                $row++;
+            }
+
+            $sheet->setCellValue('A' . ($row), 'Tổng tiền trả hàng');
+            $sheet->setCellValue('E' . ($row), $pth[0]->TongTien);
+            $sheet->getStyle('A' . $row . ':E' . $row)->applyFromArray([
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['argb' => Color::COLOR_YELLOW]
+                ]
+            ]);
+            $sheet->getStyle('A' . $n . ':E' . ($row))->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => Border::BORDER_THIN,
+                        'color' => ['argb' => Color::COLOR_BLACK],
+                    ],
+                ],
+            ]);
+            $tongTienTraHang = $pth[0]->TongTien;
+            $row--;
+        }
+        $tienNo = $pn[0]->TongTien - $tongTienTraHang - $pn[0]->TienTra;
+        $sheet->setCellValue('A' . ($row + 2), 'Số tiền nợ nhà cung cấp');
+        $sheet->setCellValue('E' . ($row + 2), $tienNo);
+        $sheet->getStyle('A' . ($row + 2). ':E' . ($row + 2))->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => Color::COLOR_RED]
+            ]
+        ]);
+        
         $fileName = 'PhieuNhap_' . $id . '.xlsx';
         $filePath = public_path('phieuNhap/' . $fileName);
         $writer = new Xlsx($spreadsheet);
