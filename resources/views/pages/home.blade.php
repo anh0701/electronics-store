@@ -1,4 +1,32 @@
 @extends('layout')
+@section('header-bottom')
+    <div class="col-sm-8">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="mainmenu pull-left">
+            <ul class="nav navbar-nav collapse navbar-collapse">
+                <li><a href="{{ route('/') }}" class="active">Home</a></li>
+                <li><a href="{{ route('/HienThiBaiViet') }}" class="active">Bài viết</a></li>
+                <li><a href="{{ route('/') }}" class="active">Liên hệ</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <form action="{{ route('/TimKiem') }}" method="GET">
+            {{ csrf_field() }}
+            <div class="search_box pull-right">
+                <input type="text" name="keywords_submit" placeholder="Tìm kiếm"/>
+                <input style="width: 50px" type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm">
+            </div>
+        </form>
+    </div>
+@endsection
 @section('slider')
 <div class="col-sm-12">
     <div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -86,10 +114,10 @@
 <div class="col-sm-9 padding-right">
     <div class="recommended_items">
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-            <img src="{{ asset('frontend/images/shop/Frame-de-1200x80 (1).png') }}" style="margin-bottom: 15px; width: 100%" alt="">    
+            <img src="{{ asset('frontend/images/shop/Frame-de-1200x80 (1).png') }}" style="margin-bottom: 15px; width: 100%" alt="">
             <div class="carousel-inner">
                 @foreach ($sanPhamNoiBat->chunk(4) as $valueSanpham)
-                    <div class="item {{ $loop->first ? 'active' : '' }}">	
+                    <div class="item {{ $loop->first ? 'active' : '' }}">
                         @foreach ($valueSanpham as $sanPham)
                             <div class="col-sm-3">
                                 <div class="product-image-wrapper">
@@ -140,12 +168,12 @@
                                                         @endphp
                                                     </p>
                                                 </a>
-                                                <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                                <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                                 data-id_product="{{ $sanPham->MaSanPham }}">
                                                     <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                                 </button>
                                             </form>
-                                        </div>             
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +186,7 @@
             </a>
             <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
             <i class="fa fa-angle-right"></i>
-            </a>			
+            </a>
         </div>
     </div>
 </div>

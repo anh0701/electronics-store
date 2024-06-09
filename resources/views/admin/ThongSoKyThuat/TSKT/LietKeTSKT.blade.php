@@ -9,12 +9,15 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
-          </div>
+            <form action="{{Route('timKiemTSKT')}}" method="get">
+              <div class="input-group">
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                </span>
+              </div>
+
+            </form>
         </div>
       </div>
       <div class="table-responsive">
@@ -34,6 +37,7 @@
               <th>Thuộc danh mục SP</th>
               <th>Thuộc danh mục TSKT</th>
               <th>Mô tả</th>
+                <th>Trạng thái</th>
               <th style="width:100px;">Quản lý</th>
             </tr>
           </thead>
@@ -52,8 +56,13 @@
               </td>
               <td>{{ $value->DanhMucTSKT->TenDMTSKT }}</td>
               <td>{{ $value->MoTa }}</td>
+                @if($value->TrangThai == 1)
+                    <td style="color: green">Hiển thị</td>
+                @else
+                    <td style="color: orange">Ẩn</td>
+                @endif
               <td>
-                <a href="{{ route('/TrangSuaTSKT', $value->MaTSKT) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;" 
+                <a href="{{ route('/TrangSuaTSKT', $value->MaTSKT) }}"><i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green;"
                     class="fa fa-pencil-square-o text-success text-active"></i></a>
                 <a onclick="return confirm('Bạn có muốn xóa thông số kỹ thuật này không?')" href="{{ route('/XoaTSKT', [$value->MaTSKT]) }}">
                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
@@ -66,9 +75,11 @@
       </div>
       <footer class="panel-footer">
         <div class="row">
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allThongSoKyThuat->links('vendor.pagination.bootstrap-4') }}
+                @if ($allThongSoKyThuat instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                    {{ $allThongSoKyThuat->links('vendor.pagination.bootstrap-4') }}
+                @endif
             </ul>
           </div>
       </div>

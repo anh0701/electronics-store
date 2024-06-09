@@ -17,7 +17,7 @@ class ThongSoKyThuatController extends Controller
     }
 
     public function TrangLietKeTSKT(){
-        $allThongSoKyThuat = ThongSoKyThuat::orderBy('MaDMTSKT', 'DESC')->paginate(20);
+        $allThongSoKyThuat = ThongSoKyThuat::orderBy('MaDMTSKT', 'DESC')->paginate(5);
         $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->get();
         return view('admin.ThongSoKyThuat.TSKT.LietKeTSKT')->with(compact('allThongSoKyThuat', 'allDanhMucTSKT'));
     }
@@ -61,16 +61,17 @@ class ThongSoKyThuatController extends Controller
             'TenTSKT' => 'required|max:250',
             'SlugTSKT' => 'required',
             'MoTa' => 'required',
-            'DanhMucTSKT' => 'required',
+            'DanhMucTSKT' => ['required', 'integer'],
             'TrangThai' => 'required',
         ],
         [
             'TenTSKT.required' => 'Chưa điền tên thông số kỹ thuật',
             'TenTSKT.max' => 'Tên thông số kỹ thuật dài quá 250 ký tự',
             'SlugTSKT.required' => 'Chưa điền slug cho thông số kỹ thuật',
-            'DanhMucTSKT.required' => 'Chưa điền Danh mục cho thông số kỹ thuật',
+            'DanhMucTSKT.required' => 'Chưa chọn Danh mục cho thông số kỹ thuật',
+            'DanhMucTSKT.integer' => 'Chưa chọn Danh mục cho thông số kỹ thuật',
             'MoTa.required' => 'Chưa điền Mô tả cho thông số kỹ thuật',
-            'TrangThai.required' => 'Chưa điền Trạng thái cho thông số kỹ thuật',
+            'TrangThai.required' => 'Chưa chọn Trạng thái cho thông số kỹ thuật',
         ]);
         // $data = $request->all();
         $thongSoKyThuat = new ThongSoKyThuat();
@@ -82,13 +83,14 @@ class ThongSoKyThuatController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $thongSoKyThuat->ThoiGianTao = now();
         $thongSoKyThuat->save();
-        return Redirect::to('TrangLietKeTSKT')->with('status', 'Thêm thông số kỹ thuật mới thành công');
+        return Redirect::to('trang-liet-ke-tskt')->with('status', 'Thêm thông số kỹ thuật mới thành công');
     }
 
     public function XoaTSKT($MaTSKT){
         $thongSoKyThuat = ThongSoKyThuat::find($MaTSKT);
-        $thongSoKyThuat->delete();
-        return Redirect::to('TrangLietKeTSKT')->with('status', 'Xóa thông sỗ kỹ thuật thành công');
+        $thongSoKyThuat->TrangThai = 0;
+        $thongSoKyThuat->save();
+        return Redirect::to('trang-liet-ke-tskt')->with('status', 'Xóa thông sỗ kỹ thuật thành công');
     }
 
     public function TrangSuaTSKT($MaTSKT){
@@ -124,7 +126,16 @@ class ThongSoKyThuatController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $thongSoKyThuat->ThoiGianSua = now();
         $thongSoKyThuat->save();
-        return Redirect::to('TrangLietKeTSKT')->with('status', 'Cập nhật thông số kỹ thuật thành công');
+        return Redirect::to('trang-liet-ke-tskt')->with('status', 'Cập nhật thông số kỹ thuật thành công');
     }
 
+    public function timKiem(Request $request)
+    {
+        $allThongSoKyThuat = ThongSoKyThuat::where('MoTa', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('SlugTSKT', 'LIKE', "%{$request->TuKhoa}%")
+            ->orWhere('TenTSKT', 'LIKE', "%{$request->TuKhoa}%")
+            ->get();
+        $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->get();
+        return view('admin.ThongSoKyThuat.TSKT.LietKeTSKT')->with(compact('allThongSoKyThuat', 'allDanhMucTSKT'));
+    }
 }
