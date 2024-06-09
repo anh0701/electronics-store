@@ -56,7 +56,11 @@
                             <td>{{ $program->SlugCTGG }}</td>
                             <td><img src="{{ $program->HinhAnh }}" alt="{{ $program->TenCTGG }}" width="50"></td>
                             <td>{!! $program->MoTa !!}</td>
-                            <td>{{ $program->TrangThai == 1 ? 'Hiển Thị' : 'Ẩn' }}</td>
+                            @if($program->TrangThai == 1)
+                                <td style="color: #0a8a0a">Hiển Thị</td>
+                            @else
+                                <td style="color: orange">Ẩn</td>
+                            @endif
                             <td>{{ $program->ThoiGianTao }}</td>
                             <td>{{ $program->ThoiGianSua }}</td>
                             <td>
