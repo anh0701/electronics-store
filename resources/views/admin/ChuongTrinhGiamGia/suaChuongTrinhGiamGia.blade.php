@@ -125,14 +125,6 @@
                                 </thead>
                                 <tbody>
                                 <!-- Dòng sẽ được thêm động ở đây -->
-                                @foreach($selectedProducts as $product)
-                                    <tr data-id="{{ $product->id }}">
-                                        <td>{{ $product->TenSanPham }}</td>
-                                        <td>{{ $product->GiaSanPham }}</td>
-                                        <td>{{ $product->PhanTramGiam }}</td>
-                                        <td><button type="button" class="btn btn-danger remove-product-btn">Xóa</button></td>
-                                    </tr>
-                                @endforeach
                                 </tbody>
                             </table>
 
