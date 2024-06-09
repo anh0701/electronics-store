@@ -124,7 +124,7 @@
     <!-- <a href="{{ route('xemPN') }}"><button class="btn btn-info">Quay lại danh sách</button></a> -->
     
     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa phiếu nhập</button></a>
-    
+    <a href="{{ route('xuatFilePN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xuất file</button></a>
     
     @if($pn->TrangThai == 1 && $a == 1)
         <a href="{{ route('lapTH', ['id' => $pn->MaPhieuNhap, 'maNCC' => $pn->MaNhaCungCap]) }}"><button class="btn btn-info">Lập phiếu trả hàng</button></a>
