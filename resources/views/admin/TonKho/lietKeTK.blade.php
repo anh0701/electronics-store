@@ -10,7 +10,6 @@
 
             <a href="{{ route('xemPN')}}"><button class="btn btn-info">Xem phiếu nhập</button></a>
             <a href="{{ route('xemPX')}}"><button class="btn btn-info">Xem phiếu xuất</button></a>
-            <a href="{{ route('xemPTH')}}"><button class="btn btn-info">Xem phiếu trả hàng</button></a>
         </div>
         <div class="row w3-res-tb">
             <div class="col-sm-6">
