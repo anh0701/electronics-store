@@ -132,15 +132,6 @@ class TaiKhoanController extends Controller
         }
     }
 
-    public function capNhatTK(){
-        $user = session(('user'));
-        $tenTK = $user['TenTaiKhoan'];
-        if($tenTK != ""){
-            $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
-            return view('auth.capNhatTK', ['data' => $tk]);
-        }
-    }
-
     public function xuLyCNTK(Request $request){
         $messages = [
             'HinhAnh.image' => "Vui lòng chọn đúng file hình ảnh.",
@@ -265,7 +256,7 @@ class TaiKhoanController extends Controller
 
 
     public function suaTK($id){
-        $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = '{$id}' LIMIT 1");
+        $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = ? LIMIT 1", $id);
         return view('admin.TaiKhoan.suaTK', ['data'=>$tk]);
     }
 

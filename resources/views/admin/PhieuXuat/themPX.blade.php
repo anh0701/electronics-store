@@ -62,23 +62,25 @@
                     @enderror
                     <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                 </form>
+                
+                
+                <div class="table-responsive">
+                    <table id="phieuNhapTable" class="table table-striped b-t b-light">
+                        <thead>
+                            <tr>
+                                <!-- <th>Mã phiếu nhập chi tiết</th> -->
+                                <th>Mã phiếu nhập</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
                 <div id="control" style="display:none; margin:5px;">
                     <a href="{{ route('luuPX', ['id' => $maPX]) }}"><button class="btn btn-info">Lưu</button></a>
                     <a href="{{ route('xoaPX', ['id' => $maPX]) }}"><button class="btn btn-info">Hủy</button></a>
                 </div>
-                
-                <div class="table-responsive">
-                            <table id="phieuNhapTable" class="table table-striped b-t b-light">
-                                <thead>
-                                    <tr>
-                                        <!-- <th>Mã phiếu nhập chi tiết</th> -->
-                                        <th>Mã phiếu nhập</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Số lượng</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                </table>
             </div>
         </section>
     </div>

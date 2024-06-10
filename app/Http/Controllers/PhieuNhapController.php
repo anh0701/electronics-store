@@ -73,23 +73,23 @@ class PhieuNhapController extends Controller
                         FROM tbl_phieunhap pn 
                         JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
                         JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
-                        WHERE MaPhieuNhap = '{$id}'");
+                        WHERE MaPhieuNhap = ?", $id);
         $ctpn = DB::select("SELECT ct.*, sp.TenSanPham
                         FROM tbl_chitietphieunhap ct
                         JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                        WHERE MaPhieuNhap = '{$id}'");
+                        WHERE MaPhieuNhap = ?", $id);
         $pth = DB::select("SELECT pth.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
                         FROM tbl_phieutrahang pth 
                         JOIN tbl_taikhoan tk ON pth.MaTaiKhoan = tk.MaTaiKhoan
                         JOIN tbl_nhacungcap ncc ON pth.MaNhaCungCap = ncc.MaNhaCungCap
-                        WHERE MaPhieuNhap = '{$id}'");
+                        WHERE MaPhieuNhap = ?", $id);
         if(!empty($pth)){
             $maPTH = $pth[0]->MaPhieuTraHang;
         
             $ctth = DB::select("SELECT ct.*, sp.TenSanPham
                             FROM tbl_chitietphieutrahang ct
                             JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                            WHERE MaPhieuTraHang = '{$maPTH}'");
+                            WHERE MaPhieuTraHang = ?", $maPTH);
             $pthKQ = $pth[0];
         }else { 
             $ctth = null;
@@ -104,22 +104,22 @@ class PhieuNhapController extends Controller
                 FROM tbl_phieunhap pn 
                 JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
                 JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
-                WHERE MaPhieuNhap = '{$id}'");
+                WHERE MaPhieuNhap = ? ", $id);
         $ctpn = DB::select("SELECT ct.*, sp.TenSanPham
                 FROM tbl_chitietphieunhap ct
                 JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                WHERE MaPhieuNhap = '{$id}'");
+                WHERE MaPhieuNhap = ? ", $id);
         $pth = DB::select("SELECT pth.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
                 FROM tbl_phieutrahang pth 
                 JOIN tbl_taikhoan tk ON pth.MaTaiKhoan = tk.MaTaiKhoan
                 JOIN tbl_nhacungcap ncc ON pth.MaNhaCungCap = ncc.MaNhaCungCap
-                WHERE MaPhieuNhap = '{$id}' AND pth.TrangThai = 1 ");
+                WHERE MaPhieuNhap = ? AND pth.TrangThai = 1 ", $id);
         if(!empty($pth)){
             $maPTH = $pth[0]->MaPhieuTraHang;
             $ctth = DB::select("SELECT ct.*, sp.TenSanPham
                         FROM tbl_chitietphieutrahang ct
                         JOIN tbl_sanpham sp ON ct.MaSanPham = sp.MaSanPham
-                        WHERE MaPhieuTraHang = '{$maPTH}'");
+                        WHERE MaPhieuTraHang = ? ", $maPTH);
         }
         
         $tg1 = date_format(date_create($pn[0]->ThoiGianTao), 'd/m/Y');
@@ -276,7 +276,7 @@ class PhieuNhapController extends Controller
                         FROM tbl_phieunhap pn 
                         JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
                         JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
-                        WHERE MaPhieuNhap = '{$id}'");
+                        WHERE MaPhieuNhap = ?", $id);
         $products = SanPham::all();
         $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
         $ctpn = DB::table('tbl_chitietphieunhap')
@@ -345,7 +345,7 @@ class PhieuNhapController extends Controller
                 $ctpn->save();
                 $message = 'Thêm thành công';
             }
-            $tenSP = DB::select("SELECT TenSanPham FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+            $tenSP = DB::select("SELECT TenSanPham FROM tbl_sanpham WHERE MaSanPham = ? ", $maSP);
             $tenSP1 = $tenSP[0]->TenSanPham;
             return response()->json([
                 'success' => true,
@@ -403,20 +403,20 @@ class PhieuNhapController extends Controller
     }
 
     public function xoaCTS($id){
-        $maPN = DB::select("SELECT MaPhieuNhap, MaSanPham, SoLuong FROM tbl_chitietphieunhap WHERE MaCTPN = '$id'");
-        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaCTPN = '{$id}'");
+        $maPN = DB::select("SELECT MaPhieuNhap, MaSanPham, SoLuong FROM tbl_chitietphieunhap WHERE MaCTPN = ?", $id);
+        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaCTPN = ?", $id);
         return redirect()->route('suaPN', ['id' => $maPN[0]->MaPhieuNhap])->with('success', 'Xóa thành công');
     }
 
     public function xoaCTPN($id){
-        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaCTPN = '{$id}'");  
+        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaCTPN = ?", $id);  
         return redirect('/lap-phieu-nhap-chi-tiet');          
     }
 
     public function luuPN($id){
         $maPN = $id;
         $tongTien = 0;
-        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
+        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = ?", $maPN);
         foreach ($ctpn as $ct){
             $tongTien += $ct->SoLuong * $ct->GiaSanPham;
         }
@@ -450,7 +450,7 @@ class PhieuNhapController extends Controller
         $tienTra = 0;
         $tienNo = $request->tongTien;
         $tenTK = $request->nguoiLap;
-        $maTK = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = '{$tenTK}'");
+        $maTK = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = ?", $tenTK);
         $maNCC = $request->maNCC;
         $trangThai = 0;
         
@@ -492,7 +492,7 @@ class PhieuNhapController extends Controller
         
     public function xuLySuaPN(Request $request){
         $maPN = $request->maPN;
-        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$maPN}'");
+        $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = ?", $maPN);
         $tongTien = 0;
         $tienTra = $request->tienTra;
         foreach ($ctpn as $ct){
@@ -512,7 +512,7 @@ class PhieuNhapController extends Controller
             foreach($ctpn as $ct){
                 $maSP = $ct->MaSanPham;
                 $soLuong = $ct->SoLuong;
-                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = ?", $maSP);
                 $sl = $sltk[0]->SoLuongTrongKho + $soLuong;
                 $sl2 = $sltk[0]->SoLuongHienTai + $soLuong;
                 SanPham::where('MaSanPham', $maSP)->update([
@@ -526,7 +526,7 @@ class PhieuNhapController extends Controller
                 $maSP = $ct->MaSanPham;
                 $soLuong = $ct->SoLuong;
 
-                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = '{$maSP}'");
+                $sltk = DB::select("SELECT SoLuongTrongKho, SoLuongHienTai FROM tbl_sanpham WHERE MaSanPham = ?", $maSP);
                 $sltkHienTai = $sltk[0]->SoLuongTrongKho;
                 $slhtHienTai = $sltk[0]->SoLuongHienTai;
 
@@ -563,7 +563,7 @@ class PhieuNhapController extends Controller
     }
 
     public function xoaPN($id){
-        $maPTH = DB::select("SELECT MaPhieuTraHang, TrangThai FROM tbl_phieutrahang WHERE MaPhieuNhap = '{$id}'");
+        $maPTH = DB::select("SELECT MaPhieuTraHang, TrangThai FROM tbl_phieutrahang WHERE MaPhieuNhap = ? ", $id);
         $pth = [];
         foreach($maPTH as $i){
             $tt = $i->TrangThai;
@@ -575,12 +575,12 @@ class PhieuNhapController extends Controller
             $pth[] = $ma;
         }
         foreach($pth as $ma){
-            DB::delete("DELETE FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = '{$ma}'");
-            DB::delete("DELETE FROM tbl_phieutrahang WHERE MaPhieuTraHang = '{$ma}'");
+            DB::delete("DELETE FROM tbl_chitietphieutrahang WHERE MaPhieuTraHang = ?", $ma);
+            DB::delete("DELETE FROM tbl_phieutrahang WHERE MaPhieuTraHang = ?", $ma);
         }
         
-        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaPhieuNhap = '{$id}'");
-        DB::delete("DELETE FROM tbl_phieunhap WHERE MaPhieuNhap = '{$id}'");
+        DB::delete("DELETE FROM tbl_chitietphieunhap WHERE MaPhieuNhap = ?", $id);
+        DB::delete("DELETE FROM tbl_phieunhap WHERE MaPhieuNhap = ?", $id);
 
         return redirect('/liet-ke-phieu-nhap')->with('success', 'Xóa thành công!');
     }
