@@ -40,8 +40,8 @@
                         <tr>
                             <th>Mã phiếu xuất</th>
                             <th>Người lập phiếu</th>
-                            <th>Tổng số lượng xuất</th>
-                            <th>Thời gian lập</th>
+                            <th>Lý do xuất</th>
+                            <th>Mã đơn hàng</th>
                             <th>Trạng thái</th>                           
                             <th >Quản lý</th>
                         </tr>
@@ -51,8 +51,8 @@
                             <tr>
                                 <td>{{ $i->MaPhieuXuat }}</td>
                                 <td>{{ $i->TenTaiKhoan }}</td>
-                                <td>{{ $i->TongSoLuong }}</td>
-                                <td>{{ $i->ThoiGianTao }}</td>
+                                <td>{{ $i->LyDoXuat }}</td>
+                                <td>{{ $i->MaDonHang }}</td>
                                 @php 
                                     if($i->soCTPX == 0){
                                         $trangthai = "Không có sản phẩm được xuất!";
@@ -95,18 +95,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            @if(session('success'))
-            // Swal.fire({
-            //     icon: 'success',
-            //     title: 'Thành công',
-            //     text: '{{ session('success') }}',
-            //     showConfirmButton: false,
-            //     timer: 800
-            // });
-            @endif
-        });
-    </script>
 @endsection  

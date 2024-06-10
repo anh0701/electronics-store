@@ -82,13 +82,20 @@ class PhieuXuatController extends Controller
         $thoiGianTao = date('Y-m-d H:i:s');
         $tenTK = $request->nguoiLap;
         $maTK = DB::select("SELECT * FROM tbl_taikhoan WHERE TenTaiKhoan = ?", [$tenTK]);
-        $tongSL = $request->tongSoLuong;
+        $tongSL = 0;
         $trangThai = 0;
+        $maDH = $request->maDH;
+        $lyDoKhac = $request->lyDoKhac;
+        if(empty($lyDoKhac)){
+            $lyDoKhac = 'Xuất bán';
+        }
         
         if ($maPX) {
             $phieuxuat = new PhieuXuat();
             $phieuxuat->MaPhieuXuat = $maPX;
             $phieuxuat->MaTaiKhoan = $maTK[0]->MaTaiKhoan;
+            $phieuxuat->LyDoXuat = $lyDoKhac;
+            $phieuxuat->MaDonHang = $maDH;
             $phieuxuat->TongSoLuong = $tongSL;
             $phieuxuat->TrangThai = $trangThai;
             $phieuxuat->ThoiGianTao = $thoiGianTao;
