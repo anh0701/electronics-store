@@ -194,6 +194,16 @@
                                     <li style="margin-left: 10%; list-style: none"><a href="{{ route('/TrangLietKeTSKT') }}">+ Liệt kê TSKT</a></li>
                                 </ul>
                             </li>
+
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <span>Quản lý danh mục TSKT</span>
+                                </a>
+                                <ul class="sub">
+                                    <li style="margin-left: 10%; list-style: none"><a href="{{ route('/TrangThemDanhMucTSKT') }}">+ Thêm danh mục TSKT</a></li>
+                                    <li style="margin-left: 10%; list-style: none"><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">+ Liệt kê danh mục TSKT</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 

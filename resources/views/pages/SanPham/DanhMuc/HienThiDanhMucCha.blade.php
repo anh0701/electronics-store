@@ -16,7 +16,7 @@
                     <button type="button" class="btn btn-default get">Get it now</button>
                 </div>
                 <div class="col-sm-6">
-                    <img src="{{ asset('frontend/images/home/vi-vn-may-giat-samsung-inverter-8kg-ww80t3020ww-sv-0139.jpg') }}" style="height: 400px; width: 315px" class="girl img-responsive" alt="" />
+                    <img src="{{ asset('upload/SanPham/smart-tivi-toshiba-43-inch-43v31mp6383429964306985283.jpg') }}" style="height: 400px; width: 315px" class="girl img-responsive" alt="" />
                 </div>
             </div>
             <div class="item">
@@ -27,7 +27,7 @@
                     <button type="button" class="btn btn-default get">Get it now</button>
                 </div>
                 <div class="col-sm-6">
-                    <img src="{{ asset('frontend/images/home/camera-ip-360-do-3mp-tiandy-tc-h332n-thumb-2-600x60070.jpg') }}" style="height: 400px; width: 315px" class="girl img-responsive" alt="" />
+                    <img src="{{ asset('upload/SanPham/android-sony-4k-55-inch-kd-55x80k-180322-022717-550x34097.png') }}" style="height: 400px; width: 315px" class="girl img-responsive" alt="" />
                 </div>
             </div>
             <div class="item">
@@ -38,7 +38,7 @@
                     <button type="button" class="btn btn-default get">Get it now</button>
                 </div>
                 <div class="col-sm-6">
-                    <img src="{{ asset('frontend/images/home/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600198.jpg') }}" style="height: 400px; width: 315px" class="girl img-responsive" alt="" />
+                    <img src="{{ asset('upload/SanPham/camera-ip-360-do-3mp-tiandy-tc-h332n-thumb-2-600x60037.jpg') }}" style="height: 400px; width: 315px" class="girl img-responsive" alt="" />
                 </div>
             </div>
         </div>
