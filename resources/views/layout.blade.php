@@ -81,7 +81,7 @@
 								@endphp
 								@if (session('user'))
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-user"></i>Thông tin tài khoản</a>
+                                        <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-user"></i>{{ htmlspecialchars(session('user')['TenTaiKhoan']) }}</a>
                                     </li>
 								@endif
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}
