@@ -151,10 +151,11 @@ class DonHangController extends Controller
                     if(Empty($donHang['MaGiamGia'])){
                         $doanhThu += $value['SoLuong'] * $value['GiaSanPham'];
                     }elseif($donHang['MaGiamGia']){
-                        $PhieuGiamGia = PhieuGiamGia::where('MaGiamGia', $MaGiamGia)->first();
+                        $PhieuGiamGia = PhieuGiamGia::where('MaGiamGia', $donHang['MaGiamGia'])->first();
+                        $doanhThu += $value['SoLuong'] * $value['GiaSanPham'];
                         if($PhieuGiamGia['DonViTinh'] == 1){
                             $doanhThu = $doanhThu - $PhieuGiamGia['TriGia'];
-                        }elseif($PhieuGiamGia['DonViTinh'] == 1){
+                        }elseif($PhieuGiamGia['DonViTinh'] == 2){
                             $doanhThu = $doanhThu*(100 - $PhieuGiamGia['TriGia'])/100;
                         }
                     }
@@ -170,14 +171,14 @@ class DonHangController extends Controller
                     }
                 }
 
-                $ngayThangNam = date("Y-m-d", strtotime($donHang['ThoiGianTao']));
-                $today = now();
-                $baoCaoDoanhThu = BaoCaoDoanhThu::where('order_date', $today)->first();
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $today = now();
+                $today = date("Y-m-d", strtotime($donHang['ThoiGianTao']));
+                $baoCaoDoanhThu = BaoCaoDoanhThu::where('order_date', $today)->first();
 
-                echo '<pre>';
-                print_r($baoCaoDoanhThu);
-                echo '</pre>';
+                // echo '<pre>';
+                // print_r($baoCaoDoanhThu);
+                // echo '</pre>';
 
                 if(Empty($baoCaoDoanhThu)){
                     $themBCDT = new BaoCaoDoanhThu();
@@ -189,11 +190,11 @@ class DonHangController extends Controller
                     $themBCDT->save();
                 }elseif($baoCaoDoanhThu){
                     $suaBCDT = BaoCaoDoanhThu::find($baoCaoDoanhThu['MaBCDT']);
-                    $themBCDT->sales += $doanhThu;
-                    $themBCDT->profit += $loiNhuan;
-                    $themBCDT->quantity += $soLuongSanPham;
-                    $themBCDT->total_order += 1;
-                    $themBCDT->save();
+                    $suaBCDT->sales += $doanhThu;
+                    $suaBCDT->profit += $loiNhuan;
+                    $suaBCDT->quantity += $soLuongSanPham;
+                    $suaBCDT->total_order += 1;
+                    $suaBCDT->save();
                 }
             return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng thanh toán đơn hàng');
             }elseif($data['TrangThaiDonHang'] == 4){
