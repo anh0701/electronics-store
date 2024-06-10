@@ -142,6 +142,67 @@
             </div>
         </section>
 
+    <section id="cart_items" >
+        <div class="container">
+            <div class="review-payment">
+                <h2 class="mb-4">Đơn hàng của người dùng</h2>
+            </div>
+
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr class="cart_menu">
+                        <td class="text-center">STT</td>
+                        <td class="description">Mã đơn hàng</td>
+                        <td class="price">Trạng thái</td>
+                    </tr>
+                    </thead>
+                    @php $i = 0; @endphp
+                    @foreach($donHang as $don)
+                        <tbody>
+                        <tr class="">
+                            <td class="text-center">{{$i = $i + 1}}</td>
+                            <td><h5>{{$don->MaDonHang}}</h5></td>
+
+                @php
+                    if ($don->TrangThai == 1){
+                @endphp
+                  <td>Đơn hàng chờ xác nhận</td>
+                @php
+                    }elseif($don->TrangThai == 2){
+                @endphp
+                  <td>Nhân viên giao hàng đã lấy đơn hàng</td>
+                @php
+                    }elseif($don->TrangThai == 3){
+                @endphp
+                  <td>Khách hàng thanh toán đơn hàng</td>
+                @php
+                    }elseif($don->TrangThai == 4){
+                @endphp
+                  <td>Khách hàng không nhận đơn hàng</td>
+                @php
+                    }
+                @endphp
+
+                        </tr>
+                        </tbody>
+                    @endforeach
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 text-center">
+                </div>
+                <div class="col-sm-7 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        @if ($donHang instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                            {{ $donHang->links('vendor.pagination.bootstrap-4') }}
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         function previewImage(event) {
             const reader = new FileReader();

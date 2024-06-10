@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChuongTrinhGiamGia;
+use App\Models\DonHang;
 use App\Models\PhieuGiamGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -154,7 +155,7 @@ class HomeController extends Controller
         $meta_title = "Electronic shop chuyên bán sản phẩm điện tử";
         $url_canonical = $request->url();
         $image_og = $url_canonical.'/upload/logo.jpg';
-        
+
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
                 $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('MaThuongHieu', $MaThuongHieu)->where('MaDanhMuc', $MaDanhMuc)->paginate(20);
@@ -187,13 +188,13 @@ class HomeController extends Controller
         $rating = round($rating);
         $sanPhamLienQuan = SanPham::where('MaDanhMuc', $chiTietSanPham->MaDanhMuc)
         ->where('MaThuongHieu', $chiTietSanPham->MaThuongHieu)->whereNotIn('MaSanPham', [$MaSanPham])->take(4)->get();
-        
+
         $meta_desc = 'Chi tiết sản phẩm '.$chiTietSanPham['TenSanPham'];
         $meta_keywords = 'Chi tiết sản phẩm '.$chiTietSanPham['TenSanPham'];
         $meta_title = 'Chi tiết sản phẩm '.$chiTietSanPham['TenSanPham'];
         $url_canonical = $request->url();
         $image_og = $url_canonical.'/upload/SanPham/'.$chiTietSanPham['HinhAnh'];
-        
+
         return view('pages.SanPham.ChiTietSanPham')
         ->with(compact('allDanhMuc', 'allThuongHieu', 'chiTietSanPham', 'allSanPhamTSKT', 'allDanhGia', 'allTaiKhoan'))
         ->with(compact('rating', 'sanPhamLienQuan', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
@@ -212,7 +213,7 @@ class HomeController extends Controller
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->paginate(20);
         $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->take(12)->get();;
 
-        $meta_desc = "Tìm kiếm sản phẩm"; 
+        $meta_desc = "Tìm kiếm sản phẩm";
         $meta_keywords = "Tìm kiếm sản phẩm";
         $meta_title = "Tìm kiếm sản phẩm";
         $url_canonical = $request->url();
@@ -229,7 +230,7 @@ class HomeController extends Controller
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
 
-        $meta_desc = "Trang thanh toán sản phẩm"; 
+        $meta_desc = "Trang thanh toán sản phẩm";
         $meta_keywords = "Trang thanh toán sản phẩm";
         $meta_title = "Trang thanh toán sản phẩm";
         $url_canonical = $request->url();
@@ -246,15 +247,19 @@ class HomeController extends Controller
             $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
 //            dd($tk[0]->BacNguoiDung);
             $phieuGiamGia = PhieuGiamGia::where('BacNguoiDung', $tk[0]->BacNguoiDung)->orderBy('ThoiGianBatDau', 'DESC')->paginate('4');
+
+            $donHang = DonHang::where('Email', $tk[0]->Email)->get();
+
+//            dd($donHang);
         }
 
-        $meta_desc = "Trang thông tin tài khoản"; 
+        $meta_desc = "Trang thông tin tài khoản";
         $meta_keywords = "Trang thông tin tài khoản";
         $meta_title = "Trang thông tin tài khoản";
         $url_canonical = $request->url();
         $image_og = $url_canonical.'/upload/logo.jpg';
 //        dd($phieuGiamGia);
-        return view('auth.trangCaNhan')->with(compact( 'tk', 'phieuGiamGia'))
+        return view('auth.trangCaNhan')->with(compact( 'tk', 'phieuGiamGia', 'donHang'))
         ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));;
     }
 
@@ -303,7 +308,7 @@ class HomeController extends Controller
         $allBaiViet = BaiViet::orderBy('MaBaiViet', 'DESC')->orderBy('MaDanhMucBV', 'DESC')->paginate(15);
         $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->where('TrangThai', '1')->get();
 
-        $meta_desc = "Trang thống kê bài viết"; 
+        $meta_desc = "Trang thống kê bài viết";
         $meta_keywords = "Trang thống kê bài viết";
         $meta_title = "Trang thống kê bài viết";
         $url_canonical = $request->url();
@@ -319,9 +324,9 @@ class HomeController extends Controller
         $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->where('TrangThai', '1')->get();
 
         $danhMucBV = DanhMucBaiViet::where('MaDanhMucBV', $MaDanhMucBV)->first();
-        $meta_desc = "Bài viết thuộc danh mục ".$danhMucBV['TenDanhMucBV']; 
-        $meta_keywords = "Bài viết thuộc danh mục ".$danhMucBV['TenDanhMucBV']; 
-        $meta_title = "Bài viết thuộc danh mục ".$danhMucBV['TenDanhMucBV']; 
+        $meta_desc = "Bài viết thuộc danh mục ".$danhMucBV['TenDanhMucBV'];
+        $meta_keywords = "Bài viết thuộc danh mục ".$danhMucBV['TenDanhMucBV'];
+        $meta_title = "Bài viết thuộc danh mục ".$danhMucBV['TenDanhMucBV'];
         $url_canonical = $request->url();
         $image_og = $url_canonical.'/upload/logo.jpg';
 
@@ -335,9 +340,9 @@ class HomeController extends Controller
         $allBinhLuan = BinhLuan::orderBy('MaBinhLuan', 'DESC')->where('MaBaiViet', $MaBaiViet)->where('TrangThai', 1)->get();
         $allTaiKhoan = TaiKhoan::orderBy('MaTaiKhoan', 'DESC')->get();
 
-        $meta_desc = "Chi tiết bài viết ".$baiViet['TenBaiViet']; 
-        $meta_keywords = "Chi tiết bài viết ".$baiViet['TenBaiViet']; 
-        $meta_title = "Chi tiết bài viết ".$baiViet['TenBaiViet']; 
+        $meta_desc = "Chi tiết bài viết ".$baiViet['TenBaiViet'];
+        $meta_keywords = "Chi tiết bài viết ".$baiViet['TenBaiViet'];
+        $meta_title = "Chi tiết bài viết ".$baiViet['TenBaiViet'];
         $url_canonical = $request->url();
         $image_og = $url_canonical.'/upload/logo.jpg';
 
