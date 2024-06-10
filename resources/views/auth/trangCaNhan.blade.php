@@ -73,9 +73,15 @@
                                 </div>
 
                                 <div class="row mb-3" style="margin-bottom: 3%">
-                                    <div class="col-12 text-center text-secondary">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-3  text-secondary">
                                         <button type="submit" class="btn btn-info w-100">Cập nhật thông tin</button>
                                     </div>
+
+                                    <div class="col-lg-3  text-secondary">
+                                        <a class="btn btn-info w-100" href="{{ route('indexDMK')}}">Đổi mật khẩu</a>
+                                    </div>
+                                    <div class="col-lg-3"></div>
                                 </div>
                             </div>
                         </div>

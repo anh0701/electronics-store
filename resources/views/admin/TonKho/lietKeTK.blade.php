@@ -10,7 +10,6 @@
 
             <a href="{{ route('xemPN')}}"><button class="btn btn-info">Xem phiếu nhập</button></a>
             <a href="{{ route('xemPX')}}"><button class="btn btn-info">Xem phiếu xuất</button></a>
-            <a href="{{ route('xemPTH')}}"><button class="btn btn-info">Xem phiếu trả hàng</button></a>
         </div>
         <div class="row w3-res-tb">
             <div class="col-sm-6">
@@ -69,24 +68,11 @@
         var labels = {!! json_encode($labels) !!};
         var data = {!! json_encode($data) !!};
 
-        console.log(labels); // Kiểm tra dữ liệu labels
-        console.log(data); // Kiểm tra dữ liệu data
-
-        // var n = 10;
-        // var labelN = labels.slice(0, n);
-        // var dataN = data.slice(0, n);
-
-
-        // var labelNN = 'Khác';
-        // var dataNN = data.slice(n).reduce((a,b) => a + b, 0);
-
-        
-        // labelN.push(labelNN);
-        // dataN.push(dataNN);
-
+        console.log(labels); 
+        console.log(data);
 
         var myChart = new Chart(ctx, {
-            type: 'bar', // Hoặc 'doughnut'
+            type: 'bar', 
             data: {
                 labels: labels,
                 datasets: [{

@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Tổng tiền</label>
-                            <input type="text" class="form-control" name="tongTien" value="{{ $pth->TongTien }}" readonly>
+                            <input type="text" class="form-control" name="tongTien" value="{{ number_format($pth->TongTien, 0, '', '.') }}" readonly>
                         </div>                  
                         <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
                             <label for="">Trạng thái</label>
@@ -44,7 +44,7 @@
                         @enderror
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                     </form>
-                    <div class="table-responsive" >
+                    <div id="myLink5" class="table-responsive" >
                         <p class="head1">Danh sách sản phẩm trong phiếu nhập</p>
                         <table class="table table-striped b-t b-light">
                             <thead>
@@ -59,7 +59,7 @@
                                     <tr>
                                         <td>{{ $ct->TenSanPham }}</td>
                                         <td>{{ $ct->SoLuong }}</td>
-                                        <td>{{ $ct->GiaSanPham }}</td>
+                                        <td>{{ number_format($ct->GiaSanPham, 0, '','.') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -127,7 +127,7 @@
                                             <td><input type="text" value="{{ $ct->LyDoTraHang }}" id="lyDoTraHang_{{ $ct->MaCTPTH }}"></td>
                                             <td id = "myLink">
                                                 <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPTH }}">Cập nhật</a>
-                                                <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPTH }} không?')" href="{{ route('xoaCTPTHS', ['id' => $ct->MaCTPTH, 'maPTH' => $pth->MaPhieuTraHang]) }}">
+                                                <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $ct->TenSanPham }} trong phiếu trả hàng không?')" href="{{ route('xoaCTPTHS', ['id' => $ct->MaCTPTH, 'maPTH' => $pth->MaPhieuTraHang]) }}">
                                                     <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                                                 </a>
                                             </td>

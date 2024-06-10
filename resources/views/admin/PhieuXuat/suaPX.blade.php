@@ -46,8 +46,8 @@
                     <form id="myLink3" role="form" action="{{ route('xuLyLapPXCT') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="">Mã phiếu xuất:</label>
-                            <input type="text" class="form-control" name="maPXSua" value="{{$px->MaPhieuXuat}}" readonly>
+                            <!-- <label for="">Mã phiếu xuất:</label> -->
+                            <input type="hidden" class="form-control" name="maPXSua" value="{{$px->MaPhieuXuat}}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Loại sản phẩm</label>
@@ -74,7 +74,7 @@
                         @error('soLuong')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
+                        <button type="submit" class="btn btn-info">Thêm sản phẩm xuất?</button>
                     </form>
                     
                     
@@ -101,7 +101,7 @@
 
                                         <td id = "myLink">
                                             <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPX }}">Cập nhật</a>
-                                            <a onclick="return confirm('Bạn có muốn xóa danh mục {{ $ct->MaCTPX }} không?')" href="{{ route('xoaCTPXS', ['id' => $ct->MaCTPX, 'maPX' => $px->MaPhieuXuat]) }}">
+                                            <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $ct->TenSanPham }} trong phiếu xuất không?')" href="{{ route('xoaCTPXS', ['id' => $ct->MaCTPX, 'maPX' => $px->MaPhieuXuat]) }}">
                                                 <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                                             </a>
                                         </td>
@@ -137,19 +137,7 @@ $(document).ready(function() {
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        @if(session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Thành công',
-            text: '{{ session('success') }}',
-            showConfirmButton: false,
-            timer: 800
-        });
-        @endif
-    });
-</script>
+
 <script>
 $(document).ready(function() {
     $('.update-btn').on('click', function() {

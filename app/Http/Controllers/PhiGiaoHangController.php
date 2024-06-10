@@ -13,12 +13,12 @@ class PhiGiaoHangController extends Controller
 {
     public function TrangLietKePhiGiaoHang(){
         $allPhiGiaoHang = PhiGiaoHang::orderBy('MaThanhPho', 'ASC')->paginate();
-        return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang')); 
+        return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang'));
     }
 
     public function TrangThemPhiGiaoHang(){
         $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
-        return view('admin.PhiGiaoHang.ThemPhiGiaoHang')->with(compact('allThanhPho')); 
+        return view('admin.PhiGiaoHang.ThemPhiGiaoHang')->with(compact('allThanhPho'));
     }
 
     public function TrangSuaPhiGiaoHang($MaPhiGiaoHang){
@@ -26,7 +26,7 @@ class PhiGiaoHangController extends Controller
         $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
         $allQuanHuyen = QuanHuyen::orderBy('MaQuanHuyen', 'ASC')->get();
         $allXaPhuong = XaPhuongThiTran::orderBy('MaXaPhuong', 'ASC')->get();
-        return view('admin.PhiGiaoHang.SuaPhiGiaoHang')->with(compact('allThanhPho', 'allQuanHuyen', 'allXaPhuong', 'phiGiaoHang')); 
+        return view('admin.PhiGiaoHang.SuaPhiGiaoHang')->with(compact('allThanhPho', 'allQuanHuyen', 'allXaPhuong', 'phiGiaoHang'));
     }
 
     public function ChonDiaDiem(Request $request){
@@ -70,7 +70,7 @@ class PhiGiaoHangController extends Controller
         $phiGiaoHang->MaXaPhuong = $data['MaXaPhuong'];
         $phiGiaoHang->SoTien = $data['PhiGiaoHang'];
         $phiGiaoHang->save();
-        return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Thêm phí giao hàng thành công');
+        return Redirect::to('trang-liet-ke-phi-giao-hang')->with('status', 'Thêm phí giao hàng thành công');
     }
 
     public function SuaPhiGiaoHang($MaPhiGiaoHang, Request $request){
@@ -93,12 +93,33 @@ class PhiGiaoHangController extends Controller
         $phiGiaoHang->MaXaPhuong = $data['MaXaPhuong'];
         $phiGiaoHang->SoTien = $data['PhiGiaoHang'];
         $phiGiaoHang->save();
-        return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Cập nhật phí giao hàng thành công');
+        return Redirect::to('trang-liet-ke-phi-giao-hang')->with('status', 'Cập nhật phí giao hàng thành công');
     }
 
     public function XoaPhiGiaoHang($MaPhiGiaoHang){
         $phiGiaoHang = PhiGiaoHang::find($MaPhiGiaoHang);
-        $phiGiaoHang->delete();
-        return Redirect::to('TrangLietKePhiGiaoHang')->with('status', 'Xóa danh mục phí giao hàng thành công');
+        $phiGiaoHang->SoTien = 0;
+        $phiGiaoHang->save();
+        return Redirect::to('trang-liet-ke-phi-giao-hang')->with('status', 'Xóa danh mục phí giao hàng thành công');
+    }
+
+    public function timKiem(Request $request)
+    {
+        $keyword = $request->TuKhoa;
+
+        // Tìm kiếm trong các bảng liên quan
+        $allPhiGiaoHang = PhiGiaoHang::query()
+            ->where('SoTien', 'like', "%$keyword%")
+            ->orWhereHas('TinhThanhPho', function ($query) use ($keyword) {
+                $query->where('TenThanhPho', 'like', "%$keyword%");
+            })
+            ->orWhereHas('QuanHuyen', function ($query) use ($keyword) {
+                $query->where('TenQuanHuyen', 'like', "%$keyword%");
+            })
+            ->orWhereHas('XaPhuongThiTran', function ($query) use ($keyword) {
+                $query->where('TenXaPhuong', 'like', "%$keyword%");
+            })
+            ->get();
+        return view('admin.PhiGiaoHang.LietKePhiGiaoHang')->with(compact('allPhiGiaoHang'));
     }
 }

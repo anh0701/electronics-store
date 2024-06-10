@@ -6,7 +6,6 @@ use App\Models\ChuongTrinhGiamGia;
 use App\Models\ChuongTrinhGiamGiaSP;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
-use App\Models\DanhMuc;
 use App\Rules\KiemTraTGCTGG;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,10 +28,10 @@ class ChuongTrinhGiamGiaController extends Controller
         $validator = Validator::make($request->all(), [
             'TenCTGG' => 'required',
             'SlugCTGG' => ['required', 'unique:tbl_chuongtrinhgiamgia'],
-            'HinhAnh' => ['required', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
+            'HinhAnh' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
             'MoTa' => 'required',
 //            'MaSanPham' => 'required|array',
-            'PhanTramGiam' => 'required',
+//            'PhanTramGiam' => 'required',
             'selectedProducts' => 'required|json',
             'ThoiGianKetThuc' => ['required','date','after:ThoiGianBatDau'],
             'ThoiGianBatDau' => [
@@ -47,7 +46,7 @@ class ChuongTrinhGiamGiaController extends Controller
             'selectedProducts.required' => 'Vui lòng chọn sản phẩm',
             'MoTa.required' => "Vui lòng nhập mô tả.",
 //            "MaSanPham.required" => "Vui lòng chọn sản phẩm",
-            'PhanTramGiam.required' => "Vui lòng nhập phần trăm giảm",
+//            'PhanTramGiam.required' => "Vui lòng nhập phần trăm giảm",
             'HinhAnh.required' => 'Vui lòng nhập hình ảnh.',
             'HinhAnh.image' => 'Vui lòng chọn đúng định dạng file hình ảnh',
             'ThoiGianBatDau.required' => "Vui lòng chọn thời gian bắt đầu chương trình giảm giá có hiệu lực.",
@@ -59,7 +58,7 @@ class ChuongTrinhGiamGiaController extends Controller
         if ($validator->fails()) {
 //            dd($validator->errors());
             // Lưu trữ dữ liệu bảng vào session
-            session()->flash('selectedProducts', $request->input('selectedProducts'));
+            session()->put('selectedProducts', $request->input('selectedProducts'));
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors($validator->errors());
@@ -82,10 +81,10 @@ class ChuongTrinhGiamGiaController extends Controller
 
 //        dd($imagePath);
         // Lưu thông tin chương trình giảm giá vào cơ sở dữ liệu
-        // Process the selected products
+
         $selectedProducts = json_decode($request->selectedProducts, true);
 
-        // Save the discount program
+
         $discountProgram = new ChuongTrinhGiamGia();
         $discountProgram->TenCTGG = $request->TenCTGG;
         $discountProgram->SlugCTGG = $request->SlugCTGG;
@@ -97,11 +96,12 @@ class ChuongTrinhGiamGiaController extends Controller
         $discountProgram->ThoiGianKetThuc = $request->ThoiGianKetThuc;
         $discountProgram->save();
 
-        // Save the related products
+
         foreach ($selectedProducts as $product) {
             $discountProgram->SanPham()->attach($product['id'], ['PhanTramGiam' => $product['phanTramGiam']]);
         }
 
+        session()->forget('selectedProducts');
         return redirect()->route('/chuong-trinh-giam-gia')->with('success', 'Discount program created successfully!');
     }
 
@@ -149,7 +149,7 @@ class ChuongTrinhGiamGiaController extends Controller
                 'required',
                 Rule::unique('tbl_chuongtrinhgiamgia', 'SlugCTGG')->ignore($MaCT, 'MaCTGG'),
             ],
-            'HinhAnh' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
+            'HinhAnh' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
             'MoTa' => 'required',
             'TrangThai' => 'required',
 //            'MaSanPham' => 'required|array',
@@ -169,7 +169,7 @@ class ChuongTrinhGiamGiaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            session()->flash('selectedProducts', $request->input('selectedProducts'));
+            session()->put('selectedProducts', $request->input('selectedProducts'));
             return redirect()->back()
                 ->withInput($request->input())
                 ->withErrors($validator->errors());
@@ -211,6 +211,7 @@ class ChuongTrinhGiamGiaController extends Controller
             }
         }
 
+        session()->forget('selectedProducts');
         return redirect()->route('/chuong-trinh-giam-gia')->with('success', 'Chương trình giảm giá đã được cập nhật thành công!');
     }
 
@@ -230,29 +231,19 @@ class ChuongTrinhGiamGiaController extends Controller
         return response()->json($products);
     }
 
-    public function list(Request $request)
-    {
-        $search = $request->input('search');
-        $query = SanPham::query();
-
-        if ($search) {
-            $query->where('TenSanPham', 'like', "%{$search}%");
-        }
-
-        $sanphams = $query->select('MaSanPham', 'TenSanPham')->get();
-
-        return response()->json($sanphams);
-    }
-
     public function timKiem(Request $request)
     {
         //
+        $tuKhoa = $request->timKiem;
         $discountPrograms = ChuongTrinhGiamGia::where('TenCTGG', 'LIKE', "%{$request->timKiem}%")
             ->orWhere('SlugCTGG', 'LIKE', "%{$request->timKiem}%")
             ->orWhere('MoTa', 'LIKE', "%{$request->timKiem}%")
             ->orWhere('ThoiGianTao', 'LIKE', "%{$request->timKiem}%")
+            ->orWhere('ThoiGianSua', 'LIKE', "%{$request->timKiem}%")
 //            ->orWhere('TrangThai', 'LIKE', "%{$request->timKiem}%")
-//            ->orWhere('PhanTramGiam', 'LIKE', "%{$request->timKiem}%")
+//            ->orWhereHas('chuongTrinhGiamGiaSPs', function ($query) use ($tuKhoa){
+//                $query->where('PhanTramGiam', "%$tuKhoa%");
+//            })
             ->get();
 //        dd($phieuGiamGia);
         return view('admin.ChuongTrinhGiamGia.lietKeChuongTrinhGiamGia')->with(compact("discountPrograms"));

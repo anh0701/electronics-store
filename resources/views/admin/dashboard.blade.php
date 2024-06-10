@@ -6,16 +6,9 @@
             <div class="col-md-4 market-update-right">
                 <i class="fa fa-eye"> </i>
             </div>
-            <div class="col-md-8 market-update-left">
-            <h3>Đơn hàng</h3>
-            @php
-                $count = 0;
-                foreach($baoCaoDoanhThu as $key => $value){
-                    $count += $value['total_order'];
-                }
-            @endphp
-            <h4>{{ $count }}</h4>
-            <p>Số lượng đơn hàng trong tháng này</p>
+             <div class="col-md-8 market-update-left">
+             <h4>Khách</h4>
+            <h3>13,500</h3>
           </div>
           <div class="clearfix"> </div>
         </div>
@@ -23,18 +16,11 @@
     <div class="col-md-3 market-update-gd">
         <div class="market-update-block clr-block-1">
             <div class="col-md-4 market-update-right">
-                <i class="fa fa-usd"></i>
+                <i class="fa fa-users" ></i>
             </div>
             <div class="col-md-8 market-update-left">
-                <h3>Lợi nhuận</h3>
-            @php
-                $count = 0;
-                foreach($baoCaoDoanhThu as $key => $value){
-                    $count += $value['profit'];
-                }
-            @endphp
-                <h4>{{ number_format($count, 0, '', '.') }} đ</h4>
-                <p>Lợi nhuận trong tháng này</p>
+            <h4>Người dùng</h4>
+                <h3>1,250</h3>
             </div>
           <div class="clearfix"> </div>
         </div>
@@ -45,15 +31,8 @@
                 <i class="fa fa-usd"></i>
             </div>
             <div class="col-md-8 market-update-left">
-                <h3>Doanh số</h3>
-            @php
-                $count = 0;
-                foreach($baoCaoDoanhThu as $key => $value){
-                    $count += $value['sales'];
-                }
-            @endphp
-                <h4>{{ number_format($count, 0, '', '.') }} đ</h4>
-                <p>Doanh số trong tháng này</p>
+                <h4>Bán</h4>
+                <h3>1,500</h3>
             </div>
           <div class="clearfix"> </div>
         </div>
@@ -64,21 +43,14 @@
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </div>
             <div class="col-md-8 market-update-left">
-                <h3>Sản phẩm</h3>
-            @php
-                $count = 0;
-                foreach($baoCaoDoanhThu as $key => $value){
-                    $count += $value['quantity'];
-                }
-            @endphp
-                <h4>{{ $count }}</h4>
-                <p>Số lượng sản phẩm đã bán trong tháng này</p>
+                <h4>Đặt hàng</h4>
+                <h3>1,500</h3>
             </div>
           <div class="clearfix"> </div>
         </div>
     </div>
    <div class="clearfix"> </div>
-</div>	
+</div>
 <div class="container-fluid">
     <style type="text/css">
         p.title_thongke {

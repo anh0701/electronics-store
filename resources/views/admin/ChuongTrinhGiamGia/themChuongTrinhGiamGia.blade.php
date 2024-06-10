@@ -214,7 +214,7 @@
             if (selectedProductsFromSession.length > 0) {
                 var productIds = selectedProductsFromSession.map(function(product) { return product.id; });
                 $.ajax({
-                    url: '/api/san-pham/chi-tiet',  // API endpoint để lấy thông tin chi tiết sản phẩm
+                    url: '/api/san-pham/chi-tiet',
                     method: 'POST',
                     data: { ids: productIds },
                     success: function(data) {

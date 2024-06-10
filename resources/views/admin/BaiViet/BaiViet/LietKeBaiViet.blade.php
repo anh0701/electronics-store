@@ -9,12 +9,15 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
-          </div>
+            <form action="{{Route('timKiemBV')}}" method="get">
+
+              <div class="input-group">
+                <input type="text" name="TuKhoa" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                </span>
+              </div>
+            </form>
         </div>
       </div>
       <div class="table-responsive">
@@ -47,12 +50,12 @@
                 @php
                 if ($baiViet->TrangThai == 1){
                 @endphp
-                  <a href="{{ route('/KoKichHoatDanhMucBV', $baiViet->MaBaiViet) }}" ><span 
+                  <a href="{{ route('/KoKichHoatBaiViet', $baiViet->MaBaiViet) }}" ><span
                     style="font-size: 28px; color: green; content: \f164" class="fa-solid fa-toggle-on"></span></a>
                 @php
                 }else{
                 @endphp
-                  <a href="{{ route('/KichHoatDanhMucBV', $baiViet->MaBaiViet) }}" ><span 
+                  <a href="{{ route('/KichHoatBaiViet', $baiViet->MaBaiViet) }}" ><span
                     style="font-size: 28px; color: red; ; content: \f164" class="fa-solid fa-toggle-off"></span></a>
                 @php
                 }
@@ -62,9 +65,9 @@
                 <a href="{{ route('/TrangSuaBaiViet', $baiViet->MaBaiViet) }}">
                   <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: green; margin-bottom: 15px" class="fa fa-pencil-square-o text-success text-active"></i>
                 </a>
-                <a onclick="return confirm('Bạn có muốn xóa bài viết {{ $baiViet->TenBaiViet }} không?')" href="{{ route('/XoaBaiViet', [$baiViet->MaBaiViet]) }}">
-                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red; margin-bottom: 15px" class="fa fa-times text-danger text"></i>
-                </a>
+{{--                <a onclick="return confirm('Bạn có muốn xóa bài viết {{ $baiViet->TenBaiViet }} không?')" href="{{ route('/XoaBaiViet', [$baiViet->MaBaiViet]) }}">--}}
+{{--                  <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red; margin-bottom: 15px" class="fa fa-times text-danger text"></i>--}}
+{{--                </a>--}}
               </td>
             </tr>
             @endforeach
@@ -73,9 +76,11 @@
       </div>
       <footer class="panel-footer">
         <div class="row">
-          <div class="col-sm-7 text-right text-center-xs">                
+          <div class="col-sm-7 text-right text-center-xs">
             <ul class="pagination pagination-sm m-t-none m-b-none">
-              {{ $allBaiViet->links('vendor.pagination.bootstrap-4') }}
+                @if ($allBaiViet instanceof LengthAwarePaginator)
+                    {{ $allBaiViet->links('vendor.pagination.bootstrap-4') }}
+                @endif
             </ul>
           </div>
       </div>
