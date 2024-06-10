@@ -75,8 +75,13 @@ class BaoCaoController extends Controller
     }
 
     public function xuLyTaoBaoCao(Request $request){
-        $tgDau = $request->thoiGianDau;
-        $tgCuoi = $request->thoiGianCuoi;
+        if($request->thoiGian == 'thangNay'){
+            $tgHienTai = Carbon::now();
+            $tgDau = $tgHienTai->copy()->startOfMonth()->toDateTimeString();
+            $tgCuoi = $tgHienTai->copy()->endOfMonth()->toDateTimeString();
+        }
+        
+
 
         $sp = SanPham::all()->keyBy('MaSanPham');
 

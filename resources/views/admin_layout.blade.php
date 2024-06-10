@@ -232,7 +232,7 @@
                                 <ul class="sub">
                                     <li style="margin-left: 10%; list-style: none"><a href="{{ route('lietKeTonKho') }}">+ Liệt kê tồn kho</a></li>
                                     <!-- <li><a href="{{ route('xemPTH') }}">+ Liệt kê phiếu trả hàng</a></li> -->
-                                    <li style="margin-left: 10%; list-style: none"><a href="{{ route('xemBaoCao') }}">+ Tạo báo cáo xuất nhập tồn</a></li>
+                                    <li style="margin-left: 10%; list-style: none"><a href="{{ route('xemBaoCao') }}">+ Tạo báo cáo kho</a></li>
                                 </ul>
                             </li>
                         </ul>
