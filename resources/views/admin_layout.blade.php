@@ -552,8 +552,6 @@
         })
     });
 </script>
-
-
 {{-- ChangeToSlug --}}
 <script type="text/javascript">
     function ChangeToSlug(){
