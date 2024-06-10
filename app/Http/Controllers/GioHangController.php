@@ -75,16 +75,16 @@ class GioHangController extends Controller
 
     public function HienThiGioHang(Request $request){
 
-        // $meta_desc = "Giỏ hàng của bạn";
-        // $meta_keywords = "Giỏ hàng ajax";
-        // $meta_title = "Giỏ hàng ajax";
-        // $url_canonical = $request->url();
-        // $image_og = $url_canonical.'/upload/product/logo.jpg';
+        $meta_desc = "Trang thanh toán sản phẩm"; 
+        $meta_keywords = "Trang thanh toán sản phẩm";
+        $meta_title = "Trang thanh toán sản phẩm";
+        $url_canonical = $request->url();
+        $image_og = $url_canonical.'/upload/logo.jpg';
 
         $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
 
-        return view('pages.ThanhToan.ThanhToan')->with(compact('allThanhPho'));
-        // ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
+        return view('pages.ThanhToan.ThanhToan')->with(compact('allThanhPho'))
+        ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
     } 
 
     public function XoaSanPhamTrongGioHang($session_id){
@@ -174,20 +174,14 @@ class GioHangController extends Controller
             $phieuGiamGia = PhieuGiamGia::where('MaCode', $data['MaCode'])->first();
             $taiKhoan = TaiKhoan::where('Email', $user['Email'])->first();
             if($phieuGiamGia){
-                $phieuGiamGiaND = PhieuGiamGiaNguoiDung::where('Email', $taiKhoan['Email'])->where('MaGiamGia', $phieuGiamGia['MaGiamGia'])->first();
-                if($phieuGiamGiaND['SoLuong'] > 0){
-                    $array = array(
-                        'MaGiamGia' => $phieuGiamGiaND->MaGiamGia,
-                        'SoLuong' => $phieuGiamGiaND->SoLuong,
-                        'MaCode' => $phieuGiamGiaND->PhieuGiamGia->MaCode,
-                        'DonViTinh' => $phieuGiamGiaND->PhieuGiamGia->DonViTinh,
-                        'TriGia' => $phieuGiamGiaND->PhieuGiamGia->TriGia,
-                    );
-                    Session::put('PhieuGiamGia', $array);
-                    return Redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
-                }elseif($phieuGiamGiaND['SoLuong'] == 0){
-                    return Redirect()->back()->with('error', 'Bạn đã dùng hết số lượng phiếu giảm giá này');
-                }
+                $array = array(
+                    'MaGiamGia' => $phieuGiamGia->MaGiamGia,
+                    'MaCode' => $phieuGiamGia->MaCode,
+                    'DonViTinh' => $phieuGiamGia->DonViTinh,
+                    'TriGia' => $phieuGiamGia->TriGia,
+                );
+                Session::put('PhieuGiamGia', $array);
+                return Redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
             }else{
                 return Redirect()->back()->with('error', 'Không tồn tại phiếu giảm giá này');
             }
