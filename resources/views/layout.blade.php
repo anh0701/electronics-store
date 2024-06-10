@@ -3,9 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+    {{-- SEO --}}
+	<meta name="description" content="{{ $meta_desc }}">
+	<meta name="keywords" content="{{ $meta_keywords }}">
+	<meta name="robots" content="INDEX,FOLLOW">
+    <meta name="author" content="{{ $url_canonical }}">
+	<title>{{ $meta_title }}</title>
+	<link rel="icon" href="{{ asset('frontend/images/home/meta-logo.png') }}" type="image/x-icon">
+	<meta property="og:image" content="{{ $image_og }}">
+	<meta property="og:site_name" content="http://127.0.0.1:8000">
+	<meta property="og:description" content="{{ $meta_desc }}">
+	<meta property="og:title" content="{{ $meta_title }}">l
+	<meta property="og:url" content="{{ $url_canonical }}">
+	<meta property="og:type" content="website">
+	{{-- SEO end here --}}
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -18,7 +29,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{{ asset('frontend/images/ico/favicon.ico') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
@@ -81,7 +91,7 @@
 								@endphp
 								@if (session('user'))
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-user"></i>Thông tin tài khoản</a>
+                                        <a class="dropdown-item" href="{{ route('/thong-tin-tai-khoan') }}"><i class="fa fa-user"></i>{{ htmlspecialchars(session('user')['TenTaiKhoan']) }}</a>
                                     </li>
 								@endif
 {{--								<li><a href="{{ route('indexDMK')}}"><i class="fa fa-user"></i> Account</a></li>--}}

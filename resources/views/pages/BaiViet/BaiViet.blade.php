@@ -61,7 +61,7 @@
                     <div class="brands-name">
                         <ul class="nav nav-pills nav-stacked">
                             @foreach ($allDanhMucBV as $key => $danhMucBV)
-                            <li><a href="{{ route('/') }}"><span class="pull-right"></span>{{ $danhMucBV->TenDanhMucBV }}</a></li>
+                            <li><a href="{{ route('/HienThiBaiVietTheoDMBV', $danhMucBV->MaDanhMucBV) }}"><span class="pull-right"></span>{{ $danhMucBV->TenDanhMucBV }}</a></li>
                             @endforeach
                         </ul>
                     </div>

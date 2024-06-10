@@ -85,7 +85,7 @@
                                     <a class="cart_quantity_down updateCartItem qtyMinus" 
                                     data-cartid="{{ $cart['session_id'] }}" data-qty="{{ $cart['SoLuong'] }}"> - </a>
                                 </div>
-                            </td>
+                            </td> 
                             <td class="cart_total">
                                 <p class="cart_total_price">{{ number_format(($TienVanChuyen * $cart['SoLuong']), 0, '', '.') }} đ</p>
                             </td>
@@ -139,7 +139,7 @@
                                                 $PhiGiaoHang = Session::get('PhiGiaoHang');
                                                 $total_after_fee += $PhiGiaoHang['SoTien'];
                                             @endphp
-                                            {{ number_format($total_after_fee, 0,',','.') }} đ + {{ number_format($PhiGiaoHang['SoTien'], 0,',','.') }} đ
+                                            {{ number_format($total_after_fee, 0,',','.') }} đ
                                         @elseif (!Session::get('PhiGiaoHang'))
                                             {{ number_format($total_after_fee, 0,',','.') }} đ
                                         @endif
