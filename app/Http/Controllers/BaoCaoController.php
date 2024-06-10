@@ -8,6 +8,7 @@ use App\Models\PhieuNhap;
 use App\Models\PhieuXuat;
 use App\Models\SanPham;
 use Carbon\Carbon;
+use Session;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -117,7 +118,7 @@ class BaoCaoController extends Controller
     public function luuFile(Request $request){
         $jsonData = $request->input('dataSP');
         $data = json_decode($jsonData, true);
-        
+        $user = Session::get('user');
 
         $tgDau = $request->input('tgDau');
 
@@ -126,9 +127,10 @@ class BaoCaoController extends Controller
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'Báo cáo xuất nhập tồn');
-        $sheet->mergeCells('A1:B1');
-        $sheet->setCellValue('C1', 'Thời gian:  ' . $tg);
-        $sheet->mergeCells('C1:G1');
+
+        
+        $sheet->setCellValue('A2', 'Tên người lập: ' . $user['TenTaiKhoan']);
+        $sheet->setCellValue('D2', 'Thời gian:  ' . $tg);
 
         $sheet->getColumnDimension('A')->setWidth(10);
         $sheet->getColumnDimension('B')->setWidth(40);
@@ -138,14 +140,14 @@ class BaoCaoController extends Controller
         $sheet->getColumnDimension('F')->setWidth(10); 
         $sheet->getColumnDimension('G')->setWidth(10); 
 
-        $sheet->setCellValue('A2', 'Mã sản phẩm')
-              ->setCellValue('B2', 'Tên sản phẩm')
-              ->setCellValue('C2', 'Mã danh mục')
-              ->setCellValue('D2', 'Tồn đầu kỳ')
-              ->setCellValue('E2', 'Số lượng nhập')
-              ->setCellValue('F2', 'Số lượng xuất')
-              ->setCellValue('G2', 'Tồn cuối kỳ');
-        $row = 3;
+        $sheet->setCellValue('A3', 'Mã sản phẩm')
+              ->setCellValue('B3', 'Tên sản phẩm')
+              ->setCellValue('C3', 'Mã danh mục')
+              ->setCellValue('D3', 'Tồn đầu kỳ')
+              ->setCellValue('E3', 'Số lượng nhập')
+              ->setCellValue('F3', 'Số lượng xuất')
+              ->setCellValue('G3', 'Tồn cuối kỳ');
+        $row = 4;
         foreach ($data as $item) {
             $sltd = $item['soLuongSP'] + $item['tongSLXuat'] - $item['tongSLNhap'];
             $sheet->setCellValue('A' . $row, $item['maSanPham'])
@@ -157,6 +159,10 @@ class BaoCaoController extends Controller
                   ->setCellValue('G' . $row, $item['soLuongSP']);
             $row++;
         }
+        $sheet->setCellValue('A' . $row, 'Nguời xác nhận (giám đốc)');
+        $sheet->setCellValue('A' . ($row + 1), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('D' . $row, 'Nguời lập');
+        $sheet->setCellValue('D' . ($row + 1), '(Ký và ghi rõ họ tên)');
 
         $fileName = $tg . '.xlsx';
         $filePath = public_path('baoCaoXNT/' . $fileName);

@@ -256,7 +256,7 @@ class TaiKhoanController extends Controller
 
 
     public function suaTK($id){
-        $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = ? LIMIT 1", $id);
+        $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = ? LIMIT 1", [$id]);
         return view('admin.TaiKhoan.suaTK', ['data'=>$tk]);
     }
 
