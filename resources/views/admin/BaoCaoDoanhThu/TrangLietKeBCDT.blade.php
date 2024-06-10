@@ -6,14 +6,31 @@
          Liệt kê báo cáo doanh thu
       </div>
       <div class="row w3-res-tb">
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-3">
+        <div class="col-sm-12">
           <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
-            </span>
+            <form autocomplete="off">
+              {{ csrf_field() }}
+              <div class="col-md-3">
+                  <p>Từ ngày: <input type="text" id="datepicker" class="form-control" ></p>
+                  <input style="margin-top: 5px" type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm" value="Lọc kết quả">
+              </div>
+              <div class="col-md-3">
+                  <p>Date: <input type="text" id="datepicker2" class="form-control"></p>
+              </div>
+              <div class="col-md-3">
+                  <p>
+                    Lọc theo:
+                    <select class="dashoard-filter form-control">
+                        <option value="">---Chọn---</option>
+                        <option value="7ngay">7 ngày qua</option>
+                        <option value="thangtruoc">tháng trước</option>
+                        <option value="thangnay">tháng ngày</option>
+                        <option value="3thangtruoc">3 tháng trước</option>
+                        <option value="365ngayqua">365 ngày qua</option>
+                    </select>
+                  </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -29,26 +46,16 @@
           <thead>
             <tr>
               <th>STT</th>
-              <th>Ngày tháng năm</th>
+              <th>Hình ảnh</th>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng bán</th>
+              <th>Giá sản phẩm</th>
               <th>Doanh thu</th>
               <th>Lợi nhuận</th>
-              <th>Số lượng sản phẩm</th>
-              <th>Số lượng đơn hàng</th>
               <th style="width:100px;">Quản lý</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($baoCaoDoanhThu as $key => $value)
-            <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ date("d-M-Y", strtotime($value->order_date)) }}</td>
-                <td>{{ number_format($value->sales, 0, '', '.') }} đ</td>
-                <td>{{ number_format($value->profit, 0, '', '.') }} đ</td>
-                <td>{{ $value->quantity }}</td>
-                <td>{{ $value->total_order }}</td>
-                <td></td>
-            </tr>
-            @endforeach
           </tbody>
         </table>
       </div>

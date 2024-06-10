@@ -118,7 +118,6 @@ class BaoCaoController extends Controller
         $jsonData = $request->input('dataSP');
         $data = json_decode($jsonData, true);
         
-
         $tgDau = $request->input('tgDau');
 
         $tg = date_format(date_create($tgDau), 'm_Y');
@@ -176,4 +175,6 @@ class BaoCaoController extends Controller
     
         return response()->download($filePath, $fileName);
     }
+
+    
 }
