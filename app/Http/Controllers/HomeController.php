@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChiTietDonHang;
 use App\Models\ChuongTrinhGiamGia;
 use App\Models\DonHang;
 use App\Models\PhieuGiamGia;
@@ -261,6 +262,20 @@ class HomeController extends Controller
 //        dd($phieuGiamGia);
         return view('auth.trangCaNhan')->with(compact( 'tk', 'phieuGiamGia', 'donHang'))
         ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));;
+    }
+
+    public function xemCTDH(Request $request, $order_code)
+    {
+        $meta_desc = "Trang thông tin đơn hàng";
+        $meta_keywords = "Trang thông đơn hàng";
+        $meta_title = "Trang thông tin đơn hàng";
+        $url_canonical = $request->url();
+        $image_og = $url_canonical.'/upload/logo.jpg';
+
+        $allDonHang = DonHang::where('order_code', $order_code)->first();
+        $allChiTietDonHang = ChiTietDonHang::orderBy('MaCTDH', 'DESC')->where('order_code', $order_code)->get();
+        return view('pages.DonHang.chiTietDonHang')
+            ->with(compact('allChiTietDonHang', 'allDonHang', 'meta_title', 'meta_keywords', 'image_og', 'meta_desc', 'url_canonical'));
     }
 
     public function TrangKhachHangDangNhap(){

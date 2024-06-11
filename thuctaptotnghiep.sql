@@ -777,7 +777,7 @@ CREATE TABLE `tbl_phieugiamgia` (
 INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TrangThai`, `BacNguoiDung`, `TriGia`, `MaCode`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
 (2, 'Giảm giá mừng sinh nhật', 'giam-gia-mung-sinh-nhat', 1, 1, 1, '100000', 'CMSN', '2024-06-06 01:22:03', '2024-06-06 01:22:03'),
 (3, 'Giảm giá tạo tài khoản lần đầu', 'giam-gia-tao-tai-khoan-lan-dau', 2, 1, 1, '5', 'TTKLD', '2024-06-06 01:24:23', '2024-06-06 01:24:23'),
-(4, 'phiếu giảm giá 1', 'phieu-giam-gia-1', 1, 1, 1, '10,000', 'PGG12024', '2024-06-10 04:34:00', '2024-06-13 04:34:00'),
+(4, 'phiếu giảm giá 1', 'phieu-giam-gia-1', 1, 1, 1, '10000', 'PGG12024', '2024-06-10 04:34:00', '2024-06-13 04:34:00'),
 (5, 'phiếu giảm giá 2', 'phieu-giam-gia-2', 2, 1, 3, '20', 'PGG22024', '2024-06-13 04:35:00', '2024-06-15 04:35:00'),
 (6, 'phiếu giảm giá 3', 'phieu-giam-gia-3', 2, 1, 1, '8', 'PGG32024', '2024-06-27 04:35:00', '2024-06-30 04:35:00');
 

@@ -28,7 +28,7 @@
                             <textarea id="editor1" style="resize: none" rows="5" class="form-control" name="TinhTrang" placeholder="Mô tả"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Chọn thời gian trả hành</label>
+                            <label for="exampleInputEmail1">Chọn thời gian trả hàng</label>
                             <input type="date" class="form-control" name="ThoiGianTra" max="{{ $chiTietPBH->ThoiGianKetThuc }}" placeholder="Thời gian trả">
                         </div>
                         <button type="submit" name="ThemLichSuBaoHanh" class="btn btn-info">Thêm lịch sử bảo hành</button>
