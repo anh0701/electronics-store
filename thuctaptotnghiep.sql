@@ -108,6 +108,7 @@ CREATE TABLE `tbl_binhluan` (
   `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `MaBaiViet` int DEFAULT NULL,
   `BaiVietCha` int DEFAULT NULL,
+  `PhanHoi` int DEFAULT NULL,
   `NoiDung` text NOT NULL,
   `TrangThai` int NOT NULL,
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
@@ -13471,6 +13472,7 @@ ALTER TABLE `tbl_baocaodoanhthu`
 ALTER TABLE `tbl_binhluan`
   ADD PRIMARY KEY (`MaBinhLuan`);
 
+
 --
 -- Chỉ mục cho bảng `tbl_chitietbaocaodoanhthu`
 --
@@ -13793,7 +13795,10 @@ ALTER TABLE `tbl_baocaodoanhthu`
 -- AUTO_INCREMENT cho bảng `tbl_binhluan`
 --
 ALTER TABLE `tbl_binhluan`
-  MODIFY `MaBinhLuan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+    MODIFY `MaBinhLuan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `tbl_binhluan`
+    add foreign key (`PhanHoi`) references `tbl_binhluan` (`MaBinhLuan`);
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_chitietbaocaodoanhthu`

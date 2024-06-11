@@ -126,18 +126,29 @@
                                             <li><i class="fa fa-calendar"></i><td>{{  date("d M Y", strtotime($binhLuan->ThoiGianTao)) }}</td></li>
                                         </ul>
                                         <p>{{ $binhLuan->NoiDung }}</p>
-                                        <button type="submit" name="ThemDanhGia" class="btn btn-primary pull-right" data-MaSanPham="">
-                                            Bình luận
-                                        </button>
+                                        @if(session('user')['Quyen'] == 'Nhân viên')
+                                            <form action="{{ route('/') }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="MaBaiViet" value="{{ $baiViet->MaBaiViet }}" class="MaBaiViet_{{ $baiViet->MaBaiViet }}">
+                                                <input type="hidden" name="MaBL" value="{{$taiKhoan->Email}}">
+                                                <textarea id="BinhLuanBaiViet"
+                                                          class="NoiDung_{{ $baiViet->MaBaiViet }}" name="NoiDung"></textarea>
+                                                </textarea>
+                                                <button type="submit" name="ThemBinhLuan" class="btn btn-primary pull-right ThemBinhLuan" data-MaBaiViet="{{ $baiViet->MaBaiViet }}">
+                                                    Bình luận
+                                                </button>
+                                            </form>
+                                        @endif
+
                                     </div>
                                 </li>
                                 @endif
                             @endforeach
                         @endforeach
-                    </ul>	
-                </div>				
+                    </ul>
+                </div>
             </div>
-        </div>	
+        </div>
     </div>
 </div>
 @endsection
