@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 11, 2024 lúc 10:30 PM
+-- Thời gian đã tạo: Th6 11, 2024 lúc 10:41 PM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -1797,6 +1797,7 @@ CREATE TABLE `tbl_taikhoan` (
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`, `DiaChi`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
 ('TK20240612051527', 'anh123@gmail.com', 'anh123', NULL, NULL, NULL, '$2y$12$r7pMkHZlXvCc1OoZfrGMi.jsS/ng7zg/6qFepuXbpVqg2vEfnsQIC', NULL, 1, '1', '2024-06-11 22:15:27', NULL, NULL, NULL),
+('TK20240612053946', 'binh@gmail.com', 'binhdz', NULL, NULL, NULL, '$2y$12$eRCG12Wgx1s3C6242x3GC.SVjo65g.ggJwsejbUUZ/.qoMLPNBWVK', NULL, 1, '1', '2024-06-11 22:39:46', NULL, NULL, NULL),
 ('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
 ('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 1, NULL, '2024-05-21 07:53:52', '2024-06-11 22:25:53', 'Quản trị viên', NULL),
 ('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-06-11 14:43:23', 'Nhân viên kho', NULL),
