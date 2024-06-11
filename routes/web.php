@@ -330,7 +330,7 @@ Route::middleware('TrangThaiCTGG')->group(function () {
     Route::post('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'suaChuongTrinhGiamGia'])->name('/suaChuongTrinhGiamGia');
 });
 Route::get('/chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'xemCT'])->name('/xem-chi-tiet-ctgg');
-Route::get('/tim-kiem-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'timKiem'])->name('/timKiem');
+Route::get('/tim-kiem-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'timKiem'])->name('/timKiemCTGG');
 
 // Bảo hành controller
 Route::get('/TrangLietKeBaoHanh', [BaoHanhController::class, 'TrangLietKeBaoHanh'])->name('/TrangLietKeBaoHanh');
