@@ -308,7 +308,7 @@ Route::post('/DatHang', [GioHangController::class, 'DatHang'])->name('/DatHang')
 // phieu giam gia
 Route::get('/liet-ke-phieu-giam-gia', [PhieuGiamGiaController::class, 'phieuGiamGia'])->name('/liet-ke-phieu-giam-gia');
 Route::get('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'giaoDienTao'])->name('/them-phieu-giam-gia');
-Route::post('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'taoPhieuGiamGia'])->name('/them-phieu-giam-gia');
+Route::post('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'taoPhieuGiamGia'])->name('/them-phieu-giam-gia.post');
 Route::get('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'giaoDienSua'])->name('/sua-phieu-giam-gia');
 Route::post('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'suaPhieuGiamGia'])->name('/suaPhieuGG');
 Route::get('/xoa-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'Xoa'])->name('/xoa-phieu-giam-gia');
