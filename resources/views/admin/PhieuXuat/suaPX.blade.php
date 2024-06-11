@@ -26,6 +26,23 @@
                             <input type="text" class="form-control" name="nguoiLap" value="{{ $px->TenTaiKhoan }}" readonly>
                         </div>
                         <div class="form-group">
+                            <label for="">Lý do xuất</label>
+                            <select class="form-control input-lg m-bot15" id="lyDoXuat" name="lyDoXuat">
+                                <option value="XuatBan" {{ $px->LyDoXuat == 'Xuất bán' ? 'selected' : ''}}>Xuất bán</option>
+                                <option value="Khac" {{ $px->LyDoXuat != 'Xuất bán' ? 'selected' : ''}}>Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="maDHGroup">
+                            <label for="">Mã đơn hàng</label>
+                            <input type="text" class="form-control" name="maDH" value="{{ $px->MaDonHang }}">
+                        </div>
+                        <div class="form-group hidden" id="lyDoKhacGroup">
+                            <label for="">Lý do</label>
+                            <input type="text" class="form-control" name="lyDoKhac" value="{{ $px->LyDoXuat }}">
+                        </div> 
+
+
+                        <div class="form-group">
                             <label for="">Tổng số lượng</label>
                             <input type="text" class="form-control" name="tongSL" value="{{ $px->TongSoLuong }}" readonly>
                         </div>
@@ -183,7 +200,24 @@ $(document).ready(function() {
     });
 });
 </script>
+    <script>
+        document.getElementById('lyDoXuat').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var maDHGroup = document.getElementById('maDHGroup');
+            var lyDoKhacGroup = document.getElementById('lyDoKhacGroup');
 
+            if (selectedValue === 'XuatBan') {
+                maDHGroup.classList.remove('hidden');
+                lyDoKhacGroup.classList.add('hidden');
+            } else if (selectedValue === 'Khac') {
+                maDHGroup.classList.add('hidden');
+                lyDoKhacGroup.classList.remove('hidden');
+            }
+        });
+
+        // Initialize the form based on the default selected value
+        document.getElementById('lyDoXuat').dispatchEvent(new Event('change'));
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <script>

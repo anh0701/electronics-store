@@ -7,21 +7,26 @@
             Báo cáo {{ $fileName }}
         </div>
         <div class="table-responsive">
-            <table class="table table-striped b-t b-light">
+        <table class="table table-striped b-t b-light table-bordered" style="text-align:center;">
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th colspan="4" style="text-align:center;">{{ basename($fileName, ".xlsx") }}</th>
+                    <tr >
+                        <th rowspan="2" >Mã sản phẩm</th>
+                        <th rowspan="2" style="text-align:center;">Tên sản phẩm</th>
+                        <th rowspan="2">Tồn đầu kỳ</th>
+                        <th colspan="3" style="text-align:center;">Nhập trong kỳ</th>
+                        <th colspan="3" style="text-align:center;">Xuất trong kỳ</th>
+                        <th colspan="3" style="text-align:center;">Tồn cuối kỳ</th>
                     </tr>
                     <tr>
-                        <th>Mã sản phẩm</th>
-                        <th>Tên sản phẩm</th>
-                        
-                        <th>Tồn đầu kỳ</th>
-                        <th>Số lượng nhập</th>
-                        <th>Số lượng xuất</th>
-                        <th>Tồn cuối kỳ</th>
+                        <th>Số lượng</th>
+                        <th>Giá nhập</th>
+                        <th>Thành tiền</th>
+                        <th>Số lượng</th>
+                        <th>Giá nhập</th>
+                        <th>Thành tiền</th>
+                        <th>Số lượng</th>
+                        <th>Giá bán</th>
+                        <th>Thành tiền</th>
                     </tr>                  
                 </thead>
                 <tbody>

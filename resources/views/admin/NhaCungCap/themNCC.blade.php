@@ -26,6 +26,13 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
+                            <label for="nguoiDaiDien">Người đại diện:</label>
+                            <input class="form-control" type="text" id="nguoiDaiDien" name="nguoiDaiDien" value="{{ old('nguoiDaiDien') }}">
+                        </div>
+                        @error('nguoiDaiDien')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="form-group">
                             <label for="sdt">Số điện thoại:</label>
                             <input class="form-control" type="number" id="sdt" name="sdt" value="{{ old('sdt') }}">
                         </div>

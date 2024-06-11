@@ -22,16 +22,30 @@
                         <label for="">Người lập phiếu</label>
                         <input type="text" class="form-control" name="nguoiLap" value="{{ $user['TenTaiKhoan'] }}" readonly>
                     </div>
-
                     <div class="form-group">
+                        <label for="">Lý do xuất</label>
+                        <select class="form-control input-lg m-bot15" id="lyDoXuat" name="lyDoXuat">
+                            <option value="XuatBan">Xuất bán</option>
+                            <option value="Khac">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="maDHGroup">
+                        <label for="">Mã đơn hàng</label>
+                        <input type="text" class="form-control" name="maDH">
+                    </div>
+                    <div class="form-group hidden" id="lyDoKhacGroup">
+                        <label for="">Lý do khác</label>
+                        <input type="text" class="form-control" name="lyDoKhac">
+                    </div>
+                    <!-- <div class="form-group">
                         <label for="">Tổng số lượng</label>
                         <input type="text" class="form-control" name="tongSoLuong" value="0" readonly>
-                    </div>
+                    </div> -->
 
                     <button type="submit" class="btn btn-info update-btn">Lập phiếu xuất</button>
                 </form>
 
-                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPXCT1') }}" method="POST" style="border: 1px solid #333; padding:2px 3px;">
+                <form id="phieuNhapCTForm" role="form" action="{{ route('xuLyLapPXCT1') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="">Mã phiếu xuất:</label>
@@ -62,23 +76,25 @@
                     @enderror
                     <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                 </form>
+                
+                
+                <div class="table-responsive">
+                    <table id="phieuNhapTable" class="table table-striped b-t b-light">
+                        <thead>
+                            <tr>
+                                <!-- <th>Mã phiếu nhập chi tiết</th> -->
+                                <th>Mã phiếu nhập</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
                 <div id="control" style="display:none; margin:5px;">
                     <a href="{{ route('luuPX', ['id' => $maPX]) }}"><button class="btn btn-info">Lưu</button></a>
                     <a href="{{ route('xoaPX', ['id' => $maPX]) }}"><button class="btn btn-info">Hủy</button></a>
                 </div>
-                
-                <div class="table-responsive">
-                            <table id="phieuNhapTable" class="table table-striped b-t b-light">
-                                <thead>
-                                    <tr>
-                                        <!-- <th>Mã phiếu nhập chi tiết</th> -->
-                                        <th>Mã phiếu nhập</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Số lượng</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                </table>
             </div>
         </section>
     </div>
@@ -152,8 +168,8 @@ $(document).ready(function() {
                             showConfirmButton: false,
                             timer: 800
                         });
-                   
-
+                    $('#MaSanPham').val(null).trigger('change');
+                    
                     var kt = false;
 
                     $('#phieuNhapTable tbody tr').each(function() {
@@ -205,9 +221,27 @@ $(document).ready(function() {
 
     // Ẩn form chi tiết phiếu nhập lúc đầu
     $('#phieuNhapCTForm').hide();
+
 });
 </script>
+    <script>
+        document.getElementById('lyDoXuat').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var maDHGroup = document.getElementById('maDHGroup');
+            var lyDoKhacGroup = document.getElementById('lyDoKhacGroup');
 
+            if (selectedValue === 'XuatBan') {
+                maDHGroup.classList.remove('hidden');
+                lyDoKhacGroup.classList.add('hidden');
+            } else if (selectedValue === 'Khac') {
+                maDHGroup.classList.add('hidden');
+                lyDoKhacGroup.classList.remove('hidden');
+            }
+        });
+
+        // Initialize the form based on the default selected value
+        document.getElementById('lyDoXuat').dispatchEvent(new Event('change'));
+    </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
