@@ -154,7 +154,10 @@
                     <tr class="cart_menu">
                         <td class="text-center">STT</td>
                         <td class="description">Mã đơn hàng</td>
+                        <td>Địa chỉ</td>
+                        <td>Thời gian đặt hàng</td>
                         <td class="price">Trạng thái</td>
+                        <td>Quản lý</td>
                     </tr>
                     </thead>
                     @php $i = 0; @endphp
@@ -163,6 +166,8 @@
                         <tr class="">
                             <td class="text-center">{{$i = $i + 1}}</td>
                             <td><h5>{{$don->MaDonHang}}</h5></td>
+                            <td>{{ $don->GiaoHang->DiaChi }}</td>
+                            <td>{{ $don->ThoiGianTao }}</td>
 
                 @php
                     if ($don->TrangThai == 1){
@@ -183,7 +188,20 @@
                 @php
                     }
                 @endphp
-
+                        <td>
+                            <a class="btn" href="{{ route('ChiTietDonHang', $don->order_code) }}">
+                                Xem chi tiết
+                            </a>
+{{--                            @if($don->TrangThai == 1)--}}
+{{--                                <a class="btn" onclick="return confirm('Bạn có muốn hủy đơn hàng này không?')" href="{{ route('/XoaDonHang', [$don->MaDonHang, $don->order_code]) }}">--}}
+{{--                                    Hủy đơn--}}
+{{--                                </a>--}}
+{{--                            @else--}}
+{{--                                <a class="btn" onclick="return confirm('Bạn có muốn hoàn \ trả hàng này không?')" href="{{ route('/XoaDonHang', [$don->MaDonHang, $don->order_code]) }}">--}}
+{{--                                    Hoàn trả hàng--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
+                        </td>
                         </tr>
                         </tbody>
                     @endforeach
