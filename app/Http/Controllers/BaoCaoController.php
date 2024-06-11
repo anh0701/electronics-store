@@ -168,7 +168,7 @@ class BaoCaoController extends Controller
         ]);
         
 
-        $sheet->getColumnDimension('A')->setWidth(20);
+        $sheet->getColumnDimension('A')->setWidth(15);
         $sheet->getColumnDimension('B')->setWidth(70);
         $sheet->getColumnDimension('C')->setWidth(5);
         $sheet->getColumnDimension('D')->setWidth(15);
@@ -294,11 +294,13 @@ class BaoCaoController extends Controller
         ],
         ]);
 
-        $sheet->setCellValue('A' . ($row + 3), 'Nguời lập biểu');
-        $sheet->setCellValue('B' . ($row + 3), 'Kế toán trưởng');
-        $sheet->setCellValue('D' . ($row + 3), 'Giám đốc');
+        $sheet->setCellValue('D' . ($row + 3), 'Nguời lập biểu');
+        $sheet->setCellValue('G' . ($row + 3), 'Kế toán trưởng');
+        $sheet->setCellValue('J' . ($row + 3), 'Giám đốc');
         $sheet->mergeCells('D'.($row + 3) . ':E' . ($row + 3));
-        $sheet->getStyle('A' . ($row + 3) . ':G' . ($row + 3))->applyFromArray([
+        $sheet->mergeCells('G'.($row + 3) . ':H' . ($row + 3));
+        $sheet->mergeCells('J'.($row + 3) . ':K' . ($row + 3));
+        $sheet->getStyle('A' . ($row + 3) . ':M' . ($row + 3))->applyFromArray([
             'font' => [
             'bold' => true,
             'color' => ['rgb' => '000000'],
@@ -310,11 +312,13 @@ class BaoCaoController extends Controller
         ],
         ]);
         
-        $sheet->setCellValue('A' . ($row + 4), '(Ký và ghi rõ họ tên)');
-        $sheet->setCellValue('B' . ($row + 4), '(Ký và ghi rõ họ tên)');
         $sheet->setCellValue('D' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('G' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('J' . ($row + 4), '(Ký và ghi rõ họ tên)');
         $sheet->mergeCells('D'.($row + 4) . ':E' . ($row + 4));
-        $sheet->getStyle('A' . ($row + 4) . ':G' . ($row + 4))->applyFromArray([
+        $sheet->mergeCells('G'.($row + 4) . ':H' . ($row + 4));
+        $sheet->mergeCells('J'.($row + 4) . ':K' . ($row + 4));
+        $sheet->getStyle('A' . ($row + 4) . ':M' . ($row + 4))->applyFromArray([
             'font' => [
             'color' => ['rgb' => '000000'],
             'name' => 'Times New Roman',

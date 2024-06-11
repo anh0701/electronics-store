@@ -18,6 +18,7 @@ class TaiKhoanController extends Controller
 {
     public function dangNhap(Request $request){
         session::forget('user');
+        session::forget('path');
         return view('auth.dangNhap');
     }
 
@@ -38,7 +39,7 @@ class TaiKhoanController extends Controller
         $taikhoan = TaiKhoan::where('Email', $email)->first();
 
         if ($taikhoan && password_verify($matkhau, $taikhoan->MatKhau)) {
-            if($taikhoan->Quyen == "Khách hàng"){
+            if(empty($taikhoan->Quyen)){
                 if($taikhoan->TrangThai == 0){
                     return redirect()->back()->withInput()->withErrors([
                         'email' => 'Tài khoản đã vô hiệu hóa. Mời liên hệ quản trị viên hoặc tạo tài khoản mới',
@@ -57,11 +58,24 @@ class TaiKhoanController extends Controller
                         'email' => 'Tài khoản đã bị vô hiệu hóa. Mời liên hệ quản trị viên hoặc tạo tài khoản mới',
                     ]);
                 }
+                
+
                 $request->session()->put('user', [
                     'TenTaiKhoan' => $taikhoan->TenTaiKhoan,
                     'Quyen' => $taikhoan->Quyen,
                     'Email' => $taikhoan->Email,
                 ]);
+                if($taikhoan->Quyen != "Quản trị viên cấp cao"){
+                    $data = DB::table('tbl_quyenvaitro')
+                    ->join('tbl_quyen', 'tbl_quyenvaitro.MaQuyen', '=', 'tbl_quyen.MaPhanQuyen')
+                    ->join('tbl_vaitro', 'tbl_vaitro.MaVaiTro', '=', 'tbl_quyenvaitro.MaVaiTro')
+                    ->select('tbl_vaitro.*')
+                    ->where('tbl_quyen.TenPhanQuyen', '=', $taikhoan->Quyen)
+                    ->get();
+                    $request->session()->put(['path' => $data]);
+                }
+                
+                
                 return redirect('/dashboard');
             }
         }else {
@@ -105,7 +119,6 @@ class TaiKhoanController extends Controller
         $maTK = 'TK' . date('YmdHis');
         $thoiGianTao = date('Y-m-d H:i:s');
         $matkhauMoi = bcrypt($request->matkhau);
-        $quyen = 'Khách hàng';
 
         $taiKhoan = new TaiKhoan();
         $taiKhoan->MaTaiKhoan = $maTK;
@@ -115,21 +128,9 @@ class TaiKhoanController extends Controller
         $taiKhoan->BacNguoiDung = 1;
         $taiKhoan->TrangThai = 1;
         $taiKhoan->ThoiGianTao = $thoiGianTao;
-        $taiKhoan->Quyen = $quyen;
         $taiKhoan->save();
 
         return redirect('/dang-nhap')->with('success', 'Tài khoản đăng ký thành công!');
-    }
-
-    public function trangAdmin(){
-        $user = session('user');
-        $quyen = $user['Quyen'];
-
-        if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
-            return redirect('/');
-        }else{
-            return view('admin_layout', compact('user'));
-        }
     }
 
     public function xuLyCNTK(Request $request){
@@ -190,6 +191,7 @@ class TaiKhoanController extends Controller
         session::forget('cart');
         session::forget('PhiGiaoHang');
         session::forget('PhieuGiamGia');
+        session::forget('path');
         return redirect('/dang-nhap'); // Chuyển hướng về trang đăng nhập
     }
 
@@ -203,7 +205,8 @@ class TaiKhoanController extends Controller
     }
 
     public function taoTK(){
-        return view('admin.TaiKhoan.taoTK');
+        $quyen = DB::select("SELECT TenPhanQuyen FROM tbl_quyen");
+        return view('admin.TaiKhoan.taoTK', compact('quyen'));
     }
 
     public function xuLyTaoTK(Request $request){
@@ -256,8 +259,9 @@ class TaiKhoanController extends Controller
 
 
     public function suaTK($id){
+        $quyen = DB::select("SELECT TenPhanQuyen FROM tbl_quyen");
         $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.MaTaiKhoan = ? LIMIT 1", [$id]);
-        return view('admin.TaiKhoan.suaTK', ['data'=>$tk]);
+        return view('admin.TaiKhoan.suaTK', ['data'=>$tk, 'quyen' => $quyen]);
     }
 
     public function xuLySuaTK(Request $request){
@@ -298,15 +302,12 @@ class TaiKhoanController extends Controller
 
     public function show_dashboard(){
         $user = session('user');
-        $quyen = $user['Quyen'];
-        if($quyen == "Nhân viên" || $quyen == "Khách hàng"){
-            return redirect('/');
-        }else{
-            $dauThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
-            $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-            $baoCaoDoanhThu = BaoCaoDoanhThu::orderBy('MaBCDT', 'DESC')->whereBetween('order_date', [$dauThangTruoc, $now])->get();
-            return view('admin.dashboard', compact('user', 'baoCaoDoanhThu'));
-        }
+        
+        $dauThangTruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $baoCaoDoanhThu = BaoCaoDoanhThu::orderBy('MaBCDT', 'DESC')->whereBetween('order_date', [$dauThangTruoc, $now])->get();
+        return view('admin.dashboard', compact('user', 'baoCaoDoanhThu'));
+        
     }
 
 //

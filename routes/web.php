@@ -6,6 +6,7 @@ use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\PhieuGiamGiaController;
 use App\Http\Controllers\PhieuTraHangController;
 use App\Http\Controllers\PhieuXuatController;
+use App\Http\Controllers\QuyenController;
 use App\Http\Controllers\TonKhoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhieuNhapController;
@@ -129,6 +130,15 @@ Route::get('/xoa-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'Xoa
 Route::post('/sua-thuong-hieu/{MaThuongHieu}', [ThuongHieuController::class, 'SuaThuongHieu'])->name('/SuaThuongHieu');
 Route::get('/tim-kiem-thuong-hieu',[ThuongHieuController::class, 'timKiem'])->name('timKiemThuongHieu');
 
+//Quyen
+Route::get('/let-ke-quyen-han', [QuyenController::class, 'lietKe'])->name('lietKeQH');
+Route::get('/them-quyen-han', [QuyenController::class, 'themQuyen'])->name('themQuyen');
+Route::post('/them-quyen-han', [QuyenController::class, 'themQH'])->name('them-quyen-han');
+Route::get('xoaQH/{id}', [QuyenController::class, 'xoaQH'])->name('xoaQH');
+Route::get('them-quyen-tai-khoan', [QuyenController::class, 'themQuyenTK'])->name('themQuyenTK');
+Route::post('/xuLyThemQTK', [QuyenController::class, 'themQTK'])->name('/xuLyThemQTK');
+
+
 //TaiKhoan
 Route::get('/dang-nhap', [TaiKhoanController::class, 'dangNhap'])->name('dangNhap');
 Route::post('/xuLyDN', [TaiKhoanController::class, 'xuLyDN']);
@@ -155,7 +165,7 @@ Route::get('/tim-kiem-tai-khoan', [TaiKhoanController::class, 'timkiemTK'])->nam
 //Route::post('/xuLyCapNhatTK', [TaiKhoanController::class, 'xuLyCNTK'])->name('xuLyCapNhatTK');
 
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard');
-Route::get('/trangAdmin', [TaiKhoanController::class, 'trangAdmin'])->name('/trangAdmin');
+// Route::get('/trangAdmin', [TaiKhoanController::class, 'trangAdmin'])->name('/trangAdmin');
 
 
 
