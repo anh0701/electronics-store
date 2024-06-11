@@ -119,7 +119,7 @@
                                     {{$phieu ->TenMaGiamGia}}
                                 </td>
                                 <td>
-                                    <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
+                                    <p>{{number_format((float)$phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
                                 </td>
                                 <td>{{ date_format(new DateTime($phieu->ThoiGianBatDau), 'H:i:s d-m-Y') }}</td>
                                 <td>{{ date_format(new DateTime($phieu->ThoiGianKetThuc), 'H:i:s d-m-Y')}}</td>

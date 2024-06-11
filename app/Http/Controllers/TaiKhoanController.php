@@ -199,7 +199,7 @@ class TaiKhoanController extends Controller
         $tk = DB::table('tbl_taikhoan')
                     ->select('tbl_taikhoan.*')
                     ->orderByDesc('tbl_taikhoan.TrangThai')
-                    ->orderByDesc('tbl_taikhoan.ThoiGianTao')
+                    ->where('Quyen', '!=', null)
                     ->paginate(5);
         return view('admin.TaiKhoan.lietKeTK', ['data'=>$tk]);
     }

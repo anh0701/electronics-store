@@ -168,18 +168,18 @@ class BaoCaoController extends Controller
         ]);
         
 
-        $sheet->getColumnDimension('A')->setWidth(15);
-        $sheet->getColumnDimension('B')->setWidth(70);
+        $sheet->getColumnDimension('A')->setWidth(10);
+        $sheet->getColumnDimension('B')->setWidth(60);
         $sheet->getColumnDimension('C')->setWidth(5);
-        $sheet->getColumnDimension('D')->setWidth(15);
-        $sheet->getColumnDimension('E')->setWidth(15); 
-        $sheet->getColumnDimension('F')->setWidth(15); 
+        $sheet->getColumnDimension('D')->setWidth(10);
+        $sheet->getColumnDimension('E')->setWidth(10); 
+        $sheet->getColumnDimension('F')->setWidth(12); 
         $sheet->getColumnDimension('G')->setWidth(15);
-        $sheet->getColumnDimension('H')->setWidth(15); 
-        $sheet->getColumnDimension('I')->setWidth(15); 
+        $sheet->getColumnDimension('H')->setWidth(10); 
+        $sheet->getColumnDimension('I')->setWidth(12); 
         $sheet->getColumnDimension('J')->setWidth(15);
-        $sheet->getColumnDimension('K')->setWidth(15); 
-        $sheet->getColumnDimension('L')->setWidth(15); 
+        $sheet->getColumnDimension('K')->setWidth(10); 
+        $sheet->getColumnDimension('L')->setWidth(12); 
         $sheet->getColumnDimension('M')->setWidth(15); 
         
         $sheet->setCellValue('A5', 'Mã sản phẩm')
