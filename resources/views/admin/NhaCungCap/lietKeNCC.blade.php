@@ -28,21 +28,31 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>
+                            <th>STT</th>
                             <th>Tên nhà cung cấp</th>
                             <th>Địa chỉ</th>
+                            <th>Tên người đại diện</th>
                             <th>SDT</th>
                             <th>Email</th>
                             <th>Trạng thái</th>
-                            <th>Thời gian tạo</th>
+                            <!-- <th>Thời gian tạo</th> -->
                             <th>Quản lý</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $n = 0;
+                        @endphp
                         @foreach ($data as $ncc)
                             <tr class="row-clickable" data-id="{{ $ncc->MaNhaCungCap }}">
+                                @php
+                                    $n++;
+                                @endphp
                                 <!-- <td>{{ $ncc->MaNhaCungCap }}</td> -->
+                                <td>{{ $n }}</td>
                                 <td>{{ $ncc->TenNhaCungCap }}</td>
                                 <td>{{ $ncc->DiaChi }}</td>
+                                <td>{{ $ncc->TenNguoiDaiDien }}</td>
                                 <td>{{ $ncc->SoDienThoai }}</td>
                                 <td>{{ $ncc->Email }}</td>
                                 @php
@@ -51,7 +61,7 @@
                                     }else $tt = 'Ngừng hợp tác';
                                 @endphp
                                 <td>{{ $tt }}</td>
-                                <td>{{ $ncc->ThoiGianTao }}</td>
+                                <!-- <td>{{ $ncc->ThoiGianTao }}</td> -->
                                 <!-- <td>{{ $ncc->ThoiGianSua }}</td> -->
                                 <td>
                                     <a href="{{ route('suaNCC', ['id' => $ncc->MaNhaCungCap]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>

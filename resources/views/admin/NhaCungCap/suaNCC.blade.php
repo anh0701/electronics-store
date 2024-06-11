@@ -35,10 +35,10 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
-                            <label for="email">Email</label>                   
-                            <input class="form-control" type="text" id="email" name="email" value="{{ $item->Email }}">
+                            <label for="nguoiDaiDien">Người đại diện:</label>
+                            <input class="form-control" type="text" id="nguoiDaiDien" name="nguoiDaiDien" value="{{ old('nguoiDaiDien') }}">
                         </div>
-                        @error('email')
+                        @error('nguoiDaiDien')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
@@ -48,6 +48,14 @@
                         @error('sdt')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        <div class="form-group">
+                            <label for="email">Email</label>                   
+                            <input class="form-control" type="text" id="email" name="email" value="{{ $item->Email }}">
+                        </div>
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        
                         <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
                             <label for="">Trạng thái</label>
                             <select name="trangThai" class="form-control input-lg m-bot15">

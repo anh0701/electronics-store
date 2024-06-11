@@ -27,6 +27,18 @@
                     <p> {{$px->TenTaiKhoan}}</p>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <p><strong>Lý do xuất:</strong></p>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                    <p> {{$px->LyDoXuat}}</p>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <p><strong>Mã đơn hàng:</strong></p>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                    <p> {{$px->MaDonHang}}</p>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Trạng thái:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
