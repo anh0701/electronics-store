@@ -121,8 +121,8 @@
                                 <td>
                                     <p>{{number_format($phieu->TriGia, 0, '', ',') . ($phieu ->DonViTinh  == 2? '%' : 'đ')}}</p>
                                 </td>
-                                <td>{{$phieu->ThoiGianBatDau}}</td>
-                                <td>{{$phieu->ThoiGianKetThuc}}</td>
+                                <td>{{ date_format(new DateTime($phieu->ThoiGianBatDau), 'H:i:s d-m-Y') }}</td>
+                                <td>{{ date_format(new DateTime($phieu->ThoiGianKetThuc), 'H:i:s d-m-Y')}}</td>
                             </tr>
                             </tbody>
                         @endforeach
@@ -167,27 +167,19 @@
                             <td class="text-center">{{$i = $i + 1}}</td>
                             <td><h5>{{$don->MaDonHang}}</h5></td>
                             <td>{{ $don->GiaoHang->DiaChi }}</td>
-                            <td>{{ $don->ThoiGianTao }}</td>
+                            <td>{{date_format(new DateTime($don->ThoiGianTao), 'H:i:s d-m-Y') }}</td>
+                            @if($don->TrangThai == 1)
+                                <td>Đơn hàng chờ xác nhận</td>
+                            @elseif($don->TrangThai == 2)
+                                <td>Nhân viên giao hàng đã lấy đơn hàng</td>
+                            @elseif($don->TrangThai == 3)
+                                <td>Khách hàng thanh toán đơn hàng</td>
+                            @elseif($don->TrangThai == 4)
+                                <td>Khách hàng không nhận đơn hàng</td>
+                            @elseif($don->TrangThai == 0)
+                                <td style="color: red">Đã hủy đơn</td>
+                            @endif
 
-                @php
-                    if ($don->TrangThai == 1){
-                @endphp
-                  <td>Đơn hàng chờ xác nhận</td>
-                @php
-                    }elseif($don->TrangThai == 2){
-                @endphp
-                  <td>Nhân viên giao hàng đã lấy đơn hàng</td>
-                @php
-                    }elseif($don->TrangThai == 3){
-                @endphp
-                  <td>Khách hàng thanh toán đơn hàng</td>
-                @php
-                    }elseif($don->TrangThai == 4){
-                @endphp
-                  <td>Khách hàng không nhận đơn hàng</td>
-                @php
-                    }
-                @endphp
                         <td>
                             <a class="btn" href="{{ route('ChiTietDonHang', $don->order_code) }}">
                                 Xem chi tiết
@@ -260,7 +252,7 @@
         }
 
         .text-muted {
-            color: #a6a5a5 !important;
+            color: black !important;
             background-color: #ccc;
         }
 

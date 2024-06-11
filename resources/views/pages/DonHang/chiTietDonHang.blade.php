@@ -90,7 +90,11 @@
                     <div class="col-lg-3">
 
                         @if($allDonHang->TrangThai == 1)
-                            <button class="btn-info btn" type="submit">Hủy đơn</button>
+                            <form action="{{Route('HuyDon', [$allDonHang->MaDonHang])}}" method="post">
+                                @csrf
+                                 <button class="btn-info btn" type="submit">Hủy đơn</button>
+
+                            </form>
                         @endif
                     </div>
                 </div>
