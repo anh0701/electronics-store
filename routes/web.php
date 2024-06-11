@@ -339,6 +339,8 @@ Route::get('/TrangChiTietPhieuBaoHanh/{order_code}', [BaoHanhController::class, 
 Route::get('/TrangLietKeLichSuBaoHanh', [BaoHanhController::class, 'TrangLietKeLichSuBaoHanh'])->name('/TrangLietKeLichSuBaoHanh');
 Route::get('/TrangThemLichSuBaoHanh/{MaCTPBH}', [BaoHanhController::class, 'TrangThemLichSuBaoHanh'])->name('/TrangThemLichSuBaoHanh');
 Route::post('/ThemLichSuBaoHanh/{MaCTPBH}', [BaoHanhController::class, 'ThemLichSuBaoHanh'])->name('/ThemLichSuBaoHanh');
+Route::get('/xem-chi-tiet-dh/{order_code}', [HomeController::class, 'xemCTDH'])->name('ChiTietDonHang');
+Route::post('/huy-don/{id}', [DonHangController::class, 'HuyDon'])->name('HuyDon');
 
 
 

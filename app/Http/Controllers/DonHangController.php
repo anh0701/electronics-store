@@ -23,7 +23,7 @@ class DonHangController extends Controller
 
     public function TrangChiTietDonHang($order_code){
         $allDonHang = DonHang::where('order_code', $order_code)->first();
-        $allChiTietDonHang = ChiTietDonHang::orderBy('MaCTDH', 'DESC')->where('order_code', $order_code)->get();        
+        $allChiTietDonHang = ChiTietDonHang::orderBy('MaCTDH', 'DESC')->where('order_code', $order_code)->get();
         return view('admin.DonHang.TrangChiTietDonHang')->with(compact('allChiTietDonHang', 'allDonHang'));
     }
 
@@ -59,7 +59,7 @@ class DonHangController extends Controller
     public function TrangSuaThongTinGiaoHang($MaGiaoHang, $order_code){
         $giaoHang = GiaoHang::where('MaGiaoHang', $MaGiaoHang)->first();
         return view('admin.DonHang.ThayDoiThongTinGiaoHang')->with(compact('order_code', 'giaoHang'));
-    }    
+    }
 
     public function SuaThongTinGiaoHang($MaGiaoHang, $order_code, Request $request){
         $data = $request->validate([
@@ -210,5 +210,14 @@ class DonHangController extends Controller
                 return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng không nhận hàng | Số lượng sản phẩm trả lại ban đầu');
             }
         }
+    }
+
+    public  function HuyDon(Request $request, $id)
+    {
+//        dd($id);
+        $donHang = DonHang::find($id);
+        $donHang->TrangThai = 0;
+        $donHang->save();
+        return Redirect()->route('/thong-tin-tai-khoan');
     }
 }
