@@ -118,13 +118,13 @@
 <script>
         document.addEventListener('DOMContentLoaded', function() {
             @if(session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Thành công',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 800
-            });
+            // Swal.fire({
+            //     icon: 'success',
+            //     title: 'Thành công',
+            //     text: '{{ session('success') }}',
+            //     showConfirmButton: false,
+            //     timer: 800
+            // });
             @elseif(session('error'))
             Swal.fire({
                 icon: 'error',

@@ -308,7 +308,7 @@ Route::post('/DatHang', [GioHangController::class, 'DatHang'])->name('/DatHang')
 // phieu giam gia
 Route::get('/liet-ke-phieu-giam-gia', [PhieuGiamGiaController::class, 'phieuGiamGia'])->name('/liet-ke-phieu-giam-gia');
 Route::get('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'giaoDienTao'])->name('/them-phieu-giam-gia');
-Route::post('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'taoPhieuGiamGia'])->name('/them-phieu-giam-gia');
+Route::post('/them-phieu-giam-gia', [PhieuGiamGiaController::class, 'taoPhieuGiamGia'])->name('/them-phieu-giam-gia.post');
 Route::get('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'giaoDienSua'])->name('/sua-phieu-giam-gia');
 Route::post('/sua-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'suaPhieuGiamGia'])->name('/suaPhieuGG');
 Route::get('/xoa-phieu-giam-gia/{MaGiamGia}', [PhieuGiamGiaController::class, 'Xoa'])->name('/xoa-phieu-giam-gia');
@@ -330,7 +330,7 @@ Route::middleware('TrangThaiCTGG')->group(function () {
     Route::post('/sua-chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'suaChuongTrinhGiamGia'])->name('/suaChuongTrinhGiamGia');
 });
 Route::get('/chuong-trinh-giam-gia/{MaCT}', [ChuongTrinhGiamGiaController::class, 'xemCT'])->name('/xem-chi-tiet-ctgg');
-Route::get('/tim-kiem-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'timKiem'])->name('/timKiem');
+Route::get('/tim-kiem-chuong-trinh-giam-gia', [ChuongTrinhGiamGiaController::class, 'timKiem'])->name('/timKiemCTGG');
 
 // Bảo hành controller
 Route::get('/TrangLietKeBaoHanh', [BaoHanhController::class, 'TrangLietKeBaoHanh'])->name('/TrangLietKeBaoHanh');
@@ -339,6 +339,8 @@ Route::get('/TrangChiTietPhieuBaoHanh/{order_code}', [BaoHanhController::class, 
 Route::get('/TrangLietKeLichSuBaoHanh', [BaoHanhController::class, 'TrangLietKeLichSuBaoHanh'])->name('/TrangLietKeLichSuBaoHanh');
 Route::get('/TrangThemLichSuBaoHanh/{MaCTPBH}', [BaoHanhController::class, 'TrangThemLichSuBaoHanh'])->name('/TrangThemLichSuBaoHanh');
 Route::post('/ThemLichSuBaoHanh/{MaCTPBH}', [BaoHanhController::class, 'ThemLichSuBaoHanh'])->name('/ThemLichSuBaoHanh');
+Route::get('/xem-chi-tiet-dh/{order_code}', [HomeController::class, 'xemCTDH'])->name('ChiTietDonHang');
+Route::post('/huy-don/{id}', [DonHangController::class, 'HuyDon'])->name('HuyDon');
 
 
 
