@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 10, 2024 lúc 05:02 PM
+-- Thời gian đã tạo: Th6 12, 2024 lúc 07:00 AM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -778,7 +778,7 @@ CREATE TABLE `tbl_phieugiamgia` (
 INSERT INTO `tbl_phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `SlugMaGiamGia`, `DonViTinh`, `TrangThai`, `BacNguoiDung`, `TriGia`, `MaCode`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
 (2, 'Giảm giá mừng sinh nhật', 'giam-gia-mung-sinh-nhat', 1, 1, 1, '100000', 'CMSN', '2024-06-06 01:22:03', '2024-06-06 01:22:03'),
 (3, 'Giảm giá tạo tài khoản lần đầu', 'giam-gia-tao-tai-khoan-lan-dau', 2, 1, 1, '5', 'TTKLD', '2024-06-06 01:24:23', '2024-06-06 01:24:23'),
-(4, 'phiếu giảm giá 1', 'phieu-giam-gia-1', 1, 1, 1, '10000', 'PGG12024', '2024-06-10 04:34:00', '2024-06-13 04:34:00'),
+(4, 'phiếu giảm giá 1', 'phieu-giam-gia-1', 1, 1, 1, '10,000', 'PGG12024', '2024-06-10 04:34:00', '2024-06-13 04:34:00'),
 (5, 'phiếu giảm giá 2', 'phieu-giam-gia-2', 2, 1, 3, '20', 'PGG22024', '2024-06-13 04:35:00', '2024-06-15 04:35:00'),
 (6, 'phiếu giảm giá 3', 'phieu-giam-gia-3', 2, 1, 1, '8', 'PGG32024', '2024-06-27 04:35:00', '2024-06-30 04:35:00');
 
@@ -1658,12 +1658,50 @@ CREATE TABLE `tbl_quyen` (
 --
 
 INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
-(1, 'Khách hàng'),
 (2, 'Nhân viên bán hàng'),
 (3, 'Quản trị viên'),
-(4, 'Quản trị viên cao cấp'),
+(4, 'Quản trị viên cấp cao '),
 (5, 'Nhân viên kho'),
-(6, 'Nhân viên kế toán');
+(6, 'Nhân viên kế toán'),
+(7, 'Nhân viên báo cáo doanh thu');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_quyenvaitro`
+--
+
+CREATE TABLE `tbl_quyenvaitro` (
+  `MaQVT` int NOT NULL,
+  `MaQuyen` int NOT NULL,
+  `MaVaiTro` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_quyenvaitro`
+--
+
+INSERT INTO `tbl_quyenvaitro` (`MaQVT`, `MaQuyen`, `MaVaiTro`) VALUES
+(1, 2, 27),
+(4, 5, 21),
+(11, 7, 38),
+(12, 5, 22),
+(16, 3, 3),
+(17, 5, 23),
+(18, 5, 24),
+(19, 5, 26),
+(20, 3, 5),
+(21, 3, 6),
+(22, 3, 7),
+(23, 3, 8),
+(24, 3, 9),
+(25, 3, 10),
+(26, 3, 13),
+(27, 3, 14),
+(28, 3, 15),
+(29, 3, 16),
+(30, 5, 11),
+(31, 5, 12);
 
 -- --------------------------------------------------------
 
@@ -1759,16 +1797,13 @@ CREATE TABLE `tbl_taikhoan` (
 --
 
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`, `DiaChi`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
-('TK1', 'binh@gmail.com', 'binhdz', NULL, NULL, NULL, '$2y$12$HxBhyN2OSEuFUldzve3A8.9/JYjSDXYVVmi0AqioBpjgO14RGctfe', 'anhDaiDien23.png', 1, NULL, '2024-05-16 17:20:55', NULL, 'KH', NULL),
-('TK20240526100025', 'anhKH1@gmail.com', 'anhKH1', NULL, NULL, NULL, '$2y$12$H6HJwWwttDY2dnewoCPtm.gvv/yNsFjloZZE2UJ1HT6V.4cBQpZVS', NULL, 0, '1', '2024-05-26 03:00:25', NULL, 'Khách hàng', NULL),
-('TK20240610103207', 'anh88294@st.vimaru.edu.vn', 'anh88', NULL, NULL, NULL, '$2y$12$Ewx3xXhtXmm.WzN126O6zefnHa6.s/1wmkACSQWPX8NbKMken1fj2', NULL, 1, '1', '2024-06-10 03:32:07', '2024-06-10 03:35:00', 'Khách hàng', 819392),
+('TK20240612051527', 'anh123@gmail.com', 'anh123', NULL, NULL, NULL, '$2y$12$r7pMkHZlXvCc1OoZfrGMi.jsS/ng7zg/6qFepuXbpVqg2vEfnsQIC', NULL, 1, '1', '2024-06-11 22:15:27', NULL, NULL, NULL),
+('TK20240612053946', 'binh@gmail.com', 'binhdz', NULL, NULL, NULL, '$2y$12$eRCG12Wgx1s3C6242x3GC.SVjo65g.ggJwsejbUUZ/.qoMLPNBWVK', NULL, 1, '1', '2024-06-11 22:39:46', NULL, NULL, NULL),
 ('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
-('TKNV20240428003110', 'anhnx286@gmail.com', 'anh123', NULL, NULL, '1', '$2y$12$tKspuwpAnRiRnhUweebbcOkqKi3mFzcY566tKtG171zrJh2oa4gWO', 'anhDaiDien43.jpg', 1, NULL, '2024-04-26 20:31:10', NULL, NULL, NULL),
-('TKNV20240428223447', 'admin2@gmail.com', 'binh', NULL, NULL, '1', '$2y$12$ntMtwbjUWjecxfAct64utut6suULTD4vkYunDceAQgVp9mM/wAYVi', 'anhDaiDien36.jpg', NULL, NULL, '2024-04-27 18:34:47', NULL, 'NVKT', NULL),
-('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 0, NULL, '2024-05-21 07:53:52', '2024-05-29 04:09:27', 'Nhân viên kho', NULL),
-('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-05-29 04:18:09', 'Nhân viên', NULL),
-('TKNV20240529111627', 'anh12@gmail.com', 'anh12', NULL, NULL, '012345678912345', '$2y$12$Xlbsm3Hb.G2/sjcjhjR6pO.9IA.1vKEXe8riUgZKzdq7X4TmCtLMy', NULL, 1, NULL, '2024-05-29 04:16:27', NULL, 'Nhân viên', NULL),
-('TKNV20240529111837', 'anh14@gmail.com', 'anh14', NULL, NULL, '0987654322', '$2y$12$86VOssWoySbDFGuykUsf/uR8WIJginUtQQlZaTv89qLSSmfdBxArC', NULL, 1, NULL, '2024-05-29 04:18:37', '2024-06-10 01:42:21', 'Nhân viên', NULL);
+('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 1, NULL, '2024-05-21 07:53:52', '2024-06-11 22:25:53', 'Quản trị viên', NULL),
+('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-06-11 14:43:23', 'Nhân viên kho', NULL),
+('TKNV20240611223025', 'anh2@gmail.com', 'anh2', NULL, NULL, NULL, '$2y$12$hcQAq0rflDlP/er7OvOhy.RnydQFVtWmarSG4m5zwsP9lPBiQgqxm', NULL, 1, NULL, '2024-06-11 15:30:25', '2024-06-11 15:30:34', 'Nhân viên bán hàng', NULL),
+('TKNV20240612135846', 'admin3@gmail.com', 'admin3', NULL, NULL, NULL, '$2y$12$eZ/Zg7SvkdRZlA6kn0l7KOP.6B4znE20jiiJnRLh4yHQG2oM6qzly', NULL, 1, NULL, '2024-06-12 06:58:46', NULL, 'Quản trị viên cấp cao', NULL);
 
 -- --------------------------------------------------------
 
@@ -2253,6 +2288,62 @@ INSERT INTO `tbl_tinhthanhpho` (`MaThanhPho`, `TenThanhPho`, `type`) VALUES
 ('94', 'Tỉnh Sóc Trăng', 'Tỉnh'),
 ('95', 'Tỉnh Bạc Liêu', 'Tỉnh'),
 ('96', 'Tỉnh Cà Mau', 'Tỉnh');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_vaitro`
+--
+
+CREATE TABLE `tbl_vaitro` (
+  `MaVaiTro` int NOT NULL,
+  `TenVaiTro` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `VaiTro` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_vaitro`
+--
+
+INSERT INTO `tbl_vaitro` (`MaVaiTro`, `TenVaiTro`, `VaiTro`) VALUES
+(1, 'Tạo tài khoản', 'taoTK'),
+(2, 'Liệt kê tài khoản', 'lietKeTK'),
+(3, 'Thêm danh mục', '/trang-them-thdm'),
+(4, 'Liệt kê danh mục', '/trang-liet-ke-thtdm'),
+(5, 'Thêm danh mục TSKT', '/TrangThemDanhMucTSKT'),
+(6, 'Liệt kê danh mục TSKT', '/TrangLietKeDanhMucTSKT'),
+(7, 'Thêm danh mục bài viết', '/TrangThemDanhMucBV'),
+(8, 'Liệt kê danh mục bài viết', '/TrangLietKeDanhMucBV'),
+(9, 'Thêm thương hiệu sản phẩm', '/TrangThemThuongHieu'),
+(10, 'Liệt kê thương hiệu sản phẩm', '/TrangLietKeThuongHieu'),
+(11, 'Thêm nhà cung cấp', 'themNCC'),
+(12, 'Liệt kê nhà cung cấp', 'lietKeNCC'),
+(13, 'Thêm loại sản phẩm', '/TrangThemDanhMuc'),
+(14, 'Liệt kê loại sản phẩm', '/TrangLietKeDanhMuc'),
+(15, 'Thêm sản phẩm', '/TrangThemSanPham'),
+(16, 'Liệt kê sản phẩm', '/TrangLietKeSanPham'),
+(17, 'Thêm TSKT', '/TrangThemTSKT'),
+(18, 'Liệt kê TSKT', '/TrangLietKeTSKT'),
+(19, 'Thêm danh mục TSKT', '/TrangThemDanhMucTSKT'),
+(20, 'Liệt kê danh mục TSKT', '/TrangLietKeDanhMucTSKT'),
+(21, 'Lập phiếu nhập', 'lapPN'),
+(22, 'Liệt kê phiếu nhập', 'xemPN'),
+(23, 'Lập phiếu xuất', 'taoPX'),
+(24, 'Liệt kê phiếu xuất', 'xemPX'),
+(25, 'Liệt kê tồn kho', 'lietKeTonKho'),
+(26, 'Tạo báo cáo xuất nhập tồn', 'xemBaoCao'),
+(27, 'Liệt kê đơn hàng', '/TrangLietKeDonHang'),
+(28, 'Thêm phiếu giảm giá', '/them-phieu-giam-gia'),
+(29, 'Liệt kê phiếu giảm giá', '/liet-ke-phieu-giam-gia'),
+(30, 'Thêm chương trình giảm giá', '/tao-chuong-trinh-giam-gia'),
+(31, 'Liệt kê chương trình giảm giá', '/chuong-trinh-giam-gia'),
+(32, 'Thêm phí giao hàng', '/TrangThemPhiGiaoHang'),
+(33, 'Liệt kê phí giao hàng', '/TrangLietKePhiGiaoHang'),
+(34, 'Thêm bài viết', '/TrangThemBaiViet'),
+(35, 'Liệt kê bài viết', '/TrangLietKeBaiViet'),
+(36, 'Liệt kê đánh giá sản phẩm', '/TrangLietKeDanhGia'),
+(37, 'Liệt kê bình luận', '/TrangLietKeBinhLuan'),
+(38, 'Liệt kê báo cáo doanh thu', '/TrangLietKeBCDT');
 
 -- --------------------------------------------------------
 
@@ -13703,6 +13794,14 @@ ALTER TABLE `tbl_quyen`
   ADD PRIMARY KEY (`MaPhanQuyen`);
 
 --
+-- Chỉ mục cho bảng `tbl_quyenvaitro`
+--
+ALTER TABLE `tbl_quyenvaitro`
+  ADD PRIMARY KEY (`MaQVT`),
+  ADD KEY `MaQuyen` (`MaQuyen`),
+  ADD KEY `MaVaiTro` (`MaVaiTro`);
+
+--
 -- Chỉ mục cho bảng `tbl_sanpham`
 --
 ALTER TABLE `tbl_sanpham`
@@ -13767,6 +13866,12 @@ ALTER TABLE `tbl_tichdiem`
 --
 ALTER TABLE `tbl_tinhthanhpho`
   ADD PRIMARY KEY (`MaThanhPho`);
+
+--
+-- Chỉ mục cho bảng `tbl_vaitro`
+--
+ALTER TABLE `tbl_vaitro`
+  ADD PRIMARY KEY (`MaVaiTro`);
 
 --
 -- Chỉ mục cho bảng `tbl_xaphuongthitran`
@@ -13924,7 +14029,13 @@ ALTER TABLE `tbl_phigiaohang`
 -- AUTO_INCREMENT cho bảng `tbl_quyen`
 --
 ALTER TABLE `tbl_quyen`
-  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_quyenvaitro`
+--
+ALTER TABLE `tbl_quyenvaitro`
+  MODIFY `MaQVT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_sanpham`
@@ -13967,6 +14078,12 @@ ALTER TABLE `tbl_thuonghieudanhmuc`
 --
 ALTER TABLE `tbl_tichdiem`
   MODIFY `MaTichDiem` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_vaitro`
+--
+ALTER TABLE `tbl_vaitro`
+  MODIFY `MaVaiTro` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -14037,6 +14154,13 @@ ALTER TABLE `tbl_phieutrahang`
 --
 ALTER TABLE `tbl_phieuxuat`
   ADD CONSTRAINT `tbl_phieuxuat_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tbl_taikhoan` (`MaTaiKhoan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Các ràng buộc cho bảng `tbl_quyenvaitro`
+--
+ALTER TABLE `tbl_quyenvaitro`
+  ADD CONSTRAINT `tbl_quyenvaitro_ibfk_1` FOREIGN KEY (`MaQuyen`) REFERENCES `tbl_quyen` (`MaPhanQuyen`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tbl_quyenvaitro_ibfk_2` FOREIGN KEY (`MaVaiTro`) REFERENCES `tbl_vaitro` (`MaVaiTro`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `tbl_sanpham`

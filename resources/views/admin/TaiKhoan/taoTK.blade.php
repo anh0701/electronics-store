@@ -41,12 +41,9 @@
                         <div class="form-group">
                             <label for="quyen">Quyền hạn:</label>
                             <select id="quyen" class="form-control input-lg m-bot15" name="quyen">
-                                <option value="Nhân viên">Nhân viên</option>
-                                <option value="Nhân viên kho">Nhân viên kho</option>
-                                <option value="Nhân viên bán hàng">Nhân viên bán hàng</option>
-                                <option value="Nhân viên kế toán">Nhân viên kế toán</option>
-                                <option value="Quản trị viên">Quản trị viên</option>
-                                <option value="Quản trị viên cấp cao">Quản trị viên cấp cao</option>
+                                @foreach ($quyen as $i)
+                                    <option value="{{ $i->TenPhanQuyen }}">{{ $i->TenPhanQuyen }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button type="submit" class="btn btn-info">Lưu</button>

@@ -8,11 +8,7 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                @php 
-                    $user = session(('user'));
-                    $quyen = $user['Quyen'];
 
-                @endphp 
                 @foreach ($data as $item)
                     <form role="form" id="from" action="{{Route('xuLySuaTK')}}" method="POST">
                         {{ csrf_field() }}
@@ -38,15 +34,14 @@
                         <div class="form-group">
                             <label for="">Quyền hạn</label>             
                             <select id="quyen" class="form-control input-lg m-bot15" name="quyen">
-                                <option value="Nhân viên" {{ $item->Quyen === 'Nhân viên' ? 'selected' : '' }}>Nhân viên</option>
-                                <option value="Nhân viên kho" {{ $item->Quyen === 'Nhân viên kho' ? 'selected' : '' }}>Nhân viên kho</option>
-                                <option value="Nhân viên bán hàng" {{ $item->Quyen === 'Nhân viên bán hàng' ? 'selected' : '' }}>Nhân viên bán hàng</option>
-                                <option value="Nhân viên kế toán" {{ $item->Quyen === 'Nhân viên kế toán' ? 'selected' : '' }}>Nhân viên kế toán</option>
-                                <option value="Quản trị viên" {{ $item->Quyen === 'Quản trị viên' ? 'selected' : '' }}>Quản trị viên</option>
-                                <option value="Quản trị viên cấp cao" {{ $item->Quyen === 'Quản trị viên cấp cao' ? 'selected' : '' }}>Quản trị viên cấp cao</option>
+                            @if(!empty($quyen))
+                                @foreach ($quyen as $i)
+                                    <option value="{{ $i->TenPhanQuyen }}" {{ $item->Quyen === $i->TenPhanQuyen ? 'selected' : '' }}>{{ $i->TenPhanQuyen }}</option>
+                                @endforeach
+                            @endif
                             </select>
                         </div>
-                        <div class="form-group" style="{{ $quyen != 'Quản trị viên cấp cao' ? 'display: none;' : '' }}">
+                        <div class="form-group">
                             <label for="">Trạng thái</label>
                             <select name="trangThai" class="form-control input-lg m-bot15">
                                 <option value="0" {{ $item->TrangThai == '0' ? 'selected' : '' }}>Vô hiệu hóa</option>
