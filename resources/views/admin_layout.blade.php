@@ -36,6 +36,11 @@
 
 </head>
 <body>
+@php
+$user = session('user');
+$quyen = $user['Quyen'];
+
+@endphp
 <section id="container">
     <!--header start-->
     <header class="header fixed-top clearfix">
@@ -79,6 +84,7 @@
             </ul>
         </div>
     </header>
+    @if ($quyen == "Quản trị viên cấp cao")
     <aside>
         <div id="sidebar" class="nav-collapse">
             <div class="leftside-navigation">
@@ -88,14 +94,24 @@
                             <span>Trang quản lý</span>
                         </a>
                     </li>
-
+                    
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <span>Quản lý tài khoản</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{ route('taoTK') }}">+ Tạo tài khoản</a>
-                            <li><a href="{{ route('lietKeTK') }}">+ Liệt kê tài khoản</a>
+                            <li><a href="{{ route('taoTK') }}">+ Tạo tài khoản</a></li>
+                            <li><a href="{{ route('lietKeTK') }}">+ Liệt kê tài khoản</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <span>Quản lý phân quyền</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{ route('themQuyenTK') }}">+ Thêm vai trò mới</a></li>
+                            <li><a href="{{ route('themQuyen') }}">+ Phân quyền</a></li>
+                            <li><a href="{{ route('lietKeQH') }}">+ Liệt kê quyền hạn</a></li>
                         </ul>
                     </li>
 
@@ -315,6 +331,27 @@
             </div>
         </div>
     </aside>
+    @else
+        @php
+            $data = session('path');
+        @endphp
+        <aside>
+            <div id="sidebar" class="nav-collapse">
+                <div class="leftside-navigation">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        @foreach($data as $i)
+                        <li>
+                            <a class="" href="{{ route($i->VaiTro) }}">
+                                <span>{{ $i->TenVaiTro }}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    @endif
+    
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">

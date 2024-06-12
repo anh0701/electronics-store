@@ -62,5 +62,9 @@
       </div>
       </footer>
     </div>
+    <form action="{{ route('xuatFileBCDT') }}" method="GET">
+        @csrf 
+        <button type="submit" class="btn btn-info">Xuất file</button>
+    </form>
 </div>
 @endsection
