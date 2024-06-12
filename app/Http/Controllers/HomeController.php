@@ -352,7 +352,11 @@ class HomeController extends Controller
     public function ChiTietBaiViet(Request $request, $MaBaiViet){
         $baiViet = BaiViet::where('MaBaiViet', $MaBaiViet)->first();
         $allDanhMucBV = DanhMucBaiViet::orderBy('MaDanhMucBV', 'DESC')->where('TrangThai', '1')->get();
-        $allBinhLuan = BinhLuan::orderBy('MaBinhLuan', 'DESC')->where('MaBaiViet', $MaBaiViet)->where('TrangThai', 1)->get();
+        $allBinhLuan = BinhLuan::with(['TaiKhoan', 'phanHoi.TaiKhoan'])
+            ->orderBy('MaBinhLuan', 'DESC')
+            ->where('MaBaiViet', $MaBaiViet)
+            ->where('TrangThai', 1)
+            ->get();
         $allTaiKhoan = TaiKhoan::orderBy('MaTaiKhoan', 'DESC')->get();
 
         $meta_desc = "Chi tiết bài viết ".$baiViet['TenBaiViet'];

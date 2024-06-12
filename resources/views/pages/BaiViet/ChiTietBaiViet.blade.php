@@ -110,43 +110,113 @@
                         </button>
                     </form>
                 </div>
+
+{{--                binh luan--}}
+
                 <div class="col-sm-12 comment-blog">
                     <h2>Bình luận về bài viết</h2>
                     <ul class="media-list">
-                        @foreach ($allBinhLuan as $key => $binhLuan)
-                            @foreach ($allTaiKhoan as $key => $taiKhoan)
-                                @if ($taiKhoan->Email == $binhLuan->Email)
-                                <li class="media">
+                        @foreach ($allBinhLuan as $binhLuan)
+                            @if ($binhLuan->PhanHoi == 0)
+                                <li class="media" style="margin-bottom: 5%;">
                                     <a class="pull-left" href="#">
-                                        <img class="media-object" src="{{ asset('upload/TaiKhoan/'.$taiKhoan->HinhAnh) }}" alt="Ảnh đại diện">
+                                        @if(isset($binhLuan->TaiKhoan) && $binhLuan->TaiKhoan->HinhAnh)
+                                            <img class="media-object" src="{{ asset('upload/TaiKhoan/'.$binhLuan->TaiKhoan->HinhAnh) }}" alt="Ảnh đại diện" style="width: 64px; height: 64px;">
+                                        @else
+                                            <img class="media-object" src="{{ asset('upload/Profile/default.jpg') }}" alt="Ảnh đại diện" style="width: 64px; height: 64px;">
+                                        @endif
                                     </a>
                                     <div class="media-body">
-                                        <ul class="sinlge-post-meta">
-                                            <li><i class="fa fa-user"></i>{{ $taiKhoan->TenTaiKhoan }}</li>
-                                            <li><i class="fa fa-calendar"></i><td>{{  date("d M Y", strtotime($binhLuan->ThoiGianTao)) }}</td></li>
+                                        <ul class="single-post-meta">
+                                            <li><i class="fa fa-user"></i>{{ isset($binhLuan->TaiKhoan) ? $binhLuan->TaiKhoan->TenTaiKhoan : 'Người dùng ẩn danh' }}</li>
+                                            <li><i class="fa fa-calendar"></i>{{ date("d M Y", strtotime($binhLuan->ThoiGianTao)) }}</li>
                                         </ul>
                                         <p>{{ $binhLuan->NoiDung }}</p>
-                                        @if(session('user')['Quyen'] == 'Nhân viên')
-                                            <form action="{{ route('/') }}" method="POST">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" name="MaBaiViet" value="{{ $baiViet->MaBaiViet }}" class="MaBaiViet_{{ $baiViet->MaBaiViet }}">
-                                                <input type="hidden" name="MaBL" value="{{$taiKhoan->Email}}">
-                                                <textarea id="BinhLuanBaiViet"
-                                                          class="NoiDung_{{ $baiViet->MaBaiViet }}" name="NoiDung"></textarea>
-                                                </textarea>
-                                                <button type="submit" name="ThemBinhLuan" class="btn btn-primary pull-right ThemBinhLuan" data-MaBaiViet="{{ $baiViet->MaBaiViet }}">
-                                                    Bình luận
-                                                </button>
-                                            </form>
-                                        @endif
 
+                                        <!-- Hiển thị các phản hồi -->
+                                        <ul class="media-list" style="margin-left: 20%;">
+                                            @foreach ($binhLuan->phanHoi as $phanHoi)
+                                                <li class="media" style="display: flex; justify-content: {{ isset($phanHoi->TaiKhoan) && $phanHoi->TaiKhoan->Quyen == 'Nhân viên bán hàng' ? 'flex-end' : 'flex-start' }}; margin-bottom: 10px;">
+                                                    @if(isset($phanHoi->TaiKhoan) && $phanHoi->TaiKhoan->Quyen == 'Nhân viên bán hàng')
+                                                        <div class="media-body" style="text-align: right;">
+                                                            <ul class="single-post-meta">
+                                                                <li><i class="fa fa-user"></i>{{ $phanHoi->TaiKhoan ? $phanHoi->TaiKhoan->TenTaiKhoan : 'Người dùng ẩn danh' }}</li>
+                                                                <li><i class="fa fa-calendar"></i>{{ date("d M Y", strtotime($phanHoi->ThoiGianTao)) }}</li>
+                                                            </ul>
+                                                            <p style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">{{ $phanHoi->NoiDung }}</p>
+                                                        </div>
+                                                        <a class="pull-right" href="#">
+                                                            @if($phanHoi->TaiKhoan && $phanHoi->TaiKhoan->HinhAnh)
+                                                                <img class="media-object" src="{{ asset('upload/TaiKhoan/'.$phanHoi->TaiKhoan->HinhAnh) }}" alt="Ảnh đại diện" style="width: 48px; height: 48px;">
+                                                            @else
+                                                                <img class="media-object" src="{{ asset('upload/Profile/default.jpg') }}" alt="Ảnh đại diện" style="width: 48px; height: 48px;">
+                                                            @endif
+                                                        </a>
+                                                    @else
+                                                        <a class="pull-left" href="#">
+                                                            @if($phanHoi->TaiKhoan && $phanHoi->TaiKhoan->HinhAnh)
+                                                                <img class="media-object" src="{{ asset('upload/TaiKhoan/'.$phanHoi->TaiKhoan->HinhAnh) }}" alt="Ảnh đại diện" style="width: 48px; height: 48px;">
+                                                            @else
+                                                                <img class="media-object" src="{{ asset('upload/Profile/default.jpg') }}" alt="Ảnh đại diện" style="width: 48px; height: 48px;">
+                                                            @endif
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <ul class="single-post-meta">
+                                                                <li><i class="fa fa-user"></i>{{ isset($phanHoi->TaiKhoan) ? $phanHoi->TaiKhoan->TenTaiKhoan : 'Người dùng ẩn danh' }}</li>
+                                                                <li><i class="fa fa-calendar"></i>{{ date("d M Y", strtotime($phanHoi->ThoiGianTao)) }}</li>
+                                                            </ul>
+                                                            <p style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">{{ $phanHoi->NoiDung }}</p>
+                                                        </div>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+
+                                        <!-- Form để phản hồi bình luận -->
+                                        <form action="{{ route('them_phan_hoi') }}" method="POST" style="margin-top: 10px; text-align: right;">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="MaBaiViet" value="{{ $baiViet->MaBaiViet }}">
+                                            <input type="hidden" name="MaBinhLuan" value="{{ $binhLuan->MaBinhLuan }}">
+                                            <textarea class="form-control" name="NoiDungPhanHoi" placeholder="Nhập phản hồi..." style="width: 70%; float: right; margin-bottom: 10px;"></textarea>
+                                            <button type="submit" class="btn btn-primary pull-right">Phản hồi</button>
+                                        </form>
                                     </div>
                                 </li>
-                                @endif
-                            @endforeach
+                            @endif
                         @endforeach
                     </ul>
                 </div>
+
+                <style>
+                    .media-body {
+                        position: relative;
+                    }
+                    .media-body .single-post-meta {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0 0 10px 0;
+                        color: #999;
+                    }
+                    .media-body .single-post-meta li {
+                        display: inline;
+                        margin-right: 10px;
+                    }
+                    .media-body p {
+                        margin: 0 0 10px;
+                    }
+                    .media-object {
+                        border-radius: 50%;
+                    }
+                    .form-control {
+                        resize: none;
+                    }
+                </style>
+
+
+
+
+
+
             </div>
         </div>
     </div>

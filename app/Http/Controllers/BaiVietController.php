@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\BinhLuan;
 use Illuminate\Http\Request;
 use App\Models\BaiViet;
 use App\Models\DanhMucBaiViet;
@@ -236,4 +237,23 @@ class BaiVietController extends Controller
                     ->get();
         return view('admin.BaiViet.DanhMucBaiViet.LietKeDanhMucBV')->with(compact('allDanhMucBV'));
     }
+
+    public function themPhanHoi(Request $request)
+    {
+        $this->validate($request, [
+            'NoiDungPhanHoi' => 'required',
+        ]);
+
+        $phanHoi = new BinhLuan();
+        $phanHoi->NoiDung = $request->NoiDungPhanHoi;
+        $phanHoi->Email = session('user')['Email'];
+        $phanHoi->MaBaiViet = $request->MaBinhLuan;
+        $phanHoi->PhanHoi = $request->MaBinhLuan;  // Chỉ định phản hồi của bình luận nào
+        $phanHoi->TrangThai = 1;
+        $phanHoi->ThoiGianTao = now();
+        $phanHoi->save();
+
+        return redirect()->back()->with('success', 'Phản hồi của bạn đã được thêm.');
+    }
+
 }

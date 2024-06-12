@@ -19,6 +19,11 @@ class BinhLuan extends Model
         return $this->belongsTo(TaiKhoan::class, 'Email');
     }
 
+    public function phanHoi()
+    {
+        return $this->hasMany(BinhLuan::class, 'PhanHoi');
+    }
+
     public function BaiViet(){
         return $this->belongsTo(BaiViet::class, 'MaBaiViet');
     }

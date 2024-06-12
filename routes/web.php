@@ -191,6 +191,8 @@ Route::get('/KoKichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KoK
 Route::get('/KichHoatDanhMucBV/{MaDanhMucBV}', [BaiVietController::class, 'KichHoatDanhMucBV'])->name('/KichHoatDanhMucBV');
 Route::get('/dashboard', [TaiKhoanController::class, 'show_dashboard'])->name('/dashboard')->middleware('DangNhap');
 Route::get('/tim-kiem-dmbv', [BaiVietController::class, 'timKiemDMBV'])->name('timKiemDMBV');
+Route::post('/them-phan-hoi', [BaiVietController::class, 'themPhanHoi'])->name('them_phan_hoi');
+
 
 // Danh muc
 Route::get('/trang-them-danh-muc', [DanhMucController::class, 'TrangThemDanhMuc'])->name('/TrangThemDanhMuc');
