@@ -81,7 +81,7 @@ class QuyenController extends Controller
         $quyen = new Quyen();
         $quyen->TenPhanQuyen = $request->tenquyen;
         $quyen->save();
-        return redirect()->route('lietKeQH');
+        return redirect()->route('lietKeVaiTro');
     }
     public function themQH(Request $request){
 
