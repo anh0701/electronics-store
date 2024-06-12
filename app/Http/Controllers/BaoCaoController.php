@@ -130,6 +130,7 @@ class BaoCaoController extends Controller
         $tgDau = $request->input('tgDau');
         $tgCuoi = $request->input('tgCuoi');
         $data = json_decode($jsonData, true);
+        // dd($data);
 
         $tg = date_format(date_create($tgDau), 'm_Y');
         $tgD = date_format(date_create($tgDau), 'd/m/Y');
@@ -167,19 +168,19 @@ class BaoCaoController extends Controller
         ],
         ]);
         
-
-        $sheet->getColumnDimension('A')->setWidth(20);
-        $sheet->getColumnDimension('B')->setWidth(70);
+        $sheet->getRowDimension(5)->setRowHeight(30);
+        $sheet->getColumnDimension('A')->setWidth(10);
+        $sheet->getColumnDimension('B')->setWidth(60);
         $sheet->getColumnDimension('C')->setWidth(5);
-        $sheet->getColumnDimension('D')->setWidth(15);
-        $sheet->getColumnDimension('E')->setWidth(15); 
-        $sheet->getColumnDimension('F')->setWidth(15); 
+        $sheet->getColumnDimension('D')->setWidth(10);
+        $sheet->getColumnDimension('E')->setWidth(10); 
+        $sheet->getColumnDimension('F')->setWidth(12); 
         $sheet->getColumnDimension('G')->setWidth(15);
-        $sheet->getColumnDimension('H')->setWidth(15); 
-        $sheet->getColumnDimension('I')->setWidth(15); 
+        $sheet->getColumnDimension('H')->setWidth(10); 
+        $sheet->getColumnDimension('I')->setWidth(12); 
         $sheet->getColumnDimension('J')->setWidth(15);
-        $sheet->getColumnDimension('K')->setWidth(15); 
-        $sheet->getColumnDimension('L')->setWidth(15); 
+        $sheet->getColumnDimension('K')->setWidth(10); 
+        $sheet->getColumnDimension('L')->setWidth(12); 
         $sheet->getColumnDimension('M')->setWidth(15); 
         
         $sheet->setCellValue('A5', 'Mã sản phẩm')
@@ -293,12 +294,15 @@ class BaoCaoController extends Controller
             'startColor' => ['rgb' => 'FCDC2A'],
         ],
         ]);
+        $sheet->getStyle('E7:M' . $row)->getNumberFormat()->setFormatCode('#,##0');
 
-        $sheet->setCellValue('A' . ($row + 3), 'Nguời lập biểu');
-        $sheet->setCellValue('B' . ($row + 3), 'Kế toán trưởng');
-        $sheet->setCellValue('D' . ($row + 3), 'Giám đốc');
+        $sheet->setCellValue('D' . ($row + 3), 'Nguời lập biểu');
+        $sheet->setCellValue('G' . ($row + 3), 'Kế toán trưởng');
+        $sheet->setCellValue('J' . ($row + 3), 'Giám đốc');
         $sheet->mergeCells('D'.($row + 3) . ':E' . ($row + 3));
-        $sheet->getStyle('A' . ($row + 3) . ':G' . ($row + 3))->applyFromArray([
+        $sheet->mergeCells('G'.($row + 3) . ':H' . ($row + 3));
+        $sheet->mergeCells('J'.($row + 3) . ':K' . ($row + 3));
+        $sheet->getStyle('A' . ($row + 3) . ':M' . ($row + 3))->applyFromArray([
             'font' => [
             'bold' => true,
             'color' => ['rgb' => '000000'],
@@ -310,11 +314,13 @@ class BaoCaoController extends Controller
         ],
         ]);
         
-        $sheet->setCellValue('A' . ($row + 4), '(Ký và ghi rõ họ tên)');
-        $sheet->setCellValue('B' . ($row + 4), '(Ký và ghi rõ họ tên)');
         $sheet->setCellValue('D' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('G' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('J' . ($row + 4), '(Ký và ghi rõ họ tên)');
         $sheet->mergeCells('D'.($row + 4) . ':E' . ($row + 4));
-        $sheet->getStyle('A' . ($row + 4) . ':G' . ($row + 4))->applyFromArray([
+        $sheet->mergeCells('G'.($row + 4) . ':H' . ($row + 4));
+        $sheet->mergeCells('J'.($row + 4) . ':K' . ($row + 4));
+        $sheet->getStyle('A' . ($row + 4) . ':M' . ($row + 4))->applyFromArray([
             'font' => [
             'color' => ['rgb' => '000000'],
             'name' => 'Times New Roman',
@@ -329,8 +335,7 @@ class BaoCaoController extends Controller
         $filePath = public_path('baoCaoXNT/' . $fileName);
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
-        
-        return redirect()->route('xemBaoCao');
+        return response()->download($filePath, $fileName);
 
     }
 

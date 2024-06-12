@@ -246,12 +246,12 @@ class HomeController extends Controller
         if ($user && isset($user['TenTaiKhoan'])) {
             $TenTaiKhoan = $user['TenTaiKhoan'];
             $tk = DB::select("SELECT * FROM tbl_taikhoan WHERE tbl_taikhoan.TenTaiKhoan = ?", [$TenTaiKhoan]);
-//            dd($tk[0]->BacNguoiDung);
+        //    dd($tk[0]->BacNguoiDung);
             $phieuGiamGia = PhieuGiamGia::where('BacNguoiDung', $tk[0]->BacNguoiDung)->orderBy('ThoiGianBatDau', 'DESC')->paginate('4');
-
+            // dd($phieuGiamGia[0]);
             $donHang = DonHang::where('Email', $tk[0]->Email)->get();
 
-//            dd($donHang);
+        //    dd($donHang);
         }
 
         $meta_desc = "Trang thông tin tài khoản";
