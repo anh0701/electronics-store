@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 11, 2024 lúc 10:41 PM
+-- Thời gian đã tạo: Th6 12, 2024 lúc 07:00 AM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -1659,7 +1659,7 @@ CREATE TABLE `tbl_quyen` (
 INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
 (2, 'Nhân viên bán hàng'),
 (3, 'Quản trị viên'),
-(4, 'Quản trị viên cao cấp'),
+(4, 'Quản trị viên cấp cao '),
 (5, 'Nhân viên kho'),
 (6, 'Nhân viên kế toán'),
 (7, 'Nhân viên báo cáo doanh thu');
@@ -1801,7 +1801,8 @@ INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`
 ('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
 ('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 1, NULL, '2024-05-21 07:53:52', '2024-06-11 22:25:53', 'Quản trị viên', NULL),
 ('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-06-11 14:43:23', 'Nhân viên kho', NULL),
-('TKNV20240611223025', 'anh2@gmail.com', 'anh2', NULL, NULL, NULL, '$2y$12$hcQAq0rflDlP/er7OvOhy.RnydQFVtWmarSG4m5zwsP9lPBiQgqxm', NULL, 1, NULL, '2024-06-11 15:30:25', '2024-06-11 15:30:34', 'Nhân viên bán hàng', NULL);
+('TKNV20240611223025', 'anh2@gmail.com', 'anh2', NULL, NULL, NULL, '$2y$12$hcQAq0rflDlP/er7OvOhy.RnydQFVtWmarSG4m5zwsP9lPBiQgqxm', NULL, 1, NULL, '2024-06-11 15:30:25', '2024-06-11 15:30:34', 'Nhân viên bán hàng', NULL),
+('TKNV20240612135846', 'admin3@gmail.com', 'admin3', NULL, NULL, NULL, '$2y$12$eZ/Zg7SvkdRZlA6kn0l7KOP.6B4znE20jiiJnRLh4yHQG2oM6qzly', NULL, 1, NULL, '2024-06-12 06:58:46', NULL, 'Quản trị viên cấp cao', NULL);
 
 -- --------------------------------------------------------
 
