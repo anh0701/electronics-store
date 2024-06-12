@@ -199,6 +199,87 @@
         </div>
     </div>
 </div>
+@else
+<div class="col-sm-9">
+    <div class="recommended_items">
+        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+            <img src="{{ asset('frontend/im') }}" style="margin-bottom: 15px; width: 100%" alt="">    
+            <div class="carousel-inner">
+                @foreach ($sanPhamNoiBat->chunk(4) as $valueSanPham)
+                    <div class="item {{ $loop->first ? 'active' : '' }}">	
+                    @foreach ($valueSanPham as $sanPham)
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <form>
+                                            {{ csrf_field() }}
+                                            <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->ChieuCao }}" class="cart_product_height_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
+                                            <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
+                                                <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
+                                                <p class="product-name">{{ $sanPham->TenSanPham }}</p>
+                                                <h2 class="">{{  number_format($sanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
+                                                <p class="vote-txt">
+                                                    @php
+                                                    $count = 0;
+                                                    $tongSoSao = 0;
+                                                        foreach($allDanhGia as $key => $danhGia){
+                                                            if($danhGia->MaSanPham == $sanPham->MaSanPham){
+                                                                $count++;
+                                                                $tongSoSao += $danhGia->SoSao;
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    @php
+                                                        if($count > 0){
+                                                        $tongSoSao = $tongSoSao/$count
+                                                    @endphp
+                                                        <b>{{ number_format($tongSoSao, 1) }}</b>
+                                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                                        <b>({{ $count }})</b>
+                                                    @php
+                                                        }elseif($count == 0){
+                                                    @endphp
+                                                        <b>0</b>
+                                                        <i style="color:#FFCC36; margin-right: 5px" class="fa fa-star fa-fw"></i>
+                                                        <b>(0)</b>
+                                                    @php
+                                                        }
+                                                    @endphp
+                                                </p>
+                                            </a>
+                                            <button type="button" class="btn btn-default add-to-cart ThemGioHang"
+                                            data-id_product="{{ $sanPham->MaSanPham }}">
+                                                <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                            </button>
+                                        </form>
+                                    </div>             
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    </div>
+                @endforeach
+            </div>
+            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+            </a>			
+        </div>
+    </div>
+</div>
 @endif
 
 <div class="category-tab"><!--category-tab-->
