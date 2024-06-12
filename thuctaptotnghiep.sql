@@ -332,7 +332,7 @@ CREATE TABLE `tbl_chuongtrinhgiamgia` (
 --
 
 INSERT INTO `tbl_chuongtrinhgiamgia` (`MaCTGG`, `SlugCTGG`, `TenCTGG`, `HinhAnh`, `MoTa`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
-(1, 'giam-gia-mua-he', 'giảm giá mùa hè', 'upload/ChuongTrinhGiamGia/1717992273.gif', '<p>ưu đãi mới</p>', 1, '2024-06-09 02:55:21', '2024-06-10 04:04:33', '2024-06-09 02:53:00', '2024-06-12 02:53:00');
+(1, 'giam-gia-mua-he', 'giảm giá mùa hè', 'upload/ChuongTrinhGiamGia/1717992273.gif', '<p>ưu đãi mới</p>', 1, '2024-06-09 02:55:21', '2024-06-10 04:04:33', '2024-06-09 02:53:00', '2024-06-20 02:53:00');
 
 -- --------------------------------------------------------
 

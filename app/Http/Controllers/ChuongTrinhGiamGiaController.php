@@ -225,6 +225,8 @@ class ChuongTrinhGiamGiaController extends Controller
     {
         $ids = $request->input('ids');
         $products = SanPham::whereIn('MaSanPham', $ids)
+            ->whereNotNull('SoLuongHienTai')
+            ->where('SoLuongHienTai', '>', 0)
             ->select('MaSanPham as id', 'TenSanPham', 'GiaSanPham')
             ->get();
 
