@@ -32,11 +32,11 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
-                            <label for="">Quyền hạn</label>             
+                            <label for="">Vai trò</label>             
                             <select id="quyen" class="form-control input-lg m-bot15" name="quyen">
                             @if(!empty($quyen))
                                 @foreach ($quyen as $i)
-                                    <option value="{{ $i->TenPhanQuyen }}" {{ $item->Quyen === $i->TenPhanQuyen ? 'selected' : '' }}>{{ $i->TenPhanQuyen }}</option>
+                                    <option value="{{ $i->TenPhanQuyen }}" {{ $item->Quyen == $i->TenPhanQuyen ? 'selected' : '' }}>{{ $i->TenPhanQuyen }}</option>
                                 @endforeach
                             @endif
                             </select>

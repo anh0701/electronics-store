@@ -11,29 +11,19 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-5">
-                <form action="{{ route('timKiemTK') }}" method="get">
-                    <div class="input-group">
-                        <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
-                        <span class="input-group-btn">
-                            <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
-                        </span>
-                        <span class="input-group-btn">
-                            <a class="btn btn-sm btn-default" href="{{ Route('lietKeTK') }}">Xem tất cả</a>
-                        </span>
-                    </div>
-                </form>
+                
             </div>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tr>
-                    <th>Tên quyền</th>
+                    <th>Tên vai trò</th>
                     <th>Tên quyền hạn</th>
-                    <th>Quản lý</th>
+                    <th>Quản lý quyền hạn</th>
                 </tr>
                 @foreach ($result as $tenPQ => $i)
                     <tr>
-                        <td rowspan="{{count($i) + 1}}" style="border-right:1px solid #EEEEEE; vertical-align: middle;  text-align:center;">{{ $tenPQ }}</td>
+                        <td rowspan="{{ count($i) + 1 }}" style="border-right:1px solid #EEEEEE; vertical-align: middle;">{{ $tenPQ }}</td>
                     </tr>
                     @foreach ($i as $vaiTro)
                     <tr>
