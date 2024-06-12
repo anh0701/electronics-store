@@ -141,6 +141,7 @@
                                                 <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                                                <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                                 <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                                     <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
@@ -216,8 +217,7 @@
             @endforeach
         </ul>
     </div>
-    <div id="tabs_product">
-    </div>
+    <div id="tabs_product"></div>
 </div><!--/category-tab-->
 <div class="col-sm-12">
     <div class="features_items">
@@ -238,6 +238,7 @@
                             <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                            <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
                             <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                             <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                 <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />

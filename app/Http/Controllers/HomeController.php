@@ -34,7 +34,7 @@ class HomeController extends Controller
         $currentDate = Carbon::now();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('TrangThai', '1')->paginate(20);
+        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('TrangThai', '1')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
         $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->get();
         $allCTGG =  ChuongTrinhGiamGia::with(['chuongTrinhGiamGiaSPs.SanPham'])
             ->where('TrangThai', 1)
@@ -42,7 +42,7 @@ class HomeController extends Controller
             ->where('ThoiGianKetThuc', '>=', $currentDate)
             ->get();
         $allChiTietCTGG = ChuongTrinhGiamGiaSP::orderBy('MaCTGGSP', 'DESC')->get();
-        $sanPhamNoiBat = SanPham::orderBy('MaSanPham', 'ASC')->take(20)->get();
+        $sanPhamNoiBat = SanPham::orderBy('MaSanPham', 'ASC')->take(20)->whereNotIn('SoLuongHienTai', ['', 0])->get();
 
         // SEO
         $meta_desc = "Chuyên bán những sản phẩm điện tử chất lượng cao, giá cả hợp lý";
@@ -75,13 +75,13 @@ class HomeController extends Controller
 
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
-                $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $MaDanhMuc)->paginate(20);
-                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+                $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
             }else{
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
-                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->take(12)->get();
+                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
                 }
                 return view('pages.SanPham.DanhMuc.HienThiDanhMucCha')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -97,12 +97,12 @@ class HomeController extends Controller
     public function HienThiDanhMucCon(Request $request, $MaDanhMuc){
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->where('TrangThai', '1')->paginate(12);
+        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->where('TrangThai', '1')->paginate(12);
         $allTHDM = ThuongHieuDanhMuc::orderBy('MaTHDM', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
         $allDanhMucTSKT = DanhMucTSKT::orderBy('MaDMTSKT', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->get();
         $allTSKT = ThongSoKyThuat::orderBy('MaTSKT', 'DESC')->get();
         $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->get();
-        $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+        $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
 
         $danhMuc = DanhMuc::where('MaDanhMuc', $MaDanhMuc)->first();
         $meta_desc = 'Sản phẩm thuộc danh mục '.$danhMuc['TenDanhMuc'];
@@ -127,7 +127,7 @@ class HomeController extends Controller
         $allDanhGia = DanhGia::orderBy('MaDanhGia', 'DESC')->get();
 
         $sanPhamThuocTSKT = SanPhamTSKT::orderBy('MaTSKT', 'DESC')->where('MaTSKT', $MaTSKT)->paginate('20');
-        $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+        $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
 
         $meta_desc = "Chuyên bán những sản phẩm điện tử chất lượng cao, giá cả hợp lý";
         $meta_keywords = "Sản phẩm gia dụng, thiết bị văn phòng, đồ dùng cá nhân";
@@ -158,13 +158,13 @@ class HomeController extends Controller
 
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
-                $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('MaThuongHieu', $MaThuongHieu)->where('MaDanhMuc', $MaDanhMuc)->paginate(20);
-                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaThuongHieu', $MaThuongHieu)->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+                $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->where('MaThuongHieu', $MaThuongHieu)->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaThuongHieu', $MaThuongHieu)->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
             }else{
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
-                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->take(12)->get();
+                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->where('MaThuongHieu', $MaThuongHieu)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
                 }
                 return view('pages.SanPham.DanhMuc.HienThiDanhMucCha')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -186,7 +186,7 @@ class HomeController extends Controller
         $allTaiKhoan = TaiKhoan::orderBy('MaTaiKhoan', 'DESC')->get();
         $rating = DanhGia::where('MaSanPham', $MaSanPham)->avg('SoSao');
         $rating = round($rating);
-        $sanPhamLienQuan = SanPham::where('MaDanhMuc', $chiTietSanPham->MaDanhMuc)
+        $sanPhamLienQuan = SanPham::where('MaDanhMuc', $chiTietSanPham->MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])
         ->where('MaThuongHieu', $chiTietSanPham->MaThuongHieu)->whereNotIn('MaSanPham', [$MaSanPham])->take(4)->get();
 
         $meta_desc = 'Chi tiết sản phẩm '.$chiTietSanPham['TenSanPham'];
@@ -210,8 +210,8 @@ class HomeController extends Controller
             return Redirect::to('/');
         }
 
-        $allSanPham = SanPham::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->paginate(20);
-        $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->take(12)->get();;
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+        $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('TenSanPham', 'like', '%'.$keywords.'%')->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();;
 
         $meta_desc = "Tìm kiếm sản phẩm";
         $meta_keywords = "Tìm kiếm sản phẩm";
@@ -228,7 +228,7 @@ class HomeController extends Controller
         $allThanhPho = TinhThanhPho::orderBy('MaThanhPho', 'ASC')->get();
         $allDanhMuc = DanhMuc::orderBy('MaDanhMuc', 'ASC')->where('TrangThai', '1')->get();
         $allThuongHieu = ThuongHieu::orderBy('MaThuongHieu', 'DESC')->where('TrangThai', '1')->get();
-        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->paginate('20');
+        $allSanPham = SanPham::orderBy('MaDanhMuc', 'DESC')->where('TrangThai', '1')->whereNotIn('SoLuongHienTai', ['', 0])->paginate('20');
 
         $meta_desc = "Trang thanh toán sản phẩm";
         $meta_keywords = "Trang thanh toán sản phẩm";
@@ -368,13 +368,13 @@ class HomeController extends Controller
         $allDanhMucCon = '';
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
-                $allSanPham = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->where('TrangThai', '1')->paginate(20);
-                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+                $allSanPham = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->where('TrangThai', '1')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
             }else{
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
-                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'DESC')->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'DESC')->take(12)->get();
+                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'DESC')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'DESC')->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
                 }
                 return view('pages.SanPham.BoLoc.GiaThapDenCao')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -404,13 +404,13 @@ class HomeController extends Controller
 
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
-                $allSanPham = SanPham::orderBy('GiaSanPham', 'ASC')->where('MaDanhMuc', $MaDanhMuc)->where('TrangThai', '1')->paginate(20);
-                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'ASC')->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+                $allSanPham = SanPham::orderBy('GiaSanPham', 'ASC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->where('TrangThai', '1')->paginate(20);
+                $sanPhamNoiBat = SanPham::orderBy('GiaSanPham', 'ASC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
             }else{
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
-                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'ASC')->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'ASC')->take(12)->get();
+                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'ASC')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('GiaSanPham', 'ASC')->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
                 }
                 return view('pages.SanPham.BoLoc.GiaCaoDenThap')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -440,13 +440,13 @@ class HomeController extends Controller
 
         foreach($allDanhMuc as $key =>$valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $MaDanhMuc){
-                $allSanPham = SanPham::orderBy('SoLuongBan', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->where('TrangThai', '1')->paginate(20);
-                $sanPhamNoiBat = SanPham::orderBy('SoLuongBan', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->take(12)->get();
+                $allSanPham = SanPham::orderBy('SoLuongBan', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->where('TrangThai', '1')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                $sanPhamNoiBat = SanPham::orderBy('SoLuongBan', 'DESC')->where('MaDanhMuc', $MaDanhMuc)->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
             }else{
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
-                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('SoLuongBan', 'DESC')->paginate(20);
-                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('SoLuongBan', 'DESC')->take(12)->get();
+                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('SoLuongBan', 'DESC')->whereNotIn('SoLuongHienTai', ['', 0])->paginate(20);
+                    $sanPhamNoiBat = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->orderBy('SoLuongBan', 'DESC')->whereNotIn('SoLuongHienTai', ['', 0])->take(12)->get();
                 }
                 return view('pages.SanPham.BoLoc.GiaCaoDenThap')
                 ->with(compact('allDanhMuc', 'allThuongHieu', 'allSanPham', 'allTHDM', 'allDanhMucTSKT', 'allTSKT', 'MaDanhMuc'))
@@ -467,11 +467,11 @@ class HomeController extends Controller
         $allDanhMucCon = '';
         foreach($allDanhMuc as $key => $valueDanhMuc){
             if($valueDanhMuc->DanhMucCha != $data['MaDanhMuc']){
-                $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $data['MaDanhMuc'])->take(5)->get();
+                $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $data['MaDanhMuc'])->whereNotIn('SoLuongHienTai', ['', 0])->take(5)->get();
             }else{
                 $allDanhMucCon = DanhMuc::orderBy('MaDanhMuc', 'DESC')->where('MaDanhMuc', $valueDanhMuc['MaDanhMuc'])->get();
                 foreach($allDanhMucCon as $key => $valueDanhMucCon){
-                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->take(5)->get();
+                    $allSanPham = SanPham::where('TrangThai', '1')->where('MaDanhMuc', $valueDanhMucCon['MaDanhMuc'])->whereNotIn('SoLuongHienTai', ['', 0])->take(5)->get();
                 }
                 $output.='
                 <div class="tab-content">
@@ -493,6 +493,7 @@ class HomeController extends Controller
                                         <input type="hidden" value="'. $sanPham->ChieuDay .'" class="cart_product_thick_'. $sanPham->MaSanPham .'">
                                         <input type="hidden" value="'. $sanPham->CanNang .'" class="cart_product_weight_'. $sanPham->MaSanPham .'">
                                         <input type="hidden" value="'. $sanPham->ThoiGianBaoHanh .'" class="cart_product_guarantee_'. $sanPham->MaSanPham .'">
+                                        <input type="hidden" value="'. $sanPham->SoLuongHienTai .'" class="cart_product_quantity_'. $sanPham->MaSanPham .'">
                                         <input type="hidden" value="1" class="cart_product_qty_'. $sanPham->MaSanPham .'">
                                         <a href="'. route('/ChiTietSanPham', $sanPham->MaSanPham) .'">
                                             <img src="'. asset('upload/SanPham/'.$sanPham->HinhAnh) .'" alt="" />
@@ -561,6 +562,7 @@ class HomeController extends Controller
                                 <input type="hidden" value="'. $sanPham->ChieuDay .'" class="cart_product_thick_'. $sanPham->MaSanPham .'">
                                 <input type="hidden" value="'. $sanPham->CanNang .'" class="cart_product_weight_'. $sanPham->MaSanPham .'">
                                 <input type="hidden" value="'. $sanPham->ThoiGianBaoHanh .'" class="cart_product_guarantee_'. $sanPham->MaSanPham .'">
+                                <input type="hidden" value="'. $sanPham->SoLuongHienTai .'" class="cart_product_quantity_'. $sanPham->MaSanPham .'">
                                 <input type="hidden" value="1" class="cart_product_qty_'. $sanPham->MaSanPham .'">
                                 <a href="'. route('/ChiTietSanPham', $sanPham->MaSanPham) .'">
                                     <img src="'. asset('upload/SanPham/'.$sanPham->HinhAnh) .'" alt="" />

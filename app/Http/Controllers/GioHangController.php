@@ -51,6 +51,7 @@ class GioHangController extends Controller
                     'ChieuDay' => $data['cart_product_thick'],
                     'CanNang' => $data['cart_product_weight'],
                     'ThoiGianBaoHanh' => $data['cart_product_guarantee'],
+                    'SoLuongHienTai' => $data['cart_product_quantity'],
                 );
                 Session::put('cart', $cart);
             }
@@ -67,6 +68,7 @@ class GioHangController extends Controller
                 'ChieuDay' => $data['cart_product_thick'],
                 'CanNang' => $data['cart_product_weight'],
                 'ThoiGianBaoHanh' => $data['cart_product_guarantee'],
+                'SoLuongHienTai' => $data['cart_product_quantity'],
             );
         }
         Session::put('cart', $cart);
@@ -105,6 +107,7 @@ class GioHangController extends Controller
     public function ThayDoiSoLuong(Request $request){
         $data = $request->all();
         $cart = Session::get('cart');
+        $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
         if($cart == true){
             foreach($cart as $session => $value){
                 if($value['session_id'] == $data['cartid']){
@@ -196,9 +199,6 @@ class GioHangController extends Controller
         }else{
             return Redirect()->back()->with('message', 'Chưa áp dụng phiếu giảm giá nào'); 
         }
-        // echo '<pre>';
-        // print_r($phieuGiamGia['MaGiamGia']);
-        // echo '</pre>';
     }
 
     public function DatHang(Request $request){
