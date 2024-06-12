@@ -11,7 +11,7 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-5">
-                <form action="{{ route('timKiemTK') }}" method="get">
+                <form action="{{ Route('timKiemTK') }}" method="get">
                     <div class="input-group">
                         <input type="text" class="input-sm form-control" placeholder="Tìm kiếm" name="timKiem">
                         <span class="input-group-btn">
@@ -27,19 +27,21 @@
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
-                    <tr>                     
+                    <tr>     
+                        <th>STT</th>                
                         <th>Tên tài khoản</th>
                         <th>Email</th>
                         <th>SDT</th>                       
-                        <th>Quyền</th>
+                        <th>Vai trò</th>
                         <th>Trạng thái</th>
                         <th>Thời gian tạo</th>
                         <th>Quản lý</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $tk)
-                        <tr class="row-clickable" data-id="{{ $tk->TenTaiKhoan }}">
+                    @foreach ($data as $key => $tk)
+                        <tr>
+                            <td>{{ $key }}</td>
                             <td>{{ $tk->TenTaiKhoan }}</td>
                             <td>{{ $tk->Email }}</td>
                             <td>{{ $tk->SoDienThoai }}</td>
@@ -54,12 +56,8 @@
                             <td>{{ $tt }}</td>
                             <td>{{ $tk->ThoiGianTao }}</td>
                             <td>
-                                @if ($tk->Quyen != 'Khách hàng')
                                 <a href="{{ route('suaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; padding: 5px; color: green;" class="fa fa-pencil-square-o text-success text-active"></i></a>
                                 <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
-                                @else
-                                <a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $tk->TenTaiKhoan }} không?')" href="{{ route('xoaTK', ['id' => $tk->MaTaiKhoan]) }}"><i style="font-size: 20px; padding: 5px; color: red;" class="fa fa-times text-danger text"></i></a>
-                                @endif   
                             </td>
                         </tr>
                     @endforeach

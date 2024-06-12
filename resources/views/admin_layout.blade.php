@@ -110,6 +110,7 @@ $quyen = $user['Quyen'];
                         </a>
                         <ul class="sub">
                             <li><a href="{{ route('themQuyenTK') }}">+ Thêm vai trò mới</a></li>
+                            <li><a href="{{ route('lietKeVaiTro') }}">+ Liệt kê vai trò</a></li>
                             <li><a href="{{ route('themQuyen') }}">+ Phân quyền</a></li>
                             <li><a href="{{ route('lietKeQH') }}">+ Liệt kê quyền hạn</a></li>
                         </ul>
