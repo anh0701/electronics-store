@@ -11,7 +11,7 @@
                     <form role="form" id="themQH" action="{{ Route('them-quyen-han')}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="">Chọn quyền:</label>
+                            <label for="">Chọn vai trò:</label>
                             <select class="form-control" id="tenQuyen" name="tenQuyen" style="width:100%">
                                 @if(isset($quyenTK))
                                     @foreach($quyenTK as $i)
@@ -39,11 +39,11 @@
                     </form>
                     <!-- <a href="{{ route('lietKeTK') }}"><button class="btn btn-info" style="margin-top:5px;">Trở lại</button></a> -->
                     <div class="table-responsive">
-                        <p>Danh sách quyền hạn</p>
+                        <p class="head1">Danh sách quyền hạn</p>
                         <table id="phieuNhapTable" class="table table-striped b-t b-light">
                             <thead>
                                 <tr>   
-                                    <td>Tên quyền</td>
+                                    <td>Tên vai trò</td>
                                     <td>Tên quyền hạn</td>
                                 </tr>
                             </thead>

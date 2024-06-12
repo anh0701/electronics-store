@@ -11,7 +11,7 @@
                     <form role="form" id="from" action="/xuLyThemQTK" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="tenquyen">Tên quyền:</label>
+                            <label for="tenquyen">Tên vai trò:</label>
                             <input class="form-control" type="text" id="tenquyen" name="tenquyen" value="{{ old('tenquyen') }}">
                         </div>
                         @error('tenquyen')

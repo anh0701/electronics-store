@@ -130,6 +130,7 @@ class BaoCaoController extends Controller
         $tgDau = $request->input('tgDau');
         $tgCuoi = $request->input('tgCuoi');
         $data = json_decode($jsonData, true);
+        // dd($data);
 
         $tg = date_format(date_create($tgDau), 'm_Y');
         $tgD = date_format(date_create($tgDau), 'd/m/Y');
@@ -167,7 +168,7 @@ class BaoCaoController extends Controller
         ],
         ]);
         
-
+        $sheet->getRowDimension(5)->setRowHeight(30);
         $sheet->getColumnDimension('A')->setWidth(10);
         $sheet->getColumnDimension('B')->setWidth(60);
         $sheet->getColumnDimension('C')->setWidth(5);
@@ -293,6 +294,7 @@ class BaoCaoController extends Controller
             'startColor' => ['rgb' => 'FCDC2A'],
         ],
         ]);
+        $sheet->getStyle('E7:M' . $row)->getNumberFormat()->setFormatCode('#,##0');
 
         $sheet->setCellValue('D' . ($row + 3), 'Nguời lập biểu');
         $sheet->setCellValue('G' . ($row + 3), 'Kế toán trưởng');
@@ -333,8 +335,7 @@ class BaoCaoController extends Controller
         $filePath = public_path('baoCaoXNT/' . $fileName);
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
-        
-        return redirect()->route('xemBaoCao');
+        return response()->download($filePath, $fileName);
 
     }
 

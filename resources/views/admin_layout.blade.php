@@ -109,7 +109,7 @@ $quyen = $user['Quyen'];
                             <span>Quản lý phân quyền</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{ route('themQuyenTK') }}">+ Thêm quyền mới</a></li>
+                            <li><a href="{{ route('themQuyenTK') }}">+ Thêm vai trò mới</a></li>
                             <li><a href="{{ route('themQuyen') }}">+ Phân quyền</a></li>
                             <li><a href="{{ route('lietKeQH') }}">+ Liệt kê quyền hạn</a></li>
                         </ul>

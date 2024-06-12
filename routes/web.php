@@ -43,7 +43,7 @@ Route::get('/Test', [TonKhoController::class, 'Test'])->name('/Test');
 Route::get('/TrangLietKeBCDT', [TonKhoController::class, 'TrangLietKeBCDT'])->name('/TrangLietKeBCDT');
 Route::post('/dashboard-filter', [TonKhoController::class, 'dashboard_filter'])->name('/dashboard-filter');
 Route::post('/days-order', [TonKhoController::class, 'days_order'])->name('/days-order');
-
+Route::get('/xuatFileBCDT', [TonKhoController::class, 'xuatFileBCDT'])->name('xuatFileBCDT');
 
 
 

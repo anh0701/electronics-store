@@ -6,6 +6,9 @@ use App\Models\SanPham;
 use App\Models\BaoCaoDoanhThu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Carbon\Carbon;
 
 class TonKhoController extends Controller
@@ -104,6 +107,238 @@ class TonKhoController extends Controller
     public function TrangLietKeBCDT(){
         $baoCaoDoanhThu = BaoCaoDoanhThu::orderBy('MaBCDT', 'DESC')->paginate(20);
         return view('admin.BaoCaoDoanhThu.TrangLietKeBCDT')->with(compact('baoCaoDoanhThu'));
+    }
+
+    public function xuatFileBCDT(Request $request){
+        $baoCaoDoanhThu = BaoCaoDoanhThu::orderBy('MaBCDT', 'ASC')->get();
+        
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'BÁO CÁO DOANH THU');
+        $sheet->mergeCells('A1:K1');
+        $sheet->getStyle('A1')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 18,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+
+        $sheet->setCellValue('A2', 'Ngày lập: ' . date('d/m/Y'));
+        $sheet->mergeCells('A2:K2');
+        $sheet->getStyle('A2:K2')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'italic' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+
+        $sheet->setCellValue('I4', 'TỔNG CỘNG');
+        $sheet->mergeCells('I4:K4');
+        $sheet->getStyle('I4:K4')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'FFFFFF'],
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'wrapText' => true,
+        ],
+        ]);
+
+        $sheet->getRowDimension(4)->setRowHeight(30);
+        $sheet->getRowDimension(5)->setRowHeight(30);
+        $sheet->getColumnDimension('A')->setWidth(15);
+        $sheet->getColumnDimension('B')->setWidth(20);
+        $sheet->getColumnDimension('C')->setWidth(20);
+        $sheet->getColumnDimension('D')->setWidth(20);
+        $sheet->getColumnDimension('E')->setWidth(20); 
+        $sheet->getColumnDimension('F')->setWidth(15); 
+        $sheet->getColumnDimension('G')->setWidth(15);
+        $sheet->getColumnDimension('H')->setWidth(15);
+        $sheet->getColumnDimension('I')->setWidth(20);
+        $sheet->getColumnDimension('J')->setWidth(20);
+        $sheet->getColumnDimension('K')->setWidth(20); 
+
+        
+        $sheet->setCellValue('A5', 'Ngày')
+              ->setCellValue('B5', 'Số tiền')
+              ->setCellValue('C5', 'Theo kế hoạch')
+              ->setCellValue('D5', 'Chi phí')
+              ->setCellValue('E5', 'Doanh thu')
+              ->setCellValue('F5', 'Tháng')
+              ->setCellValue('G5', 'Quý')
+              ->setCellValue('H5', 'Năm')
+              ->setCellValue('I5', 'Tháng')
+              ->setCellValue('J5', 'Quý')
+              ->setCellValue('K5', 'Năm');
+
+        $sheet->getStyle('A5:K5')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'BFF6C3'],
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'wrapText' => true,
+        ],
+        ]);
+        
+
+        $tongTienThang = BaoCaoDoanhThu::selectRaw('YEAR(order_date) as nam, MONTH(order_date) as thang, SUM(sales) as tongTien')
+                                        ->groupBy('nam', 'thang')
+                                        ->orderBy('nam', 'ASC')
+                                        ->orderBy('thang', 'ASC')
+                                        ->get();
+        $tongTienQuy = BaoCaoDoanhThu::selectRaw('YEAR(order_date) as nam, QUARTER(order_date) as quy, SUM(sales) as tongTien')
+                                        ->groupBy('nam', 'quy')
+                                        ->orderBy('nam', 'ASC')
+                                        ->orderBy('quy', 'ASC')
+                                        ->get();
+        $tongTienNam = BaoCaoDoanhThu::selectRaw('YEAR(order_date) as nam, SUM(sales) as tongTien')
+                                        ->groupBy('nam')
+                                        ->orderBy('nam', 'ASC')
+                                        ->get();
+        $row = 6;
+        foreach ($baoCaoDoanhThu as $item) {
+            $ngay = date_format(date_create($item->order_date), 'd/m/Y');
+            $thang = date_format(date_create($item->order_date), 'm');
+            $nam = date_format(date_create($item->order_date), 'Y');
+            if($thang == 1 || $thang == 2 || $thang == 3){
+                $quy = 1;
+            }elseif($thang == 4 || $thang == 5 || $thang == 6){
+                $quy = 2;
+            }elseif($thang == 7 || $thang == 8 || $thang == 9){
+                $quy = 3;
+            }else $quy = 4;
+            $chiphi = $item->sales - $item->profit;
+            foreach($tongTienThang as $i){
+                if($i->thang == $thang){
+                    $doanhThuThang = $i->tongTien;
+                    break;
+                }
+            }
+            foreach($tongTienQuy as $i){
+                if($i->quy == $quy){
+                    $doanhThuQuy = $i->tongTien;
+                    break;
+                }
+            }
+            foreach($tongTienNam as $i){
+                if($i->nam == $nam){
+                    $doanhThuNam = $i->tongTien;
+                    break;
+                }
+            }
+            $sheet->setCellValue('A' . $row, $ngay)
+                  ->setCellValue('B' . $row, $item->sales)
+                //   ->setCellValue('C' . $row, $item->sales)
+                  ->setCellValue('D' . $row, $chiphi)
+                  ->setCellValue('E' . $row, $item->profit)
+                  ->setCellValue('F' . $row, 'Tháng ' . $thang)
+                  ->setCellValue('G' . $row, 'Quý ' . $quy)
+                  ->setCellValue('H' . $row, 'Năm ' . $nam)
+                  ->setCellValue('I' . $row, $doanhThuThang)
+                  ->setCellValue('J' . $row, $doanhThuQuy)
+                  ->setCellValue('K' . $row, $doanhThuNam);
+            $row++;
+        }
+        $sheet->getStyle('A6:K' . ($row - 1))->applyFromArray([
+            'font' => [
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        $sheet->getStyle('B6:K' . $row)->getNumberFormat()->setFormatCode('#,##0');
+        
+
+        $sheet->setCellValue('C' . ($row + 3), 'Nguời lập biểu');
+        $sheet->setCellValue('F' . ($row + 3), 'Kế toán trưởng');
+        $sheet->setCellValue('I' . ($row + 3), 'Giám đốc');
+        $sheet->mergeCells('C'.($row + 3) . ':D' . ($row + 3));
+        $sheet->mergeCells('F'.($row + 3) . ':G' . ($row + 3));
+        $sheet->mergeCells('I'.($row + 3) . ':J' . ($row + 3));
+        $sheet->getStyle('A' . ($row + 3) . ':K' . ($row + 3))->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        
+        $sheet->setCellValue('C' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('F' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('I' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->mergeCells('C'.($row + 4) . ':D' . ($row + 4));
+        $sheet->mergeCells('F'.($row + 4) . ':G' . ($row + 4));
+        $sheet->mergeCells('I'.($row + 4) . ':J' . ($row + 4));
+        $sheet->getStyle('A' . ($row + 4) . ':K' . ($row + 4))->applyFromArray([
+            'font' => [
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+
+        $tg = date('Y_m_d');
+        $fileName = $tg . '.xlsx';
+        $filePath = public_path('baoCaoDoanhThu/' . $fileName);
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+        return response()->download($filePath, $fileName);
     }
 
 }
