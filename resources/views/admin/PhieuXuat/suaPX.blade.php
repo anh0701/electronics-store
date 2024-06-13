@@ -77,7 +77,7 @@
                         </div>
                         <div class="form-group">
                             <label for="MaSanPham">Sản phẩm</label>
-                            <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP"
+                            <select class="form-control  @error('MaSanPham') is-invalid @enderror" id="MaSanPham" name="maSP" 
                             style="width: 100%;">
                             </select>
                         </div>
@@ -85,10 +85,12 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
-                            <label for="">Số lượng</label>
-                            <input type="number" class="form-control" name="soLuong" min="1" value="{{ old('soLuong') }}">
+                            <label for="">Seri</label>
+                            <select class="form-control input-lg m-bot15" id="seri" name="seri[]" multiple>
+                                
+                            </select>
                         </div>
-                        @error('soLuong')
+                        @error('seri')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <button type="submit" class="btn btn-info">Thêm sản phẩm xuất?</button>
@@ -114,10 +116,10 @@
                                     <tr>
                                         <td>{{ $ct->MaPhieuXuat }}</td>
                                         <td>{{ $ct->TenSanPham }}</td>
-                                        <td><input type="number" value="{{ $ct->SoLuong }}" id="soLuong_{{ $ct->MaCTPX }}"></td>
+                                        <td>{{ $ct->SoLuong }}</td>
 
                                         <td id = "myLink">
-                                            <a href="javascript:void(0);" class="update-btn" data-id="{{ $ct->MaCTPX }}">Cập nhật</a>
+                                        
                                             <a onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $ct->TenSanPham }} trong phiếu xuất không?')" href="{{ route('xoaCTPXS', ['id' => $ct->MaCTPX, 'maPX' => $px->MaPhieuXuat]) }}">
                                                 <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: red;" class="fa fa-times text-danger text"></i>
                                             </a>
@@ -154,126 +156,104 @@ $(document).ready(function() {
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    $('.update-btn').on('click', function() {
-        var MaCTPX = $(this).data('id');
-        var soLuong = $('#soLuong_' + MaCTPX).val();
+    document.getElementById('lyDoXuat').addEventListener('change', function() {
+        var selectedValue = this.value;
+        var maDHGroup = document.getElementById('maDHGroup');
+        var lyDoKhacGroup = document.getElementById('lyDoKhacGroup');
 
-        $.ajax({
-            url: '{{ route('update.soluong-px') }}',
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                MaCTPX: MaCTPX,
-                soLuong: soLuong,
-            },
-            success: function(data) {
-                if (data.success) {
-                    Swal.fire({
-                            icon: 'success',
-                            title: 'Thành công',
-                            text: 'Cập nhật thành công',
-                            showConfirmButton: false,
-                            timer: 800
-                        });
-                } else {
-                    Swal.fire({
-                            icon: 'error',
-                            title: 'Thất bại',
-                            text: 'Cập nhật thất bại: ' + data.message,
-                            showConfirmButton: true
-                        });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
-                Swal.fire({
-                        icon: 'error',
-                        title: 'Thất bại',
-                        text: 'Bạn nhập thiếu thông tin!!!Mời bạn kiểm tra lại thông tin!!!',
-                        showConfirmButton: true
-                    });
-            }
-        });
+        if (selectedValue === 'XuatBan') {
+            maDHGroup.classList.remove('hidden');
+            lyDoKhacGroup.classList.add('hidden');
+        } else if (selectedValue === 'Khac') {
+            maDHGroup.classList.add('hidden');
+            lyDoKhacGroup.classList.remove('hidden');
+        }
     });
-});
-</script>
-    <script>
-        document.getElementById('lyDoXuat').addEventListener('change', function() {
-            var selectedValue = this.value;
-            var maDHGroup = document.getElementById('maDHGroup');
-            var lyDoKhacGroup = document.getElementById('lyDoKhacGroup');
 
-            if (selectedValue === 'XuatBan') {
-                maDHGroup.classList.remove('hidden');
-                lyDoKhacGroup.classList.add('hidden');
-            } else if (selectedValue === 'Khac') {
-                maDHGroup.classList.add('hidden');
-                lyDoKhacGroup.classList.remove('hidden');
+    // Initialize the form based on the default selected value
+    document.getElementById('lyDoXuat').dispatchEvent(new Event('change'));
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        var selectedValues = {!! json_encode(old('MaSanPham')) !!};
+
+        var selectedLoaiSP = '';
+
+        $('#loaiSP').on('change', function() {
+            selectedLoaiSP = $(this).val();
+            $('#MaSanPham').val(null).trigger('change');
+        });
+
+        $('#MaSanPham').select2({
+            placeholder: 'Chọn sản phẩm',
+            allowClear: true,
+            ajax: {
+                url: '{{ route("api.san-pham-pn") }}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // từ khóa tìm kiếm
+                        loaiSP:selectedLoaiSP
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
             }
         });
 
-        // Initialize the form based on the default selected value
-        document.getElementById('lyDoXuat').dispatchEvent(new Event('change'));
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            var selectedValues = {!! json_encode(old('MaSanPham')) !!};
-
-            var selectedLoaiSP = '';
-
-            $('#loaiSP').on('change', function() {
-                selectedLoaiSP = $(this).val();
-                $('#MaSanPham').val(null).trigger('change');
-            });
-
-            $('#MaSanPham').select2({
-                placeholder: 'Chọn sản phẩm',
-                allowClear: true,
-                ajax: {
-                    url: '{{ route("api.san-pham-pn") }}',
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                            q: params.term, // từ khóa tìm kiếm
-                            loaiSP:selectedLoaiSP
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
+        // Khởi tạo lại giá trị đã chọn nếu có
+        if (selectedValues) {
+            $.ajax({
+                url: '{{ route("api.san-pham-pn") }}',
+                dataType: 'json',
+                data: {
+                    ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin
+                },
+                success: function (data) {
+                    var selectedOptions = [];
+                    $.each(data, function (index, item) {
+                        selectedOptions.push({
+                            id: item.id,
+                            text: item.text
+                        });
+                        $('#MaSanPham').append(new Option(item.text, item.id, true, true)).trigger('change');
+                    });
                 }
             });
-
-            // Khởi tạo lại giá trị đã chọn nếu có
-            if (selectedValues) {
+        }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#seri').select2();
+        $('#MaSanPham').on('change', function() {
+            var maSP = $(this).val();
+            if(maSP) {
                 $.ajax({
-                    url: '{{ route("api.san-pham-pn") }}',
-                    dataType: 'json',
-                    data: {
-                        ids: selectedValues // gửi các ID của sản phẩm để lấy thông tin
-                    },
-                    success: function (data) {
-                        var selectedOptions = [];
-                        $.each(data, function (index, item) {
-                            selectedOptions.push({
-                                id: item.id,
-                                text: item.text
-                            });
-                            $('#MaSanPham').append(new Option(item.text, item.id, true, true)).trigger('change');
+                    url: '/getSeri/'+maSP,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('#seri').empty();
+                        $.each(data, function(key, value) {
+                            $('#seri').append('<option value="'+ value.MaSeri +'">'+ value.MaSeri +'</option>');
                         });
                     }
                 });
+            } else {
+                $('#seri').empty();
             }
         });
-    </script>
-    
+    });
+</script>
 @endsection

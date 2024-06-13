@@ -33,7 +33,10 @@ Route::get('/bao-cao-chi-tiet/{fileName}', [BaoCaoController::class, 'xemCT'])->
 Route::get('/tai-xuong/{fileName}', [BaoCaoController:: class, 'taiXuong'])->name('taiXuong');
 Route::post('/tao-bao-cao', [BaoCaoController::class, 'xuLyTaoBaoCao'])->name('xuLyTaoBaoCao');
 Route::post('/luu-bao-cao', [BaoCaoController::class, 'luuFile'])->name('luuFile');
+Route::post('/luu-bao-cao-nhap', [BaoCaoController::class, 'luuFileNhap'])->name('luuFileNhap');
 Route::get('/xuatFilePN/{id}', [PhieuNhapController::class, 'xuatFilePN'])->name('xuatFilePN');
+Route::get('xuatFileBCDTNgay', [TonKhoController::class, 'xuatFileBCDTNgay'])->name('xuatFileBCDTNgay');
+
 
 //TonKho
 Route::get('liet-ke-ton-kho', [TonKhoController::class, 'lietKe'])->name('lietKeTonKho');
@@ -88,6 +91,7 @@ Route::get('/xoa-chi-tiet-phieu-xuat1/{id}/{maPX}', [PhieuXuatController::class,
 Route::get('/sua-phieu-xuat/{id}', [PhieuXuatController::class, 'suaPX'])->name('suaPX');
 Route::post('/sua-phieu-xuat', [PhieuXuatController::class, 'suaPXP'])->name('suaPXP');
 Route::post('/update-soluong-px', [PhieuXuatController::class, 'updateSoLuong'])->name('update.soluong-px');
+Route::get('/getSeri/{maSP}', [PhieuXuatController::class, 'getSeri']);
 
 // Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])->name('api.san-pham-px');
 
@@ -111,7 +115,9 @@ Route::get('/luu-phieu-nhap/{id}', [PhieuNhapController::class, 'luuPN'])->name(
 Route::get('/sua-phieu-nhap/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
 Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySuaPN'])->name('xuLySuaPN');
 Route::post('/update-soluong', [PhieuNhapController::class, 'updateSoLuong'])->name('update.soluong');
+Route::get('/them-seri-PN/{id}', [PhieuNhapController::class, 'themSeri_get'])->name('themSeriPN');
 Route::post('themSeri', [PhieuNhapController::class, 'themSeri'])->name('themSeri');
+
 
 //Nha cung cap
 Route::get('/liet-ke-nha-cung-cap', [NhaCungCapController::class, 'lietKe'])->name('lietKeNCC');

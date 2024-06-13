@@ -206,12 +206,162 @@ class TonKhoController extends Controller
                     }
                 }
             }
+            
             $allSanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
             $chart_data = collect($chart_data)->unique('MaSanPham')->toArray();
             $allChiTietPhieuNhap = ChiTietPhieuNhap::orderBy('MaSanPham', 'DESC')->get();
     
             return view('admin.BaoCaoDoanhThu.TrangLietKeBCDT')->with(compact('chart_data', 'allSanPham', 'allChiTietPhieuNhap'));
         }
+    }
+
+    public function xuatFileBCDTNgay(Request $request){
+        $data = $request->all();
+        $loiNhuan = $request->loiNhuan;
+       
+        $allDonHang = DonHang::where('TrangThai', 3)->get();
+        $chart_data = [];
+        foreach($allDonHang as $key => $donHang){
+            $allChiTietDonHang = DB::table('tbl_chitietdonhang')
+                                ->select('tbl_chitietdonhang.*', 'tbl_sanpham.TenSanPham')
+                                ->join('tbl_sanpham', 'tbl_sanpham.MaSanPham', '=', 'tbl_chitietdonhang.MaSanPham') 
+                                ->where('order_code', $donHang['order_code'])->get();
+            foreach($allChiTietDonHang as $key => $ctdh){
+                $chart_data[] = array(
+                    'MaSanPham' => $ctdh->MaSanPham,
+                    'TenSanPham' => $ctdh->TenSanPham,
+                    'SoLuong' => $ctdh->SoLuong,
+                    'GiaSanPham' => $ctdh->GiaSanPham,
+                );
+            }
+        }
+        
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'BÁO CÁO DOANH THU');
+        $sheet->mergeCells('A1:E1');
+        $sheet->getStyle('A1')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 18,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        $sheet->setCellValue('A2', 'Từ ngày: 02/06/2024');
+        $sheet->setCellValue('A3', 'Đến ngày: 02/06/2024');
+        $sheet->mergeCells('A2:E2');
+        $sheet->mergeCells('A3:E3');
+        $sheet->getStyle('A2:E3')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'italic' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        
+        $sheet->getRowDimension(5)->setRowHeight(30);
+        $sheet->getColumnDimension('A')->setWidth(10);
+        $sheet->getColumnDimension('B')->setWidth(60);
+        $sheet->getColumnDimension('C')->setWidth(20);
+        $sheet->getColumnDimension('D')->setWidth(20);
+        $sheet->getColumnDimension('E')->setWidth(20); 
+        $sheet->getColumnDimension('F')->setWidth(20); 
+        $sheet->getColumnDimension('G')->setWidth(20);
+        
+        
+        $sheet->setCellValue('A5', 'Mã sản phẩm')
+              ->setCellValue('B5', 'Tên sản phẩm')
+              ->setCellValue('C5', 'Số lượng bán')
+              ->setCellValue('D5', 'Giá sản phẩm')
+              ->setCellValue('E5', 'Thành tiền');
+        $sheet->getStyle('A5:E5')->applyFromArray([
+        'font' => [
+        'bold' => true,
+        'color' => ['rgb' => '0E46A3'],
+        'name' => 'Times New Roman',
+        'size' => 13,
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'BFF6C3'],
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'wrapText' => true,
+        ],
+        ]);
+
+        $row = 6;
+        $tongNhap = 0;
+        foreach ($chart_data as $item) {
+            $thanhTienNhap = $item['SoLuong'] * $item['GiaSanPham'];
+            $tongNhap += $thanhTienNhap;
+            $sheet->setCellValue('A' . $row, $item['MaSanPham'])
+                  ->setCellValue('B' . $row, $item['TenSanPham'])
+                  ->setCellValue('C' . $row, $item['SoLuong'])
+                  ->setCellValue('D' . $row, $item['GiaSanPham'])
+                  ->setCellValue('E' . $row, $thanhTienNhap);
+            $row++;
+        }
+        $sheet->getStyle('A6:E' . ($row + 1))->applyFromArray([
+            'font' => [
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        $sheet->setCellValue('B' . $row, 'Doanh thu');
+        $sheet->setCellValue('E' . $row, $tongNhap);
+        
+        $sheet->getStyle('A' . $row . ':E' . $row)->applyFromArray([
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'FCDC2A'],
+        ],
+        ]);
+        
+        $sheet->setCellValue('B' . ($row + 1), 'Lợi nhuận');
+        $sheet->setCellValue('E' . ($row + 1), $loiNhuan);
+        
+        $sheet->getStyle('A' . ($row + 1) . ':E' . ($row + 1))->applyFromArray([
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'FCDC2A'],
+        ],
+        ]);
+        $sheet->getStyle('E7:M' . ($row + 1))->getNumberFormat()->setFormatCode('#,##0');
+
+        $fileName = 'bao_cao_doanh_thu.xlsx';
+        $filePath = public_path('baoCaoXNT/' . $fileName);
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+        return response()->download($filePath, $fileName);
+        
     }
 
     public function xuatFileBCDT(Request $request){

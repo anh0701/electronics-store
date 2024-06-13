@@ -79,7 +79,16 @@ class BaoCaoController extends Controller
             $tgHienTai = Carbon::now();
             $tgDau = $tgHienTai->copy()->startOfMonth()->toDateTimeString();
             $tgCuoi = $tgHienTai->copy()->endOfMonth()->toDateTimeString();
+        }elseif($request->thoiGian == 'thangTruoc'){
+            $tgHienTai = Carbon::now();
+            $thangTruoc = $tgHienTai->subMonth();
+
+            $tgDau = $thangTruoc->copy()->startOfMonth()->toDateTimeString();
+            $tgCuoi = $thangTruoc->copy()->endOfMonth()->toDateTimeString();
         }
+        // dd($tgDau);
+        $loaiBaoCao = $request->loaiBaoCao;
+
         
 
 
@@ -106,23 +115,45 @@ class BaoCaoController extends Controller
 
 
         $data = collect();
-        foreach($sp as $maSanPham => $sanPham){
-            $tongNhap = $tongSLNhapVaGia->get($maSanPham, ['tongSoLuong' => 0, 'giaNhap' => 0]);
-            $data->push([
-                'maSanPham' => $maSanPham,
-                'tenSanPham' => $sanPham->TenSanPham,
-                'maDanhMuc' => $sanPham->MaDanhMuc,
-                'soLuongSP' => $sanPham->SoLuongTrongKho == 0 ? 0 : $sanPham->SoLuongTrongKho,
-                'tongSLNhap' => $tongNhap['tongSoLuong'],
-                'giaNhap' => $tongNhap['giaNhap'] == 0 ? $sanPham->GiaSanPham : $tongNhap['giaNhap'],
-                'tongSLXuat' => $tongSLXuat->get($maSanPham, 0),
-                'giaBan' => $sanPham->GiaSanPham,
-            ]);
+        if($loaiBaoCao == 'baoCaoXNT'){
+            foreach($sp as $maSanPham => $sanPham){
+                $tongNhap = $tongSLNhapVaGia->get($maSanPham, ['tongSoLuong' => 0, 'giaNhap' => 0]);
+                $data->push([
+                    'maSanPham' => $maSanPham,
+                    'tenSanPham' => $sanPham->TenSanPham,
+                    'maDanhMuc' => $sanPham->MaDanhMuc,
+                    'soLuongSP' => $sanPham->SoLuongTrongKho == 0 ? 0 : $sanPham->SoLuongTrongKho,
+                    'tongSLNhap' => $tongNhap['tongSoLuong'],
+                    'giaNhap' => $tongNhap['giaNhap'] == 0 ? $sanPham->GiaSanPham : $tongNhap['giaNhap'],
+                    'tongSLXuat' => $tongSLXuat->get($maSanPham, 0),
+                    'giaBan' => $sanPham->GiaSanPham,
+                ]);
+            }
+        }elseif($loaiBaoCao == 'baoCaoN'){
+            foreach($sp as $maSanPham => $sanPham){
+                $tongNhap = $tongSLNhapVaGia->get($maSanPham, ['tongSoLuong' => 0, 'giaNhap' => 0]);
+                if($tongNhap['tongSoLuong'] > 0){
+                    $data->push([
+                        'maSanPham' => $maSanPham,
+                        'tenSanPham' => $sanPham->TenSanPham,
+                        'maDanhMuc' => $sanPham->MaDanhMuc,
+                        'tongSLNhap' => $tongNhap['tongSoLuong'],
+                        'giaNhap' => $tongNhap['giaNhap'] == 0 ? $sanPham->GiaSanPham : $tongNhap['giaNhap'],
+                    ]);
+                }else{
+                    
+                }
+                
+            }
+            return view('admin.BaoCao.baoCaoNhap', ['data' => $data, 'tgDau'=>$tgDau, 'tgCuoi' => $tgCuoi, 'loaiBaoCao'=>$loaiBaoCao]);
+        }else{
+
         }
+        
 
-        $dataSP = $data->sortByDesc('tongSLXuat'); 
+        // $dataSP = $data->sortByDesc('tongSLXuat'); 
 
-        return view('admin.BaoCao.baoCao', ['data' => $dataSP, 'tgDau'=>$tgDau, 'tgCuoi' => $tgCuoi]);
+        return view('admin.BaoCao.baoCao', ['data' => $data, 'tgDau'=>$tgDau, 'tgCuoi' => $tgCuoi, 'loaiBaoCao'=>$loaiBaoCao]);
     }
 
     public function luuFile(Request $request){
@@ -332,6 +363,185 @@ class BaoCaoController extends Controller
         ]);
 
         $fileName = $tg . '.xlsx';
+        $filePath = public_path('baoCaoXNT/' . $fileName);
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+        return response()->download($filePath, $fileName);
+
+    }
+
+    public function luuFileNhap(Request $request){
+        $jsonData = $request->input('dataSP');
+        $tgDau = $request->input('tgDau');
+        $tgCuoi = $request->input('tgCuoi');
+        $data = json_decode($jsonData, true);
+        // dd($data);
+
+        $tg = date_format(date_create($tgDau), 'm_Y');
+        $tgD = date_format(date_create($tgDau), 'd/m/Y');
+        $tgC = date_format(date_create($tgCuoi), 'd/m/Y');
+        
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'BÁO CÁO XUẤT NHẬP TỒN');
+        $sheet->mergeCells('A1:G1');
+        $sheet->getStyle('A1')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 18,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        $sheet->setCellValue('A2', 'Từ ngày: ' . $tgD);
+        $sheet->setCellValue('A3', 'Đến ngày: ' . $tgC);
+        $sheet->mergeCells('A2:G2');
+        $sheet->mergeCells('A3:G3');
+        $sheet->getStyle('A2:G3')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'italic' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        
+        $sheet->getRowDimension(5)->setRowHeight(30);
+        $sheet->getColumnDimension('A')->setWidth(10);
+        $sheet->getColumnDimension('B')->setWidth(60);
+        $sheet->getColumnDimension('C')->setWidth(5);
+        
+        $sheet->getColumnDimension('E')->setWidth(10); 
+        $sheet->getColumnDimension('F')->setWidth(12); 
+        $sheet->getColumnDimension('G')->setWidth(15);
+        
+        
+        $sheet->setCellValue('A5', 'Mã sản phẩm')
+              ->setCellValue('B5', 'Tên sản phẩm')
+              ->setCellValue('C5', 'Mã danh mục')
+              ->setCellValue('E5', 'Nhập trong kỳ');
+        $sheet->mergeCells('A5:A6');
+        $sheet->mergeCells('B5:B6');
+        $sheet->mergeCells('D5:D6');
+        $sheet->mergeCells('E5:G5');
+        $sheet->mergeCells('H5:J5');
+        $sheet->mergeCells('K5:M5');
+        $sheet->setCellValue('E6', 'Số lượng')
+                ->setCellValue('F6', 'Giá nhập')
+                ->setCellValue('G6', 'Thành tiền');
+
+
+        $sheet->getStyle('A5:G6')->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '0E46A3'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'BFF6C3'],
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'wrapText' => true,
+        ],
+        ]);
+        $sheet->getColumnDimension('C')->setVisible(false);
+        $sheet->getColumnDimension('D')->setVisible(false);
+        $row = 7;
+        $tongNhap = 0;
+        $tongSoNhap = 0;
+        foreach ($data as $item) {
+            $thanhTienNhap = $item['tongSLNhap'] * $item['giaNhap'];
+            $tongNhap += $thanhTienNhap;
+            $tongSoNhap += $item['tongSLNhap'];
+            $sheet->setCellValue('A' . $row, $item['maSanPham'])
+                  ->setCellValue('B' . $row, $item['tenSanPham'])
+                  ->setCellValue('C' . $row, $item['maDanhMuc'])
+                  ->setCellValue('E' . $row, $item['tongSLNhap'])
+                  ->setCellValue('F' . $row, $item['giaNhap'])
+                  ->setCellValue('G' . $row, $thanhTienNhap);
+            $row++;
+        }
+        $sheet->getStyle('A6:G' . ($row))->applyFromArray([
+            'font' => [
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                'color' => ['rgb' => '000000'],
+            ],
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        $sheet->setCellValue('B' . $row, 'Tổng');
+        $sheet->setCellValue('E' . $row, $tongSoNhap);
+        $sheet->setCellValue('G' . $row, $tongNhap);
+        
+        $sheet->getStyle('A' . $row . ':G' . $row)->applyFromArray([
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => ['rgb' => 'FCDC2A'],
+        ],
+        ]);
+        $sheet->getStyle('E7:M' . $row)->getNumberFormat()->setFormatCode('#,##0');
+
+        $sheet->setCellValue('B' . ($row + 3), 'Nguời lập biểu');
+        $sheet->setCellValue('G' . ($row + 3), 'Kế toán trưởng');
+        $sheet->setCellValue('J' . ($row + 3), 'Giám đốc');
+        $sheet->mergeCells('B'.($row + 3) . ':C' . ($row + 3));
+        $sheet->mergeCells('G'.($row + 3) . ':H' . ($row + 3));
+        $sheet->mergeCells('J'.($row + 3) . ':K' . ($row + 3));
+        $sheet->getStyle('A' . ($row + 3) . ':M' . ($row + 3))->applyFromArray([
+            'font' => [
+            'bold' => true,
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+        
+        $sheet->setCellValue('B' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('G' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->setCellValue('J' . ($row + 4), '(Ký và ghi rõ họ tên)');
+        $sheet->mergeCells('B'.($row + 4) . ':C' . ($row + 4));
+        $sheet->mergeCells('G'.($row + 4) . ':H' . ($row + 4));
+        $sheet->mergeCells('J'.($row + 4) . ':K' . ($row + 4));
+        $sheet->getStyle('A' . ($row + 4) . ':M' . ($row + 4))->applyFromArray([
+            'font' => [
+            'color' => ['rgb' => '000000'],
+            'name' => 'Times New Roman',
+            'size' => 13,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        ]);
+
+        $fileName = 'bao_cao_nhap_' . $tg . '.xlsx';
         $filePath = public_path('baoCaoXNT/' . $fileName);
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);

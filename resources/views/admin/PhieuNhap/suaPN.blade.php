@@ -107,7 +107,7 @@
                         @enderror
                         <button type="submit" class="btn btn-info">Thêm sản phẩm nhập về?</button>
                     </form>
-                    @if (!empty($ctsp))
+                    <!-- @if (!empty($ctsp))
                     <form id="" role="form" action="{{ Route('themSeri') }}" method="POST">
                         {{ csrf_field() }}
                         
@@ -126,7 +126,7 @@
                         </div>
                         <button type="submit" class="btn btn-info">Thêm seri sản phẩm</button>
                     </form>
-                    @endif
+                    @endif -->
                     
                     
                     <div class="table-responsive">

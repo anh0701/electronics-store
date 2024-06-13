@@ -291,53 +291,23 @@ class PhieuNhapController extends Controller
                 ->select('tbl_chitietphieunhap.*', 'tbl_sanpham.TenSanPham')
                 ->where('tbl_chitietphieunhap.MaPhieuNhap', [$id])
                 ->paginate(5);
-        $ctsp = [];
-        foreach($ctpn as $i){
-            $tenSP = $i->TenSanPham;
-            $maSP = $i->MaSanPham;
-            $soLuong = $i->SoLuong;
-            $sp = DB::select("SELECT * FROM tbl_seri WHERE MaPN = ? AND MaSanPham = ?", [$id, $maSP]);
-            $x1 = count($sp);
-            $x2 = $soLuong - $x1;
-            $ctsp[] = [
-                'tenSP' => $tenSP,
-                'maSP' => $maSP,
-                'notSeri' => $x2,
-            ];
-            
-        }
+        // 
         // dd($ctsp);
-        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP, 'ctsp'=>$ctsp], compact('products'));
+        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP], compact('products'));
     }
 
-    public function themSeri(Request $request){
-        $maSP = $request->sanPham;
-        $maPN = $request->maPNSeri;
-        $tenSeri = $request->tenSeri;
-        $seri = new Seri();
-        $seri->MaSanPham = $maSP;
-        $seri->MaPN = $maPN;
-        $seri->TenSeri = $tenSeri;
-        $seri->save();
-
-        $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
-                        FROM tbl_phieunhap pn 
-                        JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
-                        JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
-                        WHERE MaPhieuNhap = ?", [$maPN]);
-        $products = SanPham::all();
-        $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
+    public function themSeri_get($id){
         $ctpn = DB::table('tbl_chitietphieunhap')
                 ->join('tbl_sanpham', 'tbl_chitietphieunhap.MaSanPham', '=', 'tbl_sanpham.MaSanPham')
                 ->select('tbl_chitietphieunhap.*', 'tbl_sanpham.TenSanPham')
-                ->where('tbl_chitietphieunhap.MaPhieuNhap', [$maPN])
+                ->where('tbl_chitietphieunhap.MaPhieuNhap', [$id])
                 ->paginate(5);
         $ctsp = [];
         foreach($ctpn as $i){
             $tenSP = $i->TenSanPham;
             $maSP = $i->MaSanPham;
             $soLuong = $i->SoLuong;
-            $sp = DB::select("SELECT * FROM tbl_seri WHERE MaPN = ? AND MaSanPham = ?", [$maPN, $maSP]);
+            $sp = DB::select("SELECT * FROM tbl_seri WHERE MaPN = ? AND MaSanPham = ?", [$id, $maSP]);
             $x1 = count($sp);
             $x2 = $soLuong - $x1;
             if($x2 > 0){
@@ -348,10 +318,36 @@ class PhieuNhapController extends Controller
                 ];
             }
             
-            
         }
-        // dd($ctsp);
-        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP, 'ctsp'=>$ctsp], compact('products'));
+        $seri = DB::table('tbl_seri')
+            ->select('tbl_seri.*', 'tbl_sanpham.TenSanPham')
+            ->join('tbl_sanpham', 'tbl_sanpham.MaSanPham', '=', 'tbl_seri.MaSanPham')
+            ->where('tbl_seri.MaPN', '=', $id)
+            ->get();
+
+        // dd($seri);
+
+        return view('admin.PhieuNhap.themSeri', ['ctsp' => $ctsp, 'maPN' => $id, 'seri' => $seri]);
+    }
+
+    public function themSeri(Request $request){
+        $messages = [
+            'tenSeri.required' => 'Vui lòng nhập Seri sản phẩm',
+            'tenSeri.unique' => 'Seri sản phẩm đã tồn tại', 
+        ];
+        
+        $valid = $request->validate([
+            'tenSeri' => 'required|unique:tbl_seri,MaSeri', 
+        ], $messages);
+        $maSP = $request->sanPham;
+        $maPN = $request->maPNSeri;
+        $tenSeri = $request->tenSeri;
+        $seri = new Seri();
+        $seri->MaSanPham = $maSP;
+        $seri->MaPN = $maPN;
+        $seri->MaSeri = $tenSeri;
+        $seri->save();
+        return redirect()->route('themSeriPN', ['id' => $maPN]);
     }
 
     public function lapPN(){
@@ -561,8 +557,15 @@ class PhieuNhapController extends Controller
         $ctpn = DB::select("SELECT * FROM tbl_chitietphieunhap WHERE MaPhieuNhap = ?", [$maPN]);
         $tongTien = 0;
         $tienTra = $request->tienTra;
+        $x1 = 0;
         foreach ($ctpn as $ct){
             $tongTien += $ct->SoLuong * $ct->GiaSanPham;
+            $x1 += $ct->SoLuong;
+        }
+        $seri = Seri::where('MaPN', $maPN)->get();
+        $x2 = count($seri);
+        if($x1 != $x2){
+            return redirect()->back()->withInput()->withErrors(['trangThai' => 'Bạn chưa nhập đủ số seri cho sản phẩm nhập về!!!']);
         }
         $tienNo = $tongTien - $tienTra;
         $thoiGianSua = date('Y-m-d H:i:s');

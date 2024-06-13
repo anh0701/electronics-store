@@ -15,11 +15,11 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="" for="">Loại báo cáo: </label>
-                                <select class="form-control input-sm m-bot15" id="maNCC" name="maNCC">
+                                <select class="form-control input-sm m-bot15" id="loaiBaoCao" name="loaiBaoCao">
                                     <option value="baoCaoXNT">Báo cáo xuất nhập tồn</option>
-                                    <!-- <option value="baoCaoN">Báo cáo nhập kho</option>
+                                    <option value="baoCaoN">Báo cáo nhập kho</option>
                                     <option value="baoCaoX">Báo cáo xuất kho</option>
-                                    <option value="baoCaoT">Báo cáo tồn kho</option> -->
+                                    <option value="baoCaoT">Báo cáo tồn kho</option>
                                 </select>
                             </div>
 
@@ -28,6 +28,7 @@
                                 <!-- <input class="input-sm form-control" type="date" name="thoiGianDau"> -->
                                 <select class="form-control input-sm m-bot15" id="thoiGian" name="thoiGian">
                                     <option value="thangNay">Tháng này</option>
+                                    <option value="thangTruoc">Tháng trước</option>
                                     
                                 </select>
                             </div>
