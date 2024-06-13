@@ -348,4 +348,6 @@ class BaoCaoController extends Controller
     
         return response()->download($filePath, $fileName);
     }
+
+    
 }

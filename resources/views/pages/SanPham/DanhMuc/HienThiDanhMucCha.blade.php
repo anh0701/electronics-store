@@ -142,6 +142,7 @@
                                             <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                             <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
                                             <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                                            <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
                                             <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                             <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                                 <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
@@ -176,7 +177,7 @@
                                                     @endphp
                                                 </p>
                                             </a>
-                                            <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                            <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                             data-id_product="{{ $sanPham->MaSanPham }}">
                                                 <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                             </button>
@@ -217,6 +218,7 @@
                                 <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                 <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
                                 <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                                <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
                                 <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                 <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                     <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
@@ -251,7 +253,7 @@
                                         @endphp
                                     </p>
                                 </a>
-                                <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                 data-id_product="{{ $sanPham->MaSanPham }}">
                                     <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                 </button>
