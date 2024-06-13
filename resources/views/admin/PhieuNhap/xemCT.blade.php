@@ -142,11 +142,11 @@
                 </div>
             </div>
         </div>
-        
-    <!-- <a href="{{ route('xemPN') }}"><button class="btn btn-info">Quay lại danh sách</button></a> -->
-    
+       
+    <a href="{{ route('xemPN') }}"><button class="btn btn-info">Quay lại</button></a>
     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa phiếu nhập</button></a>
-    <a href="{{ route('themSeriPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Thêm seri sản phẩm</button></a>
+    <a href="{{ route('themSeriPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Cập nhật seri sản phẩm</button></a>
+
     <!-- <a href="{{ route('xuatFilePN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xuất file</button></a> -->
     
     <!-- @if($pn->TrangThai == 1 && $a == 1)

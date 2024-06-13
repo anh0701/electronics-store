@@ -92,7 +92,7 @@ Route::get('/sua-phieu-xuat/{id}', [PhieuXuatController::class, 'suaPX'])->name(
 Route::post('/sua-phieu-xuat', [PhieuXuatController::class, 'suaPXP'])->name('suaPXP');
 Route::post('/update-soluong-px', [PhieuXuatController::class, 'updateSoLuong'])->name('update.soluong-px');
 Route::get('/getSeri/{maSP}', [PhieuXuatController::class, 'getSeri']);
-
+Route::post('/update-seri', [PhieuNhapController::class, 'update_seri'])->name('update.seri');
 // Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])->name('api.san-pham-px');
 
 //PhieuNhap

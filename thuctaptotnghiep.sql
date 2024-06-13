@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 13, 2024 lúc 01:57 AM
+-- Thời gian đã tạo: Th6 13, 2024 lúc 02:30 PM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -296,10 +296,9 @@ CREATE TABLE `tbl_chitietphieuxuat` (
 --
 
 INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuong`) VALUES
-('CTPX666708778e8ab', 'PX20240610210559', 25, '3'),
-('CTPX66670cfc98a51', 'PX20240610212544', 25, '1'),
-('CTPX66670d06de764', 'PX20240610212544', 44, '2'),
-('CTPX66670d2385dca', 'PX20240610212544', 39, '2');
+('CTPX666ad5b0dbd12', 'PX20240613181848', 26, '1'),
+('CTPX666ad95e80b1d', 'PX20240613125236', 26, '1'),
+('CTPX666ad9705e621', 'PX20240613125236', 43, '2');
 
 -- --------------------------------------------------------
 
@@ -825,7 +824,7 @@ CREATE TABLE `tbl_phieunhap` (
 --
 
 INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240610112400', 'NCC20240526172247', 'TKNV20240428002556', 5000000, 0, 5000000, '0', '0', '2024-06-10 04:24:05', '2024-06-10 05:56:00'),
+('PN20240610112400', 'NCC20240526172247', 'TKNV20240428002556', 5000000, 0, 5000000, '0', '0', '2024-06-10 04:24:05', '2024-06-13 03:29:02'),
 ('PN20240610123220', 'NCC20240521230116', 'TKNV20240428002556', 14600000, 0, 14600000, '0', '1', '2024-06-10 05:32:23', '2024-06-13 01:50:11');
 
 -- --------------------------------------------------------
@@ -868,8 +867,8 @@ CREATE TABLE `tbl_phieuxuat` (
 --
 
 INSERT INTO `tbl_phieuxuat` (`MaPhieuXuat`, `MaTaiKhoan`, `LyDoXuat`, `MaDonHang`, `TongSoLuong`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PX20240610210559', 'TKNV20240428002556', 'trả hàng lỗi', NULL, 3, 0, NULL, '2024-06-10 14:06:10', '2024-06-12 14:36:36'),
-('PX20240610212544', 'TKNV20240428002556', 'Xuất bán', 8, 5, 0, NULL, '2024-06-10 14:25:49', '2024-06-10 14:31:29');
+('PX20240613125236', 'TKNV20240428002556', 'trả hàng lỗi', NULL, 3, 0, NULL, '2024-06-13 05:52:45', '2024-06-13 11:35:44'),
+('PX20240613181848', 'TKNV20240428002556', 'thanh ly', NULL, 1, 0, NULL, '2024-06-13 11:18:53', '2024-06-13 11:36:05');
 
 -- --------------------------------------------------------
 
@@ -1769,9 +1768,8 @@ INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHi
 --
 
 CREATE TABLE `tbl_seri` (
-  `MaSeri` int NOT NULL,
   `MaSanPham` int NOT NULL,
-  `TenSeri` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `MaSeri` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaPN` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `MaPX` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1780,14 +1778,17 @@ CREATE TABLE `tbl_seri` (
 -- Đang đổ dữ liệu cho bảng `tbl_seri`
 --
 
-INSERT INTO `tbl_seri` (`MaSeri`, `MaSanPham`, `TenSeri`, `MaPN`, `MaPX`) VALUES
-(1, 26, '123456ab', 'PN20240610123220', NULL),
-(2, 26, '213124ag', 'PN20240610123220', NULL),
-(3, 26, '213124ag', 'PN20240610123220', NULL),
-(4, 43, '123456nakega', 'PN20240610123220', NULL),
-(5, 43, '123456nakega2', 'PN20240610123220', NULL),
-(6, 43, '123456nakega3', 'PN20240610123220', NULL),
-(7, 43, '123456nakega3', 'PN20240610123220', NULL);
+INSERT INTO `tbl_seri` (`MaSanPham`, `MaSeri`, `MaPN`, `MaPX`) VALUES
+(26, '123456ABA', 'PN20240610123220', 'PX20240613125236'),
+(43, '123456NAKAGA1', 'PN20240610123220', 'PX20240613125236'),
+(43, '123456NAKAGA2', 'PN20240610123220', NULL),
+(43, '123456NAKAGA3', 'PN20240610123220', 'PX20240613125236'),
+(25, '12412', 'PN20240610112400', NULL),
+(25, '1242151', 'PN20240610112400', NULL),
+(25, '12421512', 'PN20240610112400', NULL),
+(25, '12523TSD', 'PN20240610112400', NULL),
+(26, '213124AG22', 'PN20240610123220', 'PX20240613181848'),
+(25, 'AH124325', 'PN20240610112400', NULL);
 
 -- --------------------------------------------------------
 
@@ -14071,12 +14072,6 @@ ALTER TABLE `tbl_sanpham`
   MODIFY `MaSanPham` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_seri`
---
-ALTER TABLE `tbl_seri`
-  MODIFY `MaSeri` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT cho bảng `tbl_thanhtruot`
 --
 ALTER TABLE `tbl_thanhtruot`
@@ -14206,8 +14201,7 @@ ALTER TABLE `tbl_sanpham`
 -- Các ràng buộc cho bảng `tbl_seri`
 --
 ALTER TABLE `tbl_seri`
-  ADD CONSTRAINT `tbl_seri_ibfk_1` FOREIGN KEY (`MaPN`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tbl_seri_ibfk_2` FOREIGN KEY (`MaPX`) REFERENCES `tbl_phieuxuat` (`MaPhieuXuat`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tbl_seri_ibfk_1` FOREIGN KEY (`MaPN`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `tbl_thanhtruot`

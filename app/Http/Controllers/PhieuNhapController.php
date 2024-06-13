@@ -350,6 +350,29 @@ class PhieuNhapController extends Controller
         return redirect()->route('themSeriPN', ['id' => $maPN]);
     }
 
+    public function update_seri(Request $request){
+        $maSeri = $request->input('MaSeri');
+        $maSeriMoi = $request->input('MaSeriMoi');
+        
+        $kt = Seri::where('MaSeri', $maSeriMoi)->exists();
+        
+        if($kt){
+            return response()->json(['success' => false, 'message' => 'Seri đã tồn tại']);
+        }
+
+        if ($maSeri) {
+            if(!empty($maSeriMoi)){
+                Seri::where('MaSeri', $maSeri)->update([
+                    'MaSeri' => $maSeriMoi,
+                ]);
+                return response()->json(['success' => true]);
+            }
+            return response()->json(['success' => false, 'message' => 'Bạn chưa nhập seri']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy seri']);
+    }
+
     public function lapPN(){
         $maPN = 'PN' . date('YmdHis');
         $listNCC = DB::select("SELECT MaNhaCungCap, TenNhaCungCap FROM tbl_nhacungcap WHERE TrangThai = 1");
