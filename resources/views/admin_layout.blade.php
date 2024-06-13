@@ -110,6 +110,7 @@ $quyen = $user['Quyen'];
                         </a>
                         <ul class="sub">
                             <li><a href="{{ route('themQuyenTK') }}">+ Thêm vai trò mới</a></li>
+                            <li><a href="{{ route('lietKeVaiTro') }}">+ Liệt kê vai trò</a></li>
                             <li><a href="{{ route('themQuyen') }}">+ Phân quyền</a></li>
                             <li><a href="{{ route('lietKeQH') }}">+ Liệt kê quyền hạn</a></li>
                         </ul>
@@ -210,20 +211,8 @@ $quyen = $user['Quyen'];
                                     <li style="margin-left: 10%; list-style: none"><a href="{{ route('/TrangLietKeTSKT') }}">+ Liệt kê TSKT</a></li>
                                 </ul>
                             </li>
-
-                            <li class="sub-menu">
-                                <a href="javascript:;">
-                                    <span>Quản lý danh mục TSKT</span>
-                                </a>
-                                <ul class="sub">
-                                    <li style="margin-left: 10%; list-style: none"><a href="{{ route('/TrangThemDanhMucTSKT') }}">+ Thêm danh mục TSKT</a></li>
-                                    <li style="margin-left: 10%; list-style: none"><a href="{{ route('/TrangLietKeDanhMucTSKT') }}">+ Liệt kê danh mục TSKT</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
-
-
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <span>Quản lý kho</span>
@@ -394,6 +383,22 @@ $quyen = $user['Quyen'];
             dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
             duration: "slow",
         });
+
+        $( "#datepicker3" ).datepicker({
+            prevText: "Tháng trước",
+            nextText: "Tháng sau",
+            dateFormat: "yy-mm-dd",
+            dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+            duration: "slow",
+        });
+
+        $( "#datepicker4" ).datepicker({
+            prevText: "Tháng trước",
+            nextText: "Tháng sau",
+            dateFormat: "yy-mm-dd",
+            dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
+            duration: "slow",
+        });
     });
 </script>
 {{-- Chọn địa điểm giao hàng --}}
@@ -517,6 +522,26 @@ $quyen = $user['Quyen'];
         });
     });
 </script>
+{{-- Hiển thị báo cáo doanh thu --}}
+{{-- <script>
+    $(document).ready(function(){
+        $('#btn-baocaodoanhthu').click(function(){
+            var _token = $('input[name="_token"]').val();
+            var from_date = $('#datepicker3').val();
+            var to_date = $('#datepicker4').val();
+            alert(to_date);
+            $.ajax({
+                url: '{{ Route('/BaoCaoDoanhThuTheoDate') }}',
+                method: 'POST',
+                data: {
+                    _token:_token,
+                    from_date:from_date,
+                    to_date:to_date,
+                },
+            });
+        });
+    });
+</script> --}}
 {{-- Gửi dữ liệu tới biểu đồ --}}
 <script type="text/javascript">
     $(document).ready(function(){

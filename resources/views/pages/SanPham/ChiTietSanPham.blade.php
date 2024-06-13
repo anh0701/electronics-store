@@ -56,7 +56,7 @@
                         <span>
                             <span>{{number_format($chiTietSanPham->GiaSanPham,0,',','.').' đ'}}</span>
                             <label>Số lượng:</label>
-                            <input name="qty" type="number" min="1" class="cart_product_qty_{{$chiTietSanPham->MaSanPham}}" value="1"/>
+                            <input name="qty" type="number" max="{{$chiTietSanPham->SoLuongHienTai}}" min="1"class="cart_product_qty_{{$chiTietSanPham->MaSanPham}}" value="1"/>
                             <input name="productid_hidden" type="hidden"  value="{{$chiTietSanPham->MaSanPham}}" />
                         </span>
                         <input type="button" value="Thêm giỏ hàng" class="btn btn-primary cart btn-sm add-to-cart ThemGioHang" 

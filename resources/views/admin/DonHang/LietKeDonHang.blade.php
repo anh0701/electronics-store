@@ -47,27 +47,27 @@
               <td>{{ $donHang->PhieuGiamGia->TenMaGiamGia ?? 'Không có phiếu giảm giá' }}</td>
               <td>{{ $donHang->GiaoHang->DiaChi }}</td>
               <td>{{ $donHang->ThoiGianTao }}</td>
-              <td><span class="text-ellipsis">
+              <td>
                 @php
                 if ($donHang->TrangThai == 1){
                 @endphp
-                  'Đơn hàng vừa được tạo'
+                <span class="text-ellipsis" style="color: yellow">'Đơn hàng vừa được tạo'</span>
                 @php
                 }elseif($donHang->TrangThai == 2){
                 @endphp
-                  'Nhân viên giao hàng đã lấy đơn hàng'
+                <span class="text-ellipsis" style="color: blue">'Nhân viên giao hàng đã lấy đơn hàng'</span>
                 @php
                 }elseif($donHang->TrangThai == 3){
                 @endphp
-                  'Khách hàng thanh toán đơn hàng'
+                <span class="text-ellipsis" style="color: green">'Khách hàng thanh toán đơn hàng'</span>
                 @php
                 }elseif($donHang->TrangThai == 4){
                 @endphp
-                  'Khách hàng không nhận đơn hàng'
+                <span class="text-ellipsis" style="color: red">'Khách hàng không nhận đơn hàng'</span>
                 @php
                 }
                 @endphp
-              </span></td>
+                </td>
               <td>
                 <a href="{{ route('/TrangChiTietDonHang', $donHang->order_code) }}">
                   <i style="font-size: 20px; width: 100%; text-align: center; font-weight: bold; color: purple; margin-bottom: 15px" class="fa-solid fa-eye"></i>

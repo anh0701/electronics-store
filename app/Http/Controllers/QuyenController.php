@@ -36,6 +36,27 @@ class QuyenController extends Controller
         return view('admin.Quyen.lietKe', compact('result'));
     }
 
+    public function lietKeVaiTro(){
+        $data = Quyen::all();
+        return view('admin.Quyen.lietKeVaiTro', compact('data'));
+    }
+
+    public function updateVaiTro(Request $request){
+        $maPQ = $request->input('MaPhanQuyen');
+        $tenPQ = $request->input('TenPhanQuyen');
+        if ($maPQ) {
+            if(!empty($tenPQ)){
+                Quyen::where('MaPhanQuyen', $maPQ)->update([
+                    'TenPhanQuyen' => $tenPQ,
+                ]);
+                return response()->json(['success' => true]);
+            }
+            return response()->json(['success' => false, 'message' => 'Bạn chưa nhập tên vai trò']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy vai trò']);
+    }
+
     public function xoaQH($id){
         DB::delete("DELETE FROM tbl_quyenvaitro WHERE MaQVT = ?", [$id]);
         return redirect()->back();
@@ -60,7 +81,7 @@ class QuyenController extends Controller
         $quyen = new Quyen();
         $quyen->TenPhanQuyen = $request->tenquyen;
         $quyen->save();
-        return redirect()->route('lietKeQH');
+        return redirect()->route('lietKeVaiTro');
     }
     public function themQH(Request $request){
 

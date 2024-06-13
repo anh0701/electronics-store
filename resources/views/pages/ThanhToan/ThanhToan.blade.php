@@ -78,12 +78,12 @@
                             <td class="SoLuong">
                                 <div class="cart_quantity_button">
                                     <a class="cart_quantity_up updateCartItem qtyPlus" 
-                                    data-cartid="{{ $cart['session_id'] }}" data-qty="{{ $cart['SoLuong'] }}"> + </a>
+                                    data-cartid="{{ $cart['session_id'] }}" data-soluonghientai="{{ $cart['SoLuongHienTai'] }}" data-qty="{{ $cart['SoLuong'] }}"> + </a>
                                     <input class="cart_quantity_input " type="text" name="quantity" 
                                     value="{{ $cart['SoLuong'] }}" autocomplete="off" size="2" 
                                     data-min="1" data-max="1000">
                                     <a class="cart_quantity_down updateCartItem qtyMinus" 
-                                    data-cartid="{{ $cart['session_id'] }}" data-qty="{{ $cart['SoLuong'] }}"> - </a>
+                                    data-cartid="{{ $cart['session_id'] }}" data-soluonghientai="{{ $cart['SoLuongHienTai'] }}" data-qty="{{ $cart['SoLuong'] }}"> - </a>
                                 </div>
                             </td> 
                             <td class="cart_total">

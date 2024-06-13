@@ -142,6 +142,7 @@
                                                 <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                                                <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
                                                 <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                                 <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
                                                     <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
@@ -176,7 +177,7 @@
                                                         @endphp
                                                     </p>
                                                 </a>
-                                                <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                                <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                                 data-id_product="{{ $sanPham->MaSanPham }}">
                                                     <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                                 </button>
@@ -209,20 +210,21 @@
                             <div class="productinfo text-center">
                                 <form>
                                     {{ csrf_field() }}
-                                    <input type="hidden" value="{{ $sanPham->SanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->ChieuCao }}" class="cart_product_height_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->SanPham->MaSanPham }}">
-                                    <input type="hidden" value="{{ $sanPham->SanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->SanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->MaSanPham }}" class="cart_product_id_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->TenSanPham }}" class="cart_product_name_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->HinhAnh }}" class="cart_product_image_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->GiaSanPham }}" class="cart_product_price_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ChieuCao }}" class="cart_product_height_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ChieuNgang }}" class="cart_product_width_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ChieuDay }}" class="cart_product_thick_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->CanNang }}" class="cart_product_weight_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->ThoiGianBaoHanh }}" class="cart_product_guarantee_{{ $sanPham->MaSanPham }}">
+                                    <input type="hidden" value="{{ $sanPham->SoLuongHienTai }}" class="cart_product_quantity_{{ $sanPham->MaSanPham }}">
                                     <input type="hidden" value="1" class="cart_product_qty_{{ $sanPham->MaSanPham }}">
                                     <a href="{{ route('/ChiTietSanPham', $sanPham->MaSanPham) }}">
-                                        <img src="{{ asset('upload/SanPham/'.$sanPham->SanPham->HinhAnh) }}" alt="" />
-                                        <p class="product-name">{{ $sanPham->SanPham->TenSanPham }}</p>
-                                        <h2 class="">{{  number_format($sanPham->SanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
+                                        <img src="{{ asset('upload/SanPham/'.$sanPham->HinhAnh) }}" alt="" />
+                                        <p class="product-name">{{ $sanPham->TenSanPham }}</p>
+                                        <h2 class="">{{  number_format($sanPham->GiaSanPham,0,',','.').'₫'  }}</h2>
                                         <p class="vote-txt">
                                             @php
                                             $count = 0;
@@ -252,7 +254,7 @@
                                             @endphp
                                         </p>
                                     </a>
-                                    <button type="button" class="btn btn-default add-to-cart ThemGioHang" 
+                                    <button type="button" class="btn btn-default add-to-cart ThemGioHang"
                                     data-id_product="{{ $sanPham->MaSanPham }}">
                                         <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
                                     </button>

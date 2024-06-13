@@ -43,6 +43,7 @@ Route::get('/Test', [TonKhoController::class, 'Test'])->name('/Test');
 Route::get('/TrangLietKeBCDT', [TonKhoController::class, 'TrangLietKeBCDT'])->name('/TrangLietKeBCDT');
 Route::post('/dashboard-filter', [TonKhoController::class, 'dashboard_filter'])->name('/dashboard-filter');
 Route::post('/days-order', [TonKhoController::class, 'days_order'])->name('/days-order');
+Route::post('/BaoCaoDoanhThuTheoDate', [TonKhoController::class, 'BaoCaoDoanhThuTheoDate'])->name('/BaoCaoDoanhThuTheoDate');
 Route::get('/xuatFileBCDT', [TonKhoController::class, 'xuatFileBCDT'])->name('xuatFileBCDT');
 
 
@@ -134,9 +135,12 @@ Route::get('/tim-kiem-thuong-hieu',[ThuongHieuController::class, 'timKiem'])->na
 Route::get('/let-ke-quyen-han', [QuyenController::class, 'lietKe'])->name('lietKeQH');
 Route::get('/them-quyen-han', [QuyenController::class, 'themQuyen'])->name('themQuyen');
 Route::post('/them-quyen-han', [QuyenController::class, 'themQH'])->name('them-quyen-han');
-Route::get('xoaQH/{id}', [QuyenController::class, 'xoaQH'])->name('xoaQH');
-Route::get('them-quyen-tai-khoan', [QuyenController::class, 'themQuyenTK'])->name('themQuyenTK');
+Route::get('/xoaQH/{id}', [QuyenController::class, 'xoaQH'])->name('xoaQH');
+Route::get('/them-vai-tro', [QuyenController::class, 'themQuyenTK'])->name('themQuyenTK');
+Route::get('/liet-ke-vai-tro', [QuyenController::class, 'lietKeVaiTro'])->name('lietKeVaiTro');
 Route::post('/xuLyThemQTK', [QuyenController::class, 'themQTK'])->name('/xuLyThemQTK');
+Route::post('/update-vaitro', [QuyenController::class, 'updateVaiTro'])->name('update.vaitro');
+
 
 
 //TaiKhoan

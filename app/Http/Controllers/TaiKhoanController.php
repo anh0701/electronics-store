@@ -293,11 +293,12 @@ class TaiKhoanController extends Controller
     }
 
     public function timkiemTK(Request $request){
-        $data = TaiKhoan::where('TenTaiKhoan', 'LIKE', "%{$request->timKiem}%")
-            ->orWhere('Quyen', 'LIKE', "%{$request->timKiem}%")
-            ->orWhere('ThoiGianTao', 'LIKE', "%{$request->timKiem}%")
+        $tuKhoa = $request->timKiem;
+        $data = TaiKhoan::where('Quyen', 'NOT LIKE', null)
+            ->where('TenTaiKhoan', 'LIKE', "%$tuKhoa%")
             ->paginate(5);
-        return view('admin.TaiKhoan.lietkeTK', compact('data'));
+       
+        return view('admin.TaiKhoan.lietkeTK')->with(compact("data"));
     }
 
     public function show_dashboard(){

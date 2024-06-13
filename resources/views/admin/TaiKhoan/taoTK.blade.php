@@ -39,7 +39,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
-                            <label for="quyen">Quyền hạn:</label>
+                            <label for="quyen">Vai trò:</label>
                             <select id="quyen" class="form-control input-lg m-bot15" name="quyen">
                                 @foreach ($quyen as $i)
                                     <option value="{{ $i->TenPhanQuyen }}">{{ $i->TenPhanQuyen }}</option>

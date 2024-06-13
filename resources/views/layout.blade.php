@@ -220,6 +220,63 @@
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	<script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	{{-- Tính tiền giao hàng --}}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.TinhPhiGiaoHang').click(function(){
+				var MaThanhPho = $('.MaThanhPho').val();
+				var MaQuanHuyen = $('.MaQuanHuyen').val();
+				var MaXaPhuong = $('.MaXaPhuong').val();
+				var _token = $('input[name="_token"]').val();
+				if(MaXaPhuong == null){
+					alert('Chọn địa điểm để tính phí vận chuyển');
+				}else{
+					$.ajax({
+					url: '{{ route('/TinhPhiGiaoHang') }}',
+					method: 'POST',
+					data:{
+						MaThanhPho:MaThanhPho,
+						MaQuanHuyen:MaQuanHuyen,
+						MaXaPhuong:MaXaPhuong,
+						_token:_token
+					},
+					success:function(data){
+						location.reload();
+					}
+				});
+				}
+			});
+		});
+	</script>
+	{{-- Lọc báo cáo doanh thu --}}
+	{{-- Chọn địa điểm --}}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ChonDiaDiem').on('click',function(){
+			var action = $(this).attr('id');
+			var ma_id = $(this).val();
+			var _token = $('input[name="_token"]').val();
+			var result = '';
+
+			if(action=='MaThanhPho'){
+				result = 'MaQuanHuyen';
+			}else{
+				result = 'MaXaPhuong';
+			}
+			$.ajax({
+				url : '{{ route('/ChonDiaDiem') }}',
+				method: 'POST',
+				data:{
+					action:action,
+					ma_id:ma_id,
+					_token:_token
+				},
+				success:function(data){
+					$('#'+result).html(data);
+				}});
+    		});
+		});
+	</script>
 	<script>
 		$(document).ready(function(){
 			var MaDanhMuc = $('.tabs_pro').data('id');
@@ -253,62 +310,6 @@
 			});
 		});
 	</script>
-	{{-- Tính tiền giao hàng --}}
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.TinhPhiGiaoHang').click(function(){
-				var MaThanhPho = $('.MaThanhPho').val();
-				var MaQuanHuyen = $('.MaQuanHuyen').val();
-				var MaXaPhuong = $('.MaXaPhuong').val();
-				var _token = $('input[name="_token"]').val();
-				if(MaXaPhuong == null){
-					alert('Chọn địa điểm để tính phí vận chuyển');
-				}else{
-					$.ajax({
-					url: '{{ route('/TinhPhiGiaoHang') }}',
-					method: 'POST',
-					data:{
-						MaThanhPho:MaThanhPho,
-						MaQuanHuyen:MaQuanHuyen,
-						MaXaPhuong:MaXaPhuong,
-						_token:_token
-					},
-					success:function(data){
-						location.reload();
-					}
-				});
-				}
-			});
-		});
-	</script>
-	{{-- Chọn địa điểm --}}
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.ChonDiaDiem').on('click',function(){
-			var action = $(this).attr('id');
-			var ma_id = $(this).val();
-			var _token = $('input[name="_token"]').val();
-			var result = '';
-
-			if(action=='MaThanhPho'){
-				result = 'MaQuanHuyen';
-			}else{
-				result = 'MaXaPhuong';
-			}
-			$.ajax({
-				url : '{{ route('/ChonDiaDiem') }}',
-				method: 'POST',
-				data:{
-					action:action,
-					ma_id:ma_id,
-					_token:_token
-				},
-				success:function(data){
-					$('#'+result).html(data);
-				}});
-    		});
-		});
-	</script>
 	{{-- Create cart --}}
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -324,6 +325,7 @@
 				var cart_product_thick = $('.cart_product_thick_' + id).val();
 				var cart_product_weight = $('.cart_product_weight_' + id).val();
 				var cart_product_guarantee = $('.cart_product_guarantee_' + id).val();
+				var cart_product_quantity = $('.cart_product_quantity_' + id).val();
 				var _token = $('input[name="_token"]').val();
 
 				$.ajax({
@@ -340,6 +342,7 @@
 						cart_product_thick:cart_product_thick,
 						cart_product_weight:cart_product_weight,
 						cart_product_guarantee:cart_product_guarantee,
+						cart_product_quantity:cart_product_quantity,
 						_token:_token
 					},
 					success:function(data){
@@ -366,15 +369,20 @@
 		$(document).on('click', '.updateCartItem', function(){
 			if($(this).hasClass('qtyPlus')){
 				var quantity = $(this).data('qty');
-				new_qty = parseInt(quantity)+1;
+				var soluongMax = $(this).data('soluonghientai');
+				if(quantity < soluongMax){
+					new_qty = parseInt(quantity)+1;
+				}else{
+					sweetAlert("Cảnh báo", "Số lượng bên trong cửa hàng không đủ", "error");
+				}
 			}
 			if($(this).hasClass('qtyMinus')){
 				var quantity = $(this).data('qty');
 				if(quantity<=1){
-					alert("Item quantity must be 1 or greater!");
-					return false;
+					sweetAlert("Cảnh báo", "Số lượng sản phẩm phải lớn hơn 1", "error");
+				}else{
+					new_qty = parseInt(quantity)-1;
 				}
-				new_qty = parseInt(quantity)-1;
 			}
 			var cartid = $(this).data('cartid');
 			var _token = $('input[name="_token"]').val();
