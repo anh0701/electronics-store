@@ -107,6 +107,26 @@
                         @enderror
                         <button type="submit" class="btn btn-info">Thêm sản phẩm nhập về?</button>
                     </form>
+                    @if (!empty($ctsp))
+                    <form id="" role="form" action="{{ Route('themSeri') }}" method="POST">
+                        {{ csrf_field() }}
+                        
+                        
+                        <div class="form-group">
+                            <label for="">Chọn sản phẩm</label>
+                            <select class="form-control input-lg m-bot15" id="" name="sanPham">
+                                @foreach($ctsp as $i)
+                                    <option value="{{ $i['maSP'] }}">{{ $i['tenSP'] }} - (Còn {{ $i['notSeri'] }} sản phẩm chưa nhập seri)</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="maPNSeri" value="{{$pn->MaPhieuNhap}}">
+                            <input type="text" class="form-control" name="tenSeri">
+                        </div>
+                        <button type="submit" class="btn btn-info">Thêm seri sản phẩm</button>
+                    </form>
+                    @endif
                     
                     
                     <div class="table-responsive">

@@ -7,6 +7,7 @@ use App\Models\NhaCungCap;
 use App\Models\PhieuTraHang;
 use App\Models\PhieuXuat;
 use App\Models\SanPham;
+use App\Models\Seri;
 use Exception;
 use Session;
 use Illuminate\Contracts\Support\ValidatedData;
@@ -96,8 +97,13 @@ class PhieuNhapController extends Controller
             $ctth = null;
             $pthKQ = null;
         }
+        $ctsp = DB::table('tbl_seri')
+                    ->select('tbl_seri.*', 'tbl_sanpham.TenSanPham')
+                    ->join('tbl_sanpham', 'tbl_sanpham.MaSanPham', '=', 'tbl_seri.MaSanPham')
+                    ->where('tbl_seri.MaPN', '=', $id)
+                    ->get();
         
-        return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn, 'pth' => $pthKQ, 'ctth' => $ctth]);
+        return view('admin.PhieuNhap.xemcT', ['pn' => $pn[0], 'ctpn' => $ctpn, 'ctsp'=>$ctsp,'pth' => $pthKQ, 'ctth' => $ctth]);
     }
 
     public function xuatFilePN($id){
@@ -285,8 +291,67 @@ class PhieuNhapController extends Controller
                 ->select('tbl_chitietphieunhap.*', 'tbl_sanpham.TenSanPham')
                 ->where('tbl_chitietphieunhap.MaPhieuNhap', [$id])
                 ->paginate(5);
+        $ctsp = [];
+        foreach($ctpn as $i){
+            $tenSP = $i->TenSanPham;
+            $maSP = $i->MaSanPham;
+            $soLuong = $i->SoLuong;
+            $sp = DB::select("SELECT * FROM tbl_seri WHERE MaPN = ? AND MaSanPham = ?", [$id, $maSP]);
+            $x1 = count($sp);
+            $x2 = $soLuong - $x1;
+            $ctsp[] = [
+                'tenSP' => $tenSP,
+                'maSP' => $maSP,
+                'notSeri' => $x2,
+            ];
+            
+        }
+        // dd($ctsp);
+        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP, 'ctsp'=>$ctsp], compact('products'));
+    }
 
-        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP], compact('products'));
+    public function themSeri(Request $request){
+        $maSP = $request->sanPham;
+        $maPN = $request->maPNSeri;
+        $tenSeri = $request->tenSeri;
+        $seri = new Seri();
+        $seri->MaSanPham = $maSP;
+        $seri->MaPN = $maPN;
+        $seri->TenSeri = $tenSeri;
+        $seri->save();
+
+        $pn = DB::select("SELECT pn.*, tk.TenTaiKhoan, ncc.TenNhaCungCap
+                        FROM tbl_phieunhap pn 
+                        JOIN tbl_taikhoan tk ON pn.MaTaiKhoan = tk.MaTaiKhoan
+                        JOIN tbl_nhacungcap ncc ON pn.MaNhaCungCap = ncc.MaNhaCungCap
+                        WHERE MaPhieuNhap = ?", [$maPN]);
+        $products = SanPham::all();
+        $listLSP = DB::select("SELECT MaDanhMuc, TenDanhMuc FROM tbl_danhmuc");
+        $ctpn = DB::table('tbl_chitietphieunhap')
+                ->join('tbl_sanpham', 'tbl_chitietphieunhap.MaSanPham', '=', 'tbl_sanpham.MaSanPham')
+                ->select('tbl_chitietphieunhap.*', 'tbl_sanpham.TenSanPham')
+                ->where('tbl_chitietphieunhap.MaPhieuNhap', [$maPN])
+                ->paginate(5);
+        $ctsp = [];
+        foreach($ctpn as $i){
+            $tenSP = $i->TenSanPham;
+            $maSP = $i->MaSanPham;
+            $soLuong = $i->SoLuong;
+            $sp = DB::select("SELECT * FROM tbl_seri WHERE MaPN = ? AND MaSanPham = ?", [$maPN, $maSP]);
+            $x1 = count($sp);
+            $x2 = $soLuong - $x1;
+            if($x2 > 0){
+                $ctsp[] = [
+                    'tenSP' => $tenSP,
+                    'maSP' => $maSP,
+                    'notSeri' => $x2,
+                ];
+            }
+            
+            
+        }
+        // dd($ctsp);
+        return view('admin.PhieuNhap.suaPN', ['pn' => $pn[0], 'ctpn' => $ctpn, 'listLSP' => $listLSP, 'ctsp'=>$ctsp], compact('products'));
     }
 
     public function lapPN(){

@@ -71,6 +71,7 @@
             </div>
         </div>
         <div class="table-responsive">
+            <p class="head1">Danh sách sản phẩm nhập</p>
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
@@ -96,6 +97,28 @@
             </table>
 
         </div>
+        <div class="table-responsive">
+            <p class="head1">Danh sách seri sản phẩm nhập</p>
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số Seri</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($ctsp as $key => $sp)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $sp->TenSanPham }}</td>
+                            <td>{{ $sp->TenSeri }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
         <div class="container">
             <div class="row r1">
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
@@ -120,13 +143,12 @@
             </div>
         </div>
         
-    </div>
     <!-- <a href="{{ route('xemPN') }}"><button class="btn btn-info">Quay lại danh sách</button></a> -->
     
     <a href="{{ route('suaPN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Sửa phiếu nhập</button></a>
-    <a href="{{ route('xuatFilePN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xuất file</button></a>
+    <!-- <a href="{{ route('xuatFilePN', ['id' => $pn->MaPhieuNhap]) }}"><button class="btn btn-info">Xuất file</button></a> -->
     
-    @if($pn->TrangThai == 1 && $a == 1)
+    <!-- @if($pn->TrangThai == 1 && $a == 1)
         <a href="{{ route('lapTH', ['id' => $pn->MaPhieuNhap, 'maNCC' => $pn->MaNhaCungCap]) }}"><button class="btn btn-info">Lập phiếu trả hàng</button></a>
     @endif
     @if (!empty($pth))
@@ -216,6 +238,6 @@
             @endif
         </div>
     </div>
-    @endif
+    @endif -->
 </div>
 @endsection

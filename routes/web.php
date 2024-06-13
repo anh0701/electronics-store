@@ -92,6 +92,8 @@ Route::post('/update-soluong-px', [PhieuXuatController::class, 'updateSoLuong'])
 // Route::get('/api/san-pham-px', [PhieuNhapController::class, 'danhSachSanPham'])->name('api.san-pham-px');
 
 //PhieuNhap
+
+
 Route::get('/liet-ke-phieu-nhap', [PhieuNhapController::class, 'trangXemPhieuNhap'])->name('xemPN');
 Route::get('/xem-phieu-nhap/{id}', [PhieuNhapController::class, 'xemCTPN'])->name('xemCTPN');
 Route::get('/tim-kiem-phieu-nhap', [PhieuNhapController::class, 'timKiemPN'])->name('timKiemPN');
@@ -109,7 +111,7 @@ Route::get('/luu-phieu-nhap/{id}', [PhieuNhapController::class, 'luuPN'])->name(
 Route::get('/sua-phieu-nhap/{id}', [PhieuNhapController::class, 'suaPN'])->name('suaPN');
 Route::post('/xuLySuaPN', [PhieuNhapController::class, 'xuLySuaPN'])->name('xuLySuaPN');
 Route::post('/update-soluong', [PhieuNhapController::class, 'updateSoLuong'])->name('update.soluong');
-
+Route::post('themSeri', [PhieuNhapController::class, 'themSeri'])->name('themSeri');
 
 //Nha cung cap
 Route::get('/liet-ke-nha-cung-cap', [NhaCungCapController::class, 'lietKe'])->name('lietKeNCC');
