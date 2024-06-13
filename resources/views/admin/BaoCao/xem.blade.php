@@ -4,7 +4,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Tạo báo cáo xuất nhập tồn
+            Tạo báo cáo kho
         </div>
         <div class="row w3-res-tb">
                 <div class="col-sm-2 m-b-xs">

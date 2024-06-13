@@ -3,10 +3,23 @@
 @extends('admin_layout')
 @section('admin_content')
 
+@php
+    if($loaiBaoCao == "baoCaoN"){
+        $s1 = "BÁO CÁO NHẬP KHO";
+        $s2 = "NHẬP TRONG KỲ";
+    }elseif($loaiBaoCao == "baoCaoX"){
+        $s1 = "BÁO CÁO XUẤT KHO";
+        $s2 = "XUẤT TRONG KỲ";
+    }else{
+        $s1 = "BÁO CÁO TỒN KHO";
+        $s2 = "TỒN TRONG KỲ";
+    }
+@endphp
+
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Báo cáo nhập kho
+            {{$s1}}
         </div>
         <div class="row w3-res-tb">
                 <div class="col-sm-4 m-b-xs">
@@ -24,51 +37,47 @@
                     <tr>
                         <th></th>
                         <th></th>
-                        <th colspan="3" style="text-align:center;">Thời gian: {{ date_format(date_create($tgDau), 'd/m/Y') }} - {{ date_format(date_create($tgCuoi), 'd/m/Y') }}</th>
+                        <th colspan="3" style="text-align:center;">THỜI GIAN: {{ date_format(date_create($tgDau), 'd/m/Y') }} - {{ date_format(date_create($tgCuoi), 'd/m/Y') }}</th>
                     </tr>
                     <tr >
-                        <th rowspan="2" >Mã sản phẩm</th>
-                        <th rowspan="2" style="text-align:center;">Tên sản phẩm</th>
-                        <th colspan="3" style="text-align:center;">Nhập trong kỳ</th>
+                        <th rowspan="2" >MÃ SẢN PHẨM</th>
+                        <th rowspan="2" style="text-align:center;">TÊN SẢN PHẨM</th>
+                        <th colspan="3" style="text-align:center;">{{$s2}}</th>
                     </tr>
                     <tr>
                         <th>Số lượng</th>
-                        <th>Giá nhập</th>
+                        <th>Giá</th>
                         <th>Thành tiền</th
                     </tr>
                     
                 </thead>
                 <tbody>
                     @php
-                        $tongNhap = 0;
-                        $tongXuat = 0;
-                        $tongSoNhap = 0;
-                        $tongSoXuat = 0;
-                        $tongSoTon = 0;
-                        $tongGiaTri = 0;
+                        $tong = 0;
+                        $tongSo = 0;
                     @endphp
                     @foreach($data as $item)
                         <tr>
                             <td>{{ $item['maSanPham'] }}</td> 
                             <td>{{ $item['tenSanPham'] }}</td> <!-- Giả sử tên mặt hàng là 'ten' -->
                             @php
-                                $thanhTienN = $item['tongSLNhap'] * $item['giaNhap'];
-                                $tongNhap += $thanhTienN;
-                                $tongSoNhap += $item['tongSLNhap'];    
+                                $thanhTien = $item['tongSL'] * $item['gia'];
+                                $tong += $thanhTien;
+                                $tongSo += $item['tongSL'];    
                             @endphp
                             
-                            <td>{{ $item['tongSLNhap'] }}</td>
-                            <td>{{ $item['giaNhap'] }}</td>
-                            <th>{{ $thanhTienN }}</th>
+                            <td>{{ $item['tongSL'] }}</td>
+                            <td>{{ $item['gia'] }}</td>
+                            <th>{{ $thanhTien }}</th>
                         </tr>
                     @endforeach
                     <tr>
                         <td></td>
                         
                         <td>Cộng</td>
-                        <td>{{ $tongSoNhap }}</td>
+                        <td>{{ $tongSo }}</td>
                         <td></td>
-                        <td>{{ $tongNhap }}</td>
+                        <td>{{ $tong }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -82,6 +91,7 @@
         <input type="hidden" name="dataSP" value="{{ $data }}">
         <input type="hidden" name="tgDau" value="{{ $tgDau }}">
         <input type="hidden" name="tgCuoi" value="{{ $tgCuoi }}">
+        <input type="hidden" name="loai" value="{{ $loaiBaoCao }}">
         <button type="submit" style="margin: 5px" class="btn btn-info">Xuất file</button>
     </form>
 </div>

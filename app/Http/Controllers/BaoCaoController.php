@@ -137,8 +137,24 @@ class BaoCaoController extends Controller
                         'maSanPham' => $maSanPham,
                         'tenSanPham' => $sanPham->TenSanPham,
                         'maDanhMuc' => $sanPham->MaDanhMuc,
-                        'tongSLNhap' => $tongNhap['tongSoLuong'],
-                        'giaNhap' => $tongNhap['giaNhap'] == 0 ? $sanPham->GiaSanPham : $tongNhap['giaNhap'],
+                        'tongSL' => $tongNhap['tongSoLuong'],
+                        'gia' => $tongNhap['giaNhap'] == 0 ? $sanPham->GiaSanPham : $tongNhap['giaNhap'],
+                    ]);
+                }else{
+                    
+                }
+                
+            }
+            return view('admin.BaoCao.baoCaoNhap', ['data' => $data, 'tgDau'=>$tgDau, 'tgCuoi' => $tgCuoi, 'loaiBaoCao'=>$loaiBaoCao]);
+        }elseif($loaiBaoCao == 'baoCaoX'){
+            foreach($sp as $maSanPham => $sanPham){
+                if($tongSLXuat->get($maSanPham, 0) > 0){
+                    $data->push([
+                        'maSanPham' => $maSanPham,
+                        'tenSanPham' => $sanPham->TenSanPham,
+                        'maDanhMuc' => $sanPham->MaDanhMuc,
+                        'tongSL' => $tongSLXuat->get($maSanPham, 0),
+                        'gia' => $sanPham->GiaSanPham,
                     ]);
                 }else{
                     
@@ -147,7 +163,21 @@ class BaoCaoController extends Controller
             }
             return view('admin.BaoCao.baoCaoNhap', ['data' => $data, 'tgDau'=>$tgDau, 'tgCuoi' => $tgCuoi, 'loaiBaoCao'=>$loaiBaoCao]);
         }else{
-
+            foreach($sp as $maSanPham => $sanPham){
+                if($sanPham->SoLuongTrongKho > 0){
+                    $data->push([
+                        'maSanPham' => $maSanPham,
+                        'tenSanPham' => $sanPham->TenSanPham,
+                        'maDanhMuc' => $sanPham->MaDanhMuc,
+                        'tongSL' => $sanPham->SoLuongTrongKho,
+                        'gia' => $sanPham->GiaSanPham,
+                    ]);
+                }else{
+                    
+                }
+                
+            }
+            return view('admin.BaoCao.baoCaoNhap', ['data' => $data, 'tgDau'=>$tgDau, 'tgCuoi' => $tgCuoi, 'loaiBaoCao'=>$loaiBaoCao]);
         }
         
 
@@ -203,7 +233,7 @@ class BaoCaoController extends Controller
         $sheet->getColumnDimension('A')->setWidth(10);
         $sheet->getColumnDimension('B')->setWidth(60);
         $sheet->getColumnDimension('C')->setWidth(5);
-        $sheet->getColumnDimension('D')->setWidth(10);
+        $sheet->getColumnDimension('D')->setWidth(15);
         $sheet->getColumnDimension('E')->setWidth(10); 
         $sheet->getColumnDimension('F')->setWidth(12); 
         $sheet->getColumnDimension('G')->setWidth(15);
@@ -214,28 +244,28 @@ class BaoCaoController extends Controller
         $sheet->getColumnDimension('L')->setWidth(12); 
         $sheet->getColumnDimension('M')->setWidth(15); 
         
-        $sheet->setCellValue('A5', 'Mã sản phẩm')
-              ->setCellValue('B5', 'Tên sản phẩm')
+        $sheet->setCellValue('A5', 'MÃ SẢN PHẨM')
+              ->setCellValue('B5', 'TÊN SẢN PHẨM')
               ->setCellValue('C5', 'Mã danh mục')
-              ->setCellValue('D5', 'Tồn đầu kỳ')
-              ->setCellValue('E5', 'Nhập trong kỳ')
-              ->setCellValue('H5', 'Xuất trong kỳ')
-              ->setCellValue('K5', 'Tồn cuối kỳ');
+              ->setCellValue('D5', 'TỒN ĐẦU KỲ')
+              ->setCellValue('E5', 'NHẬP TRONG KỲ')
+              ->setCellValue('H5', 'XUẤT TRONG KỲ')
+              ->setCellValue('K5', 'TỒN CUỐI KỲ');
         $sheet->mergeCells('A5:A6');
         $sheet->mergeCells('B5:B6');
         $sheet->mergeCells('D5:D6');
         $sheet->mergeCells('E5:G5');
         $sheet->mergeCells('H5:J5');
         $sheet->mergeCells('K5:M5');
-        $sheet->setCellValue('E6', 'Số lượng')
-                ->setCellValue('F6', 'Giá nhập')
-                ->setCellValue('G6', 'Thành tiền')
-                ->setCellValue('H6', 'Số lượng')
-                ->setCellValue('I6', 'Giá')
-                ->setCellValue('J6', 'Thành tiền')
-                ->setCellValue('K6', 'Số lượng')
-                ->setCellValue('L6', 'Giá')
-                ->setCellValue('M6', 'Thành tiền');
+        $sheet->setCellValue('E6', 'SỐ LƯỢNG')
+                ->setCellValue('F6', 'GIÁ NHẬP')
+                ->setCellValue('G6', 'THÀNH TIỀN')
+                ->setCellValue('H6', 'SỐ LƯỢNG')
+                ->setCellValue('I6', 'GIÁ BÁN')
+                ->setCellValue('J6', 'THÀNH TIỀN')
+                ->setCellValue('K6', 'SỐ LƯỢNG')
+                ->setCellValue('L6', 'GIÁ BÁN')
+                ->setCellValue('M6', 'THÀNH TIỀN');
 
 
         $sheet->getStyle('A5:M6')->applyFromArray([
@@ -270,6 +300,7 @@ class BaoCaoController extends Controller
         $tongSoXuat = 0;
         $tongSoTon = 0;
         $tongGiaTri = 0;
+        $tongSoTonDau = 0;
         foreach ($data as $item) {
             $sltd = $item['soLuongSP'] + $item['tongSLXuat'] - $item['tongSLNhap'];
             $thanhTienNhap = $item['tongSLNhap'] * $item['giaNhap'];
@@ -281,6 +312,7 @@ class BaoCaoController extends Controller
             $tongSoNhap += $item['tongSLNhap'];
             $tongSoXuat += $item['tongSLXuat'];
             $tongSoTon += $item['soLuongSP'];
+            $tongSoTonDau += $sltd;
             $sheet->setCellValue('A' . $row, $item['maSanPham'])
                   ->setCellValue('B' . $row, $item['tenSanPham'])
                   ->setCellValue('C' . $row, $item['maDanhMuc'])
@@ -313,6 +345,7 @@ class BaoCaoController extends Controller
         ],
         ]);
         $sheet->setCellValue('B' . $row, 'Tổng');
+        $sheet->setCellValue('D' . $row, $tongSoTonDau);
         $sheet->setCellValue('E' . $row, $tongSoNhap);
         $sheet->setCellValue('G' . $row, $tongNhap);
         $sheet->setCellValue('H' . $row, $tongSoXuat);
@@ -377,13 +410,28 @@ class BaoCaoController extends Controller
         $data = json_decode($jsonData, true);
         // dd($data);
 
+        $loai = $request->input('loai');
+        if($loai == "baoCaoN"){
+            $s1 = "BÁO CÁO NHẬP KHO";
+            $s2 = "NHẬP TRONG KỲ";
+            $s3 = 'bao_cao_nhap_'; 
+        }elseif($loai == "baoCaoX"){
+            $s1 = "BÁO CÁO XUẤT KHO";
+            $s2 = "XUẤT TRONG KỲ";
+            $s3 = 'bao_cao_xuat_'; 
+        }else{
+            $s1 = "BÁO CÁO TỒN KHO";
+            $s2 = "TỒN TRONG KỲ";
+            $s3 = 'bao_cao_ton_';
+        }
+
         $tg = date_format(date_create($tgDau), 'm_Y');
         $tgD = date_format(date_create($tgDau), 'd/m/Y');
         $tgC = date_format(date_create($tgCuoi), 'd/m/Y');
         
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'BÁO CÁO XUẤT NHẬP TỒN');
+        $sheet->setCellValue('A1', $s1);
         $sheet->mergeCells('A1:G1');
         $sheet->getStyle('A1')->applyFromArray([
             'font' => [
@@ -423,19 +471,19 @@ class BaoCaoController extends Controller
         $sheet->getColumnDimension('G')->setWidth(15);
         
         
-        $sheet->setCellValue('A5', 'Mã sản phẩm')
-              ->setCellValue('B5', 'Tên sản phẩm')
+        $sheet->setCellValue('A5', 'MÃ SẢN PHẨM')
+              ->setCellValue('B5', 'TÊN SẢN PHẨM')
               ->setCellValue('C5', 'Mã danh mục')
-              ->setCellValue('E5', 'Nhập trong kỳ');
+              ->setCellValue('E5', $s2);
         $sheet->mergeCells('A5:A6');
         $sheet->mergeCells('B5:B6');
         $sheet->mergeCells('D5:D6');
         $sheet->mergeCells('E5:G5');
         $sheet->mergeCells('H5:J5');
         $sheet->mergeCells('K5:M5');
-        $sheet->setCellValue('E6', 'Số lượng')
-                ->setCellValue('F6', 'Giá nhập')
-                ->setCellValue('G6', 'Thành tiền');
+        $sheet->setCellValue('E6', 'SỐ LƯỢNG')
+                ->setCellValue('F6', 'GIÁ')
+                ->setCellValue('G6', 'THÀNH TIỀN');
 
 
         $sheet->getStyle('A5:G6')->applyFromArray([
@@ -464,18 +512,18 @@ class BaoCaoController extends Controller
         $sheet->getColumnDimension('C')->setVisible(false);
         $sheet->getColumnDimension('D')->setVisible(false);
         $row = 7;
-        $tongNhap = 0;
-        $tongSoNhap = 0;
+        $tong = 0;
+        $tongSo = 0;
         foreach ($data as $item) {
-            $thanhTienNhap = $item['tongSLNhap'] * $item['giaNhap'];
-            $tongNhap += $thanhTienNhap;
-            $tongSoNhap += $item['tongSLNhap'];
+            $thanhTien = $item['tongSL'] * $item['gia'];
+            $tong += $thanhTien;
+            $tongSo += $item['tongSL'];
             $sheet->setCellValue('A' . $row, $item['maSanPham'])
                   ->setCellValue('B' . $row, $item['tenSanPham'])
                   ->setCellValue('C' . $row, $item['maDanhMuc'])
-                  ->setCellValue('E' . $row, $item['tongSLNhap'])
-                  ->setCellValue('F' . $row, $item['giaNhap'])
-                  ->setCellValue('G' . $row, $thanhTienNhap);
+                  ->setCellValue('E' . $row, $item['tongSL'])
+                  ->setCellValue('F' . $row, $item['gia'])
+                  ->setCellValue('G' . $row, $thanhTien);
             $row++;
         }
         $sheet->getStyle('A6:G' . ($row))->applyFromArray([
@@ -495,8 +543,8 @@ class BaoCaoController extends Controller
         ],
         ]);
         $sheet->setCellValue('B' . $row, 'Tổng');
-        $sheet->setCellValue('E' . $row, $tongSoNhap);
-        $sheet->setCellValue('G' . $row, $tongNhap);
+        $sheet->setCellValue('E' . $row, $tongSo);
+        $sheet->setCellValue('G' . $row, $tong);
         
         $sheet->getStyle('A' . $row . ':G' . $row)->applyFromArray([
         'fill' => [
@@ -541,7 +589,7 @@ class BaoCaoController extends Controller
         ],
         ]);
 
-        $fileName = 'bao_cao_nhap_' . $tg . '.xlsx';
+        $fileName = $s3 . $tg . '.xlsx';
         $filePath = public_path('baoCaoXNT/' . $fileName);
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
