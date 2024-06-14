@@ -66,6 +66,7 @@
             <div class="col-md-2">
                 <p>Từ ngày: <input type="text" id="datepicker" class="form-control" ></p>
                 <input style="margin-top: 5px" type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm" value="Lọc kết quả">
+                <a href="{{ route('xuatFileBCDT') }}" style="margin-top: 5px" class="btn btn-primary btn-sm">Xuất file</a>
             </div>
             <div class="col-md-2">
                 <p>Date: <input type="text" id="datepicker2" class="form-control"></p>
@@ -84,6 +85,7 @@
                 </p>
             </div>
         </form>
+        
     </div>
     <div class="col-sm-12">
         <p class="title_thongke">Biểu đồ thống kê doanh số và lợi nhuận</p>
