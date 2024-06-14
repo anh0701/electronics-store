@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 12, 2024 lúc 07:00 AM
+-- Thời gian đã tạo: Th6 13, 2024 lúc 02:30 PM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -278,13 +278,6 @@ CREATE TABLE `tbl_chitietphieutrahang` (
   `LyDoTraHang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `tbl_chitietphieutrahang`
---
-
-INSERT INTO `tbl_chitietphieutrahang` (`MaCTPTH`, `MaPhieuTraHang`, `MaSanPham`, `SoLuong`, `GiaSanPham`, `LyDoTraHang`) VALUES
-('CTTH666690662baa4', 'TH20240610123350', 26, 2, 1300000, 'bao bi khong dat yeu cau');
-
 -- --------------------------------------------------------
 
 --
@@ -303,10 +296,9 @@ CREATE TABLE `tbl_chitietphieuxuat` (
 --
 
 INSERT INTO `tbl_chitietphieuxuat` (`MaCTPX`, `MaPhieuXuat`, `MaSanPham`, `SoLuong`) VALUES
-('CTPX666708778e8ab', 'PX20240610210559', 25, '3'),
-('CTPX66670cfc98a51', 'PX20240610212544', 25, '1'),
-('CTPX66670d06de764', 'PX20240610212544', 44, '2'),
-('CTPX66670d2385dca', 'PX20240610212544', 39, '2');
+('CTPX666ad5b0dbd12', 'PX20240613181848', 26, '1'),
+('CTPX666ad95e80b1d', 'PX20240613125236', 26, '1'),
+('CTPX666ad9705e621', 'PX20240613125236', 43, '2');
 
 -- --------------------------------------------------------
 
@@ -332,7 +324,7 @@ CREATE TABLE `tbl_chuongtrinhgiamgia` (
 --
 
 INSERT INTO `tbl_chuongtrinhgiamgia` (`MaCTGG`, `SlugCTGG`, `TenCTGG`, `HinhAnh`, `MoTa`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`, `ThoiGianBatDau`, `ThoiGianKetThuc`) VALUES
-(1, 'giam-gia-mua-he', 'giảm giá mùa hè', 'upload/ChuongTrinhGiamGia/1717992273.gif', '<p>ưu đãi mới</p>', 1, '2024-06-09 02:55:21', '2024-06-10 04:04:33', '2024-06-09 02:53:00', '2024-06-20 02:53:00');
+(1, 'giam-gia-mua-he', 'giảm giá mùa hè', 'upload/ChuongTrinhGiamGia/1717992273.gif', '<p>ưu đãi mới</p>', 1, '2024-06-09 02:55:21', '2024-06-10 04:04:33', '2024-06-09 02:53:00', '2024-06-12 02:53:00');
 
 -- --------------------------------------------------------
 
@@ -832,8 +824,8 @@ CREATE TABLE `tbl_phieunhap` (
 --
 
 INSERT INTO `tbl_phieunhap` (`MaPhieuNhap`, `MaNhaCungCap`, `MaTaiKhoan`, `TongTien`, `TienTra`, `TienNo`, `PhuongThucThanhToan`, `TrangThai`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PN20240610112400', 'NCC20240526172247', 'TKNV20240428002556', 5000000, 0, 5000000, '0', '0', '2024-06-10 04:24:05', '2024-06-10 05:56:00'),
-('PN20240610123220', 'NCC20240521230116', 'TKNV20240428002556', 14600000, 0, 14600000, '0', '1', '2024-06-10 05:32:23', '2024-06-10 16:59:19');
+('PN20240610112400', 'NCC20240526172247', 'TKNV20240428002556', 5000000, 0, 5000000, '0', '0', '2024-06-10 04:24:05', '2024-06-13 03:29:02'),
+('PN20240610123220', 'NCC20240521230116', 'TKNV20240428002556', 14600000, 0, 14600000, '0', '1', '2024-06-10 05:32:23', '2024-06-13 01:50:11');
 
 -- --------------------------------------------------------
 
@@ -851,13 +843,6 @@ CREATE TABLE `tbl_phieutrahang` (
   `ThoiGianTao` timestamp NULL DEFAULT NULL,
   `ThoiGianSua` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_phieutrahang`
---
-
-INSERT INTO `tbl_phieutrahang` (`MaPhieuTraHang`, `MaNhaCungCap`, `MaPhieuNhap`, `MaTaiKhoan`, `TrangThai`, `TongTien`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('TH20240610123350', 'NCC20240521230116', 'PN20240610123220', 'TKNV20240428002556', 0, 2600000, '2024-06-10 05:33:52', '2024-06-10 05:46:22');
 
 -- --------------------------------------------------------
 
@@ -882,8 +867,8 @@ CREATE TABLE `tbl_phieuxuat` (
 --
 
 INSERT INTO `tbl_phieuxuat` (`MaPhieuXuat`, `MaTaiKhoan`, `LyDoXuat`, `MaDonHang`, `TongSoLuong`, `TrangThai`, `order_code`, `ThoiGianTao`, `ThoiGianSua`) VALUES
-('PX20240610210559', 'TKNV20240428002556', 'trả hàng lỗi', NULL, 3, 0, NULL, '2024-06-10 14:06:10', '2024-06-10 14:31:24'),
-('PX20240610212544', 'TKNV20240428002556', 'Xuất bán', 8, 5, 0, NULL, '2024-06-10 14:25:49', '2024-06-10 14:31:29');
+('PX20240613125236', 'TKNV20240428002556', 'trả hàng lỗi', NULL, 3, 0, NULL, '2024-06-13 05:52:45', '2024-06-13 11:35:44'),
+('PX20240613181848', 'TKNV20240428002556', 'thanh ly', NULL, 1, 0, NULL, '2024-06-13 11:18:53', '2024-06-13 11:36:05');
 
 -- --------------------------------------------------------
 
@@ -1659,10 +1644,17 @@ CREATE TABLE `tbl_quyen` (
 INSERT INTO `tbl_quyen` (`MaPhanQuyen`, `TenPhanQuyen`) VALUES
 (2, 'Nhân viên bán hàng'),
 (3, 'Quản trị viên'),
-(4, 'Quản trị viên cấp cao '),
+(4, 'Quản trị viên cấp cao'),
 (5, 'Nhân viên kho'),
 (6, 'Nhân viên kế toán'),
-(7, 'Nhân viên báo cáo doanh thu');
+(7, 'Nhân viên báo cáo doanh thu'),
+(8, 'Nhân viên báo cáo tồn kho'),
+(9, 'Quản trị 1'),
+(10, 'Quan tri2'),
+(11, 'QT1'),
+(12, 'QT'),
+(13, 'QT3'),
+(14, 'QT4');
 
 -- --------------------------------------------------------
 
@@ -1700,7 +1692,8 @@ INSERT INTO `tbl_quyenvaitro` (`MaQVT`, `MaQuyen`, `MaVaiTro`) VALUES
 (28, 3, 15),
 (29, 3, 16),
 (30, 5, 11),
-(31, 5, 12);
+(31, 5, 12),
+(34, 6, 38);
 
 -- --------------------------------------------------------
 
@@ -1771,6 +1764,35 @@ INSERT INTO `tbl_sanpham` (`MaSanPham`, `TenSanPham`, `SlugSanPham`, `MaThuongHi
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_seri`
+--
+
+CREATE TABLE `tbl_seri` (
+  `MaSanPham` int NOT NULL,
+  `MaSeri` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaPN` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MaPX` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_seri`
+--
+
+INSERT INTO `tbl_seri` (`MaSanPham`, `MaSeri`, `MaPN`, `MaPX`) VALUES
+(26, '123456ABA', 'PN20240610123220', 'PX20240613125236'),
+(43, '123456NAKAGA1', 'PN20240610123220', 'PX20240613125236'),
+(43, '123456NAKAGA2', 'PN20240610123220', NULL),
+(43, '123456NAKAGA3', 'PN20240610123220', 'PX20240613125236'),
+(25, '12412', 'PN20240610112400', NULL),
+(25, '1242151', 'PN20240610112400', NULL),
+(25, '12421512', 'PN20240610112400', NULL),
+(25, '12523TSD', 'PN20240610112400', NULL),
+(26, '213124AG22', 'PN20240610123220', 'PX20240613181848'),
+(25, 'AH124325', 'PN20240610112400', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_taikhoan`
 --
 
@@ -1798,11 +1820,14 @@ CREATE TABLE `tbl_taikhoan` (
 INSERT INTO `tbl_taikhoan` (`MaTaiKhoan`, `Email`, `TenTaiKhoan`, `TenNguoiDung`, `DiaChi`, `SoDienThoai`, `MatKhau`, `HinhAnh`, `TrangThai`, `BacNguoiDung`, `ThoiGianTao`, `ThoiGianSua`, `Quyen`, `Pin`) VALUES
 ('TK20240612051527', 'anh123@gmail.com', 'anh123', NULL, NULL, NULL, '$2y$12$r7pMkHZlXvCc1OoZfrGMi.jsS/ng7zg/6qFepuXbpVqg2vEfnsQIC', NULL, 1, '1', '2024-06-11 22:15:27', NULL, NULL, NULL),
 ('TK20240612053946', 'binh@gmail.com', 'binhdz', NULL, NULL, NULL, '$2y$12$eRCG12Wgx1s3C6242x3GC.SVjo65g.ggJwsejbUUZ/.qoMLPNBWVK', NULL, 1, '1', '2024-06-11 22:39:46', NULL, NULL, NULL),
-('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 10:25:56', '2024-05-29 04:18:16', 'Quản trị viên cấp cao', NULL),
-('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 1, NULL, '2024-05-21 07:53:52', '2024-06-11 22:25:53', 'Quản trị viên', NULL),
-('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-06-11 14:43:23', 'Nhân viên kho', NULL),
+('TKNV20240428002556', 'admin1@gmail.com', 'admin', NULL, NULL, NULL, '$2y$12$g8j267j3EO2KX9I15YiqcOeBfW7lYCKCcmN/w.yMaKp1FnE0gHNy.', 'anhDaiDien18.jpg', 1, NULL, '2024-04-27 10:25:56', '2024-06-12 15:59:32', 'Quản trị viên cấp cao', NULL),
+('TKNV20240521145352', 'anh3@gmail.com', 'anh3', NULL, NULL, NULL, '$2y$12$7387ZMPGgLHcqomSpVuIieT1OLfoZ3Y4An/61LpBdI.vFlRvlrQWK', NULL, 1, NULL, '2024-05-21 07:53:52', '2024-06-12 15:48:30', 'Quản trị viên', NULL),
+('TKNV20240526173057', 'anh1@gmail.com', 'anh1', NULL, NULL, NULL, '$2y$12$DsN3bqxer0kGds1AyWJIe.N8VQIvT4y8qGszQIzWFbXwTR1OFAMPK', NULL, 1, NULL, '2024-05-26 10:30:57', '2024-06-12 15:11:50', 'Nhân viên kho', NULL),
 ('TKNV20240611223025', 'anh2@gmail.com', 'anh2', NULL, NULL, NULL, '$2y$12$hcQAq0rflDlP/er7OvOhy.RnydQFVtWmarSG4m5zwsP9lPBiQgqxm', NULL, 1, NULL, '2024-06-11 15:30:25', '2024-06-11 15:30:34', 'Nhân viên bán hàng', NULL),
-('TKNV20240612135846', 'admin3@gmail.com', 'admin3', NULL, NULL, NULL, '$2y$12$eZ/Zg7SvkdRZlA6kn0l7KOP.6B4znE20jiiJnRLh4yHQG2oM6qzly', NULL, 1, NULL, '2024-06-12 06:58:46', NULL, 'Quản trị viên cấp cao', NULL);
+('TKNV20240612135846', 'admin3@gmail.com', 'admin3', NULL, NULL, NULL, '$2y$12$eZ/Zg7SvkdRZlA6kn0l7KOP.6B4znE20jiiJnRLh4yHQG2oM6qzly', NULL, 1, NULL, '2024-06-12 06:58:46', '2024-06-12 15:35:19', 'Quản trị viên cấp cao', NULL),
+('TKNV20240612140140', 'admin2@gmail.com', 'admin2', NULL, NULL, NULL, '$2y$12$UWjmxDkAgZkNvby3y0ICBOYgp0BpVgQFHwHlQTzSfSlh0lnVKHQF2', NULL, 1, NULL, '2024-06-12 07:01:40', '2024-06-12 15:09:22', 'Nhân viên kế toán', NULL),
+('TKNV20240612220949', 'anh4@gmail.com', 'anh4', NULL, NULL, NULL, '$2y$12$NVtF0VhtzZTKjNYQiL7B3OpSBBwRUU/jW/67q/oHgiMgK0AU5llYm', NULL, 1, NULL, '2024-06-12 15:09:49', NULL, 'Quản trị 1', NULL),
+('TKNV20240612221515', 'admin4@gmail.com', 'admin4', NULL, NULL, NULL, '$2y$12$2aKTIBm.OSXoNciJ9GHn4OZ3GixbG1eVdYr7WCT0vXyLtmnkjpdB6', NULL, 1, NULL, '2024-06-12 15:15:15', '2024-06-12 15:48:46', 'Nhân viên báo cáo tồn kho', NULL);
 
 -- --------------------------------------------------------
 
@@ -13809,6 +13834,14 @@ ALTER TABLE `tbl_sanpham`
   ADD KEY `MaThuongHieu` (`MaThuongHieu`);
 
 --
+-- Chỉ mục cho bảng `tbl_seri`
+--
+ALTER TABLE `tbl_seri`
+  ADD PRIMARY KEY (`MaSeri`),
+  ADD KEY `MaPN` (`MaPN`),
+  ADD KEY `MaPX` (`MaPX`);
+
+--
 -- Chỉ mục cho bảng `tbl_taikhoan`
 --
 ALTER TABLE `tbl_taikhoan`
@@ -14024,13 +14057,13 @@ ALTER TABLE `tbl_phigiaohang`
 -- AUTO_INCREMENT cho bảng `tbl_quyen`
 --
 ALTER TABLE `tbl_quyen`
-  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `MaPhanQuyen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_quyenvaitro`
 --
 ALTER TABLE `tbl_quyenvaitro`
-  MODIFY `MaQVT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `MaQVT` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_sanpham`
@@ -14163,6 +14196,12 @@ ALTER TABLE `tbl_quyenvaitro`
 ALTER TABLE `tbl_sanpham`
   ADD CONSTRAINT `tbl_sanpham_ibfk_1` FOREIGN KEY (`MaThuongHieu`) REFERENCES `tbl_thuonghieu` (`MaThuongHieu`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tbl_sanpham_ibfk_2` FOREIGN KEY (`MaDanhMuc`) REFERENCES `tbl_danhmuc` (`MaDanhMuc`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Các ràng buộc cho bảng `tbl_seri`
+--
+ALTER TABLE `tbl_seri`
+  ADD CONSTRAINT `tbl_seri_ibfk_1` FOREIGN KEY (`MaPN`) REFERENCES `tbl_phieunhap` (`MaPhieuNhap`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `tbl_thanhtruot`

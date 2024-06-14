@@ -68,10 +68,12 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <div class="form-group">
-                        <label for="">Số lượng</label>
-                        <input type="number" class="form-control" name="soLuong" >
+                        <label for="">Seri</label>
+                        <select class="form-control input-lg m-bot15" id="seri" name="seri[]" multiple style="width:100%">
+                            
+                        </select>
                     </div>
-                    @error('soLuong')
+                    @error('seri')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
@@ -296,6 +298,29 @@ $(document).ready(function() {
                 }
             });
         }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#seri').select2();
+        $('#MaSanPham').on('change', function() {
+            var maSP = $(this).val();
+            if(maSP) {
+                $.ajax({
+                    url: '/getSeri/'+maSP,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('#seri').empty();
+                        $.each(data, function(key, value) {
+                            $('#seri').append('<option value="'+ value.MaSeri +'">'+ value.MaSeri +'</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#seri').empty();
+            }
+        });
     });
 </script>
 @endsection

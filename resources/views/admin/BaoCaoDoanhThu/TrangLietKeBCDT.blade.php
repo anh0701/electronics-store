@@ -101,8 +101,9 @@
       </div>
       </footer> --}}
     </div>
-    <form action="{{ route('xuatFileBCDT') }}" method="GET">
+    <form action="{{ route('xuatFileBCDTNgay') }}" method="GET">
         @csrf 
+        <input type="hidden" name="loiNhuan" value="{{$loiNhuan}}">
         <button type="submit" class="btn btn-info">Xuất file</button>
     </form>
 </div>

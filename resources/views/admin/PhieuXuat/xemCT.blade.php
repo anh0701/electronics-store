@@ -32,19 +32,21 @@
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p> {{$px->LyDoXuat}}</p>
                 </div>
+                @if (!empty($px->MaDonHang))
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Mã đơn hàng:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                    <p> {{$px->MaDonHang}}</p>
+                    <p> {{$px->MaDonHang}} </p>
                 </div>
+                @endif
+                
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Trạng thái:</strong></p>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
                     <p>{{$tt}}</p>
                 </div>
-                
                 <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                     <p><strong>Thời gian tạo:</strong></p>
                 </div>
@@ -72,6 +74,27 @@
                         <tr>
                             <td>{{ $i->TenSanPham }}</td>
                             <td>{{ $i->SoLuong }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <p class="head1">Danh sách seri sản phẩm xuất</p>
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số Seri</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($ctsp as $key => $sp)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $sp->TenSanPham }}</td>
+                            <td>{{ $sp->MaSeri }}</td>
                         </tr>
                     @endforeach
                 </tbody>
