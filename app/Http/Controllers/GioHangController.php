@@ -77,7 +77,7 @@ class GioHangController extends Controller
 
     public function HienThiGioHang(Request $request){
 
-        $meta_desc = "Trang thanh toán sản phẩm"; 
+        $meta_desc = "Trang thanh toán sản phẩm";
         $meta_keywords = "Trang thanh toán sản phẩm";
         $meta_title = "Trang thanh toán sản phẩm";
         $url_canonical = $request->url();
@@ -87,7 +87,7 @@ class GioHangController extends Controller
 
         return view('pages.ThanhToan.ThanhToan')->with(compact('allThanhPho'))
         ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'image_og'));
-    } 
+    }
 
     public function XoaSanPhamTrongGioHang($session_id){
         $cart = Session::get('cart');
@@ -125,9 +125,9 @@ class GioHangController extends Controller
         $cart = Session::get('cart');
         if($cart){
             Session::forget('cart');
-            return Redirect()->back()->with('message', 'Xóa toàn bộ giỏ hàng'); 
+            return Redirect()->back()->with('message', 'Xóa toàn bộ giỏ hàng');
         }else{
-            return Redirect()->back()->with('message', 'Giỏ hàng đang trống'); 
+            return Redirect()->back()->with('message', 'Giỏ hàng đang trống');
         }
     }
 
@@ -146,11 +146,11 @@ class GioHangController extends Controller
                         Session::save();
                     }
                 }else{
-                    return Redirect()->back()->with('message', 'Chọn địa điểm khác để giao hàng'); 
+                    return Redirect()->back()->with('message', 'Chọn địa điểm khác để giao hàng');
                 }
             }
         }else{
-            return Redirect()->back()->with('message', 'Hãy chọn thành phố khác'); 
+            return Redirect()->back()->with('message', 'Hãy chọn thành phố khác');
         }
     }
 
@@ -158,20 +158,20 @@ class GioHangController extends Controller
         $phiGiaoHang = Session::get('PhiGiaoHang');
         if($phiGiaoHang){
             Session::forget('PhiGiaoHang');
-            return Redirect()->back()->with('message', 'Xóa Phí giao hàng thành công'); 
+            return Redirect()->back()->with('message', 'Xóa Phí giao hàng thành công');
         }else{
-            return Redirect()->back()->with('message', 'Chưa tính phí giao hàng'); 
+            return Redirect()->back()->with('message', 'Chưa tính phí giao hàng');
         }
     }
 
     public function ApDungPhieuGiamGia(Request $request){
         $data = $request->all();
         if($data['MaCode'] == null){
-            return Redirect()->back()->with('error', 'Bạn hãy điền Mã code của phiếu giảm giá'); 
+            return Redirect()->back()->with('error', 'Bạn hãy điền Mã code của phiếu giảm giá');
         }elseif(Empty(Session('cart'))){
-            return Redirect()->back()->with('error', 'Bạn hãy thêm sản phẩm vào giỏ hàng'); 
+            return Redirect()->back()->with('error', 'Bạn hãy thêm sản phẩm vào giỏ hàng');
         }elseif(Empty(Session('user'))){
-            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để dùng phiếu giảm giá này'); 
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để dùng phiếu giảm giá này');
         }else{
             $user = Session::get('user');
             $phieuGiamGia = PhieuGiamGia::where('MaCode', $data['MaCode'])->first();
@@ -195,19 +195,19 @@ class GioHangController extends Controller
         $phieuGiamGia = Session::get('PhieuGiamGia');
         if($phieuGiamGia){
             Session::forget('PhieuGiamGia');
-            return Redirect()->back()->with('message', 'Xóa Phiếu giảm giá thành công'); 
+            return Redirect()->back()->with('message', 'Xóa Phiếu giảm giá thành công');
         }else{
-            return Redirect()->back()->with('message', 'Chưa áp dụng phiếu giảm giá nào'); 
+            return Redirect()->back()->with('message', 'Chưa áp dụng phiếu giảm giá nào');
         }
     }
 
     public function DatHang(Request $request){
         if(Empty(Session('cart'))){
-            return Redirect()->back()->with('error', 'Bạn hãy thêm sản phẩm vào giỏ hàng trước khi thanh toán'); 
+            return Redirect()->back()->with('error', 'Bạn hãy thêm sản phẩm vào giỏ hàng trước khi thanh toán');
         }elseif(Empty(Session('user'))){
-            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể thực hiện thanh toán'); 
+            return Redirect()->back()->with('error', 'Bạn hãy đăng nhập để có thể thực hiện thanh toán');
         }elseif(Empty(Session('PhiGiaoHang'))){
-            return Redirect()->back()->with('error', 'Bạn hãy chọn địa điểm để tính tiền giao hàng'); 
+            return Redirect()->back()->with('error', 'Bạn hãy chọn địa điểm để tính tiền giao hàng');
         }else{
             $gioHangSession = Session::get('cart');
             $sanPham = SanPham::orderBy('MaSanPham', 'DESC')->get();
@@ -215,7 +215,7 @@ class GioHangController extends Controller
                 foreach($gioHangSession as $key => $gioHang){
                     if($value->MaSanPham == $gioHang['MaSanPham']){
                         if($value->SoLuongHienTai < $gioHang['SoLuong']){
-                            return Redirect()->back()->with('error', 'Sản phẩm '.$value->TenSanPham.' không đủ số lượng so với đơn hàng của bạn'); 
+                            return Redirect()->back()->with('error', 'Sản phẩm '.$value->TenSanPham.' không đủ số lượng so với đơn hàng của bạn');
                         }
 
                     }
@@ -260,7 +260,7 @@ class GioHangController extends Controller
                 $donHang->MaGiamGia = null;
             }else{
                 $donHang->MaGiamGia = $phieuGiamGiaSession['MaGiamGia'];
-                
+
             }
             $donHang->TrangThai = 1;
             date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -294,10 +294,13 @@ class GioHangController extends Controller
                 $chiTietPhieuBaoHanh->save();
             }
 
+
+//            dd($ND->BacNguoiDung);
+
             Session::forget('PhieuGiamGia');
             Session::forget('PhiGiaoHang');
             Session::forget('cart');
-            return Redirect()->back()->with('message', 'Đặt hành thành công'); 
+            return Redirect()->back()->with('message', 'Đặt hành thành công');
         }
     }
 }

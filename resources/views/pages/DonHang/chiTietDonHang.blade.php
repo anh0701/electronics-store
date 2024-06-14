@@ -19,7 +19,7 @@
                         <p><strong>Số điện thoại: </strong>{{ $allDonHang->GiaoHang->SoDienThoai }}</p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Số tiền: </strong>{{ number_format($allDonHang->GiaoHang->TienGiaoHang, 0, '', '.') }} đ</p>
+{{--                        <p><strong>Số tiền giao hàng: </strong>{{ number_format($allDonHang->GiaoHang->TienGiaoHang, 0, '', '.') }} đ</p>--}}
                         <p><strong>Ghi chú: </strong>{{ $allDonHang->GiaoHang->GhiChu ?? 'Không có ghi chú nào' }}</p>
                     </div>
                 </div>

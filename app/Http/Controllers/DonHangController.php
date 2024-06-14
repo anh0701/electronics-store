@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TaiKhoan;
 use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\PhiGiaoHang;
@@ -196,7 +197,36 @@ class DonHangController extends Controller
                     $suaBCDT->total_order += 1;
                     $suaBCDT->save();
                 }
+
+                $donHangND = DonHang::where('Email', $donHang -> Email)->get();
+
+                $total = 0;
+                foreach ($donHangND as $don){
+                    $value = ChiTietDonHang::where('order_code', $don->order_code)
+                        ->get();
+                    foreach ($value as $val){
+                        if($don->PhieuGiamGia == null){
+                            $triGiaP = 0;
+                        }
+                        else{
+                            $triGiaP = $don->PhieuGiamGia->TriGia;
+
+                        }
+                        $total += $val->GiaSanPham * $val->SoLuong - $triGiaP + $don->GiaoHang->TienGiaoHang;
+                    }
+                }
+
+                if($total >= 12000000){
+                    TaiKhoan::where('Email', $donHang -> Email)->update(['BacNguoiDung' => 2]);
+                }
+                elseif (12000000 < $total ){
+                    TaiKhoan::where('Email', $donHang -> Email)->update(['BacNguoiDung' => 3]);
+
+                }
+//                $ND->save();
+
             return Redirect()->route('/TrangChiTietDonHang', [$order_code])->with('status', 'Cập nhật trạng thái đơn hàng thành công | Khách hàng thanh toán đơn hàng');
+
             }elseif($data['TrangThaiDonHang'] == 4){
                 foreach($allChiTietDonHang as $key => $chiTietDonHang){
                     foreach($allSanPham as $key => $sanPham){
