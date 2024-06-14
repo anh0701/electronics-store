@@ -66,6 +66,7 @@
                         <button type="submit" name="" class="btn btn-info">Lưu</button>
                         
                     </form>
+                    <a href="{{ route('themSeriPN', ['id' => $pn->MaPhieuNhap]) }}" style="margin-top:5px;" class="btn btn-info">Thêm Seri sản phẩm</a>
                     <form id="myLink3" role="form" action="{{ route('xuLyLapPNCT') }}" method="POST">
                         {{ csrf_field() }}
                         

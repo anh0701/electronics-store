@@ -587,9 +587,7 @@ class PhieuNhapController extends Controller
         }
         $seri = Seri::where('MaPN', $maPN)->get();
         $x2 = count($seri);
-        if($x1 != $x2){
-            return redirect()->back()->withInput()->withErrors(['trangThai' => 'Bạn chưa nhập đủ số seri cho sản phẩm nhập về!!!']);
-        }
+        
         $tienNo = $tongTien - $tienTra;
         $thoiGianSua = date('Y-m-d H:i:s');
         if($tienTra < 0){
@@ -603,6 +601,9 @@ class PhieuNhapController extends Controller
         $pth = DB::select("SELECT * FROM tbl_phieutrahang WHERE MaPhieuNhap = ?", [$maPN]);
         
         if($trangThai2 == 1 && ($trangThai1 != $trangThai2)){
+            if($x1 != $x2){
+                return redirect()->back()->withInput()->withErrors(['trangThai' => 'Bạn chưa nhập đủ số seri cho sản phẩm nhập về!!!']);
+            }
             foreach($ctpn as $ct){
                 $maSP = $ct->MaSanPham;
                 $soLuong = $ct->SoLuong;
