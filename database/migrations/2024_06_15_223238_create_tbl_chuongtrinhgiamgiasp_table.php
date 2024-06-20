@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phieu_giam_gias', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbl_chuongtrinhgiamgiasp', function (Blueprint $table) {
+            $table->integer('MaCTGGSP', true);
+            $table->integer('MaSanPham')->index('masanpham');
+            $table->integer('MaCTGG')->index('mactgg');
+            $table->string('PhanTramGiam', 50);
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('phieu_giam_gias');
+        Schema::dropIfExists('tbl_chuongtrinhgiamgiasp');
     }
 };

@@ -1,0 +1,317 @@
+[
+  {
+    "MaThanhPho": "1",
+    "TenThanhPho": "Thành phố Hà Nội",
+    "type": "Thành phố Trung ương"
+  },
+  {
+    "MaThanhPho": "31",
+    "TenThanhPho": "Thành phố Hải Phòng",
+    "type": "Thành phố Trung ương"
+  },
+  {
+    "MaThanhPho": "48",
+    "TenThanhPho": "Thành phố Đà Nẵng",
+    "type": "Thành phố Trung ương"
+  },
+  {
+    "MaThanhPho": "92",
+    "TenThanhPho": "Thành phố Cần Thơ",
+    "type": "Thành phố Trung ương"
+  },
+  {
+    "MaThanhPho": "79",
+    "TenThanhPho": "Thành phố Hồ Chí Minh",
+    "type": "Thành phố Trung ương"
+  },
+  {
+    "MaThanhPho": "64",
+    "TenThanhPho": "Tỉnh Gia Lai",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "74",
+    "TenThanhPho": "Tỉnh Bình Dương",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "72",
+    "TenThanhPho": "Tỉnh Tây Ninh",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "70",
+    "TenThanhPho": "Tỉnh Bình Phước",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "68",
+    "TenThanhPho": "Tỉnh Lâm Đồng",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "67",
+    "TenThanhPho": "Tỉnh Đắk Nông",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "66",
+    "TenThanhPho": "Tỉnh Đắk Lắk",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "56",
+    "TenThanhPho": "Tỉnh Khánh Hòa",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "62",
+    "TenThanhPho": "Tỉnh Kon Tum",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "60",
+    "TenThanhPho": "Tỉnh Bình Thuận",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "6",
+    "TenThanhPho": "Tỉnh Bắc Kạn",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "58",
+    "TenThanhPho": "Tỉnh Ninh Thuận",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "51",
+    "TenThanhPho": "Tỉnh Quảng Ngãi",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "75",
+    "TenThanhPho": "Tỉnh Đồng Nai",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "77",
+    "TenThanhPho": "Tỉnh Bà Rịa - Vũng Tàu",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "8",
+    "TenThanhPho": "Tỉnh Tuyên Quang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "80",
+    "TenThanhPho": "Tỉnh Long An",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "82",
+    "TenThanhPho": "Tỉnh Tiền Giang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "83",
+    "TenThanhPho": "Tỉnh Bến Tre",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "84",
+    "TenThanhPho": "Tỉnh Trà Vinh",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "86",
+    "TenThanhPho": "Tỉnh Vĩnh Long",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "87",
+    "TenThanhPho": "Tỉnh Đồng Tháp",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "89",
+    "TenThanhPho": "Tỉnh An Giang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "91",
+    "TenThanhPho": "Tỉnh Kiên Giang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "93",
+    "TenThanhPho": "Tỉnh Hậu Giang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "94",
+    "TenThanhPho": "Tỉnh Sóc Trăng",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "95",
+    "TenThanhPho": "Tỉnh Bạc Liêu",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "96",
+    "TenThanhPho": "Tỉnh Cà Mau",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "30",
+    "TenThanhPho": "Tỉnh Hải Dương",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "10",
+    "TenThanhPho": "Tỉnh Lào Cai",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "11",
+    "TenThanhPho": "Tỉnh Điện Biên",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "12",
+    "TenThanhPho": "Tỉnh Lai Châu",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "14",
+    "TenThanhPho": "Tỉnh Sơn La",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "15",
+    "TenThanhPho": "Tỉnh Yên Bái",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "17",
+    "TenThanhPho": "Tỉnh Hoà Bình",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "19",
+    "TenThanhPho": "Tỉnh Thái Nguyên",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "2",
+    "TenThanhPho": "Tỉnh Hà Giang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "20",
+    "TenThanhPho": "Tỉnh Lạng Sơn",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "22",
+    "TenThanhPho": "Tỉnh Quảng Ninh",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "24",
+    "TenThanhPho": "Tỉnh Bắc Giang",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "25",
+    "TenThanhPho": "Tỉnh Phú Thọ",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "26",
+    "TenThanhPho": "Tỉnh Vĩnh Phúc",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "27",
+    "TenThanhPho": "Tỉnh Bắc Ninh",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "54",
+    "TenThanhPho": "Tỉnh Phú Yên",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "33",
+    "TenThanhPho": "Tỉnh Hưng Yên",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "34",
+    "TenThanhPho": "Tỉnh Thái Bình",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "35",
+    "TenThanhPho": "Tỉnh Hà Nam",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "36",
+    "TenThanhPho": "Tỉnh Nam Định",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "37",
+    "TenThanhPho": "Tỉnh Ninh Bình",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "38",
+    "TenThanhPho": "Tỉnh Thanh Hóa",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "4",
+    "TenThanhPho": "Tỉnh Cao Bằng",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "40",
+    "TenThanhPho": "Tỉnh Nghệ An",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "42",
+    "TenThanhPho": "Tỉnh Hà Tĩnh",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "44",
+    "TenThanhPho": "Tỉnh Quảng Bình",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "45",
+    "TenThanhPho": "Tỉnh Quảng Trị",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "46",
+    "TenThanhPho": "Tỉnh Thừa Thiên Huế",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "49",
+    "TenThanhPho": "Tỉnh Quảng Nam",
+    "type": "Tỉnh"
+  },
+  {
+    "MaThanhPho": "52",
+    "TenThanhPho": "Tỉnh Bình Định",
+    "type": "Tỉnh"
+  }
+]

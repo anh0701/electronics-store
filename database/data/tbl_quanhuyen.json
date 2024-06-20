@@ -1,0 +1,4280 @@
+[
+  {
+    "MaQuanHuyen": "001",
+    "TenQuanHuyen": "Quận Ba Đình",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "002",
+    "TenQuanHuyen": "Quận Hoàn Kiếm",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "003",
+    "TenQuanHuyen": "Quận Tây Hồ",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "004",
+    "TenQuanHuyen": "Quận Long Biên",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "005",
+    "TenQuanHuyen": "Quận Cầu Giấy",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "006",
+    "TenQuanHuyen": "Quận Đống Đa",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "007",
+    "TenQuanHuyen": "Quận Hai Bà Trưng",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "008",
+    "TenQuanHuyen": "Quận Hoàng Mai",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "009",
+    "TenQuanHuyen": "Quận Thanh Xuân",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "016",
+    "TenQuanHuyen": "Huyện Sóc Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "017",
+    "TenQuanHuyen": "Huyện Đông Anh",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "018",
+    "TenQuanHuyen": "Huyện Gia Lâm",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "019",
+    "TenQuanHuyen": "Quận Nam Từ Liêm",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "020",
+    "TenQuanHuyen": "Huyện Thanh Trì",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "021",
+    "TenQuanHuyen": "Quận Bắc Từ Liêm",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "024",
+    "TenQuanHuyen": "Thành phố Hà Giang",
+    "type": "Thành phố",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "026",
+    "TenQuanHuyen": "Huyện Đồng Văn",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "027",
+    "TenQuanHuyen": "Huyện Mèo Vạc",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "028",
+    "TenQuanHuyen": "Huyện Yên Minh",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "029",
+    "TenQuanHuyen": "Huyện Quản Bạ",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "030",
+    "TenQuanHuyen": "Huyện Vị Xuyên",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "031",
+    "TenQuanHuyen": "Huyện Bắc Mê",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "032",
+    "TenQuanHuyen": "Huyện Hoàng Su Phì",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "033",
+    "TenQuanHuyen": "Huyện Xín Mần",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "034",
+    "TenQuanHuyen": "Huyện Bắc Quang",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "035",
+    "TenQuanHuyen": "Huyện Quang Bình",
+    "type": "Huyện",
+    "MaThanhPho": "2"
+  },
+  {
+    "MaQuanHuyen": "040",
+    "TenQuanHuyen": "Thành phố Cao Bằng",
+    "type": "Thành phố",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "042",
+    "TenQuanHuyen": "Huyện Bảo Lâm",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "043",
+    "TenQuanHuyen": "Huyện Bảo Lạc",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "044",
+    "TenQuanHuyen": "Huyện Thông Nông",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "045",
+    "TenQuanHuyen": "Huyện Hà Quảng",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "046",
+    "TenQuanHuyen": "Huyện Trà Lĩnh",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "047",
+    "TenQuanHuyen": "Huyện Trùng Khánh",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "048",
+    "TenQuanHuyen": "Huyện Hạ Lang",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "049",
+    "TenQuanHuyen": "Huyện Quảng Uyên",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "050",
+    "TenQuanHuyen": "Huyện Phục Hoà",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "051",
+    "TenQuanHuyen": "Huyện Hoà An",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "052",
+    "TenQuanHuyen": "Huyện Nguyên Bình",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "053",
+    "TenQuanHuyen": "Huyện Thạch An",
+    "type": "Huyện",
+    "MaThanhPho": "4"
+  },
+  {
+    "MaQuanHuyen": "058",
+    "TenQuanHuyen": "Thành Phố Bắc Kạn",
+    "type": "Thành phố",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "060",
+    "TenQuanHuyen": "Huyện Pác Nặm",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "061",
+    "TenQuanHuyen": "Huyện Ba Bể",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "062",
+    "TenQuanHuyen": "Huyện Ngân Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "063",
+    "TenQuanHuyen": "Huyện Bạch Thông",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "064",
+    "TenQuanHuyen": "Huyện Chợ Đồn",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "065",
+    "TenQuanHuyen": "Huyện Chợ Mới",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "066",
+    "TenQuanHuyen": "Huyện Na Rì",
+    "type": "Huyện",
+    "MaThanhPho": "6"
+  },
+  {
+    "MaQuanHuyen": "070",
+    "TenQuanHuyen": "Thành phố Tuyên Quang",
+    "type": "Thành phố",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "071",
+    "TenQuanHuyen": "Huyện Lâm Bình",
+    "type": "Huyện",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "072",
+    "TenQuanHuyen": "Huyện Nà Hang",
+    "type": "Huyện",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "073",
+    "TenQuanHuyen": "Huyện Chiêm Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "074",
+    "TenQuanHuyen": "Huyện Hàm Yên",
+    "type": "Huyện",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "075",
+    "TenQuanHuyen": "Huyện Yên Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "076",
+    "TenQuanHuyen": "Huyện Sơn Dương",
+    "type": "Huyện",
+    "MaThanhPho": "8"
+  },
+  {
+    "MaQuanHuyen": "080",
+    "TenQuanHuyen": "Thành phố Lào Cai",
+    "type": "Thành phố",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "082",
+    "TenQuanHuyen": "Huyện Bát Xát",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "083",
+    "TenQuanHuyen": "Huyện Mường Khương",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "084",
+    "TenQuanHuyen": "Huyện Si Ma Cai",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "085",
+    "TenQuanHuyen": "Huyện Bắc Hà",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "086",
+    "TenQuanHuyen": "Huyện Bảo Thắng",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "087",
+    "TenQuanHuyen": "Huyện Bảo Yên",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "088",
+    "TenQuanHuyen": "Huyện Sa Pa",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "089",
+    "TenQuanHuyen": "Huyện Văn Bàn",
+    "type": "Huyện",
+    "MaThanhPho": "10"
+  },
+  {
+    "MaQuanHuyen": "094",
+    "TenQuanHuyen": "Thành phố Điện Biên Phủ",
+    "type": "Thành phố",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "095",
+    "TenQuanHuyen": "Thị Xã Mường Lay",
+    "type": "Thị xã",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "096",
+    "TenQuanHuyen": "Huyện Mường Nhé",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "097",
+    "TenQuanHuyen": "Huyện Mường Chà",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "098",
+    "TenQuanHuyen": "Huyện Tủa Chùa",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "099",
+    "TenQuanHuyen": "Huyện Tuần Giáo",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "100",
+    "TenQuanHuyen": "Huyện Điện Biên",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "101",
+    "TenQuanHuyen": "Huyện Điện Biên Đông",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "102",
+    "TenQuanHuyen": "Huyện Mường Ảng",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "103",
+    "TenQuanHuyen": "Huyện Nậm Pồ",
+    "type": "Huyện",
+    "MaThanhPho": "11"
+  },
+  {
+    "MaQuanHuyen": "105",
+    "TenQuanHuyen": "Thành phố Lai Châu",
+    "type": "Thành phố",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "106",
+    "TenQuanHuyen": "Huyện Tam Đường",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "107",
+    "TenQuanHuyen": "Huyện Mường Tè",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "108",
+    "TenQuanHuyen": "Huyện Sìn Hồ",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "109",
+    "TenQuanHuyen": "Huyện Phong Thổ",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "110",
+    "TenQuanHuyen": "Huyện Than Uyên",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "111",
+    "TenQuanHuyen": "Huyện Tân Uyên",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "112",
+    "TenQuanHuyen": "Huyện Nậm Nhùn",
+    "type": "Huyện",
+    "MaThanhPho": "12"
+  },
+  {
+    "MaQuanHuyen": "116",
+    "TenQuanHuyen": "Thành phố Sơn La",
+    "type": "Thành phố",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "118",
+    "TenQuanHuyen": "Huyện Quỳnh Nhai",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "119",
+    "TenQuanHuyen": "Huyện Thuận Châu",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "120",
+    "TenQuanHuyen": "Huyện Mường La",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "121",
+    "TenQuanHuyen": "Huyện Bắc Yên",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "122",
+    "TenQuanHuyen": "Huyện Phù Yên",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "123",
+    "TenQuanHuyen": "Huyện Mộc Châu",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "124",
+    "TenQuanHuyen": "Huyện Yên Châu",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "125",
+    "TenQuanHuyen": "Huyện Mai Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "126",
+    "TenQuanHuyen": "Huyện Sông Mã",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "127",
+    "TenQuanHuyen": "Huyện Sốp Cộp",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "128",
+    "TenQuanHuyen": "Huyện Vân Hồ",
+    "type": "Huyện",
+    "MaThanhPho": "14"
+  },
+  {
+    "MaQuanHuyen": "132",
+    "TenQuanHuyen": "Thành phố Yên Bái",
+    "type": "Thành phố",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "133",
+    "TenQuanHuyen": "Thị xã Nghĩa Lộ",
+    "type": "Thị xã",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "135",
+    "TenQuanHuyen": "Huyện Lục Yên",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "136",
+    "TenQuanHuyen": "Huyện Văn Yên",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "137",
+    "TenQuanHuyen": "Huyện Mù Căng Chải",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "138",
+    "TenQuanHuyen": "Huyện Trấn Yên",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "139",
+    "TenQuanHuyen": "Huyện Trạm Tấu",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "140",
+    "TenQuanHuyen": "Huyện Văn Chấn",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "141",
+    "TenQuanHuyen": "Huyện Yên Bình",
+    "type": "Huyện",
+    "MaThanhPho": "15"
+  },
+  {
+    "MaQuanHuyen": "148",
+    "TenQuanHuyen": "Thành phố Hòa Bình",
+    "type": "Thành phố",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "150",
+    "TenQuanHuyen": "Huyện Đà Bắc",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "151",
+    "TenQuanHuyen": "Huyện Kỳ Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "152",
+    "TenQuanHuyen": "Huyện Lương Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "153",
+    "TenQuanHuyen": "Huyện Kim Bôi",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "154",
+    "TenQuanHuyen": "Huyện Cao Phong",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "155",
+    "TenQuanHuyen": "Huyện Tân Lạc",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "156",
+    "TenQuanHuyen": "Huyện Mai Châu",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "157",
+    "TenQuanHuyen": "Huyện Lạc Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "158",
+    "TenQuanHuyen": "Huyện Yên Thủy",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "159",
+    "TenQuanHuyen": "Huyện Lạc Thủy",
+    "type": "Huyện",
+    "MaThanhPho": "17"
+  },
+  {
+    "MaQuanHuyen": "164",
+    "TenQuanHuyen": "Thành phố Thái Nguyên",
+    "type": "Thành phố",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "165",
+    "TenQuanHuyen": "Thành phố Sông Công",
+    "type": "Thành phố",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "167",
+    "TenQuanHuyen": "Huyện Định Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "168",
+    "TenQuanHuyen": "Huyện Phú Lương",
+    "type": "Huyện",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "169",
+    "TenQuanHuyen": "Huyện Đồng Hỷ",
+    "type": "Huyện",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "170",
+    "TenQuanHuyen": "Huyện Võ Nhai",
+    "type": "Huyện",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "171",
+    "TenQuanHuyen": "Huyện Đại Từ",
+    "type": "Huyện",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "172",
+    "TenQuanHuyen": "Thị xã Phổ Yên",
+    "type": "Thị xã",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "173",
+    "TenQuanHuyen": "Huyện Phú Bình",
+    "type": "Huyện",
+    "MaThanhPho": "19"
+  },
+  {
+    "MaQuanHuyen": "178",
+    "TenQuanHuyen": "Thành phố Lạng Sơn",
+    "type": "Thành phố",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "180",
+    "TenQuanHuyen": "Huyện Tràng Định",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "181",
+    "TenQuanHuyen": "Huyện Bình Gia",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "182",
+    "TenQuanHuyen": "Huyện Văn Lãng",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "183",
+    "TenQuanHuyen": "Huyện Cao Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "184",
+    "TenQuanHuyen": "Huyện Văn Quan",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "185",
+    "TenQuanHuyen": "Huyện Bắc Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "186",
+    "TenQuanHuyen": "Huyện Hữu Lũng",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "187",
+    "TenQuanHuyen": "Huyện Chi Lăng",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "188",
+    "TenQuanHuyen": "Huyện Lộc Bình",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "189",
+    "TenQuanHuyen": "Huyện Đình Lập",
+    "type": "Huyện",
+    "MaThanhPho": "20"
+  },
+  {
+    "MaQuanHuyen": "193",
+    "TenQuanHuyen": "Thành phố Hạ Long",
+    "type": "Thành phố",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "194",
+    "TenQuanHuyen": "Thành phố Móng Cái",
+    "type": "Thành phố",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "195",
+    "TenQuanHuyen": "Thành phố Cẩm Phả",
+    "type": "Thành phố",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "196",
+    "TenQuanHuyen": "Thành phố Uông Bí",
+    "type": "Thành phố",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "198",
+    "TenQuanHuyen": "Huyện Bình Liêu",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "199",
+    "TenQuanHuyen": "Huyện Tiên Yên",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "200",
+    "TenQuanHuyen": "Huyện Đầm Hà",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "201",
+    "TenQuanHuyen": "Huyện Hải Hà",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "202",
+    "TenQuanHuyen": "Huyện Ba Chẽ",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "203",
+    "TenQuanHuyen": "Huyện Vân Đồn",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "204",
+    "TenQuanHuyen": "Huyện Hoành Bồ",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "205",
+    "TenQuanHuyen": "Thị xã Đông Triều",
+    "type": "Thị xã",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "206",
+    "TenQuanHuyen": "Thị xã Quảng Yên",
+    "type": "Thị xã",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "207",
+    "TenQuanHuyen": "Huyện Cô Tô",
+    "type": "Huyện",
+    "MaThanhPho": "22"
+  },
+  {
+    "MaQuanHuyen": "213",
+    "TenQuanHuyen": "Thành phố Bắc Giang",
+    "type": "Thành phố",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "215",
+    "TenQuanHuyen": "Huyện Yên Thế",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "216",
+    "TenQuanHuyen": "Huyện Tân Yên",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "217",
+    "TenQuanHuyen": "Huyện Lạng Giang",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "218",
+    "TenQuanHuyen": "Huyện Lục Nam",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "219",
+    "TenQuanHuyen": "Huyện Lục Ngạn",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "220",
+    "TenQuanHuyen": "Huyện Sơn Động",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "221",
+    "TenQuanHuyen": "Huyện Yên Dũng",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "222",
+    "TenQuanHuyen": "Huyện Việt Yên",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "223",
+    "TenQuanHuyen": "Huyện Hiệp Hòa",
+    "type": "Huyện",
+    "MaThanhPho": "24"
+  },
+  {
+    "MaQuanHuyen": "227",
+    "TenQuanHuyen": "Thành phố Việt Trì",
+    "type": "Thành phố",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "228",
+    "TenQuanHuyen": "Thị xã Phú Thọ",
+    "type": "Thị xã",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "230",
+    "TenQuanHuyen": "Huyện Đoan Hùng",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "231",
+    "TenQuanHuyen": "Huyện Hạ Hoà",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "232",
+    "TenQuanHuyen": "Huyện Thanh Ba",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "233",
+    "TenQuanHuyen": "Huyện Phù Ninh",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "234",
+    "TenQuanHuyen": "Huyện Yên Lập",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "235",
+    "TenQuanHuyen": "Huyện Cẩm Khê",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "236",
+    "TenQuanHuyen": "Huyện Tam Nông",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "237",
+    "TenQuanHuyen": "Huyện Lâm Thao",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "238",
+    "TenQuanHuyen": "Huyện Thanh Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "239",
+    "TenQuanHuyen": "Huyện Thanh Thuỷ",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "240",
+    "TenQuanHuyen": "Huyện Tân Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "25"
+  },
+  {
+    "MaQuanHuyen": "243",
+    "TenQuanHuyen": "Thành phố Vĩnh Yên",
+    "type": "Thành phố",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "244",
+    "TenQuanHuyen": "Thị xã Phúc Yên",
+    "type": "Thị xã",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "246",
+    "TenQuanHuyen": "Huyện Lập Thạch",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "247",
+    "TenQuanHuyen": "Huyện Tam Dương",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "248",
+    "TenQuanHuyen": "Huyện Tam Đảo",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "249",
+    "TenQuanHuyen": "Huyện Bình Xuyên",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "250",
+    "TenQuanHuyen": "Huyện Mê Linh",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "251",
+    "TenQuanHuyen": "Huyện Yên Lạc",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "252",
+    "TenQuanHuyen": "Huyện Vĩnh Tường",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "253",
+    "TenQuanHuyen": "Huyện Sông Lô",
+    "type": "Huyện",
+    "MaThanhPho": "26"
+  },
+  {
+    "MaQuanHuyen": "256",
+    "TenQuanHuyen": "Thành phố Bắc Ninh",
+    "type": "Thành phố",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "258",
+    "TenQuanHuyen": "Huyện Yên Phong",
+    "type": "Huyện",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "259",
+    "TenQuanHuyen": "Huyện Quế Võ",
+    "type": "Huyện",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "260",
+    "TenQuanHuyen": "Huyện Tiên Du",
+    "type": "Huyện",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "261",
+    "TenQuanHuyen": "Thị xã Từ Sơn",
+    "type": "Thị xã",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "262",
+    "TenQuanHuyen": "Huyện Thuận Thành",
+    "type": "Huyện",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "263",
+    "TenQuanHuyen": "Huyện Gia Bình",
+    "type": "Huyện",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "264",
+    "TenQuanHuyen": "Huyện Lương Tài",
+    "type": "Huyện",
+    "MaThanhPho": "27"
+  },
+  {
+    "MaQuanHuyen": "268",
+    "TenQuanHuyen": "Quận Hà Đông",
+    "type": "Quận",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "269",
+    "TenQuanHuyen": "Thị xã Sơn Tây",
+    "type": "Thị xã",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "271",
+    "TenQuanHuyen": "Huyện Ba Vì",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "272",
+    "TenQuanHuyen": "Huyện Phúc Thọ",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "273",
+    "TenQuanHuyen": "Huyện Đan Phượng",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "274",
+    "TenQuanHuyen": "Huyện Hoài Đức",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "275",
+    "TenQuanHuyen": "Huyện Quốc Oai",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "276",
+    "TenQuanHuyen": "Huyện Thạch Thất",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "277",
+    "TenQuanHuyen": "Huyện Chương Mỹ",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "278",
+    "TenQuanHuyen": "Huyện Thanh Oai",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "279",
+    "TenQuanHuyen": "Huyện Thường Tín",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "280",
+    "TenQuanHuyen": "Huyện Phú Xuyên",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "281",
+    "TenQuanHuyen": "Huyện Ứng Hòa",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "282",
+    "TenQuanHuyen": "Huyện Mỹ Đức",
+    "type": "Huyện",
+    "MaThanhPho": "1"
+  },
+  {
+    "MaQuanHuyen": "288",
+    "TenQuanHuyen": "Thành phố Hải Dương",
+    "type": "Thành phố",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "290",
+    "TenQuanHuyen": "Thị xã Chí Linh",
+    "type": "Thị xã",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "291",
+    "TenQuanHuyen": "Huyện Nam Sách",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "292",
+    "TenQuanHuyen": "Huyện Kinh Môn",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "293",
+    "TenQuanHuyen": "Huyện Kim Thành",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "294",
+    "TenQuanHuyen": "Huyện Thanh Hà",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "295",
+    "TenQuanHuyen": "Huyện Cẩm Giàng",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "296",
+    "TenQuanHuyen": "Huyện Bình Giang",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "297",
+    "TenQuanHuyen": "Huyện Gia Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "298",
+    "TenQuanHuyen": "Huyện Tứ Kỳ",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "299",
+    "TenQuanHuyen": "Huyện Ninh Giang",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "300",
+    "TenQuanHuyen": "Huyện Thanh Miện",
+    "type": "Huyện",
+    "MaThanhPho": "30"
+  },
+  {
+    "MaQuanHuyen": "303",
+    "TenQuanHuyen": "Quận Hồng Bàng",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "304",
+    "TenQuanHuyen": "Quận Ngô Quyền",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "305",
+    "TenQuanHuyen": "Quận Lê Chân",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "306",
+    "TenQuanHuyen": "Quận Hải An",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "307",
+    "TenQuanHuyen": "Quận Kiến An",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "308",
+    "TenQuanHuyen": "Quận Đồ Sơn",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "309",
+    "TenQuanHuyen": "Quận Dương Kinh",
+    "type": "Quận",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "311",
+    "TenQuanHuyen": "Huyện Thuỷ Nguyên",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "312",
+    "TenQuanHuyen": "Huyện An Dương",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "313",
+    "TenQuanHuyen": "Huyện An Lão",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "314",
+    "TenQuanHuyen": "Huyện Kiến Thuỵ",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "315",
+    "TenQuanHuyen": "Huyện Tiên Lãng",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "316",
+    "TenQuanHuyen": "Huyện Vĩnh Bảo",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "317",
+    "TenQuanHuyen": "Huyện Cát Hải",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "318",
+    "TenQuanHuyen": "Huyện Bạch Long Vĩ",
+    "type": "Huyện",
+    "MaThanhPho": "31"
+  },
+  {
+    "MaQuanHuyen": "323",
+    "TenQuanHuyen": "Thành phố Hưng Yên",
+    "type": "Thành phố",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "325",
+    "TenQuanHuyen": "Huyện Văn Lâm",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "326",
+    "TenQuanHuyen": "Huyện Văn Giang",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "327",
+    "TenQuanHuyen": "Huyện Yên Mỹ",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "328",
+    "TenQuanHuyen": "Huyện Mỹ Hào",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "329",
+    "TenQuanHuyen": "Huyện Ân Thi",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "330",
+    "TenQuanHuyen": "Huyện Khoái Châu",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "331",
+    "TenQuanHuyen": "Huyện Kim Động",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "332",
+    "TenQuanHuyen": "Huyện Tiên Lữ",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "333",
+    "TenQuanHuyen": "Huyện Phù Cừ",
+    "type": "Huyện",
+    "MaThanhPho": "33"
+  },
+  {
+    "MaQuanHuyen": "336",
+    "TenQuanHuyen": "Thành phố Thái Bình",
+    "type": "Thành phố",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "338",
+    "TenQuanHuyen": "Huyện Quỳnh Phụ",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "339",
+    "TenQuanHuyen": "Huyện Hưng Hà",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "340",
+    "TenQuanHuyen": "Huyện Đông Hưng",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "341",
+    "TenQuanHuyen": "Huyện Thái Thụy",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "342",
+    "TenQuanHuyen": "Huyện Tiền Hải",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "343",
+    "TenQuanHuyen": "Huyện Kiến Xương",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "344",
+    "TenQuanHuyen": "Huyện Vũ Thư",
+    "type": "Huyện",
+    "MaThanhPho": "34"
+  },
+  {
+    "MaQuanHuyen": "347",
+    "TenQuanHuyen": "Thành phố Phủ Lý",
+    "type": "Thành phố",
+    "MaThanhPho": "35"
+  },
+  {
+    "MaQuanHuyen": "349",
+    "TenQuanHuyen": "Huyện Duy Tiên",
+    "type": "Huyện",
+    "MaThanhPho": "35"
+  },
+  {
+    "MaQuanHuyen": "350",
+    "TenQuanHuyen": "Huyện Kim Bảng",
+    "type": "Huyện",
+    "MaThanhPho": "35"
+  },
+  {
+    "MaQuanHuyen": "351",
+    "TenQuanHuyen": "Huyện Thanh Liêm",
+    "type": "Huyện",
+    "MaThanhPho": "35"
+  },
+  {
+    "MaQuanHuyen": "352",
+    "TenQuanHuyen": "Huyện Bình Lục",
+    "type": "Huyện",
+    "MaThanhPho": "35"
+  },
+  {
+    "MaQuanHuyen": "353",
+    "TenQuanHuyen": "Huyện Lý Nhân",
+    "type": "Huyện",
+    "MaThanhPho": "35"
+  },
+  {
+    "MaQuanHuyen": "356",
+    "TenQuanHuyen": "Thành phố Nam Định",
+    "type": "Thành phố",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "358",
+    "TenQuanHuyen": "Huyện Mỹ Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "359",
+    "TenQuanHuyen": "Huyện Vụ Bản",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "360",
+    "TenQuanHuyen": "Huyện Ý Yên",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "361",
+    "TenQuanHuyen": "Huyện Nghĩa Hưng",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "362",
+    "TenQuanHuyen": "Huyện Nam Trực",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "363",
+    "TenQuanHuyen": "Huyện Trực Ninh",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "364",
+    "TenQuanHuyen": "Huyện Xuân Trường",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "365",
+    "TenQuanHuyen": "Huyện Giao Thủy",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "366",
+    "TenQuanHuyen": "Huyện Hải Hậu",
+    "type": "Huyện",
+    "MaThanhPho": "36"
+  },
+  {
+    "MaQuanHuyen": "369",
+    "TenQuanHuyen": "Thành phố Ninh Bình",
+    "type": "Thành phố",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "370",
+    "TenQuanHuyen": "Thành phố Tam Điệp",
+    "type": "Thành phố",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "372",
+    "TenQuanHuyen": "Huyện Nho Quan",
+    "type": "Huyện",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "373",
+    "TenQuanHuyen": "Huyện Gia Viễn",
+    "type": "Huyện",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "374",
+    "TenQuanHuyen": "Huyện Hoa Lư",
+    "type": "Huyện",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "375",
+    "TenQuanHuyen": "Huyện Yên Khánh",
+    "type": "Huyện",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "376",
+    "TenQuanHuyen": "Huyện Kim Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "377",
+    "TenQuanHuyen": "Huyện Yên Mô",
+    "type": "Huyện",
+    "MaThanhPho": "37"
+  },
+  {
+    "MaQuanHuyen": "380",
+    "TenQuanHuyen": "Thành phố Thanh Hóa",
+    "type": "Thành phố",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "381",
+    "TenQuanHuyen": "Thị xã Bỉm Sơn",
+    "type": "Thị xã",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "382",
+    "TenQuanHuyen": "Thị xã Sầm Sơn",
+    "type": "Thị xã",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "384",
+    "TenQuanHuyen": "Huyện Mường Lát",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "385",
+    "TenQuanHuyen": "Huyện Quan Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "386",
+    "TenQuanHuyen": "Huyện Bá Thước",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "387",
+    "TenQuanHuyen": "Huyện Quan Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "388",
+    "TenQuanHuyen": "Huyện Lang Chánh",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "389",
+    "TenQuanHuyen": "Huyện Ngọc Lặc",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "390",
+    "TenQuanHuyen": "Huyện Cẩm Thủy",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "391",
+    "TenQuanHuyen": "Huyện Thạch Thành",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "392",
+    "TenQuanHuyen": "Huyện Hà Trung",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "393",
+    "TenQuanHuyen": "Huyện Vĩnh Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "394",
+    "TenQuanHuyen": "Huyện Yên Định",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "395",
+    "TenQuanHuyen": "Huyện Thọ Xuân",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "396",
+    "TenQuanHuyen": "Huyện Thường Xuân",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "397",
+    "TenQuanHuyen": "Huyện Triệu Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "398",
+    "TenQuanHuyen": "Huyện Thiệu Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "399",
+    "TenQuanHuyen": "Huyện Hoằng Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "400",
+    "TenQuanHuyen": "Huyện Hậu Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "401",
+    "TenQuanHuyen": "Huyện Nga Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "402",
+    "TenQuanHuyen": "Huyện Như Xuân",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "403",
+    "TenQuanHuyen": "Huyện Như Thanh",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "404",
+    "TenQuanHuyen": "Huyện Nông Cống",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "405",
+    "TenQuanHuyen": "Huyện Đông Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "406",
+    "TenQuanHuyen": "Huyện Quảng Xương",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "407",
+    "TenQuanHuyen": "Huyện Tĩnh Gia",
+    "type": "Huyện",
+    "MaThanhPho": "38"
+  },
+  {
+    "MaQuanHuyen": "412",
+    "TenQuanHuyen": "Thành phố Vinh",
+    "type": "Thành phố",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "413",
+    "TenQuanHuyen": "Thị xã Cửa Lò",
+    "type": "Thị xã",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "414",
+    "TenQuanHuyen": "Thị xã Thái Hoà",
+    "type": "Thị xã",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "415",
+    "TenQuanHuyen": "Huyện Quế Phong",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "416",
+    "TenQuanHuyen": "Huyện Quỳ Châu",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "417",
+    "TenQuanHuyen": "Huyện Kỳ Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "418",
+    "TenQuanHuyen": "Huyện Tương Dương",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "419",
+    "TenQuanHuyen": "Huyện Nghĩa Đàn",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "420",
+    "TenQuanHuyen": "Huyện Quỳ Hợp",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "421",
+    "TenQuanHuyen": "Huyện Quỳnh Lưu",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "422",
+    "TenQuanHuyen": "Huyện Con Cuông",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "423",
+    "TenQuanHuyen": "Huyện Tân Kỳ",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "424",
+    "TenQuanHuyen": "Huyện Anh Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "425",
+    "TenQuanHuyen": "Huyện Diễn Châu",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "426",
+    "TenQuanHuyen": "Huyện Yên Thành",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "427",
+    "TenQuanHuyen": "Huyện Đô Lương",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "428",
+    "TenQuanHuyen": "Huyện Thanh Chương",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "429",
+    "TenQuanHuyen": "Huyện Nghi Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "430",
+    "TenQuanHuyen": "Huyện Nam Đàn",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "431",
+    "TenQuanHuyen": "Huyện Hưng Nguyên",
+    "type": "Huyện",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "432",
+    "TenQuanHuyen": "Thị xã Hoàng Mai",
+    "type": "Thị xã",
+    "MaThanhPho": "40"
+  },
+  {
+    "MaQuanHuyen": "436",
+    "TenQuanHuyen": "Thành phố Hà Tĩnh",
+    "type": "Thành phố",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "437",
+    "TenQuanHuyen": "Thị xã Hồng Lĩnh",
+    "type": "Thị xã",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "439",
+    "TenQuanHuyen": "Huyện Hương Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "440",
+    "TenQuanHuyen": "Huyện Đức Thọ",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "441",
+    "TenQuanHuyen": "Huyện Vũ Quang",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "442",
+    "TenQuanHuyen": "Huyện Nghi Xuân",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "443",
+    "TenQuanHuyen": "Huyện Can Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "444",
+    "TenQuanHuyen": "Huyện Hương Khê",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "445",
+    "TenQuanHuyen": "Huyện Thạch Hà",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "446",
+    "TenQuanHuyen": "Huyện Cẩm Xuyên",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "447",
+    "TenQuanHuyen": "Huyện Kỳ Anh",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "448",
+    "TenQuanHuyen": "Huyện Lộc Hà",
+    "type": "Huyện",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "449",
+    "TenQuanHuyen": "Thị xã Kỳ Anh",
+    "type": "Thị xã",
+    "MaThanhPho": "42"
+  },
+  {
+    "MaQuanHuyen": "450",
+    "TenQuanHuyen": "Thành Phố Đồng Hới",
+    "type": "Thành phố",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "452",
+    "TenQuanHuyen": "Huyện Minh Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "453",
+    "TenQuanHuyen": "Huyện Tuyên Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "454",
+    "TenQuanHuyen": "Huyện Quảng Trạch",
+    "type": "Thị xã",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "455",
+    "TenQuanHuyen": "Huyện Bố Trạch",
+    "type": "Huyện",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "456",
+    "TenQuanHuyen": "Huyện Quảng Ninh",
+    "type": "Huyện",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "457",
+    "TenQuanHuyen": "Huyện Lệ Thủy",
+    "type": "Huyện",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "458",
+    "TenQuanHuyen": "Thị xã Ba Đồn",
+    "type": "Huyện",
+    "MaThanhPho": "44"
+  },
+  {
+    "MaQuanHuyen": "461",
+    "TenQuanHuyen": "Thành phố Đông Hà",
+    "type": "Thành phố",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "462",
+    "TenQuanHuyen": "Thị xã Quảng Trị",
+    "type": "Thị xã",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "464",
+    "TenQuanHuyen": "Huyện Vĩnh Linh",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "465",
+    "TenQuanHuyen": "Huyện Hướng Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "466",
+    "TenQuanHuyen": "Huyện Gio Linh",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "467",
+    "TenQuanHuyen": "Huyện Đa Krông",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "468",
+    "TenQuanHuyen": "Huyện Cam Lộ",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "469",
+    "TenQuanHuyen": "Huyện Triệu Phong",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "470",
+    "TenQuanHuyen": "Huyện Hải Lăng",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "471",
+    "TenQuanHuyen": "Huyện Cồn Cỏ",
+    "type": "Huyện",
+    "MaThanhPho": "45"
+  },
+  {
+    "MaQuanHuyen": "474",
+    "TenQuanHuyen": "Thành phố Huế",
+    "type": "Thành phố",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "476",
+    "TenQuanHuyen": "Huyện Phong Điền",
+    "type": "Huyện",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "477",
+    "TenQuanHuyen": "Huyện Quảng Điền",
+    "type": "Huyện",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "478",
+    "TenQuanHuyen": "Huyện Phú Vang",
+    "type": "Huyện",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "479",
+    "TenQuanHuyen": "Thị xã Hương Thủy",
+    "type": "Thị xã",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "480",
+    "TenQuanHuyen": "Thị xã Hương Trà",
+    "type": "Thị xã",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "481",
+    "TenQuanHuyen": "Huyện A Lưới",
+    "type": "Huyện",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "482",
+    "TenQuanHuyen": "Huyện Phú Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "483",
+    "TenQuanHuyen": "Huyện Nam Đông",
+    "type": "Huyện",
+    "MaThanhPho": "46"
+  },
+  {
+    "MaQuanHuyen": "490",
+    "TenQuanHuyen": "Quận Liên Chiểu",
+    "type": "Quận",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "491",
+    "TenQuanHuyen": "Quận Thanh Khê",
+    "type": "Quận",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "492",
+    "TenQuanHuyen": "Quận Hải Châu",
+    "type": "Quận",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "493",
+    "TenQuanHuyen": "Quận Sơn Trà",
+    "type": "Quận",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "494",
+    "TenQuanHuyen": "Quận Ngũ Hành Sơn",
+    "type": "Quận",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "495",
+    "TenQuanHuyen": "Quận Cẩm Lệ",
+    "type": "Quận",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "497",
+    "TenQuanHuyen": "Huyện Hòa Vang",
+    "type": "Huyện",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "498",
+    "TenQuanHuyen": "Huyện Hoàng Sa",
+    "type": "Huyện",
+    "MaThanhPho": "48"
+  },
+  {
+    "MaQuanHuyen": "502",
+    "TenQuanHuyen": "Thành phố Tam Kỳ",
+    "type": "Thành phố",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "503",
+    "TenQuanHuyen": "Thành phố Hội An",
+    "type": "Thành phố",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "504",
+    "TenQuanHuyen": "Huyện Tây Giang",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "505",
+    "TenQuanHuyen": "Huyện Đông Giang",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "506",
+    "TenQuanHuyen": "Huyện Đại Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "507",
+    "TenQuanHuyen": "Thị xã Điện Bàn",
+    "type": "Thị xã",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "508",
+    "TenQuanHuyen": "Huyện Duy Xuyên",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "509",
+    "TenQuanHuyen": "Huyện Quế Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "510",
+    "TenQuanHuyen": "Huyện Nam Giang",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "511",
+    "TenQuanHuyen": "Huyện Phước Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "512",
+    "TenQuanHuyen": "Huyện Hiệp Đức",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "513",
+    "TenQuanHuyen": "Huyện Thăng Bình",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "514",
+    "TenQuanHuyen": "Huyện Tiên Phước",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "515",
+    "TenQuanHuyen": "Huyện Bắc Trà My",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "516",
+    "TenQuanHuyen": "Huyện Nam Trà My",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "517",
+    "TenQuanHuyen": "Huyện Núi Thành",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "518",
+    "TenQuanHuyen": "Huyện Phú Ninh",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "519",
+    "TenQuanHuyen": "Huyện Nông Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "49"
+  },
+  {
+    "MaQuanHuyen": "522",
+    "TenQuanHuyen": "Thành phố Quảng Ngãi",
+    "type": "Thành phố",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "524",
+    "TenQuanHuyen": "Huyện Bình Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "525",
+    "TenQuanHuyen": "Huyện Trà Bồng",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "526",
+    "TenQuanHuyen": "Huyện Tây Trà",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "527",
+    "TenQuanHuyen": "Huyện Sơn Tịnh",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "528",
+    "TenQuanHuyen": "Huyện Tư Nghĩa",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "529",
+    "TenQuanHuyen": "Huyện Sơn Hà",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "530",
+    "TenQuanHuyen": "Huyện Sơn Tây",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "531",
+    "TenQuanHuyen": "Huyện Minh Long",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "532",
+    "TenQuanHuyen": "Huyện Nghĩa Hành",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "533",
+    "TenQuanHuyen": "Huyện Mộ Đức",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "534",
+    "TenQuanHuyen": "Huyện Đức Phổ",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "535",
+    "TenQuanHuyen": "Huyện Ba Tơ",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "536",
+    "TenQuanHuyen": "Huyện Lý Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "51"
+  },
+  {
+    "MaQuanHuyen": "540",
+    "TenQuanHuyen": "Thành phố Qui Nhơn",
+    "type": "Thành phố",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "542",
+    "TenQuanHuyen": "Huyện An Lão",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "543",
+    "TenQuanHuyen": "Huyện Hoài Nhơn",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "544",
+    "TenQuanHuyen": "Huyện Hoài Ân",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "545",
+    "TenQuanHuyen": "Huyện Phù Mỹ",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "546",
+    "TenQuanHuyen": "Huyện Vĩnh Thạnh",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "547",
+    "TenQuanHuyen": "Huyện Tây Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "548",
+    "TenQuanHuyen": "Huyện Phù Cát",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "549",
+    "TenQuanHuyen": "Thị xã An Nhơn",
+    "type": "Thị xã",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "550",
+    "TenQuanHuyen": "Huyện Tuy Phước",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "551",
+    "TenQuanHuyen": "Huyện Vân Canh",
+    "type": "Huyện",
+    "MaThanhPho": "52"
+  },
+  {
+    "MaQuanHuyen": "555",
+    "TenQuanHuyen": "Thành phố Tuy Hoà",
+    "type": "Thành phố",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "557",
+    "TenQuanHuyen": "Thị xã Sông Cầu",
+    "type": "Thị xã",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "558",
+    "TenQuanHuyen": "Huyện Đồng Xuân",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "559",
+    "TenQuanHuyen": "Huyện Tuy An",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "560",
+    "TenQuanHuyen": "Huyện Sơn Hòa",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "561",
+    "TenQuanHuyen": "Huyện Sông Hinh",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "562",
+    "TenQuanHuyen": "Huyện Tây Hoà",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "563",
+    "TenQuanHuyen": "Huyện Phú Hoà",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "564",
+    "TenQuanHuyen": "Huyện Đông Hòa",
+    "type": "Huyện",
+    "MaThanhPho": "54"
+  },
+  {
+    "MaQuanHuyen": "568",
+    "TenQuanHuyen": "Thành phố Nha Trang",
+    "type": "Thành phố",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "569",
+    "TenQuanHuyen": "Thành phố Cam Ranh",
+    "type": "Thành phố",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "570",
+    "TenQuanHuyen": "Huyện Cam Lâm",
+    "type": "Huyện",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "571",
+    "TenQuanHuyen": "Huyện Vạn Ninh",
+    "type": "Huyện",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "572",
+    "TenQuanHuyen": "Thị xã Ninh Hòa",
+    "type": "Thị xã",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "573",
+    "TenQuanHuyen": "Huyện Khánh Vĩnh",
+    "type": "Huyện",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "574",
+    "TenQuanHuyen": "Huyện Diên Khánh",
+    "type": "Huyện",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "575",
+    "TenQuanHuyen": "Huyện Khánh Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "576",
+    "TenQuanHuyen": "Huyện Trường Sa",
+    "type": "Huyện",
+    "MaThanhPho": "56"
+  },
+  {
+    "MaQuanHuyen": "582",
+    "TenQuanHuyen": "Thành phố Phan Rang-Tháp Chàm",
+    "type": "Thành phố",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "584",
+    "TenQuanHuyen": "Huyện Bác Ái",
+    "type": "Huyện",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "585",
+    "TenQuanHuyen": "Huyện Ninh Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "586",
+    "TenQuanHuyen": "Huyện Ninh Hải",
+    "type": "Huyện",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "587",
+    "TenQuanHuyen": "Huyện Ninh Phước",
+    "type": "Huyện",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "588",
+    "TenQuanHuyen": "Huyện Thuận Bắc",
+    "type": "Huyện",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "589",
+    "TenQuanHuyen": "Huyện Thuận Nam",
+    "type": "Huyện",
+    "MaThanhPho": "58"
+  },
+  {
+    "MaQuanHuyen": "593",
+    "TenQuanHuyen": "Thành phố Phan Thiết",
+    "type": "Thành phố",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "594",
+    "TenQuanHuyen": "Thị xã La Gi",
+    "type": "Thị xã",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "595",
+    "TenQuanHuyen": "Huyện Tuy Phong",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "596",
+    "TenQuanHuyen": "Huyện Bắc Bình",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "597",
+    "TenQuanHuyen": "Huyện Hàm Thuận Bắc",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "598",
+    "TenQuanHuyen": "Huyện Hàm Thuận Nam",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "599",
+    "TenQuanHuyen": "Huyện Tánh Linh",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "600",
+    "TenQuanHuyen": "Huyện Đức Linh",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "601",
+    "TenQuanHuyen": "Huyện Hàm Tân",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "602",
+    "TenQuanHuyen": "Huyện Phú Quí",
+    "type": "Huyện",
+    "MaThanhPho": "60"
+  },
+  {
+    "MaQuanHuyen": "608",
+    "TenQuanHuyen": "Thành phố Kon Tum",
+    "type": "Thành phố",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "610",
+    "TenQuanHuyen": "Huyện Đắk Glei",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "611",
+    "TenQuanHuyen": "Huyện Ngọc Hồi",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "612",
+    "TenQuanHuyen": "Huyện Đắk Tô",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "613",
+    "TenQuanHuyen": "Huyện Kon Plông",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "614",
+    "TenQuanHuyen": "Huyện Kon Rẫy",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "615",
+    "TenQuanHuyen": "Huyện Đắk Hà",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "616",
+    "TenQuanHuyen": "Huyện Sa Thầy",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "617",
+    "TenQuanHuyen": "Huyện Tu Mơ Rông",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "618",
+    "TenQuanHuyen": "Huyện Ia H' Drai",
+    "type": "Huyện",
+    "MaThanhPho": "62"
+  },
+  {
+    "MaQuanHuyen": "622",
+    "TenQuanHuyen": "Thành phố Pleiku",
+    "type": "Thành phố",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "623",
+    "TenQuanHuyen": "Thị xã An Khê",
+    "type": "Thị xã",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "624",
+    "TenQuanHuyen": "Thị xã Ayun Pa",
+    "type": "Thị xã",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "625",
+    "TenQuanHuyen": "Huyện KBang",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "626",
+    "TenQuanHuyen": "Huyện Đăk Đoa",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "627",
+    "TenQuanHuyen": "Huyện Chư Păh",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "628",
+    "TenQuanHuyen": "Huyện Ia Grai",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "629",
+    "TenQuanHuyen": "Huyện Mang Yang",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "630",
+    "TenQuanHuyen": "Huyện Kông Chro",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "631",
+    "TenQuanHuyen": "Huyện Đức Cơ",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "632",
+    "TenQuanHuyen": "Huyện Chư Prông",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "633",
+    "TenQuanHuyen": "Huyện Chư Sê",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "634",
+    "TenQuanHuyen": "Huyện Đăk Pơ",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "635",
+    "TenQuanHuyen": "Huyện Ia Pa",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "637",
+    "TenQuanHuyen": "Huyện Krông Pa",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "638",
+    "TenQuanHuyen": "Huyện Phú Thiện",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "639",
+    "TenQuanHuyen": "Huyện Chư Pưh",
+    "type": "Huyện",
+    "MaThanhPho": "64"
+  },
+  {
+    "MaQuanHuyen": "643",
+    "TenQuanHuyen": "Thành phố Buôn Ma Thuột",
+    "type": "Thành phố",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "644",
+    "TenQuanHuyen": "Thị Xã Buôn Hồ",
+    "type": "Thị xã",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "645",
+    "TenQuanHuyen": "Huyện Ea H'leo",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "646",
+    "TenQuanHuyen": "Huyện Ea Súp",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "647",
+    "TenQuanHuyen": "Huyện Buôn Đôn",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "648",
+    "TenQuanHuyen": "Huyện Cư M'gar",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "649",
+    "TenQuanHuyen": "Huyện Krông Búk",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "650",
+    "TenQuanHuyen": "Huyện Krông Năng",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "651",
+    "TenQuanHuyen": "Huyện Ea Kar",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "652",
+    "TenQuanHuyen": "Huyện M'Đrắk",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "653",
+    "TenQuanHuyen": "Huyện Krông Bông",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "654",
+    "TenQuanHuyen": "Huyện Krông Pắc",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "655",
+    "TenQuanHuyen": "Huyện Krông A Na",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "656",
+    "TenQuanHuyen": "Huyện Lắk",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "657",
+    "TenQuanHuyen": "Huyện Cư Kuin",
+    "type": "Huyện",
+    "MaThanhPho": "66"
+  },
+  {
+    "MaQuanHuyen": "660",
+    "TenQuanHuyen": "Thị xã Gia Nghĩa",
+    "type": "Thị xã",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "661",
+    "TenQuanHuyen": "Huyện Đăk Glong",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "662",
+    "TenQuanHuyen": "Huyện Cư Jút",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "663",
+    "TenQuanHuyen": "Huyện Đắk Mil",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "664",
+    "TenQuanHuyen": "Huyện Krông Nô",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "665",
+    "TenQuanHuyen": "Huyện Đắk Song",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "666",
+    "TenQuanHuyen": "Huyện Đắk R'Lấp",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "667",
+    "TenQuanHuyen": "Huyện Tuy Đức",
+    "type": "Huyện",
+    "MaThanhPho": "67"
+  },
+  {
+    "MaQuanHuyen": "672",
+    "TenQuanHuyen": "Thành phố Đà Lạt",
+    "type": "Thành phố",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "673",
+    "TenQuanHuyen": "Thành phố Bảo Lộc",
+    "type": "Thành phố",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "674",
+    "TenQuanHuyen": "Huyện Đam Rông",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "675",
+    "TenQuanHuyen": "Huyện Lạc Dương",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "676",
+    "TenQuanHuyen": "Huyện Lâm Hà",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "677",
+    "TenQuanHuyen": "Huyện Đơn Dương",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "678",
+    "TenQuanHuyen": "Huyện Đức Trọng",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "679",
+    "TenQuanHuyen": "Huyện Di Linh",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "680",
+    "TenQuanHuyen": "Huyện Bảo Lâm",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "681",
+    "TenQuanHuyen": "Huyện Đạ Huoai",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "682",
+    "TenQuanHuyen": "Huyện Đạ Tẻh",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "683",
+    "TenQuanHuyen": "Huyện Cát Tiên",
+    "type": "Huyện",
+    "MaThanhPho": "68"
+  },
+  {
+    "MaQuanHuyen": "688",
+    "TenQuanHuyen": "Thị xã Phước Long",
+    "type": "Thị xã",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "689",
+    "TenQuanHuyen": "Thị xã Đồng Xoài",
+    "type": "Thị xã",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "690",
+    "TenQuanHuyen": "Thị xã Bình Long",
+    "type": "Thị xã",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "691",
+    "TenQuanHuyen": "Huyện Bù Gia Mập",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "692",
+    "TenQuanHuyen": "Huyện Lộc Ninh",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "693",
+    "TenQuanHuyen": "Huyện Bù Đốp",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "694",
+    "TenQuanHuyen": "Huyện Hớn Quản",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "695",
+    "TenQuanHuyen": "Huyện Đồng Phú",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "696",
+    "TenQuanHuyen": "Huyện Bù Đăng",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "697",
+    "TenQuanHuyen": "Huyện Chơn Thành",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "698",
+    "TenQuanHuyen": "Huyện Phú Riềng",
+    "type": "Huyện",
+    "MaThanhPho": "70"
+  },
+  {
+    "MaQuanHuyen": "703",
+    "TenQuanHuyen": "Thành phố Tây Ninh",
+    "type": "Thành phố",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "705",
+    "TenQuanHuyen": "Huyện Tân Biên",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "706",
+    "TenQuanHuyen": "Huyện Tân Châu",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "707",
+    "TenQuanHuyen": "Huyện Dương Minh Châu",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "708",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "709",
+    "TenQuanHuyen": "Huyện Hòa Thành",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "710",
+    "TenQuanHuyen": "Huyện Gò Dầu",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "711",
+    "TenQuanHuyen": "Huyện Bến Cầu",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "712",
+    "TenQuanHuyen": "Huyện Trảng Bàng",
+    "type": "Huyện",
+    "MaThanhPho": "72"
+  },
+  {
+    "MaQuanHuyen": "718",
+    "TenQuanHuyen": "Thành phố Thủ Dầu Một",
+    "type": "Thành phố",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "719",
+    "TenQuanHuyen": "Huyện Bàu Bàng",
+    "type": "Huyện",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "720",
+    "TenQuanHuyen": "Huyện Dầu Tiếng",
+    "type": "Huyện",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "721",
+    "TenQuanHuyen": "Thị xã Bến Cát",
+    "type": "Thị xã",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "722",
+    "TenQuanHuyen": "Huyện Phú Giáo",
+    "type": "Huyện",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "723",
+    "TenQuanHuyen": "Thị xã Tân Uyên",
+    "type": "Thị xã",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "724",
+    "TenQuanHuyen": "Thị xã Dĩ An",
+    "type": "Thị xã",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "725",
+    "TenQuanHuyen": "Thị xã Thuận An",
+    "type": "Thị xã",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "726",
+    "TenQuanHuyen": "Huyện Bắc Tân Uyên",
+    "type": "Huyện",
+    "MaThanhPho": "74"
+  },
+  {
+    "MaQuanHuyen": "731",
+    "TenQuanHuyen": "Thành phố Biên Hòa",
+    "type": "Thành phố",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "732",
+    "TenQuanHuyen": "Thị xã Long Khánh",
+    "type": "Thị xã",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "734",
+    "TenQuanHuyen": "Huyện Tân Phú",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "735",
+    "TenQuanHuyen": "Huyện Vĩnh Cửu",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "736",
+    "TenQuanHuyen": "Huyện Định Quán",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "737",
+    "TenQuanHuyen": "Huyện Trảng Bom",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "738",
+    "TenQuanHuyen": "Huyện Thống Nhất",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "739",
+    "TenQuanHuyen": "Huyện Cẩm Mỹ",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "740",
+    "TenQuanHuyen": "Huyện Long Thành",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "741",
+    "TenQuanHuyen": "Huyện Xuân Lộc",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "742",
+    "TenQuanHuyen": "Huyện Nhơn Trạch",
+    "type": "Huyện",
+    "MaThanhPho": "75"
+  },
+  {
+    "MaQuanHuyen": "747",
+    "TenQuanHuyen": "Thành phố Vũng Tàu",
+    "type": "Thành phố",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "748",
+    "TenQuanHuyen": "Thành phố Bà Rịa",
+    "type": "Thành phố",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "750",
+    "TenQuanHuyen": "Huyện Châu Đức",
+    "type": "Huyện",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "751",
+    "TenQuanHuyen": "Huyện Xuyên Mộc",
+    "type": "Huyện",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "752",
+    "TenQuanHuyen": "Huyện Long Điền",
+    "type": "Huyện",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "753",
+    "TenQuanHuyen": "Huyện Đất Đỏ",
+    "type": "Huyện",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "754",
+    "TenQuanHuyen": "Huyện Tân Thành",
+    "type": "Huyện",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "755",
+    "TenQuanHuyen": "Huyện Côn Đảo",
+    "type": "Huyện",
+    "MaThanhPho": "77"
+  },
+  {
+    "MaQuanHuyen": "760",
+    "TenQuanHuyen": "Quận 1",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "761",
+    "TenQuanHuyen": "Quận 12",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "762",
+    "TenQuanHuyen": "Quận Thủ Đức",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "763",
+    "TenQuanHuyen": "Quận 9",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "764",
+    "TenQuanHuyen": "Quận Gò Vấp",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "765",
+    "TenQuanHuyen": "Quận Bình Thạnh",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "766",
+    "TenQuanHuyen": "Quận Tân Bình",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "767",
+    "TenQuanHuyen": "Quận Tân Phú",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "768",
+    "TenQuanHuyen": "Quận Phú Nhuận",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "769",
+    "TenQuanHuyen": "Quận 2",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "770",
+    "TenQuanHuyen": "Quận 3",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "771",
+    "TenQuanHuyen": "Quận 10",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "772",
+    "TenQuanHuyen": "Quận 11",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "773",
+    "TenQuanHuyen": "Quận 4",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "774",
+    "TenQuanHuyen": "Quận 5",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "775",
+    "TenQuanHuyen": "Quận 6",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "776",
+    "TenQuanHuyen": "Quận 8",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "777",
+    "TenQuanHuyen": "Quận Bình Tân",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "778",
+    "TenQuanHuyen": "Quận 7",
+    "type": "Quận",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "783",
+    "TenQuanHuyen": "Huyện Củ Chi",
+    "type": "Huyện",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "784",
+    "TenQuanHuyen": "Huyện Hóc Môn",
+    "type": "Huyện",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "785",
+    "TenQuanHuyen": "Huyện Bình Chánh",
+    "type": "Huyện",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "786",
+    "TenQuanHuyen": "Huyện Nhà Bè",
+    "type": "Huyện",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "787",
+    "TenQuanHuyen": "Huyện Cần Giờ",
+    "type": "Huyện",
+    "MaThanhPho": "79"
+  },
+  {
+    "MaQuanHuyen": "794",
+    "TenQuanHuyen": "Thành phố Tân An",
+    "type": "Thành phố",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "795",
+    "TenQuanHuyen": "Thị xã Kiến Tường",
+    "type": "Thị xã",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "796",
+    "TenQuanHuyen": "Huyện Tân Hưng",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "797",
+    "TenQuanHuyen": "Huyện Vĩnh Hưng",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "798",
+    "TenQuanHuyen": "Huyện Mộc Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "799",
+    "TenQuanHuyen": "Huyện Tân Thạnh",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "800",
+    "TenQuanHuyen": "Huyện Thạnh Hóa",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "801",
+    "TenQuanHuyen": "Huyện Đức Huệ",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "802",
+    "TenQuanHuyen": "Huyện Đức Hòa",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "803",
+    "TenQuanHuyen": "Huyện Bến Lức",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "804",
+    "TenQuanHuyen": "Huyện Thủ Thừa",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "805",
+    "TenQuanHuyen": "Huyện Tân Trụ",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "806",
+    "TenQuanHuyen": "Huyện Cần Đước",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "807",
+    "TenQuanHuyen": "Huyện Cần Giuộc",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "808",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "80"
+  },
+  {
+    "MaQuanHuyen": "815",
+    "TenQuanHuyen": "Thành phố Mỹ Tho",
+    "type": "Thành phố",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "816",
+    "TenQuanHuyen": "Thị xã Gò Công",
+    "type": "Thị xã",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "817",
+    "TenQuanHuyen": "Thị xã Cai Lậy",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "818",
+    "TenQuanHuyen": "Huyện Tân Phước",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "819",
+    "TenQuanHuyen": "Huyện Cái Bè",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "820",
+    "TenQuanHuyen": "Huyện Cai Lậy",
+    "type": "Thị xã",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "821",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "822",
+    "TenQuanHuyen": "Huyện Chợ Gạo",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "823",
+    "TenQuanHuyen": "Huyện Gò Công Tây",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "824",
+    "TenQuanHuyen": "Huyện Gò Công Đông",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "825",
+    "TenQuanHuyen": "Huyện Tân Phú Đông",
+    "type": "Huyện",
+    "MaThanhPho": "82"
+  },
+  {
+    "MaQuanHuyen": "829",
+    "TenQuanHuyen": "Thành phố Bến Tre",
+    "type": "Thành phố",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "831",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "832",
+    "TenQuanHuyen": "Huyện Chợ Lách",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "833",
+    "TenQuanHuyen": "Huyện Mỏ Cày Nam",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "834",
+    "TenQuanHuyen": "Huyện Giồng Trôm",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "835",
+    "TenQuanHuyen": "Huyện Bình Đại",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "836",
+    "TenQuanHuyen": "Huyện Ba Tri",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "837",
+    "TenQuanHuyen": "Huyện Thạnh Phú",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "838",
+    "TenQuanHuyen": "Huyện Mỏ Cày Bắc",
+    "type": "Huyện",
+    "MaThanhPho": "83"
+  },
+  {
+    "MaQuanHuyen": "842",
+    "TenQuanHuyen": "Thành phố Trà Vinh",
+    "type": "Thành phố",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "844",
+    "TenQuanHuyen": "Huyện Càng Long",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "845",
+    "TenQuanHuyen": "Huyện Cầu Kè",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "846",
+    "TenQuanHuyen": "Huyện Tiểu Cần",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "847",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "848",
+    "TenQuanHuyen": "Huyện Cầu Ngang",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "849",
+    "TenQuanHuyen": "Huyện Trà Cú",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "850",
+    "TenQuanHuyen": "Huyện Duyên Hải",
+    "type": "Huyện",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "851",
+    "TenQuanHuyen": "Thị xã Duyên Hải",
+    "type": "Thị xã",
+    "MaThanhPho": "84"
+  },
+  {
+    "MaQuanHuyen": "855",
+    "TenQuanHuyen": "Thành phố Vĩnh Long",
+    "type": "Thành phố",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "857",
+    "TenQuanHuyen": "Huyện Long Hồ",
+    "type": "Huyện",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "858",
+    "TenQuanHuyen": "Huyện Mang Thít",
+    "type": "Huyện",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "859",
+    "TenQuanHuyen": "Huyện  Vũng Liêm",
+    "type": "Huyện",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "860",
+    "TenQuanHuyen": "Huyện Tam Bình",
+    "type": "Huyện",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "861",
+    "TenQuanHuyen": "Thị xã Bình Minh",
+    "type": "Thị xã",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "862",
+    "TenQuanHuyen": "Huyện Trà Ôn",
+    "type": "Huyện",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "863",
+    "TenQuanHuyen": "Huyện Bình Tân",
+    "type": "Huyện",
+    "MaThanhPho": "86"
+  },
+  {
+    "MaQuanHuyen": "866",
+    "TenQuanHuyen": "Thành phố Cao Lãnh",
+    "type": "Thành phố",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "867",
+    "TenQuanHuyen": "Thành phố Sa Đéc",
+    "type": "Thành phố",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "868",
+    "TenQuanHuyen": "Thị xã Hồng Ngự",
+    "type": "Thị xã",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "869",
+    "TenQuanHuyen": "Huyện Tân Hồng",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "870",
+    "TenQuanHuyen": "Huyện Hồng Ngự",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "871",
+    "TenQuanHuyen": "Huyện Tam Nông",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "872",
+    "TenQuanHuyen": "Huyện Tháp Mười",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "873",
+    "TenQuanHuyen": "Huyện Cao Lãnh",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "874",
+    "TenQuanHuyen": "Huyện Thanh Bình",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "875",
+    "TenQuanHuyen": "Huyện Lấp Vò",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "876",
+    "TenQuanHuyen": "Huyện Lai Vung",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "877",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "87"
+  },
+  {
+    "MaQuanHuyen": "883",
+    "TenQuanHuyen": "Thành phố Long Xuyên",
+    "type": "Thành phố",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "884",
+    "TenQuanHuyen": "Thành phố Châu Đốc",
+    "type": "Thành phố",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "886",
+    "TenQuanHuyen": "Huyện An Phú",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "887",
+    "TenQuanHuyen": "Thị xã Tân Châu",
+    "type": "Thị xã",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "888",
+    "TenQuanHuyen": "Huyện Phú Tân",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "889",
+    "TenQuanHuyen": "Huyện Châu Phú",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "890",
+    "TenQuanHuyen": "Huyện Tịnh Biên",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "891",
+    "TenQuanHuyen": "Huyện Tri Tôn",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "892",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "893",
+    "TenQuanHuyen": "Huyện Chợ Mới",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "894",
+    "TenQuanHuyen": "Huyện Thoại Sơn",
+    "type": "Huyện",
+    "MaThanhPho": "89"
+  },
+  {
+    "MaQuanHuyen": "899",
+    "TenQuanHuyen": "Thành phố Rạch Giá",
+    "type": "Thành phố",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "900",
+    "TenQuanHuyen": "Thị xã Hà Tiên",
+    "type": "Thị xã",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "902",
+    "TenQuanHuyen": "Huyện Kiên Lương",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "903",
+    "TenQuanHuyen": "Huyện Hòn Đất",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "904",
+    "TenQuanHuyen": "Huyện Tân Hiệp",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "905",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "906",
+    "TenQuanHuyen": "Huyện Giồng Riềng",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "907",
+    "TenQuanHuyen": "Huyện Gò Quao",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "908",
+    "TenQuanHuyen": "Huyện An Biên",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "909",
+    "TenQuanHuyen": "Huyện An Minh",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "910",
+    "TenQuanHuyen": "Huyện Vĩnh Thuận",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "911",
+    "TenQuanHuyen": "Huyện Phú Quốc",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "912",
+    "TenQuanHuyen": "Huyện Kiên Hải",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "913",
+    "TenQuanHuyen": "Huyện U Minh Thượng",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "914",
+    "TenQuanHuyen": "Huyện Giang Thành",
+    "type": "Huyện",
+    "MaThanhPho": "91"
+  },
+  {
+    "MaQuanHuyen": "916",
+    "TenQuanHuyen": "Quận Ninh Kiều",
+    "type": "Quận",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "917",
+    "TenQuanHuyen": "Quận Ô Môn",
+    "type": "Quận",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "918",
+    "TenQuanHuyen": "Quận Bình Thuỷ",
+    "type": "Quận",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "919",
+    "TenQuanHuyen": "Quận Cái Răng",
+    "type": "Quận",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "923",
+    "TenQuanHuyen": "Quận Thốt Nốt",
+    "type": "Quận",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "924",
+    "TenQuanHuyen": "Huyện Vĩnh Thạnh",
+    "type": "Huyện",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "925",
+    "TenQuanHuyen": "Huyện Cờ Đỏ",
+    "type": "Huyện",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "926",
+    "TenQuanHuyen": "Huyện Phong Điền",
+    "type": "Huyện",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "927",
+    "TenQuanHuyen": "Huyện Thới Lai",
+    "type": "Huyện",
+    "MaThanhPho": "92"
+  },
+  {
+    "MaQuanHuyen": "930",
+    "TenQuanHuyen": "Thành phố Vị Thanh",
+    "type": "Thành phố",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "931",
+    "TenQuanHuyen": "Thị xã Ngã Bảy",
+    "type": "Thị xã",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "932",
+    "TenQuanHuyen": "Huyện Châu Thành A",
+    "type": "Huyện",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "933",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "934",
+    "TenQuanHuyen": "Huyện Phụng Hiệp",
+    "type": "Huyện",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "935",
+    "TenQuanHuyen": "Huyện Vị Thuỷ",
+    "type": "Huyện",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "936",
+    "TenQuanHuyen": "Huyện Long Mỹ",
+    "type": "Huyện",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "937",
+    "TenQuanHuyen": "Thị xã Long Mỹ",
+    "type": "Thị xã",
+    "MaThanhPho": "93"
+  },
+  {
+    "MaQuanHuyen": "941",
+    "TenQuanHuyen": "Thành phố Sóc Trăng",
+    "type": "Thành phố",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "942",
+    "TenQuanHuyen": "Huyện Châu Thành",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "943",
+    "TenQuanHuyen": "Huyện Kế Sách",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "944",
+    "TenQuanHuyen": "Huyện Mỹ Tú",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "945",
+    "TenQuanHuyen": "Huyện Cù Lao Dung",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "946",
+    "TenQuanHuyen": "Huyện Long Phú",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "947",
+    "TenQuanHuyen": "Huyện Mỹ Xuyên",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "948",
+    "TenQuanHuyen": "Thị xã Ngã Năm",
+    "type": "Thị xã",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "949",
+    "TenQuanHuyen": "Huyện Thạnh Trị",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "950",
+    "TenQuanHuyen": "Thị xã Vĩnh Châu",
+    "type": "Thị xã",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "951",
+    "TenQuanHuyen": "Huyện Trần Đề",
+    "type": "Huyện",
+    "MaThanhPho": "94"
+  },
+  {
+    "MaQuanHuyen": "954",
+    "TenQuanHuyen": "Thành phố Bạc Liêu",
+    "type": "Thành phố",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "956",
+    "TenQuanHuyen": "Huyện Hồng Dân",
+    "type": "Huyện",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "957",
+    "TenQuanHuyen": "Huyện Phước Long",
+    "type": "Huyện",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "958",
+    "TenQuanHuyen": "Huyện Vĩnh Lợi",
+    "type": "Huyện",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "959",
+    "TenQuanHuyen": "Thị xã Giá Rai",
+    "type": "Thị xã",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "960",
+    "TenQuanHuyen": "Huyện Đông Hải",
+    "type": "Huyện",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "961",
+    "TenQuanHuyen": "Huyện Hoà Bình",
+    "type": "Huyện",
+    "MaThanhPho": "95"
+  },
+  {
+    "MaQuanHuyen": "964",
+    "TenQuanHuyen": "Thành phố Cà Mau",
+    "type": "Thành phố",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "966",
+    "TenQuanHuyen": "Huyện U Minh",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "967",
+    "TenQuanHuyen": "Huyện Thới Bình",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "968",
+    "TenQuanHuyen": "Huyện Trần Văn Thời",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "969",
+    "TenQuanHuyen": "Huyện Cái Nước",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "970",
+    "TenQuanHuyen": "Huyện Đầm Dơi",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "971",
+    "TenQuanHuyen": "Huyện Năm Căn",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "972",
+    "TenQuanHuyen": "Huyện Phú Tân",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  },
+  {
+    "MaQuanHuyen": "973",
+    "TenQuanHuyen": "Huyện Ngọc Hiển",
+    "type": "Huyện",
+    "MaThanhPho": "96"
+  }
+]
