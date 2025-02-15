@@ -1,6 +1,6 @@
 # electronics-store
 
-1. [setup project](https://anh0701.github.io/blogs/post/setup-laravel)
+1. [setup project](https://anh0701.github.io/post/setup-a-laravel-project-you-cloned-from-github)
 2. run project
 
 ```shell
